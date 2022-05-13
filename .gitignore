@@ -56,3 +56,4 @@ app.*.map.json
 /build
 /captures
 .externalNativeBuild
+.cxx
