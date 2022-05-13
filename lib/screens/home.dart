@@ -14,15 +14,31 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/logo/profile.png"),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Username",),
+              // Image.asset("assets/logo/profile.png"),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                color: Colors.amber[100],
+                margin: EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
+
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Username",),
+                ),
               ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Email",),
+              Container(
+                margin: EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.amber[100],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Email",),
+                ),
               ),
+
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Phone",),
@@ -36,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 child: ElevatedButton.icon(
                   icon: Icon(Icons.add),
                   label:
-                      Text("สร้างบัญชีผู้ใช้", style: TextStyle(fontSize: 20)),
+                      Text("Register", style: TextStyle(fontSize: 20)),
                       onPressed: () {
                       Navigator.pushReplacement(context, MaterialPageRoute(
                         builder: (context){
@@ -50,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   icon: Icon(Icons.login),
-                  label: Text("เข้าสู่ระบบ", style: TextStyle(fontSize: 20)),
+                  label: Text("Singin", style: TextStyle(fontSize: 20)),
                   onPressed: () {
                     Navigator.pushReplacement(context, MaterialPageRoute(
                         builder: (context){
