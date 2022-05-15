@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class screens_Register extends StatefulWidget {
+  const screens_Register({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<screens_Register> createState() => _screens_RegisterState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _screens_RegisterState extends State<screens_Register> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text("Register"),
+    );
   }
 }
