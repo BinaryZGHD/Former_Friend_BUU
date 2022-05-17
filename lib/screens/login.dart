@@ -5,7 +5,6 @@ import '../constants/colorname.dart';
 import 'condition_pdpa.dart';
 import 'forgot_password_send.dart';
 import 'home.dart';
-import 'loginPage.dart';
 
 class screens_Login extends StatefulWidget {
   const screens_Login({Key? key}) : super(key: key);
@@ -20,53 +19,34 @@ class _screens_LoginState extends State<screens_Login> {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: [
-            // 0.1,
-            0.1,
-            1.0,
-          ],
-          colors: [
-
-            color_background_1,
-            color_background_2,
-          ],
-        )),
-        child: Stack(
-          children:<Widget>[Padding(
+        decoration: buildBoxDecoration(),
+        child: Stack(children: <Widget>[
+          Padding(
             padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Image.asset(
-                    "assets/logo/Buu-logo11.png",
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.3,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
                   ),
+                  buildImge(),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
                   buildTextFieldEmail(),
                   buildTextFieldPassword(),
-
                   buildButtonSignIn(),
                   buildButtonRegister_Forgot(),
-                  _createAccountLabel(),
+                  buildAccountLabel(),
                 ],
               ),
             ),
           ),
-            Positioned(top: 40, left: 0, child: _changeLanguage()),
-          ]
-        ),
+          Positioned(top:80, left: 0, child: _changeLanguage()),
+        ]),
       ),
     );
   }
-
-
 
   Widget _changeLanguage() {
     return InkWell(
@@ -81,20 +61,20 @@ class _screens_LoginState extends State<screens_Login> {
             //   padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
             //   child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
             // ),
-            Text('TH / EN',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+            Text('TH / EN', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
           ],
         ),
       ),
     );
   }
+
   Container buildButtonSignIn() {
     return Container(
       constraints: BoxConstraints.expand(height: 50),
       child: GestureDetector(
           child: Text("Sign in", textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.black)),
           onTap: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Home()));
           }),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
       margin: EdgeInsets.only(top: 16),
@@ -110,7 +90,6 @@ class _screens_LoginState extends State<screens_Login> {
         children: [
           // buildButtonRegister(),
           buildButtonForgot(),
-
         ],
       ),
     );
@@ -158,7 +137,32 @@ class _screens_LoginState extends State<screens_Login> {
             style: TextStyle(fontSize: 18)));
   }
 
-  Widget _createAccountLabel() {
+  buildBoxDecoration() {
+    return BoxDecoration(
+        gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      stops: [
+        // 0.1,
+        0.1,
+        1.0,
+      ],
+      colors: [
+        color_background_1,
+        color_background_2,
+      ],
+    ));
+  }
+
+  buildImge() {
+    return Image.asset(
+      "assets/logo/Buu-logo11.png",
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.3,
+    );
+  }
+
+  Widget buildAccountLabel() {
     return InkWell(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Condition_PDPA()));
@@ -179,7 +183,11 @@ class _screens_LoginState extends State<screens_Login> {
             ),
             Text(
               'Register',
-              style: TextStyle(color: Color(0xfff79c4f), fontSize: 13, decoration: TextDecoration.underline,fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  color: Color(0xfff79c4f),
+                  fontSize: 13,
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.w600),
             ),
           ],
         ),
