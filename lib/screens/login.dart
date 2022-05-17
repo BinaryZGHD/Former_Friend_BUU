@@ -184,11 +184,7 @@ class _screens_LoginState extends State<screens_Login> {
             ),
             Text(
               'Register',
-              style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.w600),
+              style: TextStyle(color: Color(0xfff79c4f), fontSize: 13, decoration: TextDecoration.underline,fontWeight: FontWeight.w600),
             ),
           ],
         ),
