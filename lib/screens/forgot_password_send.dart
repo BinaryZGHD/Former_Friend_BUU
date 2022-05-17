@@ -1,18 +1,20 @@
-import 'package:f2fbuu/screens/register.dart';
+import 'package:f2fbuu/screens/register_send.dart';
+import 'package:f2fbuu/screens/forgot_password_set.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/colorname.dart';
 import 'home.dart';
 
 
-class screens_Forgot_Password extends StatefulWidget {
-  const screens_Forgot_Password({Key? key}) : super(key: key);
+class screens_Send_Forgot_Password extends StatefulWidget {
+  const screens_Send_Forgot_Password({Key? key}) : super(key: key);
 
   @override
-  State<screens_Forgot_Password> createState() => _screens_Forgot_PasswordState();
+  State<screens_Send_Forgot_Password> createState() => _screens_Send_Forgot_PasswordState();
 }
 
-class _screens_Forgot_PasswordState extends State<screens_Forgot_Password> {
+class _screens_Send_Forgot_PasswordState extends State<screens_Send_Forgot_Password> {
   @override
   Widget build(BuildContext context) {
 
@@ -25,15 +27,13 @@ class _screens_Forgot_PasswordState extends State<screens_Forgot_Password> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [
-                // 0.1,
                 0.1,
                 1.0,
               ],
               colors: [
 
-                // Colors.yellow,
-                Colors.pinkAccent,
-                Colors.white,
+                color_background_1,
+                color_background_2,
 
               ],
             )
@@ -49,11 +49,9 @@ class _screens_Forgot_PasswordState extends State<screens_Forgot_Password> {
                 // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1 , ),
-                buildTextFieldUserID(),
-                buildTextFieldEmail(),
-
-
-                buildButtonComfirm(),
+                buildTextFieldUserID_Send_Forgot(),
+                buildTextFieldEmail_Send_Forgot(),
+                buildButtonNext_Send_Forgot(),
 
               ],
             ),
@@ -62,22 +60,40 @@ class _screens_Forgot_PasswordState extends State<screens_Forgot_Password> {
       ),
     );
   }
-  Container buildButtonComfirm() {
-    return Container(
-      constraints: BoxConstraints.expand(height: 50),
+  GestureDetector buildButtonNext_Send_Forgot() {
+    return GestureDetector(
+      child: Container(
+        constraints: BoxConstraints.expand(height: 50),
 
-      child: Text("Comfirm",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18, color: Colors.black)
+        child: Text("Next",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18, color: Colors.black)
+        ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
+        margin: EdgeInsets.only(top: 16),
+        padding: EdgeInsets.all(12),
+
+
       ),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
-      margin: EdgeInsets.only(top: 16),
-      padding: EdgeInsets.all(12),
-
+      onTap: () async {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Set_Forgot_Password()));
+      },
     );
+
   }
-  Container buildTextFieldEmail() {
+  Container buildTextFieldUserID_Send_Forgot() {
+    return Container(
+        padding: EdgeInsets.all(12),
+        margin: EdgeInsets.only(top: 12),
+        decoration: BoxDecoration(
+            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
+        child: TextField(
+            autofocus: true,
+            decoration: InputDecoration.collapsed(hintText: "User ID"),
+            style: TextStyle(fontSize: 18)));
+  }
+  Container buildTextFieldEmail_Send_Forgot() {
     return Container(
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(top: 12),
@@ -88,16 +104,6 @@ class _screens_Forgot_PasswordState extends State<screens_Forgot_Password> {
             style: TextStyle(fontSize: 18)));
   }
 
-  Container buildTextFieldUserID() {
-    return Container(
-        padding: EdgeInsets.all(12),
-        margin: EdgeInsets.only(top: 12),
-        decoration: BoxDecoration(
-            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
-            obscureText: true,
-            decoration: InputDecoration.collapsed(hintText: "UserID"),
-            style: TextStyle(fontSize: 18)));
-  }
+
 }
 

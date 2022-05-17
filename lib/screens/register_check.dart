@@ -1,11 +1,18 @@
-import 'package:f2fbuu/screens/register_send.dart';
+import 'package:f2fbuu/screens/login.dart';
+import 'package:f2fbuu/screens/register_check.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colorname.dart';
-import 'login.dart';
 
+class screens_Register_Check extends StatefulWidget {
+  const screens_Register_Check({Key? key}) : super(key: key);
 
-class screens_Home extends StatelessWidget {
+  @override
+  State<screens_Register_Check> createState() => _screens_Register_CheckState();
+}
+
+class _screens_Register_CheckState extends State<screens_Register_Check> {
   @override
   Widget build(BuildContext context) {
 
@@ -14,7 +21,6 @@ class screens_Home extends StatelessWidget {
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -37,16 +43,14 @@ class screens_Home extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset("assets/logo/Buu-logo11.png",
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
-                ),
+                // Image.asset("assets/logo/Buu-logo11.png",
+                //   width: MediaQuery.of(context).size.width,
+                //   height: MediaQuery.of(context).size.height * 0.3,
+                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1 , ),
-                buildTextFieldEmail(),
-                buildTextFieldPassword(),
-                buildButtonRegister_Forgot(),
-                buildButtonSignIn(),
+                buildTextFieldCode2FA_Register_Check(),
+                buildButtonConfrim_Register_Check(),
 
               ],
             ),
@@ -55,45 +59,29 @@ class screens_Home extends StatelessWidget {
       ),
     );
   }
-  Container buildButtonSignIn() {
-    return Container(
+  GestureDetector buildButtonConfrim_Register_Check() {
+    return GestureDetector(
+      child: Container(
         constraints: BoxConstraints.expand(height: 50),
-        child: Text("Sign in",
+
+        child: Text("Confrim",
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.black)),
+            style: TextStyle(fontSize: 18, color: Colors.black)
+        ),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
         margin: EdgeInsets.only(top: 16),
-        padding: EdgeInsets.all(12));
-  }
-  Container buildButtonRegister_Forgot() {
-    return Container(
-      padding: EdgeInsets.all(12),
-        child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          buildButtonRegister(),
-          buildButtonForgot(),
-        ],
-      ),
-    );
-  }buildButtonRegister(){
-    return Text("Register");
-  }
-  buildButtonForgot(){
-    return Text("Forgot password");
-  }
-  Container buildTextFieldEmail() {
-    return Container(
         padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
-            decoration: InputDecoration.collapsed(hintText: "Email"),
-            style: TextStyle(fontSize: 18)));
-  }
 
-  Container buildTextFieldPassword() {
+
+      ),
+      onTap: () async {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Login()));
+      },
+    );
+
+  }
+  Container buildTextFieldCode2FA_Register_Check() {
     return Container(
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(top: 12),
@@ -101,8 +89,9 @@ class screens_Home extends StatelessWidget {
             color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
             obscureText: true,
-            decoration: InputDecoration.collapsed(hintText: "Password"),
+            decoration: InputDecoration.collapsed(hintText: "Code"),
             style: TextStyle(fontSize: 18)));
   }
+
 }
 
