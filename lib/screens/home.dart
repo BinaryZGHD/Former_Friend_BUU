@@ -1,8 +1,8 @@
-import 'package:f2fbuu/screens/register_send.dart';
+
 import 'package:flutter/material.dart';
 
 import '../constants/colorname.dart';
-import 'login.dart';
+
 
 
 class screens_Home extends StatelessWidget {

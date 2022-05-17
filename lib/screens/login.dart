@@ -1,3 +1,4 @@
+import 'package:f2fbuu/screens/welcome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -74,7 +75,7 @@ class _screens_LoginState extends State<screens_Login> {
       child: GestureDetector(
           child: Text("Sign in", textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.black)),
           onTap: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Home()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Welcome()));
           }),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
       margin: EdgeInsets.only(top: 16),
