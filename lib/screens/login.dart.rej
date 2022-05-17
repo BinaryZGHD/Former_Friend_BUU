@@ -1,9 +1,0 @@
-diff a/lib/screens/login.dart b/lib/screens/login.dart	(rejected hunks)
-@@ -183,7 +183,6 @@
-             ),
-             Text(
-               'Register',
--              style: TextStyle(color: Color(0xfff79c4f), fontSize: 13, decoration: TextDecoration.underline,fontWeight: FontWeight.w600),
-               style: TextStyle(
-                   color: Color(0xfff79c4f),
-                   fontSize: 13,

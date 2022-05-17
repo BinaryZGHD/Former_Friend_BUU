@@ -5,11 +5,41 @@ import '../constants/colorname.dart';
 
 
 
-class screens_Home extends StatelessWidget {
+
+class screens_Home extends StatefulWidget {
+  const screens_Home({Key? key}) : super(key: key);
+
+  @override
+  State<screens_Home> createState() => _screens_HomeState();
+}
+
+class _screens_HomeState extends State<screens_Home> {
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/logo/Buu-logo11.png",
+                width: MediaQuery.of(context).size.width*0.1,
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.1,
+              ),
+              Text("Buu",style: TextStyle(color: color_white,fontSize: 20),),
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.1,
+              ),
+              Text("Home",style: TextStyle(color: color_white,fontSize: 20),),
+            ],
+          ),
+        ),
+      ),
+
 
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -33,14 +63,20 @@ class screens_Home extends StatelessWidget {
             )
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
+          padding: const EdgeInsets.fromLTRB(10, 1, 10, 0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset("assets/logo/Buu-logo11.png",
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
+                Card(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width *0.9,
+                  ),
                 ),
+                // Image.asset("assets/logo/Buu-logo11.png",
+                //   width: MediaQuery.of(context).size.width,
+                //   height: MediaQuery.of(context).size.height * 0.3,
+                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1 , ),
                 buildTextFieldEmail(),
@@ -69,7 +105,7 @@ class screens_Home extends StatelessWidget {
   Container buildButtonRegister_Forgot() {
     return Container(
       padding: EdgeInsets.all(12),
-        child: Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           buildButtonRegister(),
@@ -77,7 +113,8 @@ class screens_Home extends StatelessWidget {
         ],
       ),
     );
-  }buildButtonRegister(){
+  }
+  buildButtonRegister(){
     return Text("Register");
   }
   buildButtonForgot(){
@@ -105,4 +142,3 @@ class screens_Home extends StatelessWidget {
             style: TextStyle(fontSize: 18)));
   }
 }
-

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colorname.dart';
+import 'home.dart';
 
 
 
@@ -18,7 +19,7 @@ class _screens_WelcomeState extends State<screens_Welcome> {
   int _selectedIndex = 0;
   static const List<Widget> _screenList = [
 
-    screens_Login(),
+    screens_Home(),
     screens_Login(),
     screens_Login(),
     screens_Login(),
