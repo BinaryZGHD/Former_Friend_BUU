@@ -56,7 +56,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   dependencies:
     dependency: "direct main"
     description:
@@ -109,7 +109,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -122,13 +121,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
-  intl_phone_field:
-    dependency: "direct main"
-    description:
-      name: intl_phone_field
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
   js:
     dependency: transitive
     description:
@@ -136,8 +128,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-=======
->>>>>>> e68eb7b99583c1b72641cdeaa2cddf207b13d186
   lints:
     dependency: transitive
     description:
@@ -193,7 +183,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.2"
+    version: "6.0.3"
   quiver:
     dependency: transitive
     description:
