@@ -1,5 +1,6 @@
 import 'package:f2fbuu/screens/home.dart';
 import 'package:f2fbuu/screens/login.dart';
+import 'package:f2fbuu/screens/profile_page.dart';
 import 'package:f2fbuu/screens/test.dart';
 import 'package:f2fbuu/screens/welcome.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: screens_Login( ),
+      // home: screens_Login( ),
+      home: ProfileScreen(),
     );
   }
 }
