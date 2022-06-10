@@ -20,7 +20,7 @@ class _screens_LoginState extends State<screens_Login> {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: buildBoxDecoration(),
+        // decoration: buildBoxDecoration(),
         child: Stack(children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
@@ -124,7 +124,8 @@ class _screens_LoginState extends State<screens_Login> {
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
-            autofocus: true, decoration: InputDecoration.collapsed(hintText: "Email"), style: TextStyle(fontSize: 18)));
+            autofocus: true,
+            decoration: InputDecoration.collapsed(hintText: "Email"), style: TextStyle(fontSize: 18)));
   }
 
   Container buildTextFieldPassword() {
