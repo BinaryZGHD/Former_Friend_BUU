@@ -1,4 +1,5 @@
 
+import 'package:f2fbuu/screens/welcome.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colorname.dart';
@@ -14,131 +15,212 @@ class screens_Home extends StatefulWidget {
 }
 
 class _screens_HomeState extends State<screens_Home> {
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          child: Row(
-            children: [
-              Image.asset(
-                "assets/logo/Buu-logo11.png",
-                width: MediaQuery.of(context).size.width*0.1,
-                height: MediaQuery.of(context).size.height * 0.1,
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                'นายสมชาย สมบัติ',
+                style: TextStyle(
+                  fontFamily: 'Kanit',
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width*0.1,
+              
+              accountEmail: Text(
+                '62030340@Admin.com',
+                style: TextStyle(
+                  fontFamily: 'Kanit',
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
               ),
-              Text("Buu",style: TextStyle(color: color_white,fontSize: 20),),
-              SizedBox(
-                width: MediaQuery.of(context).size.width*0.1,
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/logo/profile.png'),
               ),
-              Text("Home",style: TextStyle(color: color_white,fontSize: 20),),
-            ],
-          ),
+              decoration: BoxDecoration(
+                color: Colors.deepOrangeAccent,
+              ),
+
+            ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => screens_Home()));
+            //   },
+            //   child: Container(
+            //     child: ListTile(
+            //       title: Text(
+            //         '- - - ',
+            //         style: TextStyle(
+            //           fontFamily: 'Kanit',
+            //           fontSize: 20,
+            //           color: Colors.black,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            Container(
+              child: ListTile(
+                title: Text(
+                  'ประเภทผู้ใช้งาน',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => screens_Home()));
+              },
+              child: Container(
+                child: ListTile(
+                  title: Text(
+                    'ภาษา',
+                    style: TextStyle(
+                      fontFamily: 'Kanit',
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: ListTile(
+                title: Text(
+                  'เปลี่ยนรหัสผ่าน',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: ListTile(
+                title: Text(
+                  'ลบบัญชี',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: ListTile(
+                title: Text(
+                  'เวอร์ชั่นแอพพลิเคชั่น',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: ListTile(
+                leading: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'ออกจากระบบ',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+
+          ],
         ),
+
+    ),
+      appBar: PreferredSize(
+
+        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
+        child: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+        ),
+          title: Center(child: Text('My activity ' , style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500))),
+        ),
+
       ),
+
 
 
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [
-                // 0.1,
-                0.1,
-                1.0,
-              ],
-              colors: [
-
-                color_background_1,
-                color_background_2,
-
-
-              ],
-            )
-        ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 1, 10, 0),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Card(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    width: MediaQuery.of(context).size.width *0.9,
-                  ),
-                ),
-                // Image.asset("assets/logo/Buu-logo11.png",
-                //   width: MediaQuery.of(context).size.width,
-                //   height: MediaQuery.of(context).size.height * 0.3,
-                // ),
+                buildCardWelcome(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1 , ),
-                buildTextFieldEmail(),
-                buildTextFieldPassword(),
-                buildButtonRegister_Forgot(),
-                buildButtonSignIn(),
+
+
+
+
 
               ],
+
             ),
+
           ),
         ),
       ),
-    );
-  }
-  Container buildButtonSignIn() {
-    return Container(
-        constraints: BoxConstraints.expand(height: 50),
-        child: Text("Sign in",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.black)),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
-        margin: EdgeInsets.only(top: 16),
-        padding: EdgeInsets.all(12));
-  }
-  Container buildButtonRegister_Forgot() {
-    return Container(
-      padding: EdgeInsets.all(12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          buildButtonRegister(),
-          buildButtonForgot(),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Welcome()));
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
-  buildButtonRegister(){
-    return Text("Register");
-  }
-  buildButtonForgot(){
-    return Text("Forgot password");
-  }
-  Container buildTextFieldEmail() {
-    return Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
-            decoration: InputDecoration.collapsed(hintText: "Email"),
-            style: TextStyle(fontSize: 18)));
+
+
+  buildCardWelcome(){
+    return Card(
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.6,
+        width: MediaQuery.of(context).size.width ,
+      ),
+    );
   }
 
-  Container buildTextFieldPassword() {
-    return Container(
-        padding: EdgeInsets.all(12),
-        margin: EdgeInsets.only(top: 12),
-        decoration: BoxDecoration(
-            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
-            obscureText: true,
-            decoration: InputDecoration.collapsed(hintText: "Password"),
-            style: TextStyle(fontSize: 18)));
-  }
+
 }
