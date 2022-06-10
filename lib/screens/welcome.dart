@@ -1,5 +1,6 @@
 
 import 'package:f2fbuu/screens/login.dart';
+import 'package:f2fbuu/screens/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class _screens_WelcomeState extends State<screens_Welcome> {
     screens_Login(),
     screens_Login(),
     screens_Login(),
-    screens_Login(),
+    ProfileScreen(),
 
 
 
