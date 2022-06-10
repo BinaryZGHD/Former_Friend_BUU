@@ -11,12 +11,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [HexColor('#FFFFFF'), HexColor('#FFB1EE')])),
+              colors: [HexColor('#FFFFFF'), HexColor('#FFFFFF')])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -33,10 +35,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         body: Column(
-          children: [Expanded(child: SizedBox(
-
-          ))
-            
+          children: [Card(
+            child: Container(
+                height: height * 0.1,
+                width: width,
+                color: HexColor('#FF00FF00'),
+                child: Text('test',style: TextStyle(fontSize: 30),),
+              ),
+          ),
           ],
         ),
       ),
