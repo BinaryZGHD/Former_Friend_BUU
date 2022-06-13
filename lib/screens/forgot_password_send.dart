@@ -7,14 +7,14 @@ import '../constants/colorname.dart';
 import 'home.dart';
 
 
-class screens_Send_Forgot_Password extends StatefulWidget {
-  const screens_Send_Forgot_Password({Key? key}) : super(key: key);
+class screens_Send_Forgot_Password1 extends StatefulWidget {
+  const screens_Send_Forgot_Password1({Key? key}) : super(key: key);
 
   @override
-  State<screens_Send_Forgot_Password> createState() => _screens_Send_Forgot_PasswordState();
+  State<screens_Send_Forgot_Password1> createState() => _screens_Send_Forgot_PasswordState1();
 }
 
-class _screens_Send_Forgot_PasswordState extends State<screens_Send_Forgot_Password> {
+class _screens_Send_Forgot_PasswordState1 extends State<screens_Send_Forgot_Password1> {
   @override
   Widget build(BuildContext context) {
 

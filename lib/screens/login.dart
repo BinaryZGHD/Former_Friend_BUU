@@ -2,10 +2,14 @@ import 'package:f2fbuu/screens/welcome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+
 import '../constants/colorname.dart';
+import '../customs/button/button.dart';
 import 'condition_pdpa.dart';
 import 'forgot_password_send.dart';
 import 'home.dart';
+import 'loginPage.dart';
 
 class screens_Login extends StatefulWidget {
   const screens_Login({Key? key}) : super(key: key);
@@ -15,8 +19,14 @@ class screens_Login extends StatefulWidget {
 }
 
 class _screens_LoginState extends State<screens_Login> {
+  TextEditingController user = TextEditingController();
+  TextEditingController password = TextEditingController();
+  String u = "";
+  String p = "";
   @override
   Widget build(BuildContext context) {
+    TextEditingController textEditingController = TextEditingController();
+    textEditingController.value.toString();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -34,16 +44,30 @@ class _screens_LoginState extends State<screens_Login> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  buildTextFieldEmail(),
-                  buildTextFieldPassword(),
+                  TextFormFieldCustom(hint_label: "Email",textEditingController: user,
+                      onChanged: (value){
+                        u = value;
+                      },),
+                  TextFormFieldCustom(hint_label: "Password",textEditingController: password,
+                    onChanged: (value){
+                      p = value;
+                    }, ),
+
                   buildButtonSignIn(),
+                  ButtonCustom(label: "Submit",onPressed: (){
+                    // context.read<LoginBloc>().add(LoginsubmitEvent(userID: u, password: p));
+                    // context.read<LoginBloc>().add(LoginsubmitEvent( userID:  u, password: '123456'));
+                    // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
+                    print("User :"+u +"\n"+"Password :"+p);
+                  },),
+
                   buildButtonRegister_Forgot(),
                   buildAccountLabel(),
                 ],
               ),
             ),
           ),
-          Positioned(top:80, left: 0, child: _changeLanguage()),
+          Positioned(top: 80, left: 0, child: _changeLanguage()),
         ]),
       ),
     );
@@ -82,6 +106,19 @@ class _screens_LoginState extends State<screens_Login> {
       padding: EdgeInsets.all(12),
     );
   }
+  // Container buildButtonSignIn() {
+  //   return Container(
+  //     constraints: BoxConstraints.expand(height: 50),
+  //     child: GestureDetector(
+  //         child: Text("Sign in", textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.black)),
+  //         onTap: () async {
+  //           Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Welcome()));
+  //         }),
+  //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
+  //     margin: EdgeInsets.only(top: 16),
+  //     padding: EdgeInsets.all(12),
+  //   );
+  // }
 
   Container buildButtonRegister_Forgot() {
     return Container(
@@ -90,17 +127,14 @@ class _screens_LoginState extends State<screens_Login> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // buildButtonRegister(),
+
           buildButtonForgot(),
         ],
       ),
     );
   }
 
-  // buildButtonRegister(){
-  //   return Text("Register",
-  //       style: TextStyle(decoration: TextDecoration.underline, color: Colors.black)
-  //   );
-  // }
+
   buildButtonRegister() {
     return GestureDetector(
       child: Text("Register", style: TextStyle(decoration: TextDecoration.underline, color: Colors.black)),
@@ -114,30 +148,13 @@ class _screens_LoginState extends State<screens_Login> {
     return GestureDetector(
       child: Text("Forgot Password ?", style: TextStyle(decoration: TextDecoration.underline, color: Colors.black)),
       onTap: () async {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Send_Forgot_Password()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Send_Forgot_Password1()));
       },
     );
   }
 
-  Container buildTextFieldEmail() {
-    return Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
-            autofocus: true,
-            decoration: InputDecoration.collapsed(hintText: "Email"), style: TextStyle(fontSize: 18)));
-  }
 
-  Container buildTextFieldPassword() {
-    return Container(
-        padding: EdgeInsets.all(12),
-        margin: EdgeInsets.only(top: 12),
-        decoration: BoxDecoration(color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
-            obscureText: true,
-            decoration: InputDecoration.collapsed(hintText: "Password"),
-            style: TextStyle(fontSize: 18)));
-  }
+
 
   buildBoxDecoration() {
     return BoxDecoration(
@@ -185,7 +202,11 @@ class _screens_LoginState extends State<screens_Login> {
             ),
             Text(
               'Register',
-              style: TextStyle(color: Color(0xfff79c4f), fontSize: 13, decoration: TextDecoration.underline,fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  color: Color(0xfff79c4f),
+                  fontSize: 13,
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.w600),
             ),
           ],
         ),
