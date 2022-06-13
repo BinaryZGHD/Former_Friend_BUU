@@ -10,11 +10,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final attentionsitems = ['','คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
+  final attentionsitems = ['', 'คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
   late String attentionsvalue = '';
-  final statusitems = ['','ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
+  final statusitems = ['', 'ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
   late String statusvalue = '';
-  final jobtypeitems = ['','1', '2', '3'];
+  final jobtypeitems = ['', '1', '2', '3'];
   late String jobtypevalue = '';
   @override
   Widget build(BuildContext context) {
@@ -221,8 +221,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textright: 'แก้ไข',
                 textleftfontsize: 25,
                 textrightfontsize: 20),
-            ProfileCareerDropdownTab(textleft: 'ความสนใจ', careeritem: attentionsitems, itemvalue: attentionsvalue,),
-            ProfileCareerDropdownTab(textleft: 'สถานะ', careeritem: statusitems, itemvalue: statusvalue,),
+            ProfileCareerDropdownTab(
+              textleft: 'ความสนใจ',
+              careeritem: attentionsitems,
+              itemvalue: attentionsvalue,
+            ),
+            ProfileCareerDropdownTab(
+              textleft: 'สถานะ',
+              careeritem: statusitems,
+              itemvalue: statusvalue,
+            ),
+
+    //       if(statusvalue == 'มีงานทำ'){
+    //
+    // }
+    //   else{
+    //
+    // };
           ],
         ),
       ),
@@ -345,19 +360,25 @@ class ProfileContactTab extends StatelessWidget {
     );
   }
 }
+
 ////////////////////////////////////////////////////////////////////////////////////
 class ProfileCareerDropdownTab extends StatefulWidget {
   final String textleft;
   final String itemvalue;
   final List<String> careeritem;
-  const ProfileCareerDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
+  const ProfileCareerDropdownTab(
+      {Key? key,
+      required this.textleft,
+      required this.itemvalue,
+      required this.careeritem})
+      : super(key: key);
 
   @override
-  State<ProfileCareerDropdownTab> createState() => _ProfileCareerDropdownTabState();
+  State<ProfileCareerDropdownTab> createState() =>
+      _ProfileCareerDropdownTabState();
 }
 
 class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
-
   @override
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
@@ -388,9 +409,10 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                     border: InputBorder.none,
                   ),
                   value: itemvalue,
-                  items: careeritem.map(
-                          (item) => DropdownMenuItem<String>(value: item, child: Text(item)
-                      )).toList(),
+                  items: careeritem
+                      .map((item) => DropdownMenuItem<String>(
+                          value: item, child: Text(item)))
+                      .toList(),
                   onChanged: (item) => setState(() => itemvalue = item),
                 ),
               ),
@@ -401,7 +423,6 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
     );
   }
 }
-
 
 // DropdownButton<String>(
 // value: attentionsvalue,
