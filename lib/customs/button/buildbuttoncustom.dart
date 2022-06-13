@@ -15,6 +15,7 @@ class  buildButtonCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width*0.8,
       constraints: BoxConstraints.expand(height: 50),
       child: GestureDetector(
           child: Text(linklabel, textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.black)),
@@ -25,7 +26,7 @@ class  buildButtonCustom extends StatelessWidget {
 
           ),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
-      margin: EdgeInsets.only(top: 16),
+      margin: EdgeInsets.all( 16),
       padding: EdgeInsets.all(12),
     );
   }

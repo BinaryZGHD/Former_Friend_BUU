@@ -31,10 +31,12 @@ class SetForgotPassword_ful extends StatefulWidget {
 class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController userID = TextEditingController();
-    TextEditingController email = TextEditingController();
-    String uservalue = "";
-    String emailvalue = "";
+    TextEditingController Password = TextEditingController();
+    TextEditingController Comfirm_Password = TextEditingController();
+    TextEditingController OTP = TextEditingController();
+    String password = "";
+    String confirm_password = "";
+    String otp = "";
     return Material(
       child: Container(
           height: MediaQuery.of(context).size.height,
@@ -101,27 +103,27 @@ class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
                   ]),
                 ),
                 buildTextFieldPasswordCustom(
-                  textEditingController: userID,
+                  textEditingController: Password,
                   onChanged: (value) {
-                    uservalue = value;
+                    password = value;
                   },
                   hint_label: 'Password',
 
 
                 ),
                 buildTextFieldPasswordCustom(
-                  textEditingController: userID,
+                  textEditingController: Comfirm_Password,
                   onChanged: (value) {
-                    uservalue = value;
+                    confirm_password = value;
                   },
                   hint_label: 'Confirm Password',
 
 
                 ),
                 buildTextFieldCustom(
-                  textEditingController: email,
+                  textEditingController: OTP,
                   onChanged: (value) {
-                    emailvalue = value;
+                    otp = value;
                   },
                   hint_label: 'OTP',
                 ),
