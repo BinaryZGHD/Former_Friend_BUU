@@ -5,7 +5,6 @@ import 'package:f2fbuu/screens/register_send.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/colorname.dart';
 
 class screens_Condition_PDPA extends StatefulWidget {
   const screens_Condition_PDPA({Key? key}) : super(key: key);
@@ -20,7 +19,6 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
-
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: SingleChildScrollView(

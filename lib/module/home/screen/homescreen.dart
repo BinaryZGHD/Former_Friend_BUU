@@ -2,8 +2,7 @@
 import 'package:f2fbuu/screens/welcome.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/colorname.dart';
-import 'login.dart';
+import '../../../screens/login.dart';
 
 
 
