@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -9,6 +10,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final attentionsitems = ['คอมพิวเตอร์', 'ครู', 'ประกันภัย', 'สถิติ'];
+  late String attentionsvalue = 'คอมพิวเตอร์';
+  final statusitems = ['ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
+  late String statusvalue = 'ศึกษาต่อ';
+  final jobtypeitems = ['1', '2', '3'];
+  late String jobtypevalue;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -135,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ProfileDataHead(
                 dheight: height,
                 dwidth: width,
-                textleft: 'ที่อยู่ ',
+                textleft: 'ข้อมูลที่อยู่ ',
                 textright: 'แก้ไข',
                 textleftfontsize: 25,
                 textrightfontsize: 20),
@@ -166,8 +173,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textleftfontsize: 25,
                 textrightfontsize: 20),
             ProfileContactTab(
-              iconcontact: Icon(Icons.phone,color: HexColor('#FF0055'),),
-              textcontact: '0123456789',)
+              iconcontact: Icon(
+                Icons.phone,
+                color: HexColor('#000000'),
+              ),
+              textcontact: '0123456789',
+            ),
+            ProfileContactTab(
+              iconcontact: Icon(
+                FontAwesomeIcons.line,
+                color: HexColor('#00B900'),
+              ),
+              textcontact: '@scimath',
+            ),
+            ProfileContactTab(
+              iconcontact: Icon(
+                FontAwesomeIcons.facebook,
+                color: HexColor('#3B5998'),
+              ),
+              textcontact: 'scimath',
+            ),
+            ProfileContactTab(
+              iconcontact: Icon(
+                FontAwesomeIcons.instagram,
+                color: HexColor('#E1306C'),
+              ),
+              textcontact: 'scimath',
+            ),
+            ProfileContactTab(
+              iconcontact: Icon(
+                FontAwesomeIcons.twitter,
+                color: HexColor('#00acee'),
+              ),
+              textcontact: 'scimath',
+            ),
+            ProfileContactTab(
+              iconcontact: Icon(
+                FontAwesomeIcons.youtube,
+                color: HexColor('#FF0000'),
+              ),
+              textcontact: 'scimath',
+            ),
+            ProfileDataHead(
+                dheight: height,
+                dwidth: width,
+                textleft: 'ข้อมูลอาชีพ',
+                textright: 'แก้ไข',
+                textleftfontsize: 25,
+                textrightfontsize: 20),
+            ProfileCareerDropdownTab(textleft: 'ความสนใจ', careeritem: attentionsitems, itemvalue: attentionsvalue,),
+            ProfileCareerDropdownTab(textleft: 'สถานะ', careeritem: statusitems, itemvalue: statusvalue,),
           ],
         ),
       ),
@@ -259,6 +314,7 @@ class ProfileDataTab extends StatelessWidget {
     );
   }
 }
+
 /////////////////////////////////////////////////////////////////////////////////
 class ProfileContactTab extends StatelessWidget {
   final Widget iconcontact;
@@ -279,10 +335,66 @@ class ProfileContactTab extends StatelessWidget {
             iconcontact,
             Expanded(
                 child: Text(
-                  textcontact,
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.right,
-                )),
+              textcontact,
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.right,
+            )),
+          ],
+        ),
+      ),
+    );
+  }
+}
+////////////////////////////////////////////////////////////////////////////////////
+class ProfileCareerDropdownTab extends StatefulWidget {
+  final String textleft;
+  final String itemvalue;
+  final List<String> careeritem;
+  const ProfileCareerDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
+
+  @override
+  State<ProfileCareerDropdownTab> createState() => _ProfileCareerDropdownTabState();
+}
+
+class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
+
+  @override
+  Widget build(BuildContext context) {
+    String textleft = widget.textleft;
+    String? itemvalue = widget.itemvalue;
+    List<String> careeritem = widget.careeritem;
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+            top: BorderSide(width: 1, color: Colors.black12),
+            bottom: BorderSide(width: 1, color: Colors.black12)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Text(
+                textleft,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            Expanded(
+                child: SizedBox(
+                  child: DropdownButtonFormField<String>(
+                    alignment: Alignment.centerRight,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    value: itemvalue,
+                    items: careeritem.map(
+                            (item) => DropdownMenuItem<String>(value: item, child: Text(item)
+                        )).toList(),
+                    onChanged: (item) => setState(() => itemvalue = item),
+                  ),
+                )
+            ),
           ],
         ),
       ),
@@ -290,3 +402,11 @@ class ProfileContactTab extends StatelessWidget {
   }
 }
 
+
+// DropdownButton<String>(
+// value: attentionsvalue,
+// items: attentionsitems.map(
+// (item) => DropdownMenuItem<String>(value: item, child: Text(item)
+// )).toList(),
+// onChanged: (item) => setState(() => attentionsvalue = item),
+// )
