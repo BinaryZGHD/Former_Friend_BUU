@@ -16,6 +16,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late String statusvalue = '';
   final jobtypeitems = ['','1', '2', '3'];
   late String jobtypevalue = '';
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -221,15 +222,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textright: 'แก้ไข',
                 textleftfontsize: 25,
                 textrightfontsize: 20),
-            ProfileCareerDropdownTab(textleft: 'ความสนใจ', careeritem: attentionsitems, itemvalue: attentionsvalue,),
+            ProfileAttentionDropdownTab(textleft: 'ความสนใจ', careeritem: attentionsitems, itemvalue: attentionsvalue,),
             ProfileCareerDropdownTab(textleft: 'สถานะ', careeritem: statusitems, itemvalue: statusvalue,),
+            // if (statusvalue == 'มีงานทำ'){
+            //   isVisible = true;
+            // } else {
+            //   isVisible = false;
+            // };
           ],
         ),
       ),
     );
   }
 }
-
+////////////////////////////////////////////////////////////////////////////////
 class ProfileDataHead extends StatelessWidget {
   final double dheight;
   final double dwidth;
@@ -273,7 +279,7 @@ class ProfileDataHead extends StatelessWidget {
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 class ProfileDataTab extends StatelessWidget {
   final double dheight;
   final double dwidth;
@@ -315,7 +321,7 @@ class ProfileDataTab extends StatelessWidget {
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 class ProfileContactTab extends StatelessWidget {
   final Widget iconcontact;
   final String textcontact;
@@ -345,18 +351,18 @@ class ProfileContactTab extends StatelessWidget {
     );
   }
 }
-////////////////////////////////////////////////////////////////////////////////////
-class ProfileCareerDropdownTab extends StatefulWidget {
+////////////////////////////////////////////////////////////////////////////////
+class ProfileAttentionDropdownTab extends StatefulWidget {
   final String textleft;
   final String itemvalue;
   final List<String> careeritem;
-  const ProfileCareerDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
+  const ProfileAttentionDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
 
   @override
-  State<ProfileCareerDropdownTab> createState() => _ProfileCareerDropdownTabState();
+  State<ProfileAttentionDropdownTab> createState() => _ProfileAttentionDropdownTabState();
 }
 
-class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
+class _ProfileAttentionDropdownTabState extends State<ProfileAttentionDropdownTab> {
 
   @override
   Widget build(BuildContext context) {
@@ -401,8 +407,81 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
     );
   }
 }
+////////////////////////////////////////////////////////////////////////////////
+class ProfileCareerDropdownTab extends StatefulWidget {
+  final String textleft;
+  final String itemvalue;
+  final List<String> careeritem;
+  const ProfileCareerDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
 
+  @override
+  State<ProfileCareerDropdownTab> createState() => _ProfileCareerDropdownTabState();
+}
 
+class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
+
+  @override
+  Widget build(BuildContext context) {
+    String textleft = widget.textleft;
+    String? itemvalue = widget.itemvalue;
+    List<String> careeritem = widget.careeritem;
+    bool isVisible = true;
+    if (itemvalue == careeritem[3]) {
+      isVisible = true;
+    } else {
+      isVisible = false;
+    }
+
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(width: 1, color: Colors.black12),
+                bottom: BorderSide(width: 1, color: Colors.black12)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: Text(
+                    textleft,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                Expanded(
+                  child: SizedBox(
+                    child: DropdownButtonFormField<String>(
+                      // alignment: Alignment.centerRight,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
+                      value: itemvalue,
+                      items: careeritem.map(
+                              (item) => DropdownMenuItem<String>(value: item, child: Text(item)
+                          )).toList(),
+                      onChanged: (item) => setState(() => itemvalue = item),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Visibility(
+          visible: isVisible,
+          child: ProfileDataTab(
+              dheight: MediaQuery.of(context).size.height,
+              dwidth: MediaQuery.of(context).size.width,
+              textleft: 'สถานที่ทำงาน',
+              textright: 'BUU'),)
+      ],
+    );
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
 // DropdownButton<String>(
 // value: attentionsvalue,
 // items: attentionsitems.map(
