@@ -10,12 +10,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final attentionsitems = ['คอมพิวเตอร์', 'ครู', 'ประกันภัย', 'สถิติ'];
-  late String attentionsvalue = 'คอมพิวเตอร์';
-  final statusitems = ['ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
-  late String statusvalue = 'ศึกษาต่อ';
-  final jobtypeitems = ['1', '2', '3'];
-  late String jobtypevalue;
+  final attentionsitems = ['','คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
+  late String attentionsvalue = '';
+  final statusitems = ['','ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
+  late String statusvalue = '';
+  final jobtypeitems = ['','1', '2', '3'];
+  late String jobtypevalue = '';
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -374,26 +374,26 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
         child: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width * 0.6,
               child: Text(
                 textleft,
                 style: TextStyle(fontSize: 18),
               ),
             ),
             Expanded(
-                child: SizedBox(
-                  child: DropdownButtonFormField<String>(
-                    alignment: Alignment.centerRight,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    value: itemvalue,
-                    items: careeritem.map(
-                            (item) => DropdownMenuItem<String>(value: item, child: Text(item)
-                        )).toList(),
-                    onChanged: (item) => setState(() => itemvalue = item),
+              child: SizedBox(
+                child: DropdownButtonFormField<String>(
+                  // alignment: Alignment.centerRight,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
                   ),
-                )
+                  value: itemvalue,
+                  items: careeritem.map(
+                          (item) => DropdownMenuItem<String>(value: item, child: Text(item)
+                      )).toList(),
+                  onChanged: (item) => setState(() => itemvalue = item),
+                ),
+              ),
             ),
           ],
         ),

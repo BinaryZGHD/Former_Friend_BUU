@@ -19,14 +19,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.grey,
+    //   ),
       // home: screens_Login( ),
-      home: ProfileScreen(),
-=======
+      // home: ProfileScreen(),
+///////////////////////
+
     final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
     final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
     return MultiBlocProvider(
@@ -37,13 +38,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.grey,
           ),
-          home: MainScreen(
-
-
-
-          ),
+          home: ProfileScreen(),
         )
->>>>>>> origin/zang_dev
     );
   }
 }
