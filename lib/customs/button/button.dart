@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ButtonCustom extends StatelessWidget {
+class ButtonCustom1 extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
-  const ButtonCustom({Key? key, required this.label, this.onPressed})
+  const ButtonCustom1({Key? key, required this.label, this.onPressed})
       : super(key: key);
 
   @override

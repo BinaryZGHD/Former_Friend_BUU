@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../module/login/bloc/loginbloc/login_bloc.dart';
+import '../color/colorconts.dart';
 
 class ButtonCustom extends StatelessWidget {
   final String label;
-  final VoidCallback? onPressed;
-  const ButtonCustom({Key? key, required this.label, this.onPressed}) : super(key: key);
+  final Widget screengo;
+  final Color colortext;
+  final Color colorbutton;
+  final double sizetext;
+  const ButtonCustom({Key? key, required this.label, required this.screengo, required this.colortext, required this.colorbutton, required this.sizetext, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     return ElevatedButton(
-        onPressed: () {
-          context.read<LoginBloc>().add(LoginSummitEvent(users: "9", password: "q"));
 
-        },
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => screengo ));
+          },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF00A80A)),
+            backgroundColor: MaterialStateProperty.all<Color>(colorbutton),
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ))),
         child: Text(
-          " " + label + " ",
-          style: TextStyle(color: Color(0xFFFFFFFF)),
+
+          "  " + label + "  ",
+          style: TextStyle( fontSize: sizetext ,    color: colortext ,fontWeight: FontWeight.w600     ),
         ),
       );
   }
