@@ -46,15 +46,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: HexColor('#FFF7FD'),
                 child: imgurl == ''
                     ? Icon(
-                        Icons.account_circle,
-                        size: 100,
-                      )
+                  Icons.account_circle,
+                  size: 100,
+                )
                     : Container(
-                        margin: EdgeInsets.all(30),
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(imgurl),
-                          radius: 10,
-                        ))),
+                    margin: EdgeInsets.all(30),
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(imgurl),
+                      radius: 10,
+                    ))),
             // Padding(
             //   padding: const EdgeInsets.all(10.0),
             //   child: Row(
@@ -187,9 +187,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ProfileDataHead(
                 textleft: 'ข้อมูลอาชีพ',
                 textright: 'แก้ไข',
-                textleftfontsize: 25,
-                textrightfontsize: 20),
-            ProfileCareerDropdownTab(
                 textleftfontsize: 20,
                 textrightfontsize: 18),
             ProfileDropdownAttentionTab(
@@ -201,14 +198,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               textleft: 'สถานะ',
               careeritem: statusitems,
               itemvalue: statusvalue,
-            ),
-
-    //       if(statusvalue == 'มีงานทำ'){
-    //
-    // }
-    //   else{
-    //
-    // };
               jobitemvalue: jobtypevalue,
               jobtextleft: 'ประเภทงาน',
               jobitem: jobtypeitems,
@@ -234,10 +223,10 @@ class ProfileDataHead extends StatelessWidget {
 
   ProfileDataHead(
       {
-      required this.textleft,
-      required this.textright,
-      required this.textleftfontsize,
-      required this.textrightfontsize});
+        required this.textleft,
+        required this.textright,
+        required this.textleftfontsize,
+        required this.textrightfontsize});
 
   @override
   Widget build(BuildContext context) {
@@ -262,7 +251,7 @@ class ProfileDataHead extends StatelessWidget {
                 },
                 child: Text(textright,
                     style:
-                        TextStyle(fontSize: textrightfontsize, color: Colors.red),
+                    TextStyle(fontSize: textrightfontsize, color: Colors.red),
                     textAlign: TextAlign.right),
               ),
             ),
@@ -280,8 +269,8 @@ class ProfileDataTab extends StatelessWidget {
 
   ProfileDataTab(
       {
-      required this.textleft,
-      required this.textright});
+        required this.textleft,
+        required this.textright});
 
   @override
   Widget build(BuildContext context) {
@@ -300,13 +289,13 @@ class ProfileDataTab extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             Expanded(
-                  child: GestureDetector(
-                    child: Text(
-              textright,
-              style: TextStyle(fontSize: 18),
-              textAlign: TextAlign.right,
-            ),
-                  ),
+              child: GestureDetector(
+                child: Text(
+                  textright,
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.right,
+                ),
+              ),
             ),
           ],
         ),
@@ -337,10 +326,10 @@ class ProfileContactTab extends StatelessWidget {
             iconcontact,
             Expanded(
                 child: Text(
-              textcontact,
-              style: TextStyle(fontSize: 18),
-              textAlign: TextAlign.right,
-            )),
+                  textcontact,
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.right,
+                )),
           ],
         ),
       ),
@@ -348,12 +337,6 @@ class ProfileContactTab extends StatelessWidget {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////
-class ProfileCareerDropdownTab extends StatefulWidget {
-  final String textleft;
-  final String itemvalue;
-  final List<String> careeritem;
-  const ProfileCareerDropdownTab(
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileDropdownAttentionTab extends StatefulWidget {
   final String textleft;
@@ -362,17 +345,12 @@ class ProfileDropdownAttentionTab extends StatefulWidget {
 
   const ProfileDropdownAttentionTab(
       {Key? key,
-      required this.textleft,
-      required this.itemvalue,
-      required this.careeritem})
+        required this.textleft,
+        required this.itemvalue,
+        required this.careeritem})
       : super(key: key);
 
   @override
-  State<ProfileCareerDropdownTab> createState() =>
-      _ProfileCareerDropdownTabState();
-}
-
-class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
   State<ProfileDropdownAttentionTab> createState() =>
       _ProfileDropdownAttentionTabState();
 }
@@ -411,7 +389,7 @@ class _ProfileDropdownAttentionTabState
                   value: itemvalue,
                   items: careeritem
                       .map((item) => DropdownMenuItem<String>(
-                          value: item, child: Text(item)))
+                      value: item, child: Text(item)))
                       .toList(),
                   onChanged: (item) => setState(() => itemvalue = item),
                 ),
@@ -424,13 +402,6 @@ class _ProfileDropdownAttentionTabState
   }
 }
 
-// DropdownButton<String>(
-// value: attentionsvalue,
-// items: attentionsitems.map(
-// (item) => DropdownMenuItem<String>(value: item, child: Text(item)
-// )).toList(),
-// onChanged: (item) => setState(() => attentionsvalue = item),
-// )
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileDropdownCareerDataTab extends StatefulWidget {
   final String jobtextleft;
@@ -439,9 +410,9 @@ class ProfileDropdownCareerDataTab extends StatefulWidget {
 
   const ProfileDropdownCareerDataTab(
       {Key? key,
-      required this.jobtextleft,
-      required this.jobitemvalue,
-      required this.jobitem})
+        required this.jobtextleft,
+        required this.jobitemvalue,
+        required this.jobitem})
       : super(key: key);
 
   @override
@@ -483,7 +454,7 @@ class _ProfileDropdownCareerDataTabState
                   value: itemvalue,
                   items: careeritem
                       .map((item) => DropdownMenuItem<String>(
-                          value: item, child: Text(item)))
+                      value: item, child: Text(item)))
                       .toList(),
                   onChanged: (item) => setState(() => itemvalue = item),
                 ),
@@ -507,12 +478,12 @@ class ProfileCareerDropdownTab extends StatefulWidget {
 
   const ProfileCareerDropdownTab(
       {Key? key,
-      required this.textleft,
-      required this.itemvalue,
-      required this.careeritem,
-      required this.jobtextleft,
-      required this.jobitem,
-      required this.jobitemvalue})
+        required this.textleft,
+        required this.itemvalue,
+        required this.careeritem,
+        required this.jobtextleft,
+        required this.jobitem,
+        required this.jobitemvalue})
       : super(key: key);
 
   @override
@@ -566,7 +537,7 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                       value: itemvalue,
                       items: careeritem
                           .map((item) => DropdownMenuItem<String>(
-                              value: item, child: Text(item)))
+                          value: item, child: Text(item)))
                           .toList(),
                       onChanged: (item) {
                         itemvalue = item;
