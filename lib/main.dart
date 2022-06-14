@@ -1,11 +1,6 @@
-import 'package:f2fbuu/screens/home.dart';
-import 'package:f2fbuu/screens/login.dart';
-import 'package:f2fbuu/screens/profile_page.dart';
-import 'package:f2fbuu/screens/test.dart';
-import 'package:f2fbuu/screens/welcome.dart';
+import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'module/main/mainscreen.dart';
 import 'module/login/bloc/loginbloc/login_bloc.dart';
 import 'module/main/mainbloc/main_bloc.dart';
 

@@ -10,13 +10,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final attentionsitems = ['','คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
+  final attentionsitems = ['', 'คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
   late String attentionsvalue = '';
-  final statusitems = ['','ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
+  final statusitems = ['', 'ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
   late String statusvalue = '';
-  final jobtypeitems = ['','1', '2', '3'];
+  final jobtypeitems = ['', '1', '2', '3'];
   late String jobtypevalue = '';
   bool isVisible = true;
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -222,8 +223,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textright: 'แก้ไข',
                 textleftfontsize: 25,
                 textrightfontsize: 20),
-            ProfileAttentionDropdownTab(textleft: 'ความสนใจ', careeritem: attentionsitems, itemvalue: attentionsvalue,),
-            ProfileCareerDropdownTab(textleft: 'สถานะ', careeritem: statusitems, itemvalue: statusvalue,),
+            ProfileDropdownAttentionTab(
+              textleft: 'ความสนใจ',
+              careeritem: attentionsitems,
+              itemvalue: attentionsvalue,
+            ),
+            ProfileCareerDropdownTab(
+              textleft: 'สถานะ',
+              careeritem: statusitems,
+              itemvalue: statusvalue,
+              jobitemvalue: jobtypevalue,
+              jobtextleft: 'ประเภทงาน',
+              jobitem: jobtypeitems,
+            ),
             // if (statusvalue == 'มีงานทำ'){
             //   isVisible = true;
             // } else {
@@ -235,6 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileDataHead extends StatelessWidget {
   final double dheight;
@@ -243,6 +256,7 @@ class ProfileDataHead extends StatelessWidget {
   final String textright;
   final double textleftfontsize;
   final double textrightfontsize;
+
   ProfileDataHead(
       {required this.dheight,
       required this.dwidth,
@@ -250,6 +264,7 @@ class ProfileDataHead extends StatelessWidget {
       required this.textright,
       required this.textleftfontsize,
       required this.textrightfontsize});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -325,7 +340,9 @@ class ProfileDataTab extends StatelessWidget {
 class ProfileContactTab extends StatelessWidget {
   final Widget iconcontact;
   final String textcontact;
+
   ProfileContactTab({required this.iconcontact, required this.textcontact});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -351,19 +368,27 @@ class ProfileContactTab extends StatelessWidget {
     );
   }
 }
+
 ////////////////////////////////////////////////////////////////////////////////
-class ProfileAttentionDropdownTab extends StatefulWidget {
+class ProfileDropdownAttentionTab extends StatefulWidget {
   final String textleft;
   final String itemvalue;
   final List<String> careeritem;
-  const ProfileAttentionDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
+
+  const ProfileDropdownAttentionTab(
+      {Key? key,
+      required this.textleft,
+      required this.itemvalue,
+      required this.careeritem})
+      : super(key: key);
 
   @override
-  State<ProfileAttentionDropdownTab> createState() => _ProfileAttentionDropdownTabState();
+  State<ProfileDropdownAttentionTab> createState() =>
+      _ProfileDropdownAttentionTabState();
 }
 
-class _ProfileAttentionDropdownTabState extends State<ProfileAttentionDropdownTab> {
-
+class _ProfileDropdownAttentionTabState
+    extends State<ProfileDropdownAttentionTab> {
   @override
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
@@ -394,9 +419,10 @@ class _ProfileAttentionDropdownTabState extends State<ProfileAttentionDropdownTa
                     border: InputBorder.none,
                   ),
                   value: itemvalue,
-                  items: careeritem.map(
-                          (item) => DropdownMenuItem<String>(value: item, child: Text(item)
-                      )).toList(),
+                  items: careeritem
+                      .map((item) => DropdownMenuItem<String>(
+                          value: item, child: Text(item)))
+                      .toList(),
                   onChanged: (item) => setState(() => itemvalue = item),
                 ),
               ),
@@ -407,31 +433,113 @@ class _ProfileAttentionDropdownTabState extends State<ProfileAttentionDropdownTa
     );
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+class ProfileDropdownCareerDataTab extends StatefulWidget {
+  final String jobtextleft;
+  final String jobitemvalue;
+  final List<String> jobitem;
+
+  const ProfileDropdownCareerDataTab(
+      {Key? key,
+      required this.jobtextleft,
+      required this.jobitemvalue,
+      required this.jobitem})
+      : super(key: key);
+
+  @override
+  State<ProfileDropdownCareerDataTab> createState() =>
+      _ProfileDropdownCareerDataTabState();
+}
+
+class _ProfileDropdownCareerDataTabState
+    extends State<ProfileDropdownCareerDataTab> {
+  @override
+  Widget build(BuildContext context) {
+    String textleft = widget.jobtextleft;
+    String? itemvalue = widget.jobitemvalue;
+    List<String> careeritem = widget.jobitem;
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+            top: BorderSide(width: 1, color: Colors.black12),
+            bottom: BorderSide(width: 1, color: Colors.black12)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Text(
+                textleft,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                child: DropdownButtonFormField<String>(
+                  // alignment: Alignment.centerRight,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                  value: itemvalue,
+                  items: careeritem
+                      .map((item) => DropdownMenuItem<String>(
+                          value: item, child: Text(item)))
+                      .toList(),
+                  onChanged: (item) => setState(() => itemvalue = item),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileCareerDropdownTab extends StatefulWidget {
   final String textleft;
   final String itemvalue;
   final List<String> careeritem;
-  const ProfileCareerDropdownTab({Key? key, required this.textleft, required this.itemvalue, required this.careeritem}) : super(key: key);
+  final String jobtextleft;
+  final String jobitemvalue;
+  final List<String> jobitem;
+
+  const ProfileCareerDropdownTab(
+      {Key? key,
+      required this.textleft,
+      required this.itemvalue,
+      required this.careeritem,
+      required this.jobtextleft,
+      required this.jobitem,
+      required this.jobitemvalue})
+      : super(key: key);
 
   @override
-  State<ProfileCareerDropdownTab> createState() => _ProfileCareerDropdownTabState();
+  State<ProfileCareerDropdownTab> createState() =>
+      _ProfileCareerDropdownTabState();
 }
 
 class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
+  late String textleft;
+  late String? itemvalue;
+  late List<String> careeritem;
+  bool isJobInStatusVisible = true;
+
+  @override
+  void initState() {
+    textleft = widget.textleft;
+    itemvalue = widget.itemvalue;
+    careeritem = widget.careeritem;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.textleft;
-    String? itemvalue = widget.itemvalue;
-    List<String> careeritem = widget.careeritem;
-    bool isVisible = true;
-    if (itemvalue == careeritem[3]) {
-      isVisible = true;
-    } else {
-      isVisible = false;
-    }
-
+    print('aaa = ' + '$itemvalue');
     return Column(
       children: [
         Container(
@@ -459,10 +567,20 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                         border: InputBorder.none,
                       ),
                       value: itemvalue,
-                      items: careeritem.map(
-                              (item) => DropdownMenuItem<String>(value: item, child: Text(item)
-                          )).toList(),
-                      onChanged: (item) => setState(() => itemvalue = item),
+                      items: careeritem
+                          .map((item) => DropdownMenuItem<String>(
+                              value: item, child: Text(item)))
+                          .toList(),
+                      onChanged: (item) {
+                        itemvalue = item;
+                        if (itemvalue == careeritem[3]) {
+                          isJobInStatusVisible = true;
+                        } else {
+                          isJobInStatusVisible = false;
+                        }
+                        setState(() {});
+                        print(item);
+                      },
                     ),
                   ),
                 ),
@@ -471,12 +589,32 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
           ),
         ),
         Visibility(
-          visible: isVisible,
-          child: ProfileDataTab(
-              dheight: MediaQuery.of(context).size.height,
-              dwidth: MediaQuery.of(context).size.width,
-              textleft: 'สถานที่ทำงาน',
-              textright: 'BUU'),)
+          visible: isJobInStatusVisible,
+          child: Column(
+            children: [
+              ProfileDataTab(
+                  dheight: MediaQuery.of(context).size.height,
+                  dwidth: MediaQuery.of(context).size.width,
+                  textleft: 'สถานที่ทำงาน',
+                  textright: 'BUU'),
+              ProfileDropdownCareerDataTab(
+                jobitemvalue: widget.jobitemvalue,
+                jobtextleft: widget.jobtextleft,
+                jobitem: widget.jobitem,
+              ),
+              ProfileDataTab(
+                  dheight: MediaQuery.of(context).size.height,
+                  dwidth: MediaQuery.of(context).size.width,
+                  textleft: 'อาชีพ',
+                  textright: 'นักศึกษา'),
+              ProfileDataTab(
+                  dheight: MediaQuery.of(context).size.height,
+                  dwidth: MediaQuery.of(context).size.width,
+                  textleft: 'บริษัท',
+                  textright: 'ม.บูรพา จำกัด')
+            ],
+          ),
+        )
       ],
     );
   }
