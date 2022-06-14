@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../color/colorconts.dart';
+import '../size/size.dart';
+
 class buildTextFieldPasswordCustom extends StatelessWidget {
   final TextEditingController? textEditingController;
   final String hint_label;
@@ -24,7 +27,8 @@ class buildTextFieldPasswordCustom_ful extends StatefulWidget {
   final TextEditingController? textEditingController;
   final String hint_label;
   final ValueChanged<String>? onChanged;
-  const buildTextFieldPasswordCustom_ful({Key? key, this.textEditingController, required this.hint_label, this.onChanged}) : super(key: key);
+  // final TextInputType textInputType;
+  const buildTextFieldPasswordCustom_ful({Key? key, this.textEditingController, required this.hint_label, this.onChanged, }) : super(key: key);
 
   @override
   State<buildTextFieldPasswordCustom_ful> createState() => _buildTextFieldPasswordCustom_fulState();
@@ -41,6 +45,9 @@ class _buildTextFieldPasswordCustom_fulState extends State<buildTextFieldPasswor
           margin: const EdgeInsets.all(12),
           // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
           child: TextField(
+            style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
+            ),
+            // keyboardType: textInputType,
             controller: widget.textEditingController,
             onChanged: (value) {
               print(widget.hint_label + "    :" + value);
@@ -51,7 +58,7 @@ class _buildTextFieldPasswordCustom_fulState extends State<buildTextFieldPasswor
             obscureText: !_isVisible,
             decoration: InputDecoration(
                 filled: true,
-                fillColor: Color(0xFFFFF3FA),
+                fillColor: TC_Textfile,
                 hintText: "" + widget.hint_label,
                 suffixIcon: IconButton(
                     onPressed: () {
@@ -69,7 +76,7 @@ class _buildTextFieldPasswordCustom_fulState extends State<buildTextFieldPasswor
                 contentPadding: EdgeInsets.all(10),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
-                  borderSide: BorderSide(color: Color(0xFF0647FD), width: 2.0),
+                  borderSide: BorderSide(color: FC_Blue, width: 2.0),
                 )),
           ));
   }

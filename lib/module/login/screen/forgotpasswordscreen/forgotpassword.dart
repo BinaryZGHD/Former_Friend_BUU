@@ -4,7 +4,10 @@ import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setforgotpasswor
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../customs/button/buildbuttoncustom.dart';
+
+import '../../../../customs/button/buttoncustom.dart';
+import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -12,8 +15,6 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return _FForgotPassword();
   }
 }
@@ -32,63 +33,74 @@ class _FForgotPasswordState extends State<_FForgotPassword> {
     TextEditingController email = TextEditingController();
     String uservalue = "";
     String emailvalue = "";
-    return Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.025,
-              ),
-              Icon(
-                Icons.arrow_back ,
-                size: MediaQuery.of(context).size.height * 0.08,
-                color: Colors.black,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back ,
+            // size: MediaQuery.of(context).size.height * 0.05,
+            size: sizeTitle24,
+            color: Colors.black,
+          ),),
+        title: Text(
+          "Forgot password",
+          style: TextStyle(
+            color: Colors.black,
+            // fontSize: MediaQuery.of(context).size.height * 0.05,
+              fontSize:sizeTitle24,
 
-              ),
-              // SizedBox(
-              //   height: MediaQuery.of(context).size.height * 0.1,
-              // ),
-              Center(
-                child: Column(children: [
-                  Text(
-                    "Forgot password",
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.05,
-                      fontWeight: FontWeight.w600,
-                    ),
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.white,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  buildTextFieldCustom(
+                    textEditingController: userID,
+                    onChanged: (value) {
+                      uservalue = value;
+                    },
+                    hint_label: 'Student code / Teacher code',textInputType: TextInputType.text,
+                  ),
+                  buildTextFieldCustom(
+                    textEditingController: email,
+                    onChanged: (value) {
+                      emailvalue = value;
+                    },
+                    hint_label: 'Email',textInputType: TextInputType.text,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                ]),
+                  const Center(
+                    child: ButtonCustom(
+                      label: "NEXT", screengo: SetForgotPasswordScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen,sizetext: sizeTextBig20,
+                      // onPressed: () {context.read<LoginBloc>().add(LoginSummitEvent(users: "q", password:"q"));},
+                    ),
+                  ),
+                  // buildButtonCustom(
+                  //   maptype: SetForgotPasswordScreen(), linklabel: 'NEXT ', linkurl: '', mapdetailscreen: 'register', mapscreen: 'step2',),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                ],
               ),
-              buildTextFieldCustom(
-                textEditingController: userID,
-                onChanged: (value) {
-                  uservalue = value;
-                },
-                hint_label: 'Student code / Teacher code',
-              ),
-              buildTextFieldCustom(
-                textEditingController: email,
-                onChanged: (value) {
-                  emailvalue = value;
-                },
-                hint_label: 'Email',
-              ),
-
-
-              buildButtonCustom(
-                maptype: SetForgotPasswordScreen(), linklabel: 'NEXT ', linkurl: '', mapdetailscreen: 'register', mapscreen: 'step2',),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-            ],
-          ),
-        ));
+            )),
+      ),
+    );
   }
 }

@@ -1,20 +1,20 @@
 
-import 'package:f2fbuu/screens/welcome.dart';
+import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../screens/login.dart';
 
 
 
 
-class screens_Home extends StatefulWidget {
-  const screens_Home({Key? key}) : super(key: key);
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<screens_Home> createState() => _screens_HomeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _screens_HomeState extends State<screens_Home> {
+class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class _screens_HomeState extends State<screens_Home> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => screens_Home()));
+                        builder: (context) => HomeScreen()));
               },
               child: Container(
                 child: ListTile(
@@ -142,7 +142,7 @@ class _screens_HomeState extends State<screens_Home> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => screens_Login()));
+                        builder: (context) => LoginScreen()));
               },
               child: Container(
                 child: ListTile(
@@ -213,7 +213,7 @@ class _screens_HomeState extends State<screens_Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => screens_Welcome()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

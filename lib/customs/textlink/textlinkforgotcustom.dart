@@ -7,11 +7,11 @@ import '../../module/login/bloc/loginbloc/login_bloc.dart';
 class TextLinkForgotCustom extends StatelessWidget {
   final String linklabel;
   final String linkurl;
-  final Widget map;
+  final Widget mapgo;
+  final double sizetext;
   final linktextcolor;
-  final VoidCallback? onPressed;
   const TextLinkForgotCustom(
-      {Key? key, required this.linklabel, required this.linkurl, required this.map, required this.linktextcolor, this.onPressed})
+      {Key? key, required this.linklabel, required this.linkurl, required this.mapgo, required this.linktextcolor, required this.sizetext,})
       : super(key: key);
 
   @override
@@ -24,9 +24,11 @@ class TextLinkForgotCustom extends StatelessWidget {
             color: linktextcolor,
             decorationColor: linktextcolor,
             fontWeight: FontWeight.w600,
+              fontSize: sizetext
           )),
-      onTap: () {
-        context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
+      // onTap: () {context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));},
+      onTap: () async {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => mapgo ));
       },
     );
   }

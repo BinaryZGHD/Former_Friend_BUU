@@ -1,18 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 import '../../../../customs/Imge/changimgetype.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
-import '../../../../customs/textlink/textlinkcustom.dart';
+import '../../../../customs/textlink/textlinkscreencustom.dart';
 import '../../../../customs/textlink/textlinkforgotcustom.dart';
-import '../../../../screens/condition_pdpa.dart';
-import '../../bloc/loginbloc/login_bloc.dart';
+
+import '../../../home/screen/homescreen.dart';
+
 import '../forgotpasswordscreen/forgotpassword.dart';
-import '../registerscreen/register.dart';
+import '../registerscreen/pdparegisterscreen.dart';
+
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -52,11 +55,11 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                       children: [
                         Icon(
                           Icons.language,
-                          size: 20,
+                          size: sizeText18,
                         ),
                         Text(
                           "TH / EN",
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: sizeText18),
                         ),
                       ],
                     ),
@@ -77,7 +80,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                       onChanged: (value) {
                         userID = value;
                       },
-                      hint_label: 'Email',
+                      hint_label: 'Email',textInputType: TextInputType.text,
                     ),
                     buildTextFieldPasswordCustom(
                       textEditingController: password,
@@ -97,23 +100,17 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                       //   // print("User :" + userID + "\n" + "Password :" + passw);
                       //   // print(event.number);
                       // },
-                      linklabel: 'Forgot Password?',
-                      map: ForgotPasswordScreen(),
+                      linklabel: 'Forgot Password ?',
+                      mapgo: ForgotPasswordScreen(),
                       linkurl: '',
-                      linktextcolor: TC_forgot,
+                      linktextcolor: TC_forgot, sizetext: sizeTextSmaller14,
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.025,
                     ),
                     Center(
                       child: ButtonCustom(
-                        label: "  Login  ",
-                        onPressed: () {print("object6666");
-                          context.read<LoginBloc>().add(LoginSummitEvent(users: "q", password: "q"));
-                          // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
-                          // print("User :" + userID + "\n" + "Password :" + passw);
-                          // print(event.number);
-                        },
+                        label: "  Login  ", screengo: HomeScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen, sizetext: sizeTextBig20,
                       ),
                     ),
                     SizedBox(
@@ -124,16 +121,13 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                       children: [
                         Text(
                           'Don\'t have an account ?  ',
-                          style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w300),
+                          style: TextStyle(fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
                         ),
-                        TextLinkCustom(
-                          onPressed: () {
-                            context.read<LoginBloc>().add(LoginRegisterEvent(regstatus: false));
-                          },
-                          linklabel: 'Regiter',
+                        TextLinkScreenCustom(
+                          linklabel: 'Register',
                           mapscreen: screens_Condition_PDPA(),
-                          linkurl: '',
-                          linktextcolor: TC_regiter,
+
+                          linktextcolor: TC_regiter, sizetext:sizeTextSmall16,
                         ),
                       ],
                     ),
