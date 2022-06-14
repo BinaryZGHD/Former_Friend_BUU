@@ -520,7 +520,7 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
   late String textleft;
   late String? itemvalue;
   late List<String> careeritem;
-  bool isJobInStatusVisible = true;
+  bool isJobInStatusVisible = false;
 
   @override
   void initState() {
