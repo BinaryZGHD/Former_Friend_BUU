@@ -1,6 +1,8 @@
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 
+import '../../profile/screen/profile_page.dart';
+
 
 
 
@@ -212,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

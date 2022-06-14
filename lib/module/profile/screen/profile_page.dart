@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../customs/size/size.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -24,16 +26,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var width = MediaQuery.of(context).size.width;
     String imgurl = 'https://picsum.photos/250?image=9';
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: Colors.transparent,
+      appBar:
+      // AppBar(
+      //   // backgroundColor: Colors.transparent,
+      //   backgroundColor: Colors.white,
+      //   title: Padding(
+      //     padding: const EdgeInsets.only(left: 8.0),
+      //
+      //     child: const Text("บัญชี",
+      //         style: TextStyle(
+      //           fontSize: 24,
+      //           color: Colors.black,
+      //         )),
+      //   ),
+      // ),
+      AppBar(
         backgroundColor: Colors.white,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: const Text("บัญชี",
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.black,
-              )),
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            size: sizeTitle24,
+            color: Colors.black,
+          ),
+        ),
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: sizeTitle24,
+          ),
         ),
       ),
       body: SingleChildScrollView(
