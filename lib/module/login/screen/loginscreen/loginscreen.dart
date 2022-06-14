@@ -80,7 +80,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                       onChanged: (value) {
                         userID = value;
                       },
-                      hint_label: 'Email',textInputType: TextInputType.text,
+                      hint_label: 'Student code / Teacher code',textInputType: TextInputType.text,
                     ),
                     buildTextFieldPasswordCustom(
                       textEditingController: password,
