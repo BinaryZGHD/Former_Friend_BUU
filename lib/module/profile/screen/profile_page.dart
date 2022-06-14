@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           padding: const EdgeInsets.only(left: 8.0),
           child: const Text("บัญชี",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 24,
                 color: Colors.black,
               )),
         ),
@@ -66,88 +66,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //   ),
             // ),
             ProfileDataHead(
-              dheight: height,
-              dwidth: width,
               textleft: 'ข้อมูลทั่วไป',
               textright: 'แก้ไข',
-              textleftfontsize: 25,
-              textrightfontsize: 20,
+              textleftfontsize: 20,
+              textrightfontsize: 18,
             ),
             ProfileDataTab(
-              dheight: height,
-              dwidth: width,
               textleft: 'ชื่อ',
               textright: 'ผู้ใช้งาน',
             ),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'นามสกุล',
                 textright: 'แอปพลิเคชัน'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'ชื่อเล่น',
                 textright: 'แมท'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'รหัสนิสิต',
                 textright: '62030xxx'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'รุ่น',
                 textright: '65'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'โทร',
                 textright: '0123456789'),
             ProfileDataHead(
-                dheight: height,
-                dwidth: width,
                 textleft: 'ข้อมูลการศึกษา',
                 textright: 'แก้ไข',
-                textleftfontsize: 25,
-                textrightfontsize: 20),
+                textleftfontsize: 20,
+                textrightfontsize: 18),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'คณะ',
                 textright: 'วิทยาศาสตร์'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'ภาควิชา',
                 textright: 'คณิตศาสตร์'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'สาขาวิชา',
                 textright: 'คณิตศาสตร์'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'เกรดเฉลี่ย (ระดับมัธยมต้น)',
                 textright: '4.00'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'เกรดเฉลี่ย (ระดับมัธยมปลาย)',
                 textright: '3.55'),
             ProfileDataTab(
-                dheight: height,
-                dwidth: width,
                 textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
                 textright: '2.99'),
             ProfileDataHead(
-                dheight: height,
-                dwidth: width,
                 textleft: 'ข้อมูลที่อยู่ ',
                 textright: 'แก้ไข',
-                textleftfontsize: 25,
-                textrightfontsize: 20),
+                textleftfontsize: 20,
+                textrightfontsize: 18),
             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -168,12 +138,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ProfileDataHead(
-                dheight: height,
-                dwidth: width,
                 textleft: 'ข้อมูลติดต่อ',
                 textright: 'แก้ไข',
-                textleftfontsize: 25,
-                textrightfontsize: 20),
+                textleftfontsize: 20,
+                textrightfontsize: 18),
             ProfileContactTab(
               iconcontact: Icon(
                 Icons.phone,
@@ -217,12 +185,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               textcontact: 'scimath',
             ),
             ProfileDataHead(
-                dheight: height,
-                dwidth: width,
                 textleft: 'ข้อมูลอาชีพ',
                 textright: 'แก้ไข',
-                textleftfontsize: 25,
-                textrightfontsize: 20),
+                textleftfontsize: 20,
+                textrightfontsize: 18),
             ProfileDropdownAttentionTab(
               textleft: 'ความสนใจ',
               careeritem: attentionsitems,
@@ -250,16 +216,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileDataHead extends StatelessWidget {
-  final double dheight;
-  final double dwidth;
   final String textleft;
   final String textright;
   final double textleftfontsize;
   final double textrightfontsize;
 
   ProfileDataHead(
-      {required this.dheight,
-      required this.dwidth,
+      {
       required this.textleft,
       required this.textright,
       required this.textleftfontsize,
@@ -282,10 +245,15 @@ class ProfileDataHead extends StatelessWidget {
               style: TextStyle(fontSize: textleftfontsize),
             ),
             Expanded(
-              child: Text(textright,
-                  style:
-                      TextStyle(fontSize: textrightfontsize, color: Colors.red),
-                  textAlign: TextAlign.right),
+              child: GestureDetector(
+                onTap: () {
+                  print('กดแก้ไข');
+                },
+                child: Text(textright,
+                    style:
+                        TextStyle(fontSize: textrightfontsize, color: Colors.red),
+                    textAlign: TextAlign.right),
+              ),
             ),
           ],
         ),
@@ -296,14 +264,11 @@ class ProfileDataHead extends StatelessWidget {
 
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileDataTab extends StatelessWidget {
-  final double dheight;
-  final double dwidth;
   final String textleft;
   final String textright;
 
   ProfileDataTab(
-      {required this.dheight,
-      required this.dwidth,
+      {
       required this.textleft,
       required this.textright});
 
@@ -324,11 +289,14 @@ class ProfileDataTab extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             Expanded(
-                child: Text(
+                  child: GestureDetector(
+                    child: Text(
               textright,
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.right,
-            )),
+            ),
+                  ),
+            ),
           ],
         ),
       ),
@@ -593,8 +561,6 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
           child: Column(
             children: [
               ProfileDataTab(
-                  dheight: MediaQuery.of(context).size.height,
-                  dwidth: MediaQuery.of(context).size.width,
                   textleft: 'สถานที่ทำงาน',
                   textright: 'BUU'),
               ProfileDropdownCareerDataTab(
@@ -603,13 +569,9 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                 jobitem: widget.jobitem,
               ),
               ProfileDataTab(
-                  dheight: MediaQuery.of(context).size.height,
-                  dwidth: MediaQuery.of(context).size.width,
                   textleft: 'อาชีพ',
                   textright: 'นักศึกษา'),
               ProfileDataTab(
-                  dheight: MediaQuery.of(context).size.height,
-                  dwidth: MediaQuery.of(context).size.width,
                   textleft: 'บริษัท',
                   textright: 'ม.บูรพา จำกัด')
             ],
@@ -619,11 +581,3 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
     );
   }
 }
-////////////////////////////////////////////////////////////////////////////////
-// DropdownButton<String>(
-// value: attentionsvalue,
-// items: attentionsitems.map(
-// (item) => DropdownMenuItem<String>(value: item, child: Text(item)
-// )).toList(),
-// onChanged: (item) => setState(() => attentionsvalue = item),
-// )
