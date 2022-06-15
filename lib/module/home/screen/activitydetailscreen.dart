@@ -31,6 +31,10 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
+            setState(() {
+              print(id);
+              print(data['venue']);
+            });
             Navigator.pop(context);
           },
           icon: Icon(

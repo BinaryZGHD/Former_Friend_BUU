@@ -28,14 +28,6 @@ class _BuildListActivityState extends State<BuildListActivity> {
               (index) => ItemActivity(
                     data: recommends[index],
                     onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => CustomDialogBox(
-                                id: '${index}',
-                                title: 'สถานะการทำกิจกรรมของคุณคือ',
-                                description: 'กิจกรรมที่ทำแล้ว',
-                                mapscreen: HomeScreen(),
-                              ));
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                             return ActivityDetailScreen(id: recommends[index]['id'], data: recommends[index]);

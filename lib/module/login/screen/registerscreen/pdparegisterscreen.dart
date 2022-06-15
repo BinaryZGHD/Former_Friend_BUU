@@ -4,6 +4,7 @@ import 'package:f2fbuu/module/login/screen/registerscreen/registerscreen.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/dialog/texterror.dart';
@@ -34,10 +35,12 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                 Expanded(
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      "assets/PDPA.png",
-                      fit: BoxFit.fill,
-                    ),
+                    child: SfPdfViewer.network(
+                        'http://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/069/T_0052.PDF')
+                    // Image.asset(
+                    //   "assets/PDPA.png",
+                    //   fit: BoxFit.fill,
+                    // ),
                   ),
                 ),
                 SizedBox(
