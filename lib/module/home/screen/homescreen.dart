@@ -222,27 +222,31 @@ class _HomeScreenState extends State<HomeScreen> {
               color: BC_ButtonWhite,
               height: MediaQuery.of(context).size.height * 0.1,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(),
-                  IconButton(
-                    icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                    },
-                  ),SizedBox(),
-                  IconButton(
-                    icon: Icon(Icons.home, color: Colors.blue, size: 50),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                    },
-                  ),SizedBox(),
-                  IconButton(
-                    icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
-                    onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                    },
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(Icons.home, color: Colors.blue, size: 50),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                      onPressed: () {
+                        // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                      },
+                    ),
                   ),
                   SizedBox(),
                 ],

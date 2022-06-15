@@ -77,7 +77,7 @@ class ItemActivity extends StatelessWidget {
 
                             Expanded(child: Text(data["AJ"] + "  " + (data["id"]*2 -21).toString(), maxLines: 1000,style: TextStyle(fontSize: 14, color: Color(0xFF333333) ), textAlign: TextAlign.right,)),
 
-                            Expanded(child: Text(data["TimeStart"] + " - " + data["TimeEnd"] + " , " + data["Time"] +" ( h:min ) ", style: TextStyle(fontSize: 14, color: Color(0xFF333333)),)),
+                            Expanded(child: Text(data["sdate"] + " - " + data["fdate"] + " , " + data["tttime"] +" ( h:min ) ", style: TextStyle(fontSize: 14, color: Color(0xFF333333)),)),
                             SizedBox(height: 5,),
                           ],
                         )

@@ -1,4 +1,5 @@
 
+import 'package:f2fbuu/module/home/screen/activitydetailscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class _BuildListActivityState extends State<BuildListActivity> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return box();
+                            return ActivityDetailScreen(id: recommends[index]['id'], data: recommends[index]);
                           }));
                     },
                   ))),
