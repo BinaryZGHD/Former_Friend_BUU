@@ -8,7 +8,8 @@ class ButtonCustom extends StatelessWidget {
   final Color colortext;
   final Color colorbutton;
   final double sizetext;
-  const ButtonCustom({Key? key, required this.label, required this.screengo, required this.colortext, required this.colorbutton, required this.sizetext, }) : super(key: key);
+  final Color colorborder;
+  const ButtonCustom({Key? key, required this.label, required this.screengo, required this.colortext, required this.colorbutton, required this.sizetext, required this.colorborder, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +24,10 @@ class ButtonCustom extends StatelessWidget {
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
+              side: BorderSide(color: colorborder, width: 2),
             ))),
-        child: Text(
-
-          "  " + label + "  ",
-          style: TextStyle( fontSize: sizetext ,    color: colortext ,fontWeight: FontWeight.w600     ),
+        child: Text("  "+ label+"  ",
+          style: TextStyle( fontSize: sizetext ,   color: colortext ,fontWeight: FontWeight.w600     ),
         ),
       );
   }

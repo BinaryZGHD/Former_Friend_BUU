@@ -13,7 +13,6 @@ import '../../../../customs/textlink/textlinkscreencustom.dart';
 import '../../bloc/loginbloc/login_bloc.dart';
 import '../loginscreen/loginscreen.dart';
 
-
 class SetForgotPasswordScreen extends StatelessWidget {
   const SetForgotPasswordScreen({Key? key}) : super(key: key);
 
@@ -22,6 +21,7 @@ class SetForgotPasswordScreen extends StatelessWidget {
     return SetForgotPassword_ful();
   }
 }
+
 class SetForgotPassword_ful extends StatefulWidget {
   const SetForgotPassword_ful({Key? key}) : super(key: key);
 
@@ -47,10 +47,11 @@ class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
             Navigator.pop(context);
           },
           icon: Icon(
-            Icons.arrow_back ,
+            Icons.arrow_back,
             size: sizeTitle24,
             color: Colors.black,
-          ),),
+          ),
+        ),
         title: Text(
           "Set new password",
           style: TextStyle(
@@ -59,7 +60,7 @@ class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
           ),
         ),
       ),
-       body : SafeArea(
+      body: SafeArea(
         child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -108,8 +109,6 @@ class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
                       password = value;
                     },
                     hint_label: 'Password',
-
-
                   ),
                   buildTextFieldPasswordCustom(
                     textEditingController: Comfirm_Password,
@@ -117,30 +116,30 @@ class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
                       confirm_password = value;
                     },
                     hint_label: 'Confirm password',
-
-
                   ),
                   buildTextFieldCustom(
                     textEditingController: OTP,
                     onChanged: (value) {
                       otp = value;
                     },
-                    hint_label: 'OTP',textInputType: TextInputType.number,
+                    hint_label: 'OTP',
+                    textInputType: TextInputType.number,
                   ),
-
                   const Center(
                     child: TextLinkScreenCustom(
-
-                      linklabel: 'Sent OTP again', mapscreen: box(), linktextcolor: TC_OTPSent, sizetext: sizeTextSmall16,
+                      linklabel: 'Sent OTP again',
+                      mapscreen: box(),
+                      linktextcolor: TC_OTPSent,
+                      sizetext: sizeTextSmall16,
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   const Center(
-
                     child: ButtonCustom(
-                      label: "Confirm", screengo: LoginScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen,sizetext: sizeTextBig20,
+                      label: "Confirm", screengo: LoginScreen(), colortext: TC_Black, colorbutton: BC_ButtonGreen,
+                      sizetext: sizeTextBig20, colorborder: BSC_transparent,
                       // onPressed: () {context.read<LoginBloc>().add(LoginSummitEvent(users: "q", password:"q"));},
                     ),
                   ),
@@ -154,4 +153,3 @@ class _SetForgotPassword_fulState extends State<SetForgotPassword_ful> {
     );
   }
 }
-

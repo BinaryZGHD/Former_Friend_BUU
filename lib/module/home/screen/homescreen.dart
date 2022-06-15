@@ -2,7 +2,13 @@ import 'package:f2fbuu/customs/button/box.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../customs/button/buttoncustom.dart';
+import '../../../customs/color/colorconts.dart';
+import '../../../customs/size/size.dart';
 import '../../profile/screen/profile_page.dart';
+import '../bloc/buildlistactivity.dart';
+import '../bloc/data.dart';
+import '../bloc/itemactivity.dart';
 import 'moreboarddetailajan.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,13 +21,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final List<String> entries = <String>['A', 'B', 'C'];
+    final List<int> colorCodes = <int>[600, 500, 100];
     return Scaffold(
+
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: Text(
-                'นายสมชาย สมบัติ',
+                'นายสมชาย นามสมบัติ',
                 style: TextStyle(
                   fontFamily: 'Kanit',
                   fontSize: 20,
@@ -29,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               accountEmail: Text(
-                '62030340@Admin.com',
+                'F2F@Admin.com',
                 style: TextStyle(
                   fontFamily: 'Kanit',
                   fontSize: 15,
@@ -155,10 +164,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
         child: AppBar(
+          backgroundColor: Colors.white,
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.settings),
+                icon: const Icon(Icons.settings, color: TC_Black),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
@@ -166,22 +176,30 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          title: Center(child: Text('My activity ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500))),
+          title: Center(child: Text('My activity ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500 , color: TC_Black))),
+          actions: <Widget>[
+           SizedBox(
+             width: MediaQuery.of(context).size.width * 0.1,
+           ),
+          ],
         ),
       ),
       body: Column(
         children: [
           Expanded(
             child: Container(
+              color: BC_ButtonWhite,
               // height: MediaQuery.of(context).size.height*0.1,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      buildCardWelcome(),
+                      BuildListActivity(),
+                      // buildCardWelcome(),,
+
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.8,
+                        // height: MediaQuery.of(context).size.height * 0.2,
                       ),
                     ],
                   ),
@@ -189,97 +207,60 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Container(
-            constraints: BoxConstraints.expand(height: 50),
-            child: GestureDetector(
-                child: Text("ADD", textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.black)),
-                onTap: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                }),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
-            margin: EdgeInsets.only(right: 20, left: 20, top: 10, bottom: 10),
-            padding: EdgeInsets.all(12),
+          ButtonCustom(
+            label:"     " + "  ADD  "+"     ",
+            screengo: HomeScreen(),
+            colortext: TC_Black,
+            colorbutton: BC_ButtonWhite,
+            sizetext: sizeTextSmaller14, colorborder: BSC_Black,
           ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 5,
-                ),
-                IconButton(
-                  icon: Icon(Icons.account_circle , color: Colors.black),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.home, color: Colors.blue),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailAjanScreen()));
-                  },
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-              ],
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+
+            // padding: const EdgeInsets.only(bottom: 10.0),
+            child: Container(
+              color: BC_ButtonWhite,
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(),
+                  IconButton(
+                    icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                    },
+                  ),SizedBox(),
+                  IconButton(
+                    icon: Icon(Icons.home, color: Colors.blue, size: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                    },
+                  ),SizedBox(),
+                  IconButton(
+                    icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                    onPressed: () {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                    },
+                  ),
+                  SizedBox(),
+                ],
+              ),
             ),
           ),
-          // ButtonBar(
-          //   alignment: MainAxisAlignment.center,
-          //   buttonPadding:EdgeInsets.symmetric(
-          //       horizontal: 30,
-          //       vertical: 5
-          //   ),
-          //   children: [
-          //     RaisedButton(
-          //       child: Text("Yes"),
-          //       textColor: Colors.white,
-          //       color: Colors.blue,
-          //       onPressed: (){},
-          //     ),
-          //     RaisedButton(
-          //       child: Text("No"),
-          //       textColor: Colors.white,
-          //       color: Colors.red,
-          //       onPressed: (){},
-          //     ),
-          //     RaisedButton(
-          //       child: Text("Cancel"),
-          //       //textColor: Colors.white,
-          //       color: Colors.green,
-          //       onPressed: (){},
-          //     ),
-          //   ],
-          // )
         ],
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50.0),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-          },
-          tooltip: 'More',
-          child: const Icon(Icons.add),
-        ),
-      ),
-    );
-  }
-
-  buildCardWelcome() {
-    return Card(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        width: MediaQuery.of(context).size.width,
-      ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(bottom: 50.0),
+      //   child: FloatingActionButton(
+      //     onPressed: () {
+      //       Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+      //     },
+      //     tooltip: 'More',
+      //     child: const Icon(Icons.add),
+      //   ),
+      // ),
     );
   }
 }
