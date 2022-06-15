@@ -1,16 +1,16 @@
 import 'dart:convert';
-/// head : {"status":"200","message":"OK susccess","module":"Login"}
-/// body : {"screeninfo":{"Parameter":" EN  ","Btnchangelang":" TH /EN  ","EdtID":" Student code / Teacher code  ","Edtpass":" Password  ","Btnlogin":" LOGIN  ","Btnforgotpass":" Forgot password ?  ","Textreg":" Don’t have an account ?  ","BtnReg":" Register  "}}
+/// head : {"status":"200","message":"success","modulename":"login"}
+/// body : {"screeninfo":{"btnchangelang":"TH / EN","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnReg":"Register"}}
 
 Loginwording loginwordingFromJson(String str) => Loginwording.fromJson(json.decode(str));
-String loginwordingToJson(Loginwording data) => json.encode(data.toJson());
+String loginwordingsToJson(Loginwording data) => json.encode(data.toJson());
 class Loginwording {
   Loginwording({
-      Head? head, 
-      Body? body,}){
+    Head? head,
+    Body? body,}){
     _head = head;
     _body = body;
-}
+  }
 
   Loginwording.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
@@ -18,11 +18,11 @@ class Loginwording {
   }
   Head? _head;
   Body? _body;
-Loginwording copyWith({  Head? head,
-  Body? body,
-}) => Loginwording(  head: head ?? _head,
-  body: body ?? _body,
-);
+  Loginwording copyWith({  Head? head,
+    Body? body,
+  }) => Loginwording(  head: head ?? _head,
+    body: body ?? _body,
+  );
   Head? get head => _head;
   Body? get body => _body;
 
@@ -39,23 +39,23 @@ Loginwording copyWith({  Head? head,
 
 }
 
-/// screeninfo : {"Parameter":" EN  ","Btnchangelang":" TH /EN  ","EdtID":" Student code / Teacher code  ","Edtpass":" Password  ","Btnlogin":" LOGIN  ","Btnforgotpass":" Forgot password ?  ","Textreg":" Don’t have an account ?  ","BtnReg":" Register  "}
+/// screeninfo : {"btnchangelang":"TH / EN","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnReg":"Register"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
 class Body {
   Body({
-      Screeninfo? screeninfo,}){
+    Screeninfo? screeninfo,}){
     _screeninfo = screeninfo;
-}
+  }
 
   Body.fromJson(dynamic json) {
     _screeninfo = json['screeninfo'] != null ? Screeninfo.fromJson(json['screeninfo']) : null;
   }
   Screeninfo? _screeninfo;
-Body copyWith({  Screeninfo? screeninfo,
-}) => Body(  screeninfo: screeninfo ?? _screeninfo,
-);
+  Body copyWith({  Screeninfo? screeninfo,
+  }) => Body(  screeninfo: screeninfo ?? _screeninfo,
+  );
   Screeninfo? get screeninfo => _screeninfo;
 
   Map<String, dynamic> toJson() {
@@ -68,28 +68,25 @@ Body copyWith({  Screeninfo? screeninfo,
 
 }
 
-/// Parameter : " EN  "
-/// Btnchangelang : " TH /EN  "
-/// EdtID : " Student code / Teacher code  "
-/// Edtpass : " Password  "
-/// Btnlogin : " LOGIN  "
-/// Btnforgotpass : " Forgot password ?  "
-/// Textreg : " Don’t have an account ?  "
-/// BtnReg : " Register  "
+/// btnchangelang : "TH / EN"
+/// edtID : "Student code / Teacher code"
+/// edtpass : "Password"
+/// btnlogin : "LOGIN"
+/// btnforgotpass : "Forgot password ?"
+/// textreg : "Don't have an account ?"
+/// btnReg : "Register"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
 class Screeninfo {
   Screeninfo({
-      String? parameter, 
-      String? btnchangelang, 
-      String? edtID, 
-      String? edtpass, 
-      String? btnlogin, 
-      String? btnforgotpass, 
-      String? textreg, 
-      String? btnReg,}){
-    _parameter = parameter;
+    String? btnchangelang,
+    String? edtID,
+    String? edtpass,
+    String? btnlogin,
+    String? btnforgotpass,
+    String? textreg,
+    String? btnReg,}){
     _btnchangelang = btnchangelang;
     _edtID = edtID;
     _edtpass = edtpass;
@@ -97,19 +94,17 @@ class Screeninfo {
     _btnforgotpass = btnforgotpass;
     _textreg = textreg;
     _btnReg = btnReg;
-}
+  }
 
   Screeninfo.fromJson(dynamic json) {
-    _parameter = json['Parameter'];
-    _btnchangelang = json['Btnchangelang'];
-    _edtID = json['EdtID'];
-    _edtpass = json['Edtpass'];
-    _btnlogin = json['Btnlogin'];
-    _btnforgotpass = json['Btnforgotpass'];
-    _textreg = json['Textreg'];
-    _btnReg = json['BtnReg'];
+    _btnchangelang = json['btnchangelang'];
+    _edtID = json['edtID'];
+    _edtpass = json['edtpass'];
+    _btnlogin = json['btnlogin'];
+    _btnforgotpass = json['btnforgotpass'];
+    _textreg = json['textreg'];
+    _btnReg = json['btnReg'];
   }
-  String? _parameter;
   String? _btnchangelang;
   String? _edtID;
   String? _edtpass;
@@ -117,24 +112,21 @@ class Screeninfo {
   String? _btnforgotpass;
   String? _textreg;
   String? _btnReg;
-Screeninfo copyWith({  String? parameter,
-  String? btnchangelang,
-  String? edtID,
-  String? edtpass,
-  String? btnlogin,
-  String? btnforgotpass,
-  String? textreg,
-  String? btnReg,
-}) => Screeninfo(  parameter: parameter ?? _parameter,
-  btnchangelang: btnchangelang ?? _btnchangelang,
-  edtID: edtID ?? _edtID,
-  edtpass: edtpass ?? _edtpass,
-  btnlogin: btnlogin ?? _btnlogin,
-  btnforgotpass: btnforgotpass ?? _btnforgotpass,
-  textreg: textreg ?? _textreg,
-  btnReg: btnReg ?? _btnReg,
-);
-  String? get parameter => _parameter;
+  Screeninfo copyWith({  String? btnchangelang,
+    String? edtID,
+    String? edtpass,
+    String? btnlogin,
+    String? btnforgotpass,
+    String? textreg,
+    String? btnReg,
+  }) => Screeninfo(  btnchangelang: btnchangelang ?? _btnchangelang,
+    edtID: edtID ?? _edtID,
+    edtpass: edtpass ?? _edtpass,
+    btnlogin: btnlogin ?? _btnlogin,
+    btnforgotpass: btnforgotpass ?? _btnforgotpass,
+    textreg: textreg ?? _textreg,
+    btnReg: btnReg ?? _btnReg,
+  );
   String? get btnchangelang => _btnchangelang;
   String? get edtID => _edtID;
   String? get edtpass => _edtpass;
@@ -145,59 +137,58 @@ Screeninfo copyWith({  String? parameter,
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['Parameter'] = _parameter;
-    map['Btnchangelang'] = _btnchangelang;
-    map['EdtID'] = _edtID;
-    map['Edtpass'] = _edtpass;
-    map['Btnlogin'] = _btnlogin;
-    map['Btnforgotpass'] = _btnforgotpass;
-    map['Textreg'] = _textreg;
-    map['BtnReg'] = _btnReg;
+    map['btnchangelang'] = _btnchangelang;
+    map['edtID'] = _edtID;
+    map['edtpass'] = _edtpass;
+    map['btnlogin'] = _btnlogin;
+    map['btnforgotpass'] = _btnforgotpass;
+    map['textreg'] = _textreg;
+    map['btnReg'] = _btnReg;
     return map;
   }
 
 }
 
 /// status : "200"
-/// message : "OK susccess"
-/// module : "Login"
+/// message : "success"
+/// modulename : "login"
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
 class Head {
   Head({
-      String? status, 
-      String? message, 
-      String? module,}){
+    String? status,
+    String? message,
+    String? modulename,}){
     _status = status;
     _message = message;
-    _module = module;
-}
+    _modulename = modulename;
+  }
 
   Head.fromJson(dynamic json) {
     _status = json['status'];
     _message = json['message'];
-    _module = json['module'];
+    _modulename = json['modulename'];
   }
   String? _status;
   String? _message;
-  String? _module;
-Head copyWith({  String? status,
-  String? message,
-  String? module,
-}) => Head(  status: status ?? _status,
-  message: message ?? _message,
-  module: module ?? _module,
-);
+  String? _modulename;
+  Head copyWith({  String? status,
+    String? message,
+    String? modulename,
+  }) => Head(  status: status ?? _status,
+    message: message ?? _message,
+    modulename: modulename ?? _modulename,
+  );
   String? get status => _status;
   String? get message => _message;
-  String? get module => _module;
+  String? get modulename => _modulename;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['status'] = _status;
     map['message'] = _message;
-    map['module'] = _module;
+    map['modulename'] = _modulename;
     return map;
   }
 
