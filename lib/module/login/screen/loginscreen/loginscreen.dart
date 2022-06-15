@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 import '../../../../customs/Imge/changimgetype.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
@@ -16,7 +15,6 @@ import '../../../home/screen/homescreen.dart';
 import '../forgotpasswordscreen/forgotpassword.dart';
 import '../registerscreen/pdparegisterscreen.dart';
 
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -25,6 +23,7 @@ class LoginScreen extends StatelessWidget {
     return _FLoginScreen();
   }
 }
+
 class _FLoginScreen extends StatefulWidget {
   const _FLoginScreen({Key? key}) : super(key: key);
 
@@ -68,9 +67,9 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                     ),
                     Center(
                         child: ChangeImageType(
-                          urlimge_l:
+                      urlimge_l:
                           'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png',
-                        )),
+                    )),
                     // buildImge(),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
@@ -80,7 +79,8 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                       onChanged: (value) {
                         userID = value;
                       },
-                      hint_label: 'Email',textInputType: TextInputType.text,
+                      hint_label: 'Student code / Teacher code',
+                      textInputType: TextInputType.text,
                     ),
                     buildTextFieldPasswordCustom(
                       textEditingController: password,
@@ -110,7 +110,12 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                     ),
                     Center(
                       child: ButtonCustom(
-                        label: "  Login  ", screengo: HomeScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen, sizetext: sizeTextBig20,
+                        label: "  Login  ",
+                        screengo: HomeScreen(),
+                        colortext: TC_Black,
+                        colorbutton: BC_ButtonGreen,
+                        sizetext: sizeTextBig20,
+                        colorborder: BSC_transparent,
                       ),
                     ),
                     SizedBox(
@@ -126,8 +131,8 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                         TextLinkScreenCustom(
                           linklabel: 'Register',
                           mapscreen: screens_Condition_PDPA(),
-
-                          linktextcolor: TC_regiter, sizetext:sizeTextSmall16,
+                          linktextcolor: TC_regiter,
+                          sizetext: sizeTextSmall16,
                         ),
                       ],
                     ),

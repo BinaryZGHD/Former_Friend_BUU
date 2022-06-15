@@ -141,7 +141,7 @@ String confirmpasswordvalue = "";
               ),
               Center(
                 child: ButtonCustom(
-                  label: "  Sign Up  ", screengo: RegisterConfirmScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen, sizetext: sizeTextBig20,
+                  label: "  Sign Up  ", screengo: RegisterConfirmScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen, sizetext: sizeTextBig20,colorborder: BSC_transparent,
                 ),
               ),
 

@@ -127,6 +127,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       colortext: TC_Black,
                       colorbutton: BC_ButtonGreen,
                       sizetext: sizeTextBig20,
+                      colorborder: BSC_transparent,
                     ),
                   ),
                   SizedBox(

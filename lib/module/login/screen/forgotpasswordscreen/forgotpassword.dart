@@ -1,9 +1,6 @@
-
-
 import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setforgotpassword.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
@@ -42,18 +39,18 @@ class _FForgotPasswordState extends State<_FForgotPassword> {
             Navigator.pop(context);
           },
           icon: Icon(
-            Icons.arrow_back ,
+            Icons.arrow_back,
             // size: MediaQuery.of(context).size.height * 0.05,
             size: sizeTitle24,
             color: Colors.black,
-          ),),
+          ),
+        ),
         title: Text(
           "Forgot password",
           style: TextStyle(
             color: Colors.black,
             // fontSize: MediaQuery.of(context).size.height * 0.05,
-              fontSize:sizeTitle24,
-
+            fontSize: sizeTitle24,
           ),
         ),
       ),
@@ -74,21 +71,24 @@ class _FForgotPasswordState extends State<_FForgotPassword> {
                     onChanged: (value) {
                       uservalue = value;
                     },
-                    hint_label: 'Student code / Teacher code',textInputType: TextInputType.text,
+                    hint_label: 'Student code / Teacher code',
+                    textInputType: TextInputType.text,
                   ),
                   buildTextFieldCustom(
                     textEditingController: email,
                     onChanged: (value) {
                       emailvalue = value;
                     },
-                    hint_label: 'Email',textInputType: TextInputType.text,
+                    hint_label: 'Email',
+                    textInputType: TextInputType.text,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   const Center(
                     child: ButtonCustom(
-                      label: "NEXT", screengo: SetForgotPasswordScreen(),colortext: TC_Black, colorbutton: BC_ButtonGreen,sizetext: sizeTextBig20,
+                      label: "NEXT", screengo: SetForgotPasswordScreen(), colortext: TC_Black,
+                      colorbutton: BC_ButtonGreen, sizetext: sizeTextBig20, colorborder: BSC_transparent,
                       // onPressed: () {context.read<LoginBloc>().add(LoginSummitEvent(users: "q", password:"q"));},
                     ),
                   ),

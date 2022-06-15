@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/size/size.dart';
 
-
 class screens_Condition_PDPA extends StatefulWidget {
   const screens_Condition_PDPA({Key? key}) : super(key: key);
 
@@ -46,11 +45,33 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                   // buildButtonComfirm(),
                   Row(
                     children: [
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.08,),
-                      Expanded(child: ButtonCustom(label: 'ACCEPT', screengo: RegisterScreen(), colortext: TC_Black, colorbutton: BC_ButtonGreen,sizetext: sizeTextBig20,)),
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                      Expanded(child: ButtonCustom(label: 'DECLINE', screengo: LoginScreen(), colortext: TC_Black, colorbutton: BC_ButtonRed,sizetext: sizeTextBig20,)),
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.08,),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                      Expanded(
+                          child: ButtonCustom(
+                        label: 'ACCEPT',
+                        screengo: RegisterScreen(),
+                        colortext: TC_Black,
+                        colorbutton: BC_ButtonGreen,
+                        sizetext: sizeTextBig20,
+                        colorborder: BSC_transparent,
+                      )),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                          child: ButtonCustom(
+                        label: 'DECLINE',
+                        screengo: LoginScreen(),
+                        colortext: TC_Black,
+                        colorbutton: BC_ButtonRed,
+                        sizetext: sizeTextBig20,
+                        colorborder: BSC_transparent,
+                      )),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -72,5 +93,4 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
           textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
     );
   }
-
 }
