@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
+import '../../../../customs/textlink/textlinkotpcustom.dart';
 import '../../../../customs/textlink/textlinkscreencustom.dart';
 
 class RegisterConfirmScreen extends StatelessWidget {
@@ -110,11 +112,11 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                     hint_label: 'OTP', textInputType: TextInputType.number,
                   ),
                   Center(
-                    child: TextLinkScreenCustom(
+                    child: TextLinkOTPCustom(
                       linklabel: 'Sent OTP again',
                       mapscreen: RegisterScreen(),
                       linktextcolor: TC_OTPSent,
-                      sizetext: sizeTextSmall16,
+                      sizetext: sizeTextSmall16, tiltle: 'OTP sent to', description: 'Email',
                     ),
                   ),
                   SizedBox(
@@ -127,7 +129,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       colortext: TC_Black,
                       colorbutton: BC_ButtonGreen,
                       sizetext: sizeTextBig20,
-                      colorborder: BSC_transparent,
+                      colorborder: BSC_transparent,error: errregidter2,
                     ),
                   ),
                   SizedBox(

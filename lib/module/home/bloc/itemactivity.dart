@@ -5,10 +5,11 @@ import '../../../customs/color/colorconts.dart';
 
 
 class ItemActivity extends StatelessWidget {
-  ItemActivity({ Key? key, required this.data, this.onTap}) : super(key: key);
-  final data;
-  final GestureTapCallback? onTap;
 
+  final data;
+
+  final GestureTapCallback? onTap;
+  ItemActivity({ Key? key, required this.data, this.onTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

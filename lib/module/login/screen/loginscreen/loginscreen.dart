@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../customs/Imge/changimgetype.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
@@ -115,7 +116,8 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                         colortext: TC_Black,
                         colorbutton: BC_ButtonGreen,
                         sizetext: sizeTextBig20,
-                        colorborder: BSC_transparent,
+                        colorborder: BSC_transparent,error: errloin,
+
                       ),
                     ),
                     SizedBox(

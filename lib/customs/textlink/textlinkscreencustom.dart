@@ -27,6 +27,7 @@ class TextLinkScreenCustom extends StatelessWidget {
       onTap: () async {
         Navigator.push(context, MaterialPageRoute(builder: (context) => mapscreen));
       },
+
     );
   }
 }

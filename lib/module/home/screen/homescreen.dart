@@ -196,8 +196,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       BuildListActivity(),
-                      // buildCardWelcome(),,
-
                       SizedBox(
                         // height: MediaQuery.of(context).size.height * 0.2,
                       ),
@@ -212,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
             screengo: HomeScreen(),
             colortext: TC_Black,
             colorbutton: BC_ButtonWhite,
-            sizetext: sizeTextSmaller14, colorborder: BSC_Black,
+            sizetext: sizeTextSmaller14, colorborder: BSC_Black,error: "ERROR",
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -222,29 +220,29 @@ class _HomeScreenState extends State<HomeScreen> {
               color: BC_ButtonWhite,
               height: MediaQuery.of(context).size.height * 0.1,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(),
-                  IconButton(
+                  Expanded(child: IconButton(
                     icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                     },
-                  ),SizedBox(),
-                  IconButton(
+                  )),
+
+                  Expanded(child: IconButton(
                     icon: Icon(Icons.home, color: Colors.blue, size: 50),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                     },
-                  ),SizedBox(),
-                  IconButton(
+                  )),
+                  Expanded(child: IconButton(
                     icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
                     onPressed: () {
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
-                  ),
-                  SizedBox(),
+                  )),
+
                 ],
               ),
             ),

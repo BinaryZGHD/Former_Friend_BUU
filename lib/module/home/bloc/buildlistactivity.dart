@@ -1,8 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../customs/button/box.dart';
+import '../../../customs/dialog/dialogboxcutom.dart';
 import '../screen/homescreen.dart';
 import 'data.dart';
 import 'itemactivity.dart';
@@ -23,14 +23,17 @@ class _BuildListActivityState extends State<BuildListActivity> {
       child: Column(
           children: List.generate(
               recommends.length,
-                  (index) =>
-                  ItemActivity(
+              (index) => ItemActivity(
                     data: recommends[index],
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                            return box();
-                          }));
+                      showDialog(
+                          context: context,
+                          builder: (context) => CustomDialogBox(
+                                id: '${index}',
+                                title: 'สถานะการทำกิจกรรมของคุณคือ',
+                                description: 'กิจกรรมที่ทำแล้ว',
+                                mapscreen: HomeScreen(),
+                              ));
                     },
                   ))),
     );

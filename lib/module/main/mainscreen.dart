@@ -1,4 +1,4 @@
-import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setforgotpassword.dart';
+import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setnewforgotpassword.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:f2fbuu/module/login/screen/registerscreen/registerscreen.dart';
 import 'package:flutter/cupertino.dart';
