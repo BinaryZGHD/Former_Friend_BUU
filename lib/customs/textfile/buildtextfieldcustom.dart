@@ -8,9 +8,9 @@ class buildTextFieldCustom extends StatelessWidget {
   final TextEditingController? textEditingController;
   final String hint_label;
   final TextInputType textInputType;
-  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onChangedtest;
   const buildTextFieldCustom(
-      {Key? key, this.textEditingController, required this.hint_label, this.onChanged, required this.textInputType})
+      {Key? key, this.textEditingController, required this.hint_label, this.onChangedtest, required this.textInputType})
       : super(key: key);
 
   @override
@@ -19,14 +19,17 @@ class buildTextFieldCustom extends StatelessWidget {
         // padding: EdgeInsets.all(12),
         margin: const EdgeInsets.all(12),
         // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
+        child: TextFormField(
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
               ),
           keyboardType: textInputType,
           // controller: textEditingController,// decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
-          onChanged: (value) {
-            print(hint_label + "    :" + value);
-          },
+          onChanged: onChangedtest,
+
+          // {
+          //   onChangedtest!(value);
+          //   print(hint_label + "    :" + value);
+          // },
           decoration: InputDecoration(
               filled: true,
               fillColor: TC_Textfile,

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as httpurl;
 import '../../../../customs/Imge/changimgetype.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
@@ -34,11 +35,6 @@ class _FLoginScreen extends StatefulWidget {
 }
 
 class _FLoginScreenState extends State<_FLoginScreen> {
-  TextEditingController user = TextEditingController();
-  TextEditingController password = TextEditingController();
-  String userID = "";
-  String passw = "";
-
   LoginWording? _dataFromAPI;
   @override
   void initState() {
@@ -50,10 +46,11 @@ class _FLoginScreenState extends State<_FLoginScreen> {
     // print("เรียกใช้ Get_Coin_price");
     var url = Uri.parse("https://thaiaddress.herokuapp.com/login/loginscreen");
     var response = await httpurl.get(url, headers: <String, String>{});
-    print(response.body);
+
     _dataFromAPI = loginwordingFromJson(response.body);
-    print(_dataFromAPI?.head?.message);// get the data from the api
-    print(_dataFromAPI?.body?.screeninfo?.btnchangelang);// get the data from the api
+    // print(response.body);
+    // print(_dataFromAPI?.head?.message);// get the data from the api
+    // print(_dataFromAPI?.body?.screeninfo?.btnchangelang);// get the data from the api
     return _dataFromAPI;
 
     // log(response.body);
@@ -61,6 +58,10 @@ class _FLoginScreenState extends State<_FLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController user = TextEditingController();
+    TextEditingController password = TextEditingController();
+    String userID = "";
+    String passw = "";
     return Scaffold(
       body: FutureBuilder(
         future: getAPILoginwording(),
@@ -97,17 +98,18 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                           ),
                           Center(
                               child: ChangeImageType(
-                                urlimge_l:
+                            urlimge_l:
                                 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png',
-                              )),
+                          )),
                           // buildImge(),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.1,
                           ),
                           buildTextFieldCustom(
                             textEditingController: user,
-                            onChanged: (value) {
+                            onChangedtest: (value) {
                               userID = value;
+                              print("userID  login == " + userID);
                             },
                             hint_label: "${_dataFromAPI?.body?.screeninfo?.edtID}",
                             textInputType: TextInputType.text,
@@ -116,6 +118,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                             textEditingController: password,
                             onChanged: (value) {
                               passw = value;
+                              print("password login  == " + value);
                             },
                             hint_label: "${_dataFromAPI?.body?.screeninfo?.edtpass}",
                           ),
@@ -130,7 +133,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                             //   // print("User :" + userID + "\n" + "Password :" + passw);
                             //   // print(event.number);
                             // },
-                            linklabel:  "${_dataFromAPI?.body?.screeninfo?.btnforgotpass}",
+                            linklabel: "${_dataFromAPI?.body?.screeninfo?.btnforgotpass}",
                             mapgo: ForgotPasswordScreen(),
                             linkurl: '',
                             linktextcolor: TC_forgot, sizetext: sizeTextSmaller14,
@@ -140,13 +143,22 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                           ),
                           Center(
                             child: ButtonCustom(
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => CustomDialogBox(
+                                          id: '',
+                                          title: errloin + userID,
+                                          description: errloin + userID + '\n \n ' + 'Do you want to continue?',
+                                          mapscreen: LoginScreen(),
+                                        ));
+                              },
                               label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",
                               screengo: HomeScreen(),
                               colortext: TC_Black,
                               colorbutton: BC_ButtonGreen,
                               sizetext: sizeTextBig20,
                               colorborder: BSC_transparent,
-                              error: errloin,
                             ),
                           ),
                           SizedBox(
@@ -161,7 +173,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                                     fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
                               ),
                               TextLinkScreenCustom(
-                                linklabel:  "${_dataFromAPI?.body?.screeninfo?.btnReg}",
+                                linklabel: "${_dataFromAPI?.body?.screeninfo?.btnReg}",
                                 mapscreen: screens_Condition_PDPA(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,

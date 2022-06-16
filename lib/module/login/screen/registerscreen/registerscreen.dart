@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
@@ -88,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: user,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   uservalue = value;
                 },
                 hint_label: 'Student code / Teacher code',
@@ -96,7 +97,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: phone,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   phonevalue = value;
                 },
                 hint_label: 'Telephone number',
@@ -104,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: email,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   emailvalue = value;
                 },
                 hint_label: 'Email',
@@ -112,7 +113,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: name,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   namevalue = value;
                 },
                 hint_label: 'Name',
@@ -120,7 +121,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: lastname,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   lastnamevalue = value;
                 },
                 hint_label: 'Last name',
@@ -151,7 +152,16 @@ class RegisterScreen extends StatelessWidget {
                   colorbutton: BC_ButtonGreen,
                   sizetext: sizeTextBig20,
                   colorborder: BSC_transparent,
-                  error: errregidter1,
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => CustomDialogBox(
+                              id: '',
+                              title: "",
+                              description: errregidter1 + '\n \n ' + 'Do you want to continue?',
+                              mapscreen: RegisterConfirmScreen(),
+                            ));
+                  },
                 ),
               ),
 

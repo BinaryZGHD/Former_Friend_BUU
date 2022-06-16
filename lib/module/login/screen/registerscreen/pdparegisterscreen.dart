@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../../../customs/button/buttoncustom.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 
@@ -34,14 +35,13 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                 buildContainerTitle(),
                 Expanded(
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: SfPdfViewer.network(
-                        'http://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/069/T_0052.PDF')
-                    // Image.asset(
-                    //   "assets/PDPA.png",
-                    //   fit: BoxFit.fill,
-                    // ),
-                  ),
+                      width: MediaQuery.of(context).size.width,
+                      child: SfPdfViewer.network('http://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/069/T_0052.PDF')
+                      // Image.asset(
+                      //   "assets/PDPA.png",
+                      //   fit: BoxFit.fill,
+                      // ),
+                      ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
@@ -59,7 +59,17 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                       colortext: TC_Black,
                       colorbutton: BC_ButtonGreen,
                       sizetext: sizeTextBig20,
-                      colorborder: BSC_transparent,error: errpdpaaccept,
+                      colorborder: BSC_transparent,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => CustomDialogBox(
+                                  id: '',
+                                  title: "",
+                                  description: errpdpaaccept + '\n \n ' + 'Do you want to continue?',
+                                  mapscreen: RegisterScreen(),
+                                ));
+                      },
                     )),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.1,
@@ -71,7 +81,17 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                       colortext: TC_Black,
                       colorbutton: BC_ButtonRed,
                       sizetext: sizeTextBig20,
-                      colorborder: BSC_transparent,error: errpdpadecline,
+                      colorborder: BSC_transparent,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => CustomDialogBox(
+                                  id: '',
+                                  title: "",
+                                  description: errpdpadecline + '\n \n ' + 'Do you want to continue?',
+                                  mapscreen: LoginScreen(),
+                                ));
+                      },
                     )),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.08,

@@ -6,9 +6,8 @@ class DetailAjanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('รายละเอียดการขออนุมัติการเข้าร่วมกิจกรรม'),
-    )
-    );
+        appBar: AppBar(
+      title: Text('รายละเอียดการขออนุมัติการเข้าร่วมกิจกรรม'),
+    ));
   }
 }

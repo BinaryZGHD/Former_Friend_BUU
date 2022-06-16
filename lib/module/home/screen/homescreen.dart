@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<String> entries = <String>['A', 'B', 'C'];
     final List<int> colorCodes = <int>[600, 500, 100];
     return Scaffold(
-
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -176,11 +175,13 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          title: Center(child: Text('My activity ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500 , color: TC_Black))),
+          title: Center(
+              child:
+                  Text('My activity ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
           actions: <Widget>[
-           SizedBox(
-             width: MediaQuery.of(context).size.width * 0.1,
-           ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.1,
+            ),
           ],
         ),
       ),
@@ -197,8 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       BuildListActivity(),
                       SizedBox(
-                        // height: MediaQuery.of(context).size.height * 0.2,
-                      ),
+                          // height: MediaQuery.of(context).size.height * 0.2,
+                          ),
                     ],
                   ),
                 ),
@@ -211,11 +212,12 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
             child: ButtonCustom(
-              label:"     " + "  ADD  "+"     ",
+              label: "     " + "  ADD  " + "     ",
               screengo: HomeScreen(),
               colortext: TC_Black,
               colorbutton: BC_ButtonWhite,
-              sizetext: sizeTextSmaller14, colorborder: BSC_Black,error: "ERROR",
+              sizetext: sizeTextSmaller14,
+              colorborder: BSC_Black,
             ),
           ),
           Padding(
@@ -228,27 +230,28 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: IconButton(
+                  Expanded(
+                      child: IconButton(
                     icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                     },
                   )),
-
-                  Expanded(child: IconButton(
+                  Expanded(
+                      child: IconButton(
                     icon: Icon(Icons.home, color: Colors.blue, size: 50),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                     },
                   )),
-                  Expanded(child: IconButton(
+                  Expanded(
+                      child: IconButton(
                     icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
                     onPressed: () {
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                   )),
-
                 ],
               ),
             ),

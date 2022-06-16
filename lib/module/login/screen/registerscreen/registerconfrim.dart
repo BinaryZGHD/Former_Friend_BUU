@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
@@ -116,7 +117,9 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       linklabel: 'Sent OTP again',
                       mapscreen: RegisterScreen(),
                       linktextcolor: TC_OTPSent,
-                      sizetext: sizeTextSmall16, tiltle: 'OTP sent to', description: 'Email',
+                      sizetext: sizeTextSmall16,
+                      tiltle: 'OTP sent to',
+                      description: 'Email',
                     ),
                   ),
                   SizedBox(
@@ -129,7 +132,17 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       colortext: TC_Black,
                       colorbutton: BC_ButtonGreen,
                       sizetext: sizeTextBig20,
-                      colorborder: BSC_transparent,error: errregidter2,
+                      colorborder: BSC_transparent,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => CustomDialogBox(
+                                  id: '',
+                                  title: "",
+                                  description: errregidter2 + '\n \n ' + 'Do you want to continue?',
+                                  mapscreen: LoginScreen(),
+                                ));
+                      },
                     ),
                   ),
                   SizedBox(

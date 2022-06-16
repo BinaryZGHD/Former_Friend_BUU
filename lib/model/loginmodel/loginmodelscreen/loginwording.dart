@@ -1,13 +1,16 @@
 import 'dart:convert';
+
 /// head : {"status":"200","message":"success","modulename":"login"}
 /// body : {"screeninfo":{"btnchangelang":"TH / EN","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnReg":"Register"}}
 
 LoginWording loginwordingFromJson(String str) => LoginWording.fromJson(json.decode(str));
 String loginwordingsToJson(LoginWording data) => json.encode(data.toJson());
+
 class LoginWording {
   LoginWording({
     Head? head,
-    Body? body,}){
+    Body? body,
+  }) {
     _head = head;
     _body = body;
   }
@@ -18,11 +21,14 @@ class LoginWording {
   }
   Head? _head;
   Body? _body;
-  LoginWording copyWith({  Head? head,
+  LoginWording copyWith({
+    Head? head,
     Body? body,
-  }) => LoginWording(  head: head ?? _head,
-    body: body ?? _body,
-  );
+  }) =>
+      LoginWording(
+        head: head ?? _head,
+        body: body ?? _body,
+      );
   Head? get head => _head;
   Body? get body => _body;
 
@@ -36,16 +42,17 @@ class LoginWording {
     }
     return map;
   }
-
 }
 
 /// screeninfo : {"btnchangelang":"TH / EN","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnReg":"Register"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
+
 class Body {
   Body({
-    Screeninfo? screeninfo,}){
+    Screeninfo? screeninfo,
+  }) {
     _screeninfo = screeninfo;
   }
 
@@ -53,9 +60,12 @@ class Body {
     _screeninfo = json['screeninfo'] != null ? Screeninfo.fromJson(json['screeninfo']) : null;
   }
   Screeninfo? _screeninfo;
-  Body copyWith({  Screeninfo? screeninfo,
-  }) => Body(  screeninfo: screeninfo ?? _screeninfo,
-  );
+  Body copyWith({
+    Screeninfo? screeninfo,
+  }) =>
+      Body(
+        screeninfo: screeninfo ?? _screeninfo,
+      );
   Screeninfo? get screeninfo => _screeninfo;
 
   Map<String, dynamic> toJson() {
@@ -65,7 +75,6 @@ class Body {
     }
     return map;
   }
-
 }
 
 /// btnchangelang : "TH / EN"
@@ -78,6 +87,7 @@ class Body {
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
+
 class Screeninfo {
   Screeninfo({
     String? btnchangelang,
@@ -86,7 +96,8 @@ class Screeninfo {
     String? btnlogin,
     String? btnforgotpass,
     String? textreg,
-    String? btnReg,}){
+    String? btnReg,
+  }) {
     _btnchangelang = btnchangelang;
     _edtID = edtID;
     _edtpass = edtpass;
@@ -112,21 +123,24 @@ class Screeninfo {
   String? _btnforgotpass;
   String? _textreg;
   String? _btnReg;
-  Screeninfo copyWith({  String? btnchangelang,
+  Screeninfo copyWith({
+    String? btnchangelang,
     String? edtID,
     String? edtpass,
     String? btnlogin,
     String? btnforgotpass,
     String? textreg,
     String? btnReg,
-  }) => Screeninfo(  btnchangelang: btnchangelang ?? _btnchangelang,
-    edtID: edtID ?? _edtID,
-    edtpass: edtpass ?? _edtpass,
-    btnlogin: btnlogin ?? _btnlogin,
-    btnforgotpass: btnforgotpass ?? _btnforgotpass,
-    textreg: textreg ?? _textreg,
-    btnReg: btnReg ?? _btnReg,
-  );
+  }) =>
+      Screeninfo(
+        btnchangelang: btnchangelang ?? _btnchangelang,
+        edtID: edtID ?? _edtID,
+        edtpass: edtpass ?? _edtpass,
+        btnlogin: btnlogin ?? _btnlogin,
+        btnforgotpass: btnforgotpass ?? _btnforgotpass,
+        textreg: textreg ?? _textreg,
+        btnReg: btnReg ?? _btnReg,
+      );
   String? get btnchangelang => _btnchangelang;
   String? get edtID => _edtID;
   String? get edtpass => _edtpass;
@@ -146,7 +160,6 @@ class Screeninfo {
     map['btnReg'] = _btnReg;
     return map;
   }
-
 }
 
 /// status : "200"
@@ -155,11 +168,13 @@ class Screeninfo {
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
+
 class Head {
   Head({
     String? status,
     String? message,
-    String? modulename,}){
+    String? modulename,
+  }) {
     _status = status;
     _message = message;
     _modulename = modulename;
@@ -173,13 +188,16 @@ class Head {
   String? _status;
   String? _message;
   String? _modulename;
-  Head copyWith({  String? status,
+  Head copyWith({
+    String? status,
     String? message,
     String? modulename,
-  }) => Head(  status: status ?? _status,
-    message: message ?? _message,
-    modulename: modulename ?? _modulename,
-  );
+  }) =>
+      Head(
+        status: status ?? _status,
+        message: message ?? _message,
+        modulename: modulename ?? _modulename,
+      );
   String? get status => _status;
   String? get message => _message;
   String? get modulename => _modulename;
@@ -191,5 +209,4 @@ class Head {
     map['modulename'] = _modulename;
     return map;
   }
-
 }

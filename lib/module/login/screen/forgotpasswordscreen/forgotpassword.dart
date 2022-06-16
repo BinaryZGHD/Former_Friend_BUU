@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
@@ -51,7 +52,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: userID,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   uservalue = value;
                 },
                 hint_label: 'Student code / Teacher code',
@@ -59,7 +60,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: email,
-                onChanged: (value) {
+                onChangedtest: (value) {
                   emailvalue = value;
                 },
                 hint_label: 'Email',
@@ -76,7 +77,16 @@ class ForgotPasswordScreen extends StatelessWidget {
                   colorbutton: BC_ButtonGreen,
                   sizetext: sizeTextBig20,
                   colorborder: BSC_transparent,
-                  error: errforgotpasswordr1,
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => CustomDialogBox(
+                              id: '',
+                              title: " ",
+                              description: errforgotpasswordr1 + '\n \n ' + 'Do you want to continue?',
+                              mapscreen: SetNewForgotPasswordScreen(),
+                            ));
+                  },
                 ),
               ),
               SizedBox(
