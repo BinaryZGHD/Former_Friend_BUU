@@ -1,5 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
+class ProfileCareerDataHead extends StatefulWidget {
+  final String title;
 
+  ProfileCareerDataHead({Key? key, required this.title}) : super(key: key);
+
+  @override
+  State<ProfileCareerDataHead> createState() => _ProfileCareerDataHeadState();
+}
+////////////////////////////////////////////////////////////////////////////////
+class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
+  bool ispressed = true;
+  final attentionsitems = ['', 'คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
+  late String attentionsvalue = '';
+  final statusitems = ['', 'ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
+  late String statusvalue = '';
+  final jobtypeitems = ['', '1', '2', '3'];
+  late String jobtypevalue = '';
+  bool isVisible = true;
+
+  @override
+  Widget build(BuildContext context) {
+    String textleft = widget.title;
+
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(width: 1, color: Colors.black12),
+                bottom: BorderSide(width: 1, color: Colors.transparent)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Text(
+                  textleft,
+                  style: TextStyle(fontSize: 20),
+                ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          ispressed = !ispressed;
+                        });
+                        // setState((){
+                        //   if (ispressed == true) {
+                        //     editorsave = 'บันทึก';
+                        //   } else {
+                        //     editorsave = 'แก้ไข';
+                        //   }
+                        //   print(ispressed);
+                        // });
+                        // }, child: Text(editorsave,
+                      },
+                      child: ispressed
+                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          : Text('บันทึก',
+                          style: TextStyle(color: Colors.green)),
+                    ),
+                  ),
+
+                  // Text(editorsave,
+                  //       style:
+                  //       TextStyle(fontSize: 18, color: Colors.red),
+                  //       textAlign: TextAlign.right),
+                ),
+              ],
+            ),
+          ),
+        ),
+        ProfileAttentionDropdownTab(
+          textleft: 'ความสนใจ',
+          careeritem: attentionsitems,
+          itemvalue: attentionsvalue,
+        ),
+        ProfileCareerDropdownTab(
+          ispressed: ispressed,
+          textleft: 'สถานะ',
+          careeritem: statusitems,
+          itemvalue: statusvalue,
+          jobitemvalue: jobtypevalue,
+          jobtextleft: 'ประเภทงาน',
+          jobitem: jobtypeitems,
+        ),
+      ],
+    );
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
 class ProfileAttentionDropdownTab extends StatefulWidget {
   final String textleft;
   final String itemvalue;
@@ -131,8 +223,8 @@ class _ProfileDropdownCareerDataTabState
 class ProfileCareerDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
-  bool istffreadonly = true;
-  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright}) : super(key: key);
+  final bool ispressed ;
+  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.ispressed}) : super(key: key);
 
   @override
   State<ProfileCareerDataTab> createState() => _ProfileCareerDataTabState();
@@ -143,7 +235,8 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
     String textright = widget.textright;
-    bool istffreadonly = true;
+    bool ispressed = widget.ispressed;
+    String texttest = 'testtesttest';
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -161,11 +254,17 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
             Expanded(
               child: Container(
                 child: TextFormField(
-                  readOnly: istffreadonly,
+                  readOnly: ispressed,
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      texttest = value;
+                      print(texttest);
+                    });
+                  },
                   initialValue: textright,
                 ),
 
@@ -190,6 +289,7 @@ class ProfileCareerDropdownTab extends StatefulWidget {
   final String jobtextleft;
   final String jobitemvalue;
   final List<String> jobitem;
+  final bool ispressed;
 
   const ProfileCareerDropdownTab(
       {Key? key,
@@ -198,7 +298,8 @@ class ProfileCareerDropdownTab extends StatefulWidget {
         required this.careeritem,
         required this.jobtextleft,
         required this.jobitem,
-        required this.jobitemvalue})
+        required this.jobitemvalue,
+        required this.ispressed})
       : super(key: key);
 
   @override
@@ -212,6 +313,7 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
   late List<String> careeritem;
   bool isJobInStatusVisible = false;
 
+
   @override
   void initState() {
     textleft = widget.textleft;
@@ -222,7 +324,10 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
 
   @override
   Widget build(BuildContext context) {
-    print('aaa = ' + '$itemvalue');
+    bool ispressed = widget.ispressed;
+    String texttest = 'testtesttest';
+
+    print('$itemvalue');
     return Column(
       children: [
         Container(
@@ -281,12 +386,15 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                 jobitem: widget.jobitem,
               ),
               ProfileCareerDataTab(
+                ispressed: ispressed,
                   textleft: 'สถานที่ทำงาน',
                   textright: 'BUU'),
               ProfileCareerDataTab(
+                  ispressed: ispressed,
                   textleft: 'อาชีพ',
                   textright: 'นักศึกษา'),
               ProfileCareerDataTab(
+                  ispressed: ispressed,
                   textleft: 'บริษัท',
                   textright: 'ม.บูรพา จำกัด')
             ],

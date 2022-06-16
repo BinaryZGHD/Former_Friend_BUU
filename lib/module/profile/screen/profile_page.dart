@@ -6,7 +6,7 @@ import 'package:f2fbuu/module/profile/components/generaldatatab.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import '../../../customs/size/size.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -30,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     String imgurl = 'https://picsum.photos/250?image=9';
+    var apiscreeninfo = api['body']['screeninfo'];
     return Scaffold(
       appBar:
       // AppBar(
@@ -58,8 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: Colors.black,
           ),
         ),
-        title: Text(
-          "Profile",
+        title: Text(apiscreeninfo['titleprofile'],
           style: TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -98,68 +98,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ProfileGeneralDataHead(
               title: 'ข้อมูลทั่วไป',
             ),
-            ProfileGeneralDataTab(
-              textleft: 'ชื่อ',
-              textright: 'ผู้ใช้งาน',
+            // ProfileGeneralDataTab(
+            //   ispressed: true,
+            //   textleft: 'ชื่อ',
+            //   textright: 'ผู้ใช้งาน',
+            // ),
+            // ProfileGeneralDataTab(
+            //     textleft: 'นามสกุล',
+            //     textright: 'แอปพลิเคชัน'),
+            // ProfileGeneralDataTab(
+            //     textleft: 'ชื่อเล่น',
+            //     textright: 'แมท'),
+            // ProfileGeneralDataTab(
+            //     textleft: 'รหัสนิสิต',
+            //     textright: '62030xxx'),
+            // ProfileGeneralDataTab(
+            //     textleft: 'รุ่น',
+            //     textright: '65'),
+            ProfileEducationDataHead(
+              title: 'ข้อมูลการศึกษา',
             ),
-            ProfileGeneralDataTab(
-                textleft: 'นามสกุล',
-                textright: 'แอปพลิเคชัน'),
-            ProfileGeneralDataTab(
-                textleft: 'ชื่อเล่น',
-                textright: 'แมท'),
-            ProfileGeneralDataTab(
-                textleft: 'รหัสนิสิต',
-                textright: '62030xxx'),
-            ProfileGeneralDataTab(
-                textleft: 'รุ่น',
-                textright: '65'),
-            ProfileDataHead(
-                textleft: 'ข้อมูลการศึกษา',
-                textright: 'แก้ไข',
-                textleftfontsize: 20,
-                textrightfontsize: 18),
-            ProfileEducationDataTab(
-                textleft: 'คณะ',
-                textright: 'วิทยาศาสตร์'),
-            ProfileEducationDataTab(
-                textleft: 'ภาควิชา',
-                textright: 'คณิตศาสตร์'),
-            ProfileEducationDataTab(
-                textleft: 'สาขาวิชา',
-                textright: 'คณิตศาสตร์'),
-            ProfileEducationDataTab(
-                textleft: 'เกรดเฉลี่ย (ระดับมัธยมต้น)',
-                textright: '4.00'),
-            ProfileEducationDataTab(
-                textleft: 'เกรดเฉลี่ย (ระดับมัธยมปลาย)',
-                textright: '3.55'),
-            ProfileEducationDataTab(
-                textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
-                textright: '2.99'),
-            ProfileDataHead(
-                textleft: 'ข้อมูลที่อยู่ ',
-                textright: 'แก้ไข',
-                textleftfontsize: 20,
-                textrightfontsize: 18),
-            ProfileAddressDataTab(
-                textleft: 'บ้านเลขที่',
-                textright: '55/55'),
-            ProfileAddressDataTab(
-                textleft: 'หมู่',
-                textright: '5'),
-            ProfileAddressDataTab(
-                textleft: 'ตำบล',
-                textright: 'แสนสุข'),
-            ProfileAddressDataTab(
-                textleft: 'อำเภอ',
-                textright: 'เมือง'),
-            ProfileAddressDataTab(
-                textleft: 'จังหวัด',
-                textright: 'ชลบุรี'),
-            ProfileAddressDataTab(
-                textleft: 'รหัสไปรษณีย์',
-                textright: '20000'),
+            // ProfileEducationDataTab(
+            //     textleft: 'คณะ',
+            //     textright: 'วิทยาศาสตร์'),
+            // ProfileEducationDataTab(
+            //     textleft: 'ภาควิชา',
+            //     textright: 'คณิตศาสตร์'),
+            // ProfileEducationDataTab(
+            //     textleft: 'สาขาวิชา',
+            //     textright: 'คณิตศาสตร์'),
+            // ProfileEducationDataTab(
+            //     textleft: 'เกรดเฉลี่ย (ระดับมัธยมต้น)',
+            //     textright: '4.00'),
+            // ProfileEducationDataTab(
+            //     textleft: 'เกรดเฉลี่ย (ระดับมัธยมปลาย)',
+            //     textright: '3.55'),
+            // ProfileEducationDataTab(
+            //     textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
+            //     textright: '2.99'),
+            ProfileAddressDataHead(
+              title: 'ข้อมูลที่อยู่ ',
+            ),
+            // ProfileAddressDataTab(
+            //     textleft: 'บ้านเลขที่',
+            //     textright: '55/55'),
+            // ProfileAddressDataTab(
+            //     textleft: 'หมู่',
+            //     textright: '5'),
+            // ProfileAddressDataTab(
+            //     textleft: 'ตำบล',
+            //     textright: 'แสนสุข'),
+            // ProfileAddressDataTab(
+            //     textleft: 'อำเภอ',
+            //     textright: 'เมือง'),
+            // ProfileAddressDataTab(
+            //     textleft: 'จังหวัด',
+            //     textright: 'ชลบุรี'),
+            // ProfileAddressDataTab(
+            //     textleft: 'รหัสไปรษณีย์',
+            //     textright: '20000'),
             // Container(
             //   padding: EdgeInsets.all(10),
             //   decoration: BoxDecoration(
@@ -179,71 +176,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     ),
             //   ),
             // ),
-            ProfileDataHead(
-                textleft: 'ข้อมูลติดต่อ',
-                textright: 'แก้ไข',
-                textleftfontsize: 20,
-                textrightfontsize: 18),
-            ProfileContactDataTab(
-              iconcontact: Icon(
-                Icons.phone,
-                color: HexColor('#000000'),
-              ),
-              textcontact: '0123456789',
+            ProfileContactDataHead(
+              title: 'ข้อมูลการติดต่อ',
             ),
-            ProfileContactDataTab(
-              iconcontact: Icon(
-                FontAwesomeIcons.line,
-                color: HexColor('#00B900'),
-              ),
-              textcontact: '@scimath',
+            // ProfileContactDataTab(
+            //   iconcontact: Icon(
+            //     Icons.phone,
+            //     color: HexColor('#000000'),
+            //   ),
+            //   textcontact: '0123456789',
+            // ),
+            // ProfileContactDataTab(
+            //   iconcontact: Icon(
+            //     FontAwesomeIcons.line,
+            //     color: HexColor('#00B900'),
+            //   ),
+            //   textcontact: '@scimath',
+            // ),
+            // ProfileContactDataTab(
+            //   iconcontact: Icon(
+            //     FontAwesomeIcons.facebook,
+            //     color: HexColor('#3B5998'),
+            //   ),
+            //   textcontact: 'scimath',
+            // ),
+            // ProfileContactDataTab(
+            //   iconcontact: Icon(
+            //     FontAwesomeIcons.instagram,
+            //     color: HexColor('#E1306C'),
+            //   ),
+            //   textcontact: 'scimath',
+            // ),
+            // ProfileContactDataTab(
+            //   iconcontact: Icon(
+            //     FontAwesomeIcons.twitter,
+            //     color: HexColor('#00acee'),
+            //   ),
+            //   textcontact: 'scimath',
+            // ),
+            // ProfileContactDataTab(
+            //   iconcontact: Icon(
+            //     FontAwesomeIcons.youtube,
+            //     color: HexColor('#FF0000'),
+            //   ),
+            //   textcontact: 'scimath',
+            // ),
+            ProfileCareerDataHead(
+              title: 'ข้อมูลอาชีพ',
             ),
-            ProfileContactDataTab(
-              iconcontact: Icon(
-                FontAwesomeIcons.facebook,
-                color: HexColor('#3B5998'),
-              ),
-              textcontact: 'scimath',
-            ),
-            ProfileContactDataTab(
-              iconcontact: Icon(
-                FontAwesomeIcons.instagram,
-                color: HexColor('#E1306C'),
-              ),
-              textcontact: 'scimath',
-            ),
-            ProfileContactDataTab(
-              iconcontact: Icon(
-                FontAwesomeIcons.twitter,
-                color: HexColor('#00acee'),
-              ),
-              textcontact: 'scimath',
-            ),
-            ProfileContactDataTab(
-              iconcontact: Icon(
-                FontAwesomeIcons.youtube,
-                color: HexColor('#FF0000'),
-              ),
-              textcontact: 'scimath',
-            ),
-            ProfileDataHead(
-                textleft: 'ข้อมูลอาชีพ',
-                textright: 'แก้ไข',
-                textleftfontsize: 20,
-                textrightfontsize: 18),
-            ProfileAttentionDropdownTab(
-              textleft: 'ความสนใจ',
-              careeritem: attentionsitems,
-              itemvalue: attentionsvalue,
-            ),
-            ProfileCareerDropdownTab(
-              textleft: 'สถานะ',
-              careeritem: statusitems,
-              itemvalue: statusvalue,
-              jobitemvalue: jobtypevalue,
-              jobtextleft: 'ประเภทงาน',
-              jobitem: jobtypeitems,
-            ),
+            // ProfileAttentionDropdownTab(
+            //   textleft: 'ความสนใจ',
+            //   careeritem: attentionsitems,
+            //   itemvalue: attentionsvalue,
+            // ),
+            // ProfileCareerDropdownTab(
+            //   textleft: 'สถานะ',
+            //   careeritem: statusitems,
+            //   itemvalue: statusvalue,
+            //   jobitemvalue: jobtypevalue,
+            //   jobtextleft: 'ประเภทงาน',
+            //   jobitem: jobtypeitems,
+            // ),
             // if (statusvalue == 'มีงานทำ'){
             //   isVisible = true;
             // } else {
