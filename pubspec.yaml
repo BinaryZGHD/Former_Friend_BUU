@@ -43,6 +43,7 @@ dependencies:
   http: ^0.13.4
   flutter_svg: ^1.1.0
   syncfusion_flutter_pdfviewer: ^20.1.60-beta
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:

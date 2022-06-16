@@ -1,3 +1,8 @@
+import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
+import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
+import 'package:f2fbuu/module/profile/components/contactdatatab.dart';
+import 'package:f2fbuu/module/profile/components/educationdatatab.dart';
+import 'package:f2fbuu/module/profile/components/generaldatatab.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -90,52 +95,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     ],
             //   ),
             // ),
-            ProfileDataHead(
-              textleft: 'ข้อมูลทั่วไป',
-              textright: 'แก้ไข',
-              textleftfontsize: 20,
-              textrightfontsize: 18,
+            ProfileGeneralDataHead(
+              title: 'ข้อมูลทั่วไป',
             ),
-            ProfileDataTab(
+            ProfileGeneralDataTab(
               textleft: 'ชื่อ',
               textright: 'ผู้ใช้งาน',
             ),
-            ProfileDataTab(
+            ProfileGeneralDataTab(
                 textleft: 'นามสกุล',
                 textright: 'แอปพลิเคชัน'),
-            ProfileDataTab(
+            ProfileGeneralDataTab(
                 textleft: 'ชื่อเล่น',
                 textright: 'แมท'),
-            ProfileDataTab(
+            ProfileGeneralDataTab(
                 textleft: 'รหัสนิสิต',
                 textright: '62030xxx'),
-            ProfileDataTab(
+            ProfileGeneralDataTab(
                 textleft: 'รุ่น',
                 textright: '65'),
-            ProfileDataTab(
-                textleft: 'โทร',
-                textright: '0123456789'),
             ProfileDataHead(
                 textleft: 'ข้อมูลการศึกษา',
                 textright: 'แก้ไข',
                 textleftfontsize: 20,
                 textrightfontsize: 18),
-            ProfileDataTab(
+            ProfileEducationDataTab(
                 textleft: 'คณะ',
                 textright: 'วิทยาศาสตร์'),
-            ProfileDataTab(
+            ProfileEducationDataTab(
                 textleft: 'ภาควิชา',
                 textright: 'คณิตศาสตร์'),
-            ProfileDataTab(
+            ProfileEducationDataTab(
                 textleft: 'สาขาวิชา',
                 textright: 'คณิตศาสตร์'),
-            ProfileDataTab(
+            ProfileEducationDataTab(
                 textleft: 'เกรดเฉลี่ย (ระดับมัธยมต้น)',
                 textright: '4.00'),
-            ProfileDataTab(
+            ProfileEducationDataTab(
                 textleft: 'เกรดเฉลี่ย (ระดับมัธยมปลาย)',
                 textright: '3.55'),
-            ProfileDataTab(
+            ProfileEducationDataTab(
                 textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
                 textright: '2.99'),
             ProfileDataHead(
@@ -143,66 +142,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textright: 'แก้ไข',
                 textleftfontsize: 20,
                 textrightfontsize: 18),
-            Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border(
-                    top: BorderSide(width: 1, color: Colors.black12),
-                    bottom: BorderSide(width: 1, color: Colors.transparent)),
-              ),
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                minLines: null,
-                decoration: InputDecoration(
-                  hintText: 'ที่อยู่......',
-                  labelStyle: TextStyle(fontSize: 18),
-                  border: InputBorder.none,
-                  // border: OutlineInputBorder(),
-                ),
-              ),
-            ),
+            ProfileAddressDataTab(
+                textleft: 'บ้านเลขที่',
+                textright: '55/55'),
+            ProfileAddressDataTab(
+                textleft: 'หมู่',
+                textright: '5'),
+            ProfileAddressDataTab(
+                textleft: 'ตำบล',
+                textright: 'แสนสุข'),
+            ProfileAddressDataTab(
+                textleft: 'อำเภอ',
+                textright: 'เมือง'),
+            ProfileAddressDataTab(
+                textleft: 'จังหวัด',
+                textright: 'ชลบุรี'),
+            ProfileAddressDataTab(
+                textleft: 'รหัสไปรษณีย์',
+                textright: '20000'),
+            // Container(
+            //   padding: EdgeInsets.all(10),
+            //   decoration: BoxDecoration(
+            //     border: Border(
+            //         top: BorderSide(width: 1, color: Colors.black12),
+            //         bottom: BorderSide(width: 1, color: Colors.transparent)),
+            //   ),
+            //   child: TextField(
+            //     keyboardType: TextInputType.multiline,
+            //     maxLines: null,
+            //     minLines: null,
+            //     decoration: InputDecoration(
+            //       hintText: 'ที่อยู่......',
+            //       labelStyle: TextStyle(fontSize: 18),
+            //       border: InputBorder.none,
+            //       // border: OutlineInputBorder(),
+            //     ),
+            //   ),
+            // ),
             ProfileDataHead(
                 textleft: 'ข้อมูลติดต่อ',
                 textright: 'แก้ไข',
                 textleftfontsize: 20,
                 textrightfontsize: 18),
-            ProfileContactTab(
+            ProfileContactDataTab(
               iconcontact: Icon(
                 Icons.phone,
                 color: HexColor('#000000'),
               ),
               textcontact: '0123456789',
             ),
-            ProfileContactTab(
+            ProfileContactDataTab(
               iconcontact: Icon(
                 FontAwesomeIcons.line,
                 color: HexColor('#00B900'),
               ),
               textcontact: '@scimath',
             ),
-            ProfileContactTab(
+            ProfileContactDataTab(
               iconcontact: Icon(
                 FontAwesomeIcons.facebook,
                 color: HexColor('#3B5998'),
               ),
               textcontact: 'scimath',
             ),
-            ProfileContactTab(
+            ProfileContactDataTab(
               iconcontact: Icon(
                 FontAwesomeIcons.instagram,
                 color: HexColor('#E1306C'),
               ),
               textcontact: 'scimath',
             ),
-            ProfileContactTab(
+            ProfileContactDataTab(
               iconcontact: Icon(
                 FontAwesomeIcons.twitter,
                 color: HexColor('#00acee'),
               ),
               textcontact: 'scimath',
             ),
-            ProfileContactTab(
+            ProfileContactDataTab(
               iconcontact: Icon(
                 FontAwesomeIcons.youtube,
                 color: HexColor('#FF0000'),
@@ -214,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textright: 'แก้ไข',
                 textleftfontsize: 20,
                 textrightfontsize: 18),
-            ProfileDropdownAttentionTab(
+            ProfileAttentionDropdownTab(
               textleft: 'ความสนใจ',
               careeritem: attentionsitems,
               itemvalue: attentionsvalue,
@@ -288,321 +305,342 @@ class ProfileDataHead extends StatelessWidget {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-class ProfileDataTab extends StatelessWidget {
-  final String textleft;
-  final String textright;
-
-  ProfileDataTab(
-      {
-        required this.textleft,
-        required this.textright});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(width: 1, color: Colors.black12),
-            bottom: BorderSide(width: 1, color: Colors.black12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Text(
-              textleft,
-              style: TextStyle(fontSize: 18),
-            ),
-            Expanded(
-              child: GestureDetector(
-                child: Text(
-                  textright,
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-class ProfileContactTab extends StatelessWidget {
-  final Widget iconcontact;
-  final String textcontact;
-
-  ProfileContactTab({required this.iconcontact, required this.textcontact});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(width: 1, color: Colors.black12),
-            bottom: BorderSide(width: 1, color: Colors.black12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            iconcontact,
-            Expanded(
-                child: Text(
-                  textcontact,
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.right,
-                )),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class ProfileDataTab extends StatelessWidget {
+//   final String textleft;
+//   final String textright;
+//   bool istffreadonly = true;
+//   ProfileDataTab(
+//       {
+//         required this.textleft,
+//         required this.textright});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border(
+//             top: BorderSide(width: 1, color: Colors.black12),
+//             bottom: BorderSide(width: 1, color: Colors.black12)),
+//       ),
+//       child: Padding(
+//         padding: const EdgeInsets.all(10.0),
+//         child: Row(
+//           children: [
+//             Text(
+//               textleft,
+//               style: TextStyle(fontSize: 18),
+//             ),
+//             Expanded(
+//               child: Container(
+//                 child: TextFormField(
+//                   readOnly: istffreadonly,
+//                   textAlign: TextAlign.right,
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                   ),
+//                   initialValue: textright,
+//                 ),
+//
+//                 // Text(
+//                 //   textright,
+//                 //   style: TextStyle(fontSize: 18),
+//                 //   textAlign: TextAlign.right,
+//                 // ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
-class ProfileDropdownAttentionTab extends StatefulWidget {
-  final String textleft;
-  final String itemvalue;
-  final List<String> careeritem;
-
-  const ProfileDropdownAttentionTab(
-      {Key? key,
-        required this.textleft,
-        required this.itemvalue,
-        required this.careeritem})
-      : super(key: key);
-
-  @override
-  State<ProfileDropdownAttentionTab> createState() =>
-      _ProfileDropdownAttentionTabState();
-}
-
-class _ProfileDropdownAttentionTabState
-    extends State<ProfileDropdownAttentionTab> {
-  @override
-  Widget build(BuildContext context) {
-    String textleft = widget.textleft;
-    String? itemvalue = widget.itemvalue;
-    List<String> careeritem = widget.careeritem;
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(width: 1, color: Colors.black12),
-            bottom: BorderSide(width: 1, color: Colors.black12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: Text(
-                textleft,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                child: DropdownButtonFormField<String>(
-                  // alignment: Alignment.centerRight,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  value: itemvalue,
-                  items: careeritem
-                      .map((item) => DropdownMenuItem<String>(
-                      value: item, child: Text(item)))
-                      .toList(),
-                  onChanged: (item) => setState(() => itemvalue = item),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class ProfileContactTab extends StatelessWidget {
+//   final Widget iconcontact;
+//   final String textcontact;
+//   bool istffreadonly = true;
+//   ProfileContactTab({required this.iconcontact, required this.textcontact});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border(
+//             top: BorderSide(width: 1, color: Colors.black12),
+//             bottom: BorderSide(width: 1, color: Colors.black12)),
+//       ),
+//       child: Padding(
+//         padding: const EdgeInsets.all(10.0),
+//         child: Row(
+//           children: [
+//             iconcontact,
+//             Expanded(
+//               child: Container(
+//                 child: TextFormField(
+//                   readOnly: istffreadonly,
+//                   textAlign: TextAlign.right,
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                   ),
+//                   initialValue: textcontact,
+//                 ),
+//
+//                 // Text(
+//                 //   textright,
+//                 //   style: TextStyle(fontSize: 18),
+//                 //   textAlign: TextAlign.right,
+//                 // ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
-class ProfileDropdownCareerDataTab extends StatefulWidget {
-  final String jobtextleft;
-  final String jobitemvalue;
-  final List<String> jobitem;
-
-  const ProfileDropdownCareerDataTab(
-      {Key? key,
-        required this.jobtextleft,
-        required this.jobitemvalue,
-        required this.jobitem})
-      : super(key: key);
-
-  @override
-  State<ProfileDropdownCareerDataTab> createState() =>
-      _ProfileDropdownCareerDataTabState();
-}
-
-class _ProfileDropdownCareerDataTabState
-    extends State<ProfileDropdownCareerDataTab> {
-  @override
-  Widget build(BuildContext context) {
-    String textleft = widget.jobtextleft;
-    String? itemvalue = widget.jobitemvalue;
-    List<String> careeritem = widget.jobitem;
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(width: 1, color: Colors.black12),
-            bottom: BorderSide(width: 1, color: Colors.black12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: Text(
-                textleft,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                child: DropdownButtonFormField<String>(
-                  // alignment: Alignment.centerRight,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  value: itemvalue,
-                  items: careeritem
-                      .map((item) => DropdownMenuItem<String>(
-                      value: item, child: Text(item)))
-                      .toList(),
-                  onChanged: (item) => setState(() => itemvalue = item),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class ProfileDropdownAttentionTab extends StatefulWidget {
+//   final String textleft;
+//   final String itemvalue;
+//   final List<String> careeritem;
+//
+//   const ProfileDropdownAttentionTab(
+//       {Key? key,
+//         required this.textleft,
+//         required this.itemvalue,
+//         required this.careeritem})
+//       : super(key: key);
+//
+//   @override
+//   State<ProfileDropdownAttentionTab> createState() =>
+//       _ProfileDropdownAttentionTabState();
+// }
+//
+// class _ProfileDropdownAttentionTabState
+//     extends State<ProfileDropdownAttentionTab> {
+//   @override
+//   Widget build(BuildContext context) {
+//     String textleft = widget.textleft;
+//     String? itemvalue = widget.itemvalue;
+//     List<String> careeritem = widget.careeritem;
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border(
+//             top: BorderSide(width: 1, color: Colors.black12),
+//             bottom: BorderSide(width: 1, color: Colors.black12)),
+//       ),
+//       child: Padding(
+//         padding: const EdgeInsets.all(10.0),
+//         child: Row(
+//           children: [
+//             Container(
+//               width: MediaQuery.of(context).size.width * 0.6,
+//               child: Text(
+//                 textleft,
+//                 style: TextStyle(fontSize: 18),
+//               ),
+//             ),
+//             Expanded(
+//               child: SizedBox(
+//                 child: DropdownButtonFormField<String>(
+//                   // alignment: Alignment.centerRight,
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                   ),
+//                   value: itemvalue,
+//                   items: careeritem
+//                       .map((item) => DropdownMenuItem<String>(
+//                       value: item, child: Text(item)))
+//                       .toList(),
+//                   onChanged: (item) => setState(() => itemvalue = item),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
-class ProfileCareerDropdownTab extends StatefulWidget {
-  final String textleft;
-  final String itemvalue;
-  final List<String> careeritem;
-  final String jobtextleft;
-  final String jobitemvalue;
-  final List<String> jobitem;
+// class ProfileDropdownCareerDataTab extends StatefulWidget {
+//   final String jobtextleft;
+//   final String jobitemvalue;
+//   final List<String> jobitem;
+//
+//   const ProfileDropdownCareerDataTab(
+//       {Key? key,
+//         required this.jobtextleft,
+//         required this.jobitemvalue,
+//         required this.jobitem})
+//       : super(key: key);
+//
+//   @override
+//   State<ProfileDropdownCareerDataTab> createState() =>
+//       _ProfileDropdownCareerDataTabState();
+// }
+//
+// class _ProfileDropdownCareerDataTabState
+//     extends State<ProfileDropdownCareerDataTab> {
+//   @override
+//   Widget build(BuildContext context) {
+//     String textleft = widget.jobtextleft;
+//     String? itemvalue = widget.jobitemvalue;
+//     List<String> careeritem = widget.jobitem;
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border(
+//             top: BorderSide(width: 1, color: Colors.black12),
+//             bottom: BorderSide(width: 1, color: Colors.black12)),
+//       ),
+//       child: Padding(
+//         padding: const EdgeInsets.all(10.0),
+//         child: Row(
+//           children: [
+//             Container(
+//               width: MediaQuery.of(context).size.width * 0.6,
+//               child: Text(
+//                 textleft,
+//                 style: TextStyle(fontSize: 18),
+//               ),
+//             ),
+//             Expanded(
+//               child: SizedBox(
+//                 child: DropdownButtonFormField<String>(
+//                   // alignment: Alignment.centerRight,
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                   ),
+//                   value: itemvalue,
+//                   items: careeritem
+//                       .map((item) => DropdownMenuItem<String>(
+//                       value: item, child: Text(item)))
+//                       .toList(),
+//                   onChanged: (item) => setState(() => itemvalue = item),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-  const ProfileCareerDropdownTab(
-      {Key? key,
-        required this.textleft,
-        required this.itemvalue,
-        required this.careeritem,
-        required this.jobtextleft,
-        required this.jobitem,
-        required this.jobitemvalue})
-      : super(key: key);
-
-  @override
-  State<ProfileCareerDropdownTab> createState() =>
-      _ProfileCareerDropdownTabState();
-}
-
-class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
-  late String textleft;
-  late String? itemvalue;
-  late List<String> careeritem;
-  bool isJobInStatusVisible = false;
-
-  @override
-  void initState() {
-    textleft = widget.textleft;
-    itemvalue = widget.itemvalue;
-    careeritem = widget.careeritem;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print('aaa = ' + '$itemvalue');
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border(
-                top: BorderSide(width: 1, color: Colors.black12),
-                bottom: BorderSide(width: 1, color: Colors.black12)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: Text(
-                    textleft,
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                Expanded(
-                  child: SizedBox(
-                    child: DropdownButtonFormField<String>(
-                      // alignment: Alignment.centerRight,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                      value: itemvalue,
-                      items: careeritem
-                          .map((item) => DropdownMenuItem<String>(
-                          value: item, child: Text(item)))
-                          .toList(),
-                      onChanged: (item) {
-                        itemvalue = item;
-                        if (itemvalue == careeritem[3]) {
-                          isJobInStatusVisible = true;
-                        } else {
-                          isJobInStatusVisible = false;
-                        }
-                        setState(() {});
-                        print(item);
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Visibility(
-          visible: isJobInStatusVisible,
-          child: Column(
-            children: [
-              ProfileDataTab(
-                  textleft: 'สถานที่ทำงาน',
-                  textright: 'BUU'),
-              ProfileDropdownCareerDataTab(
-                jobitemvalue: widget.jobitemvalue,
-                jobtextleft: widget.jobtextleft,
-                jobitem: widget.jobitem,
-              ),
-              ProfileDataTab(
-                  textleft: 'อาชีพ',
-                  textright: 'นักศึกษา'),
-              ProfileDataTab(
-                  textleft: 'บริษัท',
-                  textright: 'ม.บูรพา จำกัด')
-            ],
-          ),
-        )
-      ],
-    );
-  }
-}
+////////////////////////////////////////////////////////////////////////////////
+// class ProfileCareerDropdownTab extends StatefulWidget {
+//   final String textleft;
+//   final String itemvalue;
+//   final List<String> careeritem;
+//   final String jobtextleft;
+//   final String jobitemvalue;
+//   final List<String> jobitem;
+//
+//   const ProfileCareerDropdownTab(
+//       {Key? key,
+//         required this.textleft,
+//         required this.itemvalue,
+//         required this.careeritem,
+//         required this.jobtextleft,
+//         required this.jobitem,
+//         required this.jobitemvalue})
+//       : super(key: key);
+//
+//   @override
+//   State<ProfileCareerDropdownTab> createState() =>
+//       _ProfileCareerDropdownTabState();
+// }
+//
+// class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
+//   late String textleft;
+//   late String? itemvalue;
+//   late List<String> careeritem;
+//   bool isJobInStatusVisible = false;
+//
+//   @override
+//   void initState() {
+//     textleft = widget.textleft;
+//     itemvalue = widget.itemvalue;
+//     careeritem = widget.careeritem;
+//     super.initState();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     print('aaa = ' + '$itemvalue');
+//     return Column(
+//       children: [
+//         Container(
+//           decoration: BoxDecoration(
+//             border: Border(
+//                 top: BorderSide(width: 1, color: Colors.black12),
+//                 bottom: BorderSide(width: 1, color: Colors.black12)),
+//           ),
+//           child: Padding(
+//             padding: const EdgeInsets.all(10.0),
+//             child: Row(
+//               children: [
+//                 Container(
+//                   width: MediaQuery.of(context).size.width * 0.6,
+//                   child: Text(
+//                     textleft,
+//                     style: TextStyle(fontSize: 18),
+//                   ),
+//                 ),
+//                 Expanded(
+//                   child: SizedBox(
+//                     child: DropdownButtonFormField<String>(
+//                       // alignment: Alignment.centerRight,
+//                       decoration: InputDecoration(
+//                         border: InputBorder.none,
+//                       ),
+//                       value: itemvalue,
+//                       items: careeritem
+//                           .map((item) => DropdownMenuItem<String>(
+//                           value: item, child: Text(item)))
+//                           .toList(),
+//                       onChanged: (item) {
+//                         itemvalue = item;
+//                         if (itemvalue == careeritem[3]) {
+//                           isJobInStatusVisible = true;
+//                         } else {
+//                           isJobInStatusVisible = false;
+//                         }
+//                         setState(() {});
+//                         print(item);
+//                       },
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//         Visibility(
+//           visible: isJobInStatusVisible,
+//           child: Column(
+//             children: [
+//               ProfileDropdownCareerDataTab(
+//                 jobitemvalue: widget.jobitemvalue,
+//                 jobtextleft: widget.jobtextleft,
+//                 jobitem: widget.jobitem,
+//               ),
+//               ProfileCareerDataTab(
+//                   textleft: 'สถานที่ทำงาน',
+//                   textright: 'BUU'),
+//               ProfileCareerDataTab(
+//                   textleft: 'อาชีพ',
+//                   textright: 'นักศึกษา'),
+//               ProfileCareerDataTab(
+//                   textleft: 'บริษัท',
+//                   textright: 'ม.บูรพา จำกัด')
+//             ],
+//           ),
+//         )
+//       ],
+//     );
+//   }
+// }
