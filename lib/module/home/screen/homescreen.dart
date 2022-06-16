@@ -205,12 +205,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          ButtonCustom(
-            label:"     " + "  ADD  "+"     ",
-            screengo: HomeScreen(),
-            colortext: TC_Black,
-            colorbutton: BC_ButtonWhite,
-            sizetext: sizeTextSmaller14, colorborder: BSC_Black,error: "ERROR",
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+            child: ButtonCustom(
+              label:"     " + "  ADD  "+"     ",
+              screengo: HomeScreen(),
+              colortext: TC_Black,
+              colorbutton: BC_ButtonWhite,
+              sizetext: sizeTextSmaller14, colorborder: BSC_Black,error: "ERROR",
+            ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),

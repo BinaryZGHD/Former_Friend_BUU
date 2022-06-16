@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","modulename":"login"}
 /// body : {"screeninfo":{"btnchangelang":"TH / EN","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnReg":"Register"}}
 
-Loginwording loginwordingFromJson(String str) => Loginwording.fromJson(json.decode(str));
-String loginwordingsToJson(Loginwording data) => json.encode(data.toJson());
-class Loginwording {
-  Loginwording({
+LoginWording loginwordingFromJson(String str) => LoginWording.fromJson(json.decode(str));
+String loginwordingsToJson(LoginWording data) => json.encode(data.toJson());
+class LoginWording {
+  LoginWording({
     Head? head,
     Body? body,}){
     _head = head;
     _body = body;
   }
 
-  Loginwording.fromJson(dynamic json) {
+  LoginWording.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-  Loginwording copyWith({  Head? head,
+  LoginWording copyWith({  Head? head,
     Body? body,
-  }) => Loginwording(  head: head ?? _head,
+  }) => LoginWording(  head: head ?? _head,
     body: body ?? _body,
   );
   Head? get head => _head;

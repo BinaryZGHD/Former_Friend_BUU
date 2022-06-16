@@ -39,14 +39,14 @@ class _FLoginScreenState extends State<_FLoginScreen> {
   String userID = "";
   String passw = "";
 
-  Loginwording? _dataFromAPI;
+  LoginWording? _dataFromAPI;
   @override
   void initState() {
     super.initState();
     getAPILoginwording();
   }
 
-  Future<Loginwording?> getAPILoginwording() async {
+  Future<LoginWording?> getAPILoginwording() async {
     // print("เรียกใช้ Get_Coin_price");
     var url = Uri.parse("https://thaiaddress.herokuapp.com/login/loginscreen");
     var response = await httpurl.get(url, headers: <String, String>{});
