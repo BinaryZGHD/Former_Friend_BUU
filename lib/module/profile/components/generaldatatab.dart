@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 class ProfileGeneralDataHead extends StatefulWidget {
-  final String title;
 
-  ProfileGeneralDataHead({Key? key, required this.title}) : super(key: key);
+  ProfileGeneralDataHead({Key? key}) : super(key: key);
 
   @override
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
@@ -15,7 +14,6 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   var apiprofile_general_info = api['body']['profile_general_info'];
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.title;
     // print(api['body']['screeninfo']['titleprofile']);
     return Column(
       children: [
@@ -76,11 +74,11 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             textleft: apiscreeninfo['textlname'],
             textright: apiprofile_general_info['surname']),
         ProfileGeneralDataTab(
-            ispressed: ispressed, textleft: 'ชื่อเล่น', textright: 'แมท'),
+            ispressed: ispressed, textleft: apiscreeninfo['textnickname'], textright: apiprofile_general_info['nickname']),
         ProfileGeneralDataTab(
-            ispressed: ispressed, textleft: 'รหัสนิสิต', textright: '62030xxx'),
+            ispressed: ispressed, textleft: apiscreeninfo['textstdcode'], textright: apiprofile_general_info['stu_code']),
         ProfileGeneralDataTab(
-            ispressed: ispressed, textleft: 'รุ่น', textright: '65'),
+            ispressed: ispressed, textleft: apiscreeninfo['textgen'], textright: apiprofile_general_info['gen']),
       ],
     );
   }

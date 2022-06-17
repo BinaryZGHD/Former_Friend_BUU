@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 class ProfileCareerDataHead extends StatefulWidget {
-  final String title;
 
-  ProfileCareerDataHead({Key? key, required this.title}) : super(key: key);
+  ProfileCareerDataHead({Key? key}) : super(key: key);
 
   @override
   State<ProfileCareerDataHead> createState() => _ProfileCareerDataHeadState();
@@ -18,11 +17,18 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
   final jobtypeitems = ['', '1', '2', '3'];
   late String jobtypevalue = '';
   bool isVisible = true;
-
+  var apiscreeninfo = api['body']['screeninfo'];
+  var apiprofile_career_info = api['body']['profile_career_info'];
+  var apiattenionitems = api['body']['profile_career_info']['attention'];
+  // var apiattenionitemszero = api['body']['profile_career_info']['attention'][0]['attenname'];
+  // var apiattenionitemsone = api['body']['profile_career_info']['attention'][1]['attenname'];
+  // var apiattenionitemstwo = api['body']['profile_career_info']['attention'][2]['attenname'];
+  // var apiattenionitemsthree = api['body']['profile_career_info']['attention'][3]['attenname'];
+  // var listapiattentionitems = [apiattenionitemszero, apiattenionitemsone, apiattenionitemstwo, apiattenionitemsthree];
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.title;
-
+    // print(apiattenionitems);
+    // List.generate(apiattenionitems.length, (index) => null);
     return Column(
       children: [
         Container(
@@ -36,7 +42,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
             child: Row(
               children: [
                 Text(
-                  textleft,
+                  apiscreeninfo['subtitleworkinfo'],
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -74,7 +80,8 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           ),
         ),
         ProfileAttentionDropdownTab(
-          textleft: 'ความสนใจ',
+          arai : apiattenionitems,
+          textleft: apiscreeninfo['textatt'],
           careeritem: attentionsitems,
           itemvalue: attentionsvalue,
         ),
@@ -96,12 +103,12 @@ class ProfileAttentionDropdownTab extends StatefulWidget {
   final String textleft;
   final String itemvalue;
   final List<String> careeritem;
-
+  final List<dynamic> arai;
   const ProfileAttentionDropdownTab(
       {Key? key,
         required this.textleft,
         required this.itemvalue,
-        required this.careeritem})
+        required this.careeritem, required this.arai})
       : super(key: key);
 
   @override
@@ -116,6 +123,10 @@ class _ProfileAttentionDropdownTabState
     String textleft = widget.textleft;
     String? itemvalue = widget.itemvalue;
     List<String> careeritem = widget.careeritem;
+    List<dynamic> arai = widget.arai;
+    List<String> listapiattentionitems = [arai[0]['attenname'],arai[1]['attenname'],arai[2]['attenname'],arai[3]['attenname'],arai[4]['attenname']];
+    print(listapiattentionitems);
+    print(careeritem);
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -140,8 +151,8 @@ class _ProfileAttentionDropdownTabState
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
-                  value: itemvalue,
-                  items: careeritem
+                  value: listapiattentionitems[0],
+                  items: listapiattentionitems
                       .map((item) => DropdownMenuItem<String>(
                       value: item, child: Text(item)))
                       .toList(),
@@ -262,7 +273,7 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
                   onChanged: (value) {
                     setState(() {
                       texttest = value;
-                      print(texttest);
+                      // print(texttest);
                     });
                   },
                   initialValue: textright,

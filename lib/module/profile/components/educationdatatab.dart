@@ -1,19 +1,19 @@
+import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
 class ProfileEducationDataHead extends StatefulWidget {
-  final String title;
-  ProfileEducationDataHead({Key? key, required this.title}) : super(key: key);
+  ProfileEducationDataHead({Key? key}) : super(key: key);
 
   @override
   State<ProfileEducationDataHead> createState() => _ProfileEducationDataHeadState();
 }
 class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
   bool ispressed = true;
+  var apiscreeninfo = api['body']['screeninfo'];
+  var apiprofile_education_info = api['body']['profile_edu_info'];
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.title;
-
     return Column(
       children: [
         Container(
@@ -27,7 +27,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             child: Row(
               children: [
                 Text(
-                  textleft,
+                  apiscreeninfo['subtitlegeninfor'],
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -65,28 +65,28 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
         ),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: 'คณะ',
-            textright: 'วิทยาศาสตร์'),
+            textleft: apiscreeninfo['textfac'],
+            textright: apiprofile_education_info['faculty']),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: 'ภาควิชา',
-            textright: 'คณิตศาสตร์'),
+            textleft: apiscreeninfo['textdepart'],
+            textright: apiprofile_education_info['department']),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: 'สาขาวิชา',
-            textright: 'คณิตศาสตร์'),
+            textleft: apiscreeninfo['textmajor'],
+            textright: apiprofile_education_info['major']),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: 'เกรดเฉลี่ย (ระดับมัธยมต้น)',
-            textright: '4.00'),
+            textleft: apiscreeninfo['textgpaju'],
+            textright: apiprofile_education_info['gpa_jhs']),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: 'เกรดเฉลี่ย (ระดับมัธยมปลาย)',
-            textright: '3.55'),
+            textleft: apiscreeninfo['textgpase'],
+            textright: apiprofile_education_info['gpa_shs']),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
-            textright: '2.99'),
+            textleft: apiscreeninfo['textgpaba'],
+            textright: apiprofile_education_info['gpa_bd']),
       ],
     );
   }

@@ -96,7 +96,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //   ),
             // ),
             ProfileGeneralDataHead(
-              title: 'ข้อมูลทั่วไป',
             ),
             // ProfileGeneralDataTab(
             //   ispressed: true,
@@ -116,7 +115,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     textleft: 'รุ่น',
             //     textright: '65'),
             ProfileEducationDataHead(
-              title: 'ข้อมูลการศึกษา',
             ),
             // ProfileEducationDataTab(
             //     textleft: 'คณะ',
@@ -137,7 +135,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
             //     textright: '2.99'),
             ProfileAddressDataHead(
-              title: 'ข้อมูลที่อยู่ ',
             ),
             // ProfileAddressDataTab(
             //     textleft: 'บ้านเลขที่',
@@ -177,7 +174,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //   ),
             // ),
             ProfileContactDataHead(
-              title: 'ข้อมูลการติดต่อ',
             ),
             // ProfileContactDataTab(
             //   iconcontact: Icon(
@@ -222,7 +218,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //   textcontact: 'scimath',
             // ),
             ProfileCareerDataHead(
-              title: 'ข้อมูลอาชีพ',
             ),
             // ProfileAttentionDropdownTab(
             //   textleft: 'ความสนใจ',

@@ -1,10 +1,10 @@
+import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 class ProfileContactDataHead extends StatefulWidget {
-  final String title;
 
-  ProfileContactDataHead({Key? key, required this.title}) : super(key: key);
+  ProfileContactDataHead({Key? key}) : super(key: key);
 
   @override
   State<ProfileContactDataHead> createState() => _ProfileContactDataHeadState();
@@ -12,10 +12,10 @@ class ProfileContactDataHead extends StatefulWidget {
 
 class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
   bool ispressed = true;
-
+  var apiscreeninfo = api['body']['screeninfo'];
+  var apiprofile_contact_info = api['body']['profile_contact_info'];
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.title;
 
     return Column(
       children: [
@@ -30,7 +30,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             child: Row(
               children: [
                 Text(
-                  textleft,
+                  apiscreeninfo['subtitlecont'],
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -73,7 +73,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             Icons.phone,
             color: HexColor('#000000'),
           ),
-          textcontact: '0123456789',
+          textcontact: apiprofile_contact_info['phone'],
         ),
         ProfileContactDataTab(
           ispressed: ispressed,
@@ -81,7 +81,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             FontAwesomeIcons.line,
             color: HexColor('#00B900'),
           ),
-          textcontact: '@scimath',
+          textcontact: apiprofile_contact_info['line'],
         ),
         ProfileContactDataTab(
           ispressed: ispressed,
@@ -89,7 +89,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             FontAwesomeIcons.facebook,
             color: HexColor('#3B5998'),
           ),
-          textcontact: 'scimath',
+          textcontact: apiprofile_contact_info['facebook'],
         ),
         ProfileContactDataTab(
           ispressed: ispressed,
@@ -97,7 +97,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             FontAwesomeIcons.instagram,
             color: HexColor('#E1306C'),
           ),
-          textcontact: 'scimath',
+          textcontact: apiprofile_contact_info['instagram'],
         ),
         ProfileContactDataTab(
           ispressed: ispressed,
@@ -105,7 +105,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             FontAwesomeIcons.twitter,
             color: HexColor('#00acee'),
           ),
-          textcontact: 'scimath',
+          textcontact: apiprofile_contact_info['twitter'],
         ),
         ProfileContactDataTab(
           ispressed: ispressed,
@@ -113,7 +113,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             FontAwesomeIcons.youtube,
             color: HexColor('#FF0000'),
           ),
-          textcontact: 'scimath',
+          textcontact: apiprofile_contact_info['youtube'],
         ),
       ],
     );

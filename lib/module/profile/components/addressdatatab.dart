@@ -1,10 +1,10 @@
+import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:flutter/material.dart';
 
 
 class ProfileAddressDataHead extends StatefulWidget {
-  final String title;
 
-  ProfileAddressDataHead({Key? key, required this.title}) : super(key: key);
+  ProfileAddressDataHead({Key? key}) : super(key: key);
 
   @override
   State<ProfileAddressDataHead> createState() => _ProfileAddressDataHeadState();
@@ -15,8 +15,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
 
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.title;
-
+    var apiscreeninfo = api['body']['screeninfo'];
+    var apiprofile_address_info = api['body']['profile_address_info'];
     return Column(
       children: [
         Container(
@@ -30,7 +30,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             child: Row(
               children: [
                 Text(
-                  textleft,
+                  apiscreeninfo['subtitlegeninfor'],
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -69,28 +69,36 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
         ),
         ProfileAddressDataTab(
            ispressed: ispressed,
-            textleft: 'บ้านเลขที่',
-            textright: '55/55'),
+            textleft: apiscreeninfo['texthousenumber'],
+            textright: apiprofile_address_info['number'],),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: 'หมู่',
-            textright: '5'),
+            textleft: apiscreeninfo['textmoo'],
+            textright: apiprofile_address_info['moo']),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: 'ตำบล',
-            textright: 'แสนสุข'),
+            textleft: apiscreeninfo['textsoi'],
+            textright: apiprofile_address_info['soi']),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: 'อำเภอ',
-            textright: 'เมือง'),
+            textleft: apiscreeninfo['textroad'],
+            textright: apiprofile_address_info['road']),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: 'จังหวัด',
-            textright: 'ชลบุรี'),
+            textleft: apiscreeninfo['textsubdistrict'],
+            textright: apiprofile_address_info['subdistrict']),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: 'รหัสไปรษณีย์',
-            textright: '20000'),
+            textleft: apiscreeninfo['textdistrict'],
+            textright: apiprofile_address_info['district']),
+        ProfileAddressDataTab(
+            ispressed: ispressed,
+            textleft: apiscreeninfo['textprovince'],
+            textright: apiprofile_address_info['province']),
+        ProfileAddressDataTab(
+            ispressed: ispressed,
+            textleft: apiscreeninfo['textzipcode'],
+            textright: apiprofile_address_info['zipcode']),
       ],
     );
   }
