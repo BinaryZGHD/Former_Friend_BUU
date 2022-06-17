@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
@@ -151,7 +152,22 @@ class RegisterScreen extends StatelessWidget {
                   colorbutton: BC_ButtonGreen,
                   sizetext: sizeTextBig20,
                   colorborder: BSC_transparent,
-                  error: errregidter1,
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => CustomDialogBox(
+                              id: '',
+                              textfieldvalue: "Register  :  $uservalue" +
+                                  "\nTelrphone number  :  $phonevalue" +
+                                  "\nEmail  :  $emailvalue" +
+                                  "\nName  :  $namevalue" +
+                                  "\nLast name  :  $lastnamevalue" +
+                                  "\nPassword  :  $passwordvalue" +
+                                  "\nConfirm password  :  $confirmpasswordvalue",
+                              description: errregidter1 + '\n \n ' + 'Do you want to continue?',
+                              mapscreen: RegisterConfirmScreen(),
+                            ));
+                  },
                 ),
               ),
 

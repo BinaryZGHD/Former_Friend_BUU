@@ -2,14 +2,15 @@ import 'package:f2fbuu/customs/button/box.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../customs/button/buttoncustom.dart';
-import '../../../customs/color/colorconts.dart';
-import '../../../customs/size/size.dart';
-import '../../profile/screen/profile_page.dart';
-import '../bloc/buildlistactivity.dart';
-import '../bloc/data.dart';
-import '../bloc/itemactivity.dart';
-import 'moreboarddetailajan.dart';
+import '../../../../customs/button/buttoncustom.dart';
+import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/size/size.dart';
+import '../../../profile/screen/profile_page.dart';
+import '../../bloc/buildlistactivity.dart';
+import '../../bloc/data.dart';
+import '../../bloc/itemactivity.dart';
+import '../morescreen/moreboarddetailajan.dart';
+import '../morescreen/moremainscreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<String> entries = <String>['A', 'B', 'C'];
     final List<int> colorCodes = <int>[600, 500, 100];
     return Scaffold(
-
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -176,11 +176,13 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          title: Center(child: Text('My activity ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500 , color: TC_Black))),
+          title: Center(
+              child:
+                  Text('My activity ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
           actions: <Widget>[
-           SizedBox(
-             width: MediaQuery.of(context).size.width * 0.1,
-           ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.1,
+            ),
           ],
         ),
       ),
@@ -197,20 +199,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       BuildListActivity(),
                       SizedBox(
-                        // height: MediaQuery.of(context).size.height * 0.2,
-                      ),
+                          // height: MediaQuery.of(context).size.height * 0.2,
+                          ),
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          ButtonCustom(
-            label:"     " + "  ADD  "+"     ",
-            screengo: HomeScreen(),
-            colortext: TC_Black,
-            colorbutton: BC_ButtonWhite,
-            sizetext: sizeTextSmaller14, colorborder: BSC_Black,error: "ERROR",
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+            child: ButtonCustom(
+              label: "     " + "  ADD  " + "     ",
+              screengo: HomeScreen(),
+              colortext: TC_Black,
+              colorbutton: BC_ButtonWhite,
+              sizetext: sizeTextSmaller14,
+              colorborder: BSC_Black,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -222,27 +231,28 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: IconButton(
+                  Expanded(
+                      child: IconButton(
                     icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                     },
                   )),
-
-                  Expanded(child: IconButton(
+                  Expanded(
+                      child: IconButton(
                     icon: Icon(Icons.home, color: Colors.blue, size: 50),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                    },
-                  )),
-                  Expanded(child: IconButton(
-                    icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
-                    onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                   )),
-
+                  Expanded(
+                      child: IconButton(
+                    icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                    onPressed: () {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MoreMainScreen()));
+                    },
+                  )),
                 ],
               ),
             ),

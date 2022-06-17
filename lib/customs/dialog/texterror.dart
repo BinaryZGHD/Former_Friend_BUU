@@ -13,3 +13,4 @@ const String errforgotpasswordr2 =
     "\nOTP is incorrect? \nPlease check your value and try again?";
 const String errpdpaaccept = "You have accepted the full terms and conditions.";
 const String errpdpadecline = "You do not accept the terms and conditions will not be able to use the application.";
+ String textconsole = "";

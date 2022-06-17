@@ -36,7 +36,7 @@ class TextLinkOTPCustom extends StatelessWidget {
             context: context,
             builder: (context) => CustomDialogBox(
               id: '',
-              title: tiltle,
+              textfieldvalue: tiltle,
               description: description + 'กิจกรรมที่ทำแล้ว',
               mapscreen: mapscreen,
             ));

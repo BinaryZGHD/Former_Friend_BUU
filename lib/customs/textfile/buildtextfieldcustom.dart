@@ -19,14 +19,17 @@ class buildTextFieldCustom extends StatelessWidget {
         // padding: EdgeInsets.all(12),
         margin: const EdgeInsets.all(12),
         // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
-        child: TextField(
+        child: TextFormField(
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
               ),
           keyboardType: textInputType,
           // controller: textEditingController,// decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
-          onChanged: (value) {
-            print(hint_label + "    :" + value);
-          },
+          onChanged: onChanged,
+
+          // {
+          //   onChangedtest!(value);
+          //   print(hint_label + "    :" + value);
+          // },
           decoration: InputDecoration(
               filled: true,
               fillColor: TC_Textfile,

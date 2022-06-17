@@ -2,7 +2,7 @@ import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'module/home/screen/homescreen.dart';
+import 'module/home/screen/homescreen/homescreen.dart';
 import 'module/login/bloc/loginbloc/login_bloc.dart';
 import 'module/login/screen/forgotpasswordscreen/setnewforgotpassword.dart';
 import 'module/main/mainbloc/main_bloc.dart';

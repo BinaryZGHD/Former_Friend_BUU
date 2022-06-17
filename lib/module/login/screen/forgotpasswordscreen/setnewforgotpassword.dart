@@ -7,6 +7,7 @@ import '../../../../customs/button/box.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
@@ -113,7 +114,9 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                   linklabel: 'Sent OTP again',
                   mapscreen: box(),
                   linktextcolor: TC_OTPSent,
-                  sizetext: sizeTextSmall16, tiltle: 'OTP sent to', description: 'Email',
+                  sizetext: sizeTextSmall16,
+                  tiltle: 'OTP sent to',
+                  description: 'Email',
                 ),
               ),
               SizedBox(
@@ -127,7 +130,16 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                   colorbutton: BC_ButtonGreen,
                   sizetext: sizeTextBig20,
                   colorborder: BSC_transparent,
-                  error: errforgotpasswordr2,
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => CustomDialogBox(
+                              id: '',
+                              textfieldvalue: "Password  : $passwordvalue"+"\n"+"Confirm password : $confirmpasswordvalue"+"\n"+"OTP : $codevalue",
+                              description: errforgotpasswordr2 + '\n \n ' + 'Do you want to continue?',
+                              mapscreen: LoginScreen(),
+                            ));
+                  },
                 ),
               ),
               SizedBox(

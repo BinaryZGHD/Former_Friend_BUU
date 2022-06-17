@@ -6,13 +6,13 @@ import '../size/size.dart';
 import 'constantsdialog.dart';
 
 class CustomDialogBox extends StatefulWidget {
-  final String title, id, description;
+  final String textfieldvalue, id, description;
   final Widget mapscreen;
 
   const CustomDialogBox({
     Key? key,
     required this.id,
-    required this.title,
+    required this.textfieldvalue,
     required this.description,
     required this.mapscreen,
   }) : super(key: key);
@@ -70,6 +70,14 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               SizedBox(
                 height: 22,
               ),
+              Text(
+                  widget.textfieldvalue,
+                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.start,
+              ),
+              SizedBox(
+                height: 5,
+              ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: TextButton(
@@ -81,7 +89,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                       }));
                     },
                     child: Container(
-                      constraints: BoxConstraints(maxWidth: 50.0, minHeight: 50.0),
+                      constraints: BoxConstraints(maxWidth: 50.0, minHeight: 30.0),
                       alignment: Alignment.center,
                       child: Text(
                         "OK",

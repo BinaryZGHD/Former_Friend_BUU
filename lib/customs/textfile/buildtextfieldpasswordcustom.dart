@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../color/colorconts.dart';
+import '../dialog/texterror.dart';
 import '../size/size.dart';
 
 class buildTextFieldPasswordCustom extends StatelessWidget {
@@ -44,15 +45,17 @@ class _buildTextFieldPasswordCustom_fulState extends State<buildTextFieldPasswor
         // padding: EdgeInsets.all(12),
           margin: const EdgeInsets.all(12),
           // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
-          child: TextField(
+          child: TextFormField(
             style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
             ),
             // keyboardType: textInputType,
             controller: widget.textEditingController,
-            onChanged: (value) {
-              print(widget.hint_label + "    :" + value);
-            },
-            // onChanged: widget.onChanged,
+            // onChanged: (value) {
+            //   print(widget.hint_label + "  2  :"+value) ;
+            //   setState(() { textconsole = value;});
+            // },
+
+            onChanged: widget.onChanged,
             // autofocus: true,
             // decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
             obscureText: !_isVisible,

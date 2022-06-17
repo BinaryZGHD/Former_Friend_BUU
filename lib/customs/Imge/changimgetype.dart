@@ -34,16 +34,13 @@ class _FChangeImageTypeState extends State<_FChangeImageType> {
     Iterable<RegExpMatch> matches = exp.allMatches(str);
 
     if (exp.hasMatch(str)) {
-      return  SvgPicture.network(
+      return SvgPicture.network(
         "${img_err}",
-
       );
     } else {
       return Image.network(
         "${img_err}",
-
       );
-
     }
   }
 }

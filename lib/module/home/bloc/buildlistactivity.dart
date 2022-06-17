@@ -1,11 +1,10 @@
-
 import 'package:f2fbuu/module/home/screen/activitydetailscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../customs/button/box.dart';
 import '../../../customs/dialog/dialogboxcutom.dart';
-import '../screen/homescreen.dart';
+import '../screen/homescreen/homescreen.dart';
 import 'data.dart';
 import 'itemactivity.dart';
 
@@ -28,10 +27,9 @@ class _BuildListActivityState extends State<BuildListActivity> {
               (index) => ItemActivity(
                     data: recommends[index],
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                            return ActivityDetailScreen(id: recommends[index]['id'], data: recommends[index]);
-                          }));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return ActivityDetailScreen(id: recommends[index]['id'], data: recommends[index]);
+                      }));
                     },
                   ))),
     );
