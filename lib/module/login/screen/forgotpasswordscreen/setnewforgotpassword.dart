@@ -103,7 +103,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: code,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   codevalue = value;
                 },
                 hint_label: 'OTP',
@@ -135,7 +135,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                         context: context,
                         builder: (context) => CustomDialogBox(
                               id: '',
-                              title: " ",
+                              textfieldvalue: "Password  : $passwordvalue"+"\n"+"Confirm password : $confirmpasswordvalue"+"\n"+"OTP : $codevalue",
                               description: errforgotpasswordr2 + '\n \n ' + 'Do you want to continue?',
                               mapscreen: LoginScreen(),
                             ));

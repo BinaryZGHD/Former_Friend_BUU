@@ -35,6 +35,10 @@ class RegisterConfirm_ful extends StatefulWidget {
 }
 
 class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
+
+  TextEditingController confirmOTPController = TextEditingController();
+
+  String confirmOTP = " ";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,10 +110,10 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                     ]),
                   ),
                   buildTextFieldCustom(
-                    // textEditingController: user,
-                    // onChanged: (value) {
-                    // uservalue = value;
-                    // },
+                    textEditingController: confirmOTPController,
+                    onChanged: (value) {
+                      confirmOTP = value;
+                    },
                     hint_label: 'OTP', textInputType: TextInputType.number,
                   ),
                   Center(
@@ -138,7 +142,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                             context: context,
                             builder: (context) => CustomDialogBox(
                                   id: '',
-                                  title: "",
+                                  textfieldvalue: "OTP  :  ",
                                   description: errregidter2 + '\n \n ' + 'Do you want to continue?',
                                   mapscreen: LoginScreen(),
                                 ));

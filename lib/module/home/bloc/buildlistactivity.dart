@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../customs/button/box.dart';
 import '../../../customs/dialog/dialogboxcutom.dart';
-import '../screen/homescreen.dart';
+import '../screen/homescreen/homescreen.dart';
 import 'data.dart';
 import 'itemactivity.dart';
 

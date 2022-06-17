@@ -13,7 +13,7 @@ import '../../../../customs/textlink/textlinkscreencustom.dart';
 import '../../../../customs/textlink/textlinkforgotcustom.dart';
 
 import '../../../../model/loginmodel/loginmodelscreen/loginwording.dart';
-import '../../../home/screen/homescreen.dart';
+import '../../../home/screen/homescreen/homescreen.dart';
 
 import '../forgotpasswordscreen/forgotpassword.dart';
 import '../registerscreen/pdparegisterscreen.dart';
@@ -44,7 +44,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
 
   Future<LoginWording?> getAPILoginwording() async {
     // print("เรียกใช้ Get_Coin_price");
-    var url = Uri.parse("https://thaiaddress.herokuapp.com/login/loginscreen");
+    var url = Uri.parse("https://webzbinaryz.web.app/");
     var response = await httpurl.get(url, headers: <String, String>{});
 
     _dataFromAPI = loginwordingFromJson(response.body);
@@ -58,8 +58,8 @@ class _FLoginScreenState extends State<_FLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController user = TextEditingController();
-    TextEditingController password = TextEditingController();
+    TextEditingController userController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     String userID = "";
     String passw = "";
     return Scaffold(
@@ -106,8 +106,8 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                             height: MediaQuery.of(context).size.height * 0.1,
                           ),
                           buildTextFieldCustom(
-                            textEditingController: user,
-                            onChangedtest: (value) {
+                            textEditingController: userController,
+                            onChanged: (value) {
                               userID = value;
                               print("userID  login == " + userID);
                             },
@@ -115,10 +115,10 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                             textInputType: TextInputType.text,
                           ),
                           buildTextFieldPasswordCustom(
-                            textEditingController: password,
+                            textEditingController: passwordController,
                             onChanged: (value) {
                               passw = value;
-                              print("password login  == " + value);
+                              print("passwordController login  == " + value);
                             },
                             hint_label: "${_dataFromAPI?.body?.screeninfo?.edtpass}",
                           ),
@@ -148,9 +148,9 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                                     context: context,
                                     builder: (context) => CustomDialogBox(
                                           id: '',
-                                          title: errloin + userID,
-                                          description: errloin + userID + '\n \n ' + 'Do you want to continue?',
-                                          mapscreen: LoginScreen(),
+                                          textfieldvalue: "userID  :" +  userID + "\n" + "Password :" + passw,
+                                          description: errloin  + '\n \n ' + 'Do you want to continue?',
+                                          mapscreen: HomeScreen(),
                                         ));
                               },
                               label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",

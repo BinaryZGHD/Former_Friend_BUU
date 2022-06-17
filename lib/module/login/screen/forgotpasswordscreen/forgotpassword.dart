@@ -52,7 +52,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: userID,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   uservalue = value;
                 },
                 hint_label: 'Student code / Teacher code',
@@ -60,7 +60,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: email,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   emailvalue = value;
                 },
                 hint_label: 'Email',
@@ -82,7 +82,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         context: context,
                         builder: (context) => CustomDialogBox(
                               id: '',
-                              title: " ",
+                              textfieldvalue: "UserID  : " + uservalue + "\nEmail  : " + emailvalue,
                               description: errforgotpasswordr1 + '\n \n ' + 'Do you want to continue?',
                               mapscreen: SetNewForgotPasswordScreen(),
                             ));

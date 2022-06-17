@@ -65,7 +65,7 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                             context: context,
                             builder: (context) => CustomDialogBox(
                                   id: '',
-                                  title: "",
+                                  textfieldvalue: "",
                                   description: errpdpaaccept + '\n \n ' + 'Do you want to continue?',
                                   mapscreen: RegisterScreen(),
                                 ));
@@ -87,7 +87,7 @@ class _screens_Condition_PDPAState extends State<screens_Condition_PDPA> {
                             context: context,
                             builder: (context) => CustomDialogBox(
                                   id: '',
-                                  title: "",
+                                  textfieldvalue: "",
                                   description: errpdpadecline + '\n \n ' + 'Do you want to continue?',
                                   mapscreen: LoginScreen(),
                                 ));

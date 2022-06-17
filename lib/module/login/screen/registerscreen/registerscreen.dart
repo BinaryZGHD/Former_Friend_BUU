@@ -89,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: user,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   uservalue = value;
                 },
                 hint_label: 'Student code / Teacher code',
@@ -97,7 +97,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: phone,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   phonevalue = value;
                 },
                 hint_label: 'Telephone number',
@@ -105,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: email,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   emailvalue = value;
                 },
                 hint_label: 'Email',
@@ -113,7 +113,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: name,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   namevalue = value;
                 },
                 hint_label: 'Name',
@@ -121,7 +121,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               buildTextFieldCustom(
                 textEditingController: lastname,
-                onChangedtest: (value) {
+                onChanged: (value) {
                   lastnamevalue = value;
                 },
                 hint_label: 'Last name',
@@ -157,7 +157,13 @@ class RegisterScreen extends StatelessWidget {
                         context: context,
                         builder: (context) => CustomDialogBox(
                               id: '',
-                              title: "",
+                              textfieldvalue: "Register  :  $uservalue" +
+                                  "\nTelrphone number  :  $phonevalue" +
+                                  "\nEmail  :  $emailvalue" +
+                                  "\nName  :  $namevalue" +
+                                  "\nLast name  :  $lastnamevalue" +
+                                  "\nPassword  :  $passwordvalue" +
+                                  "\nConfirm password  :  $confirmpasswordvalue",
                               description: errregidter1 + '\n \n ' + 'Do you want to continue?',
                               mapscreen: RegisterConfirmScreen(),
                             ));
