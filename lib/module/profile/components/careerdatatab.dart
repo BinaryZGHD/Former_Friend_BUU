@@ -24,14 +24,6 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
-    var attentionarray = [
-      '${dataFromAPI.body?.profileCareerInfo?.attention[0]?.attenname}',
-      '${dataFromAPI.body?.profileCareerInfo?.attention[1]?.attenname}',
-      '${dataFromAPI.body?.profileCareerInfo?.attention[2]?.attenname}',
-      '${dataFromAPI.body?.profileCareerInfo?.attention[3]?.attenname}',
-      '${dataFromAPI.body?.profileCareerInfo?.attention[4]?.attenname}',
-      '${dataFromAPI.body?.profileCareerInfo?.attention[5]?.attenname}',
-    ];
     var statusarray = [
       '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
       '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
@@ -45,7 +37,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
       '${dataFromAPI.body?.profileCareerInfo?.jobtype[3]?.jobname}',
     ];
     // print('${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}');
-    print(attentionarray);
+    print(dataFromAPI.body?.profileCareerInfo?.attention);
     return Column(
       children: [
         Container(
@@ -96,10 +88,11 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
             ),
           ),
         ),
+        Text('${dataFromAPI.body?.profileCareerInfo?.attention}'),
         ProfileAttentionDropdownTab(
           attention: apiAttentionItems,
           userattentionvalue: attentionvalue,
-          textleft: apiScreenInfo['textatt'],
+          textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
           itemvalue: attentionvalue,
         ),
         ProfileCareerDropdownTab(

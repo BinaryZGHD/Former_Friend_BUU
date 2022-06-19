@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
 import 'package:f2fbuu/module/profile/components/contactdatatab.dart';
@@ -42,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Uri.parse('https://test-api-ceecf.web.app/v1/profile/profilescreen');
     var response = await http.get(url);
     // print(response.body);
-    _dataFromAPI = profilescreeninfoapiFromJson(response.body);
+    _dataFromAPI = profilescreeninfoapiFromJson(utf8.decode(response.bodyBytes));
     // print('${_dataFromAPI.body}');
     return _dataFromAPI;
   }
