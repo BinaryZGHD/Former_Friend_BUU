@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 
 class ProfileAddressDataHead extends StatefulWidget {
+  final dataFromAPI;
 
-  ProfileAddressDataHead({Key? key}) : super(key: key);
+  ProfileAddressDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
   State<ProfileAddressDataHead> createState() => _ProfileAddressDataHeadState();
@@ -17,6 +18,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
   Widget build(BuildContext context) {
     var apiscreeninfo = api['body']['screeninfo'];
     var apiprofile_address_info = api['body']['profile_address_info'];
+    var dataFromAPI = widget.dataFromAPI;
     return Column(
       children: [
         Container(
@@ -30,7 +32,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             child: Row(
               children: [
                 Text(
-                  apiscreeninfo['subtitlegeninfor'],
+                  '${dataFromAPI.body?.screeninfo?.subtitleaddress}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -69,36 +71,36 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
         ),
         ProfileAddressDataTab(
            ispressed: ispressed,
-            textleft: apiscreeninfo['texthousenumber'],
-            textright: apiprofile_address_info['number'],),
+            textleft: '${dataFromAPI?.body?.screeninfo?.texthousenumber}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.number}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textmoo'],
-            textright: apiprofile_address_info['moo']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textmoo}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.moo}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textsoi'],
-            textright: apiprofile_address_info['soi']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textsoi}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.soi}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textroad'],
-            textright: apiprofile_address_info['road']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textroad}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.road}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textsubdistrict'],
-            textright: apiprofile_address_info['subdistrict']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textsubdistrict}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.subdistrict}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textdistrict'],
-            textright: apiprofile_address_info['district']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textdistrict}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.district}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textprovince'],
-            textright: apiprofile_address_info['province']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textprovince}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.province}'),
         ProfileAddressDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textzipcode'],
-            textright: apiprofile_address_info['zipcode']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textzipcode}',
+            textright: '${dataFromAPI?.body?.profileAddressInfo?.zipcode}'),
       ],
     );
   }

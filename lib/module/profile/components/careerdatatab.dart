@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 
 class ProfileCareerDataHead extends StatefulWidget {
-  ProfileCareerDataHead({Key? key}) : super(key: key);
+  final dataFromAPI;
+  ProfileCareerDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
   State<ProfileCareerDataHead> createState() => _ProfileCareerDataHeadState();
@@ -22,8 +23,29 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
 
   @override
   Widget build(BuildContext context) {
-    // print(apiattenionitems);
-    // List.generate(apiattenionitems.length, (index) => null);
+    var dataFromAPI = widget.dataFromAPI;
+    var attentionarray = [
+      '${dataFromAPI.body?.profileCareerInfo?.attention[0]?.attenname}',
+      '${dataFromAPI.body?.profileCareerInfo?.attention[1]?.attenname}',
+      '${dataFromAPI.body?.profileCareerInfo?.attention[2]?.attenname}',
+      '${dataFromAPI.body?.profileCareerInfo?.attention[3]?.attenname}',
+      '${dataFromAPI.body?.profileCareerInfo?.attention[4]?.attenname}',
+      '${dataFromAPI.body?.profileCareerInfo?.attention[5]?.attenname}',
+    ];
+    var statusarray = [
+      '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
+      '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
+      '${dataFromAPI.body?.profileCareerInfo?.status[2]?.statusname}',
+      '${dataFromAPI.body?.profileCareerInfo?.status[3]?.statusname}',
+    ];
+    var jobtypearray = [
+      '${dataFromAPI.body?.profileCareerInfo?.jobtype[0]?.jobname}',
+      '${dataFromAPI.body?.profileCareerInfo?.jobtype[1]?.jobname}',
+      '${dataFromAPI.body?.profileCareerInfo?.jobtype[2]?.jobname}',
+      '${dataFromAPI.body?.profileCareerInfo?.jobtype[3]?.jobname}',
+    ];
+    // print('${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}');
+    print(attentionarray);
     return Column(
       children: [
         Container(
@@ -37,7 +59,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
             child: Row(
               children: [
                 Text(
-                  apiScreenInfo['subtitleworkinfo'],
+                  '${dataFromAPI.body?.screeninfo?.textcareer}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(

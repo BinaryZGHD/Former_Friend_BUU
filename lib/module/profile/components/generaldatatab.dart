@@ -1,8 +1,11 @@
+import 'dart:developer';
+
+import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
 import 'package:flutter/material.dart';
 import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 class ProfileGeneralDataHead extends StatefulWidget {
-
-  ProfileGeneralDataHead({Key? key}) : super(key: key);
+  final dataFromAPI;
+  ProfileGeneralDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
@@ -12,9 +15,10 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   bool ispressed = true;
   var apiscreeninfo = api['body']['screeninfo'];
   var apiprofile_general_info = api['body']['profile_general_info'];
+
   @override
   Widget build(BuildContext context) {
-    // print(api['body']['screeninfo']['titleprofile']);
+    var dataFromAPI = widget.dataFromAPI;
     return Column(
       children: [
         Container(
@@ -27,7 +31,8 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                Text(apiscreeninfo['subtitlegeninfor'],
+                Text(
+                  '${dataFromAPI.body?.screeninfo?.subtitlegeninfor}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -66,19 +71,29 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
         ),
         ProfileGeneralDataTab(
           ispressed: ispressed,
-          textleft: apiscreeninfo['textname'],
-          textright: apiprofile_general_info['name'],
+          textleft: '${dataFromAPI?.body?.screeninfo?.textname}',
+          textright: '${dataFromAPI?.body?.profileGeneralInfo?.name}'
         ),
         ProfileGeneralDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textlname'],
-            textright: apiprofile_general_info['surname']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textlname}',
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.surname}'
+        ),
         ProfileGeneralDataTab(
-            ispressed: ispressed, textleft: apiscreeninfo['textnickname'], textright: apiprofile_general_info['nickname']),
+            ispressed: ispressed,
+            textleft: '${dataFromAPI?.body?.screeninfo?.textnickname}',
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.nickname}'
+        ),
         ProfileGeneralDataTab(
-            ispressed: ispressed, textleft: apiscreeninfo['textstdcode'], textright: apiprofile_general_info['stu_code']),
+            ispressed: ispressed,
+            textleft: '${dataFromAPI?.body?.screeninfo?.textstdcode}',
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.stuCode}'
+        ),
         ProfileGeneralDataTab(
-            ispressed: ispressed, textleft: apiscreeninfo['textgen'], textright: apiprofile_general_info['gen']),
+            ispressed: ispressed,
+            textleft: '${dataFromAPI?.body?.screeninfo?.textgen}',
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.gen}'
+        ),
       ],
     );
   }

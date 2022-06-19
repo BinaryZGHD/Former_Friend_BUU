@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
 class ProfileEducationDataHead extends StatefulWidget {
-  ProfileEducationDataHead({Key? key}) : super(key: key);
+  final dataFromAPI;
+  ProfileEducationDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
   State<ProfileEducationDataHead> createState() => _ProfileEducationDataHeadState();
@@ -14,6 +15,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
   var apiprofile_education_info = api['body']['profile_edu_info'];
   @override
   Widget build(BuildContext context) {
+    var dataFromAPI = widget.dataFromAPI;
     return Column(
       children: [
         Container(
@@ -27,7 +29,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             child: Row(
               children: [
                 Text(
-                  apiscreeninfo['subtitlegeninfor'],
+                  '${dataFromAPI.body?.screeninfo?.subtitleeduinfo}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -65,28 +67,28 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
         ),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textfac'],
-            textright: apiprofile_education_info['faculty']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textfac}',
+            textright: '${dataFromAPI?.body?.profileEduInfo?.faculty}'),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textdepart'],
-            textright: apiprofile_education_info['department']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textdepart}',
+            textright: '${dataFromAPI?.body?.profileEduInfo?.department}'),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textmajor'],
-            textright: apiprofile_education_info['major']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textmajor}',
+            textright: '${dataFromAPI?.body?.profileEduInfo?.major}'),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textgpaju'],
-            textright: apiprofile_education_info['gpa_jhs']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textgpaju}',
+            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaJhs}'),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textgpase'],
-            textright: apiprofile_education_info['gpa_shs']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textgpase}',
+            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaShs}'),
         ProfileEducationDataTab(
             ispressed: ispressed,
-            textleft: apiscreeninfo['textgpaba'],
-            textright: apiprofile_education_info['gpa_bd']),
+            textleft: '${dataFromAPI?.body?.screeninfo?.textgpaba}',
+            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaBd}'),
       ],
     );
   }
