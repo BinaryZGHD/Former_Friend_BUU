@@ -63,7 +63,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               //   height: 15,
               // ),
               Text("     "+
-                widget.description,
+              widget.textfieldvalue,
                 style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.start,
               ),
@@ -71,7 +71,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 height: 22,
               ),
               Text(
-                  widget.textfieldvalue,
+                  widget.description,
                 style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.start,
               ),

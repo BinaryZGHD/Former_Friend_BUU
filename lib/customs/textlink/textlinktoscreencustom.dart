@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 
 
-class TextLinkScreenCustom extends StatelessWidget {
+class TextLinkToScreenCustom extends StatelessWidget {
   final String linklabel;
   final Widget mapscreen;
   final linktextcolor;
   final double sizetext;
   final VoidCallback? onPressed;
-  const TextLinkScreenCustom(
+  const TextLinkToScreenCustom(
       {Key? key, required this.linklabel, required this.mapscreen, required this.linktextcolor, this.onPressed, required this.sizetext})
       : super(key: key);
 

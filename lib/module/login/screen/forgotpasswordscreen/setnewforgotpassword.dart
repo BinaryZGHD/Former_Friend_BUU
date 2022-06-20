@@ -13,21 +13,61 @@ import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
 import '../../../../customs/textlink/textlinkotpcustom.dart';
-import '../../../../customs/textlink/textlinkscreencustom.dart';
+import '../../../../customs/textlink/textlinktoscreencustom.dart';
 
-class SetNewForgotPasswordScreen extends StatelessWidget {
+class setNewForgotPasswordScreen extends StatefulWidget {
+  //
+  final String textheadsetnewpassword;
+  final String textotpwillsent;
+  final String edtemailforgot;
+  final String edtpassword;
+  final String edtcpassword;
+  final String otp;
+  final String texpleaseconfirm;
+  final String btnsentotpagain;
+  final String btnconfirm;
+
+  setNewForgotPasswordScreen({
+    Key? key,
+    required this.textheadsetnewpassword,
+    required this.textotpwillsent,
+    required this.edtemailforgot,
+    required this.edtpassword,
+    required this.edtcpassword,
+    required this.otp,
+    required this.texpleaseconfirm,
+    required this.btnsentotpagain,
+    required this.btnconfirm,
+  }) : super(key: key);
+
+  @override
+  State<setNewForgotPasswordScreen> createState() => _setNewForgotPasswordScreenState();
+}
+
+class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen> {
+
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   TextEditingController code = TextEditingController();
+
   String passwordvalue = "";
   String confirmpasswordvalue = "";
   String codevalue = " ";
-  SetNewForgotPasswordScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    print((widget.textheadsetnewpassword));
+    print((widget.textotpwillsent));
+    print((widget.edtemailforgot));
+    print((widget.edtpassword));
+    print((widget.edtcpassword));
+    print((widget.otp));
+    print((widget.texpleaseconfirm));
+    print((widget.btnsentotpagain));
+    print((widget.btnconfirm));
+
     return Scaffold(
       appBar: AppBar(
+
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
@@ -40,8 +80,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text(
-          "Set new password",
+        title: Text(widget.textheadsetnewpassword ,
           style: TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -55,8 +94,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
             children: [
               Center(
                 child: Column(children: [
-                  Text(
-                    "OTP will sent to",
+                  Text(widget.textotpwillsent ,
                     style: TextStyle(
                       fontSize: sizeTextBig20,
                       fontWeight: FontWeight.w600,
@@ -65,8 +103,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.025,
                   ),
-                  Text(
-                    "Email",
+                  Text(widget.edtemailforgot ,
                     style: TextStyle(
                       fontSize: sizeTextBig20,
                       fontWeight: FontWeight.w600,
@@ -75,8 +112,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.025,
                   ),
-                  Text(
-                    "Please confirm",
+                  Text(widget.texpleaseconfirm,
                     style: TextStyle(
                       fontSize: sizeTextBig20,
                       fontWeight: FontWeight.w600,
@@ -92,31 +128,31 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                 onChanged: (value) {
                   passwordvalue = value;
                 },
-                hint_label: 'Password',
+                hint_label: widget.edtpassword,
               ),
               buildTextFieldPasswordCustom(
                 textEditingController: confirmpassword,
                 onChanged: (value) {
                   confirmpasswordvalue = value;
                 },
-                hint_label: 'Confirm password',
+                hint_label: widget.edtcpassword,
               ),
               buildTextFieldCustom(
                 textEditingController: code,
                 onChanged: (value) {
                   codevalue = value;
                 },
-                hint_label: 'OTP',
+                hint_label: widget.otp,
                 textInputType: TextInputType.number,
               ),
-              const Center(
+               Center(
                 child: TextLinkOTPCustom(
-                  linklabel: 'Sent OTP again',
+                  linklabel: widget.btnsentotpagain,
                   mapscreen: box(),
                   linktextcolor: TC_OTPSent,
                   sizetext: sizeTextSmall16,
-                  tiltle: 'OTP sent to',
-                  description: 'Email',
+                  tiltle: widget.textotpwillsent ,
+                  description: widget.edtemailforgot,
                 ),
               ),
               SizedBox(
@@ -124,8 +160,7 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
               ),
               Center(
                 child: ButtonCustom(
-                  label: "  Confirm  ",
-                  screengo: LoginScreen(),
+                  label: "  ${widget.btnconfirm}  ",
                   colortext: TC_Black,
                   colorbutton: BC_ButtonGreen,
                   sizetext: sizeTextBig20,
@@ -135,9 +170,13 @@ class SetNewForgotPasswordScreen extends StatelessWidget {
                         context: context,
                         builder: (context) => CustomDialogBox(
                               id: '',
-                              textfieldvalue: "Password  : $passwordvalue"+"\n"+"Confirm password : $confirmpasswordvalue"+"\n"+"OTP : $codevalue",
+                              textfieldvalue: "Password  : $passwordvalue" +
+                                  "\n" +
+                                  "Confirm password : $confirmpasswordvalue" +
+                                  "\n" +
+                                  "OTP : $codevalue",
                               description: errforgotpasswordr2 + '\n \n ' + 'Do you want to continue?',
-                              mapscreen: LoginScreen(),
+                              mapscreen: loginScreen(),
                             ));
                   },
                 ),

@@ -23,4 +23,4 @@ const TC_Textfile = Color(0xFFFFFFFF);
 const FC_Blue = Color(0xFF0647FD);
 const transparent = Color(0x00000000);
 const backgroundAppBar = Color(0xFFFFFFFF);
-
+const backgroundDawer = Color(0xFFD7DBFF);

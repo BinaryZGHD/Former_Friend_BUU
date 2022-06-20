@@ -6,7 +6,7 @@ import '../dialog/dialogboxcutom.dart';
 class ButtonCustom extends StatelessWidget {
   final String label;
 
-  final Widget screengo;
+
   final Color colortext;
   final Color colorbutton;
   final Color colorborder;
@@ -15,7 +15,6 @@ class ButtonCustom extends StatelessWidget {
   const ButtonCustom({
     Key? key,
     required this.label,
-    required this.screengo,
     required this.colortext,
     required this.colorbutton,
     required this.sizetext,

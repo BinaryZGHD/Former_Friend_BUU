@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as httpurl;
@@ -9,32 +11,21 @@ import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
-import '../../../../customs/textlink/textlinkscreencustom.dart';
-import '../../../../customs/textlink/textlinkforgotcustom.dart';
-
+import '../../../../customs/textlink/textlinktoscreencustom.dart';
 import '../../../../model/loginmodel/loginmodelscreen/loginwording.dart';
 import '../../../home/screen/homescreen/homescreen.dart';
 
 import '../forgotpasswordscreen/forgotpassword.dart';
 import '../registerscreen/pdparegisterscreen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class loginScreen extends StatefulWidget {
+  const loginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return _FLoginScreen();
-  }
+  State<loginScreen> createState() => _loginScreenState();
 }
 
-class _FLoginScreen extends StatefulWidget {
-  const _FLoginScreen({Key? key}) : super(key: key);
-
-  @override
-  State<_FLoginScreen> createState() => _FLoginScreenState();
-}
-
-class _FLoginScreenState extends State<_FLoginScreen> {
+class _loginScreenState extends State<loginScreen> {
   LoginWording? _dataFromAPI;
   @override
   void initState() {
@@ -44,10 +35,10 @@ class _FLoginScreenState extends State<_FLoginScreen> {
 
   Future<LoginWording?> getAPILoginwording() async {
     // print("เรียกใช้ Get_Coin_price");
-    var url = Uri.parse("https://webzbinaryz.web.app/");
+    var url = Uri.parse("https://webzbinaryz.web.app/v1/api/modules/login/wording/login");
     var response = await httpurl.get(url, headers: <String, String>{});
 
-    _dataFromAPI = loginwordingFromJson(response.body);
+    _dataFromAPI = loginwordingFromJson(utf8.decode(response.bodyBytes));
     // print(response.body);
     // print(_dataFromAPI?.head?.message);// get the data from the api
     // print(_dataFromAPI?.body?.screeninfo?.btnchangelang);// get the data from the api
@@ -126,7 +117,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                             height: MediaQuery.of(context).size.height * 0.025,
                           ),
 
-                          TextLinkForgotCustom(
+                          TextLinkToScreenCustom(
                             // onPressed: () {
                             //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
                             //   // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
@@ -134,8 +125,7 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                             //   // print(event.number);
                             // },
                             linklabel: "${_dataFromAPI?.body?.screeninfo?.btnforgotpass}",
-                            mapgo: ForgotPasswordScreen(),
-                            linkurl: '',
+                            mapscreen: forgotPasswordScreen(),
                             linktextcolor: TC_forgot, sizetext: sizeTextSmaller14,
                           ),
                           SizedBox(
@@ -154,7 +144,6 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                                         ));
                               },
                               label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",
-                              screengo: HomeScreen(),
                               colortext: TC_Black,
                               colorbutton: BC_ButtonGreen,
                               sizetext: sizeTextBig20,
@@ -172,9 +161,9 @@ class _FLoginScreenState extends State<_FLoginScreen> {
                                 style: TextStyle(
                                     fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
                               ),
-                              TextLinkScreenCustom(
+                              TextLinkToScreenCustom(
                                 linklabel: "${_dataFromAPI?.body?.screeninfo?.btnReg}",
-                                mapscreen: screens_Condition_PDPA(),
+                                mapscreen: conditionPDPAScreen(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,
                               ),
@@ -191,7 +180,11 @@ class _FLoginScreenState extends State<_FLoginScreen> {
               ),
             );
           }
-          return LinearProgressIndicator();
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         },
       ),
     );

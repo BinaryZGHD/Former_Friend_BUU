@@ -12,29 +12,25 @@ import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textlink/textlinkotpcustom.dart';
-import '../../../../customs/textlink/textlinkscreencustom.dart';
+import '../../../../customs/textlink/textlinktoscreencustom.dart';
 
-class RegisterConfirmScreen extends StatelessWidget {
+
+class registerConfirmScreen extends StatefulWidget {
   final VoidCallback? onPressed;
-  const RegisterConfirmScreen({
-    Key? key,
-    this.onPressed,
-  }) : super(key: key);
+  final String titleconregis ;
+  final String textotpwillsent;
+  final String textpleaseconfirm;
+  final String textsentotpagain;
+  final String textotp;
+  final String btnconfirm;
+  final String edtemailreg;
+   registerConfirmScreen({Key? key, this.onPressed, required this.titleconregis, required this.textotpwillsent, required this.textpleaseconfirm, required this.textsentotpagain, required this.btnconfirm, required this.edtemailreg, required this.textotp}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return RegisterConfirm_ful();
-  }
+  State<registerConfirmScreen> createState() => _registerConfirmScreenState();
 }
 
-class RegisterConfirm_ful extends StatefulWidget {
-  const RegisterConfirm_ful({Key? key}) : super(key: key);
-
-  @override
-  State<RegisterConfirm_ful> createState() => _RegisterConfirm_fulState();
-}
-
-class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
+class _registerConfirmScreenState extends State<registerConfirmScreen> {
 
   TextEditingController confirmOTPController = TextEditingController();
 
@@ -55,8 +51,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
             color: Colors.black,
           ),
         ),
-        title: Text(
-          "Confirm register",
+        title: Text("${widget.titleconregis}",
           style: TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -77,8 +72,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.05,
                       ),
-                      Text(
-                        "OTP will sent to",
+                      Text("${widget.textotpwillsent}",
                         style: TextStyle(
                           fontSize: sizeTextBig20,
                           fontWeight: FontWeight.w600,
@@ -87,8 +81,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.025,
                       ),
-                      Text(
-                        "EMAIL",
+                      Text("${widget.edtemailreg}",
                         style: TextStyle(
                           fontSize: sizeTextBig20,
                           fontWeight: FontWeight.w500,
@@ -97,8 +90,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.025,
                       ),
-                      Text(
-                        "Please confirm",
+                      Text("${widget.textpleaseconfirm}",
                         style: TextStyle(
                           fontSize: sizeTextBig20,
                           fontWeight: FontWeight.w500,
@@ -114,12 +106,12 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                     onChanged: (value) {
                       confirmOTP = value;
                     },
-                    hint_label: 'OTP', textInputType: TextInputType.number,
+                    hint_label: "${widget.textotp}", textInputType: TextInputType.number,
                   ),
                   Center(
                     child: TextLinkOTPCustom(
-                      linklabel: 'Sent OTP again',
-                      mapscreen: RegisterScreen(),
+                      linklabel: "${widget.textsentotpagain}",
+                      mapscreen: registerScreen(),
                       linktextcolor: TC_OTPSent,
                       sizetext: sizeTextSmall16,
                       tiltle: 'OTP sent to',
@@ -132,7 +124,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                   Center(
                     child: ButtonCustom(
                       label: "  Confirm  ",
-                      screengo: LoginScreen(),
+
                       colortext: TC_Black,
                       colorbutton: BC_ButtonGreen,
                       sizetext: sizeTextBig20,
@@ -144,7 +136,7 @@ class _RegisterConfirm_fulState extends State<RegisterConfirm_ful> {
                                   id: '',
                                   textfieldvalue: "OTP  :  ",
                                   description: errregidter2 + '\n \n ' + 'Do you want to continue?',
-                                  mapscreen: LoginScreen(),
+                                  mapscreen: loginScreen(),
                                 ));
                       },
                     ),
