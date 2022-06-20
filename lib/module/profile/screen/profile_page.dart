@@ -45,7 +45,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var response = await http.get(url);
     // print(response.body);
     _dataFromAPI = profilescreeninfoapiFromJson(utf8.decode(response.bodyBytes));
-    // print('${_dataFromAPI.body}');
+    // print(_dataFromAPI.body?.screeninfo?.subtitlegeninfor);
+    // print('${_dataFromAPI.body?.profileCareerInfo?.attention?[0].attenname}');
     return _dataFromAPI;
   }
 

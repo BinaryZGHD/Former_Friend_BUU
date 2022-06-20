@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +19,24 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
   bool isVisible = true;
   var apiScreenInfo = api['body']['screeninfo'];
   var apiProfileCareerInfo = api['body']['profile_career_info'];
-  var apiAttentionItems = api['body']['profile_career_info']['attention'];
+  // var apiAttentionItems = api['body']['profile_career_info']['attention'];
   var apiStatusItems = api['body']['profile_career_info']['status'];
   var apiJobTypeItems = api['body']['profile_career_info']['jobtype'];
 
   @override
   Widget build(BuildContext context) {
+    // print(json.encode(widget.dataFromAPI));
+    // print('${json.encode(widget.dataFromAPI.body?.userattention)}');
     var dataFromAPI = widget.dataFromAPI;
+    var apiattentionvalue = dataFromAPI.body?.profileCareerInfo?.userattention;
+    // var attentionarray = [
+    //   '${dataFromAPI.body?.profileCareerInfo?.attention[0]?.attenname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.attention[1]?.attenname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.attention[2]?.attenname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.attention[3]?.attenname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.attention[4]?.attenname}',
+    // ];
+    // print("attentionarray =" + '${attentionarray}');
     var statusarray = [
       '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
       '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
@@ -37,7 +50,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
       '${dataFromAPI.body?.profileCareerInfo?.jobtype[3]?.jobname}',
     ];
     // print('${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}');
-    print(dataFromAPI.body?.profileCareerInfo?.attention);
+    // print(dataFromAPI.body?.profileCareerInfo?.attention);
     return Column(
       children: [
         Container(
@@ -88,12 +101,13 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
             ),
           ),
         ),
-        Text('${dataFromAPI.body?.profileCareerInfo?.attention}'),
+        // Text('${json.encode(dataFromAPI.body?.profileCareerInfo?.attention)}'),
         ProfileAttentionDropdownTab(
-          attention: apiAttentionItems,
-          userattentionvalue: attentionvalue,
-          textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
-          itemvalue: attentionvalue,
+          testarray: dataFromAPI.body?.profileCareerInfo?.attention,
+          // attention: attentionarray,
+          userattentionvalue: apiattentionvalue,
+          textleft: '${dataFromAPI.body?.screeninfo?.textatt}',
+          // '${dataFromAPI?.body?.screeninfo?.textatt}',
         ),
         ProfileCareerDropdownTab(
           status: apiStatusItems,
