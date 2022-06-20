@@ -28,27 +28,12 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
     // print(json.encode(widget.dataFromAPI));
     // print('${json.encode(widget.dataFromAPI.body?.userattention)}');
     var dataFromAPI = widget.dataFromAPI;
-    var apiattentionvalue = dataFromAPI.body?.profileCareerInfo?.userattention;
-    // var attentionarray = [
-    //   '${dataFromAPI.body?.profileCareerInfo?.attention[0]?.attenname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.attention[1]?.attenname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.attention[2]?.attenname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.attention[3]?.attenname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.attention[4]?.attenname}',
+    // var statusarray = [
+    //   '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.status[2]?.statusname}',
+    //   '${dataFromAPI.body?.profileCareerInfo?.status[3]?.statusname}',
     // ];
-    // print("attentionarray =" + '${attentionarray}');
-    var statusarray = [
-      '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
-      '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
-      '${dataFromAPI.body?.profileCareerInfo?.status[2]?.statusname}',
-      '${dataFromAPI.body?.profileCareerInfo?.status[3]?.statusname}',
-    ];
-    var jobtypearray = [
-      '${dataFromAPI.body?.profileCareerInfo?.jobtype[0]?.jobname}',
-      '${dataFromAPI.body?.profileCareerInfo?.jobtype[1]?.jobname}',
-      '${dataFromAPI.body?.profileCareerInfo?.jobtype[2]?.jobname}',
-      '${dataFromAPI.body?.profileCareerInfo?.jobtype[3]?.jobname}',
-    ];
     // print('${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}');
     // print(dataFromAPI.body?.profileCareerInfo?.attention);
     return Column(
@@ -75,15 +60,6 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                         setState(() {
                           ispressed = !ispressed;
                         });
-                        // setState((){
-                        //   if (ispressed == true) {
-                        //     editorsave = 'บันทึก';
-                        //   } else {
-                        //     editorsave = 'แก้ไข';
-                        //   }
-                        //   print(ispressed);
-                        // });
-                        // }, child: Text(editorsave,
                       },
                       child: ispressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
@@ -91,44 +67,32 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                               style: TextStyle(color: Colors.green)),
                     ),
                   ),
-
-                  // Text(editorsave,
-                  //       style:
-                  //       TextStyle(fontSize: 18, color: Colors.red),
-                  //       textAlign: TextAlign.right),
                 ),
               ],
             ),
           ),
         ),
-        // Text('${json.encode(dataFromAPI.body?.profileCareerInfo?.attention)}'),
         ProfileAttentionDropdownTab(
           testarray: dataFromAPI.body?.profileCareerInfo?.attention,
-          // attention: attentionarray,
-          userattentionvalue: apiattentionvalue,
+          userattentionvalue: dataFromAPI.body?.profileCareerInfo?.userattention,
           textleft: '${dataFromAPI.body?.screeninfo?.textatt}',
-          // '${dataFromAPI?.body?.screeninfo?.textatt}',
         ),
         ProfileCareerDropdownTab(
-          status: apiStatusItems,
-          textleft: apiScreenInfo['textstatus'],
-          statusitemvalue: statusvalue,
-          jobitem: apiJobTypeItems,
-          jobtextleft: apiScreenInfo['textJobtype'],
+          textleft: '${dataFromAPI.body?.screeninfo?.textstatus}',
+          statusarray: dataFromAPI.body?.profileCareerInfo?.status,
+          userstatusvalue: dataFromAPI.body?.profileCareerInfo?.userstatus,
+          jobtextleft: '${dataFromAPI.body?.screeninfo?.textJobtype}',
+          jobtypearray: dataFromAPI.body?.profileCareerInfo?.jobtype,
+          userjobvalue: dataFromAPI.body?.profileCareerInfo?.userjobtype,
+          subtitleworkplace: '${dataFromAPI.body?.screeninfo?.subtitleworkplace}',
+          userworkplace: dataFromAPI.body?.profileCareerInfo?.userworkplace,
+          usercareer: dataFromAPI.body?.profileCareerInfo?.usercareer,
+          usercompany: dataFromAPI.body?.profileCareerInfo?.usercompany,
+          textcomp: '${dataFromAPI.body?.screeninfo?.textcomp}',
+          textcareer: '${dataFromAPI.body?.screeninfo?.textcareer}',
           ispressed: ispressed,
-          jobitemvalue: jobtypevalue,
-          subtitleworkplace: apiScreenInfo['subtitleworkplace'],
-          userworkplace: apiProfileCareerInfo['userworkplace'],
-          usercareer: apiProfileCareerInfo['usercareer'],
-          usercompany: apiProfileCareerInfo['usercompany'],
-          textcomp: apiScreenInfo['textcomp'],
-          textcareer: apiScreenInfo['textcareer'],
-
         ),
       ],
     );
   }
 }
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////

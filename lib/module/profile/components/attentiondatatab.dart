@@ -5,14 +5,10 @@ import 'package:flutter/material.dart';
 class ProfileAttentionDropdownTab extends StatefulWidget {
   final List<Attention> testarray;
   final String textleft;
-  // final String itemvalue;
   final String userattentionvalue;
-  // final List<String> attention;
   const ProfileAttentionDropdownTab(
       {Key? key,
         required this.textleft,
-        // required this.itemvalue,
-        // required this.attention,
         required this.userattentionvalue,
         required this.testarray})
       : super(key: key);
@@ -27,10 +23,7 @@ class _ProfileAttentionDropdownTabState
   @override
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
-    // String? itemvalue = widget.itemvalue;
     String? userattentionvalue = widget.userattentionvalue;
-    // List<String> attention = widget.attention;
-    // List<String> listapiattentionitems = [attention[0]['attenname'],attention[1]['attenname'],attention[2]['attenname'],attention[3]['attenname'],attention[4]['attenname']];
     return Container(
       decoration: BoxDecoration(
         border: Border(
