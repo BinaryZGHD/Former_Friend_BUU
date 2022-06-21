@@ -79,27 +79,31 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
     if (snapshot.connectionState == ConnectionState.done) {
       print('${_dataFromAPI.body?.activity?.status}');
       var myicon = Icon(
-        Icons.keyboard_arrow_down,
+        Icons.question_mark,
         color: Colors.black,
       );
+      bool showbutton;
       if(_dataFromAPI.body?.activity?.status == "Unapproved!"){
         print('เข้า Unapproved!');
         myicon = Icon(
           Icons.alarm,
           color: Colors.yellow,
         );
+        showbutton = true;
       }else if(_dataFromAPI.body?.activity?.status == "Approved!"){
         print('เข้า Approved!');
         myicon = Icon(
           Icons.check_circle,
           color: Colors.green,
         );
+        showbutton = false;
       }else if(_dataFromAPI.body?.activity?.status == "Rejected!"){
         print('เข้า Rejected');
         myicon = Icon(
           Icons.cancel,
           color: Colors.red,
         );
+        showbutton = false;
       }
       return Scaffold(
         appBar: AppBar(
