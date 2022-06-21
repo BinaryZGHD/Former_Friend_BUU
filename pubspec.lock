@@ -78,18 +78,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-  dependencies:
-    dependency: "direct main"
-    description:
-      name: dependencies
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.5"
->>>>>>> 074d24dae644391c83ddb11a6214474f25035344
   dio:
     dependency: "direct main"
     description:
@@ -97,17 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
-<<<<<<< HEAD
-=======
-  disposables:
-    dependency: transitive
-    description:
-      name: disposables
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
->>>>>>> Ppreem
->>>>>>> 074d24dae644391c83ddb11a6214474f25035344
   fake_async:
     dependency: transitive
     description:
