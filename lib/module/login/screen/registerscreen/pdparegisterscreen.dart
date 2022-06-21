@@ -12,7 +12,7 @@ import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
-import '../../../../model/loginmodel/loginmodelscreen/pdpawording.dart';
+import '../../../../model/loginmodel/registermodelscreen/pdpawording.dart';
 
 class conditionPDPAScreen extends StatefulWidget {
   const conditionPDPAScreen({Key? key}) : super(key: key);

@@ -9,7 +9,7 @@ import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
-import '../../../../model/loginmodel/loginmodelscreen/forgotpasswording.dart';
+import '../../../../model/loginmodel/forgotpasswordmodelscreen/forgotpasswording.dart';
 
 
 class forgotPasswordScreen extends StatefulWidget {

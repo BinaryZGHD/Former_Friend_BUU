@@ -39,7 +39,7 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
           ),
         ),
         title: Text(
-          "Register",
+          "More",
           style: TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -130,10 +130,10 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
                 ),
               ),
             ),
-            CardMore(title: "Department history"),
-            CardMore(title: "Course"),
-            CardMore(title: "Facebook"),
-            CardMore(title: "Website"),
+            CardMore(title: "Department history", URL: '',),
+            CardMore(title: "Course", URL: '',),
+            CardMore(title: "Facebook", URL: '',),
+            CardMore(title: "Website", URL: '',),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -144,9 +144,9 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
                 ),
               ),
             ),
-            CardMore(title: "Terms and conditions"),
-            CardMore(title: "FAQ"),
-            CardMore(title: "Contact us")
+            CardMore(title: "Terms and conditions", URL: '',),
+            CardMore(title: "FAQ", URL: '',),
+            CardMore(title: "Contact us", URL: '',)
           ]),
         ),
       ),

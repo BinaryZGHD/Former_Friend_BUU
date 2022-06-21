@@ -12,7 +12,7 @@ import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
-import '../../../../model/loginmodel/loginmodelscreen/registerwording.dart';
+import '../../../../model/loginmodel/registermodelscreen/registerwording.dart';
 
 
 class registerScreen extends StatefulWidget {
