@@ -11,7 +11,7 @@ import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
 import '../../../../customs/textlink/textlinktoscreencustom.dart';
-import '../../../../model/loginmodel/loginmodelscreen/changepasswording.dart';
+import '../../../../model/loginmodel/forgotpasswordmodelscreen/changepasswording.dart';
 import '../forgotpasswordscreen/forgotpassword.dart';
 import '../loginscreen/loginscreen.dart';
 

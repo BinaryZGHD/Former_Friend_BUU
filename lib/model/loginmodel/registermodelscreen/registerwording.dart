@@ -1,19 +1,16 @@
 import 'dart:convert';
-
 /// head : {"status":"200","message":"success","module":"login"}
-/// body : {"screeninfo":{"textreghead":" Register  ","edtIDreg":" Student code / Teacher code  ","edtphonereg":" Tel  ","edtemailreg":" Email  ","edtnamereg":" Name  ","edtlnamereg":" Lastname  ","edtpassreg":" Password  ","edtcpassreg":" Confirm password  ","titleconregis":"Confirm register","textotpwillsent":"OTP will sent to","textpleaseconfirm":"Please confirm","textsentotpagain":"Sent OTP again","btnconfirm":"Confirm"}}
+/// body : {"screeninfo":{"textreghead":"Register","edtIDreg":"Student code / Teacher code","edtphonereg":"Tel","edtemailreg":"Email","edtnamereg":"Name","edtlnamereg":"Lastname","edtpassreg":"Password","edtcpassreg":"Confirm password","titleconregis":"Confirm register","textotpwillsent":"OTP will sent to","textpleaseconfirm":"Please confirm","textsentotpagain":"Sent OTP again","textotp":"OTP","btnsignup":"Sign up","btnconfirm":"Confirm"}}
 
 RegisterWording registerwordingFromJson(String str) => RegisterWording.fromJson(json.decode(str));
-String registerwordingToJson(RegisterWording data) => json.encode(data.toJson());
-
+String registerwordingdartToJson(RegisterWording data) => json.encode(data.toJson());
 class RegisterWording {
   RegisterWording({
-    Head? head,
-    Body? body,
-  }) {
+      Head? head, 
+      Body? body,}){
     _head = head;
     _body = body;
-  }
+}
 
   RegisterWording.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
@@ -21,14 +18,11 @@ class RegisterWording {
   }
   Head? _head;
   Body? _body;
-  RegisterWording copyWith({
-    Head? head,
-    Body? body,
-  }) =>
-      RegisterWording(
-        head: head ?? _head,
-        body: body ?? _body,
-      );
+RegisterWording copyWith({  Head? head,
+  Body? body,
+}) => RegisterWording(  head: head ?? _head,
+  body: body ?? _body,
+);
   Head? get head => _head;
   Body? get body => _body;
 
@@ -42,30 +36,26 @@ class RegisterWording {
     }
     return map;
   }
+
 }
 
-/// screeninfo : {"textreghead":" Register  ","edtIDreg":" Student code / Teacher code  ","edtphonereg":" Tel  ","edtemailreg":" Email  ","edtnamereg":" Name  ","edtlnamereg":" Lastname  ","edtpassreg":" Password  ","edtcpassreg":" Confirm password  ","titleconregis":"Confirm register","textotpwillsent":"OTP will sent to","textpleaseconfirm":"Please confirm","textsentotpagain":"Sent OTP again","btnconfirm":"Confirm"}
+/// screeninfo : {"textreghead":"Register","edtIDreg":"Student code / Teacher code","edtphonereg":"Tel","edtemailreg":"Email","edtnamereg":"Name","edtlnamereg":"Lastname","edtpassreg":"Password","edtcpassreg":"Confirm password","titleconregis":"Confirm register","textotpwillsent":"OTP will sent to","textpleaseconfirm":"Please confirm","textsentotpagain":"Sent OTP again","textotp":"OTP","btnsignup":"Sign up","btnconfirm":"Confirm"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
-
 class Body {
   Body({
-    Screeninfo? screeninfo,
-  }) {
+      Screeninfo? screeninfo,}){
     _screeninfo = screeninfo;
-  }
+}
 
   Body.fromJson(dynamic json) {
     _screeninfo = json['screeninfo'] != null ? Screeninfo.fromJson(json['screeninfo']) : null;
   }
   Screeninfo? _screeninfo;
-  Body copyWith({
-    Screeninfo? screeninfo,
-  }) =>
-      Body(
-        screeninfo: screeninfo ?? _screeninfo,
-      );
+Body copyWith({  Screeninfo? screeninfo,
+}) => Body(  screeninfo: screeninfo ?? _screeninfo,
+);
   Screeninfo? get screeninfo => _screeninfo;
 
   Map<String, dynamic> toJson() {
@@ -75,41 +65,44 @@ class Body {
     }
     return map;
   }
+
 }
 
-/// textreghead : " Register  "
-/// edtIDreg : " Student code / Teacher code  "
-/// edtphonereg : " Tel  "
-/// edtemailreg : " Email  "
-/// edtnamereg : " Name  "
-/// edtlnamereg : " Lastname  "
-/// edtpassreg : " Password  "
-/// edtcpassreg : " Confirm password  "
+/// textreghead : "Register"
+/// edtIDreg : "Student code / Teacher code"
+/// edtphonereg : "Tel"
+/// edtemailreg : "Email"
+/// edtnamereg : "Name"
+/// edtlnamereg : "Lastname"
+/// edtpassreg : "Password"
+/// edtcpassreg : "Confirm password"
 /// titleconregis : "Confirm register"
 /// textotpwillsent : "OTP will sent to"
 /// textpleaseconfirm : "Please confirm"
 /// textsentotpagain : "Sent OTP again"
+/// textotp : "OTP"
+/// btnsignup : "Sign up"
 /// btnconfirm : "Confirm"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
-
 class Screeninfo {
   Screeninfo({
-    String? textreghead,
-    String? edtIDreg,
-    String? edtphonereg,
-    String? edtemailreg,
-    String? edtnamereg,
-    String? edtlnamereg,
-    String? edtpassreg,
-    String? edtcpassreg,
-    String? titleconregis,
-    String? textotpwillsent,
-    String? textpleaseconfirm,
-    String? textsentotpagain,
-    String? btnconfirm,
-  }) {
+      String? textreghead, 
+      String? edtIDreg, 
+      String? edtphonereg, 
+      String? edtemailreg, 
+      String? edtnamereg, 
+      String? edtlnamereg, 
+      String? edtpassreg, 
+      String? edtcpassreg, 
+      String? titleconregis, 
+      String? textotpwillsent, 
+      String? textpleaseconfirm, 
+      String? textsentotpagain, 
+      String? textotp, 
+      String? btnsignup, 
+      String? btnconfirm,}){
     _textreghead = textreghead;
     _edtIDreg = edtIDreg;
     _edtphonereg = edtphonereg;
@@ -122,8 +115,10 @@ class Screeninfo {
     _textotpwillsent = textotpwillsent;
     _textpleaseconfirm = textpleaseconfirm;
     _textsentotpagain = textsentotpagain;
+    _textotp = textotp;
+    _btnsignup = btnsignup;
     _btnconfirm = btnconfirm;
-  }
+}
 
   Screeninfo.fromJson(dynamic json) {
     _textreghead = json['textreghead'];
@@ -138,6 +133,8 @@ class Screeninfo {
     _textotpwillsent = json['textotpwillsent'];
     _textpleaseconfirm = json['textpleaseconfirm'];
     _textsentotpagain = json['textsentotpagain'];
+    _textotp = json['textotp'];
+    _btnsignup = json['btnsignup'];
     _btnconfirm = json['btnconfirm'];
   }
   String? _textreghead;
@@ -152,37 +149,40 @@ class Screeninfo {
   String? _textotpwillsent;
   String? _textpleaseconfirm;
   String? _textsentotpagain;
+  String? _textotp;
+  String? _btnsignup;
   String? _btnconfirm;
-  Screeninfo copyWith({
-    String? textreghead,
-    String? edtIDreg,
-    String? edtphonereg,
-    String? edtemailreg,
-    String? edtnamereg,
-    String? edtlnamereg,
-    String? edtpassreg,
-    String? edtcpassreg,
-    String? titleconregis,
-    String? textotpwillsent,
-    String? textpleaseconfirm,
-    String? textsentotpagain,
-    String? btnconfirm,
-  }) =>
-      Screeninfo(
-        textreghead: textreghead ?? _textreghead,
-        edtIDreg: edtIDreg ?? _edtIDreg,
-        edtphonereg: edtphonereg ?? _edtphonereg,
-        edtemailreg: edtemailreg ?? _edtemailreg,
-        edtnamereg: edtnamereg ?? _edtnamereg,
-        edtlnamereg: edtlnamereg ?? _edtlnamereg,
-        edtpassreg: edtpassreg ?? _edtpassreg,
-        edtcpassreg: edtcpassreg ?? _edtcpassreg,
-        titleconregis: titleconregis ?? _titleconregis,
-        textotpwillsent: textotpwillsent ?? _textotpwillsent,
-        textpleaseconfirm: textpleaseconfirm ?? _textpleaseconfirm,
-        textsentotpagain: textsentotpagain ?? _textsentotpagain,
-        btnconfirm: btnconfirm ?? _btnconfirm,
-      );
+Screeninfo copyWith({  String? textreghead,
+  String? edtIDreg,
+  String? edtphonereg,
+  String? edtemailreg,
+  String? edtnamereg,
+  String? edtlnamereg,
+  String? edtpassreg,
+  String? edtcpassreg,
+  String? titleconregis,
+  String? textotpwillsent,
+  String? textpleaseconfirm,
+  String? textsentotpagain,
+  String? textotp,
+  String? btnsignup,
+  String? btnconfirm,
+}) => Screeninfo(  textreghead: textreghead ?? _textreghead,
+  edtIDreg: edtIDreg ?? _edtIDreg,
+  edtphonereg: edtphonereg ?? _edtphonereg,
+  edtemailreg: edtemailreg ?? _edtemailreg,
+  edtnamereg: edtnamereg ?? _edtnamereg,
+  edtlnamereg: edtlnamereg ?? _edtlnamereg,
+  edtpassreg: edtpassreg ?? _edtpassreg,
+  edtcpassreg: edtcpassreg ?? _edtcpassreg,
+  titleconregis: titleconregis ?? _titleconregis,
+  textotpwillsent: textotpwillsent ?? _textotpwillsent,
+  textpleaseconfirm: textpleaseconfirm ?? _textpleaseconfirm,
+  textsentotpagain: textsentotpagain ?? _textsentotpagain,
+  textotp: textotp ?? _textotp,
+  btnsignup: btnsignup ?? _btnsignup,
+  btnconfirm: btnconfirm ?? _btnconfirm,
+);
   String? get textreghead => _textreghead;
   String? get edtIDreg => _edtIDreg;
   String? get edtphonereg => _edtphonereg;
@@ -195,6 +195,8 @@ class Screeninfo {
   String? get textotpwillsent => _textotpwillsent;
   String? get textpleaseconfirm => _textpleaseconfirm;
   String? get textsentotpagain => _textsentotpagain;
+  String? get textotp => _textotp;
+  String? get btnsignup => _btnsignup;
   String? get btnconfirm => _btnconfirm;
 
   Map<String, dynamic> toJson() {
@@ -211,9 +213,12 @@ class Screeninfo {
     map['textotpwillsent'] = _textotpwillsent;
     map['textpleaseconfirm'] = _textpleaseconfirm;
     map['textsentotpagain'] = _textsentotpagain;
+    map['textotp'] = _textotp;
+    map['btnsignup'] = _btnsignup;
     map['btnconfirm'] = _btnconfirm;
     return map;
   }
+
 }
 
 /// status : "200"
@@ -222,17 +227,15 @@ class Screeninfo {
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
-
 class Head {
   Head({
-    String? status,
-    String? message,
-    String? module,
-  }) {
+      String? status, 
+      String? message, 
+      String? module,}){
     _status = status;
     _message = message;
     _module = module;
-  }
+}
 
   Head.fromJson(dynamic json) {
     _status = json['status'];
@@ -242,16 +245,13 @@ class Head {
   String? _status;
   String? _message;
   String? _module;
-  Head copyWith({
-    String? status,
-    String? message,
-    String? module,
-  }) =>
-      Head(
-        status: status ?? _status,
-        message: message ?? _message,
-        module: module ?? _module,
-      );
+Head copyWith({  String? status,
+  String? message,
+  String? module,
+}) => Head(  status: status ?? _status,
+  message: message ?? _message,
+  module: module ?? _module,
+);
   String? get status => _status;
   String? get message => _message;
   String? get module => _module;
@@ -263,4 +263,5 @@ class Head {
     map['module'] = _module;
     return map;
   }
+
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../customs/color/colorconts.dart';
 import 'moremainscreen.dart';
 
 class CardMore extends StatefulWidget {
   final String title;
-  const CardMore({Key? key, required this.title}) : super(key: key);
+  final String URL;
+  const CardMore({Key? key, required this.title, required this.URL}) : super(key: key);
 
   @override
   State<CardMore> createState() => _CardMoreState();
@@ -14,12 +16,17 @@ class CardMore extends StatefulWidget {
 
 class _CardMoreState extends State<CardMore> {
 
-
+   Uri _url = Uri.parse("{widget.URL}");
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => MoreMainScreen()));
+      onTap: ()
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => MoreMainScreen()))
+        async {
+          if (!await launchUrl(
+          Uri.parse('https://www.youtube.com/watch?v=FVoKe4sbUWA&list=RDo1of4hhyQUY&index=4&ab_channel=Praesun')))
+        throw 'Could not launch $_url';
+
       },
       child: Padding(
           padding:const EdgeInsets.fromLTRB(2, 0, 2, 1),
@@ -41,4 +48,6 @@ class _CardMoreState extends State<CardMore> {
       ),
     );
   }
+
 }
+
