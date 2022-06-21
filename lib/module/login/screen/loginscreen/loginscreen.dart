@@ -136,43 +136,40 @@ class _loginScreenState extends State<loginScreen> {
                             child: ButtonCustom(
                               onPressed: () {
 
-                                dialogOneLineOneBtn(
-                                    context,
-                                    "userID  :" +  userID + "\n" + "Password :" + passw,
-                                    errloin,
-                                    'Go',
-                                    onClickBtn: () {
-
-                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                        // int index = int.parse(widget.id);
-                                        return HomeScreen();
-                                        // DisplayBeerScreen();
-                                      }));
-                                    });
-
-                                // dialogOneLineTwoBtn(
+                                // dialogOneLineOneBtn(
                                 //     context,
                                 //     "userID  :" +  userID + "\n" + "Password :" + passw,
-                                //     'Confirm',
-                                //     'Cancel', onClickBtn: (String result) {
-                                //   Navigator.of(context).pop();
-                                //   switch (result) {
-                                //     case 'Cancel':
-                                //       {
-                                //         break;
-                                //       }
-                                //     case 'OK':
-                                //       {
+                                //     'Ok',
+                                //     onClickBtn: () {
+                                //
                                 //       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                //       // int index = int.parse(widget.id);
-                                //       return HomeScreen();
-                                //       // DisplayBeerScreen();
-                                //       }
-                                //       )
-                                //       );
-                                //       }
-                                //   }
-                                // });
+                                //         // int index = int.parse(widget.id);
+                                //         return HomeScreen();
+                                //         // DisplayBeerScreen();
+                                //       }));
+                                //     });
+
+                                dialogOneLineTwoBtn(
+                                    context,
+                                    "userID  :" +  userID + "\n" + "Password :" + passw,
+                                    'Confirm',
+                                    'Cancel', onClickBtn: (String result) {
+                                  Navigator.of(context).pop();
+                                  switch (result) {
+                                    case 'Cancel':
+                                      {
+                                        break;
+                                      }
+                                    case 'OK':
+                                      {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                      // int index = int.parse(widget.id);
+                                      return HomeScreen();
+                                      // DisplayBeerScreen();
+                                      }));
+                                      }
+                                  }
+                                });
 
                                 // showDialog(
                                 //     context: context,

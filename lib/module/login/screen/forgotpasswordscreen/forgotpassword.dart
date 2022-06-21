@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialog_widget.dart';
 import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
@@ -120,14 +121,25 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                         colorbutton: BC_ButtonGreen,
                         sizetext: sizeTextBig20,
                         colorborder: BSC_transparent,
+
                         onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) => CustomDialogBox(
-                                    id: '',
-                                    textfieldvalue: "UserID  : " + uservalue + "\nEmail  : " + emailvalue,
-                                    description: errforgotpasswordr1 + '\n \n ' + 'Do you want to continue?',
-                                    mapscreen: setNewForgotPasswordScreen(
+
+                          dialogOneLineTwoBtn(
+                              context,
+                              errforgotpasswordr1+ '\n \n ' + 'Do you want to continue?' ,
+                              'Confirm',
+                              'Cancel', onClickBtn: (String result) {
+                            Navigator.of(context).pop();
+                            switch (result) {
+                              case 'Cancel':
+                                {
+                                  break;
+                                }
+                              case 'OK':
+                                {
+                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                    // int index = int.parse(widget.id);
+                                    return setNewForgotPasswordScreen(
                                         textheadsetnewpassword: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.textheadsetnewpass}" ,
                                         textotpwillsent:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.textotpwillsent}" ,
                                         edtemailforgot:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.edtemailforgot}" ,
@@ -137,8 +149,30 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                                         texpleaseconfirm:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.texpleaseconfirm}"  ,
                                         btnsentotpagain: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.btnsentotpagain}" ,
                                         btnconfirm:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.btnconfirm}"
-                                    )
-                                  ));
+                                    );
+                                    // DisplayBeerScreen();
+                                  }));
+                                }
+                            }
+                          });
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (context) => CustomDialogBox(
+                          //           id: '',
+                          //           textfieldvalue: "UserID  : " + uservalue + "\nEmail  : " + emailvalue,
+                          //           description: errforgotpasswordr1 + '\n \n ' + 'Do you want to continue?',
+                          //           mapscreen: setNewForgotPasswordScreen(
+                          //               textheadsetnewpassword: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.textheadsetnewpass}" ,
+                          //               textotpwillsent:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.textotpwillsent}" ,
+                          //               edtemailforgot:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.edtemailforgot}" ,
+                          //               edtpassword: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.edtpass}" ,
+                          //               edtcpassword: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.edtcpass}" ,
+                          //               otp: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.otp}" ,
+                          //               texpleaseconfirm:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.texpleaseconfirm}"  ,
+                          //               btnsentotpagain: "${_dataFromAPIForgotPasswording?.body?.screeninfo?.btnsentotpagain}" ,
+                          //               btnconfirm:"${_dataFromAPIForgotPasswording?.body?.screeninfo?.btnconfirm}"
+                          //           )
+                          //         ));
                         },
                       ),
                     ),

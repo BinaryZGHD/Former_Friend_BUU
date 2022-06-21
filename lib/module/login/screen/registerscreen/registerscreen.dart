@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialog_widget.dart';
 import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
@@ -160,28 +161,56 @@ class _registerScreenState extends State<registerScreen> {
                         sizetext: sizeTextBig20,
                         colorborder: BSC_transparent,
                         onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) => CustomDialogBox(
-                                    id: '',
-                                    textfieldvalue: "Register  :  $uservalue" +
-                                        "\nTelrphone number  :  $phonevalue" +
-                                        "\nEmail  :  $emailvalue" +
-                                        "\nName  :  $namevalue" +
-                                        "\nLast name  :  $lastnamevalue" +
-                                        "\nPassword  :  $passwordvalue" +
-                                        "\nConfirm password  :  $confirmpasswordvalue",
-                                    description: errregidter1 + '\n \n ' + 'Do you want to continue?',
-                                    mapscreen: registerConfirmScreen(
-                                        titleconregis: "${_dataFromAPIRegisterWording?.body?.screeninfo?.titleconregis}" ,
-                                        textotpwillsent: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotpwillsent}" ,
-                                        textpleaseconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textpleaseconfirm}" ,
-                                        textsentotpagain:"${_dataFromAPIRegisterWording?.body?.screeninfo?.textsentotpagain}"  ,
-                                        textotp: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotp}" ,
-                                        btnconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.btnconfirm}" ,
-                                        edtemailreg:"${_dataFromAPIRegisterWording?.body?.screeninfo?.edtemailreg}"
-                                    ),
-                                  ));
+                          dialogOneLineTwoBtn(
+                              context,
+                              errregidter1 + '\n \n ' + 'Do you want to continue?',
+                              'Confirm',
+                              'Cancel', onClickBtn: (String result) {
+                            Navigator.of(context).pop();
+                            switch (result) {
+                              case 'Cancel':
+                                {
+                                  break;
+                                }
+                              case 'OK':
+                                {
+                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                    // int index = int.parse(widget.id);
+                                    return registerConfirmScreen(
+                                                      titleconregis: "${_dataFromAPIRegisterWording?.body?.screeninfo?.titleconregis}" ,
+                                                      textotpwillsent: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotpwillsent}" ,
+                                                      textpleaseconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textpleaseconfirm}" ,
+                                                      textsentotpagain:"${_dataFromAPIRegisterWording?.body?.screeninfo?.textsentotpagain}"  ,
+                                                      textotp: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotp}" ,
+                                                      btnconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.btnconfirm}" ,
+                                                      edtemailreg:"${_dataFromAPIRegisterWording?.body?.screeninfo?.edtemailreg}"
+                                                  );
+                                  }));
+                                }
+                            }
+                          });
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (context) => CustomDialogBox(
+                          //           id: '',
+                          //           textfieldvalue: "Register  :  $uservalue" +
+                          //               "\nTelrphone number  :  $phonevalue" +
+                          //               "\nEmail  :  $emailvalue" +
+                          //               "\nName  :  $namevalue" +
+                          //               "\nLast name  :  $lastnamevalue" +
+                          //               "\nPassword  :  $passwordvalue" +
+                          //               "\nConfirm password  :  $confirmpasswordvalue",
+                          //           description: errregidter1 + '\n \n ' + 'Do you want to continue?',
+                          //           mapscreen: registerConfirmScreen(
+                          //               titleconregis: "${_dataFromAPIRegisterWording?.body?.screeninfo?.titleconregis}" ,
+                          //               textotpwillsent: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotpwillsent}" ,
+                          //               textpleaseconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textpleaseconfirm}" ,
+                          //               textsentotpagain:"${_dataFromAPIRegisterWording?.body?.screeninfo?.textsentotpagain}"  ,
+                          //               textotp: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotp}" ,
+                          //               btnconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.btnconfirm}" ,
+                          //               edtemailreg:"${_dataFromAPIRegisterWording?.body?.screeninfo?.edtemailreg}"
+                          //           ),
+                          //         ));
                         },
                       ),
                     ),
