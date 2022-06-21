@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
 import 'package:flutter/material.dart';
 class ProfileGeneralDataHead extends StatefulWidget {
   final dataFromAPI;

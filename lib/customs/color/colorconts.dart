@@ -24,3 +24,4 @@ const FC_Blue = Color(0xFF0647FD);
 const transparent = Color(0x00000000);
 const backgroundAppBar = Color(0xFFFFFFFF);
 const backgroundDawer = Color(0xFFD7DBFF);
+const circleprogresscolor = Color(0xFFF73D93);

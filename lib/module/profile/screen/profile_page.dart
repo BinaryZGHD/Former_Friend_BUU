@@ -74,38 +74,39 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
             print(state.errormessage);
           }
         },
-        child: Scaffold(
-          appBar:
-          AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                size: sizeTitle24,
-                color: Colors.black,
-              ),
-            ),
-            title: Text(
-              // '${_dataFromAPI.body?.screeninfo?.titleprofile}',
-              'ทดสอบ bloc',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: sizeTitle24,
-              ),
-            ),
-          ),
-          body: BlocBuilder<ProfileBloc,ProfileState>(
+        child: BlocBuilder<ProfileBloc,ProfileState>(
             builder: (context,state){
           if(state is ProfileApiSuccessState){
             _apiProfileResponse = state.response;
+            // print(jsonEncode(_apiProfileResponse));
           return
             // Container(color: Colors.pink);
             //------
-            SingleChildScrollView(
+            Scaffold(
+                appBar:
+                AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                leading: IconButton(
+                onPressed: () {
+              Navigator.pop(context);
+            },
+              icon: Icon(
+              Icons.arrow_back,
+              size: sizeTitle24,
+              color: Colors.black,
+              ),
+              ),
+              title: Text(
+              '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
+              // 'ทดสอบ bloc',
+              style: TextStyle(
+              color: Colors.black,
+              fontSize: sizeTitle24,
+              ),
+              ),
+              ),
+              body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -124,30 +125,30 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                           backgroundImage: NetworkImage(imgurl),
                           radius: 10,
                         ))),
-                // ProfileGeneralDataHead(
-                //     dataFromAPI: _dataFromAPI
-                // ),
-                // ProfileEducationDataHead(
-                //   dataFromAPI: _dataFromAPI,
-                // ),
-                // ProfileAddressDataHead(
-                //   dataFromAPI: _dataFromAPI,
-                // ),
-                // ProfileContactDataHead(
-                //   dataFromAPI: _dataFromAPI,
-                // ),
-                // ProfileCareerDataHead(
-                //   dataFromAPI: _dataFromAPI,
-                // ),
+                ProfileGeneralDataHead(
+                    dataFromAPI: _apiProfileResponse
+                ),
+                ProfileEducationDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+                ProfileAddressDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+                ProfileContactDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+                ProfileCareerDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
               ],
             ),
+              )
           );
           //------
           }else {
             return Container();
     }
     }
-        )
         )
         );
 }
