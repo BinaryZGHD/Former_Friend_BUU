@@ -8,7 +8,6 @@ import 'package:f2fbuu/module/profile/components/generaldatatab.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import '../../../customs/size/size.dart';
 import 'package:http/http.dart' as http;
 import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
@@ -21,14 +20,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final attentionsitems = ['', 'คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
-  late String attentionsvalue = '';
-  final statusitems = ['', 'ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
-  late String statusvalue = '';
-  final jobtypeitems = ['', '1', '2', '3'];
-  late String jobtypevalue = '';
   bool isVisible = true;
-
 //---------------------------------API----------------------------------------//
   late Profilescreeninfoapi _dataFromAPI;
 
@@ -56,7 +48,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     String imgurl = 'https://picsum.photos/250?image=9';
-    var apiscreeninfo = api['body']['screeninfo'];
     return FutureBuilder(
       future: getProfileScreenInfo(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {

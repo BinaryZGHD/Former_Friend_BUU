@@ -1,4 +1,3 @@
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,8 +15,6 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
 
   @override
   Widget build(BuildContext context) {
-    var apiscreeninfo = api['body']['screeninfo'];
-    var apiprofile_address_info = api['body']['profile_address_info'];
     var dataFromAPI = widget.dataFromAPI;
     return Column(
       children: [

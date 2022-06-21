@@ -1,4 +1,4 @@
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,8 +12,6 @@ class ProfileContactDataHead extends StatefulWidget {
 
 class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
   bool ispressed = true;
-  var apiscreeninfo = api['body']['screeninfo'];
-  var apiprofile_contact_info = api['body']['profile_contact_info'];
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;

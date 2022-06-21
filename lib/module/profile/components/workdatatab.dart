@@ -1,5 +1,4 @@
 import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
 import 'package:f2fbuu/module/profile/components/hiddencareerdatatab.dart';
 import 'package:flutter/material.dart';
