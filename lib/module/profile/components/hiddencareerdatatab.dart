@@ -1,15 +1,16 @@
+import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDropdownCareerDataTab extends StatefulWidget {
   final String jobtextleft;
-  final String jobitemvalue;
-  final List<dynamic> jobitem;
+  final String userjobtypevalue;
+  final List<Jobtype> jobtypearray;
 
   const ProfileDropdownCareerDataTab(
       {Key? key,
         required this.jobtextleft,
-        required this.jobitemvalue,
-        required this.jobitem})
+        required this.userjobtypevalue,
+        required this.jobtypearray})
       : super(key: key);
 
   @override
@@ -21,10 +22,7 @@ class _ProfileDropdownCareerDataTabState
     extends State<ProfileDropdownCareerDataTab> {
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.jobtextleft;
-    String? jobitemvalue = widget.jobitemvalue;
-    List jobitem = widget.jobitem;
-    List<String> listapijobitems = [jobitem[0]['jobname'],jobitem[1]['jobname'],jobitem[2]['jobname'],jobitem[3]['jobname']];
+    String? userjobtypevalue = widget.userjobtypevalue;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -38,7 +36,7 @@ class _ProfileDropdownCareerDataTabState
             Container(
               width: MediaQuery.of(context).size.width * 0.6,
               child: Text(
-                textleft,
+                widget.jobtextleft,
                 style: TextStyle(fontSize: 18),
               ),
             ),
@@ -49,12 +47,12 @@ class _ProfileDropdownCareerDataTabState
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
-                  value: jobitemvalue,
-                  items: listapijobitems
+                  value: userjobtypevalue,
+                  items: widget.jobtypearray
                       .map((item) => DropdownMenuItem<String>(
-                      value: item, child: Text(item)))
+                      value: item.jobname, child: Text(item.jobname??'')))
                       .toList(),
-                  onChanged: (item) => setState(() => jobitemvalue = item),
+                  onChanged: (item) => setState(() => userjobtypevalue = item),
                 ),
               ),
             ),
