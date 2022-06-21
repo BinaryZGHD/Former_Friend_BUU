@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as httpurl;
@@ -134,14 +135,50 @@ class _loginScreenState extends State<loginScreen> {
                           Center(
                             child: ButtonCustom(
                               onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => CustomDialogBox(
-                                          id: '',
-                                          textfieldvalue: "userID  :" +  userID + "\n" + "Password :" + passw,
-                                          description: errloin  + '\n \n ' + 'Do you want to continue?',
-                                          mapscreen: HomeScreen(),
-                                        ));
+
+                                // dialogOneLineOneBtn(
+                                //     context,
+                                //     "userID  :" +  userID + "\n" + "Password :" + passw,
+                                //     'Ok',
+                                //     onClickBtn: () {
+                                //
+                                //       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                //         // int index = int.parse(widget.id);
+                                //         return HomeScreen();
+                                //         // DisplayBeerScreen();
+                                //       }));
+                                //     });
+
+                                dialogOneLineTwoBtn(
+                                    context,
+                                    "userID  :" +  userID + "\n" + "Password :" + passw,
+                                    'Confirm',
+                                    'Cancel', onClickBtn: (String result) {
+                                  Navigator.of(context).pop();
+                                  switch (result) {
+                                    case 'Cancel':
+                                      {
+                                        break;
+                                      }
+                                    case 'OK':
+                                      {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                      // int index = int.parse(widget.id);
+                                      return HomeScreen();
+                                      // DisplayBeerScreen();
+                                      }));
+                                      }
+                                  }
+                                });
+
+                                // showDialog(
+                                //     context: context,
+                                //     builder: (context) => CustomDialogBox(
+                                //           id: '',
+                                //           textfieldvalue: "userID  :" +  userID + "\n" + "Password :" + passw,
+                                //           description: errloin  + '\n \n ' + 'Do you want to continue?',
+                                //           mapscreen: HomeScreen(),
+                                //         ));
                               },
                               label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",
                               colortext: TC_Black,

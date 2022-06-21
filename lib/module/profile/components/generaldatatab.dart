@@ -12,7 +12,7 @@ class ProfileGeneralDataHead extends StatefulWidget {
 }
 
 class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
-  bool ispressed = true;
+  bool ispressed = false;
   // var apiscreeninfo = api['body']['screeninfo'];
   // var apiprofile_general_info = api['body']['profile_general_info'];
 
