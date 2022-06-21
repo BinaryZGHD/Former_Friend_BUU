@@ -1,4 +1,4 @@
-var attentionvalue = 'อื่นๆ';
+// var attentionvalue = 'อื่นๆ';
 var statusvalue = 'อื่นๆ';
 var jobtypevalue = 'อื่นๆ';
 

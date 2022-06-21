@@ -1,6 +1,6 @@
 import 'dart:convert';
 /// head : {"status":"200","message":"susccess","module":"Home"}
-/// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status"},"profile_general_info":{"name":"Ton","surname":"Sai","nickname":"TTT","stu_code":"XX03XXXX","gen":"65","tel":"0123456789"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_info":{"attention":["อื่นๆ","คอมพิวเตอร์ ","ครู","ประกันภัย","สถิติ"],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"}],"userworkplace":"BURAPHA U","usercareer":"Developer","usercompany":"Burapha company","userattention":"อื่นๆ","userstatus":"อื่นๆ","userjobtype":"อื่นๆ"}}
+/// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status"},"profile_general_info":{"name":"Ton","surname":"Sai","nickname":"TTT","stu_code":"XX03XXXX","gen":"65","tel":"0123456789"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_info":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"อื่นๆ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"}],"userworkplace":"BURAPHA U","usercareer":"Developer","usercompany":"Burapha company","userattention":"อื่นๆ","userstatus":"อื่นๆ","userjobtype":"อื่นๆ"}}
 
 Profilescreeninfoapi profilescreeninfoapiFromJson(String str) => Profilescreeninfoapi.fromJson(json.decode(str));
 String profilescreeninfoapiToJson(Profilescreeninfoapi data) => json.encode(data.toJson());
@@ -44,7 +44,7 @@ Profilescreeninfoapi copyWith({  Head? head,
 /// profile_edu_info : {"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"}
 /// profile_address_info : {"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"}
 /// profile_contact_info : {"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"}
-/// profile_career_info : {"attention":["อื่นๆ","คอมพิวเตอร์ ","ครู","ประกันภัย","สถิติ"],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"}],"userworkplace":"BURAPHA U","usercareer":"Developer","usercompany":"Burapha company","userattention":"อื่นๆ","userstatus":"อื่นๆ","userjobtype":"อื่นๆ"}
+/// profile_career_info : {"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"อื่นๆ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"}],"userworkplace":"BURAPHA U","usercareer":"Developer","usercompany":"Burapha company","userattention":"อื่นๆ","userstatus":"อื่นๆ","userjobtype":"อื่นๆ"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -123,7 +123,7 @@ Body copyWith({  Screeninfo? screeninfo,
 
 }
 
-/// attention : ["อื่นๆ","คอมพิวเตอร์ ","ครู","ประกันภัย","สถิติ"]
+/// attention : [{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"อื่นๆ"}]
 /// status : [{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"}]
 /// jobtype : [{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"}]
 /// userworkplace : "BURAPHA U"
@@ -137,7 +137,7 @@ ProfileCareerInfo profileCareerInfoFromJson(String str) => ProfileCareerInfo.fro
 String profileCareerInfoToJson(ProfileCareerInfo data) => json.encode(data.toJson());
 class ProfileCareerInfo {
   ProfileCareerInfo({
-      List<String>? attention, 
+      List<Attention>? attention, 
       List<Status>? status, 
       List<Jobtype>? jobtype, 
       String? userworkplace, 
@@ -158,7 +158,12 @@ class ProfileCareerInfo {
 }
 
   ProfileCareerInfo.fromJson(dynamic json) {
-    _attention = json['attention'] != null ? json['attention'].cast<String>() : [];
+    if (json['attention'] != null) {
+      _attention = [];
+      json['attention'].forEach((v) {
+        _attention?.add(Attention.fromJson(v));
+      });
+    }
     if (json['status'] != null) {
       _status = [];
       json['status'].forEach((v) {
@@ -178,7 +183,7 @@ class ProfileCareerInfo {
     _userstatus = json['userstatus'];
     _userjobtype = json['userjobtype'];
   }
-  List<String>? _attention;
+  List<Attention>? _attention;
   List<Status>? _status;
   List<Jobtype>? _jobtype;
   String? _userworkplace;
@@ -187,7 +192,7 @@ class ProfileCareerInfo {
   String? _userattention;
   String? _userstatus;
   String? _userjobtype;
-ProfileCareerInfo copyWith({  List<String>? attention,
+ProfileCareerInfo copyWith({  List<Attention>? attention,
   List<Status>? status,
   List<Jobtype>? jobtype,
   String? userworkplace,
@@ -206,7 +211,7 @@ ProfileCareerInfo copyWith({  List<String>? attention,
   userstatus: userstatus ?? _userstatus,
   userjobtype: userjobtype ?? _userjobtype,
 );
-  List<String>? get attention => _attention;
+  List<Attention>? get attention => _attention;
   List<Status>? get status => _status;
   List<Jobtype>? get jobtype => _jobtype;
   String? get userworkplace => _userworkplace;
@@ -218,7 +223,9 @@ ProfileCareerInfo copyWith({  List<String>? attention,
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['attention'] = _attention;
+    if (_attention != null) {
+      map['attention'] = _attention?.map((v) => v.toJson()).toList();
+    }
     if (_status != null) {
       map['status'] = _status?.map((v) => v.toJson()).toList();
     }
@@ -285,6 +292,33 @@ Status copyWith({  String? statusname,
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['statusname'] = _statusname;
+    return map;
+  }
+
+}
+
+/// attenname : "อื่นๆ"
+
+Attention attentionFromJson(String str) => Attention.fromJson(json.decode(str));
+String attentionToJson(Attention data) => json.encode(data.toJson());
+class Attention {
+  Attention({
+      String? attenname,}){
+    _attenname = attenname;
+}
+
+  Attention.fromJson(dynamic json) {
+    _attenname = json['attenname'];
+  }
+  String? _attenname;
+Attention copyWith({  String? attenname,
+}) => Attention(  attenname: attenname ?? _attenname,
+);
+  String? get attenname => _attenname;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['attenname'] = _attenname;
     return map;
   }
 

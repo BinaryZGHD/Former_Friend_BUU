@@ -13,8 +13,8 @@ class ProfileGeneralDataHead extends StatefulWidget {
 
 class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   bool ispressed = true;
-  var apiscreeninfo = api['body']['screeninfo'];
-  var apiprofile_general_info = api['body']['profile_general_info'];
+  // var apiscreeninfo = api['body']['screeninfo'];
+  // var apiprofile_general_info = api['body']['profile_general_info'];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,8 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                       onPressed: () {
                         setState(() {
                           ispressed = !ispressed;
-                        });
+                        }
+                        );
                         // setState((){
                         //   if (ispressed == true) {
                         //     editorsave = 'บันทึก';
@@ -147,12 +148,12 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      texttest = value;
-                      print(texttest);
-                    });
-                  },
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     texttest = value;
+                  //     print(texttest);
+                  //   });
+                  // },
                   initialValue: textright,
                 ),
 

@@ -1,16 +1,17 @@
+import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
 import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
 import 'package:f2fbuu/module/profile/components/hiddencareerdatatab.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCareerDropdownTab extends StatefulWidget {
+  final List<Status> statusarray;
   final String textleft;
-  final String statusitemvalue;
+  final String userstatusvalue;
   final String jobtextleft;
-  final String jobitemvalue;
-  final List<dynamic> jobitem;
+  final String userjobvalue;
+  final List<Jobtype> jobtypearray;
   final bool ispressed;
-  final List<dynamic> status;
   final String subtitleworkplace;
   final String userworkplace;
   final String usercareer;
@@ -20,18 +21,18 @@ class ProfileCareerDropdownTab extends StatefulWidget {
   const ProfileCareerDropdownTab(
       {Key? key,
         required this.textleft,
-        required this.statusitemvalue,
+        required this.userstatusvalue,
         required this.jobtextleft,
-        required this.jobitem,
-        required this.jobitemvalue,
+        required this.jobtypearray,
+        required this.userjobvalue,
         required this.ispressed,
-        required this.status,
         required this.subtitleworkplace,
         required this.userworkplace,
         required this.usercareer,
         required this.usercompany,
         required this.textcareer,
-        required this.textcomp})
+        required this.textcomp,
+        required this.statusarray})
       : super(key: key);
 
   @override
@@ -42,30 +43,25 @@ class ProfileCareerDropdownTab extends StatefulWidget {
 class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
   late String textleft;
   late String? itemvalue;
-  late List<dynamic> status = widget.status;
   bool isJobInStatusVisible = false;
 
 
   @override
   void initState() {
     textleft = widget.textleft;
-    itemvalue = widget.statusitemvalue;
+    itemvalue = widget.userstatusvalue;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     bool ispressed = widget.ispressed;
-    String texttest = 'testtesttest';
     String subtitleworkplace = widget.subtitleworkplace;
     String userworkplace = widget.userworkplace;
     String usercareer = widget.usercareer;
     String usercompany = widget.usercompany;
     String textcareer = widget.textcareer;
     String textcomp = widget.textcomp;
-    List<dynamic> status = widget.status;
-    List<String> listapistatusitems = [status[0]['statusname'],status[1]['statusname'],status[2]['statusname'],status[3]['statusname']];
-    print(listapistatusitems);
 
 
     return Column(
@@ -94,14 +90,14 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                       ),
-                      value: listapistatusitems[0],
-                      items: listapistatusitems
+                      value: itemvalue,
+                      items: widget.statusarray
                           .map((item) => DropdownMenuItem<String>(
-                          value: item, child: Text(item)))
+                          value: item.statusname, child: Text(item.statusname??'')))
                           .toList(),
                       onChanged: (item) {
                         itemvalue = item;
-                        if (itemvalue == listapistatusitems[3]) {
+                        if (itemvalue == 'มีงานทำ') {
                           isJobInStatusVisible = true;
                         } else {
                           isJobInStatusVisible = false;
@@ -121,9 +117,9 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
           child: Column(
             children: [
               ProfileDropdownCareerDataTab(
-                jobitemvalue: widget.jobitemvalue,
+                userjobtypevalue: widget.userjobvalue,
                 jobtextleft: widget.jobtextleft,
-                jobitem: widget.jobitem,
+                jobtypearray: widget.jobtypearray,
               ),
               ProfileCareerDataTab(
                   ispressed: ispressed,
