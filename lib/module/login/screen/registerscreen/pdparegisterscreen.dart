@@ -62,6 +62,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
                       buildContainerTitle(),
                       Expanded(
                         child: Container(
+                          color: BSC_transparent,
                             width: MediaQuery.of(context).size.width,
                             child: SfPdfViewer.network("${_dataFromAPIPdpaWording?.body?.linkpdpa}")
                           // Image.asset(
@@ -146,7 +147,8 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
 
   Container buildContainerTitle() {
     return Container(
-      constraints: BoxConstraints.expand(height: 50),
+
+      constraints: BoxConstraints.expand(height: 60),
       child: Text("${_dataFromAPIPdpaWording?.body?.screeninfo?.textPDPAhead}" ,
           textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
     );

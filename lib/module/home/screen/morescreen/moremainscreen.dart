@@ -38,7 +38,7 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
     var response = await httpurl.get(url, headers: <String, String>{});
 
     _dataFromAPIHomeMorewording = homemorewordingFromJson(utf8.decode(response.bodyBytes));
-    print(response.body);
+    // print(response.body);
     // // print(_dataFromAPI?.head?.message);// get the data from the api
     // print(_dataFromAPIRegisterWording?.body?.screeninfo?.textreghead);// get the data from the api
     return _dataFromAPIHomeMorewording;
@@ -91,57 +91,36 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: MediaQuery.of(context).size.width * 0.3,
-                          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: BC_ButtonRed),
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.auto_stories_rounded,
-                                      color: Colors.white,
-                                      size: MediaQuery.of(context).size.width * 0.2,
-                                    ),
-                                    Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnstd}",
-                                      style: TextStyle(
-                                        fontSize: sizeTextBig20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ))),
+                      buildBoard(),
+
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.01,
                       ),
-                      Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: MediaQuery.of(context).size.width * 0.3,
-                          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: BC_ButtonRed),
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.auto_stories_rounded,
-                                      color: Colors.white,
-                                      size: MediaQuery.of(context).size.width * 0.2,
-                                    ),
-                                    Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntc}",
-                                      style: TextStyle(
-                                        fontSize: sizeTextBig20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ))),
+                      buildBoard(),
+                      // Container(
+                      //     width: MediaQuery.of(context).size.width * 0.4,
+                      //     // height: MediaQuery.of(context).size.width * 0.3,
+                      //     padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: BC_ButtonRed),
+                      //     child: Padding(
+                      //         padding: const EdgeInsets.all(8.0),
+                      //         child: Center(
+                      //           child: Column(
+                      //             children: [
+                      //               Icon(
+                      //                 Icons.auto_stories_rounded,
+                      //                 color: Colors.white,
+                      //                 size: MediaQuery.of(context).size.width * 0.2,
+                      //               ),
+                      //               Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntc}",
+                      //                 style: TextStyle(
+                      //                   fontSize: sizeTextBig20,
+                      //                   fontWeight: FontWeight.w600,
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ))),
                     ],
                   ),
                   Padding(
@@ -166,8 +145,8 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
                       ),
                     ),
                   ),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntermandcon}", URL: '',),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnfaq}", URL: '',),
+                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntermandcon}", URL: 'https://flutter.dev',),
+                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnfaq}", URL: 'https://flutter.dev',),
                   CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnconus}", URL: '',)
                 ]),
               ),
@@ -181,5 +160,32 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
         );
       },
     );
+  }
+
+   buildBoard() {
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.4,
+        // height: MediaQuery.of(context).size.width * 0.3,
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: BC_ButtonRed),
+        child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.auto_stories_rounded,
+                    color: Colors.white,
+                    size: MediaQuery.of(context).size.width * 0.2,
+                  ),
+                  Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnstd}",
+                    style: TextStyle(
+                      fontSize: sizeTextBig20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            )));
   }
 }
