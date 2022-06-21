@@ -68,7 +68,7 @@ class ItemActivity extends StatelessWidget {
                     child: Container(
                       color: transparent,
                         height: 80,
-                        width: MediaQuery.of(context).size.width - 170,
+                        // width: MediaQuery.of(context).size.width - 170,
                         margin: EdgeInsets.only(right: 5,top: 10,bottom: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
