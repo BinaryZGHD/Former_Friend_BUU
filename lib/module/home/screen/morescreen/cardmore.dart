@@ -16,15 +16,21 @@ class CardMore extends StatefulWidget {
 
 class _CardMoreState extends State<CardMore> {
 
-   Uri _url = Uri.parse("{widget.URL}");
+
+
   @override
   Widget build(BuildContext context) {
+    Uri _url = Uri.parse("${widget.URL}");
+    print("_url555555"+ "${_url}");
     return GestureDetector(
       onTap: ()
         // Navigator.push(context, MaterialPageRoute(builder: (context) => MoreMainScreen()))
         async {
           if (!await launchUrl(
-          Uri.parse('https://www.youtube.com/watch?v=FVoKe4sbUWA&list=RDo1of4hhyQUY&index=4&ab_channel=Praesun')))
+          Uri.parse("${_url}"),
+          )) {
+            print('Could not launch ${_url}');
+          }
         throw 'Could not launch $_url';
 
       },
