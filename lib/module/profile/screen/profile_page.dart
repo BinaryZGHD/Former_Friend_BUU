@@ -279,7 +279,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           );
         }
-        return LinearProgressIndicator();
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: Text(''),
+            centerTitle: true,
+          ),
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+        // LinearProgressIndicator();
       },
     );
   }

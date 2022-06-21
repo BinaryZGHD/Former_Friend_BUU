@@ -108,8 +108,8 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
           leading: IconButton(
             onPressed: () {
               setState(() {
-                print(id);
-                print(data['venue']);
+                // print(id);
+                // print(data['venue']);
               });
               Navigator.pop(context);
             },
@@ -452,7 +452,16 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
         ),
       );
     }
-    return CircularProgressIndicator();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(''),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
         }
       );
   }
