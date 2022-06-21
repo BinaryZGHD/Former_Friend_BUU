@@ -2,6 +2,13 @@ part of 'login_bloc.dart';
 
 @immutable
 abstract class LoginEvent {}
+
+
+class LoginScreenInfoEvent extends LoginEvent{
+
+}
+
+
 class LoginSummitEvent extends LoginEvent {
   String users ;
   String password ;

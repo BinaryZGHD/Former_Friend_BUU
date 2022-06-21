@@ -1,7 +1,28 @@
 part of 'login_bloc.dart';
 
-@immutable
-abstract class LoginState {}
+abstract class LoginState {
+ const LoginState();
+}
+
+
+class LoginScreenInfoSuccessState extends LoginState{
+  ScreenLoginResponse  response;
+  LoginScreenInfoSuccessState({required this.response});
+}
+
+class LoginLoading extends LoginState{
+
+}
+
+class LoginEndLoading extends LoginState{
+  
+}
+
+class LoginError extends LoginState{
+  String message;
+  LoginError({required this.message});
+}
+
 
 class LoginInitial extends LoginState {
   @override

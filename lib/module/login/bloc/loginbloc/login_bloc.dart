@@ -1,17 +1,18 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
+import 'package:f2fbuu/module/login/repository/login_repository.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
+
+import '../../model/response/screen_login.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
+class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
   LoginBloc() : super(LoginInitial()) {
     on<LoginSummitEvent>((event, emit) {
       if (event.users == "q" //&& event.password == "q"
-       ) {
+          ) {
         emit(LoginStatusState(statuscheck: true));
       } else {
         emit(LoginStatusState(
@@ -34,6 +35,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       } else {
         emit(LoginForgotState(regstatus: "F3"));
       }
+    });
+
+    on<LoginScreenInfoEvent>((event, emit) async {
+     
+      try {
+        emit(LoginLoading());
+        Response response = await getScreenLogin();
+        emit(LoginEndLoading());
+        if (response.statusCode == 200) {
+          ScreenLoginResponse screenLoginResponse =
+              ScreenLoginResponse.fromJson(response.data);
+          if (screenLoginResponse.head?.status == "200") {
+            emit(LoginScreenInfoSuccessState(response: screenLoginResponse));
+          } else {
+            emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(LoginError(message: response.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(LoginError(message: e.response?.statusMessage ?? ""));
+      }
+   
     });
   }
 }

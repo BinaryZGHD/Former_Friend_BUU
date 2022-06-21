@@ -8,13 +8,13 @@ import 'constantsdialog.dart';
 class CustomDialogBox extends StatefulWidget {
   final String textfieldvalue, id, description;
   final Widget mapscreen;
-
+  final VoidCallback? onPressed;
   const CustomDialogBox({
     Key? key,
     required this.id,
     required this.textfieldvalue,
     required this.description,
-    required this.mapscreen,
+    required this.mapscreen,  this.onPressed,
   }) : super(key: key);
 
   @override
@@ -81,13 +81,15 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                        // int index = int.parse(widget.id);
-                        return widget.mapscreen;
-                        // DisplayBeerScreen();
-                      }));
-                    },
+                  onPressed: this.widget.onPressed,
+                    // onPressed: () {
+                    //   // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                    //   //   // int index = int.parse(widget.id);
+                    //   //   return widget.mapscreen;
+                    //   //   // DisplayBeerScreen();
+                    //   // }));
+                    //   Navigator.of(context).pop();
+                    // },
                     child: Container(
                       constraints: BoxConstraints(maxWidth: 50.0, minHeight: 30.0),
                       alignment: Alignment.center,
