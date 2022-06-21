@@ -1,11 +1,20 @@
 import 'dart:convert';
 
+<<<<<<< HEAD
 
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 
+=======
+<<<<<<< HEAD
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+=======
+import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
+>>>>>>> Ppreem
+>>>>>>> 074d24dae644391c83ddb11a6214474f25035344
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,6 +131,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                     height: MediaQuery.of(context).size.height * 0.025,
                                   ),
 
+<<<<<<< HEAD
 
                           // TextLinkToScreenCustom(
                           //   // onPressed: () {
@@ -191,6 +201,77 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           //     sizetext: sizeTextBig20,
                           //     colorborder: BSC_transparent,
 
+=======
+<<<<<<< HEAD
+                          TextLinkToScreenCustom(
+                            // onPressed: () {
+                            //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
+                            //   // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
+                            //   // print("User :" + userID + "\n" + "Password :" + passw);
+                            //   // print(event.number);
+                            // },
+                            linklabel: "${_dataFromAPI?.body?.screeninfo?.btnforgotpass}",
+                            mapscreen: forgotPasswordScreen(),
+                            linktextcolor: TC_forgot, sizetext: sizeTextSmaller14,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.025,
+                          ),
+                          Center(
+                            child: ButtonCustom(
+                              onPressed: () {
+
+                                // dialogOneLineOneBtn(
+                                //     context,
+                                //     "userID  :" +  userID + "\n" + "Password :" + passw,
+                                //     'Ok',
+                                //     onClickBtn: () {
+                                //
+                                //       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                //         // int index = int.parse(widget.id);
+                                //         return HomeScreen();
+                                //         // DisplayBeerScreen();
+                                //       }));
+                                //     });
+
+                                dialogOneLineTwoBtn(
+                                    context,
+                                    "userID  :" +  userID + "\n" + "Password :" + passw,
+                                    'Confirm',
+                                    'Cancel', onClickBtn: (String result) {
+                                  Navigator.of(context).pop();
+                                  switch (result) {
+                                    case 'Cancel':
+                                      {
+                                        break;
+                                      }
+                                    case 'OK':
+                                      {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                      // int index = int.parse(widget.id);
+                                      return HomeScreen();
+                                      // DisplayBeerScreen();
+                                      }));
+                                      }
+                                  }
+                                });
+
+                                // showDialog(
+                                //     context: context,
+                                //     builder: (context) => CustomDialogBox(
+                                //           id: '',
+                                //           textfieldvalue: "userID  :" +  userID + "\n" + "Password :" + passw,
+                                //           description: errloin  + '\n \n ' + 'Do you want to continue?',
+                                //           mapscreen: HomeScreen(),
+                                //         ));
+                              },
+                              label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",
+                              colortext: TC_Black,
+                              colorbutton: BC_ButtonGreen,
+                              sizetext: sizeTextBig20,
+                              colorborder: BSC_transparent,
+=======
+>>>>>>> 074d24dae644391c83ddb11a6214474f25035344
                                   TextLinkToScreenCustom(
                                     // onPressed: () {
                                     //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
@@ -254,6 +335,10 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                   ),
                                 ],
                               ),
+<<<<<<< HEAD
+=======
+>>>>>>> Ppreem
+>>>>>>> 074d24dae644391c83ddb11a6214474f25035344
                             ),
                           ),
                         ],
