@@ -10,9 +10,9 @@ class ProfileApiSuccessState extends ProfileState{
   ProfileApiSuccessState({required this.response});
 }
 
-class ProfileErrorState extends ProfileState{
+class ProfileError extends ProfileState{
   String errormessage;
-  ProfileErrorState({required this.errormessage});
+  ProfileError({required this.errormessage});
 }
 
 class ProfileInitial extends ProfileState {
@@ -21,13 +21,10 @@ class ProfileInitial extends ProfileState {
 }
 
 class ProfileLoading extends ProfileState {
-  @override
-  String toString() => 'ProfileLoading';
 }
 
 class ProfileLoadingSuccess extends ProfileState {
-  @override
-  String toString() => 'ProfileLoadingsuccess';
+
 }
 
 class ProfileStatusState extends ProfileState {

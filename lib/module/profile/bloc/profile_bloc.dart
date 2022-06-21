@@ -21,13 +21,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (apiProfileResponse.head?.status == "200") {
             emit(ProfileApiSuccessState(response: apiProfileResponse));
           } else {
-            emit(ProfileErrorState(errormessage: apiProfileResponse.head?.message ?? ""));
+            emit(ProfileError(errormessage: apiProfileResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileErrorState(errormessage: response.statusMessage ?? ""));
+          emit(ProfileError(errormessage: response.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileErrorState(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
       }
 
     });

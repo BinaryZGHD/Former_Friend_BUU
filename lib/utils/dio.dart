@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class MyDio {
   static final _options = BaseOptions(
-    baseUrl: 'https://test-api-ceecf.web.app/',
+    baseUrl: 'https://webzbinaryz.web.app/',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );

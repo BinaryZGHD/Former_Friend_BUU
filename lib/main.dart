@@ -1,3 +1,6 @@
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -27,8 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
+    final profileBloc = BlocProvider<ProfileBloc>(create: (context)=> ProfileBloc());
     return MultiBlocProvider(
-      providers: [loginBloc],
+      providers: [loginBloc, profileBloc],
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
