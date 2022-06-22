@@ -6,7 +6,10 @@ class ProfileGeneralDataHead extends StatefulWidget {
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
 }
 class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
-  bool ispressed = true;
+  bool ispressed = false;
+  // var apiscreeninfo = api['body']['screeninfo'];
+  // var apiprofile_general_info = api['body']['profile_general_info'];
+
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
