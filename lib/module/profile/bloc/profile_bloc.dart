@@ -12,17 +12,6 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepository {
-
-  // Future pickImage() async {
-  //   try {
-  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //     if (image == null) return;
-  //     final imageTemp = File(image.path);
-  //     setState(() => this.image = imageTemp);
-  //   } on PlatformException catch (e) {
-  //     print('Failed to pick image');
-  //   }
-  // }
   ProfileBloc() : super(ProfileInitial()) {
     on<ProfileApiEvent>((event, emit) async{
       try {
@@ -46,15 +35,29 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
 
     }
     );
+    // on<ChangeAvatarRequest>((event, emit) async{
+    //   if (event is ChangeAvatarRequest){
+    //     ImagePicker();
+    //   }
+    //   emit(ChangeAvatarRequestState());
+    //   print('changeavatarstate');
+    // }
+    // );
+    /////////////////////////////////////////////////////////////////////////
     on<ChangeAvatarRequest>((event, emit) async{
-      if (event is ChangeAvatarRequest){
-        ImagePicker();
+      if (event is ChangeAvatarRequest) {
+        print('Change avatar request');
+        final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+        if (image == null) return;
+        final imageTemp = File(image.path);
+        emit(ChooseAvatarSuccess(avatarimg: imageTemp));
+        print(imageTemp);
+        // emit(ChangeAvatarProcress());
       }
 
-      emit(ChangeAvatarRequestState());
-      print('changeavatarstate');
 
     }
     );
+
   }
 }

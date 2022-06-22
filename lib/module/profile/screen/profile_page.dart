@@ -26,17 +26,18 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
   File? image;
-
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemp = File(image.path);
-      setState(() => this.image = imageTemp);
-    } on PlatformException catch (e) {
-      print('Failed to pick image');
-    }
-  }
+  ChooseAvatarSuccess? avatarimg;
+  // Future pickImage() async {
+  //   try {
+  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //     if (image == null) return;
+  //     final imageTemp = File(image.path);
+  //     setState(() => this.image = imageTemp);
+  //     print(imageTemp);
+  //   } on PlatformException catch (e) {
+  //     print('Failed to pick image');
+  //   }
+  // }
 
 //---------------------------------API----------------------------------------//
 //   String imgurl = 'https://picsum.photos/250?image=9';
@@ -61,6 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       if (state is ProfileError) {
         print(state.errormessage);
       }
+
     }, child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
       if (state is ProfileApiSuccessState) {
         _apiProfileResponse = state.response;
@@ -117,6 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                   child: InkWell(
                                     onTap: () {
                                       context.read<ProfileBloc>().add(ChangeAvatarRequest());
+                                      // pickImage();
                                     } ,
                                     child: CircleAvatar(
                                       radius: 40,
