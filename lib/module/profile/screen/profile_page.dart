@@ -1,4 +1,5 @@
 import 'dart:io' show File, Platform;
+import 'dart:math';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
@@ -14,25 +15,29 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
+
 class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
   File? image;
+
   Future pickImage() async {
-    try{
+    try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if(image == null) return;
+      if (image == null) return;
       final imageTemp = File(image.path);
       setState(() => this.image = imageTemp);
-    } on PlatformException catch(e){
+    } on PlatformException catch (e) {
       print('Failed to pick image');
     }
-    
   }
+
 //---------------------------------API----------------------------------------//
 //   String imgurl = 'https://picsum.photos/250?image=9';
   @override
@@ -41,6 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
     print('เรียก initState');
     context.read<ProfileBloc>().add(ProfileApiEvent());
   }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -59,48 +65,47 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       if (state is ProfileApiSuccessState) {
         _apiProfileResponse = state.response;
         // print(jsonEncode(_apiProfileResponse));
-        return
-            Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  elevation: 0,
-                  leading: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: sizeTitle24,
-                      color: Colors.black,
-                    ),
-                  ),
-                  title: Text(
-                    '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
-                    // 'ทดสอบ bloc',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: sizeTitle24,
-                    ),
-                  ),
+        return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: sizeTitle24,
+                  color: Colors.black,
                 ),
-                body: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              title: Text(
+                '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
+                // 'ทดสอบ bloc',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: sizeTitle24,
+                ),
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
                     children: [
-                      Column(
-                        children: [
-                          MaterialButton(
-                              color: Colors.blue,
-                              child: Text('Pick image'),
-                              onPressed: (){
-                                pickImage();
-                          }),
-                          Container(
-                              height: height * 0.3,
-                              width: width,
-                              color: HexColor('#FFF7FD'),
-                              child: image == null
-                                  ?
+                      // MaterialButton(
+                      //     color: Colors.blue,
+                      //     child: Text('Pick image'),
+                      //     onPressed: (){
+                      //       pickImage();
+                      // }),
+                      Container(
+                          height: height * 0.3,
+                          width: width,
+                          color: HexColor('#FFF7FD'),
+                          child: image == null
+                              ?
                               // Icon(
                               //         Icons.account_circle,
                               //         size: 100,
@@ -109,57 +114,87 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                   height: 150,
                                   width: 150,
                                   margin: EdgeInsets.all(20),
-                                  child: CircleAvatar(
-                                    radius: 40,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Colors.red,
-                                            Colors.orange,
-                                            Colors.yellow,
-                                            Colors.green,
-                                            Colors.blue,
-                                            Colors.purple,
-                                          ],
+                                  child: InkWell(
+                                    onTap: () => pickImage(),
+                                    child: CircleAvatar(
+                                      radius: 40,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Colors.red,
+                                              Colors.orange,
+                                              Colors.yellow,
+                                              Colors.green,
+                                              Colors.blue,
+                                              Colors.purple,
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                              )
+                                )
+                              : Container(
+                                  height: 50,
+                                  width: 50,
+                                  margin: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: FileImage(image!),
+                                      fit: BoxFit.cover,
+                                      colorFilter: ColorFilter.mode(Colors.transparent.withOpacity(0.5), BlendMode.dstATop),
+                                    ),
 
-                                  : Container(
-                                      height: 150,
-                                      width: 150,
-                                      margin: EdgeInsets.all(20),
-                                      child: CircleAvatar(
-                                        // backgroundImage: NetworkImage(imgurl),
-                                        backgroundImage: FileImage(image!),
-                                        // child: Image.file(image!),
+                                  ),
+                                  child: InkWell(
+                                      onTap: () => pickImage(),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: FileImage(image!),
+                                          ),
+                                        ),
                                       )
-                          )
-                ),
-                        ],
-                      ),
-                      ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
-                      ProfileEducationDataHead(
-                          dataFromAPI: _apiProfileResponse),
-                      ProfileAddressDataHead(dataFromAPI: _apiProfileResponse),
-                      ProfileContactDataHead(dataFromAPI: _apiProfileResponse),
-                      ProfileCareerDataHead(dataFromAPI: _apiProfileResponse),
+                                      // CircleAvatar(
+                                      //   backgroundColor: Colors.transparent,
+                                      //   child: ClipRRect(
+                                      //     borderRadius: BorderRadius.circular(100.0),
+                                      //     child:
+                                      //     Image.file(
+                                      //       File(image?.path??''),
+                                      //       fit: BoxFit.cover,
+                                      //     ),
+                                      //   ),
+                                      // ),
+
+                                      ),
+
+                                  // CircleAvatar(
+                                  //   // backgroundImage: NetworkImage(imgurl),
+                                  //   backgroundImage: FileImage(image!),
+                                  //   // child: Image.file(image!),
+                                  // )
+                                )),
                     ],
                   ),
-                ));
+                  ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
+                  ProfileEducationDataHead(dataFromAPI: _apiProfileResponse),
+                  ProfileAddressDataHead(dataFromAPI: _apiProfileResponse),
+                  ProfileContactDataHead(dataFromAPI: _apiProfileResponse),
+                  ProfileCareerDataHead(dataFromAPI: _apiProfileResponse),
+                ],
+              ),
+            ));
         //------
       } else {
         return Container();
       }
-    }
-    )
-    );
+    }));
   }
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////
