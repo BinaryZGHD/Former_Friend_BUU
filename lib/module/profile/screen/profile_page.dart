@@ -23,18 +23,21 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
-
   ApiProfileResponse? _apiProfileResponse;
 
 //---------------------------------API----------------------------------------//
 //   late Profilescreeninfoapi _dataFromAPI;
 //
-//   @override
-//   void initState() {
-//     super.initState();
-//     print('เรียก initState');
-//     getProfileScreenInfo();
-//   }
+
+  String imgurl = 'https://picsum.photos/250?image=9';
+
+  @override
+  void initState() {
+    super.initState();
+    print('เรียก initState');
+    context.read<ProfileBloc>().add(ProfileApiEvent());
+
+  }
 //
 //   Future<Profilescreeninfoapi> getProfileScreenInfo() async {
 //     var url =
@@ -49,111 +52,86 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
 //---------------------------------API----------------------------------------//
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    String imgurl = 'https://picsum.photos/250?image=9';
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
 
-    context.read<ProfileBloc>().add(ProfileApiEvent());
 
-    return BlocListener<ProfileBloc, ProfileState>(
-        listener: (context, state) {
-          if (state is ProfileLoading) {
-            showProgressDialog(context);
-          }
-          if (state is ProfileLoadingSuccess) {
-            hideProgressDialog(context);
-          }
-          if (state is ProfileError) {
-            // show dialog error
-            print(state.errormessage);
-          }
-        },
-        child: BlocBuilder<ProfileBloc,ProfileState>(
-            builder: (context,state){
-          if(state is ProfileApiSuccessState){
-            _apiProfileResponse = state.response;
-            // print(jsonEncode(_apiProfileResponse));
-          return
+    return BlocListener<ProfileBloc, ProfileState>(listener: (context, state) {
+      if (state is ProfileLoading) {
+        showProgressDialog(context);
+      }
+      if (state is ProfileLoadingSuccess) {
+        hideProgressDialog(context);
+      }
+      if (state is ProfileError) {
+        // show dialog error
+        print(state.errormessage);
+      }
+    }, child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+      if (state is ProfileApiSuccessState) {
+        _apiProfileResponse = state.response;
+        // print(jsonEncode(_apiProfileResponse));
+        return
             // Container(color: Colors.pink);
             //------
             Scaffold(
-                appBar:
-                AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                leading: IconButton(
-                onPressed: () {
-              Navigator.pop(context);
-            },
-              icon: Icon(
-              Icons.arrow_back,
-              size: sizeTitle24,
-              color: Colors.black,
-              ),
-              ),
-              title: Text(
-              '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
-              // 'ทดสอบ bloc',
-              style: TextStyle(
-              color: Colors.black,
-              fontSize: sizeTitle24,
-              ),
-              ),
-              ),
-              body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    height: height * 0.3,
-                    width: width,
-                    color: HexColor('#FFF7FD'),
-                    child: imgurl == ''
-                        ? Icon(
-                      Icons.account_circle,
-                      size: 100,
-                    )
-                        : Container(
-                        margin: EdgeInsets.all(30),
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(imgurl),
-                          radius: 10,
-                        ))),
-                ProfileGeneralDataHead(
-                    dataFromAPI: _apiProfileResponse
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      size: sizeTitle24,
+                      color: Colors.black,
+                    ),
+                  ),
+                  title: Text(
+                    '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
+                    // 'ทดสอบ bloc',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: sizeTitle24,
+                    ),
+                  ),
                 ),
-                ProfileEducationDataHead(
-                  dataFromAPI: _apiProfileResponse
-                ),
-                ProfileAddressDataHead(
-                  dataFromAPI: _apiProfileResponse
-                ),
-                ProfileContactDataHead(
-                  dataFromAPI: _apiProfileResponse
-                ),
-                ProfileCareerDataHead(
-                  dataFromAPI: _apiProfileResponse
-                ),
-              ],
-            ),
-              )
-          );
-          //------
-          }else {
-            return Container();
-    }
-    }
-        )
-        );
+                body: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          height: height * 0.3,
+                          width: width,
+                          color: HexColor('#FFF7FD'),
+                          child: imgurl == ''
+                              ? Icon(
+                                  Icons.account_circle,
+                                  size: 100,
+                                )
+                              : Container(
+                                  margin: EdgeInsets.all(30),
+                                  child: CircleAvatar(
+                                    backgroundImage: NetworkImage(imgurl),
+                                    radius: 10,
+                                  ))),
+                      ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
+                      ProfileEducationDataHead(
+                          dataFromAPI: _apiProfileResponse),
+                      ProfileAddressDataHead(dataFromAPI: _apiProfileResponse),
+                      ProfileContactDataHead(dataFromAPI: _apiProfileResponse),
+                      ProfileCareerDataHead(dataFromAPI: _apiProfileResponse),
+                    ],
+                  ),
+                ));
+        //------
+      } else {
+        return Container();
+      }
+    }));
+  }
 }
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // class ProfileDataHead extends StatelessWidget {
