@@ -1,17 +1,19 @@
 import 'dart:convert';
-
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
 import 'package:f2fbuu/module/profile/components/contactdatatab.dart';
 import 'package:f2fbuu/module/profile/components/educationdatatab.dart';
 import 'package:f2fbuu/module/profile/components/generaldatatab.dart';
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
+import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
 import 'package:http/http.dart' as http;
-import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
+
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -20,280 +22,138 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  final attentionsitems = ['', 'คอมพิวเตอร์ ', 'ครู', 'ประกันภัย', 'สถิติ'];
-  late String attentionsvalue = '';
-  final statusitems = ['', 'ศึกษาต่อ', 'ว่างงาน', 'มีงานทำ'];
-  late String statusvalue = '';
-  final jobtypeitems = ['', '1', '2', '3'];
-  late String jobtypevalue = '';
-  bool isVisible = true;
+class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
+
+  ApiProfileResponse? _apiProfileResponse;
 
 //---------------------------------API----------------------------------------//
-  late Profilescreeninfoapi _dataFromAPI;
-
-  @override
-  void initState() {
-    super.initState();
-    print('เรียก initState');
-    getProfileScreenInfo();
-  }
-
-  Future<Profilescreeninfoapi> getProfileScreenInfo() async {
-    var url =
-        Uri.parse('https://test-api-ceecf.web.app/v1/profile/profilescreen');
-    var response = await http.get(url);
-    // print(response.body);
-    _dataFromAPI = profilescreeninfoapiFromJson(utf8.decode(response.bodyBytes));
-    // print(_dataFromAPI.body?.screeninfo?.subtitlegeninfor);
-    // print('${_dataFromAPI.body?.profileCareerInfo?.attention?[0].attenname}');
-    return _dataFromAPI;
-  }
+//   late Profilescreeninfoapi _dataFromAPI;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     print('เรียก initState');
+//     getProfileScreenInfo();
+//   }
+//
+//   Future<Profilescreeninfoapi> getProfileScreenInfo() async {
+//     var url =
+//         Uri.parse('https://test-api-ceecf.web.app/v1/profile/profilescreen');
+//     var response = await http.get(url);
+//     // print(response.body);
+//     _dataFromAPI = profilescreeninfoapiFromJson(utf8.decode(response.bodyBytes));
+//     // print(_dataFromAPI.body?.screeninfo?.subtitlegeninfor);
+//     // print('${_dataFromAPI.body?.profileCareerInfo?.attention?[0].attenname}');
+//     return _dataFromAPI;
 
 //---------------------------------API----------------------------------------//
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
     String imgurl = 'https://picsum.photos/250?image=9';
-    var apiscreeninfo = api['body']['screeninfo'];
-    return FutureBuilder(
-      future: getProfileScreenInfo(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Scaffold(
-            appBar:
-                // AppBar(
-                //   // backgroundColor: Colors.transparent,
-                //   backgroundColor: Colors.white,
-                //   title: Padding(
-                //     padding: const EdgeInsets.only(left: 8.0),
-                //
-                //     child: const Text("บัญชี",
-                //         style: TextStyle(
-                //           fontSize: 24,
-                //           color: Colors.black,
-                //         )),
-                //   ),
-                // ),
+
+    context.read<ProfileBloc>().add(ProfileApiEvent());
+
+    return BlocListener<ProfileBloc, ProfileState>(
+        listener: (context, state) {
+          if (state is ProfileLoading) {
+            showProgressDialog(context);
+          }
+          if (state is ProfileLoadingSuccess) {
+            hideProgressDialog(context);
+          }
+          if (state is ProfileError) {
+            // show dialog error
+            print(state.errormessage);
+          }
+        },
+        child: BlocBuilder<ProfileBloc,ProfileState>(
+            builder: (context,state){
+          if(state is ProfileApiSuccessState){
+            _apiProfileResponse = state.response;
+            // print(jsonEncode(_apiProfileResponse));
+          return
+            // Container(color: Colors.pink);
+            //------
+            Scaffold(
+                appBar:
                 AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              leading: IconButton(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                leading: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  size: sizeTitle24,
-                  color: Colors.black,
-                ),
+              Navigator.pop(context);
+            },
+              icon: Icon(
+              Icons.arrow_back,
+              size: sizeTitle24,
+              color: Colors.black,
+              ),
               ),
               title: Text(
-                '${_dataFromAPI.body?.screeninfo?.titleprofile}',
-                // apiscreeninfo['titleprofile'],
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: sizeTitle24,
+              '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
+              // 'ทดสอบ bloc',
+              style: TextStyle(
+              color: Colors.black,
+              fontSize: sizeTitle24,
+              ),
+              ),
+              ),
+              body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    height: height * 0.3,
+                    width: width,
+                    color: HexColor('#FFF7FD'),
+                    child: imgurl == ''
+                        ? Icon(
+                      Icons.account_circle,
+                      size: 100,
+                    )
+                        : Container(
+                        margin: EdgeInsets.all(30),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(imgurl),
+                          radius: 10,
+                        ))),
+                ProfileGeneralDataHead(
+                    dataFromAPI: _apiProfileResponse
                 ),
-              ),
+                ProfileEducationDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+                ProfileAddressDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+                ProfileContactDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+                ProfileCareerDataHead(
+                  dataFromAPI: _apiProfileResponse
+                ),
+              ],
             ),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      height: height * 0.3,
-                      width: width,
-                      color: HexColor('#FFF7FD'),
-                      child: imgurl == ''
-                          ? Icon(
-                              Icons.account_circle,
-                              size: 100,
-                            )
-                          : Container(
-                              margin: EdgeInsets.all(30),
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(imgurl),
-                                radius: 10,
-                              ))),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(10.0),
-                  //   child: Row(
-                  //     children: [
-                  //       Text("ข้อมูลทั่วไป", style: TextStyle(fontSize: 25)),
-                  //       Spacer(),
-                  //       Text("Edit", style: TextStyle(fontSize: 20, color: Colors.red)),
-                  //     ],
-                  //   ),
-                  // ),
-                  ProfileGeneralDataHead(
-                      dataFromAPI: _dataFromAPI
-                  ),
-                  // ProfileGeneralDataTab(
-                  //   ispressed: true,
-                  //   textleft: 'ชื่อ',
-                  //   textright: 'ผู้ใช้งาน',
-                  // ),
-                  // ProfileGeneralDataTab(
-                  //     textleft: 'นามสกุล',
-                  //     textright: 'แอปพลิเคชัน'),
-                  // ProfileGeneralDataTab(
-                  //     textleft: 'ชื่อเล่น',
-                  //     textright: 'แมท'),
-                  // ProfileGeneralDataTab(
-                  //     textleft: 'รหัสนิสิต',
-                  //     textright: '62030xxx'),
-                  // ProfileGeneralDataTab(
-                  //     textleft: 'รุ่น',
-                  //     textright: '65'),
-                  ProfileEducationDataHead(
-                    dataFromAPI: _dataFromAPI,
-                  ),
-                  // ProfileEducationDataTab(
-                  //     textleft: 'คณะ',
-                  //     textright: 'วิทยาศาสตร์'),
-                  // ProfileEducationDataTab(
-                  //     textleft: 'ภาควิชา',
-                  //     textright: 'คณิตศาสตร์'),
-                  // ProfileEducationDataTab(
-                  //     textleft: 'สาขาวิชา',
-                  //     textright: 'คณิตศาสตร์'),
-                  // ProfileEducationDataTab(
-                  //     textleft: 'เกรดเฉลี่ย (ระดับมัธยมต้น)',
-                  //     textright: '4.00'),
-                  // ProfileEducationDataTab(
-                  //     textleft: 'เกรดเฉลี่ย (ระดับมัธยมปลาย)',
-                  //     textright: '3.55'),
-                  // ProfileEducationDataTab(
-                  //     textleft: 'เกรดเฉลี่ย (ระดับอนุปริญญา)',
-                  //     textright: '2.99'),
-                  ProfileAddressDataHead(
-                    dataFromAPI: _dataFromAPI,
-                  ),
-                  // ProfileAddressDataTab(
-                  //     textleft: 'บ้านเลขที่',
-                  //     textright: '55/55'),
-                  // ProfileAddressDataTab(
-                  //     textleft: 'หมู่',
-                  //     textright: '5'),
-                  // ProfileAddressDataTab(
-                  //     textleft: 'ตำบล',
-                  //     textright: 'แสนสุข'),
-                  // ProfileAddressDataTab(
-                  //     textleft: 'อำเภอ',
-                  //     textright: 'เมือง'),
-                  // ProfileAddressDataTab(
-                  //     textleft: 'จังหวัด',
-                  //     textright: 'ชลบุรี'),
-                  // ProfileAddressDataTab(
-                  //     textleft: 'รหัสไปรษณีย์',
-                  //     textright: '20000'),
-                  // Container(
-                  //   padding: EdgeInsets.all(10),
-                  //   decoration: BoxDecoration(
-                  //     border: Border(
-                  //         top: BorderSide(width: 1, color: Colors.black12),
-                  //         bottom: BorderSide(width: 1, color: Colors.transparent)),
-                  //   ),
-                  //   child: TextField(
-                  //     keyboardType: TextInputType.multiline,
-                  //     maxLines: null,
-                  //     minLines: null,
-                  //     decoration: InputDecoration(
-                  //       hintText: 'ที่อยู่......',
-                  //       labelStyle: TextStyle(fontSize: 18),
-                  //       border: InputBorder.none,
-                  //       // border: OutlineInputBorder(),
-                  //     ),
-                  //   ),
-                  // ),
-                  ProfileContactDataHead(
-                    dataFromAPI: _dataFromAPI,
-                  ),
-                  // ProfileContactDataTab(
-                  //   iconcontact: Icon(
-                  //     Icons.phone,
-                  //     color: HexColor('#000000'),
-                  //   ),
-                  //   textcontact: '0123456789',
-                  // ),
-                  // ProfileContactDataTab(
-                  //   iconcontact: Icon(
-                  //     FontAwesomeIcons.line,
-                  //     color: HexColor('#00B900'),
-                  //   ),
-                  //   textcontact: '@scimath',
-                  // ),
-                  // ProfileContactDataTab(
-                  //   iconcontact: Icon(
-                  //     FontAwesomeIcons.facebook,
-                  //     color: HexColor('#3B5998'),
-                  //   ),
-                  //   textcontact: 'scimath',
-                  // ),
-                  // ProfileContactDataTab(
-                  //   iconcontact: Icon(
-                  //     FontAwesomeIcons.instagram,
-                  //     color: HexColor('#E1306C'),
-                  //   ),
-                  //   textcontact: 'scimath',
-                  // ),
-                  // ProfileContactDataTab(
-                  //   iconcontact: Icon(
-                  //     FontAwesomeIcons.twitter,
-                  //     color: HexColor('#00acee'),
-                  //   ),
-                  //   textcontact: 'scimath',
-                  // ),
-                  // ProfileContactDataTab(
-                  //   iconcontact: Icon(
-                  //     FontAwesomeIcons.youtube,
-                  //     color: HexColor('#FF0000'),
-                  //   ),
-                  //   textcontact: 'scimath',
-                  // ),
-                  ProfileCareerDataHead(
-                    dataFromAPI: _dataFromAPI,
-                  ),
-                  // ProfileAttentionDropdownTab(
-                  //   textleft: 'ความสนใจ',
-                  //   careeritem: attentionsitems,
-                  //   itemvalue: attentionsvalue,
-                  // ),
-                  // ProfileCareerDropdownTab(
-                  //   textleft: 'สถานะ',
-                  //   careeritem: statusitems,
-                  //   itemvalue: statusvalue,
-                  //   jobitemvalue: jobtypevalue,
-                  //   jobtextleft: 'ประเภทงาน',
-                  //   jobitem: jobtypeitems,
-                  // ),
-                  // if (statusvalue == 'มีงานทำ'){
-                  //   isVisible = true;
-                  // } else {
-                  //   isVisible = false;
-                  // };
-                ],
-              ),
-            ),
+              )
           );
-        }
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Text(''),
-            centerTitle: true,
-          ),
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
+          //------
+          }else {
+            return Container();
+    }
+    }
+        )
         );
-        // LinearProgressIndicator();
-      },
-    );
-  }
 }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // class ProfileDataHead extends StatelessWidget {

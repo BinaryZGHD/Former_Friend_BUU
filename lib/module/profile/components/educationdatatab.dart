@@ -1,6 +1,5 @@
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
+
 
 class ProfileEducationDataHead extends StatefulWidget {
   final dataFromAPI;
@@ -11,8 +10,6 @@ class ProfileEducationDataHead extends StatefulWidget {
 }
 class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
   bool ispressed = true;
-  var apiscreeninfo = api['body']['screeninfo'];
-  var apiprofile_education_info = api['body']['profile_edu_info'];
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;

@@ -1,5 +1,5 @@
-import 'package:f2fbuu/model/profilemodel/profilescreeninfoapi/profilescreeninfoapi.dart';
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
+
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileAttentionDropdownTab extends StatefulWidget {

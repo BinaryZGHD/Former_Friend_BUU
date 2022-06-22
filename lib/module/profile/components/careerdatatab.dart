@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
 import 'package:flutter/material.dart';
-import 'package:f2fbuu/module/profile/bloc/profiledata.dart';
 
 class ProfileCareerDataHead extends StatefulWidget {
   final dataFromAPI;
@@ -17,11 +16,6 @@ class ProfileCareerDataHead extends StatefulWidget {
 class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
   bool ispressed = true;
   bool isVisible = true;
-  var apiScreenInfo = api['body']['screeninfo'];
-  var apiProfileCareerInfo = api['body']['profile_career_info'];
-  // var apiAttentionItems = api['body']['profile_career_info']['attention'];
-  var apiStatusItems = api['body']['profile_career_info']['status'];
-  var apiJobTypeItems = api['body']['profile_career_info']['jobtype'];
 
   @override
   Widget build(BuildContext context) {
