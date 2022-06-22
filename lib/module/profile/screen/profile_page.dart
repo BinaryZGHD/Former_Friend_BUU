@@ -106,8 +106,8 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                               //         size: 100,
                               //       )
                               Container(
-                                  height: 150,
-                                  width: 150,
+                                  height: 50,
+                                  width: 50,
                                   margin: EdgeInsets.all(20),
                                   child: CircleAvatar(
                                     radius: 40,
@@ -129,17 +129,46 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                   ),
                               )
 
-                                  : Container(
-                                      height: 150,
-                                      width: 150,
-                                      margin: EdgeInsets.all(20),
-                                      child: CircleAvatar(
-                                        // backgroundImage: NetworkImage(imgurl),
-                                        backgroundImage: FileImage(image!),
-                                        // child: Image.file(image!),
-                                      )
+                                  :
+                              Container(
+                                height: 50,
+                                width: 50,
+                                margin: EdgeInsets.all(20),
+                                child: CircleAvatar(
+                                  radius: 40,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.red,
+                                          Colors.orange,
+                                          Colors.yellow,
+                                          Colors.green,
+                                          Colors.blue,
+                                          Colors.purple,
+                                        ],),
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(image: FileImage(image!),
+                                        fit: BoxFit.contain,),
+                                    ),
+                                  ),
+                                ),
+                              )
+
+                              // Container(
+                              //     height: 40,
+                              //     width: 50,
+                              //   child: CircleAvatar(
+                              //   radius: 40,
+                              //   child:Container(
+                              //         height: 50,
+                              //         width: 50,
+                              //             child: Image.file( File(image?.path??''),fit: BoxFit.fitWidth),
+                              //           ),
+                              //   )
+
                           )
-                ),
+                ,
                         ],
                       ),
                       ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
