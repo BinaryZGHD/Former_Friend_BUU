@@ -115,7 +115,9 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                   width: 150,
                                   margin: EdgeInsets.all(20),
                                   child: InkWell(
-                                    onTap: () => pickImage(),
+                                    onTap: () {
+                                      context.read<ProfileBloc>().add(ChangeAvatarRequest());
+                                    } ,
                                     child: CircleAvatar(
                                       radius: 40,
                                       child: Container(
@@ -145,12 +147,13 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                     image: DecorationImage(
                                       image: FileImage(image!),
                                       fit: BoxFit.cover,
-                                      colorFilter: ColorFilter.mode(Colors.transparent.withOpacity(0.5), BlendMode.dstATop),
+                                      colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.1), BlendMode.dstATop),
                                     ),
 
                                   ),
                                   child: InkWell(
-                                      onTap: () => pickImage(),
+                                      onTap: () => context.read<ProfileBloc>().add(ChangeAvatarRequest()),
+                                      // onTap: () => pickImage(),
                                       child: Container(
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,

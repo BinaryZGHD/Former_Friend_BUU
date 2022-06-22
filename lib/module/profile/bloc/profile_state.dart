@@ -31,3 +31,11 @@ class ProfileStatusState extends ProfileState {
   bool statuscheck  ;
   ProfileStatusState({required this.statuscheck});
 }
+
+class ChangeAvatarRequestState extends ProfileState {
+
+}
+class PickimageState extends ProfileState{
+  File? image ;
+  PickimageState({required this.image});
+}
