@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
@@ -11,21 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
-
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
-
 class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
-
   ApiProfileResponse? _apiProfileResponse;
-
 //---------------------------------API----------------------------------------//
 //   late Profilescreeninfoapi _dataFromAPI;
 //
@@ -45,7 +36,6 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
 //     // print(_dataFromAPI.body?.screeninfo?.subtitlegeninfor);
 //     // print('${_dataFromAPI.body?.profileCareerInfo?.attention?[0].attenname}');
 //     return _dataFromAPI;
-
 //---------------------------------API----------------------------------------//
   @override
   Widget build(BuildContext context) {
@@ -78,10 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
             builder: (context,state){
           if(state is ProfileApiSuccessState){
             _apiProfileResponse = state.response;
-            // print(jsonEncode(_apiProfileResponse));
           return
-            // Container(color: Colors.pink);
-            //------
             Scaffold(
                 appBar:
                 AppBar(
@@ -99,7 +86,6 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
               ),
               title: Text(
               '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
-              // 'ทดสอบ bloc',
               style: TextStyle(
               color: Colors.black,
               fontSize: sizeTitle24,

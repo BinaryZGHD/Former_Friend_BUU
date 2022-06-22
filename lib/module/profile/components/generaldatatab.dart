@@ -1,18 +1,12 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 class ProfileGeneralDataHead extends StatefulWidget {
   final dataFromAPI;
   ProfileGeneralDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
-
   @override
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
 }
-
 class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   bool ispressed = true;
-  // var apiscreeninfo = api['body']['screeninfo'];
-  // var apiprofile_general_info = api['body']['profile_general_info'];
-
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
@@ -41,15 +35,6 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                           ispressed = !ispressed;
                         }
                         );
-                        // setState((){
-                        //   if (ispressed == true) {
-                        //     editorsave = 'บันทึก';
-                        //   } else {
-                        //     editorsave = 'แก้ไข';
-                        //   }
-                        //   print(ispressed);
-                        // });
-                        // }, child: Text(editorsave,
                       },
                       child: ispressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
@@ -57,11 +42,6 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                               style: TextStyle(color: Colors.green)),
                     ),
                   ),
-
-                  // Text(editorsave,
-                  //       style:
-                  //       TextStyle(fontSize: 18, color: Colors.red),
-                  //       textAlign: TextAlign.right),
                 ),
               ],
             ),
@@ -145,20 +125,8 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
-                  // onChanged: (value) {
-                  //   setState(() {
-                  //     texttest = value;
-                  //     print(texttest);
-                  //   });
-                  // },
                   initialValue: textright,
                 ),
-
-                // Text(
-                //   textright,
-                //   style: TextStyle(fontSize: 18),
-                //   textAlign: TextAlign.right,
-                // ),
               ),
             ),
           ],
