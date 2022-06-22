@@ -7,9 +7,6 @@ class ProfileGeneralDataHead extends StatefulWidget {
 }
 class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   bool ispressed = false;
-  // var apiscreeninfo = api['body']['screeninfo'];
-  // var apiprofile_general_info = api['body']['profile_general_info'];
-
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
@@ -39,10 +36,9 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                         }
                         );
                       },
-                      child: ispressed
+                      child: !ispressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก',
-                              style: TextStyle(color: Colors.green)),
+                          : Text('บันทึก', style: TextStyle(color: Colors.green)),
                     ),
                   ),
                 ),

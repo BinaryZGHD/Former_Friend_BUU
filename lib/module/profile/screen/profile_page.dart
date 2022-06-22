@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
@@ -18,17 +19,12 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
 //---------------------------------API----------------------------------------//
-//   late Profilescreeninfoapi _dataFromAPI;
-//
-
   String imgurl = 'https://picsum.photos/250?image=9';
-
   @override
   void initState() {
     super.initState();
     print('เรียก initState');
     context.read<ProfileBloc>().add(ProfileApiEvent());
-
   }
 //
 //   Future<Profilescreeninfoapi> getProfileScreenInfo() async {
@@ -45,8 +41,6 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
-
     return BlocListener<ProfileBloc, ProfileState>(listener: (context, state) {
       if (state is ProfileLoading) {
         showProgressDialog(context);
@@ -55,16 +49,13 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
         hideProgressDialog(context);
       }
       if (state is ProfileError) {
-        // show dialog error
         print(state.errormessage);
       }
     }, child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
       if (state is ProfileApiSuccessState) {
         _apiProfileResponse = state.response;
-        // print(jsonEncode(_apiProfileResponse));
+        print(jsonEncode(_apiProfileResponse));
         return
-            // Container(color: Colors.pink);
-            //------
             Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.white,
@@ -92,21 +83,23 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                          height: height * 0.3,
-                          width: width,
-                          color: HexColor('#FFF7FD'),
-                          child: imgurl == ''
-                              ? Icon(
-                                  Icons.account_circle,
-                                  size: 100,
-                                )
-                              : Container(
-                                  margin: EdgeInsets.all(30),
-                                  child: CircleAvatar(
-                                    backgroundImage: NetworkImage(imgurl),
-                                    radius: 10,
-                                  ))),
+                      GestureDetector(
+                        child: Container(
+                            height: height * 0.3,
+                            width: width,
+                            color: HexColor('#FFF7FD'),
+                            child: imgurl == ''
+                                ? Icon(
+                                    Icons.account_circle,
+                                    size: 100,
+                                  )
+                                : Container(
+                                    margin: EdgeInsets.all(30),
+                                    child: CircleAvatar(
+                                      backgroundImage: NetworkImage(imgurl),
+                                      radius: 10,
+                                    ))),
+                      ),
                       ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
                       ProfileEducationDataHead(
                           dataFromAPI: _apiProfileResponse),
