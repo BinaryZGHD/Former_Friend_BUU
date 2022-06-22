@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io' show File, Platform;
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
@@ -6,9 +6,12 @@ import 'package:f2fbuu/module/profile/components/contactdatatab.dart';
 import 'package:f2fbuu/module/profile/components/educationdatatab.dart';
 import 'package:f2fbuu/module/profile/components/generaldatatab.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
 class ProfileScreen extends StatefulWidget {
@@ -18,25 +21,26 @@ class ProfileScreen extends StatefulWidget {
 }
 class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
+  File? image;
+  Future pickImage() async {
+    try{
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if(image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e){
+      print('Failed to pick image');
+    }
+    
+  }
 //---------------------------------API----------------------------------------//
-  String imgurl = 'https://picsum.photos/250?image=9';
+//   String imgurl = 'https://picsum.photos/250?image=9';
   @override
   void initState() {
     super.initState();
     print('เรียก initState');
     context.read<ProfileBloc>().add(ProfileApiEvent());
   }
-//
-//   Future<Profilescreeninfoapi> getProfileScreenInfo() async {
-//     var url =
-//         Uri.parse('https://test-api-ceecf.web.app/v1/profile/profilescreen');
-//     var response = await http.get(url);
-//     // print(response.body);
-//     _dataFromAPI = profilescreeninfoapiFromJson(utf8.decode(response.bodyBytes));
-//     // print(_dataFromAPI.body?.screeninfo?.subtitlegeninfor);
-//     // print('${_dataFromAPI.body?.profileCareerInfo?.attention?[0].attenname}');
-//     return _dataFromAPI;
-//---------------------------------API----------------------------------------//
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -54,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
     }, child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
       if (state is ProfileApiSuccessState) {
         _apiProfileResponse = state.response;
-        print(jsonEncode(_apiProfileResponse));
+        // print(jsonEncode(_apiProfileResponse));
         return
             Scaffold(
                 appBar: AppBar(
@@ -83,22 +87,60 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        child: Container(
-                            height: height * 0.3,
-                            width: width,
-                            color: HexColor('#FFF7FD'),
-                            child: imgurl == ''
-                                ? Icon(
-                                    Icons.account_circle,
-                                    size: 100,
-                                  )
-                                : Container(
-                                    margin: EdgeInsets.all(30),
-                                    child: CircleAvatar(
-                                      backgroundImage: NetworkImage(imgurl),
-                                      radius: 10,
-                                    ))),
+                      Column(
+                        children: [
+                          MaterialButton(
+                              color: Colors.blue,
+                              child: Text('Pick image'),
+                              onPressed: (){
+                                pickImage();
+                          }),
+                          Container(
+                              height: height * 0.3,
+                              width: width,
+                              color: HexColor('#FFF7FD'),
+                              child: image == null
+                                  ?
+                              // Icon(
+                              //         Icons.account_circle,
+                              //         size: 100,
+                              //       )
+                              Container(
+                                  height: 150,
+                                  width: 150,
+                                  margin: EdgeInsets.all(20),
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Colors.red,
+                                            Colors.orange,
+                                            Colors.yellow,
+                                            Colors.green,
+                                            Colors.blue,
+                                            Colors.purple,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              )
+
+                                  : Container(
+                                      height: 150,
+                                      width: 150,
+                                      margin: EdgeInsets.all(20),
+                                      child: CircleAvatar(
+                                        // backgroundImage: NetworkImage(imgurl),
+                                        backgroundImage: FileImage(image!),
+                                        // child: Image.file(image!),
+                                      )
+                          )
+                ),
+                        ],
                       ),
                       ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
                       ProfileEducationDataHead(
@@ -113,8 +155,11 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       } else {
         return Container();
       }
-    }));
+    }
+    )
+    );
   }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
