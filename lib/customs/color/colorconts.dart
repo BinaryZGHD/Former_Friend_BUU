@@ -26,3 +26,4 @@ const transparent = Color(0x00000000);
 const backgroundAppBar = Color(0xFFFFFFFF);
 const backgroundDawer = Color(0xFFD7DBFF);
 const circleprogresscolor = Color(0xFFF73D93);
+const IconBoarder = Color(0xFF000000);

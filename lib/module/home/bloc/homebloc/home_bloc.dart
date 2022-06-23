@@ -1,10 +1,11 @@
+import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-import '../model/response/screen_home.dart';
-import '../repository/home_repository.dart';
+
+import '../../model/response/screen_home.dart';
+import '../../repository/home_repository.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

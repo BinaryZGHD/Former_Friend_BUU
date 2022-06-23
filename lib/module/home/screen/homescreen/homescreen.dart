@@ -1,23 +1,15 @@
-import 'dart:convert';
-
 import 'package:f2fbuu/customs/button/box.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
-
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/progress_dialog.dart';
 import '../../../../customs/size/size.dart';
+import '../../bloc/homebloc/home_bloc.dart';
 import '../../model/response/screen_home.dart';
-import '../../../login/screen/changepasswordscreen/changepasswordscreen.dart';
 import '../../../profile/screen/profile_page.dart';
 import '../../bloc/buildlistactivity.dart';
-import '../../bloc/data.dart';
-import '../../bloc/home_bloc.dart';
-import '../../bloc/itemactivity.dart';
-import '../morescreen/moreboarddetailajan.dart';
 import '../morescreen/moremainscreen.dart';
 import 'drawerhome.dart';
 

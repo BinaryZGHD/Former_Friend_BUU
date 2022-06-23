@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as httpurl;
+import '../../../../customs/card/card_build_board.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/size/size.dart';
 import '../../model/response/screen_homemore.dart';
@@ -45,6 +46,7 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
 
     // log(response.body);
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -74,14 +76,15 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
               ),
             ),
             body: Container(
-              // color: TC_regiter,
+              color: Colors.grey[100],
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: SingleChildScrollView(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.textboard}",
+                    child: Text(
+                      "${_dataFromAPIHomeMorewording?.body?.screeninfo?.textboard}",
                       style: TextStyle(
                         fontSize: sizeTextBig20,
                         fontWeight: FontWeight.w600,
@@ -91,39 +94,73 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      buildBoard(),
+                      buildBoard(
+                        context,
+                        titile: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnstd}",
+                        IconBoard: Icons.auto_stories_outlined,
 
+                      ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.01,
                       ),
-                      buildBoard(),
+                      buildBoard(
+                        context,
+                        titile: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntc}",
+                        IconBoard: Icons.badge_outlined,
+                      ),
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.textabdepart}",
+                    child: Text(
+                      "${_dataFromAPIHomeMorewording?.body?.screeninfo?.textabdepart}",
                       style: TextStyle(
                         fontSize: sizeTextBig20,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btndeparthis}", URL: "${_dataFromAPIHomeMorewording?.body?.pavatUrl}",),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btncou}", URL: "${_dataFromAPIHomeMorewording?.body?.luksuitUrl}",),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnface}", URL: "${_dataFromAPIHomeMorewording?.body?.facebookUrl}",),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnweb}", URL: "${_dataFromAPIHomeMorewording?.body?.websiteUrl}",),
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btndeparthis}",
+                    URL: "${_dataFromAPIHomeMorewording?.body?.pavatUrl}",
+                  ),
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btncou}",
+                    URL: "${_dataFromAPIHomeMorewording?.body?.luksuitUrl}",
+                  ),
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnface}",
+                    URL: "${_dataFromAPIHomeMorewording?.body?.facebookUrl}",
+                  ),
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnweb}",
+                    URL: "${_dataFromAPIHomeMorewording?.body?.websiteUrl}",
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.textsup}",
+                    child: Text(
+                      "${_dataFromAPIHomeMorewording?.body?.screeninfo?.textsup}",
                       style: TextStyle(
                         fontSize: sizeTextBig20,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntermandcon}", URL: 'https://flutter.dev',),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnfaq}", URL: 'https://flutter.dev',),
-                  CardMore(title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnconus}", URL: '',)
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntermandcon}",
+                    URL: 'https://flutter.dev',
+                  ),
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnfaq}",
+                    URL: 'https://flutter.dev',
+                  ),
+                  CardMore(
+                    title: "${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnconus}",
+                    URL: '',
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
                 ]),
               ),
             ),
@@ -136,32 +173,5 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
         );
       },
     );
-  }
-
-   buildBoard() {
-    return Container(
-        width: MediaQuery.of(context).size.width * 0.4,
-        // height: MediaQuery.of(context).size.width * 0.3,
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: BC_ButtonRed),
-        child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.auto_stories_rounded,
-                    color: Colors.white,
-                    size: MediaQuery.of(context).size.width * 0.2,
-                  ),
-                  Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.btnstd}",
-                    style: TextStyle(
-                      fontSize: sizeTextBig20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            )));
   }
 }
