@@ -1,6 +1,6 @@
 import 'dart:convert';
 /// head : {"status":"200","message":"susccess","module":"Home"}
-/// body : {"screeninfo":{"titlestatus":" Approved!  ","textactivity":" Activity name / Project name  ","textyear":" Year  ","textterm":" Term  ","textstartdate":" Start date  ","textfinishdate":" Finish date  ","texttime":" Total time(Hours)  ","textvenue":" Venue  ","edtapprover":" Approver  ","textdetail":" Detail  "},"id":"a1","activity":{"id":"1","name":"Project 1","year":"2017","term":"1","startdate":"2017-01-01","finishdate":"2017-12-31","time":" 05:30 ","venue":"Room 1","approver":"ชื่อ - นามกุล ","detail":"Detail 1กิจกรรม ","status":"Approved!","color":"#B6FFCE"}}
+/// body : {"screeninfo":{"titlestatus":"Approved!","textactivity":"Activity name","textyear":"Year","textterm":"Term","textstartdate":"Start date","textfinishdate":"Finish date","texttime":"Total time","textvenue":"Venue","edtapprover":"Approver","textdetail":"Detail","buttonleft":"Edit","buttonright":"Delete"},"id":"a1","activity":{"id":"1","name":"Project 1","year":"2017","term":"1","startdate":"2017-01-01","finishdate":"2017-12-31","time":" 05:30 ","venue":"Room 1","approver":"ชื่อ - นามกุล","detail":"Detail 1กิจกรรม","status":"Unapproved!","color":"#B6FFCE"}}
 
 ActivityDetailApi activityDetailApiFromJson(String str) => ActivityDetailApi.fromJson(json.decode(str));
 String activityDetailApiToJson(ActivityDetailApi data) => json.encode(data.toJson());
@@ -39,9 +39,9 @@ ActivityDetailApi copyWith({  Head? head,
 
 }
 
-/// screeninfo : {"titlestatus":" Approved!  ","textactivity":" Activity name / Project name  ","textyear":" Year  ","textterm":" Term  ","textstartdate":" Start date  ","textfinishdate":" Finish date  ","texttime":" Total time(Hours)  ","textvenue":" Venue  ","edtapprover":" Approver  ","textdetail":" Detail  "}
+/// screeninfo : {"titlestatus":"Approved!","textactivity":"Activity name","textyear":"Year","textterm":"Term","textstartdate":"Start date","textfinishdate":"Finish date","texttime":"Total time","textvenue":"Venue","edtapprover":"Approver","textdetail":"Detail","buttonleft":"Edit","buttonright":"Delete"}
 /// id : "a1"
-/// activity : {"id":"1","name":"Project 1","year":"2017","term":"1","startdate":"2017-01-01","finishdate":"2017-12-31","time":" 05:30 ","venue":"Room 1","approver":"ชื่อ - นามกุล ","detail":"Detail 1กิจกรรม ","status":"Approved!","color":"#B6FFCE"}
+/// activity : {"id":"1","name":"Project 1","year":"2017","term":"1","startdate":"2017-01-01","finishdate":"2017-12-31","time":" 05:30 ","venue":"Room 1","approver":"ชื่อ - นามกุล","detail":"Detail 1กิจกรรม","status":"Unapproved!","color":"#B6FFCE"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -96,9 +96,9 @@ Body copyWith({  Screeninfo? screeninfo,
 /// finishdate : "2017-12-31"
 /// time : " 05:30 "
 /// venue : "Room 1"
-/// approver : "ชื่อ - นามกุล "
-/// detail : "Detail 1กิจกรรม "
-/// status : "Approved!"
+/// approver : "ชื่อ - นามกุล"
+/// detail : "Detail 1กิจกรรม"
+/// status : "Unapproved!"
 /// color : "#B6FFCE"
 
 Activity activityFromJson(String str) => Activity.fromJson(json.decode(str));
@@ -214,16 +214,18 @@ Activity copyWith({  String? id,
 
 }
 
-/// titlestatus : " Approved!  "
-/// textactivity : " Activity name / Project name  "
-/// textyear : " Year  "
-/// textterm : " Term  "
-/// textstartdate : " Start date  "
-/// textfinishdate : " Finish date  "
-/// texttime : " Total time(Hours)  "
-/// textvenue : " Venue  "
-/// edtapprover : " Approver  "
-/// textdetail : " Detail  "
+/// titlestatus : "Approved!"
+/// textactivity : "Activity name"
+/// textyear : "Year"
+/// textterm : "Term"
+/// textstartdate : "Start date"
+/// textfinishdate : "Finish date"
+/// texttime : "Total time"
+/// textvenue : "Venue"
+/// edtapprover : "Approver"
+/// textdetail : "Detail"
+/// buttonleft : "Edit"
+/// buttonright : "Delete"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
@@ -238,7 +240,9 @@ class Screeninfo {
       String? texttime, 
       String? textvenue, 
       String? edtapprover, 
-      String? textdetail,}){
+      String? textdetail, 
+      String? buttonleft, 
+      String? buttonright,}){
     _titlestatus = titlestatus;
     _textactivity = textactivity;
     _textyear = textyear;
@@ -249,6 +253,8 @@ class Screeninfo {
     _textvenue = textvenue;
     _edtapprover = edtapprover;
     _textdetail = textdetail;
+    _buttonleft = buttonleft;
+    _buttonright = buttonright;
 }
 
   Screeninfo.fromJson(dynamic json) {
@@ -262,6 +268,8 @@ class Screeninfo {
     _textvenue = json['textvenue'];
     _edtapprover = json['edtapprover'];
     _textdetail = json['textdetail'];
+    _buttonleft = json['buttonleft'];
+    _buttonright = json['buttonright'];
   }
   String? _titlestatus;
   String? _textactivity;
@@ -273,6 +281,8 @@ class Screeninfo {
   String? _textvenue;
   String? _edtapprover;
   String? _textdetail;
+  String? _buttonleft;
+  String? _buttonright;
 Screeninfo copyWith({  String? titlestatus,
   String? textactivity,
   String? textyear,
@@ -283,6 +293,8 @@ Screeninfo copyWith({  String? titlestatus,
   String? textvenue,
   String? edtapprover,
   String? textdetail,
+  String? buttonleft,
+  String? buttonright,
 }) => Screeninfo(  titlestatus: titlestatus ?? _titlestatus,
   textactivity: textactivity ?? _textactivity,
   textyear: textyear ?? _textyear,
@@ -293,6 +305,8 @@ Screeninfo copyWith({  String? titlestatus,
   textvenue: textvenue ?? _textvenue,
   edtapprover: edtapprover ?? _edtapprover,
   textdetail: textdetail ?? _textdetail,
+  buttonleft: buttonleft ?? _buttonleft,
+  buttonright: buttonright ?? _buttonright,
 );
   String? get titlestatus => _titlestatus;
   String? get textactivity => _textactivity;
@@ -304,6 +318,8 @@ Screeninfo copyWith({  String? titlestatus,
   String? get textvenue => _textvenue;
   String? get edtapprover => _edtapprover;
   String? get textdetail => _textdetail;
+  String? get buttonleft => _buttonleft;
+  String? get buttonright => _buttonright;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -317,6 +333,8 @@ Screeninfo copyWith({  String? titlestatus,
     map['textvenue'] = _textvenue;
     map['edtapprover'] = _edtapprover;
     map['textdetail'] = _textdetail;
+    map['buttonleft'] = _buttonleft;
+    map['buttonright'] = _buttonright;
     return map;
   }
 

@@ -1,4 +1,4 @@
-import 'package:f2fbuu/module/home/screen/activitydetailscreen.dart';
+import 'package:f2fbuu/module/home/screen/activity/activitydetailscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

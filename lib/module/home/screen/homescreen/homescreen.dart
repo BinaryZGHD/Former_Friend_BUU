@@ -1,4 +1,5 @@
 import 'package:f2fbuu/customs/button/box.dart';
+import 'package:f2fbuu/module/home/screen/activity/add_activity.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -248,6 +249,9 @@ class _HomeScreenState extends State<HomeScreen> {
               colorbutton: BC_ButtonWhite,
               sizetext: sizeTextSmaller14,
               colorborder: BSC_Black,
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
+              },
             ),
           ),
           Padding(
