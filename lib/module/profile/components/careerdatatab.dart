@@ -4,8 +4,10 @@ import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
 import 'package:flutter/material.dart';
 
+import '../model/response/api_profile.dart';
+
 class ProfileCareerDataHead extends StatefulWidget {
-  final dataFromAPI;
+  final ApiProfileResponse? dataFromAPI;
   ProfileCareerDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
@@ -43,7 +45,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI.body?.screeninfo?.textcareer}',
+                  '${dataFromAPI?.body?.screeninfo?.textcareer}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -67,23 +69,23 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           ),
         ),
         ProfileAttentionDropdownTab(
-          testarray: dataFromAPI.body?.profileCareerInfo?.attention,
-          userattentionvalue: dataFromAPI.body?.profileCareerInfo?.userattention,
-          textleft: '${dataFromAPI.body?.screeninfo?.textatt}',
+          testarray: dataFromAPI?.body?.profileCareerInfo?.attention??[],
+          userattentionvalue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
+          textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
         ),
         ProfileCareerDropdownTab(
-          textleft: '${dataFromAPI.body?.screeninfo?.textstatus}',
-          statusarray: dataFromAPI.body?.profileCareerInfo?.status,
-          userstatusvalue: dataFromAPI.body?.profileCareerInfo?.userstatus,
-          jobtextleft: '${dataFromAPI.body?.screeninfo?.textJobtype}',
-          jobtypearray: dataFromAPI.body?.profileCareerInfo?.jobtype,
-          userjobvalue: dataFromAPI.body?.profileCareerInfo?.userjobtype,
-          subtitleworkplace: '${dataFromAPI.body?.screeninfo?.subtitleworkplace}',
-          userworkplace: dataFromAPI.body?.profileCareerInfo?.userworkplace,
-          usercareer: dataFromAPI.body?.profileCareerInfo?.usercareer,
-          usercompany: dataFromAPI.body?.profileCareerInfo?.usercompany,
-          textcomp: '${dataFromAPI.body?.screeninfo?.textcomp}',
-          textcareer: '${dataFromAPI.body?.screeninfo?.textcareer}',
+          textleft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
+          statusarray: dataFromAPI?.body?.profileCareerInfo?.status??[],
+          userstatusvalue: dataFromAPI?.body?.profileCareerInfo?.userstatus??"",
+          jobtextleft: '${dataFromAPI?.body?.screeninfo?.textJobtype}',
+          jobtypearray: dataFromAPI?.body?.profileCareerInfo?.jobtype??[],
+          userjobvalue: dataFromAPI?.body?.profileCareerInfo?.userjobtype??"",
+          subtitleworkplace: '${dataFromAPI?.body?.screeninfo?.subtitleworkplace}',
+          userworkplace: dataFromAPI?.body?.profileCareerInfo?.userworkplace??"",
+          usercareer: dataFromAPI?.body?.profileCareerInfo?.usercareer??"",
+          usercompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"",
+          textcomp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
+          textcareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
           ispressed: ispressed,
         ),
       ],
