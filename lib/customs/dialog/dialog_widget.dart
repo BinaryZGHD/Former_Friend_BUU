@@ -23,13 +23,9 @@ void dialogOneLineOneBtn(BuildContext context, String content, String content2 ,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Text(
-                    //   title,
-                    //   style: const TextStyle(fontWeight: FontWeight.bold),
-                    // ),
-                    SizedBox( height: 10),
+                    const SizedBox(height: 10),
                     Text(content, textAlign: TextAlign.center),
-                    SizedBox( height: 5),
+                    const SizedBox(height: 20),
                     Text(content2, textAlign: TextAlign.center),
                     SizedBox( height: 15),
                     ElevatedButton(
@@ -66,11 +62,9 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Text(
-                  //   title,
-                  //   style: const TextStyle(fontWeight: FontWeight.bold),
-                  // ),
+                  const SizedBox(height: 10),
                   Text(content, textAlign: TextAlign.center),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -82,7 +76,7 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
                           style: const TextStyle(color: BC_ButtonRed),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 20),
                       ElevatedButton(
                         style: styleButtonDialog,
                         onPressed: () => {_handleClickBtn("Cancel")},

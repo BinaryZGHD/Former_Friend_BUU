@@ -8,9 +8,9 @@ import '../../../customs/size/size.dart';
 import 'package:http/http.dart' as http;
 
 class ActivityDetailScreen extends StatefulWidget {
-  final int id;
+  final title;
   final data;
-  const ActivityDetailScreen({Key? key, required this.id, this.data}) : super(key: key);
+  const ActivityDetailScreen({Key? key, required this.title, this.data}) : super(key: key);
 
   @override
   State<ActivityDetailScreen> createState() => _ActivityDetailScreenState();
@@ -24,7 +24,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
 
   @override
   void initState() {
-    id = widget.id;
+    id = widget.title;
     data = widget.data;
     print('เรียก initState');
     getActivityDetailApi();

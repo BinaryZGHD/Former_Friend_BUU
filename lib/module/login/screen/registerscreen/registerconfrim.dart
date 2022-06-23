@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialog_widget.dart';
 import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
@@ -130,14 +131,35 @@ class _registerConfirmScreenState extends State<registerConfirmScreen> {
                       sizetext: sizeTextBig20,
                       colorborder: BSC_transparent,
                       onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => CustomDialogBox(
-                                  id: '',
-                                  textfieldvalue: "OTP  :  ",
-                                  description: errregidter2 + '\n \n ' + 'Do you want to continue?',
-                                  mapscreen: loginScreen(),
-                                ));
+                        dialogOneLineTwoBtn(
+                            context,
+                            errregidter2 + '\n \n ' + 'Do you want to continue?',
+                            'Confirm',
+                            'Cancel', onClickBtn: (String result) {
+                          Navigator.of(context).pop();
+                          switch (result) {
+                            case 'Cancel':
+                              {
+                                break;
+                              }
+                            case 'OK':
+                              {
+                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                  // int index = int.parse(widget.id);
+                                  return loginScreen();
+                                  // DisplayBeerScreen();
+                                }));
+                              }
+                          }
+                        });
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context) => CustomDialogBox(
+                        //           id: '',
+                        //           textfieldvalue: "OTP  :  ",
+                        //           description: errregidter2 + '\n \n ' + 'Do you want to continue?',
+                        //           mapscreen: loginScreen(),
+                        //         ));
                       },
                     ),
                   ),
