@@ -97,30 +97,6 @@ class _FMoreMainScreenState extends State<_FMoreMainScreen> {
                         width: MediaQuery.of(context).size.width * 0.01,
                       ),
                       buildBoard(),
-                      // Container(
-                      //     width: MediaQuery.of(context).size.width * 0.4,
-                      //     // height: MediaQuery.of(context).size.width * 0.3,
-                      //     padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: BC_ButtonRed),
-                      //     child: Padding(
-                      //         padding: const EdgeInsets.all(8.0),
-                      //         child: Center(
-                      //           child: Column(
-                      //             children: [
-                      //               Icon(
-                      //                 Icons.auto_stories_rounded,
-                      //                 color: Colors.white,
-                      //                 size: MediaQuery.of(context).size.width * 0.2,
-                      //               ),
-                      //               Text("${_dataFromAPIHomeMorewording?.body?.screeninfo?.btntc}",
-                      //                 style: TextStyle(
-                      //                   fontSize: sizeTextBig20,
-                      //                   fontWeight: FontWeight.w600,
-                      //                 ),
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ))),
                     ],
                   ),
                   Padding(

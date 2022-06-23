@@ -7,8 +7,13 @@ abstract class LoginState {
 
 class LoginScreenInfoSuccessState extends LoginState{
   ScreenLoginResponse  response;
+
   LoginScreenInfoSuccessState({required this.response});
+
 }
+
+
+
 
 class LoginLoading extends LoginState{
 
@@ -22,6 +27,7 @@ class LoginError extends LoginState{
   String message;
   LoginError({required this.message});
 }
+
 
 
 class LoginInitial extends LoginState {

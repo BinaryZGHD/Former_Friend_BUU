@@ -56,16 +56,6 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
   String codevalue = " ";
   @override
   Widget build(BuildContext context) {
-    print((widget.textheadsetnewpassword));
-    print((widget.textotpwillsent));
-    print((widget.edtemailforgot));
-    print((widget.edtpassword));
-    print((widget.edtcpassword));
-    print((widget.otp));
-    print((widget.texpleaseconfirm));
-    print((widget.btnsentotpagain));
-    print((widget.btnconfirm));
-
     return Scaffold(
       appBar: AppBar(
 

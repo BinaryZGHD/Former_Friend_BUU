@@ -136,3 +136,27 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
     );
   }
 }
+
+
+// showDialog(
+//     context: context,
+//     builder: (context) => CustomDialogBox(
+//           id: '',
+//           textfieldvalue: "Register  :  $uservalue" +
+//               "\nTelrphone number  :  $phonevalue" +
+//               "\nEmail  :  $emailvalue" +
+//               "\nName  :  $namevalue" +
+//               "\nLast name  :  $lastnamevalue" +
+//               "\nPassword  :  $passwordvalue" +
+//               "\nConfirm password  :  $confirmpasswordvalue",
+//           description: errregidter1 + '\n \n ' + 'Do you want to continue?',
+//           mapscreen: registerConfirmScreen(
+//               titleconregis: "${_dataFromAPIRegisterWording?.body?.screeninfo?.titleconregis}" ,
+//               textotpwillsent: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotpwillsent}" ,
+//               textpleaseconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textpleaseconfirm}" ,
+//               textsentotpagain:"${_dataFromAPIRegisterWording?.body?.screeninfo?.textsentotpagain}"  ,
+//               textotp: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotp}" ,
+//               btnconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.btnconfirm}" ,
+//               edtemailreg:"${_dataFromAPIRegisterWording?.body?.screeninfo?.edtemailreg}"
+//           ),
+//         ));

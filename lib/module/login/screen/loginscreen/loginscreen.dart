@@ -23,7 +23,6 @@ import '../../../../customs/size/size.dart';
 import '../../../../customs/textfile/buildtextfieldcustom.dart';
 import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
 import '../../../../customs/textlink/textlinktoscreencustom.dart';
-import '../../../../model/loginmodel/loginmodelscreen/loginwording.dart';
 import '../../../home/screen/homescreen/homescreen.dart';
 
 import '../../model/response/screen_login.dart';
@@ -124,142 +123,6 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             height: MediaQuery.of(context).size.height * 0.025,
                           ),
 
-                          // TextLinkToScreenCustom(
-                          //   // onPressed: () {
-                          //   //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
-                          //   //   // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
-                          //   //   // print("User :" + userID + "\n" + "Password :" + passw);
-                          //   //   // print(event.number);
-                          //   // },
-                          //   linklabel: "${_dataFromAPI?.body?.screeninfo?.btnforgotpass}",
-                          //   mapscreen: forgotPasswordScreen(),
-                          //   linktextcolor: TC_forgot, sizetext: sizeTextSmaller14,
-                          // ),
-                          // SizedBox(
-                          //   height: MediaQuery.of(context).size.height * 0.025,
-                          // ),
-                          // Center(
-                          //   child: ButtonCustom(
-                          //     onPressed: () {
-                          //
-                          //       // dialogOneLineOneBtn(
-                          //       //     context,
-                          //       //     "userID  :" +  userID + "\n" + "Password :" + passw,
-                          //       //     'Ok',
-                          //       //     onClickBtn: () {
-                          //       //
-                          //       //       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                          //       //         // int index = int.parse(widget.id);
-                          //       //         return HomeScreen();
-                          //       //         // DisplayBeerScreen();
-                          //       //       }));
-                          //       //     });
-                          //
-                          //       dialogOneLineTwoBtn(
-                          //           context,
-                          //           "userID  :" +  userID + "\n" + "Password :" + passw,
-                          //           'Confirm',
-                          //           'Cancel', onClickBtn: (String result) {
-                          //         Navigator.of(context).pop();
-                          //         switch (result) {
-                          //           case 'Cancel':
-                          //             {
-                          //               break;
-                          //             }
-                          //           case 'OK':
-                          //             {
-                          //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                          //             // int index = int.parse(widget.id);
-                          //             return HomeScreen();
-                          //             // DisplayBeerScreen();
-                          //             }));
-                          //             }
-                          //         }
-                          //       });
-                          //
-                          //       // showDialog(
-                          //       //     context: context,
-                          //       //     builder: (context) => CustomDialogBox(
-                          //       //           id: '',
-                          //       //           textfieldvalue: "userID  :" +  userID + "\n" + "Password :" + passw,
-                          //       //           description: errloin  + '\n \n ' + 'Do you want to continue?',
-                          //       //           mapscreen: HomeScreen(),
-                          //       //         ));
-                          //     },
-                          //     label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",
-                          //     colortext: TC_Black,
-                          //     colorbutton: BC_ButtonGreen,
-                          //     sizetext: sizeTextBig20,
-                          //     colorborder: BSC_transparent,
-
-//                           TextLinkToScreenCustom(
-//                             // onPressed: () {
-//                             //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
-//                             //   // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
-//                             //   // print("User :" + userID + "\n" + "Password :" + passw);
-//                             //   // print(event.number);
-//                             // },
-//                             linklabel: "${_dataFromAPI?.body?.screeninfo?.btnforgotpass}",
-//                             mapscreen: forgotPasswordScreen(),
-//                             linktextcolor: TC_forgot, sizetext: sizeTextSmaller14,
-//                           ),
-//                           SizedBox(
-//                             height: MediaQuery.of(context).size.height * 0.025,
-//                           ),
-//                           Center(
-//                             child: ButtonCustom(
-//                               onPressed: () {
-//
-//                                 // dialogOneLineOneBtn(
-//                                 //     context,
-//                                 //     "userID  :" +  userID + "\n" + "Password :" + passw,
-//                                 //     'Ok',
-//                                 //     onClickBtn: () {
-//                                 //
-//                                 //       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-//                                 //         // int index = int.parse(widget.id);
-//                                 //         return HomeScreen();
-//                                 //         // DisplayBeerScreen();
-//                                 //       }));
-//                                 //     });
-//
-//                                 dialogOneLineTwoBtn(
-//                                     context,
-//                                     "userID  :" +  userID + "\n" + "Password :" + passw,
-//                                     'Confirm',
-//                                     'Cancel', onClickBtn: (String result) {
-//                                   Navigator.of(context).pop();
-//                                   switch (result) {
-//                                     case 'Cancel':
-//                                       {
-//                                         break;
-//                                       }
-//                                     case 'OK':
-//                                       {
-//                                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-//                                       // int index = int.parse(widget.id);
-//                                       return HomeScreen();
-//                                       // DisplayBeerScreen();
-//                                       }));
-//                                       }
-//                                   }
-//                                 });
-//
-//                                 // showDialog(
-//                                 //     context: context,
-//                                 //     builder: (context) => CustomDialogBox(
-//                                 //           id: '',
-//                                 //           textfieldvalue: "userID  :" +  userID + "\n" + "Password :" + passw,
-//                                 //           description: errloin  + '\n \n ' + 'Do you want to continue?',
-//                                 //           mapscreen: HomeScreen(),
-//                                 //         ));
-//                               },
-//                               label: "  ${_dataFromAPI?.body?.screeninfo?.btnlogin}  ",
-//                               colortext: TC_Black,
-//                               colorbutton: BC_ButtonGreen,
-//                               sizetext: sizeTextBig20,
-//                               colorborder: BSC_transparent,
-
                           TextLinkToScreenCustom(
                             // onPressed: () {
                             //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
@@ -277,20 +140,40 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           Center(
                             child: ButtonCustom(
                               onPressed: () {
+                                dialogOneLineTwoBtn(
+                                    context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                                    onClickBtn: (String result) {
+                                      Navigator.of(context).pop();
+                                      switch (result) {
+                                        case 'Cancel':
+                                          {
+                                            break;
+                                          }
+                                        case 'OK':
+                                          {
+                                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                              // int index = int.parse(widget.id);
+                                              return HomeScreen();
+                                              // DisplayBeerScreen();
+                                            }));
+                                          }
+                                      }
+                                    });
+
                                 // context.read<LoginBloc>().add(LoginScreenInfoEvent());
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => CustomDialogBox(
-                                          onPressed: () {
-                                            Navigator.of(context).pop(); // dialog
-                                            Navigator.of(context).pop(); // login
-                                            Navigator.of(context).pop(); // login
-                                          },
-                                          id: '',
-                                          textfieldvalue: "userID  :" + userID + "\n" + "Password :" + passw,
-                                          description: errloin + '\n \n ' + 'Do you want to continue?',
-                                          mapscreen: HomeScreen(),
-                                        ));
+                                // showDialog(
+                                //     context: context,
+                                //     builder: (context) => CustomDialogBox(
+                                //           onPressed: () {
+                                //             Navigator.of(context).pop(); // dialog
+                                //             Navigator.of(context).pop(); // login
+                                //             Navigator.of(context).pop(); // login
+                                //           },
+                                //           id: '',
+                                //           textfieldvalue: "userID  :" + userID + "\n" + "Password :" + passw,
+                                //           description: errloin + '\n \n ' + 'Do you want to continue?',
+                                //           mapscreen: HomeScreen(),
+                                //         ));
                               },
                               label: "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
                               colortext: TC_Black,
@@ -336,4 +219,3 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     );
   }
 }
-// ppreemddd

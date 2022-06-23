@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"login"}
 /// body : {"screeninfo":{"textreghead":"Register","edtIDreg":"Student code / Teacher code","edtphonereg":"Tel","edtemailreg":"Email","edtnamereg":"Name","edtlnamereg":"Lastname","edtpassreg":"Password","edtcpassreg":"Confirm password","titleconregis":"Confirm register","textotpwillsent":"OTP will sent to","textpleaseconfirm":"Please confirm","textsentotpagain":"Sent OTP again","textotp":"OTP","btnsignup":"Sign up","btnconfirm":"Confirm"}}
 
-RegisterWording registerwordingFromJson(String str) => RegisterWording.fromJson(json.decode(str));
-String registerwordingdartToJson(RegisterWording data) => json.encode(data.toJson());
-class RegisterWording {
-  RegisterWording({
+ScreenRegisterResponse screenregisterresponseFromJson(String str) => ScreenRegisterResponse.fromJson(json.decode(str));
+String registerwordingdartToJson(ScreenRegisterResponse data) => json.encode(data.toJson());
+class ScreenRegisterResponse {
+  ScreenRegisterResponse({
       Head? head, 
       Body? body,}){
     _head = head;
     _body = body;
 }
 
-  RegisterWording.fromJson(dynamic json) {
+  ScreenRegisterResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-RegisterWording copyWith({  Head? head,
+ScreenRegisterResponse copyWith({  Head? head,
   Body? body,
-}) => RegisterWording(  head: head ?? _head,
+}) => ScreenRegisterResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as httpurl;
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
@@ -7,13 +8,13 @@ import 'package:f2fbuu/module/login/screen/registerscreen/registerscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/dialog/dialog_widget.dart';
-import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
+import '../../../../customs/progress_dialog.dart';
 import '../../../../customs/size/size.dart';
-import '../../../../model/loginmodel/registermodelscreen/pdpawording.dart';
+import '../../bloc/pdpabloc/pdpa_bloc.dart';
+import '../../model/response/screen_pdpa.dart';
 
 class conditionPDPAScreen extends StatefulWidget {
   const conditionPDPAScreen({Key? key}) : super(key: key);
@@ -22,34 +23,31 @@ class conditionPDPAScreen extends StatefulWidget {
   State<conditionPDPAScreen> createState() => _conditionPDPAScreenState();
 }
 
-class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
-  PdpaWording? _dataFromAPIPdpaWording;
+class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with ProgressDialog {
+  ScreenPDPAResponse? _screenPDPAResponse;
   @override
-  void initState() {
-    super.initState();
-    getAPIPdpaWording();
-  }
 
-  Future<PdpaWording?> getAPIPdpaWording() async {
-    // print("เรียกใช้ Get_Coin_price");
-    var url = Uri.parse("https://webzbinaryz.web.app/v1/api/modules/login/wording/PDPA");
-    var response = await httpurl.get(url, headers: <String, String>{});
 
-    _dataFromAPIPdpaWording = pdpawordingFromJson(utf8.decode(response.bodyBytes));
-    // print(response.body);
-    // print(_dataFromAPI?.head?.message);// get the data from the api
-    // print(_dataFromAPI?.body?.screeninfo?.btnchangelang);// get the data from the api
-    return _dataFromAPIPdpaWording;
-
-    // log(response.body);
-  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: getAPIPdpaWording(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+    context.read<PdpaBloc>().add(PDPAScreenInfoEvent());
+    return BlocListener<PdpaBloc, PdpaState>(
+      listener: (context, state) {
+        if (state is PDPALoading) {
+          showProgressDialog(context);
+        }
+        if (state is PDPAEndLoading) {
+          hideProgressDialog(context);
+        }
+        if (state is PDPAError) {
+          // show dialog error
+          print(state.message);
+        }
+      },
+      child: Scaffold(
+        body: BlocBuilder<PdpaBloc, PdpaState>(builder: (context, state) {
+          if (state is PDPAScreenInfoSuccessState) {
+            _screenPDPAResponse = state.response;
             return SafeArea(
               child: Container(
                 height: MediaQuery.of(context).size.height,
@@ -63,9 +61,9 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
                       buildContainerTitle(),
                       Expanded(
                         child: Container(
-                          color: BSC_transparent,
+                            color: BSC_transparent,
                             width: MediaQuery.of(context).size.width,
-                            child: SfPdfViewer.network("${_dataFromAPIPdpaWording?.body?.linkpdpa}")
+                            child: SfPdfViewer.network("${_screenPDPAResponse?.body?.linkpdpa}")
                           // Image.asset(
                           //   "assets/PDPA.png",
                           //   fit: BoxFit.fill,
@@ -83,34 +81,31 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
                           ),
                           Expanded(
                               child: ButtonCustom(
-                                label: "${_dataFromAPIPdpaWording?.body?.screeninfo?.btnaccept}",
-
+                                label: "${_screenPDPAResponse?.body?.screeninfo?.btnaccept}",
                                 colortext: TC_Black,
                                 colorbutton: BC_ButtonGreen,
                                 sizetext: sizeTextBig20,
                                 colorborder: BSC_transparent,
                                 onPressed: () {
                                   dialogOneLineTwoBtn(
-                                      context,
-                                      errpdpaaccept + '\n \n ' + 'Do you want to continue?',
-                                      'Confirm',
-                                      'Cancel', onClickBtn: (String result) {
-                                    Navigator.of(context).pop();
-                                    switch (result) {
-                                      case 'Cancel':
-                                        {
-                                          break;
+                                      context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                                      onClickBtn: (String result) {
+                                        Navigator.of(context).pop();
+                                        switch (result) {
+                                          case 'Cancel':
+                                            {
+                                              break;
+                                            }
+                                          case 'OK':
+                                            {
+                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                                // int index = int.parse(widget.id);
+                                                return registerScreen();
+                                                // DisplayBeerScreen();
+                                              }));
+                                            }
                                         }
-                                      case 'OK':
-                                        {
-                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                            // int index = int.parse(widget.id);
-                                            return registerScreen();
-                                            // DisplayBeerScreen();
-                                          }));
-                                        }
-                                    }
-                                  });
+                                      });
                                   // showDialog(
                                   //     context: context,
                                   //     builder: (context) => CustomDialogBox(
@@ -126,44 +121,31 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
                           ),
                           Expanded(
                               child: ButtonCustom(
-                                label: "${_dataFromAPIPdpaWording?.body?.screeninfo?.btndecline}",
-
+                                label: "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
                                 colortext: TC_Black,
                                 colorbutton: BC_ButtonRed,
                                 sizetext: sizeTextBig20,
                                 colorborder: BSC_transparent,
                                 onPressed: () {
-
                                   dialogOneLineTwoBtn(
-                                      context,
-                                      errpdpadecline + '\n \n ' + 'Do you want to continue?',
-                                      'Confirm',
-                                      'Cancel', onClickBtn: (String result) {
-                                    Navigator.of(context).pop();
-                                    switch (result) {
-                                      case 'Cancel':
-                                        {
-                                          break;
+                                      context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                                      onClickBtn: (String result) {
+                                        Navigator.of(context).pop();
+                                        switch (result) {
+                                          case 'Cancel':
+                                            {
+                                              break;
+                                            }
+                                          case 'OK':
+                                            {
+                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                                // int index = int.parse(widget.id);
+                                                return loginScreen();
+                                                // DisplayBeerScreen();
+                                              }));
+                                            }
                                         }
-                                      case 'OK':
-                                        {
-                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                            // int index = int.parse(widget.id);
-                                            return loginScreen();
-                                            // DisplayBeerScreen();
-                                          }));
-                                        }
-                                    }
-                                  });
-
-                                  // showDialog(
-                                  //     context: context,
-                                  //     builder: (context) => CustomDialogBox(
-                                  //       id: '',
-                                  //       textfieldvalue: "",
-                                  //       description: errpdpadecline + '\n \n ' + 'Do you want to continue?',
-                                  //       mapscreen: loginScreen(),
-                                  //     ));
+                                      });
                                 },
                               )),
                           SizedBox(
@@ -179,23 +161,20 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen> {
                 ),
               ),
             );
+
+          } else {
+            return Container();
           }
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        },
+        }),
       ),
     );
   }
-
   Container buildContainerTitle() {
     return Container(
-
       constraints: BoxConstraints.expand(height: 60),
-      child: Text("${_dataFromAPIPdpaWording?.body?.screeninfo?.textPDPAhead}" ,
+      child: Text("${_screenPDPAResponse?.body?.screeninfo?.textPDPAhead}",
           textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
     );
   }
 }
+

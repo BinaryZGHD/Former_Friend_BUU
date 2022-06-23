@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"login"}
 /// body : {"screeninfo":{"textforgothead":"Forgot password","edtIDforgot":"Student code / Teacher code","edtemailforgot":"Email","btnforgotnext":"NEXT","textheadsetnewpass":"Set new password","textotpwillsent":"OTP will sent to","edtpass":"Password","edtcpass":"Confirm password","otp":"OTP","texpleaseconfirm":"Please confirm","btnsentotpagain":"Sent OTP again","btnconfirm":"Confirm "}}
 
-ForgotPasswording forgotpasswordingFromJson(String str) => ForgotPasswording.fromJson(json.decode(str));
-String forgotpasswordingToJson(ForgotPasswording data) => json.encode(data.toJson());
-class ForgotPasswording {
-  ForgotPasswording({
+ScreenForgotPasswordResponse screenforgotpasswordresponseFromJson(String str) => ScreenForgotPasswordResponse.fromJson(json.decode(str));
+String forgotpasswordingToJson(ScreenForgotPasswordResponse data) => json.encode(data.toJson());
+class ScreenForgotPasswordResponse {
+  ScreenForgotPasswordResponse({
       Head? head, 
       Body? body,}){
     _head = head;
     _body = body;
 }
 
-  ForgotPasswording.fromJson(dynamic json) {
+  ScreenForgotPasswordResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-ForgotPasswording copyWith({  Head? head,
+ScreenForgotPasswordResponse copyWith({  Head? head,
   Body? body,
-}) => ForgotPasswording(  head: head ?? _head,
+}) => ScreenForgotPasswordResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;
