@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class customDropdown extends StatefulWidget {
   final String hint;
   final List dropdownlist;
-
+  final double width;
   const customDropdown(
-      {Key? key, required this.hint, required this.dropdownlist})
+      {Key? key, required this.hint, required this.dropdownlist, required this.width})
       : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class _customDropdownState extends State<customDropdown> {
     return Container(
       margin: const EdgeInsets.all(12),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.4,
+        width: widget.width,
         child: DropdownButtonFormField<String>(
           // alignment: Alignment.centerRight,
           isExpanded: true,
