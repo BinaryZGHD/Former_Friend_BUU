@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as httpurl;
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/size/size.dart';
-import '../../../../model/homemodel/homemoremodelscreen/homemorewording.dart';
+import '../../model/response/screen_homemore.dart';
 import 'cardmore.dart';
 
 class MoreMainScreen extends StatelessWidget {
@@ -25,19 +25,19 @@ class _FMoreMainScreen extends StatefulWidget {
 }
 
 class _FMoreMainScreenState extends State<_FMoreMainScreen> {
-  HomeMorewording? _dataFromAPIHomeMorewording;
+  ScreenHomeMoreResponse? _dataFromAPIHomeMorewording;
   @override
   void initState() {
     super.initState();
     getAPIRegisterWording();
   }
 
-  Future<HomeMorewording?> getAPIRegisterWording() async {
+  Future<ScreenHomeMoreResponse?> getAPIRegisterWording() async {
     // print("เรียกใช้ Get_Coin_price");
     var url = Uri.parse("https://webzbinaryz.web.app/v1/api/modules/home/wording/more");
     var response = await httpurl.get(url, headers: <String, String>{});
 
-    _dataFromAPIHomeMorewording = homemorewordingFromJson(utf8.decode(response.bodyBytes));
+    _dataFromAPIHomeMorewording = screenhomemoreResponseFromJson(utf8.decode(response.bodyBytes));
     // print(response.body);
     // // print(_dataFromAPI?.head?.message);// get the data from the api
     // print(_dataFromAPIRegisterWording?.body?.screeninfo?.textreghead);// get the data from the api

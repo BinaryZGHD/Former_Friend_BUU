@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"home"}
 /// body : {"screeninfo":{"textmore":"More","textboard":"Board","btnstd":"Student","btntc":"Teacher","textabdepart":"About department","btndeparthis":"Department history","btncou":"Course","btnface":"Facebook","btnweb":"Website","textsup":"Support","btntermandcon":"Terms and conditions","btnfaq":" FAQ","btnconus":" Contact us","texturgo2":"You are going to","textright":"right ?","textyes":"Yes","textno":"No"},"pavat_url":"http://math.buu.ac.th/history/frontend/index","luksuit_url":"http://math.buu.ac.th/course/frontend/index","facebook_url":"https://www.facebook.com/SciMathBUU","website_url":"http://math.buu.ac.th/"}
 
-HomeMorewording homemorewordingFromJson(String str) => HomeMorewording.fromJson(json.decode(str));
-String homemorewordingToJson(HomeMorewording data) => json.encode(data.toJson());
-class HomeMorewording {
-  HomeMorewording({
+ScreenHomeMoreResponse screenhomemoreResponseFromJson(String str) => ScreenHomeMoreResponse.fromJson(json.decode(str));
+String homemorewordingToJson(ScreenHomeMoreResponse data) => json.encode(data.toJson());
+class ScreenHomeMoreResponse {
+  ScreenHomeMoreResponse({
       Head? head, 
       Body? body,}){
     _head = head;
     _body = body;
 }
 
-  HomeMorewording.fromJson(dynamic json) {
+  ScreenHomeMoreResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-HomeMorewording copyWith({  Head? head,
+ScreenHomeMoreResponse copyWith({  Head? head,
   Body? body,
-}) => HomeMorewording(  head: head ?? _head,
+}) => ScreenHomeMoreResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;
