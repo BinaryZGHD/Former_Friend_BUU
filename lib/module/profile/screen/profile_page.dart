@@ -50,8 +50,6 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return BlocListener<ProfileBloc, ProfileState>(listener: (context, state) {
       if (state is ProfileLoading) {
         showProgressDialog(context);
@@ -62,12 +60,22 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       if (state is ProfileError) {
         print(state.errormessage);
       }
-
     }, child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
       if (state is ProfileApiSuccessState) {
         _apiProfileResponse = state.response;
-        // print(jsonEncode(_apiProfileResponse));
-        return Scaffold(
+        return buildContent(context,_apiProfileResponse,image);
+      }else if (state is ChooseAvatarSuccess){
+        return buildContent(context,_apiProfileResponse,state.avatarimg);
+      }
+      return Scaffold(body: Container());
+    }));
+  }
+}
+
+Widget buildContent(BuildContext context,ApiProfileResponse? apiProfileResponse,File? image){
+  var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+  return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
@@ -82,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                 ),
               ),
               title: Text(
-                '${_apiProfileResponse?.body?.screeninfo?.titleprofile}',
+                '${apiProfileResponse?.body?.screeninfo?.titleprofile}',
                 // 'ทดสอบ bloc',
                 style: TextStyle(
                   color: Colors.black,
@@ -118,9 +126,11 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                   margin: EdgeInsets.all(20),
                                   child: InkWell(
                                     onTap: () {
-                                      context.read<ProfileBloc>().add(ChangeAvatarRequest());
+                                      context
+                                          .read<ProfileBloc>()
+                                          .add(ChangeAvatarRequest());
                                       // pickImage();
-                                    } ,
+                                    },
                                     child: CircleAvatar(
                                       radius: 40,
                                       child: Container(
@@ -148,20 +158,23 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                      image: FileImage(image!),
+                                      image: FileImage(image),
                                       fit: BoxFit.cover,
-                                      colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.1), BlendMode.dstATop),
+                                      colorFilter: ColorFilter.mode(
+                                          Colors.white.withOpacity(0.1),
+                                          BlendMode.dstATop),
                                     ),
-
                                   ),
                                   child: InkWell(
-                                      onTap: () => context.read<ProfileBloc>().add(ChangeAvatarRequest()),
+                                      onTap: () => context
+                                          .read<ProfileBloc>()
+                                          .add(ChangeAvatarRequest()),
                                       // onTap: () => pickImage(),
                                       child: Container(
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
-                                            image: FileImage(image!),
+                                            image: FileImage(image),
                                           ),
                                         ),
                                       )
@@ -187,20 +200,14 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
                                 )),
                     ],
                   ),
-                  ProfileGeneralDataHead(dataFromAPI: _apiProfileResponse),
-                  ProfileEducationDataHead(dataFromAPI: _apiProfileResponse),
-                  ProfileAddressDataHead(dataFromAPI: _apiProfileResponse),
-                  ProfileContactDataHead(dataFromAPI: _apiProfileResponse),
-                  ProfileCareerDataHead(dataFromAPI: _apiProfileResponse),
+                  ProfileGeneralDataHead(dataFromAPI: apiProfileResponse),
+                  ProfileEducationDataHead(dataFromAPI: apiProfileResponse),
+                  ProfileAddressDataHead(dataFromAPI: apiProfileResponse),
+                  ProfileContactDataHead(dataFromAPI: apiProfileResponse),
+                  ProfileCareerDataHead(dataFromAPI: apiProfileResponse),
                 ],
               ),
             ));
-        //------
-      } else {
-        return Container();
-      }
-    }));
-  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
