@@ -67,7 +67,7 @@ class _editActivityState extends State<editActivity> {
     List<String> yearlist = ['2022','2021','2020'];
     List<String> termlist = ['1','2','summer'];
     List<String> teacherlist = ['a','b','c','d','e','f'];
-    String activitynamevalue = "${widget.data.name}";
+    String namevalue = "${widget.data.name}";
     String yearvalue = "${widget.data.year}";
     String termvalue = "${widget.data.term}";
     String sdatevalue = "${widget.data.startdate}";
@@ -111,6 +111,7 @@ class _editActivityState extends State<editActivity> {
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     buildTextFieldCustom(
+                      initialvalue: namevalue,
                       textEditingController: activityname,
                       onChanged: (value) {
                         activitynamevalue = value;
@@ -136,6 +137,7 @@ class _editActivityState extends State<editActivity> {
                     customDatePicker(hint_label: 'Start date',),
                     customDatePicker(hint_label: 'Finish date'),
                     buildTextFieldCustom(
+                      initialvalue: timevalue,
                       textEditingController: time,
                       onChanged: (value) {
                         timevalue = value;
@@ -144,6 +146,7 @@ class _editActivityState extends State<editActivity> {
                       textInputType: TextInputType.number,
                     ),
                     buildTextFieldCustom(
+                      initialvalue: venuevalue,
                       textEditingController: venue,
                       onChanged: (value) {
                         venuevalue = value;
@@ -153,6 +156,7 @@ class _editActivityState extends State<editActivity> {
                     ),
                     customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: teacherlist, hint: 'approver',),
                     buildTextFieldCustom(
+                      initialvalue: detailvalue,
                       textEditingController: detail,
                       onChanged: (value) {
                         detailvalue = value;

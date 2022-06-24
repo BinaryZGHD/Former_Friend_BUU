@@ -1,6 +1,6 @@
 import 'dart:convert';
-/// head : {"status":"200","message":"susccess","module":"Home"}
-/// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status"},"profile_general_info":{"name":"Ton","surname":"Sai","nickname":"TTT","stu_code":"XX03XXXX","gen":"65","tel":"0123456789"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_info":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}],"userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}}
+/// head : {"status":"200","message":"susccess","module":"profile"}
+/// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status","profile_career_screeninfo":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]}},"profile_general_info":{"name":"คณิศาสตร์","surname":"สถิติวิชาการ","nickname":"AKA คำฝอย","stu_code":"6203XXXXX","gen":"X6","genname":"กรีนทีมัทฉะลาเต้","gencolor":"#9ED9C5","studentid":"6203XXXXX","email":"StudentCodeID@morebuu.ac.th","role":"Student","img":"https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_info":{"company":"Burapha company","attention":"อื่นๆ","status":"ว่างงาน","jobtype":"อื่นๆ","userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}}
 
 ApiProfileResponse apiProfileFromJson(String str) => ApiProfileResponse.fromJson(json.decode(str));
 String apiProfileToJson(ApiProfileResponse data) => json.encode(data.toJson());
@@ -39,12 +39,12 @@ ApiProfileResponse copyWith({  Head? head,
 
 }
 
-/// screeninfo : {"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status"}
-/// profile_general_info : {"name":"Ton","surname":"Sai","nickname":"TTT","stu_code":"XX03XXXX","gen":"65","tel":"0123456789"}
+/// screeninfo : {"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status","profile_career_screeninfo":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]}}
+/// profile_general_info : {"name":"คณิศาสตร์","surname":"สถิติวิชาการ","nickname":"AKA คำฝอย","stu_code":"6203XXXXX","gen":"X6","genname":"กรีนทีมัทฉะลาเต้","gencolor":"#9ED9C5","studentid":"6203XXXXX","email":"StudentCodeID@morebuu.ac.th","role":"Student","img":"https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"}
 /// profile_edu_info : {"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"}
 /// profile_address_info : {"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"}
 /// profile_contact_info : {"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"}
-/// profile_career_info : {"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}],"userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}
+/// profile_career_info : {"company":"Burapha company","attention":"อื่นๆ","status":"ว่างงาน","jobtype":"อื่นๆ","userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -123,9 +123,10 @@ Body copyWith({  Screeninfo? screeninfo,
 
 }
 
-/// attention : [{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}]
-/// status : [{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}]
-/// jobtype : [{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]
+/// company : "Burapha company"
+/// attention : "อื่นๆ"
+/// status : "ว่างงาน"
+/// jobtype : "อื่นๆ"
 /// userworkplace : "BURAPHA Univer ครับ"
 /// usercareer : "Developer ครับ"
 /// usercompany : "Burapha company ครับ"
@@ -137,15 +138,17 @@ ProfileCareerInfo profileCareerInfoFromJson(String str) => ProfileCareerInfo.fro
 String profileCareerInfoToJson(ProfileCareerInfo data) => json.encode(data.toJson());
 class ProfileCareerInfo {
   ProfileCareerInfo({
-      List<Attention>? attention, 
-      List<Status>? status, 
-      List<Jobtype>? jobtype, 
+      String? company, 
+      String? attention, 
+      String? status, 
+      String? jobtype, 
       String? userworkplace, 
       String? usercareer, 
       String? usercompany, 
       String? userattention, 
       String? userstatus, 
       String? userjobtype,}){
+    _company = company;
     _attention = attention;
     _status = status;
     _jobtype = jobtype;
@@ -158,24 +161,10 @@ class ProfileCareerInfo {
 }
 
   ProfileCareerInfo.fromJson(dynamic json) {
-    if (json['attention'] != null) {
-      _attention = [];
-      json['attention'].forEach((v) {
-        _attention?.add(Attention.fromJson(v));
-      });
-    }
-    if (json['status'] != null) {
-      _status = [];
-      json['status'].forEach((v) {
-        _status?.add(Status.fromJson(v));
-      });
-    }
-    if (json['jobtype'] != null) {
-      _jobtype = [];
-      json['jobtype'].forEach((v) {
-        _jobtype?.add(Jobtype.fromJson(v));
-      });
-    }
+    _company = json['company'];
+    _attention = json['attention'];
+    _status = json['status'];
+    _jobtype = json['jobtype'];
     _userworkplace = json['userworkplace'];
     _usercareer = json['usercareer'];
     _usercompany = json['usercompany'];
@@ -183,25 +172,28 @@ class ProfileCareerInfo {
     _userstatus = json['userstatus'];
     _userjobtype = json['userjobtype'];
   }
-  List<Attention>? _attention;
-  List<Status>? _status;
-  List<Jobtype>? _jobtype;
+  String? _company;
+  String? _attention;
+  String? _status;
+  String? _jobtype;
   String? _userworkplace;
   String? _usercareer;
   String? _usercompany;
   String? _userattention;
   String? _userstatus;
   String? _userjobtype;
-ProfileCareerInfo copyWith({  List<Attention>? attention,
-  List<Status>? status,
-  List<Jobtype>? jobtype,
+ProfileCareerInfo copyWith({  String? company,
+  String? attention,
+  String? status,
+  String? jobtype,
   String? userworkplace,
   String? usercareer,
   String? usercompany,
   String? userattention,
   String? userstatus,
   String? userjobtype,
-}) => ProfileCareerInfo(  attention: attention ?? _attention,
+}) => ProfileCareerInfo(  company: company ?? _company,
+  attention: attention ?? _attention,
   status: status ?? _status,
   jobtype: jobtype ?? _jobtype,
   userworkplace: userworkplace ?? _userworkplace,
@@ -211,9 +203,10 @@ ProfileCareerInfo copyWith({  List<Attention>? attention,
   userstatus: userstatus ?? _userstatus,
   userjobtype: userjobtype ?? _userjobtype,
 );
-  List<Attention>? get attention => _attention;
-  List<Status>? get status => _status;
-  List<Jobtype>? get jobtype => _jobtype;
+  String? get company => _company;
+  String? get attention => _attention;
+  String? get status => _status;
+  String? get jobtype => _jobtype;
   String? get userworkplace => _userworkplace;
   String? get usercareer => _usercareer;
   String? get usercompany => _usercompany;
@@ -223,102 +216,16 @@ ProfileCareerInfo copyWith({  List<Attention>? attention,
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (_attention != null) {
-      map['attention'] = _attention?.map((v) => v.toJson()).toList();
-    }
-    if (_status != null) {
-      map['status'] = _status?.map((v) => v.toJson()).toList();
-    }
-    if (_jobtype != null) {
-      map['jobtype'] = _jobtype?.map((v) => v.toJson()).toList();
-    }
+    map['company'] = _company;
+    map['attention'] = _attention;
+    map['status'] = _status;
+    map['jobtype'] = _jobtype;
     map['userworkplace'] = _userworkplace;
     map['usercareer'] = _usercareer;
     map['usercompany'] = _usercompany;
     map['userattention'] = _userattention;
     map['userstatus'] = _userstatus;
     map['userjobtype'] = _userjobtype;
-    return map;
-  }
-
-}
-
-/// jobname : "0"
-
-Jobtype jobtypeFromJson(String str) => Jobtype.fromJson(json.decode(str));
-String jobtypeToJson(Jobtype data) => json.encode(data.toJson());
-class Jobtype {
-  Jobtype({
-      String? jobname,}){
-    _jobname = jobname;
-}
-
-  Jobtype.fromJson(dynamic json) {
-    _jobname = json['jobname'];
-  }
-  String? _jobname;
-Jobtype copyWith({  String? jobname,
-}) => Jobtype(  jobname: jobname ?? _jobname,
-);
-  String? get jobname => _jobname;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['jobname'] = _jobname;
-    return map;
-  }
-
-}
-
-/// statusname : "อื่นๆ"
-
-Status statusFromJson(String str) => Status.fromJson(json.decode(str));
-String statusToJson(Status data) => json.encode(data.toJson());
-class Status {
-  Status({
-      String? statusname,}){
-    _statusname = statusname;
-}
-
-  Status.fromJson(dynamic json) {
-    _statusname = json['statusname'];
-  }
-  String? _statusname;
-Status copyWith({  String? statusname,
-}) => Status(  statusname: statusname ?? _statusname,
-);
-  String? get statusname => _statusname;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['statusname'] = _statusname;
-    return map;
-  }
-
-}
-
-/// attenname : "อื่นๆ"
-
-Attention attentionFromJson(String str) => Attention.fromJson(json.decode(str));
-String attentionToJson(Attention data) => json.encode(data.toJson());
-class Attention {
-  Attention({
-      String? attenname,}){
-    _attenname = attenname;
-}
-
-  Attention.fromJson(dynamic json) {
-    _attenname = json['attenname'];
-  }
-  String? _attenname;
-Attention copyWith({  String? attenname,
-}) => Attention(  attenname: attenname ?? _attenname,
-);
-  String? get attenname => _attenname;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['attenname'] = _attenname;
     return map;
   }
 
@@ -558,12 +465,17 @@ ProfileEduInfo copyWith({  String? faculty,
 
 }
 
-/// name : "Ton"
-/// surname : "Sai"
-/// nickname : "TTT"
-/// stu_code : "XX03XXXX"
-/// gen : "65"
-/// tel : "0123456789"
+/// name : "คณิศาสตร์"
+/// surname : "สถิติวิชาการ"
+/// nickname : "AKA คำฝอย"
+/// stu_code : "6203XXXXX"
+/// gen : "X6"
+/// genname : "กรีนทีมัทฉะลาเต้"
+/// gencolor : "#9ED9C5"
+/// studentid : "6203XXXXX"
+/// email : "StudentCodeID@morebuu.ac.th"
+/// role : "Student"
+/// img : "https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"
 
 ProfileGeneralInfo profileGeneralInfoFromJson(String str) => ProfileGeneralInfo.fromJson(json.decode(str));
 String profileGeneralInfoToJson(ProfileGeneralInfo data) => json.encode(data.toJson());
@@ -574,13 +486,23 @@ class ProfileGeneralInfo {
       String? nickname, 
       String? stuCode, 
       String? gen, 
-      String? tel,}){
+      String? genname, 
+      String? gencolor, 
+      String? studentid, 
+      String? email, 
+      String? role, 
+      String? img,}){
     _name = name;
     _surname = surname;
     _nickname = nickname;
     _stuCode = stuCode;
     _gen = gen;
-    _tel = tel;
+    _genname = genname;
+    _gencolor = gencolor;
+    _studentid = studentid;
+    _email = email;
+    _role = role;
+    _img = img;
 }
 
   ProfileGeneralInfo.fromJson(dynamic json) {
@@ -589,33 +511,58 @@ class ProfileGeneralInfo {
     _nickname = json['nickname'];
     _stuCode = json['stu_code'];
     _gen = json['gen'];
-    _tel = json['tel'];
+    _genname = json['genname'];
+    _gencolor = json['gencolor'];
+    _studentid = json['studentid'];
+    _email = json['email'];
+    _role = json['role'];
+    _img = json['img'];
   }
   String? _name;
   String? _surname;
   String? _nickname;
   String? _stuCode;
   String? _gen;
-  String? _tel;
+  String? _genname;
+  String? _gencolor;
+  String? _studentid;
+  String? _email;
+  String? _role;
+  String? _img;
 ProfileGeneralInfo copyWith({  String? name,
   String? surname,
   String? nickname,
   String? stuCode,
   String? gen,
-  String? tel,
+  String? genname,
+  String? gencolor,
+  String? studentid,
+  String? email,
+  String? role,
+  String? img,
 }) => ProfileGeneralInfo(  name: name ?? _name,
   surname: surname ?? _surname,
   nickname: nickname ?? _nickname,
   stuCode: stuCode ?? _stuCode,
   gen: gen ?? _gen,
-  tel: tel ?? _tel,
+  genname: genname ?? _genname,
+  gencolor: gencolor ?? _gencolor,
+  studentid: studentid ?? _studentid,
+  email: email ?? _email,
+  role: role ?? _role,
+  img: img ?? _img,
 );
   String? get name => _name;
   String? get surname => _surname;
   String? get nickname => _nickname;
   String? get stuCode => _stuCode;
   String? get gen => _gen;
-  String? get tel => _tel;
+  String? get genname => _genname;
+  String? get gencolor => _gencolor;
+  String? get studentid => _studentid;
+  String? get email => _email;
+  String? get role => _role;
+  String? get img => _img;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -624,7 +571,12 @@ ProfileGeneralInfo copyWith({  String? name,
     map['nickname'] = _nickname;
     map['stu_code'] = _stuCode;
     map['gen'] = _gen;
-    map['tel'] = _tel;
+    map['genname'] = _genname;
+    map['gencolor'] = _gencolor;
+    map['studentid'] = _studentid;
+    map['email'] = _email;
+    map['role'] = _role;
+    map['img'] = _img;
     return map;
   }
 
@@ -668,6 +620,7 @@ ProfileGeneralInfo copyWith({  String? name,
 /// textfustud : "Futher study"
 /// textstudying : "Studying"
 /// textstatus : "Status"
+/// profile_career_screeninfo : {"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]}
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
@@ -710,7 +663,8 @@ class Screeninfo {
       String? textunemp, 
       String? textfustud, 
       String? textstudying, 
-      String? textstatus,}){
+      String? textstatus, 
+      ProfileCareerScreeninfo? profileCareerScreeninfo,}){
     _titleprofile = titleprofile;
     _subtitlegeninfor = subtitlegeninfor;
     _subtitlecont = subtitlecont;
@@ -749,6 +703,7 @@ class Screeninfo {
     _textfustud = textfustud;
     _textstudying = textstudying;
     _textstatus = textstatus;
+    _profileCareerScreeninfo = profileCareerScreeninfo;
 }
 
   Screeninfo.fromJson(dynamic json) {
@@ -790,6 +745,7 @@ class Screeninfo {
     _textfustud = json['textfustud'];
     _textstudying = json['textstudying'];
     _textstatus = json['textstatus'];
+    _profileCareerScreeninfo = json['profile_career_screeninfo'] != null ? ProfileCareerScreeninfo.fromJson(json['profile_career_screeninfo']) : null;
   }
   String? _titleprofile;
   String? _subtitlegeninfor;
@@ -829,6 +785,7 @@ class Screeninfo {
   String? _textfustud;
   String? _textstudying;
   String? _textstatus;
+  ProfileCareerScreeninfo? _profileCareerScreeninfo;
 Screeninfo copyWith({  String? titleprofile,
   String? subtitlegeninfor,
   String? subtitlecont,
@@ -867,6 +824,7 @@ Screeninfo copyWith({  String? titleprofile,
   String? textfustud,
   String? textstudying,
   String? textstatus,
+  ProfileCareerScreeninfo? profileCareerScreeninfo,
 }) => Screeninfo(  titleprofile: titleprofile ?? _titleprofile,
   subtitlegeninfor: subtitlegeninfor ?? _subtitlegeninfor,
   subtitlecont: subtitlecont ?? _subtitlecont,
@@ -905,6 +863,7 @@ Screeninfo copyWith({  String? titleprofile,
   textfustud: textfustud ?? _textfustud,
   textstudying: textstudying ?? _textstudying,
   textstatus: textstatus ?? _textstatus,
+  profileCareerScreeninfo: profileCareerScreeninfo ?? _profileCareerScreeninfo,
 );
   String? get titleprofile => _titleprofile;
   String? get subtitlegeninfor => _subtitlegeninfor;
@@ -944,6 +903,7 @@ Screeninfo copyWith({  String? titleprofile,
   String? get textfustud => _textfustud;
   String? get textstudying => _textstudying;
   String? get textstatus => _textstatus;
+  ProfileCareerScreeninfo? get profileCareerScreeninfo => _profileCareerScreeninfo;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -985,6 +945,156 @@ Screeninfo copyWith({  String? titleprofile,
     map['textfustud'] = _textfustud;
     map['textstudying'] = _textstudying;
     map['textstatus'] = _textstatus;
+    if (_profileCareerScreeninfo != null) {
+      map['profile_career_screeninfo'] = _profileCareerScreeninfo?.toJson();
+    }
+    return map;
+  }
+
+}
+
+/// attention : [{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}]
+/// status : [{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}]
+/// jobtype : [{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]
+
+ProfileCareerScreeninfo profileCareerScreeninfoFromJson(String str) => ProfileCareerScreeninfo.fromJson(json.decode(str));
+String profileCareerScreeninfoToJson(ProfileCareerScreeninfo data) => json.encode(data.toJson());
+class ProfileCareerScreeninfo {
+  ProfileCareerScreeninfo({
+      List<Attention>? attention, 
+      List<Status>? status, 
+      List<Jobtype>? jobtype,}){
+    _attention = attention;
+    _status = status;
+    _jobtype = jobtype;
+}
+
+  ProfileCareerScreeninfo.fromJson(dynamic json) {
+    if (json['attention'] != null) {
+      _attention = [];
+      json['attention'].forEach((v) {
+        _attention?.add(Attention.fromJson(v));
+      });
+    }
+    if (json['status'] != null) {
+      _status = [];
+      json['status'].forEach((v) {
+        _status?.add(Status.fromJson(v));
+      });
+    }
+    if (json['jobtype'] != null) {
+      _jobtype = [];
+      json['jobtype'].forEach((v) {
+        _jobtype?.add(Jobtype.fromJson(v));
+      });
+    }
+  }
+  List<Attention>? _attention;
+  List<Status>? _status;
+  List<Jobtype>? _jobtype;
+ProfileCareerScreeninfo copyWith({  List<Attention>? attention,
+  List<Status>? status,
+  List<Jobtype>? jobtype,
+}) => ProfileCareerScreeninfo(  attention: attention ?? _attention,
+  status: status ?? _status,
+  jobtype: jobtype ?? _jobtype,
+);
+  List<Attention>? get attention => _attention;
+  List<Status>? get status => _status;
+  List<Jobtype>? get jobtype => _jobtype;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    if (_attention != null) {
+      map['attention'] = _attention?.map((v) => v.toJson()).toList();
+    }
+    if (_status != null) {
+      map['status'] = _status?.map((v) => v.toJson()).toList();
+    }
+    if (_jobtype != null) {
+      map['jobtype'] = _jobtype?.map((v) => v.toJson()).toList();
+    }
+    return map;
+  }
+
+}
+
+/// jobname : "0"
+
+Jobtype jobtypeFromJson(String str) => Jobtype.fromJson(json.decode(str));
+String jobtypeToJson(Jobtype data) => json.encode(data.toJson());
+class Jobtype {
+  Jobtype({
+      String? jobname,}){
+    _jobname = jobname;
+}
+
+  Jobtype.fromJson(dynamic json) {
+    _jobname = json['jobname'];
+  }
+  String? _jobname;
+Jobtype copyWith({  String? jobname,
+}) => Jobtype(  jobname: jobname ?? _jobname,
+);
+  String? get jobname => _jobname;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['jobname'] = _jobname;
+    return map;
+  }
+
+}
+
+/// statusname : "อื่นๆ"
+
+Status statusFromJson(String str) => Status.fromJson(json.decode(str));
+String statusToJson(Status data) => json.encode(data.toJson());
+class Status {
+  Status({
+      String? statusname,}){
+    _statusname = statusname;
+}
+
+  Status.fromJson(dynamic json) {
+    _statusname = json['statusname'];
+  }
+  String? _statusname;
+Status copyWith({  String? statusname,
+}) => Status(  statusname: statusname ?? _statusname,
+);
+  String? get statusname => _statusname;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['statusname'] = _statusname;
+    return map;
+  }
+
+}
+
+/// attenname : "อื่นๆ"
+
+Attention attentionFromJson(String str) => Attention.fromJson(json.decode(str));
+String attentionToJson(Attention data) => json.encode(data.toJson());
+class Attention {
+  Attention({
+      String? attenname,}){
+    _attenname = attenname;
+}
+
+  Attention.fromJson(dynamic json) {
+    _attenname = json['attenname'];
+  }
+  String? _attenname;
+Attention copyWith({  String? attenname,
+}) => Attention(  attenname: attenname ?? _attenname,
+);
+  String? get attenname => _attenname;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['attenname'] = _attenname;
     return map;
   }
 
@@ -992,7 +1102,7 @@ Screeninfo copyWith({  String? titleprofile,
 
 /// status : "200"
 /// message : "susccess"
-/// module : "Home"
+/// module : "profile"
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());

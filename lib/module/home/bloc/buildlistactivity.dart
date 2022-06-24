@@ -19,7 +19,7 @@ BuildListActivity(BuildContext context, ScreenHomeResponse? _screenhomeResponse)
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return ActivityDetailScreen(
-                          title: _screenhomeResponse?.body?.dataListActivity?[index],
+                          title: _screenhomeResponse?.body?.screeninfo,
                           data: _screenhomeResponse?.body?.dataListActivity?[index],);
                     }));
                   },

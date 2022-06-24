@@ -9,8 +9,9 @@ class buildTextFieldCustom extends StatelessWidget {
   final String hint_label;
   final TextInputType textInputType;
   final ValueChanged<String>? onChanged;
+  final String? initialvalue;
   const buildTextFieldCustom(
-      {Key? key, this.textEditingController, required this.hint_label, this.onChanged, required this.textInputType})
+      {Key? key, this.textEditingController, required this.hint_label, this.onChanged, required this.textInputType, this.initialvalue})
       : super(key: key);
 
   @override
