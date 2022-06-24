@@ -20,13 +20,13 @@ class ChooseAvatarSuccess extends ProfileState {
 
 
 class ProfileError extends ProfileState{
-  String errormessage;
+  var errormessage;
   ProfileError({required this.errormessage});
 }
 
 class ProfileInitial extends ProfileState {
   @override
-  String toString() => 'ProfileInitial';
+   toString() => 'ProfileInitial';
 }
 
 class ProfileLoading extends ProfileState {

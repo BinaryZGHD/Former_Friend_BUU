@@ -19,11 +19,11 @@ class ProfileGeneralSummitEvent extends ProfileEvent {
   ProfileGeneralSummitEvent({required this.istextbuttonpressed});
 }
 class ProfileGeneralUpdateEvent extends ProfileEvent {
-  String name;
-  String surname;
-  String nickname;
-  String stuCode;
-  String gen;
+  var name;
+  var surname;
+  var nickname;
+  var stuCode;
+  var  gen;
   ProfileGeneralUpdateEvent(
       {
         required this.name,

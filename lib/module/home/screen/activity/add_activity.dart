@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
@@ -63,9 +62,9 @@ class _addActivityState extends State<addActivity> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> yearlist = ['2022','2021','2020'];
-    List<String> termlist = ['1','2','summer'];
-    List<String> teacherlist = ['a','b','c','d','e','f'];
+    List<String> yearlist = ['2022', '2021', '2020'];
+    List<String> termlist = ['1', '2', 'summer'];
+    List<String> teacherlist = ['a', 'b', 'c', 'd', 'e', 'f'];
     return FutureBuilder(
       future: getAPIScreenAddActivity(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -118,12 +117,16 @@ class _addActivityState extends State<addActivity> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
-                          customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
+                          customDropdown(
+                              dropdownlist: yearlist, hint: 'Year', width: MediaQuery.of(context).size.width * 0.4),
+                          customDropdown(
+                              dropdownlist: termlist, hint: 'Term', width: MediaQuery.of(context).size.width * 0.4),
                         ],
                       ),
                     ),
-                    customDatePicker(hint_label: 'Start date',),
+                    customDatePicker(
+                      hint_label: 'Start date',
+                    ),
                     customDatePicker(hint_label: 'Finish date'),
                     buildTextFieldCustom(
                       textEditingController: time,
@@ -141,7 +144,11 @@ class _addActivityState extends State<addActivity> {
                       hint_label: "${_dataFromAPI.body?.screeninfo?.edttvenue}",
                       textInputType: TextInputType.text,
                     ),
-                    customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: teacherlist, hint: 'approver',),
+                    customDropdown(
+                      width: MediaQuery.of(context).size.width,
+                      dropdownlist: teacherlist,
+                      hint: 'approver',
+                    ),
                     buildTextFieldCustom(
                       textEditingController: detail,
                       onChanged: (value) {
@@ -186,12 +193,16 @@ class _addActivityState extends State<addActivity> {
                     //     },
                     //   ),
                     // ),
-                    Center(child: ButtonCustom(
-                      label: "  "+"${_dataFromAPI.body?.screeninfo?.btnconfirm}"+"  ",
-                          colortext: TC_Black,
-                          colorbutton: Colors.white,
-                          sizetext: sizeTextBig20,
-                          colorborder: Colors.black,),),
+                    Center(
+                      child: ButtonCustom(
+                        label: "  " + "${_dataFromAPI.body?.screeninfo?.btnconfirm}" + "  ",
+                        colortext: TC_Black,
+                        colorbutton: Colors.white,
+                        sizetext: sizeTextBig20,
+                        colorborder: Colors.black,
+                        sizeborder: 10,
+                      ),
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),

@@ -1,9 +1,11 @@
+import 'dart:core';
+import 'dart:core';
+
 import 'package:f2fbuu/module/home/model/response/screen_home.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
-import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/dialog/dialog_widget.dart';
 import '../../../../customs/dialog/texterror.dart';
@@ -129,7 +131,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               onTap: () {
                 dialogOneLineTwoBtn(
                     context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                    onClickBtn: (String result) {
+                    onClickBtn: ( result) {
                   Navigator.of(context).pop();
                   switch (result) {
                     case 'Cancel':
@@ -185,7 +187,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               child: buildButtonCustom(
                 onPressed: () {
                   dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                      onClickBtn: (String result) {
+                      onClickBtn: (result) {
                     Navigator.of(context).pop();
                     switch (result) {
                       case 'Cancel':
@@ -270,7 +272,7 @@ _buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? _screenprof
 _buildTableGeneralinfo(
   BuildContext context, {
   required textlefttitile,
-  required String textrightdetail,
+  required  textrightdetail,
   required tb1,
   required tb2,
   required tb3,
@@ -299,8 +301,8 @@ _buildTableGeneralinfo(
 
 _buildTableIconLanginfo(
   BuildContext context, {
-  required String textlefttitile,
-  required String textrightdetail,
+  required textlefttitile,
+  required textrightdetail,
   required tb1,
   required tb2,
   required tb3,

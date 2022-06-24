@@ -205,7 +205,9 @@ class _editActivityState extends State<editActivity> {
                       colortext: TC_Black,
                       colorbutton: Colors.white,
                       sizetext: sizeTextBig20,
-                      colorborder: Colors.black,),),
+                      colorborder: Colors.black,
+                      sizeborder: 10,),
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),

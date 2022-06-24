@@ -262,9 +262,9 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(width: 100,child: ButtonCustom(colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14,)),
+                            Container(width: 100,child: ButtonCustom(colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14,sizeborder: 10,)),
                             SizedBox(width: 50,),
-                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,)),
+                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,sizeborder: 10,)),
                           ],
                         ),
                       ),

@@ -107,8 +107,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
 
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileAddressDataTab extends StatefulWidget {
-  final String textleft;
-  final String textright;
+  final  textleft;
+  final  textright;
   final bool ispressed;
   ProfileAddressDataTab({Key? key, required this.textleft, required this.textright, required this.ispressed}) : super(key: key);
 
@@ -119,10 +119,10 @@ class ProfileAddressDataTab extends StatefulWidget {
 class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.textleft;
-    String textright = widget.textright;
+    var textleft = widget.textleft;
+    var textright = widget.textright;
     bool ispressed = widget.ispressed;
-    String texttest = 'testtesttest';
+    var texttest = 'testtesttest';
     return Container(
       decoration: BoxDecoration(
         border: Border(
