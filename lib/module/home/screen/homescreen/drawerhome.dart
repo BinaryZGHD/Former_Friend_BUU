@@ -1,7 +1,9 @@
 import 'package:f2fbuu/module/home/model/response/screen_home.dart';
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
+import '../../../../customs/button/buildbuttoncustom.dart';
+import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/dialog/dialog_widget.dart';
 import '../../../../customs/dialog/texterror.dart';
@@ -10,7 +12,7 @@ import '../../../login/screen/changepasswordscreen/changepasswordscreen.dart';
 import '../../../login/screen/loginscreen/loginscreen.dart';
 import 'homescreen.dart';
 
-drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
+drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiProfileResponse? _screenprofileResponse) {
   return SafeArea(
     child: SingleChildScrollView(
       child: Container(
@@ -22,8 +24,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
               padding: EdgeInsets.all(20),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 _buildTableGeneralImgeinfo(
-                  context,
-                  _screenhomeResponse,
+                  context,_screenprofileResponse,
                   tb1: 0.65,
                   tb2: 0.05,
                   tb3: 0.3,
@@ -34,7 +35,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                 _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textname}',
-                  textrightdetail: '${_screenhomeResponse?.body?.dataDrawerDetail?.name}',
+                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.name}'+' '+'${_screenprofileResponse?.body?.profileGeneralInfo?.surname}',
                   tb1: 0.25,
                   tb2: 0.05,
                   tb3: 0.70,
@@ -45,7 +46,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                 _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textnickname}',
-                  textrightdetail: '${_screenhomeResponse?.body?.dataDrawerDetail?.nickname}',
+                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.nickname}',
                   tb1: 0.45,
                   tb2: 0.05,
                   tb3: 0.5,
@@ -56,7 +57,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                 _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textstdcode}',
-                  textrightdetail: '${_screenhomeResponse?.body?.dataDrawerDetail?.studentid}',
+                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.stuCode}',
                   tb1: 0.45,
                   tb2: 0.05,
                   tb3: 0.5,
@@ -67,7 +68,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                 _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textemail}',
-                  textrightdetail: '${_screenhomeResponse?.body?.dataDrawerDetail?.email}',
+                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.email}',
                   tb1: 0.25,
                   tb2: 0.05,
                   tb3: 0.70,
@@ -83,7 +84,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                 _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textrole}',
-                  textrightdetail: '${_screenhomeResponse?.body?.dataDrawerDetail?.role}',
+                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.role}',
                   tb1: 0.5,
                   tb2: 0.05,
                   tb3: 0.45,
@@ -123,27 +124,28 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                   ),
                 ),
               ),
-            ),GestureDetector(
+            ),
+            GestureDetector(
               onTap: () {
                 dialogOneLineTwoBtn(
                     context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
                     onClickBtn: (String result) {
-                      Navigator.of(context).pop();
-                      switch (result) {
-                        case 'Cancel':
-                          {
-                            break;
-                          }
-                        case 'OK':
-                          {
-                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                              // int index = int.parse(widget.id);
-                              return loginScreen();
-                              // DisplayBeerScreen();
-                            }));
-                          }
+                  Navigator.of(context).pop();
+                  switch (result) {
+                    case 'Cancel':
+                      {
+                        break;
                       }
-                    });
+                    case 'OK':
+                      {
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                          // int index = int.parse(widget.id);
+                          return loginScreen();
+                          // DisplayBeerScreen();
+                        }));
+                      }
+                  }
+                });
               },
               child: Container(
                 child: ListTile(
@@ -174,43 +176,39 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
                 SizedBox(height: 10),
               ]),
             ),
-            GestureDetector(
-              onTap: () {
-                dialogOneLineTwoBtn(
-                    context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                    onClickBtn: (String result) {
-                      Navigator.of(context).pop();
-                      switch (result) {
-                        case 'Cancel':
-                          {
-                            break;
-                          }
-                        case 'OK':
-                          {
-                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                              // int index = int.parse(widget.id);
-                              return loginScreen();
-                              // DisplayBeerScreen();
-                            }));
-                          }
-                      }
-                    });
-              },
-              child: Container(
-                child: ListTile(
-                  leading: Icon(
-                    Icons.exit_to_app,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    "${_screenhomeResponse?.body?.screeninfo?.btnlogout}",
-                    style: TextStyle(
-                      fontFamily: 'Kanit',
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(left: 15, right: 15),
+              child: buildButtonCustom(
+                onPressed: () {
+                  dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                      onClickBtn: (String result) {
+                    Navigator.of(context).pop();
+                    switch (result) {
+                      case 'Cancel':
+                        {
+                          break;
+                        }
+                      case 'OK':
+                        {
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                            // int index = int.parse(widget.id);
+                            return HomeScreen();
+                            // DisplayBeerScreen();
+                          }));
+                        }
+                    }
+                  });
+                },
+                label: "  ${_screenhomeResponse?.body?.screeninfo?.btnlogout}  ",
+                colortext: BC_ButtonLogout,
+                colorbutton: BC_ButtonText_style_White,
+                sizetext: sizeTextBig20,
+                colorborder: BC_ButtonLogout,
+                iconlabel: Icons.exit_to_app,
               ),
             ),
             SizedBox(
@@ -223,8 +221,8 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse) {
   );
 }
 
-_buildTableGeneralImgeinfo(BuildContext context, ScreenHomeResponse? _screenhomeResponse,
-    { required tb1, required tb2, required tb3}) {
+_buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? _screenprofileResponse,
+    {required tb1, required tb2, required tb3}) {
   return Table(
     border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
     columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
@@ -235,13 +233,13 @@ _buildTableGeneralImgeinfo(BuildContext context, ScreenHomeResponse? _screenhome
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "${_screenhomeResponse?.body?.dataDrawerDetail?.gen}",
+              "${_screenprofileResponse?.body?.profileGeneralInfo?.gen}",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Table(children: [
               TableRow(children: [
                 Text(
-                  '${_screenhomeResponse?.body?.dataDrawerDetail?.genname}',
+                  '${_screenprofileResponse?.body?.profileGeneralInfo?.genname}',
                   textAlign: TextAlign.end,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -252,17 +250,17 @@ _buildTableGeneralImgeinfo(BuildContext context, ScreenHomeResponse? _screenhome
         SizedBox(
           width: 10,
         ),
-        if (_screenhomeResponse?.body?.dataDrawerDetail?.img == null)
+        if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
           CircleAvatar(
             radius: 35.0,
             backgroundImage: AssetImage(
               'assets/logo/profile.png',
             ),
           ),
-        if (_screenhomeResponse?.body?.dataDrawerDetail?.img != null)
+        if (_screenprofileResponse?.body?.profileGeneralInfo?.img != null)
           CircleAvatar(
             radius: 35.0,
-            backgroundImage: NetworkImage("${_screenhomeResponse?.body?.dataDrawerDetail?.img}"),
+            backgroundImage: NetworkImage("${_screenprofileResponse?.body?.profileGeneralInfo?.img}"),
           ),
       ])
     ],

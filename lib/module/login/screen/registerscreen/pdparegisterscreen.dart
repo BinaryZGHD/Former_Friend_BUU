@@ -82,10 +82,11 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
                           Expanded(
                               child: ButtonCustom(
                                 label: "${_screenPDPAResponse?.body?.screeninfo?.btnaccept}",
-                                colortext: TC_Black,
-                                colorbutton: BC_ButtonGreen,
+                                colortext: BC_ButtonText_style_Black,
+                                colorbutton: BC_ButtonText_style_White,
                                 sizetext: sizeTextBig20,
-                                colorborder: BSC_transparent,
+                                colorborder: BC_ButtonText_style_Black_Boarder,
+                                sizeborder: 10,
                                 onPressed: () {
                                   dialogOneLineTwoBtn(
                                       context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
@@ -122,10 +123,11 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
                           Expanded(
                               child: ButtonCustom(
                                 label: "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
-                                colortext: TC_Black,
-                                colorbutton: BC_ButtonRed,
+                                colortext: BC_ButtonText_style_White,
+                                colorbutton: BC_ButtonText_style_Black,
                                 sizetext: sizeTextBig20,
-                                colorborder: BSC_transparent,
+                                colorborder: BC_ButtonText_style_Black,
+                                sizeborder: 10,
                                 onPressed: () {
                                   dialogOneLineTwoBtn(
                                       context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',

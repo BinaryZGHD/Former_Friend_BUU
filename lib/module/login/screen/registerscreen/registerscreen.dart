@@ -154,10 +154,11 @@ class _registerScreenState extends State<registerScreen>  with ProgressDialog {
                       Center(
                         child: ButtonCustom(
                           label: "  "+"${_screenRegisterResponse?.body?.screeninfo?.btnsignup}"+"  ",
-                          colortext: TC_Black,
-                          colorbutton: BC_ButtonGreen,
+                          colortext: BC_ButtonText_style_Black,
+                          colorbutton: BC_ButtonText_style_White,
                           sizetext: sizeTextBig20,
-                          colorborder: BSC_transparent,
+                          colorborder: BC_ButtonText_style_Black_Boarder,
+                          sizeborder: 10,
                           onPressed: () {
                             dialogOneLineTwoBtn(
                                 context,
