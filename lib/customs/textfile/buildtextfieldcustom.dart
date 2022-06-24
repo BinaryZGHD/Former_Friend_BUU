@@ -17,12 +17,12 @@ class buildTextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // padding: EdgeInsets.all(12),
+      // padding: EdgeInsets.all(12),
         margin: const EdgeInsets.all(12),
         // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
         child: TextFormField(
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
-              ),
+          ),
           keyboardType: textInputType,
           // controller: textEditingController,
           initialValue: initialvalue,

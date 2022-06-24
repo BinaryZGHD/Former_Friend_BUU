@@ -5,6 +5,7 @@ import 'package:f2fbuu/module/profile/components/workdatatab.dart';
 import 'package:flutter/material.dart';
 
 import '../model/response/api_profile.dart';
+import '../model/response/api_profile.dart';
 
 class ProfileCareerDataHead extends StatefulWidget {
   final ApiProfileResponse? dataFromAPI;

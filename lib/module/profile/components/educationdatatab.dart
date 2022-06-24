@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/response/api_profile.dart';
+import '../model/response/api_profile.dart';
 
 
 class ProfileEducationDataHead extends StatefulWidget {

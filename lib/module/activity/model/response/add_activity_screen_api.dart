@@ -36,7 +36,6 @@ AddActivityScreenApi copyWith({  Head? head,
     }
     return map;
   }
-
 }
 
 /// screeninfo : {"Titleaddact":"Add activity","Titleeditact":"Edit activity","Edtactname":"Activity name / Project name","Edtyear":"Year","Edtterm":"Term","Edtstartdate":"Start date","Edtfinishdate":"Finish date","Edttime":"Total time(Hours)","Edttvenue":"Venue","Edtdetail":"Detail","Btnconfirm":"Confirm"}
@@ -92,7 +91,6 @@ Body copyWith({  Screeninfo? screeninfo,
     map['approverlist'] = _approverlist;
     return map;
   }
-
 }
 
 /// Titleaddact : "Add activity"
@@ -209,7 +207,6 @@ Screeninfo copyWith({  String? titleaddact,
     map['Btnconfirm'] = _btnconfirm;
     return map;
   }
-
 }
 
 /// status : "200"

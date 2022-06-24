@@ -4,7 +4,7 @@ import 'package:f2fbuu/utils/dio.dart';
 
 class HomeRepository  {
   Future<Response> getScreenHome() async {
-    return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+    return await MyDio.createDio().post("/v1/api/modules/home/wording/homemore");
   }
   Future<Response> getApiProfile() async {
     return await MyDio.createDio().post("/v1/api/modules/profile/wording/profile");

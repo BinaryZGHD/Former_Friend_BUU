@@ -6,7 +6,10 @@ class customDropdown extends StatefulWidget {
   final List<String>? dropdownlist;
   final double width;
   const customDropdown(
-      {Key? key, required this.hint, required this.dropdownlist, required this.width})
+      {Key? key,
+      required this.hint,
+      required this.dropdownlist,
+      required this.width})
       : super(key: key);
 
   @override
