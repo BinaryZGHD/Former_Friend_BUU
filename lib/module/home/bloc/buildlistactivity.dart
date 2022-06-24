@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../activity/screen/activitydetailscreen.dart';
 import 'itemactivity.dart';
 
-BuildListActivity(BuildContext context, ScreenStatusActivityResponse? screenstatusActivityResponse) {
+BuildListActivity(BuildContext context,ScreenStatusActivityResponse? screenstatusActivityResponse) {
   return SingleChildScrollView(
     padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
     scrollDirection: Axis.vertical,

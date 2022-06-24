@@ -11,6 +11,7 @@ import '../../../../customs/size/size.dart';
 import '../../../activity/model/response/screen_status_activity.dart';
 import '../../../activity/screen/add_activity.dart';
 import '../../../profile/model/response/api_profile.dart';
+import '../../bloc/buildlistactivity.dart';
 import '../../bloc/homebloc/home_bloc.dart';
 import '../../model/response/screen_home.dart';
 import '../../../profile/screen/profile_page.dart';
@@ -153,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
-                                BuildListActivity(context, _screenhomeResponse,
+                                BuildListActivity(context,
                                     _screenstatusActivityResponse),
                                 SizedBox(
                                     // height: MediaQuery.of(context).size.height * 0.2,
