@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 import '../color/colorconts.dart';
 
-class buildTextFieldCustom extends StatelessWidget {
+class buildTextformfieldUnlimitCustom extends StatelessWidget {
   final TextEditingController? textEditingController;
   final String hint_label;
   final TextInputType textInputType;
   final ValueChanged<String>? onChanged;
   final String? initialvalue;
-  const buildTextFieldCustom(
+  const buildTextformfieldUnlimitCustom(
       {Key? key, this.textEditingController, required this.hint_label, this.onChanged, required this.textInputType, this.initialvalue})
       : super(key: key);
 
@@ -24,6 +24,7 @@ class buildTextFieldCustom extends StatelessWidget {
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
           ),
           keyboardType: textInputType,
+          maxLines: null,
           // controller: textEditingController,
           initialValue: initialvalue,
           // decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)

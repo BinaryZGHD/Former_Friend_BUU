@@ -9,6 +9,7 @@ import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/progress_dialog.dart';
 import '../../../../customs/size/size.dart';
 import '../../../activity/model/response/screen_status_activity.dart';
+import '../../../activity/screen/add_activity.dart';
 import '../../../profile/model/response/api_profile.dart';
 import '../../bloc/homebloc/home_bloc.dart';
 import '../../model/response/screen_home.dart';
@@ -158,12 +159,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                         colorborder: BSC_Black,
                         sizeborder: 0.0,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => box(),
-                            ),
-                          );
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
                         }),
                   ),
                   Padding(

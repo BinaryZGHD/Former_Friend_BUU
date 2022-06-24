@@ -1,10 +1,10 @@
 import 'package:f2fbuu/customs/button/box.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home.dart';
-import 'package:f2fbuu/module/home/screen/activitydetailscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../activity/screen/activitydetailscreen.dart';
 import 'itemactivity.dart';
 
 BuildListActivity(BuildContext context, ScreenHomeResponse? _screenhomeResponse,
@@ -20,6 +20,7 @@ BuildListActivity(BuildContext context, ScreenHomeResponse? _screenhomeResponse,
                   title: screenstatusActivityResponse?.body?.screeninfo,
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
+
                       return ActivityDetailScreen(
                           title: screenstatusActivityResponse?.body?.screeninfo,
                           data: screenstatusActivityResponse?.body?.activity?[index]);
