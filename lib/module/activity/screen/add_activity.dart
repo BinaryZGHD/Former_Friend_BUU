@@ -5,8 +5,8 @@ import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
+import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:http/http.dart' as http;
-import 'package:f2fbuu/module/activity/model/add_activity_screen_api.dart';
 import 'package:flutter/material.dart';
 
 import '../../../customs/size/size.dart';
@@ -50,7 +50,7 @@ class _addActivityState extends State<addActivity> {
 
   Future<AddActivityScreenApi?> getAPIScreenAddActivity() async {
     // print("เรียกใช้ Get_Coin_price");
-    var url = Uri.parse("https://test-api-ceecf.web.app/v1/home/addactivity");
+    var url = Uri.parse("https://webzbinaryz.web.app/v1/api/modules/activity/wording/add_edit_activity");
     var response = await http.get(url, headers: <String, String>{});
 
     _dataFromAPI = addActivityScreenApiFromJson(utf8.decode(response.bodyBytes));
@@ -63,9 +63,12 @@ class _addActivityState extends State<addActivity> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> yearlist = ['2022','2021','2020'];
+    int year = DateTime.now().year;
+    List<String> yearlist = [
+      '${year - 5}','${year - 4}','${year - 3}','${year - 2}','${year - 1}',
+      '${year}','${year + 1}'];
     List<String> termlist = ['1','2','summer'];
-    List<String> teacherlist = ['a','b','c','d','e','f'];
+    List<String> approverlist = ['a','b','c','d','e','f'];
     return FutureBuilder(
       future: getAPIScreenAddActivity(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -85,7 +88,7 @@ class _addActivityState extends State<addActivity> {
                 ),
               ),
               title: Text(
-                "${_dataFromAPI.body?.screeninfo?.titleaddact}",
+                "${_dataFromAPI?.body?.screeninfo?.titleaddact}",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: sizeTitle24,
@@ -105,7 +108,7 @@ class _addActivityState extends State<addActivity> {
                       onChanged: (value) {
                         activitynamevalue = value;
                       },
-                      hint_label: "${_dataFromAPI.body?.screeninfo?.edtactname}",
+                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edtactname}",
                       textInputType: TextInputType.text,
                     ),
                     Container(
@@ -130,7 +133,7 @@ class _addActivityState extends State<addActivity> {
                       onChanged: (value) {
                         timevalue = value;
                       },
-                      hint_label: "${_dataFromAPI.body?.screeninfo?.edttime}",
+                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edttime}",
                       textInputType: TextInputType.number,
                     ),
                     buildTextFieldCustom(
@@ -138,16 +141,16 @@ class _addActivityState extends State<addActivity> {
                       onChanged: (value) {
                         venuevalue = value;
                       },
-                      hint_label: "${_dataFromAPI.body?.screeninfo?.edttvenue}",
+                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edttvenue}",
                       textInputType: TextInputType.text,
                     ),
-                    customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: teacherlist, hint: 'approver',),
+                    customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
                     buildTextFieldCustom(
                       textEditingController: detail,
                       onChanged: (value) {
                         detailvalue = value;
                       },
-                      hint_label: "${_dataFromAPI.body?.screeninfo?.edtdetail}",
+                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edtdetail}",
                       textInputType: TextInputType.text,
                     ),
                     SizedBox(
@@ -187,7 +190,7 @@ class _addActivityState extends State<addActivity> {
                     //   ),
                     // ),
                     Center(child: ButtonCustom(
-                      label: "  "+"${_dataFromAPI.body?.screeninfo?.btnconfirm}"+"  ",
+                      label: "  "+"${_dataFromAPI?.body?.screeninfo?.btnconfirm}"+"  ",
                           colortext: TC_Black,
                           colorbutton: Colors.white,
                           sizetext: sizeTextBig20,
