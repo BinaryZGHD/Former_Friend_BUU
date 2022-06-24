@@ -30,7 +30,16 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
 
   @override
   void initState() {
-=======
+    title = widget.title;
+    data = widget.data;
+    print('เรียก initState');
+    getActivityDetailApi();
+    super.initState();
+  }
+
+  Future<ActivityDetailApi> getActivityDetailApi() async {
+    var url =
+    Uri.parse('https://test-api-ceecf.web.app/v1/home/activityscreen');
     var response = await http.get(url);
     // print(response.body);
     _dataFromAPI = activityDetailApiFromJson(utf8.decode(response.bodyBytes));
@@ -263,9 +272,9 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                                   return editActivity(data: data);
                                 }));
                               },
-                              colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14,)),
+                              colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14, sizeborder: 10.0,)),
                             SizedBox(width: 50,),
-                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,)),
+                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,sizeborder: 10.0,)),
                           ],
                         ),
                       ),

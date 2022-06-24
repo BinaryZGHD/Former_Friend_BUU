@@ -22,6 +22,7 @@ BuildListActivity(BuildContext context, ScreenStatusActivityResponse? screenstat
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return ActivityDetailScreen(
                         // id: screenstatusActivityResponse?.body?.screeninfo,
+                        title: screenstatusActivityResponse?.body?.screeninfo,
                         data: screenstatusActivityResponse?.body?.activity?[index],);
                     }));
                   },
