@@ -20,7 +20,7 @@ BuildListActivity(BuildContext context, ScreenHomeResponse? _screenhomeResponse)
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return ActivityDetailScreen(
                           title: _screenhomeResponse?.body?.dataListActivity?[index],
-                          data: _screenhomeResponse?.body?.dataListActivity?[index]);
+                          data: _screenhomeResponse?.body?.dataListActivity?[index],);
                     }));
                   },
                 ))),

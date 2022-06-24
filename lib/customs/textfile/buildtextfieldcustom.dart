@@ -23,7 +23,9 @@ class buildTextFieldCustom extends StatelessWidget {
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
               ),
           keyboardType: textInputType,
-          // controller: textEditingController,// decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
+          // controller: textEditingController,
+          initialValue: initialvalue,
+          // decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
           onChanged: onChanged,
 
           // {
