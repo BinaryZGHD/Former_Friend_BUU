@@ -52,22 +52,22 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => HomeScreen(),
           }
-          // home: ProfileScreen(),
+        // home: ProfileScreen(),
 ///////////////////////
 
-          // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
-          // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
-          // return MultiBlocProvider(
-          //     providers: [loginBloc,MainnBloc],
-          //     child: MaterialApp
-          //       (
-          //       title: 'Flutter Demo',
-          //       theme: ThemeData(
-          //         primarySwatch: Colors.grey,
-          //       ),
-          //       home: ProfileScreen(),
-          //     )
-          ),
+        // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
+        // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
+        // return MultiBlocProvider(
+        //     providers: [loginBloc,MainnBloc],
+        //     child: MaterialApp
+        //       (
+        //       title: 'Flutter Demo',
+        //       theme: ThemeData(
+        //         primarySwatch: Colors.grey,
+        //       ),
+        //       home: ProfileScreen(),
+        //     )
+      ),
     );
   }
 }

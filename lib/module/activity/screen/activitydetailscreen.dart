@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
-import 'package:f2fbuu/model/homemodel/activitydetailscreenapi/activity_detail_api.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -26,8 +25,6 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
   bool showbutton = false;
 
   //---------------------------------API----------------------------------------//
-  late ActivityDetailApi _dataFromAPI;
-
   @override
   void initState() {
     title = widget.title;
@@ -247,4 +244,90 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                       ),
                     ),
                     Padding(
-                      pad
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            myicon,
+                            SizedBox(width: 10,),
+                            Text('${data.status}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                      ),
+                    ),
+                    showbutton ?
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(width: 100,child: ButtonCustom(
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                  return editActivity(data: data);
+                                }));
+                              },
+                              colorborder: Colors.black, colortext: Colors.black, label: '${title.buttonleft}', colorbutton: Colors.white, sizetext: 14, sizeborder: 10.0,)),
+                            SizedBox(width: 50,),
+                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${title.buttonright}', colorbutton: Colors.grey, sizetext: 14,sizeborder: 10.0,)),
+                          ],
+                        ),
+                      ),
+                    )
+                        : Text(''),
+                    //ปุ่ม
+                  ]),
+                ),
+              ),
+            );
+          }
+          // return Scaffold(
+          //   appBar: AppBar(
+          //     backgroundColor: Colors.white,
+          //     title: Text(''),
+          //     centerTitle: true,
+          //   ),
+          //   body: Center(
+          //     child: CircularProgressIndicator(),
+          //   ),
+          // );
+        // }
+        // );
+  }
+
+BuildTableRow(BuildContext context,
+    {required String textlefttable, required String textrighttabledetail}) {
+  return TableRow(children: [
+    Text(
+      '   ' + textlefttable,
+      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+    ),
+    Text(
+      ':',
+      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+    ),
+    Text(
+      textrighttabledetail,
+      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+    )
+  ]);
+}
+////////////////////////////////////////////////////////////////////////////////
+_buildListenpty() {
+  return TableRow(children: [
+    SizedBox(),
+    SizedBox(),
+    SizedBox(height: 30,),
+  ]);
+}

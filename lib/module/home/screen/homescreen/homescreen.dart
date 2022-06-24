@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:f2fbuu/customs/button/box.dart';
-import 'package:f2fbuu/module/activity/screen/add_activity.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +9,7 @@ import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/progress_dialog.dart';
 import '../../../../customs/size/size.dart';
 import '../../../activity/model/response/screen_status_activity.dart';
+import '../../../activity/screen/add_activity.dart';
 import '../../../profile/model/response/api_profile.dart';
 import '../../bloc/homebloc/home_bloc.dart';
 import '../../model/response/screen_home.dart';
@@ -170,21 +170,15 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
                     child: ButtonCustom(
-                      label: "     " +
-                          "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " +
-                          "     ",
-                      colortext: TC_Black,
-                      colorbutton: BC_ButtonText_style_White,
-                      sizetext: sizeTextSmaller14,
-                      colorborder: BSC_Black,
-                      sizeborder: 0.0,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => addActivity()));
-                      },
-                    ),
+                        label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
+                        colortext: TC_Black,
+                        colorbutton: BC_ButtonText_style_White,
+                        sizetext: sizeTextSmaller14,
+                        colorborder: BSC_Black,
+                        sizeborder: 0.0,
+                        onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
+                        }, ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
