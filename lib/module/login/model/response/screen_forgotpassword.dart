@@ -1,34 +1,28 @@
 import 'dart:convert';
-
 /// head : {"status":"200","message":"success","module":"login"}
-/// body : {"screeninfo":{"textforgothead":" Forgot password  ","edtIDforgot":" Student code / Teacher code  ","edtemailforgot":" Email  ","btnforgotnext":" NEXT  ","textheadsetnewpass":" Set new password  ","textotpwillsent":" OTP will sent to  ","edtpass":" Password  ","edtcpass":" Confirm password  ","otp":" OTP  ","texpleaseconfirm":" Please confirm  ","btnsentotpagain":" Sent OTP again  ","btnconfirm":" Confirm  "}}
+/// body : {"screeninfo":{"textforgothead":"Forgot password","edtIDforgot":"Student code / Teacher code","edtemailforgot":"Email","btnforgotnext":"NEXT","textheadsetnewpass":"Set new password","textotpwillsent":"OTP will sent to","edtpass":"Password","edtcpass":"Confirm password","otp":"OTP","texpleaseconfirm":"Please confirm","btnsentotpagain":"Sent OTP again","btnconfirm":"Confirm "}}
 
-ForgotPasswordWording forgotpasswordwordingFromJson(String str) => ForgotPasswordWording.fromJson(json.decode(str));
-String forgotpasswordwordingToJson(ForgotPasswordWording data) => json.encode(data.toJson());
-
-class ForgotPasswordWording {
-  ForgotPasswordWording({
-    Head? head,
-    Body? body,
-  }) {
+ScreenForgotPasswordResponse screenforgotpasswordresponseFromJson(String str) => ScreenForgotPasswordResponse.fromJson(json.decode(str));
+String forgotpasswordingToJson(ScreenForgotPasswordResponse data) => json.encode(data.toJson());
+class ScreenForgotPasswordResponse {
+  ScreenForgotPasswordResponse({
+      Head? head, 
+      Body? body,}){
     _head = head;
     _body = body;
-  }
+}
 
-  ForgotPasswordWording.fromJson(dynamic json) {
+  ScreenForgotPasswordResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-  ForgotPasswordWording copyWith({
-    Head? head,
-    Body? body,
-  }) =>
-      ForgotPasswordWording(
-        head: head ?? _head,
-        body: body ?? _body,
-      );
+ScreenForgotPasswordResponse copyWith({  Head? head,
+  Body? body,
+}) => ScreenForgotPasswordResponse(  head: head ?? _head,
+  body: body ?? _body,
+);
   Head? get head => _head;
   Body? get body => _body;
 
@@ -42,30 +36,26 @@ class ForgotPasswordWording {
     }
     return map;
   }
+
 }
 
-/// screeninfo : {"textforgothead":" Forgot password  ","edtIDforgot":" Student code / Teacher code  ","edtemailforgot":" Email  ","btnforgotnext":" NEXT  ","textheadsetnewpass":" Set new password  ","textotpwillsent":" OTP will sent to  ","edtpass":" Password  ","edtcpass":" Confirm password  ","otp":" OTP  ","texpleaseconfirm":" Please confirm  ","btnsentotpagain":" Sent OTP again  ","btnconfirm":" Confirm  "}
+/// screeninfo : {"textforgothead":"Forgot password","edtIDforgot":"Student code / Teacher code","edtemailforgot":"Email","btnforgotnext":"NEXT","textheadsetnewpass":"Set new password","textotpwillsent":"OTP will sent to","edtpass":"Password","edtcpass":"Confirm password","otp":"OTP","texpleaseconfirm":"Please confirm","btnsentotpagain":"Sent OTP again","btnconfirm":"Confirm "}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
-
 class Body {
   Body({
-    Screeninfo? screeninfo,
-  }) {
+      Screeninfo? screeninfo,}){
     _screeninfo = screeninfo;
-  }
+}
 
   Body.fromJson(dynamic json) {
     _screeninfo = json['screeninfo'] != null ? Screeninfo.fromJson(json['screeninfo']) : null;
   }
   Screeninfo? _screeninfo;
-  Body copyWith({
-    Screeninfo? screeninfo,
-  }) =>
-      Body(
-        screeninfo: screeninfo ?? _screeninfo,
-      );
+Body copyWith({  Screeninfo? screeninfo,
+}) => Body(  screeninfo: screeninfo ?? _screeninfo,
+);
   Screeninfo? get screeninfo => _screeninfo;
 
   Map<String, dynamic> toJson() {
@@ -75,39 +65,38 @@ class Body {
     }
     return map;
   }
+
 }
 
-/// textforgothead : " Forgot password  "
-/// edtIDforgot : " Student code / Teacher code  "
-/// edtemailforgot : " Email  "
-/// btnforgotnext : " NEXT  "
-/// textheadsetnewpass : " Set new password  "
-/// textotpwillsent : " OTP will sent to  "
-/// edtpass : " Password  "
-/// edtcpass : " Confirm password  "
-/// otp : " OTP  "
-/// texpleaseconfirm : " Please confirm  "
-/// btnsentotpagain : " Sent OTP again  "
-/// btnconfirm : " Confirm  "
+/// textforgothead : "Forgot password"
+/// edtIDforgot : "Student code / Teacher code"
+/// edtemailforgot : "Email"
+/// btnforgotnext : "NEXT"
+/// textheadsetnewpass : "Set new password"
+/// textotpwillsent : "OTP will sent to"
+/// edtpass : "Password"
+/// edtcpass : "Confirm password"
+/// otp : "OTP"
+/// texpleaseconfirm : "Please confirm"
+/// btnsentotpagain : "Sent OTP again"
+/// btnconfirm : "Confirm "
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
-
 class Screeninfo {
   Screeninfo({
-    String? textforgothead,
-    String? edtIDforgot,
-    String? edtemailforgot,
-    String? btnforgotnext,
-    String? textheadsetnewpass,
-    String? textotpwillsent,
-    String? edtpass,
-    String? edtcpass,
-    String? otp,
-    String? texpleaseconfirm,
-    String? btnsentotpagain,
-    String? btnconfirm,
-  }) {
+      String? textforgothead, 
+      String? edtIDforgot, 
+      String? edtemailforgot, 
+      String? btnforgotnext, 
+      String? textheadsetnewpass, 
+      String? textotpwillsent, 
+      String? edtpass, 
+      String? edtcpass, 
+      String? otp, 
+      String? texpleaseconfirm, 
+      String? btnsentotpagain, 
+      String? btnconfirm,}){
     _textforgothead = textforgothead;
     _edtIDforgot = edtIDforgot;
     _edtemailforgot = edtemailforgot;
@@ -120,7 +109,7 @@ class Screeninfo {
     _texpleaseconfirm = texpleaseconfirm;
     _btnsentotpagain = btnsentotpagain;
     _btnconfirm = btnconfirm;
-  }
+}
 
   Screeninfo.fromJson(dynamic json) {
     _textforgothead = json['textforgothead'];
@@ -148,34 +137,31 @@ class Screeninfo {
   String? _texpleaseconfirm;
   String? _btnsentotpagain;
   String? _btnconfirm;
-  Screeninfo copyWith({
-    String? textforgothead,
-    String? edtIDforgot,
-    String? edtemailforgot,
-    String? btnforgotnext,
-    String? textheadsetnewpass,
-    String? textotpwillsent,
-    String? edtpass,
-    String? edtcpass,
-    String? otp,
-    String? texpleaseconfirm,
-    String? btnsentotpagain,
-    String? btnconfirm,
-  }) =>
-      Screeninfo(
-        textforgothead: textforgothead ?? _textforgothead,
-        edtIDforgot: edtIDforgot ?? _edtIDforgot,
-        edtemailforgot: edtemailforgot ?? _edtemailforgot,
-        btnforgotnext: btnforgotnext ?? _btnforgotnext,
-        textheadsetnewpass: textheadsetnewpass ?? _textheadsetnewpass,
-        textotpwillsent: textotpwillsent ?? _textotpwillsent,
-        edtpass: edtpass ?? _edtpass,
-        edtcpass: edtcpass ?? _edtcpass,
-        otp: otp ?? _otp,
-        texpleaseconfirm: texpleaseconfirm ?? _texpleaseconfirm,
-        btnsentotpagain: btnsentotpagain ?? _btnsentotpagain,
-        btnconfirm: btnconfirm ?? _btnconfirm,
-      );
+Screeninfo copyWith({  String? textforgothead,
+  String? edtIDforgot,
+  String? edtemailforgot,
+  String? btnforgotnext,
+  String? textheadsetnewpass,
+  String? textotpwillsent,
+  String? edtpass,
+  String? edtcpass,
+  String? otp,
+  String? texpleaseconfirm,
+  String? btnsentotpagain,
+  String? btnconfirm,
+}) => Screeninfo(  textforgothead: textforgothead ?? _textforgothead,
+  edtIDforgot: edtIDforgot ?? _edtIDforgot,
+  edtemailforgot: edtemailforgot ?? _edtemailforgot,
+  btnforgotnext: btnforgotnext ?? _btnforgotnext,
+  textheadsetnewpass: textheadsetnewpass ?? _textheadsetnewpass,
+  textotpwillsent: textotpwillsent ?? _textotpwillsent,
+  edtpass: edtpass ?? _edtpass,
+  edtcpass: edtcpass ?? _edtcpass,
+  otp: otp ?? _otp,
+  texpleaseconfirm: texpleaseconfirm ?? _texpleaseconfirm,
+  btnsentotpagain: btnsentotpagain ?? _btnsentotpagain,
+  btnconfirm: btnconfirm ?? _btnconfirm,
+);
   String? get textforgothead => _textforgothead;
   String? get edtIDforgot => _edtIDforgot;
   String? get edtemailforgot => _edtemailforgot;
@@ -205,6 +191,7 @@ class Screeninfo {
     map['btnconfirm'] = _btnconfirm;
     return map;
   }
+
 }
 
 /// status : "200"
@@ -213,17 +200,15 @@ class Screeninfo {
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
-
 class Head {
   Head({
-    String? status,
-    String? message,
-    String? module,
-  }) {
+      String? status, 
+      String? message, 
+      String? module,}){
     _status = status;
     _message = message;
     _module = module;
-  }
+}
 
   Head.fromJson(dynamic json) {
     _status = json['status'];
@@ -233,16 +218,13 @@ class Head {
   String? _status;
   String? _message;
   String? _module;
-  Head copyWith({
-    String? status,
-    String? message,
-    String? module,
-  }) =>
-      Head(
-        status: status ?? _status,
-        message: message ?? _message,
-        module: module ?? _module,
-      );
+Head copyWith({  String? status,
+  String? message,
+  String? module,
+}) => Head(  status: status ?? _status,
+  message: message ?? _message,
+  module: module ?? _module,
+);
   String? get status => _status;
   String? get message => _message;
   String? get module => _module;
@@ -254,4 +236,5 @@ class Head {
     map['module'] = _module;
     return map;
   }
+
 }

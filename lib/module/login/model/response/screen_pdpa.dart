@@ -3,11 +3,11 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"login"}
 /// body : {"screeninfo":{"textPDPAhead":"Terms of service and Privacy policy","btnaccept":"Accept","btndecline":"Decline"},"linkpdpa":"http://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/069/T_0052.PDF"}
 
-PdpaWording pdpawordingFromJson(String str) => PdpaWording.fromJson(json.decode(str));
-String pdpawordingToJson(PdpaWording data) => json.encode(data.toJson());
+ScreenPDPAResponse ScreenPDPAResponseFromJson(String str) => ScreenPDPAResponse.fromJson(json.decode(str));
+String pdpawordingToJson(ScreenPDPAResponse data) => json.encode(data.toJson());
 
-class PdpaWording {
-  PdpaWording({
+class ScreenPDPAResponse {
+  ScreenPDPAResponse({
     Head? head,
     Body? body,
   }) {
@@ -15,17 +15,17 @@ class PdpaWording {
     _body = body;
   }
 
-  PdpaWording.fromJson(dynamic json) {
+  ScreenPDPAResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-  PdpaWording copyWith({
+  ScreenPDPAResponse copyWith({
     Head? head,
     Body? body,
   }) =>
-      PdpaWording(
+      ScreenPDPAResponse(
         head: head ?? _head,
         body: body ?? _body,
       );

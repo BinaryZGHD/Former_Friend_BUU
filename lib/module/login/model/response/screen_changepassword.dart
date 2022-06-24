@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"login"}
 /// body : {"screeninfo":{"textheadsetnewpass":"Change new password","edtcurrentpass":"Current password","edtnewpass":"New password","edtcpass":"Confirm password","btnforgotpass":"Forgot password ?","texpleaseconfirm":"Please confirm","btnconfirm":"Confirm "}}
 
-ChangePasswording changepasswordingFromJson(String str) => ChangePasswording.fromJson(json.decode(str));
-String changepasswordingToJson(ChangePasswording data) => json.encode(data.toJson());
-class ChangePasswording {
-  ChangePasswording({
+ScreenChangePasswordResponse screenchangepasswordresponseFromJson(String str) => ScreenChangePasswordResponse.fromJson(json.decode(str));
+String changepasswordingToJson(ScreenChangePasswordResponse data) => json.encode(data.toJson());
+class ScreenChangePasswordResponse {
+  ScreenChangePasswordResponse({
       Head? head, 
       Body? body,}){
     _head = head;
     _body = body;
 }
 
-  ChangePasswording.fromJson(dynamic json) {
+  ScreenChangePasswordResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-ChangePasswording copyWith({  Head? head,
+ScreenChangePasswordResponse copyWith({  Head? head,
   Body? body,
-}) => ChangePasswording(  head: head ?? _head,
+}) => ScreenChangePasswordResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

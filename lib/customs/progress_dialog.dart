@@ -12,7 +12,9 @@ class ProgressDialog {
             height: double.infinity,
             width: double.infinity,
             alignment: Alignment.center,
-            child: const CircularProgressIndicator(color: circleprogresscolor,),
+            child: const CircularProgressIndicator(
+              color: circleprogresscolor,
+            ),
           );
         });
   }

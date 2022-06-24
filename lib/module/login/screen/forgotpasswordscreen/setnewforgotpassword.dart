@@ -7,6 +7,7 @@ import '../../../../customs/button/box.dart';
 import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
+import '../../../../customs/dialog/dialog_widget.dart';
 import '../../../../customs/dialog/dialogboxcutom.dart';
 import '../../../../customs/dialog/texterror.dart';
 import '../../../../customs/size/size.dart';
@@ -55,16 +56,6 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
   String codevalue = " ";
   @override
   Widget build(BuildContext context) {
-    print((widget.textheadsetnewpassword));
-    print((widget.textotpwillsent));
-    print((widget.edtemailforgot));
-    print((widget.edtpassword));
-    print((widget.edtcpassword));
-    print((widget.otp));
-    print((widget.texpleaseconfirm));
-    print((widget.btnsentotpagain));
-    print((widget.btnconfirm));
-
     return Scaffold(
       appBar: AppBar(
 
@@ -166,18 +157,41 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
                   sizetext: sizeTextBig20,
                   colorborder: BSC_transparent,
                   onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => CustomDialogBox(
-                              id: '',
-                              textfieldvalue: "Password  : $passwordvalue" +
-                                  "\n" +
-                                  "Confirm password : $confirmpasswordvalue" +
-                                  "\n" +
-                                  "OTP : $codevalue",
-                              description: errforgotpasswordr2 + '\n \n ' + 'Do you want to continue?',
-                              mapscreen: loginScreen(),
-                            ));
+
+                    dialogOneLineTwoBtn(
+                        context,
+                        errforgotpasswordr2+ '\n \n ' + 'Do you want to continue?',
+                        'Confirm',
+                        'Cancel', onClickBtn: (String result) {
+                      Navigator.of(context).pop();
+                      switch (result) {
+                        case 'Cancel':
+                          {
+                            break;
+                          }
+                        case 'OK':
+                          {
+                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                              // int index = int.parse(widget.id);
+                              return loginScreen();
+                              // DisplayBeerScreen();
+                            }));
+                          }
+                      }
+                    });
+
+                    // showDialog(
+                    //     context: context,
+                    //     builder: (context) => CustomDialogBox(
+                    //           id: '',
+                    //           textfieldvalue: "Password  : $passwordvalue" +
+                    //               "\n" +
+                    //               "Confirm password : $confirmpasswordvalue" +
+                    //               "\n" +
+                    //               "OTP : $codevalue",
+                    //           description: errforgotpasswordr2 + '\n \n ' + 'Do you want to continue?',
+                    //           mapscreen: loginScreen(),
+                    //         ));
                   },
                 ),
               ),
