@@ -39,8 +39,10 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                         );
                       },
                       child: !ispressed
-                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก', style: TextStyle(color: Colors.green)),
+                          ? Text('บันทึก', style: TextStyle(color: Colors.green))
+                          // ? Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          // : Text('บันทึก', style: TextStyle(color: Colors.green)),
+                          : Text('แก้ไข', style: TextStyle(color: Colors.red)),
                     ),
                   ),
                 ),
