@@ -6,6 +6,7 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -149,7 +150,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           textInputType: TextInputType.text,
                         ),
                         customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
-                        buildTextFieldCustom(
+                        buildTextformfieldUnlimitCustom(
                           initialvalue: detailvalue,
                           textEditingController: detail,
                           onChanged: (value) {
