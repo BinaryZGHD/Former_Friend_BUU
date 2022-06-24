@@ -11,6 +11,7 @@ class ButtonCustom extends StatelessWidget {
   final Color colorbutton;
   final Color colorborder;
   final double sizetext;
+  final double sizeborder;
   final VoidCallback? onPressed;
   const ButtonCustom({
     Key? key,
@@ -20,7 +21,7 @@ class ButtonCustom extends StatelessWidget {
     required this.sizetext,
     required this.colorborder,
 
-    this.onPressed,
+    this.onPressed, required, required this.sizeborder ,
   }) : super(key: key);
 
   @override
@@ -31,10 +32,13 @@ class ButtonCustom extends StatelessWidget {
       //   Navigator.push(context, MaterialPageRoute(builder: (context) => screengo ));
       //   },
       style: ButtonStyle(
+
+          elevation: MaterialStateProperty.all(sizeborder), //Defines Elevation
+          // shadowColor: MaterialStateProperty.all(Colors.black), //Defines Shadow Color
           backgroundColor: MaterialStateProperty.all<Color>(colorbutton),
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(50.0),
             side: BorderSide(color: colorborder, width: 2),
           ))),
       child: Text(

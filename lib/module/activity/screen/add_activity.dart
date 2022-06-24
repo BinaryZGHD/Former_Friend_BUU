@@ -6,7 +6,7 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:http/http.dart' as http;
-import 'package:f2fbuu/module/home/model/activity/add_activity_screen_api.dart';
+import 'package:f2fbuu/module/activity/model/add_activity_screen_api.dart';
 import 'package:flutter/material.dart';
 
 import '../../../customs/size/size.dart';
@@ -191,7 +191,8 @@ class _addActivityState extends State<addActivity> {
                           colortext: TC_Black,
                           colorbutton: Colors.white,
                           sizetext: sizeTextBig20,
-                          colorborder: Colors.black,),),
+                          colorborder: Colors.black,
+                      sizeborder: 1,),),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),

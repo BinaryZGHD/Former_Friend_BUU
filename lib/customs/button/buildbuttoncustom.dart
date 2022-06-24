@@ -1,33 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../../customs/color/colorconts.dart';
 
-class buildButtonCustom extends StatelessWidget {
-  final String linklabel;
-  final String linkurl;
+buildButtonCustom({required Null Function() onPressed, required Color colortext, required Color colorbutton, required double sizetext, required Color colorborder, required String label, required IconData iconlabel} ){
 
-  final Widget maptype;
-  final String mapscreen;
-  final String mapdetailscreen;
-  final linktextcolor;
-  final VoidCallback? onPressed;
-  const buildButtonCustom({Key? key, required this.linklabel, required this.linkurl, required this.maptype, this.linktextcolor, this.onPressed, required this.mapscreen, required this.mapdetailscreen}) : super(key: key);
+  return ElevatedButton(
+      onPressed: onPressed,
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+      style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(colorbutton),
+  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15)),
+  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(50.0),
+  side: BorderSide(color: colorborder, width: 2),
+  ))),
 
-      constraints: BoxConstraints.expand(height: 50),
-      child: GestureDetector(
-          child: Text(linklabel, textAlign: TextAlign.center, style: TextStyle(fontSize: 18, color: Colors.black)),
-          onTap: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => maptype ));
+  child: Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(iconlabel,
+        color: colorborder,
+        size: sizetext,
+      ),
+      Text(
+      "  " + label + "  ",
+      style: TextStyle(fontSize: sizetext, color: colortext, fontWeight: FontWeight.w600),
+      ),
+    ],
+  ),
+  );
 
-
-          }),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
-      margin: EdgeInsets.only(right: 20 ,left: 20 ,top: 10,bottom: 10),
-      padding: EdgeInsets.all(12),
-    );
-  }
 }
-/////

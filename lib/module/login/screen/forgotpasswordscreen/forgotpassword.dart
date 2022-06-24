@@ -100,10 +100,11 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
                         Center(
                           child: ButtonCustom(
                             label: "  ${_screenforgotpasswordResponse?.body?.screeninfo?.btnforgotnext}  ",
-                            colortext: TC_Black,
-                            colorbutton: BC_ButtonGreen,
+                            colortext: BC_ButtonText_style_Black,
+                            colorbutton: BC_ButtonText_style_White,
                             sizetext: sizeTextBig20,
-                            colorborder: BSC_transparent,
+                            colorborder: BC_ButtonText_style_Black_Boarder,
+                            sizeborder: 10,
                             onPressed: () {
                               dialogOneLineTwoBtn(context, errforgotpasswordr1 + '\n \n ' + 'Do you want to continue?',
                                   'Confirm', 'Cancel', onClickBtn: (String result) {
@@ -145,6 +146,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),
+
                       ],
                     ),
                   ),

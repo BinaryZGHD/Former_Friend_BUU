@@ -152,10 +152,11 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
               Center(
                 child: ButtonCustom(
                   label: "  ${widget.btnconfirm}  ",
-                  colortext: TC_Black,
-                  colorbutton: BC_ButtonGreen,
+                  colortext: BC_ButtonText_style_Black,
+                  colorbutton: BC_ButtonText_style_White,
                   sizetext: sizeTextBig20,
-                  colorborder: BSC_transparent,
+                  colorborder: BC_ButtonText_style_Black_Boarder,
+                  sizeborder: 10,
                   onPressed: () {
 
                     dialogOneLineTwoBtn(
