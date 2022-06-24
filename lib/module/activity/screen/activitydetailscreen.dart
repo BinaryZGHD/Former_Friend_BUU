@@ -33,19 +33,19 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
     title = widget.title;
     data = widget.data;
     print('เรียก initState');
-    getActivityDetailApi();
+    // getActivityDetailApi();
     super.initState();
   }
 
-  Future<ActivityDetailApi> getActivityDetailApi() async {
-    var url =
-    Uri.parse('https://test-api-ceecf.web.app/v1/home/activityscreen');
-    var response = await http.get(url);
-    // print(response.body);
-    _dataFromAPI = activityDetailApiFromJson(utf8.decode(response.bodyBytes));
-    // print('${_dataFromAPI.body}');
-    return _dataFromAPI;
-  }
+  // Future<ActivityDetailApi> getActivityDetailApi() async {
+  //   var url =
+  //   Uri.parse('https://test-api-ceecf.web.app/v1/home/activityscreen');
+  //   var response = await http.get(url);
+  //   // print(response.body);
+  //   _dataFromAPI = activityDetailApiFromJson(utf8.decode(response.bodyBytes));
+  //   // print('${_dataFromAPI.body}');
+  //   return _dataFromAPI;
+  // }
 
 //---------------------------------API----------------------------------------//
 //   @override
@@ -77,12 +77,13 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
     //     color: Colors.red,
     //   );
     // }
-    return FutureBuilder(
-        future: getActivityDetailApi(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          // print('${_dataFromAPI.body?.activity?.status}');
-          if (snapshot.connectionState == ConnectionState.done) {
-            print('${data.status}');
+    // return FutureBuilder(
+    //     future: getActivityDetailApi(),
+    //     builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    //       // print('${_dataFromAPI.body?.activity?.status}');
+    //       if (snapshot.connectionState == ConnectionState.done) {
+
+    print('${data.status}');
             var myicon = Icon(
               Icons.question_mark,
               color: Colors.black,
@@ -172,7 +173,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                         ),
                         child: SingleChildScrollView(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
+                            padding: const EdgeInsets.only(top: 20.0,left: 5,right: 10),
                             child: Table(
                               border: TableBorder.symmetric(
                                   outside: BorderSide(
@@ -187,48 +188,56 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                               children: [
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textactivity}',
+                                    title.textactivity,
                                     textrighttabledetail:
                                     '${data.name}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textyear}',
+                                    '${title.textyear}',
                                     textrighttabledetail:
                                     '${data.year}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textterm}',
+                                    '${title.textterm}',
                                     textrighttabledetail:
                                     '${data.term}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textstartdate}',
+                                    '${title.textstartdate}',
                                     textrighttabledetail:
                                     '${data.startdate}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textfinishdate}',
+                                    '${title.textfinishdate}',
                                     textrighttabledetail:
                                     '${data.finishdate}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.texttime}',
+                                    '${title.texttime}',
                                     textrighttabledetail:
                                     '${data.time}' +
                                         " ( hh:mm ) "),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.edtapprover}',
+                                    '${title.edtapprover}',
                                     textrighttabledetail:
                                     '${data.approver}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textvenue}',
+                                    '${title.textvenue}',
                                     textrighttabledetail:
                                     '${data.venue}'),
+                                _buildListenpty(),
                                 BuildTableRow(context,
                                     textlefttable:
-                                    '${_dataFromAPI.body?.screeninfo?.textdetail}',
+                                    '${title.textdetail}',
                                     textrighttabledetail:
                                     '${data.detail}')
                               ],
@@ -272,9 +281,9 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                                   return editActivity(data: data);
                                 }));
                               },
-                              colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14, sizeborder: 10.0,)),
+                              colorborder: Colors.black, colortext: Colors.black, label: '${title.buttonleft}', colorbutton: Colors.white, sizetext: 14, sizeborder: 10.0,)),
                             SizedBox(width: 50,),
-                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,sizeborder: 10.0,)),
+                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${title.buttonright}', colorbutton: Colors.grey, sizetext: 14,sizeborder: 10.0,)),
                           ],
                         ),
                       ),
@@ -286,19 +295,19 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
               ),
             );
           }
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              title: Text(''),
-              centerTitle: true,
-            ),
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        });
+          // return Scaffold(
+          //   appBar: AppBar(
+          //     backgroundColor: Colors.white,
+          //     title: Text(''),
+          //     centerTitle: true,
+          //   ),
+          //   body: Center(
+          //     child: CircularProgressIndicator(),
+          //   ),
+          // );
+        // }
+        // );
   }
-}
 
 BuildTableRow(BuildContext context,
     {required String textlefttable, required String textrighttabledetail}) {
@@ -307,17 +316,9 @@ BuildTableRow(BuildContext context,
       '   ' + textlefttable,
       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
-    Container(
-      height: 50,
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
-          ),
-        ],
-      ),
+    Text(
+      ':',
+      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
       textrighttabledetail,
@@ -326,3 +327,10 @@ BuildTableRow(BuildContext context,
   ]);
 }
 ////////////////////////////////////////////////////////////////////////////////
+_buildListenpty() {
+  return TableRow(children: [
+    SizedBox(),
+    SizedBox(),
+    SizedBox(height: 30,),
+  ]);
+}

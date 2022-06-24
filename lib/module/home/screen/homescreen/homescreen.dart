@@ -167,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                         sizeborder: 0.0,
                         onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
-                        }, sizeborder: 10,),
+                        }, ),
                   ),
 
                   Padding(
