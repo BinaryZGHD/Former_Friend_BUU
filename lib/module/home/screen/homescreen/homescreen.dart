@@ -52,16 +52,14 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
           if (state is HomeScreenInfoSuccessState) {
             _screenhomeResponse = state.responseHome;
             _screenprofileResponse = state.responseProfile;
-            _screenstatusActivityResponse =  state.responseActivity;
+            _screenstatusActivityResponse = state.responseActivity;
 
             // print("length == " + "${_screenstatusActivityResponse?.body?.activity[0]?.name}");
             // print(JsonEncoder( ).convert(_screenstatusActivityResponse?.body?.activity));
             return Scaffold(
               drawer: Drawer(
                 child: drawerhome(
-                  context,
-                  _screenhomeResponse,_screenprofileResponse
-                ),
+                    context, _screenhomeResponse, _screenprofileResponse),
               ),
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -72,13 +70,18 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                       onPressed: () {
                         Scaffold.of(context).openDrawer();
                       },
-                      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                      tooltip: MaterialLocalizations.of(context)
+                          .openAppDrawerTooltip,
                     );
                   },
                 ),
                 title: Center(
-                    child: Text("${_screenhomeResponse?.body?.screeninfo?.titlestatus}",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
+                    child: Text(
+                        "${_screenhomeResponse?.body?.screenInfo?.screenhome?.titlestatus}",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: TC_Black))),
                 actions: <Widget>[
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.1,
@@ -90,34 +93,45 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                   SizedBox(
                     height: 5,
                   ),
-                  if (_screenhomeResponse?.body?.dataListActivity?.length.toInt() == 0)
+                  if (_screenstatusActivityResponse?.body?.activity?.length
+                          .toInt() ==
+                      0)
                     Expanded(
                       child: Card(
                         color: Colors.grey[200],
                         child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: transparent),
-                          width: MediaQuery.of(context).size.width,
-                          child:Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.error,
-                                color: TC_NoActivity,
-                                size: 100,
-                              ),
-                              Text("No Activity",
-                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_NoActivity)),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("Please check your internet connection",
-                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: TC_NoActivity)),
-                            ],
-                          )
-                        ),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: transparent),
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.error,
+                                  color: TC_NoActivity,
+                                  size: 100,
+                                ),
+                                Text("No Activity",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                        color: TC_NoActivity)),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("Please check your internet connection",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: TC_NoActivity)),
+                              ],
+                            )),
                       ),
                     ),
-                  if (_screenhomeResponse?.body?.dataListActivity?.length.toInt() != 0)
+                  if (_screenstatusActivityResponse?.body?.activity?.length
+                          .toInt() !=
+                      0)
                     // Expanded(
                     //   child: Container(
                     //     color: BC_ButtonRed,
@@ -140,36 +154,39 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
-                                BuildListActivity(
-                                  context,_screenstatusActivityResponse
-                                ),
+                                BuildListActivity(context, _screenhomeResponse,
+                                    _screenstatusActivityResponse),
                                 SizedBox(
-                                  // height: MediaQuery.of(context).size.height * 0.2,
-                                ),
+                                    // height: MediaQuery.of(context).size.height * 0.2,
+                                    ),
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
                     child: ButtonCustom(
-                        label: "     " + "  ${_screenhomeResponse?.body?.screeninfo?.btnadd} " + "     ",
-                        colortext: TC_Black,
-                        colorbutton: BC_ButtonText_style_White,
-                        sizetext: sizeTextSmaller14,
-                        colorborder: BSC_Black,
-                        sizeborder: 0.0,
-                        onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
-                        }, ),
+                      label: "     " +
+                          "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " +
+                          "     ",
+                      colortext: TC_Black,
+                      colorbutton: BC_ButtonText_style_White,
+                      sizetext: sizeTextSmaller14,
+                      colorborder: BSC_Black,
+                      sizeborder: 0.0,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => addActivity()));
+                      },
+                    ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
 
@@ -183,24 +200,39 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                         children: [
                           Expanded(
                               child: IconButton(
-                            icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
+                            icon: Icon(Icons.account_circle,
+                                color: Colors.black, size: 50),
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProfileScreen()));
                             },
                           )),
                           Expanded(
                               child: IconButton(
-                            icon: Icon(Icons.home, color: Colors.blue, size: 50),
+                            icon:
+                                Icon(Icons.home, color: Colors.blue, size: 50),
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => loginScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => loginScreen()));
                             },
                           )),
                           Expanded(
                               child: IconButton(
-                            icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                            icon: Icon(Icons.auto_awesome_mosaic,
+                                color: Colors.black, size: 50),
                             onPressed: () {
                               // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => MoreMainScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MoreMainScreen(
+                                            responseHomeMore:
+                                                _screenhomeResponse,
+                                          )));
                             },
                           )),
                         ],

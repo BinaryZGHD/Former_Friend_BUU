@@ -20,7 +20,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
           children: <Widget>[
             Container(
               width: double.infinity,
-              color: HexColor('${_screenhomeResponse?.body?.dataDrawerDetail?.gencolor}'),
+              color: HexColor('${_screenprofileResponse?.body?.profileGeneralInfo?.gencolor}'),
               padding: EdgeInsets.all(20),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 _buildTableGeneralImgeinfo(
@@ -34,7 +34,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                 ),
                 _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textname}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textname}',
                   textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.name}'+' '+'${_screenprofileResponse?.body?.profileGeneralInfo?.surname}',
                   tb1: 0.25,
                   tb2: 0.05,
@@ -45,7 +45,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                 ),
                 _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textnickname}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textnickname}',
                   textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.nickname}',
                   tb1: 0.45,
                   tb2: 0.05,
@@ -56,7 +56,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                 ),
                 _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textstdcode}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textstdcode}',
                   textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.stuCode}',
                   tb1: 0.45,
                   tb2: 0.05,
@@ -67,7 +67,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                 ),
                 _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textemail}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textemail}',
                   textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.email}',
                   tb1: 0.25,
                   tb2: 0.05,
@@ -83,7 +83,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textrole}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textrole}',
                   textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.role}',
                   tb1: 0.5,
                   tb2: 0.05,
@@ -99,8 +99,8 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 _buildTableIconLanginfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textlang}',
-                  textrightdetail: '${_screenhomeResponse?.body?.screeninfo?.textlangdetail}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textlang}',
+                  textrightdetail: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textlangdetail}',
                   tb1: 0.5,
                   tb2: 0.00,
                   tb3: 0.55,
@@ -115,7 +115,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               child: Container(
                 child: ListTile(
                   title: Text(
-                    "${_screenhomeResponse?.body?.screeninfo?.btncpass}",
+                    "${_screenhomeResponse?.body?.screenInfo?.screenhome?.btncpass}",
                     style: TextStyle(
                       fontFamily: 'Kanit',
                       fontSize: 18,
@@ -150,7 +150,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               child: Container(
                 child: ListTile(
                   title: Text(
-                    "${_screenhomeResponse?.body?.screeninfo?.btndelacc}",
+                    "${_screenhomeResponse?.body?.screenInfo?.screenhome?.btndelacc}",
                     style: TextStyle(
                       fontFamily: 'Kanit',
                       fontSize: 18,
@@ -167,8 +167,8 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screeninfo?.textappver}',
-                  textrightdetail: '${_screenhomeResponse?.body?.dataDrawerDetail?.vs}',
+                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textappver}',
+                  textrightdetail: '${_screenhomeResponse?.body?.vs}',
                   tb1: 0.6,
                   tb2: 0.02,
                   tb3: 0.35,
@@ -203,7 +203,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                     }
                   });
                 },
-                label: "  ${_screenhomeResponse?.body?.screeninfo?.btnlogout}  ",
+                label: "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnlogout}  ",
                 colortext: BC_ButtonLogout,
                 colorbutton: BC_ButtonText_style_White,
                 sizetext: sizeTextBig20,

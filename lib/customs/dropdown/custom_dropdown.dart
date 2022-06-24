@@ -6,7 +6,10 @@ class customDropdown extends StatefulWidget {
   final List<String>? dropdownlist;
   final double width;
   const customDropdown(
-      {Key? key, required this.hint, required this.dropdownlist, required this.width})
+      {Key? key,
+      required this.hint,
+      required this.dropdownlist,
+      required this.width})
       : super(key: key);
 
   @override
@@ -40,7 +43,11 @@ class _customDropdownState extends State<customDropdown> {
           hint: Text(hint),
           items: dropdownlist
               ?.map((item) => DropdownMenuItem<String>(
-                  value: item, child: Text(item,style: TextStyle(fontSize: 18),)))
+                  value: item,
+                  child: Text(
+                    item,
+                    style: TextStyle(fontSize: 18),
+                  )))
               .toList(),
           onChanged: (item) => setState(() => dropdownValue = item ?? ''),
         ),
