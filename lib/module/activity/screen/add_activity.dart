@@ -191,7 +191,8 @@ class _addActivityState extends State<addActivity> {
                           colortext: TC_Black,
                           colorbutton: Colors.white,
                           sizetext: sizeTextBig20,
-                          colorborder: Colors.black,),),
+                          colorborder: Colors.black,
+                      sizeborder: 1,),),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),

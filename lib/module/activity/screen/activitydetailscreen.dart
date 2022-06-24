@@ -9,10 +9,12 @@ import '../../../customs/size/size.dart';
 import 'package:http/http.dart' as http;
 
 class ActivityDetailScreen extends StatefulWidget {
-  final int id;
+  // final int id;
   final data;
 
-  const ActivityDetailScreen({Key? key, required this.id, this.data})
+  const ActivityDetailScreen({Key? key,
+    // required this.id,
+    this.data})
       : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class ActivityDetailScreen extends StatefulWidget {
 }
 
 class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
-  var id;
+  // var id;
   var data;
   bool showbutton = false;
 
@@ -29,7 +31,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
 
   @override
   void initState() {
-    id = widget.id;
+    // id = widget.id;
     data = widget.data;
     print('เรียก initState');
     getActivityDetailApi();
@@ -262,9 +264,9 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(width: 100,child: ButtonCustom(colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14,)),
+                            Container(width: 100,child: ButtonCustom(colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14, sizeborder: 1,)),
                             SizedBox(width: 50,),
-                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,)),
+                            Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14, sizeborder: 1,)),
                           ],
                         ),
                       ),
