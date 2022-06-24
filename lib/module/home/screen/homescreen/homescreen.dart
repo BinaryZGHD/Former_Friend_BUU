@@ -140,8 +140,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                             child: Column(
                               children: [
                                 BuildListActivity(
-                                  context,
-                                  _screenhomeResponse,_screenstatusActivityResponse
+                                  context,_screenstatusActivityResponse
                                 ),
                                 SizedBox(
                                   // height: MediaQuery.of(context).size.height * 0.2,
