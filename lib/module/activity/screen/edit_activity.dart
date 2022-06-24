@@ -6,20 +6,21 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:http/http.dart' as http;
-import 'package:f2fbuu/module/home/model/activity/add_activity_screen_api.dart';
+import 'package:f2fbuu/module/activity/model/add_activity_screen_api.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../customs/size/size.dart';
-import '../../../../customs/textfile/buildtextfieldcustom.dart';
+import '../../../customs/size/size.dart';
+import '../../../customs/textfile/buildtextfieldcustom.dart';
 
-class addActivity extends StatefulWidget {
-  const addActivity({Key? key}) : super(key: key);
+class editActivity extends StatefulWidget {
+  final data;
+  const editActivity({Key? key, required this.data}) : super(key: key);
 
   @override
-  State<addActivity> createState() => _addActivityState();
+  State<editActivity> createState() => _editActivityState();
 }
 
-class _addActivityState extends State<addActivity> {
+class _editActivityState extends State<editActivity> {
   TextEditingController activityname = TextEditingController();
   TextEditingController year = TextEditingController();
   TextEditingController term = TextEditingController();
@@ -39,11 +40,11 @@ class _addActivityState extends State<addActivity> {
   String venuevalue = "";
   String approvervalue = "";
   String detailvalue = "";
-
   late AddActivityScreenApi _dataFromAPI;
 
   @override
   void initState() {
+    // data = widget.data;
     super.initState();
     getAPIScreenAddActivity();
   }
@@ -66,6 +67,15 @@ class _addActivityState extends State<addActivity> {
     List<String> yearlist = ['2022','2021','2020'];
     List<String> termlist = ['1','2','summer'];
     List<String> teacherlist = ['a','b','c','d','e','f'];
+    String namevalue = "${widget.data.name}";
+    String yearvalue = "${widget.data.year}";
+    String termvalue = "${widget.data.term}";
+    String sdatevalue = "${widget.data.startdate}";
+    String fdatevalue = "${widget.data.finishdate}";
+    String timevalue = "${widget.data.time}";
+    String venuevalue = "${widget.data.venue}";
+    String approvervalue = "${widget.data.approver}";
+    String detailvalue = "${widget.data.detail}";
     return FutureBuilder(
       future: getAPIScreenAddActivity(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -85,7 +95,7 @@ class _addActivityState extends State<addActivity> {
                 ),
               ),
               title: Text(
-                "${_dataFromAPI.body?.screeninfo?.titleaddact}",
+                "${_dataFromAPI.body?.screeninfo?.titleeditact}",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: sizeTitle24,
@@ -101,6 +111,7 @@ class _addActivityState extends State<addActivity> {
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     buildTextFieldCustom(
+                      initialvalue: namevalue,
                       textEditingController: activityname,
                       onChanged: (value) {
                         activitynamevalue = value;
@@ -126,6 +137,7 @@ class _addActivityState extends State<addActivity> {
                     customDatePicker(hint_label: 'Start date',),
                     customDatePicker(hint_label: 'Finish date'),
                     buildTextFieldCustom(
+                      initialvalue: timevalue,
                       textEditingController: time,
                       onChanged: (value) {
                         timevalue = value;
@@ -134,6 +146,7 @@ class _addActivityState extends State<addActivity> {
                       textInputType: TextInputType.number,
                     ),
                     buildTextFieldCustom(
+                      initialvalue: venuevalue,
                       textEditingController: venue,
                       onChanged: (value) {
                         venuevalue = value;
@@ -143,6 +156,7 @@ class _addActivityState extends State<addActivity> {
                     ),
                     customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: teacherlist, hint: 'approver',),
                     buildTextFieldCustom(
+                      initialvalue: detailvalue,
                       textEditingController: detail,
                       onChanged: (value) {
                         detailvalue = value;
@@ -188,10 +202,10 @@ class _addActivityState extends State<addActivity> {
                     // ),
                     Center(child: ButtonCustom(
                       label: "  "+"${_dataFromAPI.body?.screeninfo?.btnconfirm}"+"  ",
-                          colortext: TC_Black,
-                          colorbutton: Colors.white,
-                          sizetext: sizeTextBig20,
-                          colorborder: Colors.black,),),
+                      colortext: TC_Black,
+                      colorbutton: Colors.white,
+                      sizetext: sizeTextBig20,
+                      colorborder: Colors.black,),),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),

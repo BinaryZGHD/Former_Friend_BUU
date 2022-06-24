@@ -4,8 +4,8 @@ import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/model/homemodel/activitydetailscreenapi/activity_detail_api.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../../../customs/color/colorconts.dart';
-import '../../../../customs/size/size.dart';
+import '../../../customs/color/colorconts.dart';
+import '../../../customs/size/size.dart';
 import 'package:http/http.dart' as http;
 
 class ActivityDetailScreen extends StatefulWidget {
