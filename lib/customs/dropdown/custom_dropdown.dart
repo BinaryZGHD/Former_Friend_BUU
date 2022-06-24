@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class customDropdown extends StatefulWidget {
   final String hint;
-  final List<String> dropdownlist;
+  final List<String>? dropdownlist;
   final double width;
   const customDropdown(
       {Key? key, required this.hint, required this.dropdownlist, required this.width})
@@ -17,7 +17,7 @@ class _customDropdownState extends State<customDropdown> {
   @override
   Widget build(BuildContext context) {
     String hint = widget.hint;
-    List<String> dropdownlist = widget.dropdownlist;
+    List<String>? dropdownlist = widget.dropdownlist;
     var dropdownValue = '';
     return Container(
       margin: const EdgeInsets.all(12),
@@ -39,8 +39,8 @@ class _customDropdownState extends State<customDropdown> {
               )),
           hint: Text(hint),
           items: dropdownlist
-              .map((item) => DropdownMenuItem<String>(
-                  value: item, child: Text(item ?? '',style: TextStyle(fontSize: 18),)))
+              ?.map((item) => DropdownMenuItem<String>(
+                  value: item, child: Text(item,style: TextStyle(fontSize: 18),)))
               .toList(),
           onChanged: (item) => setState(() => dropdownValue = item ?? ''),
         ),

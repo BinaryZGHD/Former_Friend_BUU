@@ -1,25 +1,20 @@
-
-import 'dart:convert';
-
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
+import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-
 import '../../../customs/size/size.dart';
 import '../../../customs/textfile/buildtextfieldcustom.dart';
-
 class addActivity extends StatefulWidget {
   const addActivity({Key? key}) : super(key: key);
-
   @override
   State<addActivity> createState() => _addActivityState();
 }
-
-class _addActivityState extends State<addActivity> {
+class _addActivityState extends State<addActivity> with ProgressDialog{
   TextEditingController activityname = TextEditingController();
   TextEditingController year = TextEditingController();
   TextEditingController term = TextEditingController();
@@ -29,7 +24,6 @@ class _addActivityState extends State<addActivity> {
   TextEditingController venue = TextEditingController();
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
-
   String activitynamevalue = " ";
   String yearvalue = " ";
   String termvalue = " ";
@@ -39,178 +33,131 @@ class _addActivityState extends State<addActivity> {
   String venuevalue = "";
   String approvervalue = "";
   String detailvalue = "";
-
-  late AddActivityScreenApi _dataFromAPI;
-
-  @override
-  void initState() {
-    super.initState();
-    getAPIScreenAddActivity();
-  }
-
-  Future<AddActivityScreenApi?> getAPIScreenAddActivity() async {
-    // print("เรียกใช้ Get_Coin_price");
-    var url = Uri.parse("https://webzbinaryz.web.app/v1/api/modules/activity/wording/add_edit_activity");
-    var response = await http.get(url, headers: <String, String>{});
-
-    _dataFromAPI = addActivityScreenApiFromJson(utf8.decode(response.bodyBytes));
-    // print(response.body);
-    // // print(_dataFromAPI?.head?.message);// get the data from the api
-    // print(_dataFromAPIRegisterWording?.body?.screeninfo?.textreghead);// get the data from the api
-    return _dataFromAPI;
-    // log(response.body);
-  }
+  AddActivityScreenApi? _addActivityScreenApi;
 
   @override
   Widget build(BuildContext context) {
-    int year = DateTime.now().year;
-    List<String> yearlist = [
-      '${year - 5}','${year - 4}','${year - 3}','${year - 2}','${year - 1}',
-      '${year}','${year + 1}'];
-    List<String> termlist = ['1','2','summer'];
-    List<String> approverlist = ['a','b','c','d','e','f'];
-    return FutureBuilder(
-      future: getAPIScreenAddActivity(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  size: sizeTitle24,
-                  color: Colors.black,
+    context.read<ActivityBloc>().add(AddActivityScreenInfoEvent());
+
+    return BlocListener<ActivityBloc,ActivityState>(
+      listener: (context,state){
+        if (state is ActivityLoading) {
+          showProgressDialog(context);
+        }
+        if (state is ActivityLoading) {
+          hideProgressDialog(context);
+        }
+        if (state is ActivityError) {
+          // show dialog error
+          print(state.message);
+        }
+      },
+      child: BlocBuilder<ActivityBloc,ActivityState>(
+          builder: (context,state){
+            if (state is ActivityScreenInfoSuccessState){
+              _addActivityScreenApi = state.response;
+              print(_addActivityScreenApi?.head?.status);
+              print(_addActivityScreenApi?.body?.screeninfo?.titleaddact);
+              List<String>? yearlist = _addActivityScreenApi?.body?.yearlist;
+              List<String>? termlist = _addActivityScreenApi?.body?.termlist;
+              List<String>? approverlist = _addActivityScreenApi?.body?.approverlist;;
+
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      size: sizeTitle24,
+                      color: Colors.black,
+                    ),
+                  ),
+                  title: Text(
+                    "${_addActivityScreenApi?.body?.screeninfo?.titleaddact}",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: sizeTitle24,
+                    ),
+                  ),
                 ),
-              ),
-              title: Text(
-                "${_dataFromAPI?.body?.screeninfo?.titleaddact}",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: sizeTitle24,
-                ),
-              ),
-            ),
-            body: SafeArea(
-              // height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    buildTextFieldCustom(
-                      textEditingController: activityname,
-                      onChanged: (value) {
-                        activitynamevalue = value;
-                      },
-                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edtactname}",
-                      textInputType: TextInputType.text,
-                    ),
-                    Container(
-                      // child: Row(
-                      //   children: [
-                      //   Card(child: Text('data')),
-                      //     customDropdown(dropdownlist: yearlist, hint: 'Year',),
-                      //     Card(child: Text('data')),
-                      // ],)
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
-                          customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
-                        ],
-                      ),
-                    ),
-                    customDatePicker(hint_label: 'Start date',),
-                    customDatePicker(hint_label: 'Finish date'),
-                    buildTextFieldCustom(
-                      textEditingController: time,
-                      onChanged: (value) {
-                        timevalue = value;
-                      },
-                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edttime}",
-                      textInputType: TextInputType.number,
-                    ),
-                    buildTextFieldCustom(
-                      textEditingController: venue,
-                      onChanged: (value) {
-                        venuevalue = value;
-                      },
-                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edttvenue}",
-                      textInputType: TextInputType.text,
-                    ),
-                    customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
-                    buildTextFieldCustom(
-                      textEditingController: detail,
-                      onChanged: (value) {
-                        detailvalue = value;
-                      },
-                      hint_label: "${_dataFromAPI?.body?.screeninfo?.edtdetail}",
-                      textInputType: TextInputType.text,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    // Center(
-                    //   child: ButtonCustom(
-                    //     label: "  "+"${_dataFromAPIRegisterWording?.body?.screeninfo?.btnsignup}"+"  ",
-                    //     colortext: TC_Black,
-                    //     colorbutton: BC_ButtonGreen,
-                    //     sizetext: sizeTextBig20,
-                    //     colorborder: BSC_transparent,
-                    //     onPressed: () {
-                    //       showDialog(
-                    //           context: context,
-                    //           builder: (context) => CustomDialogBox(
-                    //             id: '',
-                    //             textfieldvalue: "Register  :  $uservalue" +
-                    //                 "\nTelrphone number  :  $phonevalue" +
-                    //                 "\nEmail  :  $emailvalue" +
-                    //                 "\nName  :  $namevalue" +
-                    //                 "\nLast name  :  $lastnamevalue" +
-                    //                 "\nPassword  :  $passwordvalue" +
-                    //                 "\nConfirm password  :  $confirmpasswordvalue",
-                    //             description: errregidter1 + '\n \n ' + 'Do you want to continue?',
-                    //             mapscreen: registerConfirmScreen(
-                    //                 titleconregis: "${_dataFromAPIRegisterWording?.body?.screeninfo?.titleconregis}" ,
-                    //                 textotpwillsent: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotpwillsent}" ,
-                    //                 textpleaseconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textpleaseconfirm}" ,
-                    //                 textsentotpagain:"${_dataFromAPIRegisterWording?.body?.screeninfo?.textsentotpagain}"  ,
-                    //                 textotp: "${_dataFromAPIRegisterWording?.body?.screeninfo?.textotp}" ,
-                    //                 btnconfirm: "${_dataFromAPIRegisterWording?.body?.screeninfo?.btnconfirm}" ,
-                    //                 edtemailreg:"${_dataFromAPIRegisterWording?.body?.screeninfo?.edtemailreg}"
-                    //             ),
-                    //           ));
-                    //     },
-                    //   ),
-                    // ),
-                    Center(child: ButtonCustom(
-                      label: "  "+"${_dataFromAPI?.body?.screeninfo?.btnconfirm}"+"  ",
+                body: SafeArea(
+                  // height: MediaQuery.of(context).size.height,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                        ),
+                        buildTextFieldCustom(
+                          textEditingController: activityname,
+                          onChanged: (value) {
+                            activitynamevalue = value;
+                          },
+                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                          textInputType: TextInputType.text,
+                        ),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
+                              customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
+                            ],
+                          ),
+                        ),
+                        customDatePicker(hint_label: 'Start date',),
+                        customDatePicker(hint_label: 'Finish date'),
+                        buildTextFieldCustom(
+                          textEditingController: time,
+                          onChanged: (value) {
+                            timevalue = value;
+                          },
+                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
+                          textInputType: TextInputType.number,
+                        ),
+                        buildTextFieldCustom(
+                          textEditingController: venue,
+                          onChanged: (value) {
+                            venuevalue = value;
+                          },
+                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                          textInputType: TextInputType.text,
+                        ),
+                        customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
+                        buildTextFieldCustom(
+                          textEditingController: detail,
+                          onChanged: (value) {
+                            detailvalue = value;
+                          },
+                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                          textInputType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                        ),
+                        Center(child: ButtonCustom(
+                          label: "  "+"${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}"+"  ",
                           colortext: TC_Black,
                           colorbutton: Colors.white,
                           sizetext: sizeTextBig20,
                           colorborder: Colors.black,
-                      sizeborder: 1,),),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
+                          sizeborder: 1,),),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          );
-        }
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
+              );
+            } else {
+              return Container();
+            }
+          }),
     );
   }
 }

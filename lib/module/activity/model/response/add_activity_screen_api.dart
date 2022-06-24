@@ -1,6 +1,6 @@
 import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"login"}
-/// body : {"screeninfo":{"Titleaddact":"Add activity","Titleeditact":"Edit activity","Edtactname":"Activity name / Project name","Edtyear":"Year","Edtterm":"Term","Edtstartdate":"Start date","Edtfinishdate":"Finish date","Edttime":"Total time(Hours)","Edttvenue":"Venue","Edtdetail":"Detail","Btnconfirm":"Confirm"},"yearlist":["2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033"],"approverlist":[{"approverid":"1","approvername":"李四张三李四三"},{"approverid":"2","approvername":"李李四李三四李四四"},{"approverid":"3","approvername":"张三李四李四张三"}]}
+/// body : {"screeninfo":{"Titleaddact":"Add activity","Titleeditact":"Edit activity","Edtactname":"Activity name / Project name","Edtyear":"Year","Edtterm":"Term","Edtstartdate":"Start date","Edtfinishdate":"Finish date","Edttime":"Total time(Hours)","Edttvenue":"Venue","Edtdetail":"Detail","Btnconfirm":"Confirm"},"yearlist":["2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033"],"termlist":["1","2","summer"],"approverlist":["1李四张三李四三","2李李四李三四李四四","3张三李四李四张三","4李四张三李四三","5李李四李三四李四四","6张三李四李四张三"]}
 
 AddActivityScreenApi addActivityScreenApiFromJson(String str) => AddActivityScreenApi.fromJson(json.decode(str));
 String addActivityScreenApiToJson(AddActivityScreenApi data) => json.encode(data.toJson());
@@ -41,7 +41,8 @@ AddActivityScreenApi copyWith({  Head? head,
 
 /// screeninfo : {"Titleaddact":"Add activity","Titleeditact":"Edit activity","Edtactname":"Activity name / Project name","Edtyear":"Year","Edtterm":"Term","Edtstartdate":"Start date","Edtfinishdate":"Finish date","Edttime":"Total time(Hours)","Edttvenue":"Venue","Edtdetail":"Detail","Btnconfirm":"Confirm"}
 /// yearlist : ["2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033"]
-/// approverlist : [{"approverid":"1","approvername":"李四张三李四三"},{"approverid":"2","approvername":"李李四李三四李四四"},{"approverid":"3","approvername":"张三李四李四张三"}]
+/// termlist : ["1","2","summer"]
+/// approverlist : ["1李四张三李四三","2李李四李三四李四四","3张三李四李四张三","4李四张三李四三","5李李四李三四李四四","6张三李四李四张三"]
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -49,35 +50,37 @@ class Body {
   Body({
       Screeninfo? screeninfo, 
       List<String>? yearlist, 
-      List<Approverlist>? approverlist,}){
+      List<String>? termlist, 
+      List<String>? approverlist,}){
     _screeninfo = screeninfo;
     _yearlist = yearlist;
+    _termlist = termlist;
     _approverlist = approverlist;
 }
 
   Body.fromJson(dynamic json) {
     _screeninfo = json['screeninfo'] != null ? Screeninfo.fromJson(json['screeninfo']) : null;
     _yearlist = json['yearlist'] != null ? json['yearlist'].cast<String>() : [];
-    if (json['approverlist'] != null) {
-      _approverlist = [];
-      json['approverlist'].forEach((v) {
-        _approverlist?.add(Approverlist.fromJson(v));
-      });
-    }
+    _termlist = json['termlist'] != null ? json['termlist'].cast<String>() : [];
+    _approverlist = json['approverlist'] != null ? json['approverlist'].cast<String>() : [];
   }
   Screeninfo? _screeninfo;
   List<String>? _yearlist;
-  List<Approverlist>? _approverlist;
+  List<String>? _termlist;
+  List<String>? _approverlist;
 Body copyWith({  Screeninfo? screeninfo,
   List<String>? yearlist,
-  List<Approverlist>? approverlist,
+  List<String>? termlist,
+  List<String>? approverlist,
 }) => Body(  screeninfo: screeninfo ?? _screeninfo,
   yearlist: yearlist ?? _yearlist,
+  termlist: termlist ?? _termlist,
   approverlist: approverlist ?? _approverlist,
 );
   Screeninfo? get screeninfo => _screeninfo;
   List<String>? get yearlist => _yearlist;
-  List<Approverlist>? get approverlist => _approverlist;
+  List<String>? get termlist => _termlist;
+  List<String>? get approverlist => _approverlist;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -85,45 +88,8 @@ Body copyWith({  Screeninfo? screeninfo,
       map['screeninfo'] = _screeninfo?.toJson();
     }
     map['yearlist'] = _yearlist;
-    if (_approverlist != null) {
-      map['approverlist'] = _approverlist?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
-
-}
-
-/// approverid : "1"
-/// approvername : "李四张三李四三"
-
-Approverlist approverlistFromJson(String str) => Approverlist.fromJson(json.decode(str));
-String approverlistToJson(Approverlist data) => json.encode(data.toJson());
-class Approverlist {
-  Approverlist({
-      String? approverid, 
-      String? approvername,}){
-    _approverid = approverid;
-    _approvername = approvername;
-}
-
-  Approverlist.fromJson(dynamic json) {
-    _approverid = json['approverid'];
-    _approvername = json['approvername'];
-  }
-  String? _approverid;
-  String? _approvername;
-Approverlist copyWith({  String? approverid,
-  String? approvername,
-}) => Approverlist(  approverid: approverid ?? _approverid,
-  approvername: approvername ?? _approvername,
-);
-  String? get approverid => _approverid;
-  String? get approvername => _approvername;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['approverid'] = _approverid;
-    map['approvername'] = _approvername;
+    map['termlist'] = _termlist;
+    map['approverlist'] = _approverlist;
     return map;
   }
 

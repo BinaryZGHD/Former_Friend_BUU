@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
+import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
+import 'package:f2fbuu/module/activity/repository/activity_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'activity_event.dart';
 part 'activity_state.dart';
 
-class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
+class ActivityBloc extends Bloc<ActivityEvent, ActivityState> with ActivityRepository{
   ActivityBloc() : super(ActivityInitial()) {
     on<AddActivityScreenInfoEvent>((event, emit)  async {
 
@@ -15,8 +18,8 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
         Response response = await getScreenActivity();
         emit(ActivityEndLoading());
         if (response.statusCode == 200) {
-          ScreenActivityResponse screenActivityResponse =
-          ScreenActivityResponse.fromJson(response.data);
+          AddActivityScreenApi screenActivityResponse =
+          AddActivityScreenApi.fromJson(response.data);
           if (screenActivityResponse.head?.status == "200") {
             emit(ActivityScreenInfoSuccessState(response: screenActivityResponse));
           } else {
