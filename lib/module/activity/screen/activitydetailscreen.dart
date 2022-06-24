@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
-import 'package:f2fbuu/model/homemodel/activitydetailscreenapi/activity_detail_api.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -26,8 +25,6 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
   bool showbutton = false;
 
   //---------------------------------API----------------------------------------//
-  late ActivityDetailApi _dataFromAPI;
-
   @override
   void initState() {
     title = widget.title;
