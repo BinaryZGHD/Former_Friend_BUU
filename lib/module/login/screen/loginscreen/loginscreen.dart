@@ -4,19 +4,12 @@ import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 
-import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
-
-import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
-
-import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as httpurl;
 import '../../../../customs/Imge/changimgetype.dart';
+import '../../../../customs/button/buildbuttoncustom.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/dialog/dialogboxcutom.dart';
@@ -144,6 +137,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
                           ),
+
                           Center(
                             child: ButtonCustom(
                               onPressed: () {
@@ -190,12 +184,16 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               },
                               label:
                                   "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
-                              colortext: TC_Black,
-                              colorbutton: BC_ButtonGreen,
+                              colortext: BC_ButtonText_style_Black,
+                              colorbutton: BC_ButtonText_style_White,
                               sizetext: sizeTextBig20,
-                              colorborder: BSC_transparent,
+                              colorborder: BC_ButtonText_style_Black_Boarder,
+                              sizeborder: 10,
                             ),
                           ),
+
+
+
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
                           ),

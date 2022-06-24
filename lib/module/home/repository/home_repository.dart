@@ -6,4 +6,10 @@ class HomeRepository  {
   Future<Response> getScreenHome() async {
     return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
   }
+  Future<Response> getApiProfile() async {
+    return await MyDio.createDio().post("/v1/api/modules/profile/wording/profile");
+  }
+  Future<Response> getApiActivity() async {
+    return await MyDio.createDio().post("/v1/api/modules/activity/wording/statusactivity");
+  }
 }
