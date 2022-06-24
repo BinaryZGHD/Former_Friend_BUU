@@ -129,6 +129,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                             colorbutton: BC_ButtonGreen,
                             sizetext: sizeTextBig20,
                             colorborder: BSC_transparent,
+                            sizeborder: 10,
                             onPressed: () {
                               dialogOneLineTwoBtn(
                                   context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',

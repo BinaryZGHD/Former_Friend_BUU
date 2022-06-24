@@ -3,6 +3,7 @@ import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.
 import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'module/home/bloc/homebloc/home_bloc.dart';
 import 'module/home/screen/homescreen/homescreen.dart';
@@ -18,6 +19,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     // DeviceOrientation.landscapeLeft,
   ]);
+
   // debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
