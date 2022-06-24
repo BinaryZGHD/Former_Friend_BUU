@@ -14,7 +14,6 @@ import '../../../profile/model/response/api_profile.dart';
 import '../../bloc/homebloc/home_bloc.dart';
 import '../../model/response/screen_home.dart';
 import '../../../profile/screen/profile_page.dart';
-import '../../bloc/buildlistactivity.dart';
 import '../morescreen/moremainscreen.dart';
 import 'drawerhome.dart';
 
