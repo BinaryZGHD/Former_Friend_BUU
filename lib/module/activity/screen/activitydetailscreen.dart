@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/model/homemodel/activitydetailscreenapi/activity_detail_api.dart';
+import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../customs/color/colorconts.dart';
@@ -9,10 +10,10 @@ import '../../../../customs/size/size.dart';
 import 'package:http/http.dart' as http;
 
 class ActivityDetailScreen extends StatefulWidget {
-  final int id;
+  final title;
   final data;
 
-  const ActivityDetailScreen({Key? key, required this.id, this.data})
+  const ActivityDetailScreen({Key? key, required this.title, this.data})
       : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class ActivityDetailScreen extends StatefulWidget {
 }
 
 class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
-  var id;
+  var title;
   var data;
   bool showbutton = false;
 
@@ -29,7 +30,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
 
   @override
   void initState() {
-    id = widget.id;
+    title = widget.title;
     data = widget.data;
     print('เรียก initState');
     getActivityDetailApi();
@@ -38,7 +39,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
 
   Future<ActivityDetailApi> getActivityDetailApi() async {
     var url =
-        Uri.parse('https://test-api-ceecf.web.app/v1/home/activityscreen');
+    Uri.parse('https://test-api-ceecf.web.app/v1/home/activityscreen');
     var response = await http.get(url);
     // print(response.body);
     _dataFromAPI = activityDetailApiFromJson(utf8.decode(response.bodyBytes));
@@ -81,26 +82,26 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           // print('${_dataFromAPI.body?.activity?.status}');
           if (snapshot.connectionState == ConnectionState.done) {
-            print('${_dataFromAPI.body?.activity?.status}');
+            print('${data.status}');
             var myicon = Icon(
               Icons.question_mark,
               color: Colors.black,
             );
-            if (_dataFromAPI.body?.activity?.status == "Unapproved!") {
+            if (data.status == "Unapproved!") {
               print('เข้า Unapproved!');
               myicon = Icon(
                 Icons.alarm,
                 color: Colors.yellow,
               );
               showbutton = true;
-            } else if (_dataFromAPI.body?.activity?.status == "Approved!") {
+            } else if (data.status == "Approved!") {
               print('เข้า Approved!');
               myicon = Icon(
                 Icons.check_circle,
                 color: Colors.green,
               );
               showbutton = false;
-            } else if (_dataFromAPI.body?.activity?.status == "Rejected!") {
+            } else if (data.status == "Rejected!") {
               print('เข้า Rejected');
               myicon = Icon(
                 Icons.cancel,
@@ -129,7 +130,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                 title: Center(
                   child: Text(
                     // 'ทดสอบ',
-                    '${_dataFromAPI.body?.screeninfo?.titlestatus}',
+                    '${data.status}',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22,
@@ -161,74 +162,77 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                   child: Column(children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 30, left: 10, right: 10),
+                      const EdgeInsets.only(top: 30, left: 10, right: 10),
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.65,
                         decoration: BoxDecoration(
                           color:
-                              HexColor('${_dataFromAPI.body?.activity?.color}'),
+                          HexColor('${data.color}'),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: SingleChildScrollView(
-                          child: Table(
-                            border: TableBorder.symmetric(
-                                outside: BorderSide(
-                                    width: 2, color: Colors.transparent)),
-                            columnWidths: <int, TableColumnWidth>{
-                              0: FractionColumnWidth(0.3),
-                              1: FractionColumnWidth(0.05),
-                              2: FractionColumnWidth(0.65),
-                            },
-                            defaultVerticalAlignment:
-                                TableCellVerticalAlignment.middle,
-                            children: [
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textactivity}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.name}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textyear}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.year}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textterm}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.term}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textstartdate}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.startdate}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textfinishdate}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.finishdate}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.texttime}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.time}' +
-                                          " ( hh:mm ) "),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.edtapprover}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.approver}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textvenue}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.venue}'),
-                              BuildTableRow(context,
-                                  textlefttable:
-                                      '${_dataFromAPI.body?.screeninfo?.textdetail}',
-                                  textrighttabledetail:
-                                      '${_dataFromAPI.body?.activity?.detail}')
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Table(
+                              border: TableBorder.symmetric(
+                                  outside: BorderSide(
+                                      width: 2, color: Colors.transparent)),
+                              columnWidths: <int, TableColumnWidth>{
+                                0: FractionColumnWidth(0.3),
+                                1: FractionColumnWidth(0.05),
+                                2: FractionColumnWidth(0.65),
+                              },
+                              // defaultVerticalAlignment:
+                              // TableCellVerticalAlignment.middle,
+                              children: [
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textactivity}',
+                                    textrighttabledetail:
+                                    '${data.name}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textyear}',
+                                    textrighttabledetail:
+                                    '${data.year}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textterm}',
+                                    textrighttabledetail:
+                                    '${data.term}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textstartdate}',
+                                    textrighttabledetail:
+                                    '${data.startdate}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textfinishdate}',
+                                    textrighttabledetail:
+                                    '${data.finishdate}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.texttime}',
+                                    textrighttabledetail:
+                                    '${data.time}' +
+                                        " ( hh:mm ) "),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.edtapprover}',
+                                    textrighttabledetail:
+                                    '${data.approver}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textvenue}',
+                                    textrighttabledetail:
+                                    '${data.venue}'),
+                                BuildTableRow(context,
+                                    textlefttable:
+                                    '${_dataFromAPI.body?.screeninfo?.textdetail}',
+                                    textrighttabledetail:
+                                    '${data.detail}')
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -245,7 +249,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                           children: [
                             myicon,
                             SizedBox(width: 10,),
-                            Text('${_dataFromAPI.body?.activity?.status}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
+                            Text('${data.status}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -262,7 +266,13 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(width: 100,child: ButtonCustom(colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14,)),
+                            Container(width: 100,child: ButtonCustom(
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                  return editActivity(data: data);
+                                }));
+                              },
+                              colorborder: Colors.black, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonleft}', colorbutton: Colors.white, sizetext: 14,)),
                             SizedBox(width: 50,),
                             Container(width: 100, child: ButtonCustom(colorborder: Colors.transparent, colortext: Colors.black, label: '${_dataFromAPI.body?.screeninfo?.buttonright}', colorbutton: Colors.grey, sizetext: 14,)),
                           ],
@@ -300,7 +310,7 @@ BuildTableRow(BuildContext context,
     Container(
       height: 50,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             ':',

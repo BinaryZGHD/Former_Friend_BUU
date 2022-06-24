@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:f2fbuu/module/home/model/activity/add_activity_screen_api.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../customs/size/size.dart';
-import '../../../../customs/textfile/buildtextfieldcustom.dart';
+import '../../../customs/size/size.dart';
+import '../../../customs/textfile/buildtextfieldcustom.dart';
 
 class addActivity extends StatefulWidget {
   const addActivity({Key? key}) : super(key: key);
