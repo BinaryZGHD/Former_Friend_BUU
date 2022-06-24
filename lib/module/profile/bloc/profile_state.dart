@@ -10,23 +10,14 @@ class ProfileApiSuccessState extends ProfileState{
   ProfileApiSuccessState({required this.response});
 }
 
-class ChangeAvatarProcress extends ProfileState {
-}
-
-class ChooseAvatarSuccess extends ProfileState {
-  final avatarimg;
-  ChooseAvatarSuccess({required this.avatarimg});
-}
-
-
 class ProfileError extends ProfileState{
-  var errormessage;
+  String errormessage;
   ProfileError({required this.errormessage});
 }
 
 class ProfileInitial extends ProfileState {
   @override
-   toString() => 'ProfileInitial';
+  String toString() => 'ProfileInitial';
 }
 
 class ProfileLoading extends ProfileState {
@@ -41,3 +32,10 @@ class ProfileStatusState extends ProfileState {
   ProfileStatusState({required this.statuscheck});
 }
 
+class ChangeAvatarRequestState extends ProfileState {
+
+}
+class PickimageState extends ProfileState{
+  File? image ;
+  PickimageState({required this.image});
+}

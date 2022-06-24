@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:f2fbuu/customs/button/box.dart';
-import 'package:f2fbuu/module/home/screen/activity/add_activity.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -141,7 +140,8 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                             child: Column(
                               children: [
                                 BuildListActivity(
-                                  context,_screenstatusActivityResponse
+                                  context,
+                                  _screenhomeResponse,_screenstatusActivityResponse
                                 ),
                                 SizedBox(
                                   // height: MediaQuery.of(context).size.height * 0.2,
@@ -166,7 +166,12 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                         colorborder: BSC_Black,
                         sizeborder: 0.0,
                         onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => box(),
+                            ),
+                          );
                         }),
                   ),
 

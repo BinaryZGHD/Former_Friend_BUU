@@ -6,9 +6,16 @@ abstract class ProfileEvent {}
 class ChangeAvatarRequest extends ProfileEvent {
 }
 
-
-
-class SaveProfileChanges extends ProfileEvent {}
+// class OpenImagePicker extends ProfileEvent {
+//   final ImageSource imageSource;
+//
+//   OpenImagePicker(this.imageSource);
+// }
+//
+// class ProvideImagePath extends ProfileEvent {
+//   final String avatarPath;
+//   ProvideImagePath(this.avatarPath);
+// }
 
 
 //----------------------------------API---------------------------------------//
@@ -19,11 +26,11 @@ class ProfileGeneralSummitEvent extends ProfileEvent {
   ProfileGeneralSummitEvent({required this.istextbuttonpressed});
 }
 class ProfileGeneralUpdateEvent extends ProfileEvent {
-  var name;
-  var surname;
-  var nickname;
-  var stuCode;
-  var  gen;
+  String name;
+  String surname;
+  String nickname;
+  String stuCode;
+  String gen;
   ProfileGeneralUpdateEvent(
       {
         required this.name,

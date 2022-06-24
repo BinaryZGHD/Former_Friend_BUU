@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../model/response/api_profile.dart';
-
 
 class ProfileEducationDataHead extends StatefulWidget {
-  final ApiProfileResponse? dataFromAPI;
+  final dataFromAPI;
   ProfileEducationDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
@@ -28,7 +26,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.subtitleeduinfo}',
+                  '${dataFromAPI.body?.screeninfo?.subtitleeduinfo}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../model/response/api_profile.dart';
 class ProfileGeneralDataHead extends StatefulWidget {
-  final ApiProfileResponse? dataFromAPI;
+  final dataFromAPI;
   ProfileGeneralDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
   @override
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
@@ -25,7 +23,7 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.subtitlegeninfor}',
+                  '${dataFromAPI.body?.screeninfo?.subtitlegeninfor}',
                   style: TextStyle(fontSize: 20),
                 ),
                 Expanded(

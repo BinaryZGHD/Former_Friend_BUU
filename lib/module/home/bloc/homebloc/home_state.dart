@@ -13,7 +13,7 @@ class HomeEndLoading extends HomeState{
 }
 
 class HomeError extends HomeState{
-   var message;
+  String message;
   HomeError({required this.message});
 }
 class HomeScreenInfoSuccessState extends HomeState{
@@ -24,6 +24,6 @@ class HomeScreenInfoSuccessState extends HomeState{
 }
 
 class HomeActivityStatus extends HomeState{
-   var message;
+  String message;
   HomeActivityStatus({required this.message});
 }

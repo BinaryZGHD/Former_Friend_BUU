@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 /// head : {"status":"200","message":"susccess","module":"profile"}
 /// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status","profile_career_screeninfo":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]}},"profile_general_info":{"name":"คณิศาสตร์","surname":"สถิติวิชาการ","nickname":"AKA คำฝอย","stu_code":"6203XXXXX","gen":"X6","genname":"กรีนทีมัทฉะลาเต้","gencolor":"#9ED9C5","studentid":"6203XXXXX","email":"StudentCodeID@morebuu.ac.th","role":"Student","img":"https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_info":{"company":"Burapha company","attention":"อื่นๆ","status":"ว่างงาน","jobtype":"อื่นๆ","userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}}
 
@@ -482,19 +481,6 @@ ProfileGeneralInfo profileGeneralInfoFromJson(String str) => ProfileGeneralInfo.
 String profileGeneralInfoToJson(ProfileGeneralInfo data) => json.encode(data.toJson());
 class ProfileGeneralInfo {
   ProfileGeneralInfo({
-<<<<<<< HEAD
-      String? name, 
-      String? surname, 
-      String? nickname, 
-      String? stuCode, 
-      String? gen, 
-      String? genname, 
-      String? gencolor, 
-      String? studentid, 
-      String? email, 
-      String? role, 
-      String? img,}){
-=======
     String? name,
     String? surname,
     String? nickname,
@@ -506,7 +492,6 @@ class ProfileGeneralInfo {
     String? email,
     String? role,
     String? img,}){
->>>>>>> zang_dev
     _name = name;
     _surname = surname;
     _nickname = nickname;
@@ -518,11 +503,7 @@ class ProfileGeneralInfo {
     _email = email;
     _role = role;
     _img = img;
-<<<<<<< HEAD
-}
-=======
   }
->>>>>>> zang_dev
 
   ProfileGeneralInfo.fromJson(dynamic json) {
     _name = json['name'];
@@ -548,31 +529,6 @@ class ProfileGeneralInfo {
   String? _email;
   String? _role;
   String? _img;
-<<<<<<< HEAD
-ProfileGeneralInfo copyWith({  String? name,
-  String? surname,
-  String? nickname,
-  String? stuCode,
-  String? gen,
-  String? genname,
-  String? gencolor,
-  String? studentid,
-  String? email,
-  String? role,
-  String? img,
-}) => ProfileGeneralInfo(  name: name ?? _name,
-  surname: surname ?? _surname,
-  nickname: nickname ?? _nickname,
-  stuCode: stuCode ?? _stuCode,
-  gen: gen ?? _gen,
-  genname: genname ?? _genname,
-  gencolor: gencolor ?? _gencolor,
-  studentid: studentid ?? _studentid,
-  email: email ?? _email,
-  role: role ?? _role,
-  img: img ?? _img,
-);
-=======
   ProfileGeneralInfo copyWith({  String? name,
     String? surname,
     String? nickname,
@@ -596,7 +552,6 @@ ProfileGeneralInfo copyWith({  String? name,
     role: role ?? _role,
     img: img ?? _img,
   );
->>>>>>> zang_dev
   String? get name => _name;
   String? get surname => _surname;
   String? get nickname => _nickname;
@@ -671,47 +626,6 @@ Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
 class Screeninfo {
   Screeninfo({
-<<<<<<< HEAD
-      String? titleprofile, 
-      String? subtitlegeninfor, 
-      String? subtitlecont, 
-      String? subtitleeduinfo, 
-      String? subtitleaddress, 
-      String? subtitleworkinfo, 
-      String? textedit, 
-      String? textsave, 
-      String? textname, 
-      String? textlname, 
-      String? textnickname, 
-      String? textstdcode, 
-      String? textgen, 
-      String? texttel, 
-      String? textfac, 
-      String? textdepart, 
-      String? textmajor, 
-      String? textgpaju, 
-      String? textgpase, 
-      String? textgpaba, 
-      String? texthousenumber, 
-      String? textmoo, 
-      String? textsoi, 
-      String? textroad, 
-      String? textsubdistrict, 
-      String? textdistrict, 
-      String? textprovince, 
-      String? textzipcode, 
-      String? subtitleworkplace, 
-      String? textcomp, 
-      String? textatt, 
-      String? textcareer, 
-      String? textJobtype, 
-      String? textemp, 
-      String? textunemp, 
-      String? textfustud, 
-      String? textstudying, 
-      String? textstatus, 
-      ProfileCareerScreeninfo? profileCareerScreeninfo,}){
-=======
     String? titleprofile,
     String? subtitlegeninfor,
     String? subtitlecont,
@@ -751,7 +665,6 @@ class Screeninfo {
     String? textstudying,
     String? textstatus,
     ProfileCareerScreeninfo? profileCareerScreeninfo,}){
->>>>>>> zang_dev
     _titleprofile = titleprofile;
     _subtitlegeninfor = subtitlegeninfor;
     _subtitlecont = subtitlecont;
@@ -791,11 +704,7 @@ class Screeninfo {
     _textstudying = textstudying;
     _textstatus = textstatus;
     _profileCareerScreeninfo = profileCareerScreeninfo;
-<<<<<<< HEAD
-}
-=======
   }
->>>>>>> zang_dev
 
   Screeninfo.fromJson(dynamic json) {
     _titleprofile = json['titleprofile'];
@@ -877,87 +786,6 @@ class Screeninfo {
   String? _textstudying;
   String? _textstatus;
   ProfileCareerScreeninfo? _profileCareerScreeninfo;
-<<<<<<< HEAD
-Screeninfo copyWith({  String? titleprofile,
-  String? subtitlegeninfor,
-  String? subtitlecont,
-  String? subtitleeduinfo,
-  String? subtitleaddress,
-  String? subtitleworkinfo,
-  String? textedit,
-  String? textsave,
-  String? textname,
-  String? textlname,
-  String? textnickname,
-  String? textstdcode,
-  String? textgen,
-  String? texttel,
-  String? textfac,
-  String? textdepart,
-  String? textmajor,
-  String? textgpaju,
-  String? textgpase,
-  String? textgpaba,
-  String? texthousenumber,
-  String? textmoo,
-  String? textsoi,
-  String? textroad,
-  String? textsubdistrict,
-  String? textdistrict,
-  String? textprovince,
-  String? textzipcode,
-  String? subtitleworkplace,
-  String? textcomp,
-  String? textatt,
-  String? textcareer,
-  String? textJobtype,
-  String? textemp,
-  String? textunemp,
-  String? textfustud,
-  String? textstudying,
-  String? textstatus,
-  ProfileCareerScreeninfo? profileCareerScreeninfo,
-}) => Screeninfo(  titleprofile: titleprofile ?? _titleprofile,
-  subtitlegeninfor: subtitlegeninfor ?? _subtitlegeninfor,
-  subtitlecont: subtitlecont ?? _subtitlecont,
-  subtitleeduinfo: subtitleeduinfo ?? _subtitleeduinfo,
-  subtitleaddress: subtitleaddress ?? _subtitleaddress,
-  subtitleworkinfo: subtitleworkinfo ?? _subtitleworkinfo,
-  textedit: textedit ?? _textedit,
-  textsave: textsave ?? _textsave,
-  textname: textname ?? _textname,
-  textlname: textlname ?? _textlname,
-  textnickname: textnickname ?? _textnickname,
-  textstdcode: textstdcode ?? _textstdcode,
-  textgen: textgen ?? _textgen,
-  texttel: texttel ?? _texttel,
-  textfac: textfac ?? _textfac,
-  textdepart: textdepart ?? _textdepart,
-  textmajor: textmajor ?? _textmajor,
-  textgpaju: textgpaju ?? _textgpaju,
-  textgpase: textgpase ?? _textgpase,
-  textgpaba: textgpaba ?? _textgpaba,
-  texthousenumber: texthousenumber ?? _texthousenumber,
-  textmoo: textmoo ?? _textmoo,
-  textsoi: textsoi ?? _textsoi,
-  textroad: textroad ?? _textroad,
-  textsubdistrict: textsubdistrict ?? _textsubdistrict,
-  textdistrict: textdistrict ?? _textdistrict,
-  textprovince: textprovince ?? _textprovince,
-  textzipcode: textzipcode ?? _textzipcode,
-  subtitleworkplace: subtitleworkplace ?? _subtitleworkplace,
-  textcomp: textcomp ?? _textcomp,
-  textatt: textatt ?? _textatt,
-  textcareer: textcareer ?? _textcareer,
-  textJobtype: textJobtype ?? _textJobtype,
-  textemp: textemp ?? _textemp,
-  textunemp: textunemp ?? _textunemp,
-  textfustud: textfustud ?? _textfustud,
-  textstudying: textstudying ?? _textstudying,
-  textstatus: textstatus ?? _textstatus,
-  profileCareerScreeninfo: profileCareerScreeninfo ?? _profileCareerScreeninfo,
-);
-=======
   Screeninfo copyWith({  String? titleprofile,
     String? subtitlegeninfor,
     String? subtitlecont,
@@ -1037,7 +865,6 @@ Screeninfo copyWith({  String? titleprofile,
     textstatus: textstatus ?? _textstatus,
     profileCareerScreeninfo: profileCareerScreeninfo ?? _profileCareerScreeninfo,
   );
->>>>>>> zang_dev
   String? get titleprofile => _titleprofile;
   String? get subtitlegeninfor => _subtitlegeninfor;
   String? get subtitlecont => _subtitlecont;
@@ -1134,15 +961,6 @@ ProfileCareerScreeninfo profileCareerScreeninfoFromJson(String str) => ProfileCa
 String profileCareerScreeninfoToJson(ProfileCareerScreeninfo data) => json.encode(data.toJson());
 class ProfileCareerScreeninfo {
   ProfileCareerScreeninfo({
-<<<<<<< HEAD
-      List<Attention>? attention, 
-      List<Status>? status, 
-      List<Jobtype>? jobtype,}){
-    _attention = attention;
-    _status = status;
-    _jobtype = jobtype;
-}
-=======
     List<Attention>? attention,
     List<Status>? status,
     List<Jobtype>? jobtype,}){
@@ -1150,7 +968,6 @@ class ProfileCareerScreeninfo {
     _status = status;
     _jobtype = jobtype;
   }
->>>>>>> zang_dev
 
   ProfileCareerScreeninfo.fromJson(dynamic json) {
     if (json['attention'] != null) {
@@ -1175,15 +992,6 @@ class ProfileCareerScreeninfo {
   List<Attention>? _attention;
   List<Status>? _status;
   List<Jobtype>? _jobtype;
-<<<<<<< HEAD
-ProfileCareerScreeninfo copyWith({  List<Attention>? attention,
-  List<Status>? status,
-  List<Jobtype>? jobtype,
-}) => ProfileCareerScreeninfo(  attention: attention ?? _attention,
-  status: status ?? _status,
-  jobtype: jobtype ?? _jobtype,
-);
-=======
   ProfileCareerScreeninfo copyWith({  List<Attention>? attention,
     List<Status>? status,
     List<Jobtype>? jobtype,
@@ -1191,7 +999,6 @@ ProfileCareerScreeninfo copyWith({  List<Attention>? attention,
     status: status ?? _status,
     jobtype: jobtype ?? _jobtype,
   );
->>>>>>> zang_dev
   List<Attention>? get attention => _attention;
   List<Status>? get status => _status;
   List<Jobtype>? get jobtype => _jobtype;
@@ -1218,29 +1025,17 @@ Jobtype jobtypeFromJson(String str) => Jobtype.fromJson(json.decode(str));
 String jobtypeToJson(Jobtype data) => json.encode(data.toJson());
 class Jobtype {
   Jobtype({
-<<<<<<< HEAD
-      String? jobname,}){
-    _jobname = jobname;
-}
-=======
     String? jobname,}){
     _jobname = jobname;
   }
->>>>>>> zang_dev
 
   Jobtype.fromJson(dynamic json) {
     _jobname = json['jobname'];
   }
   String? _jobname;
-<<<<<<< HEAD
-Jobtype copyWith({  String? jobname,
-}) => Jobtype(  jobname: jobname ?? _jobname,
-);
-=======
   Jobtype copyWith({  String? jobname,
   }) => Jobtype(  jobname: jobname ?? _jobname,
   );
->>>>>>> zang_dev
   String? get jobname => _jobname;
 
   Map<String, dynamic> toJson() {
@@ -1257,29 +1052,17 @@ Status statusFromJson(String str) => Status.fromJson(json.decode(str));
 String statusToJson(Status data) => json.encode(data.toJson());
 class Status {
   Status({
-<<<<<<< HEAD
-      String? statusname,}){
-    _statusname = statusname;
-}
-=======
     String? statusname,}){
     _statusname = statusname;
   }
->>>>>>> zang_dev
 
   Status.fromJson(dynamic json) {
     _statusname = json['statusname'];
   }
   String? _statusname;
-<<<<<<< HEAD
-Status copyWith({  String? statusname,
-}) => Status(  statusname: statusname ?? _statusname,
-);
-=======
   Status copyWith({  String? statusname,
   }) => Status(  statusname: statusname ?? _statusname,
   );
->>>>>>> zang_dev
   String? get statusname => _statusname;
 
   Map<String, dynamic> toJson() {
@@ -1296,29 +1079,17 @@ Attention attentionFromJson(String str) => Attention.fromJson(json.decode(str));
 String attentionToJson(Attention data) => json.encode(data.toJson());
 class Attention {
   Attention({
-<<<<<<< HEAD
-      String? attenname,}){
-    _attenname = attenname;
-}
-=======
     String? attenname,}){
     _attenname = attenname;
   }
->>>>>>> zang_dev
 
   Attention.fromJson(dynamic json) {
     _attenname = json['attenname'];
   }
   String? _attenname;
-<<<<<<< HEAD
-Attention copyWith({  String? attenname,
-}) => Attention(  attenname: attenname ?? _attenname,
-);
-=======
   Attention copyWith({  String? attenname,
   }) => Attention(  attenname: attenname ?? _attenname,
   );
->>>>>>> zang_dev
   String? get attenname => _attenname;
 
   Map<String, dynamic> toJson() {

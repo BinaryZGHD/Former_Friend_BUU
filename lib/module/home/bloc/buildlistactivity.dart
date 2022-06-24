@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'itemactivity.dart';
 
-BuildListActivity(BuildContext context, ScreenStatusActivityResponse? screenstatusActivityResponse) {
+BuildListActivity(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ScreenStatusActivityResponse? screenstatusActivityResponse) {
   return SingleChildScrollView(
     padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
     scrollDirection: Axis.vertical,
@@ -20,8 +20,8 @@ BuildListActivity(BuildContext context, ScreenStatusActivityResponse? screenstat
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return ActivityDetailScreen(
-                        title: screenstatusActivityResponse?.body?.screeninfo,
-                        data: screenstatusActivityResponse?.body?.activity?[index],);
+                          title: screenstatusActivityResponse?.body?.screeninfo,
+                          data: _screenhomeResponse?.body?.dataListActivity?[index]);
                     }));
                   },
                 ))),
