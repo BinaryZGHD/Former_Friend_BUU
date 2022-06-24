@@ -35,15 +35,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
 
     }
     );
-    // on<ChangeAvatarRequest>((event, emit) async{
-    //   if (event is ChangeAvatarRequest){
-    //     ImagePicker();
-    //   }
-    //   emit(ChangeAvatarRequestState());
-    //   print('changeavatarstate');
-    // }
-    // );
-    /////////////////////////////////////////////////////////////////////////
     on<ChangeAvatarRequest>((event, emit) async{
       if (event is ChangeAvatarRequest) {
         print('Change avatar request');
