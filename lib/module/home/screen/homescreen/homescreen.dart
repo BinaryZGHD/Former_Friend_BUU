@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                 children: [
                   Expanded(
                     child: Container(
-                      color: BC_ButtonWhite,
+                      color: Colors.white,
                       // height: MediaQuery.of(context).size.height*0.1,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -109,19 +109,19 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                     child: ButtonCustom(
                         label: "     " + "  ADD  " + "     ",
                         colortext: TC_Black,
-                        colorbutton: BC_ButtonWhite,
+                        colorbutton: Colors.white,
                         sizetext: sizeTextSmaller14,
                         colorborder: BSC_Black,
                         onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
-                        }),
+                        }, sizeborder: 10,),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
 
                     // padding: const EdgeInsets.only(bottom: 10.0),
                     child: Container(
-                      color: BC_ButtonWhite,
+                      color: Colors.white,
                       height: MediaQuery.of(context).size.height * 0.1,
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
