@@ -2,6 +2,7 @@ import 'package:f2fbuu/customs/button/box.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/activity/screen/activitydetailscreen.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home.dart';
+import 'package:f2fbuu/module/activity/screen/activitydetailscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
