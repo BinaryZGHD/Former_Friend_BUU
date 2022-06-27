@@ -5,42 +5,30 @@ import '../dialog/dialogboxcutom.dart';
 
 
 
-class TextLinkOTPCustom extends StatelessWidget {
-  final String linklabel;
-  final String tiltle;
-  final String description;
-  final Widget mapscreen;
-  final linktextcolor;
+class textSentOTPCustom extends StatelessWidget {
+  final String textlabel;
+  final textcolor;
   final double sizetext;
-  final VoidCallback? onPressed;
-  const TextLinkOTPCustom(
-      {Key? key, required this.linklabel, required this.mapscreen, required this.linktextcolor, this.onPressed, required this.sizetext, required this.tiltle, required this.description})
+  final VoidCallback? onTap;
+  const textSentOTPCustom(
+      {Key? key, required this.textlabel, required this.textcolor, this.onTap, required this.sizetext,})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Text(linklabel,
+      child: Text(textlabel,
           style: TextStyle(
             decoration: TextDecoration.underline,
-            color: linktextcolor,
-            decorationColor: linktextcolor,
+            color: textcolor,
+            decorationColor: textcolor,
             fontWeight: FontWeight.w600,
               fontSize: sizetext
           )),
       // onTap: () async {
       //   Navigator.push(context, MaterialPageRoute(builder: (context) => mapscreen));
       // },
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) => CustomDialogBox(
-              id: '',
-              textfieldvalue: tiltle,
-              description: description ,
-              mapscreen: mapscreen,
-            ));
-      },
+      onTap: onTap,
     );
   }
 }

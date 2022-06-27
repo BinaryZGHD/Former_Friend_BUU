@@ -10,6 +10,15 @@ class ProfileApiSuccessState extends ProfileState{
   ProfileApiSuccessState({required this.response});
 }
 
+class ChangeAvatarProcress extends ProfileState {
+}
+
+class ChooseAvatarSuccess extends ProfileState {
+  final avatarimg;
+  ChooseAvatarSuccess({required this.avatarimg});
+}
+
+
 class ProfileError extends ProfileState{
   String errormessage;
   ProfileError({required this.errormessage});
@@ -31,3 +40,4 @@ class ProfileStatusState extends ProfileState {
   bool statuscheck  ;
   ProfileStatusState({required this.statuscheck});
 }
+

@@ -1,0 +1,180 @@
+import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
+import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
+import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+
+
+class registerConfirmScreen extends StatefulWidget {
+  final VoidCallback? onPressed;
+  final String titleconregis ;
+  final String textotpwillsent;
+  final String textpleaseconfirm;
+  final String textsentotpagain;
+  final String textotp;
+  final String btnconfirm;
+  final String edtemailreg;
+   registerConfirmScreen({Key? key, this.onPressed, required this.titleconregis, required this.textotpwillsent, required this.textpleaseconfirm, required this.textsentotpagain, required this.btnconfirm, required this.edtemailreg, required this.textotp}) : super(key: key);
+
+  @override
+  State<registerConfirmScreen> createState() => _registerConfirmScreenState();
+}
+
+class _registerConfirmScreenState extends State<registerConfirmScreen> {
+
+  TextEditingController confirmOTPController = TextEditingController();
+
+  String confirmOTP = " ";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            size: sizeTitle24,
+            color: Colors.black,
+          ),
+        ),
+        title: Text("${widget.titleconregis}",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: sizeTitle24,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.white,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Column(children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.05,
+                      ),
+                      Text("${widget.textotpwillsent}",
+                        style: TextStyle(
+                          fontSize: sizeTextBig20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.025,
+                      ),
+                      Text("${widget.edtemailreg}",
+                        style: TextStyle(
+                          fontSize: sizeTextBig20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.025,
+                      ),
+                      Text("${widget.textpleaseconfirm}",
+                        style: TextStyle(
+                          fontSize: sizeTextBig20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                    ]),
+                  ),
+                  buildTextFieldCustom(
+                    textEditingController: confirmOTPController,
+                    onChanged: (value) {
+                      confirmOTP = value;
+                    },
+                    hint_label: "${widget.textotp}", textInputType: TextInputType.number,
+                  ),
+                  Center(
+                    child: textSentOTPCustom(
+                      textlabel: "${widget.textsentotpagain}",
+                      textcolor: TC_OTPSent,
+                      sizetext: sizeTextSmall16,
+                      onTap: () {
+                        dialogOneLineOneBtn(context, "${widget.textotpwillsent}" + "${widget.edtemailreg}"+ "${widget.textpleaseconfirm}"+ '\n \n ' + 'Do you want to continue?', "OK",
+                            onClickBtn: () {
+                                Navigator.of(context).pop();
+                            }
+                            );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  Center(
+                    child: ButtonCustom(
+                      label: "  ${widget.btnconfirm}  ",
+
+                      colortext: BC_ButtonText_style_Black,
+                      colorbutton: BC_ButtonText_style_White,
+                      sizetext: sizeTextBig20,
+                      colorborder: BC_ButtonText_style_Black_Boarder,
+                      sizeborder: 10,
+                      onPressed: () {
+                        dialogOneLineOneBtn(context, errregidter2 + '\n \n ' + 'Do you want to continue?', "OK",
+                            onClickBtn: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  // int index = int.parse(widget.id);
+                                  return loginScreen();
+                                }),
+                              );
+                            });
+                      },
+                      // onPressed: () {
+                      //   dialogOneLineTwoBtn(
+                      //       context,
+                      //       errregidter2 + '\n \n ' + 'Do you want to continue?',
+                      //       'Confirm',
+                      //       'Cancel', onClickBtn: (String result) {
+                      //     Navigator.of(context).pop();
+                      //     switch (result) {
+                      //       case 'Cancel':
+                      //         {
+                      //           break;
+                      //         }
+                      //       case 'OK':
+                      //         {
+                      //           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                      //             // int index = int.parse(widget.id);
+                      //             return loginScreen();
+                      //             // DisplayBeerScreen();
+                      //           }));
+                      //         }
+                      //     }
+                      //   });
+                      // },
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                ],
+              ),
+            )),
+      ),
+    );
+  }
+}

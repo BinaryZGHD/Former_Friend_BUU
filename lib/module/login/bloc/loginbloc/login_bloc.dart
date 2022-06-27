@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
 import 'package:f2fbuu/module/login/repository/login_repository.dart';
+
 import 'package:flutter/cupertino.dart';
 
-import '../../model/response/screen_login.dart';
+
 
 part 'login_event.dart';
 part 'login_state.dart';

@@ -1,10 +1,10 @@
+import 'package:f2fbuu/customs/button/button_style.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../button_style.dart';
-import '../color/colorconts.dart';
 
-void dialogOneLineOneBtn(BuildContext context, String content, String content2 ,String btn, {required void Function() onClickBtn}) {
+void dialogOneLineOneBtn(BuildContext context, String content ,String btn, {required void Function() onClickBtn}) {
   void _handleClickBtn() {
     onClickBtn();
   }
@@ -23,14 +23,8 @@ void dialogOneLineOneBtn(BuildContext context, String content, String content2 ,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Text(
-                    //   title,
-                    //   style: const TextStyle(fontWeight: FontWeight.bold),
-                    // ),
-                    SizedBox( height: 10),
+                    const SizedBox(height: 10),
                     Text(content, textAlign: TextAlign.center),
-                    SizedBox( height: 5),
-                    Text(content2, textAlign: TextAlign.center),
                     SizedBox( height: 15),
                     ElevatedButton(
                       style: styleButtonDialog,
@@ -66,11 +60,9 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Text(
-                  //   title,
-                  //   style: const TextStyle(fontWeight: FontWeight.bold),
-                  // ),
+                  const SizedBox(height: 10),
                   Text(content, textAlign: TextAlign.center),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -82,7 +74,7 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
                           style: const TextStyle(color: BC_ButtonRed),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 20),
                       ElevatedButton(
                         style: styleButtonDialog,
                         onPressed: () => {_handleClickBtn("Cancel")},

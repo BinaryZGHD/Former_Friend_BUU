@@ -66,8 +66,8 @@ class _ProfileDropdownCareerDataTabState
 class ProfileCareerDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
-  final bool ispressed ;
-  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.ispressed}) : super(key: key);
+  final bool isunpressed ;
+  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed}) : super(key: key);
 
   @override
   State<ProfileCareerDataTab> createState() => _ProfileCareerDataTabState();
@@ -78,7 +78,7 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
     String textright = widget.textright;
-    bool ispressed = widget.ispressed;
+    bool ispressed = widget.isunpressed;
     String texttest = 'testtesttest';
     return Container(
       decoration: BoxDecoration(
