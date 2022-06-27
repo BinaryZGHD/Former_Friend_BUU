@@ -2,7 +2,7 @@ import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_board_teacher_response.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/BuildListTeacher.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/BuildListTeacher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
