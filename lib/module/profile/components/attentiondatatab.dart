@@ -38,7 +38,7 @@ class _ProfileAttentionDropdownTabState
         child: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.8,
               child: Text(
                 textleft,
                 style: TextStyle(fontSize: 18),
@@ -48,18 +48,51 @@ class _ProfileAttentionDropdownTabState
               child: SizedBox(
                 child: IgnorePointer(
                   ignoring: isunpressed,
-                  child: DropdownButtonFormField<String>(
-                    // alignment: Alignment.centerRight,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    value: userattentionvalue,
-                    items: widget.testarray
-                        .map((item) => DropdownMenuItem<String>(
-                        value: item.attenname, child: Text(item.attenname??'')))
-                        .toList(),
-                    onChanged: (item) => setState(() => userattentionvalue = item),
+                  child:
+                  PopupMenuButton<String>(
+                    initialValue:
+                    userattentionvalue,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: Text(
+                                userattentionvalue,
+                                style: const TextStyle(color: Colors.black),
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              )),
+                          const Icon(Icons.keyboard_arrow_down)
+                        ]),
+                    itemBuilder: (context) {
+                      return List.generate(widget.testarray.length ?? 0,
+                              (index) {
+                            return PopupMenuItem(
+                              child:
+                              Text(widget.testarray[index].attenname ?? ''),
+                              value: widget.testarray[index].attenname,
+                            );
+                          });
+                    },
+                    onSelected: (value) {
+
+                      setState(() {});
+                    },
                   ),
+
+                  // DropdownButtonFormField<String>(
+                  //   // alignment: Alignment.centerRight,
+                  //   decoration: InputDecoration(
+                  //     border: InputBorder.none,
+                  //   ),
+                  //   value: userattentionvalue,
+                  //   items: widget.testarray
+                  //       .map((item) => DropdownMenuItem<String>(
+                  //       value: item.attenname, child: Text(item.attenname??'', overflow: TextOverflow.fade,
+                  //       softWrap: false)))
+                  //       .toList(),
+                  //   onChanged: (item) => setState(() => userattentionvalue = item),
+                  // ),
                 ),
               ),
             ),
