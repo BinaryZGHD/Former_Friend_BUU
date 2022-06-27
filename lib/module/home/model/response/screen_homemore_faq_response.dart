@@ -2,27 +2,27 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"home"}
 /// body : {"screeninfo":{"texturgo2":"You are going to","textright":"right ?","textyes":"Yes","textno":"No"}}
 
-ScreenFaqReponse screenFaqReponseFromJson(String str) => ScreenFaqReponse.fromJson(json.decode(str));
-String screenFaqReponseToJson(ScreenFaqReponse data) => json.encode(data.toJson());
-class ScreenFaqReponse {
-  ScreenFaqReponse({
-      Head? head, 
-      Body? body,}){
+ScreenHomeMoreFAQResponse ScreenHomeMoreFAQResponseFromJson(String str) => ScreenHomeMoreFAQResponse.fromJson(json.decode(str));
+String ScreenHomeMoreFAQResponseToJson(ScreenHomeMoreFAQResponse data) => json.encode(data.toJson());
+class ScreenHomeMoreFAQResponse {
+  ScreenHomeMoreFAQResponse({
+    Head? head,
+    Body? body,}){
     _head = head;
     _body = body;
-}
+  }
 
-  ScreenFaqReponse.fromJson(dynamic json) {
+  ScreenHomeMoreFAQResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-ScreenFaqReponse copyWith({  Head? head,
-  Body? body,
-}) => ScreenFaqReponse(  head: head ?? _head,
-  body: body ?? _body,
-);
+  ScreenHomeMoreFAQResponse copyWith({  Head? head,
+    Body? body,
+  }) => ScreenHomeMoreFAQResponse(  head: head ?? _head,
+    body: body ?? _body,
+  );
   Head? get head => _head;
   Body? get body => _body;
 
@@ -45,17 +45,17 @@ Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
 class Body {
   Body({
-      Screeninfo? screeninfo,}){
+    Screeninfo? screeninfo,}){
     _screeninfo = screeninfo;
-}
+  }
 
   Body.fromJson(dynamic json) {
     _screeninfo = json['screeninfo'] != null ? Screeninfo.fromJson(json['screeninfo']) : null;
   }
   Screeninfo? _screeninfo;
-Body copyWith({  Screeninfo? screeninfo,
-}) => Body(  screeninfo: screeninfo ?? _screeninfo,
-);
+  Body copyWith({  Screeninfo? screeninfo,
+  }) => Body(  screeninfo: screeninfo ?? _screeninfo,
+  );
   Screeninfo? get screeninfo => _screeninfo;
 
   Map<String, dynamic> toJson() {
@@ -77,15 +77,15 @@ Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
 class Screeninfo {
   Screeninfo({
-      String? texturgo2, 
-      String? textright, 
-      String? textyes, 
-      String? textno,}){
+    String? texturgo2,
+    String? textright,
+    String? textyes,
+    String? textno,}){
     _texturgo2 = texturgo2;
     _textright = textright;
     _textyes = textyes;
     _textno = textno;
-}
+  }
 
   Screeninfo.fromJson(dynamic json) {
     _texturgo2 = json['texturgo2'];
@@ -97,15 +97,15 @@ class Screeninfo {
   String? _textright;
   String? _textyes;
   String? _textno;
-Screeninfo copyWith({  String? texturgo2,
-  String? textright,
-  String? textyes,
-  String? textno,
-}) => Screeninfo(  texturgo2: texturgo2 ?? _texturgo2,
-  textright: textright ?? _textright,
-  textyes: textyes ?? _textyes,
-  textno: textno ?? _textno,
-);
+  Screeninfo copyWith({  String? texturgo2,
+    String? textright,
+    String? textyes,
+    String? textno,
+  }) => Screeninfo(  texturgo2: texturgo2 ?? _texturgo2,
+    textright: textright ?? _textright,
+    textyes: textyes ?? _textyes,
+    textno: textno ?? _textno,
+  );
   String? get texturgo2 => _texturgo2;
   String? get textright => _textright;
   String? get textyes => _textyes;
@@ -130,13 +130,13 @@ Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
 class Head {
   Head({
-      String? status, 
-      String? message, 
-      String? module,}){
+    String? status,
+    String? message,
+    String? module,}){
     _status = status;
     _message = message;
     _module = module;
-}
+  }
 
   Head.fromJson(dynamic json) {
     _status = json['status'];
@@ -146,13 +146,13 @@ class Head {
   String? _status;
   String? _message;
   String? _module;
-Head copyWith({  String? status,
-  String? message,
-  String? module,
-}) => Head(  status: status ?? _status,
-  message: message ?? _message,
-  module: module ?? _module,
-);
+  Head copyWith({  String? status,
+    String? message,
+    String? module,
+  }) => Head(  status: status ?? _status,
+    message: message ?? _message,
+    module: module ?? _module,
+  );
   String? get status => _status;
   String? get message => _message;
   String? get module => _module;

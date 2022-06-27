@@ -1,8 +1,11 @@
 import 'package:f2fbuu/customs/commingsoon_screen.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_board_teacher_response.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/board_item_teacher.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/board_item_teacher.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/more_board_teacher_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'more_board_student_List_screen.dart';
+
 
 buildListTeacher(
   BuildContext context,
@@ -21,7 +24,10 @@ buildListTeacher(
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => commingSoonScreen(),
+                        builder: (context) => moreBoardTeacherStaffDetailScreen(
+                          datateacher: screenHomeMoreBoardTeacherResponse?.body?.teacher?[index],
+                          tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
+                        ),
                       ),
                     );
                   },
@@ -43,7 +49,10 @@ buildListStaff(BuildContext context, ScreenHomeMoreBoardTeacherResponse? screenH
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => commingSoonScreen(),
+                        builder: (context) => moreBoardTeacherStaffDetailScreen(
+                          datateacher: screenHomeMoreBoardTeacherResponse?.body?.teacher?[index],
+                          tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
+                        ),
                       ),
                     );
                   },

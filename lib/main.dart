@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
     final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
     final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
     final homemoreBloc = BlocProvider<HomemoreBloc>(create: (context) => HomemoreBloc());
+
     return MultiBlocProvider(
       providers: [
         loginBloc,
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         profileBloc,
         actitivtyBloc,
         homemoreBloc,
+        // moreboarBloc,
       ],
       child: MaterialApp(
           title: 'Flutter Demo',

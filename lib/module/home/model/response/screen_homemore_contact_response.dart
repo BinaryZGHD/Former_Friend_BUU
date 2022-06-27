@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"home"}
 /// body : {"screeninfo":{"texturgo2":"You are going to","textright":"right ?","textyes":"Yes","textno":"No"}}
 
-ScreenContactReponse screenContactReponseFromJson(String str) => ScreenContactReponse.fromJson(json.decode(str));
-String screenContactReponseToJson(ScreenContactReponse data) => json.encode(data.toJson());
-class ScreenContactReponse {
-  ScreenContactReponse({
+ScreenHomeMoreContactUsResponse ScreenHomeMoreContactUsResponseFromJson(String str) => ScreenHomeMoreContactUsResponse.fromJson(json.decode(str));
+String ScreenHomeMoreContactUsResponseToJson(ScreenHomeMoreContactUsResponse data) => json.encode(data.toJson());
+class ScreenHomeMoreContactUsResponse {
+  ScreenHomeMoreContactUsResponse({
       Head? head, 
       Body? body,}){
     _head = head;
     _body = body;
 }
 
-  ScreenContactReponse.fromJson(dynamic json) {
+  ScreenHomeMoreContactUsResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-ScreenContactReponse copyWith({  Head? head,
+ScreenHomeMoreContactUsResponse copyWith({  Head? head,
   Body? body,
-}) => ScreenContactReponse(  head: head ?? _head,
+}) => ScreenHomeMoreContactUsResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

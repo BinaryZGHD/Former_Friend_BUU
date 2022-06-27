@@ -7,8 +7,12 @@ boardItemTeacher({VoidCallback? onTap, Screeninfo? tiaileteacher, Teacher? datat
   return GestureDetector(
     onTap: onTap,
     child: Card(
-      // color: HexColor('#F5F5F5'),
-      color: TC_White,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          bottomLeft: Radius.circular(30),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(3.0),
         child: Table(
