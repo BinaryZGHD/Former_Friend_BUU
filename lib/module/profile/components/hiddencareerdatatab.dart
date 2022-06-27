@@ -5,12 +5,13 @@ class ProfileDropdownCareerDataTab extends StatefulWidget {
   final String jobtextleft;
   final String userjobtypevalue;
   final List<Jobtype> jobtypearray;
+  final bool isunpressed;
 
   const ProfileDropdownCareerDataTab(
       {Key? key,
         required this.jobtextleft,
         required this.userjobtypevalue,
-        required this.jobtypearray})
+        required this.jobtypearray, required this.isunpressed})
       : super(key: key);
 
   @override
@@ -23,6 +24,7 @@ class _ProfileDropdownCareerDataTabState
   @override
   Widget build(BuildContext context) {
     String? userjobtypevalue = widget.userjobtypevalue;
+    bool isunpressed = widget.isunpressed;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -34,14 +36,15 @@ class _ProfileDropdownCareerDataTabState
         child: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.4,
               child: Text(
                 widget.jobtextleft,
                 style: TextStyle(fontSize: 18),
               ),
             ),
             Expanded(
-              child: SizedBox(
+              child: IgnorePointer(
+                ignoring: isunpressed,
                 child: DropdownButtonFormField<String>(
                   // alignment: Alignment.centerRight,
                   decoration: InputDecoration(

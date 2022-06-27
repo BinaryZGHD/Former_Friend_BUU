@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
+import 'package:f2fbuu/customs/datepicker/custom_date_picker_for_edit.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
+import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
@@ -111,7 +113,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
-                        buildTextFieldCustom(
+                        buildTextformfieldUnlimitCustom(
                           initialvalue: namevalue,
                           textEditingController: activityname,
                           onChanged: (value) {
@@ -124,13 +126,15 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
-                              customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
+                              customDropdownForEdit(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,
+                                  dropdownvalue: yearvalue
+                              ),
+                              customDropdownForEdit(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: termvalue),
                             ],
                           ),
                         ),
-                        customDatePicker(hint_label: 'Start date',),
-                        customDatePicker(hint_label: 'Finish date'),
+                        customDatePickerForEdit(hint_label: 'Start date',datevalue: sdatevalue,),
+                        customDatePickerForEdit(hint_label: 'Finish date',datevalue: fdatevalue,),
                         buildTextFieldCustom(
                           initialvalue: timevalue,
                           textEditingController: time,
@@ -140,7 +144,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                           textInputType: TextInputType.number,
                         ),
-                        buildTextFieldCustom(
+                        buildTextformfieldUnlimitCustom(
                           initialvalue: venuevalue,
                           textEditingController: venue,
                           onChanged: (value) {
@@ -149,7 +153,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
-                        customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
+                        customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',dropdownvalue: approvervalue),
                         buildTextformfieldUnlimitCustom(
                           initialvalue: detailvalue,
                           textEditingController: detail,

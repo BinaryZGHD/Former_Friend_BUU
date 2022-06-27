@@ -73,6 +73,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           testarray: dataFromAPI?.body?.screeninfo?.profileCareerScreeninfo?.attention??[],
           userattentionvalue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
           textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
+          isunpressed: isunpressed,
         ),
         ProfileCareerDropdownTab(
           textleft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
@@ -87,7 +88,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           usercompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"",
           textcomp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
           textcareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
-          ispressed: isunpressed,
+          isunpressed: isunpressed,
         ),
       ],
     );

@@ -89,21 +89,21 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
               print('เข้า Unapproved!');
               myicon = Icon(
                 Icons.alarm,
-                color: Colors.yellow,
+                color: Colors.black,
               );
               showbutton = true;
             } else if (data.status == "Approved!") {
               print('เข้า Approved!');
               myicon = Icon(
                 Icons.check_circle,
-                color: Colors.green,
+                color: Colors.black,
               );
               showbutton = false;
             } else if (data.status == "Rejected!") {
               print('เข้า Rejected');
               myicon = Icon(
                 Icons.cancel,
-                color: Colors.red,
+                color: Colors.black,
               );
               showbutton = false;
             }

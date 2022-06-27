@@ -3,22 +3,24 @@ import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class customDatePicker extends StatefulWidget {
+class customDatePickerForEdit extends StatefulWidget {
   final String hint_label;
-  const customDatePicker({Key? key, required this.hint_label}) : super(key: key);
+  final String datevalue;
+  const customDatePickerForEdit({Key? key, required this.hint_label, required this.datevalue}) : super(key: key);
 
 
   @override
-  State<customDatePicker> createState() => _customDatePickerState();
+  State<customDatePickerForEdit> createState() => _customDatePickerForEditState();
 
 
 }
 
-class _customDatePickerState extends State<customDatePicker> {
+class _customDatePickerForEditState extends State<customDatePickerForEdit> {
   DateTime date = DateTime.now() ;
   @override
   Widget build(BuildContext context) {
-    String dateformated = DateFormat('d-M-y').format(date);
+    // String dateformated = DateFormat('EEEE, d/M/y').format(date);
+    String datevalue = widget.datevalue;
     String hint_label = widget.hint_label;
     // return InkWell(
     //   onTap: () async {
@@ -40,7 +42,7 @@ class _customDatePickerState extends State<customDatePicker> {
     //   ),
     // );
     /////////////////////////////////
-    
+
     // var hint_label = widget.hint_label;
     // return TextFormField(
     //   style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
@@ -64,7 +66,7 @@ class _customDatePickerState extends State<customDatePicker> {
       padding: const EdgeInsets.only(left:10, right: 10),
       decoration: BoxDecoration(
         border: Border.all(color: TC_Hint),
-            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,16 +82,16 @@ class _customDatePickerState extends State<customDatePicker> {
           //     ),
           //   ),
           // ),
-          Text(dateformated,style: TextStyle(fontSize: 18),),
+          Text(datevalue,style: TextStyle(fontSize: 18),),
           IconButton(onPressed: ()async {
-          DateTime? newDate = await showDatePicker(
-              context: context,
-              initialDate: date,
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100));
-          if (newDate == null) return;
-          setState(() => date = newDate);
-        }, icon: Icon(Icons.calendar_month))
+            DateTime? newDate = await showDatePicker(
+                context: context,
+                initialDate: date,
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100));
+            if (newDate == null) return;
+            setState(() => date = newDate);
+          }, icon: Icon(Icons.calendar_month))
         ],
       ),
     );

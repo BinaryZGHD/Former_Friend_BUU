@@ -11,5 +11,6 @@ class HomeRepository  {
   }
   Future<Response> getApiActivity() async {
     return await MyDio.createDio().post("/v1/api/modules/activity/wording/statusactivity");
+    // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
   }
 }
