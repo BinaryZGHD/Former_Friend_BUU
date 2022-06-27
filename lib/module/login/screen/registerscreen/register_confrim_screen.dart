@@ -1,19 +1,15 @@
-import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
-import 'package:f2fbuu/module/login/screen/registerscreen/registerscreen.dart';
+import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
+import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
+import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../customs/button/buildbuttoncustom.dart';
-import '../../../../customs/button/buttoncustom.dart';
-import '../../../../customs/color/colorconts.dart';
-import '../../../../customs/dialog/dialog_widget.dart';
-import '../../../../customs/dialog/dialogboxcutom.dart';
-import '../../../../customs/dialog/texterror.dart';
-import '../../../../customs/size/size.dart';
-import '../../../../customs/textfile/buildtextfieldcustom.dart';
-import '../../../../customs/textlink/textlinkotpcustom.dart';
-import '../../../../customs/textlink/textlinktoscreencustom.dart';
 
 
 class registerConfirmScreen extends StatefulWidget {
@@ -110,13 +106,17 @@ class _registerConfirmScreenState extends State<registerConfirmScreen> {
                     hint_label: "${widget.textotp}", textInputType: TextInputType.number,
                   ),
                   Center(
-                    child: TextLinkOTPCustom(
-                      linklabel: "${widget.textsentotpagain}",
-                      mapscreen: registerScreen(),
-                      linktextcolor: TC_OTPSent,
+                    child: textSentOTPCustom(
+                      textlabel: "${widget.textsentotpagain}",
+                      textcolor: TC_OTPSent,
                       sizetext: sizeTextSmall16,
-                      tiltle: 'OTP sent to',
-                      description: 'Email',
+                      onTap: () {
+                        dialogOneLineOneBtn(context, "${widget.textotpwillsent}" + "${widget.edtemailreg}"+ "${widget.textpleaseconfirm}"+ '\n \n ' + 'Do you want to continue?', "OK",
+                            onClickBtn: () {
+                                Navigator.of(context).pop();
+                            }
+                            );
+                      },
                     ),
                   ),
                   SizedBox(
@@ -132,36 +132,40 @@ class _registerConfirmScreenState extends State<registerConfirmScreen> {
                       colorborder: BC_ButtonText_style_Black_Boarder,
                       sizeborder: 10,
                       onPressed: () {
-                        dialogOneLineTwoBtn(
-                            context,
-                            errregidter2 + '\n \n ' + 'Do you want to continue?',
-                            'Confirm',
-                            'Cancel', onClickBtn: (String result) {
-                          Navigator.of(context).pop();
-                          switch (result) {
-                            case 'Cancel':
-                              {
-                                break;
-                              }
-                            case 'OK':
-                              {
-                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                        dialogOneLineOneBtn(context, errregidter2 + '\n \n ' + 'Do you want to continue?', "OK",
+                            onClickBtn: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
                                   // int index = int.parse(widget.id);
                                   return loginScreen();
-                                  // DisplayBeerScreen();
-                                }));
-                              }
-                          }
-                        });
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (context) => CustomDialogBox(
-                        //           id: '',
-                        //           textfieldvalue: "OTP  :  ",
-                        //           description: errregidter2 + '\n \n ' + 'Do you want to continue?',
-                        //           mapscreen: loginScreen(),
-                        //         ));
+                                }),
+                              );
+                            });
                       },
+                      // onPressed: () {
+                      //   dialogOneLineTwoBtn(
+                      //       context,
+                      //       errregidter2 + '\n \n ' + 'Do you want to continue?',
+                      //       'Confirm',
+                      //       'Cancel', onClickBtn: (String result) {
+                      //     Navigator.of(context).pop();
+                      //     switch (result) {
+                      //       case 'Cancel':
+                      //         {
+                      //           break;
+                      //         }
+                      //       case 'OK':
+                      //         {
+                      //           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                      //             // int index = int.parse(widget.id);
+                      //             return loginScreen();
+                      //             // DisplayBeerScreen();
+                      //           }));
+                      //         }
+                      //     }
+                      //   });
+                      // },
                     ),
                   ),
                   SizedBox(

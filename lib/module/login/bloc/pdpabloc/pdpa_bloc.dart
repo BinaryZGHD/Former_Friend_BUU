@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
+import 'package:f2fbuu/module/login/repository/pdpa_repository.dart';
 import 'package:meta/meta.dart';
 
-import '../../model/response/screen_pdpa.dart';
-import '../../repository/pdpa_repository.dart';
+
 
 part 'pdpa_event.dart';
 part 'pdpa_state.dart';

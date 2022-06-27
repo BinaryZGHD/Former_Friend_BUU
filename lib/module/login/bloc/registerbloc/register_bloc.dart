@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
+import 'package:f2fbuu/module/login/repository/register_repository.dart';
 import 'package:meta/meta.dart';
 
-import '../../model/response/screen_register.dart';
-import '../../repository/register_repository.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';

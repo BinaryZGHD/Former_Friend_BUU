@@ -1,13 +1,11 @@
-import 'dart:async';
-
+import 'package:flutter/cupertino.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
+import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
+import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
+import 'package:f2fbuu/module/home/repository/home_repository.dart';
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 
-import '../../../activity/model/response/screen_status_activity.dart';
-import '../../../profile/model/response/api_profile.dart';
-import '../../model/response/screen_home.dart';
-import '../../repository/home_repository.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

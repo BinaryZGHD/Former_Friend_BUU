@@ -1,8 +1,7 @@
-import 'package:f2fbuu/module/home/model/response/screen_home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../../../customs/color/colorconts.dart';
 
 class ItemActivity extends StatelessWidget {
   final data;
@@ -28,11 +27,11 @@ class ItemActivity extends StatelessWidget {
               // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: [
                 _buildListActivity(
-                    title: title?.textactivity, url:data?.name),
+                    title: title?.textactivity, datadetail:data?.name),
                 _buildListenpty(),
-                _buildListActivity(title: title?.edtapprover, url: data?.approver),
+                _buildListActivity(title: title?.edtapprover, datadetail: data?.approver),
                 _buildListenpty(),
-                _buildListActivity(title: title?.texttime , url: data?.startdate +" - "+ data?.finishdate + "\n"+ data?.time+ title?.texttimestatus ),
+                _buildListActivity(title: title?.texttime , datadetail: data?.startdate +" - "+ data?.finishdate + "\n"+ data?.time+ title?.texttimestatus ),
               ],
             ),
           ),
@@ -45,7 +44,7 @@ class ItemActivity extends StatelessWidget {
   }
 }
 
-_buildListActivity({required String url, required String title}) {
+_buildListActivity({required String datadetail, required String title}) {
   return TableRow(children: [
     Text(
       title,
@@ -53,8 +52,8 @@ _buildListActivity({required String url, required String title}) {
     ),
     Text(':', textAlign: TextAlign.start),
     Text(
-      url,
-      style: TextStyle(color: Colors.black,),
+      datadetail,
+      style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,),
     ),
   ]);
 }

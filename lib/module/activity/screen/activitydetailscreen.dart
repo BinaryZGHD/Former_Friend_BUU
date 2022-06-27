@@ -319,7 +319,7 @@ BuildTableRow(BuildContext context,
     ),
     Text(
       textrighttabledetail,
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
     )
   ]);
 }

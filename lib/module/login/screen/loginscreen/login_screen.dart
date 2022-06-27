@@ -1,28 +1,22 @@
-import 'dart:convert';
-
-import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
-import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
-
+import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as httpurl;
-import '../../../../customs/Imge/changimgetype.dart';
-import '../../../../customs/button/buildbuttoncustom.dart';
-import '../../../../customs/button/buttoncustom.dart';
-import '../../../../customs/color/colorconts.dart';
-import '../../../../customs/dialog/dialogboxcutom.dart';
-import '../../../../customs/dialog/texterror.dart';
-import '../../../../customs/size/size.dart';
-import '../../../../customs/textfile/buildtextfieldcustom.dart';
-import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
-import '../../../../customs/textlink/textlinktoscreencustom.dart';
-import '../../../home/screen/homescreen/homescreen.dart';
+import 'package:f2fbuu/customs/Imge/changimgetype.dart';
+import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
+import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
+import 'package:f2fbuu/customs/textlink/textlinktoscreencustom.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
+import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
+import 'package:f2fbuu/module/login/screen/registerscreen/pdparegister_screen.dart';
 
-import '../../model/response/screen_login.dart';
-import '../forgotpasswordscreen/forgotpassword.dart';
-import '../registerscreen/pdparegisterscreen.dart';
+import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({Key? key}) : super(key: key);
@@ -73,8 +67,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           Row(
                             children: [
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
+                                height: MediaQuery.of(context).size.height * 0.05,
                               ),
                               Icon(
                                 Icons.language,
@@ -91,8 +84,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           ),
                           Center(
                               child: ChangeImageType(
-                            urlimge_l:
-                                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png',
+                            urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imglogo}",
                           )),
                           // buildImge(),
                           SizedBox(
@@ -104,8 +96,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               userID = value;
                               print("userID  login == " + userID);
                             },
-                            hint_label:
-                                "${_screenLoginResponse?.body?.screeninfo?.edtID}",
+                            hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtID}",
                             textInputType: TextInputType.text,
                           ),
                           buildTextFieldPasswordCustom(
@@ -114,8 +105,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               passw = value;
                               print("passwordController login  == " + value);
                             },
-                            hint_label:
-                                "${_screenLoginResponse?.body?.screeninfo?.edtpass}",
+                            hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtpass}",
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
@@ -128,8 +118,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             //   // print("User :" + userID + "\n" + "Password :" + passw);
                             //   // print(event.number);
                             // },
-                            linklabel:
-                                "${_screenLoginResponse?.body?.screeninfo?.btnforgotpass}",
+                            linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnforgotpass}",
                             mapscreen: forgotPasswordScreen(),
                             linktextcolor: TC_forgot,
                             sizetext: sizeTextSmaller14,
@@ -141,31 +130,43 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           Center(
                             child: ButtonCustom(
                               onPressed: () {
-                                dialogOneLineTwoBtn(
+                                dialogOneLineOneBtn(
+                                    context, errloin + '\n \n ' + 'Do you want to continue?',
+                                     "OK", onClickBtn: () {
+                                  Navigator.push(
                                     context,
-                                    errpdpadecline +
-                                        '\n \n ' +
-                                        'Do you want to continue?',
-                                    'Confirm',
-                                    'Cancel', onClickBtn: (String result) {
-                                  Navigator.of(context).pop();
-                                  switch (result) {
-                                    case 'Cancel':
-                                      {
-                                        break;
-                                      }
-                                    case 'OK':
-                                      {
-                                        Navigator.push(context,
-                                            MaterialPageRoute(builder:
-                                                (BuildContext context) {
-                                          // int index = int.parse(widget.id);
-                                          return HomeScreen();
-                                          // DisplayBeerScreen();
-                                        }));
-                                      }
-                                  }
+                                    MaterialPageRoute(builder: (context) {
+                                      // int index = int.parse(widget.id);
+                                      return HomeScreen();
+                                    }),
+                                  );
                                 });
+
+                                // dialogOneLineTwoBtn(
+                                //     context,
+                                //     errpdpadecline +
+                                //         '\n \n ' +
+                                //         'Do you want to continue?',
+                                //     'Confirm',
+                                //     'Cancel', onClickBtn: (String result) {
+                                //   Navigator.of(context).pop();
+                                //   switch (result) {
+                                //     case 'Cancel':
+                                //       {
+                                //         break;
+                                //       }
+                                //     case 'OK':
+                                //       {
+                                //         Navigator.push(context,
+                                //             MaterialPageRoute(builder:
+                                //                 (BuildContext context) {
+                                //           // int index = int.parse(widget.id);
+                                //           return HomeScreen();
+                                //           // DisplayBeerScreen();
+                                //         }));
+                                //       }
+                                //   }
+                                // });
 
                                 // context.read<LoginBloc>().add(LoginScreenInfoEvent());
                                 // showDialog(
@@ -182,8 +183,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                 //           mapscreen: HomeScreen(),
                                 //         ));
                               },
-                              label:
-                                  "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
+                              label: "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
                               colortext: BC_ButtonText_style_Black,
                               colorbutton: BC_ButtonText_style_White,
                               sizetext: sizeTextBig20,
@@ -191,8 +191,6 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               sizeborder: 10,
                             ),
                           ),
-
-
 
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
@@ -203,13 +201,10 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               Text(
                                 "${_screenLoginResponse?.body?.screeninfo?.textreg} ",
                                 style: TextStyle(
-                                    fontSize: sizeTextSmall16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w300),
+                                    fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
                               ),
                               TextLinkToScreenCustom(
-                                linklabel:
-                                    "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
+                                linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
                                 mapscreen: conditionPDPAScreen(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,

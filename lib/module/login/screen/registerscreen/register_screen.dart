@@ -1,23 +1,17 @@
-import 'dart:convert';
+import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
+import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
+import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
+import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
+import 'package:f2fbuu/module/login/screen/registerscreen/register_confrim_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as httpurl;
-import 'package:f2fbuu/module/login/screen/registerscreen/registerconfrim.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
-import '../../../../customs/button/buttoncustom.dart';
-import '../../../../customs/color/colorconts.dart';
-import '../../../../customs/dialog/dialog_widget.dart';
-import '../../../../customs/dialog/dialogboxcutom.dart';
-import '../../../../customs/dialog/texterror.dart';
-import '../../../../customs/progress_dialog.dart';
-import '../../../../customs/size/size.dart';
-import '../../../../customs/textfile/buildtextfieldcustom.dart';
-import '../../../../customs/textfile/buildtextfieldpasswordcustom.dart';
-import '../../bloc/registerbloc/register_bloc.dart';
-import '../../model/response/screen_register.dart';
-
 
 class registerScreen extends StatefulWidget {
   const registerScreen({Key? key}) : super(key: key);
@@ -160,20 +154,11 @@ class _registerScreenState extends State<registerScreen>  with ProgressDialog {
                           colorborder: BC_ButtonText_style_Black_Boarder,
                           sizeborder: 10,
                           onPressed: () {
-                            dialogOneLineTwoBtn(
-                                context,
-                                errregidter1 + '\n \n ' + 'Do you want to continue?',
-                                'Confirm',
-                                'Cancel', onClickBtn: (String result) {
-                              Navigator.of(context).pop();
-                              switch (result) {
-                                case 'Cancel':
-                                  {
-                                    break;
-                                  }
-                                case 'OK':
-                                  {
-                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                            dialogOneLineOneBtn(context, errregidter1 + '\n \n ' + 'Do you want to continue?', "OK",
+                                onClickBtn: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
                                       // int index = int.parse(widget.id);
                                       return registerConfirmScreen(
                                           titleconregis: "${_screenRegisterResponse?.body?.screeninfo?.titleconregis}" ,
@@ -184,11 +169,40 @@ class _registerScreenState extends State<registerScreen>  with ProgressDialog {
                                           btnconfirm: "${_screenRegisterResponse?.body?.screeninfo?.btnconfirm}" ,
                                           edtemailreg:"${_screenRegisterResponse?.body?.screeninfo?.edtemailreg}"
                                       );
-                                    }));
-                                  }
-                              }
-                            });
+                                    }),
+                                  );
+                                });
                           },
+                          // onPressed: () {
+                          //   dialogOneLineTwoBtn(
+                          //       context,
+                          //       errregidter1 + '\n \n ' + 'Do you want to continue?',
+                          //       'Confirm',
+                          //       'Cancel', onClickBtn: (String result) {
+                          //     Navigator.of(context).pop();
+                          //     switch (result) {
+                          //       case 'Cancel':
+                          //         {
+                          //           break;
+                          //         }
+                          //       case 'OK':
+                          //         {
+                          //           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                          //             // int index = int.parse(widget.id);
+                          //             return registerConfirmScreen(
+                          //                 titleconregis: "${_screenRegisterResponse?.body?.screeninfo?.titleconregis}" ,
+                          //                 textotpwillsent: "${_screenRegisterResponse?.body?.screeninfo?.textotpwillsent}" ,
+                          //                 textpleaseconfirm: "${_screenRegisterResponse?.body?.screeninfo?.textpleaseconfirm}" ,
+                          //                 textsentotpagain:"${_screenRegisterResponse?.body?.screeninfo?.textsentotpagain}"  ,
+                          //                 textotp: "${_screenRegisterResponse?.body?.screeninfo?.textotp}" ,
+                          //                 btnconfirm: "${_screenRegisterResponse?.body?.screeninfo?.btnconfirm}" ,
+                          //                 edtemailreg:"${_screenRegisterResponse?.body?.screeninfo?.edtemailreg}"
+                          //             );
+                          //           }));
+                          //         }
+                          //     }
+                          //   });
+                          // },
                         ),
                       ),
                       SizedBox(

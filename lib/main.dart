@@ -1,13 +1,14 @@
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
+import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
+import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'module/home/bloc/homebloc/home_bloc.dart';
-import 'module/home/screen/homescreen/homescreen.dart';
 
 import 'package:flutter/services.dart';
 
@@ -40,34 +41,48 @@ class MyApp extends StatelessWidget {
     final changepasswordBloc = BlocProvider<ChangePasswordBloc>(create: (context) => ChangePasswordBloc());
     final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
     final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
+    final homemoreBloc = BlocProvider<HomemoreBloc>(create: (context) => HomemoreBloc());
     return MultiBlocProvider(
-      providers: [loginBloc, homeBloc, forgotpasswordBloc, pdpaBloc, registerBloc, changepasswordBloc, profileBloc, actitivtyBloc],
+      providers: [
+        loginBloc,
+        homeBloc,
+        forgotpasswordBloc,
+        pdpaBloc,
+        registerBloc,
+        changepasswordBloc,
+        profileBloc,
+        actitivtyBloc,
+        homemoreBloc,
+      ],
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
             // primarySwatch: Colors.blue,
             scaffoldBackgroundColor: Colors.white,
+            textTheme: GoogleFonts.kodchasanTextTheme(
+              Theme.of(context).textTheme,
+            ),
           ),
           // home: HomeScreen(),
           routes: {
             '/': (context) => HomeScreen(),
           }
-        // home: ProfileScreen(),
+          // home: ProfileScreen(),
 ///////////////////////
 
-        // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
-        // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
-        // return MultiBlocProvider(
-        //     providers: [loginBloc,MainnBloc],
-        //     child: MaterialApp
-        //       (
-        //       title: 'Flutter Demo',
-        //       theme: ThemeData(
-        //         primarySwatch: Colors.grey,
-        //       ),
-        //       home: ProfileScreen(),
-        //     )
-      ),
+          // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
+          // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
+          // return MultiBlocProvider(
+          //     providers: [loginBloc,MainnBloc],
+          //     child: MaterialApp
+          //       (
+          //       title: 'Flutter Demo',
+          //       theme: ThemeData(
+          //         primarySwatch: Colors.grey,
+          //       ),
+          //       home: ProfileScreen(),
+          //     )
+          ),
     );
   }
 }

@@ -1,22 +1,20 @@
 import 'dart:convert';
 
-import 'package:f2fbuu/customs/button/box.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
+import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
+import 'package:f2fbuu/module/activity/screen/add_activity.dart';
+import 'package:f2fbuu/module/home/bloc/buildlistactivity.dart';
+import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
+import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
+import 'package:f2fbuu/module/home/screen/homescreen/home_drawer.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/more_main_screen.dart';
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../customs/button/buttoncustom.dart';
-import '../../../../customs/color/colorconts.dart';
-import '../../../../customs/progress_dialog.dart';
-import '../../../../customs/size/size.dart';
-import '../../../activity/model/response/screen_status_activity.dart';
-import '../../../activity/screen/add_activity.dart';
-import '../../../profile/model/response/api_profile.dart';
-import '../../bloc/homebloc/home_bloc.dart';
-import '../../model/response/screen_home.dart';
-import '../../../profile/screen/profile_page.dart';
-import '../../bloc/buildlistactivity.dart';
-import '../morescreen/moremainscreen.dart';
-import 'drawerhome.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -136,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
-                                BuildListActivity(context, _screenhomeResponse, _screenstatusActivityResponse),
+                                buildListActivity(context, _screenstatusActivityResponse),
                                 SizedBox(
                                     // height: MediaQuery.of(context).size.height * 0.2,
                                     ),
@@ -183,17 +181,19 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                           Expanded(
                               child: IconButton(
                             icon: Icon(Icons.home, color: Colors.blue, size: 50),
-                            onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => loginScreen()));
-                            },
+                            onPressed: () {},
                           )),
                           Expanded(
                               child: IconButton(
                             icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
                             onPressed: () {
                               // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => MoreMainScreen( responseHomeMore : _screenhomeResponse,)));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => screenMoreMain(
+                                            responseHomeMore: _screenhomeResponse,
+                                          )));
                             },
                           )),
                         ],

@@ -1,10 +1,10 @@
+import 'package:f2fbuu/customs/button/button_style.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../button_style.dart';
-import '../color/colorconts.dart';
 
-void dialogOneLineOneBtn(BuildContext context, String content, String content2 ,String btn, {required void Function() onClickBtn}) {
+void dialogOneLineOneBtn(BuildContext context, String content ,String btn, {required void Function() onClickBtn}) {
   void _handleClickBtn() {
     onClickBtn();
   }
@@ -25,8 +25,6 @@ void dialogOneLineOneBtn(BuildContext context, String content, String content2 ,
                   children: [
                     const SizedBox(height: 10),
                     Text(content, textAlign: TextAlign.center),
-                    const SizedBox(height: 20),
-                    Text(content2, textAlign: TextAlign.center),
                     SizedBox( height: 15),
                     ElevatedButton(
                       style: styleButtonDialog,

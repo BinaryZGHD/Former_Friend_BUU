@@ -22,8 +22,8 @@ class HomeScreenInfoSuccessState extends HomeState{
   ScreenStatusActivityResponse responseActivity;
   HomeScreenInfoSuccessState({required this.responseHome, required this.responseProfile, required this.responseActivity});
 }
-
-class HomeActivityStatus extends HomeState{
-  String message;
-  HomeActivityStatus({required this.message});
-}
+//
+// class HomeActivityStatus extends HomeState{
+//   String message;
+//   HomeActivityStatus({required this.message});
+// }
