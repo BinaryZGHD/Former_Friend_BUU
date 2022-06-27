@@ -3,11 +3,14 @@ import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_board_student_response.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/BuildListStudent.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/board_Item_student.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/BuildListStudent.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/board_Item_student.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'more_board_student_List_screen.dart';
+
 
 class moreBoardListStudentScreen extends StatefulWidget {
   const moreBoardListStudentScreen({Key? key}) : super(key: key);
@@ -21,7 +24,6 @@ class _moreBoardListStudentScreenState extends State<moreBoardListStudentScreen>
 
   @override
   Widget build(BuildContext context) {
-    print("object");
     context.read<HomemoreBloc>().add(HomeMoreBoardStudentEvent());
 
     return BlocListener<HomemoreBloc, HomemoreState>(
@@ -38,8 +40,7 @@ class _moreBoardListStudentScreenState extends State<moreBoardListStudentScreen>
           print(state.message);
         }
       },
-      child: Scaffold(
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+      child: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardStudentSuccessState) {
             _screenHomeMoreBoardStudentResponse = state.responseBoardStudent;
             return Scaffold(
@@ -76,7 +77,9 @@ class _moreBoardListStudentScreenState extends State<moreBoardListStudentScreen>
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => commingSoonScreen(),
+                            builder: (context) =>
+                                moreBoardStudentListScreen(title: "${_screenHomeMoreBoardStudentResponse?.body?.userGen?.numgen}",),
+                            // commingSoonScreen(),
                           ),
                         );
                       },
@@ -107,7 +110,7 @@ class _moreBoardListStudentScreenState extends State<moreBoardListStudentScreen>
             return Container();
           }
         }),
-      ),
+
     );
   }
 }
