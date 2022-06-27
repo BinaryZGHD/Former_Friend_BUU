@@ -56,7 +56,7 @@ class _ProfileAttentionDropdownTabState
                     value: userattentionvalue,
                     items: widget.testarray
                         .map((item) => DropdownMenuItem<String>(
-                        value: item.attenname, child: Text(item.attenname??'')))
+                        value: item.attenname, child: Text(item.attenname??'',textAlign: TextAlign.right,)))
                         .toList(),
                     onChanged: (item) => setState(() => userattentionvalue = item),
                   ),
