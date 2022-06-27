@@ -4,6 +4,8 @@ import 'package:f2fbuu/module/home/bloc/itemactivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'activitydetailscreen.dart';
+import 'itemactivity.dart';
 
 buildListActivity(BuildContext context, ScreenStatusActivityResponse? screenstatusActivityResponse) {
   return SingleChildScrollView(
