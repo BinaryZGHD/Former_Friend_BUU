@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
+import 'package:f2fbuu/customs/datepicker/custom_date_picker_for_edit.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
@@ -132,8 +133,8 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                             ],
                           ),
                         ),
-                        customDatePicker(hint_label: 'Start date',),
-                        customDatePicker(hint_label: 'Finish date'),
+                        customDatePickerForEdit(hint_label: 'Start date',datevalue: sdatevalue,),
+                        customDatePickerForEdit(hint_label: 'Finish date',datevalue: fdatevalue,),
                         buildTextFieldCustom(
                           initialvalue: timevalue,
                           textEditingController: time,
