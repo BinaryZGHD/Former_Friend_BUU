@@ -170,15 +170,15 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                         ),
                         child: SingleChildScrollView(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 20.0,left: 5,right: 10),
+                            padding: const EdgeInsets.only(top: 20.0,left: 5,right: 5,bottom: 20),
                             child: Table(
                               border: TableBorder.symmetric(
                                   outside: BorderSide(
                                       width: 2, color: Colors.transparent)),
                               columnWidths: <int, TableColumnWidth>{
-                                0: FractionColumnWidth(0.3),
+                                0: FractionColumnWidth(0.35),
                                 1: FractionColumnWidth(0.05),
-                                2: FractionColumnWidth(0.65),
+                                2: FractionColumnWidth(0.60),
                               },
                               // defaultVerticalAlignment:
                               // TableCellVerticalAlignment.middle,

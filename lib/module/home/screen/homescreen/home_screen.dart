@@ -22,10 +22,8 @@ import '../../../activity/screen/add_activity.dart';
 import '../../../profile/model/response/api_profile.dart';
 import '../../../activity/screen/buildlistactivity.dart';
 import '../../bloc/homebloc/home_bloc.dart';
-import '../../model/response/screen_home.dart';
 import '../../../profile/screen/profile_page.dart';
-import '../morescreen/moremainscreen.dart';
-import 'drawerhome.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
