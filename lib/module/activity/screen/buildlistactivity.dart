@@ -1,4 +1,3 @@
-import 'package:f2fbuu/module/activity/module/activity/screen/buildlistactivity.dart
 
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/activity/screen/activitydetailscreen.dart';
@@ -7,8 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-
-BuildListActivity(BuildContext context,
+buildListActivity(BuildContext context,
     ScreenStatusActivityResponse? screenstatusActivityResponse) {
 
   return SingleChildScrollView(
