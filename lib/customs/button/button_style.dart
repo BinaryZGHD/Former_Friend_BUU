@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'color/colorconts.dart';
+import '../color/colorconts.dart';
 
 var styleButtonDialog = ButtonStyle(
     backgroundColor: MaterialStateProperty.all(Colors.white),

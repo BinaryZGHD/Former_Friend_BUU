@@ -1,13 +1,7 @@
-import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setnewforgotpassword.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
-import 'package:f2fbuu/module/login/screen/registerscreen/registerscreen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../customs/button/box.dart';
-import '../login/bloc/loginbloc/login_bloc.dart';
-import '../login/screen/forgotpasswordscreen/forgotpassword.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);

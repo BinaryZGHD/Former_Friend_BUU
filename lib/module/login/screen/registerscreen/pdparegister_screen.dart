@@ -1,20 +1,18 @@
-import 'dart:convert';
+import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
+import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
+import 'package:f2fbuu/module/login/screen/registerscreen/register_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as httpurl;
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/loginscreen.dart';
-import 'package:f2fbuu/module/login/screen/registerscreen/registerscreen.dart';
-
+import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import '../../../../customs/button/buttoncustom.dart';
-import '../../../../customs/dialog/dialog_widget.dart';
-import '../../../../customs/dialog/texterror.dart';
-import '../../../../customs/progress_dialog.dart';
-import '../../../../customs/size/size.dart';
-import '../../bloc/pdpabloc/pdpa_bloc.dart';
-import '../../model/response/screen_pdpa.dart';
+
 
 class conditionPDPAScreen extends StatefulWidget {
   const conditionPDPAScreen({Key? key}) : super(key: key);
@@ -107,14 +105,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
                                             }
                                         }
                                       });
-                                  // showDialog(
-                                  //     context: context,
-                                  //     builder: (context) => CustomDialogBox(
-                                  //       id: '',
-                                  //       textfieldvalue: "",
-                                  //       description: errpdpaaccept + '\n \n ' + 'Do you want to continue?',
-                                  //       mapscreen: registerScreen(),
-                                  //     ));
+
                                 },
                               )),
                           SizedBox(
@@ -173,8 +164,8 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
   }
   Container buildContainerTitle() {
     return Container(
-      constraints: BoxConstraints.expand(height: 60),
-      child: Text("${_screenPDPAResponse?.body?.screeninfo?.textPDPAhead}",
+      // constraints: BoxConstraints.expand(height: 60),
+      child: Text("${_screenPDPAResponse?.body?.screeninfo?.textPDPAhead}" +"\n",
           textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
     );
   }

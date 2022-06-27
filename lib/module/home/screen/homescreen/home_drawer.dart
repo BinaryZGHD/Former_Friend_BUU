@@ -1,16 +1,14 @@
-import 'package:f2fbuu/module/home/model/response/screen_home.dart';
+import 'package:f2fbuu/customs/button/buildbuttoncustom.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
+import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/customs/size/size.dart';
+import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
+import 'package:f2fbuu/module/login/screen/changepasswordscreen/changepassword_screen.dart';
+import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../../../customs/button/buildbuttoncustom.dart';
-import '../../../../customs/button/buttoncustom.dart';
-import '../../../../customs/color/colorconts.dart';
-import '../../../../customs/dialog/dialog_widget.dart';
-import '../../../../customs/dialog/texterror.dart';
-import '../../../../customs/size/size.dart';
-import '../../../login/screen/changepasswordscreen/changepasswordscreen.dart';
-import '../../../login/screen/loginscreen/loginscreen.dart';
-import 'homescreen.dart';
 
 drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiProfileResponse? _screenprofileResponse) {
   return SafeArea(
@@ -24,7 +22,8 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
               padding: EdgeInsets.all(20),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                 _buildTableGeneralImgeinfo(
-                  context,_screenprofileResponse,
+                  context,
+                  _screenprofileResponse,
                   tb1: 0.65,
                   tb2: 0.05,
                   tb3: 0.3,
@@ -35,7 +34,9 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                 _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textname}',
-                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.name}'+' '+'${_screenprofileResponse?.body?.profileGeneralInfo?.surname}',
+                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.name}' +
+                      ' ' +
+                      '${_screenprofileResponse?.body?.profileGeneralInfo?.surname}',
                   tb1: 0.25,
                   tb2: 0.05,
                   tb3: 0.70,
@@ -117,8 +118,8 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                   title: Text(
                     "${_screenhomeResponse?.body?.screenInfo?.screenhome?.btncpass}",
                     style: TextStyle(
-                      fontFamily: 'Kanit',
-                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontSize: sizeText18,
                       color: Colors.black,
                     ),
                   ),
@@ -152,8 +153,8 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                   title: Text(
                     "${_screenhomeResponse?.body?.screenInfo?.screenhome?.btndelacc}",
                     style: TextStyle(
-                      fontFamily: 'Kanit',
-                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontSize: sizeText18,
                       color: Colors.black,
                     ),
                   ),
@@ -196,7 +197,7 @@ drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiPro
                         {
                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                             // int index = int.parse(widget.id);
-                            return HomeScreen();
+                            return loginScreen();
                             // DisplayBeerScreen();
                           }));
                         }
@@ -284,7 +285,7 @@ _buildTableGeneralinfo(
         Text(
           textlefttitile,
           textAlign: TextAlign.start,
-          style: TextStyle(fontFamily: 'Kanit', fontSize: sizeText18, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: sizeText18, fontWeight: FontWeight.bold),
         ),
         SizedBox(),
         Text(
@@ -305,6 +306,8 @@ _buildTableIconLanginfo(
   required tb2,
   required tb3,
 }) {
+  bool _isVisible = false;
+
   return Table(
     border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
     columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
@@ -314,7 +317,7 @@ _buildTableIconLanginfo(
         Text(
           textlefttitile,
           textAlign: TextAlign.start,
-          style: TextStyle(fontFamily: 'Kanit', fontSize: sizeText18, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: sizeText18, fontWeight: FontWeight.bold),
         ),
         SizedBox(),
         Row(
@@ -324,7 +327,15 @@ _buildTableIconLanginfo(
               textrightdetail,
               style: TextStyle(fontSize: sizeTextSmall16),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.toggle_on)),
+            //
+
+            IconButton(
+                onPressed: () {
+                  _isVisible = !_isVisible;
+                },
+                icon: _isVisible
+                    ? Icon(Icons.toggle_off, color: Color(0xFF4F4F4F))
+                    : Icon(Icons.toggle_on, color: Color(0xFF00A80A))),
           ],
         ),
       ])
