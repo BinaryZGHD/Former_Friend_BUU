@@ -6,7 +6,7 @@ import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/activity/screen/add_activity.dart';
-import 'package:f2fbuu/module/home/bloc/buildlistactivity.dart';
+import 'package:f2fbuu/module/activity/screen/buildlistactivity.dart';
 import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_drawer.dart';
