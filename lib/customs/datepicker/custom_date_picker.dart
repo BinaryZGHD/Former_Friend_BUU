@@ -18,7 +18,7 @@ class _customDatePickerState extends State<customDatePicker> {
   DateTime date = DateTime.now() ;
   @override
   Widget build(BuildContext context) {
-    String dateformated = DateFormat('y-M-d').format(date);
+    String dateformated = DateFormat('d-M-y').format(date);
     String hint_label = widget.hint_label;
     // return InkWell(
     //   onTap: () async {
