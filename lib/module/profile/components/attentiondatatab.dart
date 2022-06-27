@@ -6,11 +6,13 @@ class ProfileAttentionDropdownTab extends StatefulWidget {
   final List<Attention> testarray;
   final String textleft;
   final String userattentionvalue;
+  final bool isunpressed;
   const ProfileAttentionDropdownTab(
       {Key? key,
         required this.textleft,
         required this.userattentionvalue,
-        required this.testarray})
+        required this.testarray,
+        required this.isunpressed})
       : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class _ProfileAttentionDropdownTabState
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
     String? userattentionvalue = widget.userattentionvalue;
+    var isunpressed = widget.isunpressed;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -43,17 +46,20 @@ class _ProfileAttentionDropdownTabState
             ),
             Expanded(
               child: SizedBox(
-                child: DropdownButtonFormField<String>(
-                  // alignment: Alignment.centerRight,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
+                child: IgnorePointer(
+                  ignoring: isunpressed,
+                  child: DropdownButtonFormField<String>(
+                    // alignment: Alignment.centerRight,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    value: userattentionvalue,
+                    items: widget.testarray
+                        .map((item) => DropdownMenuItem<String>(
+                        value: item.attenname, child: Text(item.attenname??'')))
+                        .toList(),
+                    onChanged: (item) => setState(() => userattentionvalue = item),
                   ),
-                  value: userattentionvalue,
-                  items: widget.testarray
-                      .map((item) => DropdownMenuItem<String>(
-                      value: item.attenname, child: Text(item.attenname??'')))
-                      .toList(),
-                  onChanged: (item) => setState(() => userattentionvalue = item),
                 ),
               ),
             ),

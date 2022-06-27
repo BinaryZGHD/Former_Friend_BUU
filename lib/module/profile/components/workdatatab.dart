@@ -11,7 +11,7 @@ class ProfileCareerDropdownTab extends StatefulWidget {
   final String jobtextleft;
   final String userjobvalue;
   final List<Jobtype> jobtypearray;
-  final bool ispressed;
+  final bool isunpressed;
   final String subtitleworkplace;
   final String userworkplace;
   final String usercareer;
@@ -25,7 +25,7 @@ class ProfileCareerDropdownTab extends StatefulWidget {
         required this.jobtextleft,
         required this.jobtypearray,
         required this.userjobvalue,
-        required this.ispressed,
+        required this.isunpressed,
         required this.subtitleworkplace,
         required this.userworkplace,
         required this.usercareer,
@@ -55,7 +55,7 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
 
   @override
   Widget build(BuildContext context) {
-    bool ispressed = widget.ispressed;
+    bool isunpressed = widget.isunpressed;
     String subtitleworkplace = widget.subtitleworkplace;
     String userworkplace = widget.userworkplace;
     String usercareer = widget.usercareer;
@@ -85,26 +85,29 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                 ),
                 Expanded(
                   child: SizedBox(
-                    child: DropdownButtonFormField<String>(
-                      // alignment: Alignment.centerRight,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
+                    child: IgnorePointer(
+                      ignoring: isunpressed,
+                      child: DropdownButtonFormField<String>(
+                        // alignment: Alignment.centerRight,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        value: itemvalue,
+                        items: widget.statusarray
+                            .map((item) => DropdownMenuItem<String>(
+                            value: item.statusname, child: Text(item.statusname??'')))
+                            .toList(),
+                        onChanged: (item) {
+                          itemvalue = item;
+                          if (itemvalue == 'มีงานทำ') {
+                            isJobInStatusVisible = true;
+                          } else {
+                            isJobInStatusVisible = false;
+                          }
+                          setState(() {});
+                          print(item);
+                        },
                       ),
-                      value: itemvalue,
-                      items: widget.statusarray
-                          .map((item) => DropdownMenuItem<String>(
-                          value: item.statusname, child: Text(item.statusname??'')))
-                          .toList(),
-                      onChanged: (item) {
-                        itemvalue = item;
-                        if (itemvalue == 'มีงานทำ') {
-                          isJobInStatusVisible = true;
-                        } else {
-                          isJobInStatusVisible = false;
-                        }
-                        setState(() {});
-                        print(item);
-                      },
                     ),
                   ),
                 ),
@@ -117,20 +120,21 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
           child: Column(
             children: [
               ProfileDropdownCareerDataTab(
+                isunpressed: isunpressed,
                 userjobtypevalue: widget.userjobvalue,
                 jobtextleft: widget.jobtextleft,
                 jobtypearray: widget.jobtypearray,
               ),
               ProfileCareerDataTab(
-                  isunpressed: ispressed,
+                  isunpressed: isunpressed,
                   textleft: subtitleworkplace,
                   textright: userworkplace),
               ProfileCareerDataTab(
-                  isunpressed: ispressed,
+                  isunpressed: isunpressed,
                   textleft: textcareer,
                   textright: usercareer),
               ProfileCareerDataTab(
-                  isunpressed: ispressed,
+                  isunpressed: isunpressed,
                   textleft: textcomp,
                   textright: usercompany)
             ],
