@@ -34,26 +34,24 @@ class _ProfileDropdownCareerDataTabState
         child: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.4,
               child: Text(
                 widget.jobtextleft,
                 style: TextStyle(fontSize: 18),
               ),
             ),
             Expanded(
-              child: SizedBox(
-                child: DropdownButtonFormField<String>(
-                  // alignment: Alignment.centerRight,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  value: userjobtypevalue,
-                  items: widget.jobtypearray
-                      .map((item) => DropdownMenuItem<String>(
-                      value: item.jobname, child: Text(item.jobname??'')))
-                      .toList(),
-                  onChanged: (item) => setState(() => userjobtypevalue = item),
+              child: DropdownButtonFormField<String>(
+                // alignment: Alignment.centerRight,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
                 ),
+                value: userjobtypevalue,
+                items: widget.jobtypearray
+                    .map((item) => DropdownMenuItem<String>(
+                    value: item.jobname, child: Text(item.jobname??'')))
+                    .toList(),
+                onChanged: (item) => setState(() => userjobtypevalue = item),
               ),
             ),
           ],

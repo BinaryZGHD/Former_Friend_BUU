@@ -5,11 +5,13 @@ class customDropdown extends StatefulWidget {
   final String hint;
   final List<String>? dropdownlist;
   final double width;
+  final dropdownvalue;
   const customDropdown(
       {Key? key,
       required this.hint,
       required this.dropdownlist,
-      required this.width})
+      required this.width,
+      this.dropdownvalue})
       : super(key: key);
 
   @override
@@ -21,7 +23,8 @@ class _customDropdownState extends State<customDropdown> {
   Widget build(BuildContext context) {
     String hint = widget.hint;
     List<String>? dropdownlist = widget.dropdownlist;
-    var dropdownValue = '';
+    var dropdownValue = widget.dropdownvalue;
+    print(dropdownValue);
     return Container(
       margin: const EdgeInsets.all(12),
       child: SizedBox(
@@ -41,6 +44,7 @@ class _customDropdownState extends State<customDropdown> {
                 borderSide: BorderSide(color: FC_Blue, width: 2.0),
               )),
           hint: Text(hint),
+          // value: dropdownValue,
           items: dropdownlist
               ?.map((item) => DropdownMenuItem<String>(
                   value: item,

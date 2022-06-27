@@ -111,7 +111,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
-                        buildTextFieldCustom(
+                        buildTextformfieldUnlimitCustom(
                           initialvalue: namevalue,
                           textEditingController: activityname,
                           onChanged: (value) {
@@ -124,8 +124,8 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
-                              customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
+                              customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: yearvalue),
+                              customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: termvalue),
                             ],
                           ),
                         ),
@@ -140,7 +140,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                           textInputType: TextInputType.number,
                         ),
-                        buildTextFieldCustom(
+                        buildTextformfieldUnlimitCustom(
                           initialvalue: venuevalue,
                           textEditingController: venue,
                           onChanged: (value) {
@@ -149,7 +149,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
-                        customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
+                        customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',dropdownvalue: approvervalue),
                         buildTextformfieldUnlimitCustom(
                           initialvalue: detailvalue,
                           textEditingController: detail,
