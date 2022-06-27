@@ -5,7 +5,7 @@ import 'package:f2fbuu/module/home/model/response/screen_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../activity/screen/activitydetailscreen.dart';
+import 'activitydetailscreen.dart';
 import 'itemactivity.dart';
 
 BuildListActivity(BuildContext context,ScreenStatusActivityResponse? screenstatusActivityResponse) {
