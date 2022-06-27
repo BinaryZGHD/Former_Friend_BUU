@@ -5,6 +5,7 @@ import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
+import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
@@ -124,8 +125,10 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: yearvalue),
-                              customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: termvalue),
+                              customDropdownForEdit(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,
+                                  dropdownvalue: yearvalue
+                              ),
+                              customDropdownForEdit(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: termvalue),
                             ],
                           ),
                         ),
@@ -149,7 +152,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
-                        customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',dropdownvalue: approvervalue),
+                        customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',dropdownvalue: approvervalue),
                         buildTextformfieldUnlimitCustom(
                           initialvalue: detailvalue,
                           textEditingController: detail,
