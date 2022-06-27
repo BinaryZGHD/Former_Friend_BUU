@@ -14,7 +14,7 @@ class ProfileAddressDataHead extends StatefulWidget {
 }
 
 class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
-  bool ispressed = true;
+  bool isunpressed = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          ispressed = !ispressed;
+                          isunpressed = !isunpressed;
                         });
                         // setState((){
                         //   if (ispressed == true) {
@@ -53,7 +53,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
                         // });
                         // }, child: Text(editorsave,
                       },
-                      child: ispressed
+                      child: isunpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก',
                           style: TextStyle(color: Colors.green)),
@@ -70,35 +70,35 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           ),
         ),
         ProfileAddressDataTab(
-           ispressed: ispressed,
+           isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.texthousenumber}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.number}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textmoo}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.moo}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textsoi}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.soi}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textroad}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.road}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textsubdistrict}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.subdistrict}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textdistrict}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.district}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textprovince}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.province}'),
         ProfileAddressDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textzipcode}',
             textright: '${dataFromAPI?.body?.profileAddressInfo?.zipcode}'),
       ],
@@ -110,8 +110,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
 class ProfileAddressDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
-  final bool ispressed;
-  ProfileAddressDataTab({Key? key, required this.textleft, required this.textright, required this.ispressed}) : super(key: key);
+  final bool isunpressed;
+  ProfileAddressDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed}) : super(key: key);
 
   @override
   State<ProfileAddressDataTab> createState() => _ProfileAddressDataTabState();
@@ -122,7 +122,7 @@ class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
     String textright = widget.textright;
-    bool ispressed = widget.ispressed;
+    bool ispressed = widget.isunpressed;
     String texttest = 'testtesttest';
     return Container(
       decoration: BoxDecoration(

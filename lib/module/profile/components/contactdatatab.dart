@@ -11,7 +11,7 @@ class ProfileContactDataHead extends StatefulWidget {
 }
 
 class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
-  bool ispressed = true;
+  bool isunpressed = true;
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
@@ -37,7 +37,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          ispressed = !ispressed;
+                          isunpressed = !isunpressed;
                         });
                         // setState((){
                         //   if (ispressed == true) {
@@ -49,7 +49,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                         // });
                         // }, child: Text(editorsave,
                       },
-                      child: ispressed
+                      child: isunpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก',
                           style: TextStyle(color: Colors.green)),
@@ -66,7 +66,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           ),
         ),
         ProfileContactDataTab(
-          ispressed: ispressed,
+          isunpressed: isunpressed,
           iconcontact: Icon(
             Icons.phone,
             color: HexColor('#000000'),
@@ -74,7 +74,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           textcontact: '${dataFromAPI?.body?.profileContactInfo?.phone}'
         ),
         ProfileContactDataTab(
-          ispressed: ispressed,
+          isunpressed: isunpressed,
           iconcontact: Icon(
             FontAwesomeIcons.line,
             color: HexColor('#00B900'),
@@ -82,7 +82,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           textcontact: '${dataFromAPI?.body?.profileContactInfo?.line}'
         ),
         ProfileContactDataTab(
-          ispressed: ispressed,
+          isunpressed: isunpressed,
           iconcontact: Icon(
             FontAwesomeIcons.facebook,
             color: HexColor('#3B5998'),
@@ -90,7 +90,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           textcontact: '${dataFromAPI?.body?.profileContactInfo?.facebook}'
         ),
         ProfileContactDataTab(
-          ispressed: ispressed,
+          isunpressed: isunpressed,
           iconcontact: Icon(
             FontAwesomeIcons.instagram,
             color: HexColor('#E1306C'),
@@ -98,7 +98,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           textcontact: '${dataFromAPI?.body?.profileContactInfo?.instagram}'
         ),
         ProfileContactDataTab(
-          ispressed: ispressed,
+          isunpressed: isunpressed,
           iconcontact: Icon(
             FontAwesomeIcons.twitter,
             color: HexColor('#00acee'),
@@ -106,7 +106,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           textcontact: '${dataFromAPI?.body?.profileContactInfo?.twitter}'
         ),
         ProfileContactDataTab(
-          ispressed: ispressed,
+          isunpressed: isunpressed,
           iconcontact: Icon(
             FontAwesomeIcons.youtube,
             color: HexColor('#FF0000'),
@@ -121,8 +121,8 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
 class ProfileContactDataTab extends StatefulWidget {
   final Widget iconcontact;
   final String textcontact;
-  final bool ispressed;
-  ProfileContactDataTab({Key? key, required this.iconcontact, required this.textcontact, required this.ispressed}) : super(key: key);
+  final bool isunpressed;
+  ProfileContactDataTab({Key? key, required this.iconcontact, required this.textcontact, required this.isunpressed}) : super(key: key);
 
   @override
   State<ProfileContactDataTab> createState() => _ProfileContactDataTabState();
@@ -133,7 +133,7 @@ class _ProfileContactDataTabState extends State<ProfileContactDataTab> {
   Widget build(BuildContext context) {
     Widget iconcontact = widget.iconcontact;
     String textcontact = widget.textcontact;
-    bool ispressed = widget.ispressed;
+    bool ispressed = widget.isunpressed;
     String texttest = 'testtesttest';
     return Container(
       decoration: BoxDecoration(

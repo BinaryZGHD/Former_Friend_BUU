@@ -17,7 +17,7 @@ class ProfileCareerDataHead extends StatefulWidget {
 
 ////////////////////////////////////////////////////////////////////////////////
 class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
-  bool ispressed = true;
+  bool isunpressed = true;
   bool isVisible = true;
 
   @override
@@ -55,10 +55,10 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          ispressed = !ispressed;
+                          isunpressed = !isunpressed;
                         });
                       },
-                      child: ispressed
+                      child: isunpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
@@ -87,7 +87,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           usercompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"",
           textcomp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
           textcareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
-          ispressed: ispressed,
+          ispressed: isunpressed,
         ),
       ],
     );

@@ -12,7 +12,7 @@ class ProfileEducationDataHead extends StatefulWidget {
   State<ProfileEducationDataHead> createState() => _ProfileEducationDataHeadState();
 }
 class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
-  bool ispressed = true;
+  bool isunpressed = true;
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
@@ -38,7 +38,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          ispressed = !ispressed;
+                          isunpressed = !isunpressed;
                         });
                         // setState((){
                         //   if (ispressed == true) {
@@ -50,7 +50,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
                         // });
                         // }, child: Text(editorsave,
                       },
-                      child: ispressed
+                      child: isunpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก', style: TextStyle(color: Colors.green)),
                     ),
@@ -66,27 +66,27 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
           ),
         ),
         ProfileEducationDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textfac}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.faculty}'),
         ProfileEducationDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textdepart}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.department}'),
         ProfileEducationDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textmajor}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.major}'),
         ProfileEducationDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgpaju}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.gpaJhs}'),
         ProfileEducationDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgpase}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.gpaShs}'),
         ProfileEducationDataTab(
-            ispressed: ispressed,
+            isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgpaba}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.gpaBd}'),
       ],
@@ -97,13 +97,13 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
 class ProfileEducationDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
-  final bool ispressed;
+  final bool isunpressed;
 
   ProfileEducationDataTab(
       {Key? key,
         required this.textleft,
         required this.textright,
-        required this.ispressed})
+        required this.isunpressed})
       : super(key: key);
 
   @override
@@ -115,7 +115,7 @@ class _ProfileEducationDataTabState extends State<ProfileEducationDataTab> {
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
     String textright = widget.textright;
-    bool ispressed = widget.ispressed;
+    bool ispressed = widget.isunpressed;
     String texttest = 'testtesttest';
     return Container(
       decoration: BoxDecoration(

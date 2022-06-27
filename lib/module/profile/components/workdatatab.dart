@@ -122,15 +122,15 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                 jobtypearray: widget.jobtypearray,
               ),
               ProfileCareerDataTab(
-                  ispressed: ispressed,
+                  isunpressed: ispressed,
                   textleft: subtitleworkplace,
                   textright: userworkplace),
               ProfileCareerDataTab(
-                  ispressed: ispressed,
+                  isunpressed: ispressed,
                   textleft: textcareer,
                   textright: usercareer),
               ProfileCareerDataTab(
-                  ispressed: ispressed,
+                  isunpressed: ispressed,
                   textleft: textcomp,
                   textright: usercompany)
             ],
