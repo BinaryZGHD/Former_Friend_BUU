@@ -21,7 +21,7 @@ boardItemStudent({
         ),
         child: Table(
           border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
-          columnWidths: {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.05), 2: FractionColumnWidth(0.65)},
+          columnWidths: {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.01), 2: FractionColumnWidth(0.69)},
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
@@ -29,7 +29,7 @@ boardItemStudent({
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
-                  radius: 40,
+                  radius: 30,
                   child: Stack(children: [
                     Container(
                       decoration: BoxDecoration(
@@ -54,26 +54,12 @@ boardItemStudent({
                 ),
               ),
               SizedBox(
-                width: 10,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${data?.namegen1}",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Table(children: [
-                    TableRow(children: [
-                      Text(
-                        "${data?.textteacher1}",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ]),
-                  ]),
-                ],
+              Text(
+                "${data?.namegen1}",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
+
             ])
           ],
         ),
@@ -88,7 +74,7 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
     onTap: onTap,
     // color: HexColor('#F5F5F5'),
     child: Container(
-      padding: EdgeInsets.fromLTRB(5, 5, 5, 10),
+      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -109,7 +95,7 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
       ),
       child: Table(
         border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
-        columnWidths: {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.05), 2: FractionColumnWidth(0.65)},
+        columnWidths: {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.01), 2: FractionColumnWidth(0.69)},
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
           TableRow(children: [
@@ -117,17 +103,11 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
-                radius: 40,
+                radius: 30,
                 child: Stack(children: [
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      // gradient: LinearGradient(
-                      //   colors: [
-                      //     HexColor("${datauser?.colorgen}"),
-                      //     HexColor('#F5F5F5'),
-                      //   ],
-                      // ),
                       gradient: LinearGradient(
                         colors: [
                           HexColor('#F5F5F5'),
@@ -149,25 +129,10 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
               ),
             ),
             SizedBox(
-              width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${datauserstudent?.namegen1}",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Table(children: [
-                  TableRow(children: [
-                    Text(
-                      "${datauserstudent?.textteacher1}",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ]),
-                ]),
-              ],
+            Text(
+              "${datauserstudent?.namegen1}",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ])
         ],
