@@ -255,7 +255,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                           children: [
                             myicon,
                             SizedBox(width: 10,),
-                            Text('${data.status}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
+                            Text('${data.status}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),

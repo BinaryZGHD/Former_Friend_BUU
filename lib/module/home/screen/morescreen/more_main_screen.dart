@@ -2,8 +2,11 @@ import 'package:f2fbuu/customs/card/cardmore.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/more_board_list_study_screen.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/more_board_list_teacher_screen.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/more_board_student_screen.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/more_board_teacher_screen.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/contactus_screen.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/faq_screen.dart';
+import 'package:f2fbuu/module/home/screen/morescreen/pdpa_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -171,14 +174,38 @@ class _screenMoreMainState extends State<screenMoreMain> {
             buildCardMore(
               context: context,
               title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btntermandcon}",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => pdpaScreen(title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btntermandcon}"),
+                  ),
+                );
+              },
             ),
             buildCardMore(
               context: context,
               title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnfaq}",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => faqScreen(title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnfaq}"),
+                  ),
+                );
+              },
             ),
             buildCardMore(
               context: context,
               title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnconus}",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => contactUsScreen(title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnconus}"),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,

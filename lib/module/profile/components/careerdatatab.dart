@@ -70,7 +70,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           ),
         ),
         ProfileAttentionDropdownTab(
-          testarray: dataFromAPI?.body?.screeninfo?.profileCareerScreeninfo?.attention??[],
+          attentionarray: dataFromAPI?.body?.screeninfo?.profileCareerScreeninfo?.attention??[],
           userattentionvalue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
           textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
           isunpressed: isunpressed,

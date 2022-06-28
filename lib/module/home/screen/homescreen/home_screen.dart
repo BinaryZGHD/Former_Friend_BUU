@@ -33,6 +33,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
+  bool _isHidden = true;
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
   ScreenHomeResponse? _screenhomeResponse;
   ApiProfileResponse? _screenprofileResponse;
   ScreenStatusActivityResponse? _screenstatusActivityResponse;
@@ -65,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
             // print(JsonEncoder( ).convert(_screenstatusActivityResponse?.body?.activity));
             return Scaffold(
               drawer: Drawer(
-                child: drawerhome(context, _screenhomeResponse, _screenprofileResponse),
+                child: drawerhome(context,
+                    _screenhomeResponse,
+                    _screenprofileResponse),
               ),
               appBar: AppBar(
                 backgroundColor: Colors.white,
