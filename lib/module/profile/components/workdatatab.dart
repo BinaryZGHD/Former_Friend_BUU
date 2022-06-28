@@ -77,7 +77,7 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
             child: Row(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
+                  width: MediaQuery.of(context).size.width * 0.5,
                   child: Text(
                     textleft,
                     style: TextStyle(fontSize: 18),

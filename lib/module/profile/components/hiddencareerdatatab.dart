@@ -36,7 +36,7 @@ class _ProfileDropdownCareerDataTabState
         child: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.5,
               child: Text(
                 widget.jobtextleft,
                 style: TextStyle(fontSize: 18),
