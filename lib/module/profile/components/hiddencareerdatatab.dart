@@ -21,9 +21,14 @@ class ProfileDropdownCareerDataTab extends StatefulWidget {
 
 class _ProfileDropdownCareerDataTabState
     extends State<ProfileDropdownCareerDataTab> {
+  String? userjobtypevalue;
+  @override
+  void initState(){
+    userjobtypevalue = widget.userjobtypevalue;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    String? userjobtypevalue = widget.userjobtypevalue;
     bool isunpressed = widget.isunpressed;
     return Container(
       decoration: BoxDecoration(
@@ -46,21 +51,64 @@ class _ProfileDropdownCareerDataTabState
               child: SizedBox(
                 child: IgnorePointer(
                   ignoring: isunpressed,
-                  child: DropdownButtonFormField<String>(
-                    // alignment: Alignment.centerRight,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    value: userjobtypevalue,
-                    items: widget.jobtypearray
-                        .map((item) => DropdownMenuItem<String>(
-                        value: item.jobname, child: Text(item.jobname??'')))
-                        .toList(),
-                    onChanged: (item) => setState(() => userjobtypevalue = item),
+                  child:
+                  PopupMenuButton<String>(
+                    initialValue:
+                    userjobtypevalue,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: Text(
+                                userjobtypevalue??'',
+                                style: const TextStyle(color: Colors.black),
+                                textAlign: TextAlign.end,
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              )),
+                          const Icon(Icons.keyboard_arrow_down)
+                        ]),
+                    itemBuilder: (context) {
+                      return List.generate(widget.jobtypearray.length,
+                              (index) {
+                            return PopupMenuItem(
+                              child:
+                              Text(widget.jobtypearray[index].jobname ?? ''),
+                              value: widget.jobtypearray[index].jobname,
+                            );
+                          });
+                    },
+                    onSelected: (value) {
+                      userjobtypevalue = value;
+                      setState(() {
+                      });
+                    },
                   ),
                 ),
               ),
             ),
+
+
+
+            // Expanded(
+            //   child: SizedBox(
+            //     child: IgnorePointer(
+            //       ignoring: isunpressed,
+            //       child: DropdownButtonFormField<String>(
+            //         // alignment: Alignment.centerRight,
+            //         decoration: InputDecoration(
+            //           border: InputBorder.none,
+            //         ),
+            //         value: userjobtypevalue,
+            //         items: widget.jobtypearray
+            //             .map((item) => DropdownMenuItem<String>(
+            //             value: item.jobname, child: Text(item.jobname??'')))
+            //             .toList(),
+            //         onChanged: (item) => setState(() => userjobtypevalue = item),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
