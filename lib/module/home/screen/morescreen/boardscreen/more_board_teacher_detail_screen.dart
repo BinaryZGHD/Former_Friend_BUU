@@ -9,12 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class moreBoardTeacherStaffDetailScreen extends StatefulWidget {
-  final Teacher? datateacher;
-  final Screeninfo? tiaileteacher;
+  final int index;
+  final String fac;
+  final ScreenHomeMoreBoardTeacherResponse? screenHomeMoreBoardTeacherResponse;
   moreBoardTeacherStaffDetailScreen({
-    Key? key,
-    this.datateacher,
-    this.tiaileteacher,
+    Key? key, required this.fac, required this.index, this.screenHomeMoreBoardTeacherResponse,
   }) : super(key: key);
 
   @override
@@ -56,6 +55,17 @@ class _moreBoardTeacherStaffDetailScreenState extends State<moreBoardTeacherStaf
       child: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardTeacherSuccessState) {
             _screenHomeMoreBoardTeacherResponse = state.responseBoardTeacher;
+            var data;
+            var tiailscreen = widget.screenHomeMoreBoardTeacherResponse?.body?.screeninfo;
+            if( widget.fac  == "teacherone"){
+               data = widget.screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?[ widget.index];
+            }
+            if( widget.fac  == "teachertwo"){
+              data = widget.screenHomeMoreBoardTeacherResponse?.body?.teacher?.teachertwo?[ widget.index];
+            }
+            if( widget.fac  == "staff"){
+              data =  widget.screenHomeMoreBoardTeacherResponse?.body?.staff?[ widget.index];
+            }
 
             return  Scaffold(
               appBar: AppBar(
@@ -72,7 +82,7 @@ class _moreBoardTeacherStaffDetailScreenState extends State<moreBoardTeacherStaf
                   ),
                 ),
                 title: Text(
-                  "${widget.datateacher?.name}",
+                  "${data?.name}",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
@@ -111,13 +121,13 @@ class _moreBoardTeacherStaffDetailScreenState extends State<moreBoardTeacherStaf
                             height: 40,
                           ),
                             _buildListStudentDetail(
-                                titail: "${widget.tiaileteacher?.name}", value: "${widget.datateacher?.name}"),
+                                titail: "${tiailscreen?.name}", value: "${data?.name}"),
                             _buildListStudentDetail(
-                                titail: "${widget.tiaileteacher?.position}", value: "${widget.datateacher?.position}"),
+                                titail: "${tiailscreen?.position}", value: "${data?.position}"),
                             _buildListStudentDetail(
-                                titail: "${widget.tiaileteacher?.phone}", value: "${widget.datateacher?.phone}"),
+                                titail: "${tiailscreen?.phone}", value: "${data?.phone}"),
                             _buildListStudentDetail(
-                                titail: "${widget.tiaileteacher?.email}", value: "${widget.datateacher?.email}"),
+                                titail: "${tiailscreen?.email}", value: "${data?.email}"),
                             SizedBox(
                               height: 30,
                             ),

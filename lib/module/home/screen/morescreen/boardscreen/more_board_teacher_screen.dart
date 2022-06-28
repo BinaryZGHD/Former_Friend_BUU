@@ -14,13 +14,31 @@ class moreBoardListTeacherScreen extends StatefulWidget {
   State<moreBoardListTeacherScreen> createState() => _moreBoardListTeacherScreenState();
 }
 
+bool _isSelected = true;
+const double yalign = -1;
+const Color selectedColor = Colors.black;
+const Color normalColor = Colors.black54;
+
 class _moreBoardListTeacherScreenState extends State<moreBoardListTeacherScreen> with ProgressDialog {
   ScreenHomeMoreBoardTeacherResponse? _screenHomeMoreBoardTeacherResponse;
+  late double   defaultalign;
+  late Color departleftcolor;
+  late Color departrightcolor;
+
+  double xalign = 1;
+  @override
+  void initState() {
+    super.initState();
+    defaultalign = yalign;
+    departleftcolor = selectedColor;
+    departrightcolor = normalColor;
+  }
 
   @override
   Widget build(BuildContext context) {
     context.read<HomemoreBloc>().add(HomeMoreBoardTeacherEvent());
-
+    double width = MediaQuery.of(context).size.width;
+    double height = 40.0;
     return BlocListener<HomemoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreBoardTeacherLoading) {
@@ -39,7 +57,7 @@ class _moreBoardListTeacherScreenState extends State<moreBoardListTeacherScreen>
         body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardTeacherSuccessState) {
             _screenHomeMoreBoardTeacherResponse = state.responseBoardTeacher;
-            print(_screenHomeMoreBoardTeacherResponse?.body?.teacher?.length);
+            print(_screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?.length);
             return Scaffold(
               backgroundColor: Colors.grey[200],
               appBar: AppBar(
@@ -65,85 +83,165 @@ class _moreBoardListTeacherScreenState extends State<moreBoardListTeacherScreen>
               ),
               body: Column(
                 children: [
-                  Container(
-                    height: 100,
-                    color: Colors.blue,
-                    child: Image.network(
-                      "${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.imgDepart}",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  // Container(
+                  //   height: 100,
+                  //   color: Colors.blue,
+                  //   child: Image.network(
+                  //     "${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.imgDepart}",
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 30,
-                            color: Colors.white,
-                            child: Center(
-                              child: Text(
-                                "${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.depart}",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: sizeTitle24,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 30,
-                            color: Colors.grey,
-                            child: Center(
-                              child: Text(
-                                "${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.depart}",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: sizeTitle24,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
+                    padding: const EdgeInsets.only(top: 20, left: 8, right: 8, bottom: 10),
                     child: Container(
-                      padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
-                      color: Colors.transparent,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 10),
-                              child: Text("${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: sizeTitle24,
-                                  )),
-                            ),
-                            buildListTeacher(context, _screenHomeMoreBoardTeacherResponse),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 5),
-                              child: Text("${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: sizeTitle24,
-                                  )),
-                            ),
-                            buildListStaff(context, _screenHomeMoreBoardTeacherResponse),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
+                      width: width,
+                      height: height,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[350],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50.0),
                         ),
+                      ),
+                      child: Stack(
+                        children: [
+                          AnimatedAlign(
+                            alignment: Alignment(  defaultalign, 0),
+                            duration: Duration(milliseconds: 300),
+                            child: Container(
+                              width: width * 0.5,
+                              height: height,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(50.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                defaultalign = yalign;
+                                departleftcolor = selectedColor;
+                                _isSelected = true;
+                                departrightcolor = normalColor;
+                              });
+                            },
+                            child: Align(
+                              alignment: Alignment(-1, 0),
+                              child: Container(
+                                width: width * 0.5,
+                                color: Colors.transparent,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.departone}",
+                                  style: TextStyle(
+                                    color: departleftcolor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                defaultalign = xalign;
+                                departrightcolor = selectedColor;
+                                _isSelected = false;
+                                departleftcolor = normalColor;
+                              });
+                            },
+                            child: Align(
+                              alignment: Alignment(1, 0),
+                              child: Container(
+                                width: width * 0.5,
+                                color: Colors.transparent,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.departtwo}",
+                                  style: TextStyle(
+                                    color: departrightcolor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
+                  Container(
+                      child: _isSelected
+                          ? Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
+                          color: Colors.transparent,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10, top: 10),
+                                  child: Text("${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: sizeTitle24,
+                                      )),
+                                ),
+                                buildListTeacherLeft(context, _screenHomeMoreBoardTeacherResponse),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10, top: 5),
+                                  child: Text("${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: sizeTitle24,
+                                      )),
+                                ),
+                                buildListStaff(context, _screenHomeMoreBoardTeacherResponse),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                          : Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
+                          color: Colors.transparent,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10, top: 10),
+                                  child: Text("${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: sizeTitle24,
+                                      )),
+                                ),
+                                buildListTeacherRight(context, _screenHomeMoreBoardTeacherResponse),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10, top: 5),
+                                  child: Text("${_screenHomeMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: sizeTitle24,
+                                      )),
+                                ),
+                                buildListStaff(context, _screenHomeMoreBoardTeacherResponse),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )),
                 ],
               ),
             );

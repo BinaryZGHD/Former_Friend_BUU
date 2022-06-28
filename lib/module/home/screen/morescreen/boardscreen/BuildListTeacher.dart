@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'more_board_student_List_screen.dart';
 
 
-buildListTeacher(
+buildListTeacherLeft(
   BuildContext context,
   ScreenHomeMoreBoardTeacherResponse? screenHomeMoreBoardTeacherResponse,
 ) {
@@ -16,17 +16,21 @@ buildListTeacher(
     scrollDirection: Axis.vertical,
     child: Column(
         children: List.generate(
-            int.parse("${screenHomeMoreBoardTeacherResponse?.body?.teacher?.length}"),
-            (index) => boardItemTeacher(
-                  datateacher: screenHomeMoreBoardTeacherResponse?.body?.teacher?[index],
+            int.parse("${screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?.length}"),
+            (index) => boardItemTeacherLeft(
+                  datateacher: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?[index],
                   tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => moreBoardTeacherStaffDetailScreen(
-                          datateacher: screenHomeMoreBoardTeacherResponse?.body?.teacher?[index],
-                          tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
+                          index: index,
+                          // datateacherone: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?[index],
+                          // datateachertwo: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.elementAt(index),
+                          // datastaff: screenHomeMoreBoardTeacherResponse?.body?.staff?.elementAt(index),
+                          screenHomeMoreBoardTeacherResponse: screenHomeMoreBoardTeacherResponse,
+                          fac:"teacherone",
                         ),
                       ),
                     );
@@ -34,6 +38,40 @@ buildListTeacher(
                 ))),
   );
 }
+
+
+buildListTeacherRight(
+    BuildContext context,
+    ScreenHomeMoreBoardTeacherResponse? screenHomeMoreBoardTeacherResponse,
+    ) {
+  return SingleChildScrollView(
+    padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
+    scrollDirection: Axis.vertical,
+    child: Column(
+        children: List.generate(
+            int.parse("${screenHomeMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.length}"),
+                (index) => boardItemTeacherRight(
+              datateachertwo: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.elementAt(index),
+              tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => moreBoardTeacherStaffDetailScreen(
+                      // datateacherone: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?.elementAt(index),
+                      // datateachertwo: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.elementAt(index),
+                      // datastaff: screenHomeMoreBoardTeacherResponse?.body?.staff?.elementAt(index),
+                      index: index,
+                      screenHomeMoreBoardTeacherResponse: screenHomeMoreBoardTeacherResponse,
+                      fac:"teachertwo",
+                    ),
+                  ),
+                );
+              },
+            ))),
+  );
+}
+
 
 buildListStaff(BuildContext context, ScreenHomeMoreBoardTeacherResponse? screenHomeMoreBoardTeacherResponse) {
   return SingleChildScrollView(
@@ -43,15 +81,19 @@ buildListStaff(BuildContext context, ScreenHomeMoreBoardTeacherResponse? screenH
         children: List.generate(
             int.parse("${screenHomeMoreBoardTeacherResponse?.body?.staff?.length}"),
             (index) => boardItemStaff(
-                  datateacher: screenHomeMoreBoardTeacherResponse?.body?.staff?[index],
+                  datastaff: screenHomeMoreBoardTeacherResponse?.body?.staff?[index],
                   tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => moreBoardTeacherStaffDetailScreen(
-                          datateacher: screenHomeMoreBoardTeacherResponse?.body?.teacher?[index],
-                          tiaileteacher: screenHomeMoreBoardTeacherResponse?.body?.screeninfo,
+                          index: index,
+                          // datateacherone: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?.elementAt(index),
+                          // datateachertwo: screenHomeMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.elementAt(index),
+                          // datastaff: screenHomeMoreBoardTeacherResponse?.body?.staff?.elementAt(index),
+                          screenHomeMoreBoardTeacherResponse: screenHomeMoreBoardTeacherResponse,
+                          fac:"staff",
                         ),
                       ),
                     );

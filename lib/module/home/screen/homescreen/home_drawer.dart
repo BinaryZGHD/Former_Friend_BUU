@@ -9,6 +9,21 @@ import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+class drawerhome1 extends StatefulWidget {
+
+
+   drawerhome1( BuildContext context, {Key? key, }) : super(key: key);
+
+  @override
+  State<drawerhome1> createState() => _drawerhome1State();
+}
+
+class _drawerhome1State extends State<drawerhome1> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
 
 drawerhome(BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiProfileResponse? _screenprofileResponse) {
   return SafeArea(
@@ -328,17 +343,42 @@ _buildTableIconLanginfo(
               style: TextStyle(fontSize: sizeTextSmaller14),
             ),
             //
-
-            IconButton(
-                onPressed: () {
-                  _isVisible = !_isVisible;
-                },
-                icon: _isVisible
-                    ? Icon(Icons.toggle_off, color: Color(0xFF4F4F4F))
-                    : Icon(Icons.toggle_on, color: Color(0xFF00A80A))),
+            _toggle(),
+            // IconButton(
+            //     onPressed: () {
+            //       _isVisible = !_isVisible;
+            //     },
+            //     icon: _isVisible
+            //         ? Icon(Icons.toggle_off, color: Color(0xFF4F4F4F))
+            //         : Icon(Icons.toggle_on, color: Color(0xFF00A80A))),
           ],
         ),
       ])
     ],
   );
+}
+
+class _toggle extends StatefulWidget {
+  const _toggle({Key? key}) : super(key: key);
+
+  @override
+  State<_toggle> createState() => _toggleState();
+}
+
+class _toggleState extends State<_toggle> {
+
+  bool _isHidden = true;
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: _togglePasswordView,
+        icon: _isHidden
+            ? Icon(Icons.toggle_off, color: Color(0xFF4F4F4F))
+            : Icon(Icons.toggle_on, color: Color(0xFF00A80A)));
+  }
 }
