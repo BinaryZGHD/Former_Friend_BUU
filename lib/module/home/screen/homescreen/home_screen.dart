@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                     _screenprofileResponse),
               ),
               appBar: AppBar(
-                backgroundColor: Colors.white,
+                // backgroundColor: Colors.white,
                 leading: Builder(
                   builder: (BuildContext context) {
                     return IconButton(
