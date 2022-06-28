@@ -3,7 +3,7 @@ import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileAttentionDropdownTab extends StatefulWidget {
-  final List<Attention> testarray;
+  final List<Attention> attentionarray;
   final String textleft;
   final String userattentionvalue;
   final bool isunpressed;
@@ -11,7 +11,7 @@ class ProfileAttentionDropdownTab extends StatefulWidget {
       {Key? key,
         required this.textleft,
         required this.userattentionvalue,
-        required this.testarray,
+        required this.attentionarray,
         required this.isunpressed})
       : super(key: key);
 
@@ -54,7 +54,7 @@ class _ProfileAttentionDropdownTabState
                       border: InputBorder.none,
                     ),
                     value: userattentionvalue,
-                    items: widget.testarray
+                    items: widget.attentionarray
                         .map((item) => DropdownMenuItem<String>(
                         value: item.attenname, child: Text(item.attenname??'',textAlign: TextAlign.right,)))
                         .toList(),
