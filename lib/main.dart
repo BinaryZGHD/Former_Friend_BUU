@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
           }
           // home: ProfileScreen(),
 ///////////////////////
-
+  //asdsadsadsadsasadsadsadasdsads
           // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
           // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
           // return MultiBlocProvider(
