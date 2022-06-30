@@ -8,28 +8,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class moreBoardTeacherDetailScreen extends StatefulWidget {
+class moreBoardStaffrDetailScreen extends StatefulWidget {
 
   final String name;
   final String position;
   final String phone;
   final String email;
-  final String url;
   final String titlename;
   final String titleposition;
   final String titlephone;
   final String titleemail;
-  final String titleurl;
   final String image;
-  moreBoardTeacherDetailScreen({
-    Key? key, required this.name, required this.position, required this.phone, required this.email, required this.url, required this.image, required this.titlename, required this.titleposition, required this.titlephone, required this.titleemail, required this.titleurl,
+  moreBoardStaffrDetailScreen({
+    Key? key, required this.name, required this.position, required this.phone, required this.email,required this.image, required this.titlename, required this.titleposition, required this.titlephone, required this.titleemail,
+
   }) : super(key: key);
 
   @override
-  State<moreBoardTeacherDetailScreen> createState() => _moreBoardTeacherDetailScreenState();
+  State<moreBoardStaffrDetailScreen> createState() => _moreBoardStaffrDetailScreenState();
 }
 
-class _moreBoardTeacherDetailScreenState extends State<moreBoardTeacherDetailScreen> with ProgressDialog {
+class _moreBoardStaffrDetailScreenState extends State<moreBoardStaffrDetailScreen> with ProgressDialog {
   ScreenHomeMoreBoardTeacherResponse? _screenHomeMoreBoardTeacherResponse;
 
   @override
@@ -119,32 +118,32 @@ class _moreBoardTeacherDetailScreenState extends State<moreBoardTeacherDetailScr
                             SizedBox(
                             height: 40,
                           ),
-                            _buildTeacherDetail(
+                            _buildStaffDetail(
                                 titail: "${widget.titlename}", value: "${widget.name}"),
-                            _buildTeacherDetail(
+                            _buildStaffDetail(
                                 titail: "${widget.titleposition}", value: "${widget.position}"),
-                            _buildTeacherDetail(
+                            _buildStaffDetail(
                                 titail: "${widget.titlephone}", value: "${widget.phone}"),
-                            _buildTeacherDetail(
+                            _buildStaffDetail(
                                 titail: "${widget.titleemail}", value: "${widget.email}"),
                             SizedBox(
                               height: 30,
                             ),
-                            TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _launched = _launchInBrowser(Uri.parse("${widget.url}"));
-                                  });
-                                },
-                                child: Center(
-                                  child: Text(" > "+
-                                      "${widget.titleurl}"+ " < ",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                )),
+                            // TextButton(
+                            //     onPressed: () {
+                            //       setState(() {
+                            //         _launched = _launchInBrowser(Uri.parse("https://sites.google.com/go.buu.ac.th/apisitp"));
+                            //       });
+                            //     },
+                            //     child: Center(
+                            //       child: Text(" > "+
+                            //           "รายละเอียดเพิ่มเติม"+ " < ",
+                            //         style: TextStyle(
+                            //           fontSize: 14,
+                            //           color: Colors.blue,
+                            //         ),
+                            //       ),
+                            //     )),
                             SizedBox(
                               height: 10,
                             ),
@@ -181,7 +180,7 @@ class _moreBoardTeacherDetailScreenState extends State<moreBoardTeacherDetailScr
   }
 }
 
-_buildTeacherDetail({required String titail, required String value}) {
+_buildStaffDetail({required String titail, required String value}) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 10.0, top: 8.0, bottom: 15.0),
     child: Table(
