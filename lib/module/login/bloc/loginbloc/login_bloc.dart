@@ -47,13 +47,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
         // emit(LoginLoading());
         Response response = await getScreenLogin(event.userLanguage);
         // emit(LoginEndLoading());
+        print("statusCode");
         print(response.statusCode);
         if (response.statusCode == 200) {
           ScreenLoginResponse screenLoginResponse =
               ScreenLoginResponse.fromJson(response.data);
-          print("body = " + "${jsonEncode(screenLoginResponse.body)}");
+
         if (screenLoginResponse.head?.status != 200) {
-            print("Arai");
             emit(LoginScreenInfoSuccessState(response: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));

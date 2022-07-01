@@ -5,7 +5,7 @@ import 'package:f2fbuu/utils/dio.dart';
 
 class LoginRepository {
   Future<Response> getScreenLogin(String userLanguage) async {
-    return await MyDio.createDioTest().post("/ServiceTest/login/loginscreen",
+    return await MyDio.createDioServerTest().post("/ServiceTest/login/loginscreen",
         // queryParameters: {"Language": userLanguage} // for get
         data: jsonEncode({
           "Language": userLanguage,

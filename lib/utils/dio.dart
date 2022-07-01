@@ -1,40 +1,30 @@
 import 'package:dio/dio.dart';
 
 class MyDio {
-  static final _optionsTest = BaseOptions(
+  static final _optionsBinary = BaseOptions(
     baseUrl: 'https://webzbinaryz.web.app/',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
 
   static Dio createDioTest() {
-    Dio dio = Dio(_optionsTest);
+    Dio dio = Dio(_optionsBinary);
     dio.interceptors.add(MyInterceptors());
     return dio;
   }
-  static final _options = BaseOptions(
+
+  static final _optionsServerTest = BaseOptions(
     baseUrl: 'http://msd.buu.ac.th/',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
 
-  static Dio createDio() {
-    Dio dio = Dio(_options);
+  static Dio createDioServerTest () {
+    Dio dio = Dio(_optionsServerTest);
     dio.interceptors.add(MyInterceptors());
     return dio;
   }
 
-  static final _optionstwo = BaseOptions(
-    baseUrl: 'http://msd.buu.ac.th/',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
-  );
-/////
-  static Dio createDiotwo() {
-    Dio dio = Dio(_optionstwo);
-    dio.interceptors.add(MyInterceptors());
-    return dio;
-  }
 }
 
 

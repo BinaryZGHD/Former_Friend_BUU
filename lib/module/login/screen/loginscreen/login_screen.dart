@@ -52,7 +52,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     TextEditingController passwordController = TextEditingController();
     String userID = "";
     String passw = "";
-
+    print(userLanguage);
     context
         .read<LoginBloc>()
         .add(LoginScreenInfoEvent(userLanguage: userLanguage));
@@ -74,7 +74,6 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         body: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
           if (state is LoginScreenInfoSuccessState) {
             _screenLoginResponse = state.response;
-            print(userLanguage);
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Stack(
@@ -96,8 +95,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                   ),
                                   Text(
                                       "  ${_screenLoginResponse?.body?.screeninfo?.btnchangelang}" +
-                                          userLanguage +
-                                          "   " +
+                                          "   userLanguage = " +
                                           userLanguage,
                                       style: TextStyle(
                                           // decoration: TextDecoration.underline,
@@ -245,7 +243,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               ),
                               TextLinkToScreenCustom(
                                 linklabel:
-                                    "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
+                                    "${_screenLoginResponse?.body?.screeninfo?.btnreg}",
                                 mapscreen: conditionPDPAScreen(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,
