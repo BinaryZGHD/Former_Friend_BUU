@@ -1,6 +1,7 @@
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
+import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
@@ -69,11 +70,11 @@ class MyApp extends StatelessWidget {
           ),
           // home: HomeScreen(),
           routes: {
-            '/': (context) => HomeScreen(),
+            '/': (context) => loginScreen(),
           }
           // home: ProfileScreen(),
 ///////////////////////
-
+  //asdsadsadsadsasadsadsadasdsads
           // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
           // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
           // return MultiBlocProvider(

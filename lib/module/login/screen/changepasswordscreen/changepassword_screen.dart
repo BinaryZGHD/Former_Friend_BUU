@@ -121,30 +121,22 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                       Center(
                         child: ButtonCustom(
                             label: "  " + "${_screenchangepasswordResponse?.body?.screeninfo?.btnconfirm}" + "  ",
-                            colortext: TC_Black,
-                            colorbutton: BC_ButtonGreen,
+                            colortext: BC_ButtonText_style_Black,
+                            colorbutton: BC_ButtonText_style_White,
                             sizetext: sizeTextBig20,
-                            colorborder: BSC_transparent,
+                            colorborder: BC_ButtonText_style_Black_Boarder,
                             sizeborder: 10,
                             onPressed: () {
-                              dialogOneLineTwoBtn(
-                                  context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                                  onClickBtn: (String result) {
-                                Navigator.of(context).pop();
-                                switch (result) {
-                                  case 'Cancel':
-                                    {
-                                      break;
-                                    }
-                                  case 'OK':
-                                    {
-                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                        // int index = int.parse(widget.id);
-                                        return HomeScreen();
-                                        // DisplayBeerScreen();
-                                      }));
-                                    }
-                                }
+                              dialogOneLineOneBtn(
+                                  context, errchangepassword + '\n \n ' + 'Do you want to continue?',
+                                  "OK", onClickBtn: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) {
+                                    // int index = int.parse(widget.id);
+                                    return HomeScreen();
+                                  }),
+                                );
                               });
                             }),
                       ),

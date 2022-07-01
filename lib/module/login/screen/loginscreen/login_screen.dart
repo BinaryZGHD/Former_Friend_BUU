@@ -1,3 +1,4 @@
+import 'package:f2fbuu/customs/button/buildbuttoncustom.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,23 @@ class loginScreen extends StatefulWidget {
 
 class _loginScreenState extends State<loginScreen> with ProgressDialog {
   ScreenLoginResponse? _screenLoginResponse;
+  bool _isDefaultLanguage = true;
+  late String userLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    userLanguage = "TH";
+  }
+
+  void _toggleLanguageView() {
+    setState(
+      () {
+        _isDefaultLanguage = !_isDefaultLanguage;
+        userLanguage = _isDefaultLanguage ? "TH" : "EN";
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +53,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     String userID = "";
     String passw = "";
 
-    context.read<LoginBloc>().add(LoginScreenInfoEvent());
+    context.read<LoginBloc>().add(LoginScreenInfoEvent( userLanguage: userLanguage));
 
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
@@ -54,6 +72,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         body: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
           if (state is LoginScreenInfoSuccessState) {
             _screenLoginResponse = state.response;
+            print(userLanguage);
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Stack(
@@ -64,21 +83,30 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.05,
-                              ),
-                              Icon(
-                                Icons.language,
-                                size: sizeText18,
-                              ),
-                              Text(
-                                "${_screenLoginResponse?.body?.screeninfo?.btnchangelang}",
-                                style: TextStyle(fontSize: sizeText18),
-                              ),
-                            ],
+                          GestureDetector(
+                              onTap: _toggleLanguageView,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.language,
+                                    color: Colors.black,
+                                    size: 18,
+                                  ),
+                                  Text(
+                                      "  ${_screenLoginResponse?.body?.screeninfo?.btnchangelang}" +
+                                          userLanguage +
+                                          "   " +userLanguage,
+                                      style: TextStyle(
+                                        // decoration: TextDecoration.underline,
+                                          color: Colors.black,
+                                          // decorationColor: linktextcolor,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14)),
+                                ],
+                              )
+
                           ),
+
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05,
                           ),
@@ -130,9 +158,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           Center(
                             child: ButtonCustom(
                               onPressed: () {
-                                dialogOneLineOneBtn(
-                                    context, errloin + '\n \n ' + 'Do you want to continue?',
-                                     "OK", onClickBtn: () {
+                                dialogOneLineOneBtn(context, errloin + '\n \n ' + 'Do you want to continue?', "OK",
+                                    onClickBtn: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) {

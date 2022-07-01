@@ -5,6 +5,8 @@ abstract class LoginEvent {}
 
 
 class LoginScreenInfoEvent extends LoginEvent{
+  String userLanguage;
+  LoginScreenInfoEvent({required this.userLanguage});
 
 }
 

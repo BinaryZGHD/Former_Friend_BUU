@@ -168,11 +168,11 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                     padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
                     child: ButtonCustom(
                       label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
-                      colortext: TC_Black,
+                      colortext: BC_ButtonText_style_Black,
                       colorbutton: BC_ButtonText_style_White,
                       sizetext: sizeTextSmaller14,
-                      colorborder: BSC_Black,
-                      sizeborder: 0.0,
+                      colorborder: BC_ButtonText_style_Black_Boarder,
+                      sizeborder: 1.0,
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
                       },
