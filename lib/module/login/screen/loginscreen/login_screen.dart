@@ -52,8 +52,10 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     TextEditingController passwordController = TextEditingController();
     String userID = "";
     String passw = "";
-
-    context.read<LoginBloc>().add(LoginScreenInfoEvent( userLanguage: userLanguage));
+    print(userLanguage);
+    context
+        .read<LoginBloc>()
+        .add(LoginScreenInfoEvent(userLanguage: userLanguage));
 
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
@@ -72,7 +74,6 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         body: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
           if (state is LoginScreenInfoSuccessState) {
             _screenLoginResponse = state.response;
-            print(userLanguage);
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Stack(
@@ -94,25 +95,25 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                   ),
                                   Text(
                                       "  ${_screenLoginResponse?.body?.screeninfo?.btnchangelang}" +
-                                          userLanguage +
-                                          "   " +userLanguage,
+                                          "   userLanguage = " +
+                                          userLanguage,
                                       style: TextStyle(
-                                        // decoration: TextDecoration.underline,
+                                          // decoration: TextDecoration.underline,
                                           color: Colors.black,
                                           // decorationColor: linktextcolor,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14)),
                                 ],
-                              )
-
-                          ),
+                              )),
 
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05,
                           ),
                           Center(
                               child: ChangeImageType(
-                            urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imglogo}",
+                            // urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imglogo}",
+                            urlimge_l:
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
                           )),
                           // buildImge(),
                           SizedBox(
@@ -124,7 +125,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               userID = value;
                               print("userID  login == " + userID);
                             },
-                            hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtID}",
+                            hint_label:
+                                "${_screenLoginResponse?.body?.screeninfo?.edtID}",
                             textInputType: TextInputType.text,
                           ),
                           buildTextFieldPasswordCustom(
@@ -133,7 +135,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               passw = value;
                               print("passwordController login  == " + value);
                             },
-                            hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtpass}",
+                            hint_label:
+                                "${_screenLoginResponse?.body?.screeninfo?.edtpass}",
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
@@ -146,7 +149,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             //   // print("User :" + userID + "\n" + "Password :" + passw);
                             //   // print(event.number);
                             // },
-                            linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnforgotpass}",
+                            linklabel:
+                                "${_screenLoginResponse?.body?.screeninfo?.btnforgotpass}",
                             mapscreen: forgotPasswordScreen(),
                             linktextcolor: TC_forgot,
                             sizetext: sizeTextSmaller14,
@@ -158,8 +162,12 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           Center(
                             child: ButtonCustom(
                               onPressed: () {
-                                dialogOneLineOneBtn(context, errloin + '\n \n ' + 'Do you want to continue?', "OK",
-                                    onClickBtn: () {
+                                dialogOneLineOneBtn(
+                                    context,
+                                    errloin +
+                                        '\n \n ' +
+                                        'Do you want to continue?',
+                                    "OK", onClickBtn: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) {
@@ -210,7 +218,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                 //           mapscreen: HomeScreen(),
                                 //         ));
                               },
-                              label: "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
+                              label:
+                                  "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
                               colortext: BC_ButtonText_style_Black,
                               colorbutton: BC_ButtonText_style_White,
                               sizetext: sizeTextBig20,
@@ -228,10 +237,13 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               Text(
                                 "${_screenLoginResponse?.body?.screeninfo?.textreg} ",
                                 style: TextStyle(
-                                    fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
+                                    fontSize: sizeTextSmall16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300),
                               ),
                               TextLinkToScreenCustom(
-                                linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
+                                linklabel:
+                                    "${_screenLoginResponse?.body?.screeninfo?.btnreg}",
                                 mapscreen: conditionPDPAScreen(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,

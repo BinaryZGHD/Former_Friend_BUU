@@ -38,7 +38,7 @@ class ScreenLoginResponse {
 
 }
 
-/// screeninfo : {"btnchangelang":"TH / EN","imglogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnReg":"Register"}
+/// screeninfo : {"btnchangelang":"TH / EN","imglogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnreg":"Register"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -74,7 +74,7 @@ class Body {
 /// btnlogin : "LOGIN"
 /// btnforgotpass : "Forgot password ?"
 /// textreg : "Don't have an account ?"
-/// btnReg : "Register"
+/// btnreg : "Register"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
@@ -87,7 +87,7 @@ class Screeninfo {
     String? btnlogin,
     String? btnforgotpass,
     String? textreg,
-    String? btnReg,}){
+    String? btnreg,}){
     _btnchangelang = btnchangelang;
     _imglogo = imglogo;
     _edtID = edtID;
@@ -95,7 +95,7 @@ class Screeninfo {
     _btnlogin = btnlogin;
     _btnforgotpass = btnforgotpass;
     _textreg = textreg;
-    _btnReg = btnReg;
+    _btnreg = btnreg;
   }
 
   Screeninfo.fromJson(dynamic json) {
@@ -106,7 +106,7 @@ class Screeninfo {
     _btnlogin = json['btnlogin'];
     _btnforgotpass = json['btnforgotpass'];
     _textreg = json['textreg'];
-    _btnReg = json['btnReg'];
+    _btnreg = json['btnreg'];
   }
   String? _btnchangelang;
   String? _imglogo;
@@ -115,7 +115,7 @@ class Screeninfo {
   String? _btnlogin;
   String? _btnforgotpass;
   String? _textreg;
-  String? _btnReg;
+  String? _btnreg;
   Screeninfo copyWith({  String? btnchangelang,
     String? imglogo,
     String? edtID,
@@ -123,7 +123,7 @@ class Screeninfo {
     String? btnlogin,
     String? btnforgotpass,
     String? textreg,
-    String? btnReg,
+    String? btnreg,
   }) => Screeninfo(  btnchangelang: btnchangelang ?? _btnchangelang,
     imglogo: imglogo ?? _imglogo,
     edtID: edtID ?? _edtID,
@@ -131,7 +131,7 @@ class Screeninfo {
     btnlogin: btnlogin ?? _btnlogin,
     btnforgotpass: btnforgotpass ?? _btnforgotpass,
     textreg: textreg ?? _textreg,
-    btnReg: btnReg ?? _btnReg,
+    btnreg: btnreg ?? _btnreg,
   );
   String? get btnchangelang => _btnchangelang;
   String? get imglogo => _imglogo;
@@ -140,7 +140,7 @@ class Screeninfo {
   String? get btnlogin => _btnlogin;
   String? get btnforgotpass => _btnforgotpass;
   String? get textreg => _textreg;
-  String? get btnReg => _btnReg;
+  String? get btnreg => _btnreg;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -151,7 +151,7 @@ class Screeninfo {
     map['btnlogin'] = _btnlogin;
     map['btnforgotpass'] = _btnforgotpass;
     map['textreg'] = _textreg;
-    map['btnReg'] = _btnReg;
+    map['btnreg'] = _btnreg;
     return map;
   }
 
