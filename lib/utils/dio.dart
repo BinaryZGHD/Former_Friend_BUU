@@ -12,7 +12,20 @@ class MyDio {
     dio.interceptors.add(MyInterceptors());
     return dio;
   }
+
+  static final _optionstwo = BaseOptions(
+    baseUrl: 'http://msd.buu.ac.th/',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+/////
+  static Dio createDiotwo() {
+    Dio dio = Dio(_optionstwo);
+    dio.interceptors.add(MyInterceptors());
+    return dio;
+  }
 }
+
 
 class MyInterceptors extends Interceptor {
   // @override
