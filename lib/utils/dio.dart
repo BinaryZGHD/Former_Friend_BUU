@@ -1,8 +1,19 @@
 import 'package:dio/dio.dart';
 
 class MyDio {
-  static final _options = BaseOptions(
+  static final _optionsTest = BaseOptions(
     baseUrl: 'https://webzbinaryz.web.app/',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+
+  static Dio createDioTest() {
+    Dio dio = Dio(_optionsTest);
+    dio.interceptors.add(MyInterceptors());
+    return dio;
+  }
+  static final _options = BaseOptions(
+    baseUrl: 'http://msd.buu.ac.th/',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
