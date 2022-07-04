@@ -94,7 +94,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                     size: 18,
                                   ),
                                   Text(
-                                      "  ${_screenLoginResponse?.body?.screeninfo?.btnchangelang}" +
+                                      "  ${_screenLoginResponse?.body?.screeninfo?.btnChangeLang}" +
                                           "   userLanguage = " +
                                           userLanguage,
                                       style: TextStyle(
@@ -111,9 +111,9 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           ),
                           Center(
                               child: ChangeImageType(
-                            // urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imglogo}",
-                            urlimge_l:
-                                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
+                            urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imgLogo}",
+                            // urlimge_l:
+                            //     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
                           )),
                           // buildImge(),
                           SizedBox(
@@ -136,7 +136,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               print("passwordController login  == " + value);
                             },
                             hint_label:
-                                "${_screenLoginResponse?.body?.screeninfo?.edtpass}",
+                                "${_screenLoginResponse?.body?.screeninfo?.edtPass}",
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
@@ -150,7 +150,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             //   // print(event.number);
                             // },
                             linklabel:
-                                "${_screenLoginResponse?.body?.screeninfo?.btnforgotpass}",
+                                "${_screenLoginResponse?.body?.screeninfo?.btnForgotPass}",
                             mapscreen: forgotPasswordScreen(),
                             linktextcolor: TC_forgot,
                             sizetext: sizeTextSmaller14,
@@ -219,7 +219,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                 //         ));
                               },
                               label:
-                                  "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
+                                  "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
                               colortext: BC_ButtonText_style_Black,
                               colorbutton: BC_ButtonText_style_White,
                               sizetext: sizeTextBig20,
@@ -235,7 +235,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${_screenLoginResponse?.body?.screeninfo?.textreg} ",
+                                "${_screenLoginResponse?.body?.screeninfo?.textReg} ",
                                 style: TextStyle(
                                     fontSize: sizeTextSmall16,
                                     color: Colors.black,
@@ -243,7 +243,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               ),
                               TextLinkToScreenCustom(
                                 linklabel:
-                                    "${_screenLoginResponse?.body?.screeninfo?.btnreg}",
+                                    "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
                                 mapscreen: conditionPDPAScreen(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,
