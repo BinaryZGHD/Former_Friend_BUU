@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
@@ -33,11 +35,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
-  bool _isHidden = true;
-  void _togglePasswordView() {
-    setState(() {
-      _isHidden = !_isHidden;
-    });
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(HomeScreenInfoEvent());
   }
   ScreenHomeResponse? _screenhomeResponse;
   ApiProfileResponse? _screenprofileResponse;
@@ -204,12 +205,12 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
                           Expanded(
                               child: IconButton(
                             icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
-                            onPressed: () {
+                            onPressed: ()  {
                               // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => screenMoreMain(
+                                      builder: (context) =>   screenMoreMain(
                                             responseHomeMore: _screenhomeResponse,
                                           )));
                             },

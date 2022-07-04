@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-ScreenLoginResponse screenloginresponseFromJson(String str) => ScreenLoginResponse.fromJson(json.decode(str));
-String screenloginresponseToJson(ScreenLoginResponse data) => json.encode(data.toJson());
-
+ScreenLoginResponse screenLoginResponseFromJson(String str) => ScreenLoginResponse.fromJson(json.decode(str));
+String sdsToJson(ScreenLoginResponse data) => json.encode(data.toJson());
 class ScreenLoginResponse {
   ScreenLoginResponse({
     Head? head,
@@ -38,7 +37,7 @@ class ScreenLoginResponse {
 
 }
 
-/// screeninfo : {"btnchangelang":"TH / EN","imglogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"Student code / Teacher code","edtpass":"Password","btnlogin":"LOGIN","btnforgotpass":"Forgot password ?","textreg":"Don't have an account ?","btnreg":"Register"}
+/// screeninfo : {"btnChangeLang":"ไทย/อังกฤษ","imgLogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"รหัสนิสิต/รหัสอาจารย์","edtPass":"รหัสผ่าน","btnLogin":"เข้าสู่ระบบ","btnForgotPass":"ลืมรหัสผ่าน?","textReg":"ไม่มีบัญชีใช่หรือไม่?","btnReg":"ลงทะเบียน"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -67,105 +66,105 @@ class Body {
 
 }
 
-/// btnchangelang : "TH / EN"
-/// imglogo : "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png"
-/// edtID : "Student code / Teacher code"
-/// edtpass : "Password"
-/// btnlogin : "LOGIN"
-/// btnforgotpass : "Forgot password ?"
-/// textreg : "Don't have an account ?"
-/// btnreg : "Register"
+/// btnChangeLang : "ไทย/อังกฤษ"
+/// imgLogo : "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png"
+/// edtID : "รหัสนิสิต/รหัสอาจารย์"
+/// edtPass : "รหัสผ่าน"
+/// btnLogin : "เข้าสู่ระบบ"
+/// btnForgotPass : "ลืมรหัสผ่าน?"
+/// textReg : "ไม่มีบัญชีใช่หรือไม่?"
+/// btnReg : "ลงทะเบียน"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
 class Screeninfo {
   Screeninfo({
-    String? btnchangelang,
-    String? imglogo,
+    String? btnChangeLang,
+    String? imgLogo,
     String? edtID,
-    String? edtpass,
-    String? btnlogin,
-    String? btnforgotpass,
-    String? textreg,
-    String? btnreg,}){
-    _btnchangelang = btnchangelang;
-    _imglogo = imglogo;
+    String? edtPass,
+    String? btnLogin,
+    String? btnForgotPass,
+    String? textReg,
+    String? btnReg,}){
+    _btnChangeLang = btnChangeLang;
+    _imgLogo = imgLogo;
     _edtID = edtID;
-    _edtpass = edtpass;
-    _btnlogin = btnlogin;
-    _btnforgotpass = btnforgotpass;
-    _textreg = textreg;
-    _btnreg = btnreg;
+    _edtPass = edtPass;
+    _btnLogin = btnLogin;
+    _btnForgotPass = btnForgotPass;
+    _textReg = textReg;
+    _btnReg = btnReg;
   }
 
   Screeninfo.fromJson(dynamic json) {
-    _btnchangelang = json['btnchangelang'];
-    _imglogo = json['imglogo'];
+    _btnChangeLang = json['btnChangeLang'];
+    _imgLogo = json['imgLogo'];
     _edtID = json['edtID'];
-    _edtpass = json['edtpass'];
-    _btnlogin = json['btnlogin'];
-    _btnforgotpass = json['btnforgotpass'];
-    _textreg = json['textreg'];
-    _btnreg = json['btnreg'];
+    _edtPass = json['edtPass'];
+    _btnLogin = json['btnLogin'];
+    _btnForgotPass = json['btnForgotPass'];
+    _textReg = json['textReg'];
+    _btnReg = json['btnReg'];
   }
-  String? _btnchangelang;
-  String? _imglogo;
+  String? _btnChangeLang;
+  String? _imgLogo;
   String? _edtID;
-  String? _edtpass;
-  String? _btnlogin;
-  String? _btnforgotpass;
-  String? _textreg;
-  String? _btnreg;
-  Screeninfo copyWith({  String? btnchangelang,
-    String? imglogo,
+  String? _edtPass;
+  String? _btnLogin;
+  String? _btnForgotPass;
+  String? _textReg;
+  String? _btnReg;
+  Screeninfo copyWith({  String? btnChangeLang,
+    String? imgLogo,
     String? edtID,
-    String? edtpass,
-    String? btnlogin,
-    String? btnforgotpass,
-    String? textreg,
-    String? btnreg,
-  }) => Screeninfo(  btnchangelang: btnchangelang ?? _btnchangelang,
-    imglogo: imglogo ?? _imglogo,
+    String? edtPass,
+    String? btnLogin,
+    String? btnForgotPass,
+    String? textReg,
+    String? btnReg,
+  }) => Screeninfo(  btnChangeLang: btnChangeLang ?? _btnChangeLang,
+    imgLogo: imgLogo ?? _imgLogo,
     edtID: edtID ?? _edtID,
-    edtpass: edtpass ?? _edtpass,
-    btnlogin: btnlogin ?? _btnlogin,
-    btnforgotpass: btnforgotpass ?? _btnforgotpass,
-    textreg: textreg ?? _textreg,
-    btnreg: btnreg ?? _btnreg,
+    edtPass: edtPass ?? _edtPass,
+    btnLogin: btnLogin ?? _btnLogin,
+    btnForgotPass: btnForgotPass ?? _btnForgotPass,
+    textReg: textReg ?? _textReg,
+    btnReg: btnReg ?? _btnReg,
   );
-  String? get btnchangelang => _btnchangelang;
-  String? get imglogo => _imglogo;
+  String? get btnChangeLang => _btnChangeLang;
+  String? get imgLogo => _imgLogo;
   String? get edtID => _edtID;
-  String? get edtpass => _edtpass;
-  String? get btnlogin => _btnlogin;
-  String? get btnforgotpass => _btnforgotpass;
-  String? get textreg => _textreg;
-  String? get btnreg => _btnreg;
+  String? get edtPass => _edtPass;
+  String? get btnLogin => _btnLogin;
+  String? get btnForgotPass => _btnForgotPass;
+  String? get textReg => _textReg;
+  String? get btnReg => _btnReg;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['btnchangelang'] = _btnchangelang;
-    map['imglogo'] = _imglogo;
+    map['btnChangeLang'] = _btnChangeLang;
+    map['imgLogo'] = _imgLogo;
     map['edtID'] = _edtID;
-    map['edtpass'] = _edtpass;
-    map['btnlogin'] = _btnlogin;
-    map['btnforgotpass'] = _btnforgotpass;
-    map['textreg'] = _textreg;
-    map['btnreg'] = _btnreg;
+    map['edtPass'] = _edtPass;
+    map['btnLogin'] = _btnLogin;
+    map['btnForgotPass'] = _btnForgotPass;
+    map['textReg'] = _textReg;
+    map['btnReg'] = _btnReg;
     return map;
   }
 
 }
 
-/// status : "200"
+/// status : 200
 /// message : "success"
-/// modulename : "login"
+/// modulename : "Home"
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
 class Head {
   Head({
-    String? status,
+    int? status,
     String? message,
     String? modulename,}){
     _status = status;
@@ -178,17 +177,17 @@ class Head {
     _message = json['message'];
     _modulename = json['modulename'];
   }
-  String? _status;
+  int? _status;
   String? _message;
   String? _modulename;
-  Head copyWith({  String? status,
+  Head copyWith({  int? status,
     String? message,
     String? modulename,
   }) => Head(  status: status ?? _status,
     message: message ?? _message,
     modulename: modulename ?? _modulename,
   );
-  String? get status => _status;
+  int? get status => _status;
   String? get message => _message;
   String? get modulename => _modulename;
 

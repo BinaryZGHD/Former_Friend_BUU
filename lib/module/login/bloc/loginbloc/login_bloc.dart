@@ -53,7 +53,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
           ScreenLoginResponse screenLoginResponse =
               ScreenLoginResponse.fromJson(response.data);
 
-        if (screenLoginResponse.head?.status != 200) {
+        if (screenLoginResponse.head?.status == 200) {
             emit(LoginScreenInfoSuccessState(response: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
