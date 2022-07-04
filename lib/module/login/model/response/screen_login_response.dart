@@ -1,7 +1,9 @@
 import 'dart:convert';
+/// head : {"status":200,"message":"success","modulename":"Home"}
+/// body : {"screeninfo":{"btnChangeLang":"TH/EN","imgLogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"รหัสนิสิต/รหัสอาจารย์","edtPass":"รหัสผ่าน","btnLogin":"เข้าสู่ระบบ","btnForgotPass":"ลืมรหัสผ่าน?","textReg":"ไม่มีบัญชีใช่หรือไม่?","btnReg":"ลงทะเบียน"}}
 
-ScreenLoginResponse screenLoginResponseFromJson(String str) => ScreenLoginResponse.fromJson(json.decode(str));
-String sdsToJson(ScreenLoginResponse data) => json.encode(data.toJson());
+ScreenLoginResponse ScreenLoginResponseFromJson(String str) => ScreenLoginResponse.fromJson(json.decode(str));
+String ScreenLoginResponseToJson(ScreenLoginResponse data) => json.encode(data.toJson());
 class ScreenLoginResponse {
   ScreenLoginResponse({
     Head? head,
@@ -37,7 +39,7 @@ class ScreenLoginResponse {
 
 }
 
-/// screeninfo : {"btnChangeLang":"ไทย/อังกฤษ","imgLogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"รหัสนิสิต/รหัสอาจารย์","edtPass":"รหัสผ่าน","btnLogin":"เข้าสู่ระบบ","btnForgotPass":"ลืมรหัสผ่าน?","textReg":"ไม่มีบัญชีใช่หรือไม่?","btnReg":"ลงทะเบียน"}
+/// screeninfo : {"btnChangeLang":"TH/EN","imgLogo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png","edtID":"รหัสนิสิต/รหัสอาจารย์","edtPass":"รหัสผ่าน","btnLogin":"เข้าสู่ระบบ","btnForgotPass":"ลืมรหัสผ่าน?","textReg":"ไม่มีบัญชีใช่หรือไม่?","btnReg":"ลงทะเบียน"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -66,7 +68,7 @@ class Body {
 
 }
 
-/// btnChangeLang : "ไทย/อังกฤษ"
+/// btnChangeLang : "TH/EN"
 /// imgLogo : "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png"
 /// edtID : "รหัสนิสิต/รหัสอาจารย์"
 /// edtPass : "รหัสผ่าน"

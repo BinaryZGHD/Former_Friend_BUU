@@ -111,9 +111,9 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           ),
                           Center(
                               child: ChangeImageType(
-                            // urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imglogo}",
-                            urlimge_l:
-                                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
+                            urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imgLogo}",
+                            // urlimge_l:
+                            //     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
                           )),
                           // buildImge(),
                           SizedBox(
