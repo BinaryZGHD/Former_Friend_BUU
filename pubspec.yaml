@@ -46,6 +46,7 @@ dependencies:
   google_fonts: ^3.0.1
   url_launcher: ^6.1.3
   dio: ^4.0.6
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ flutter:
   assets:
     - assets/
     - assets/logo/132632.png
+    - assets/logo/Buulogo.png
     - assets/logo/
     - assets/logo/profile.png
     - assets/logo/135546170_3874022739315657_1820328025090151860_n.png

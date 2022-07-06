@@ -44,9 +44,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
     on<LoginScreenInfoEvent>((event, emit) async {
      
       try {
-        // emit(LoginLoading());
+        emit(LoginLoading());
         Response response = await getScreenLogin(event.userLanguage);
-        // emit(LoginEndLoading());
+        emit(LoginEndLoading());
         print("statusCode");
         print(response.statusCode);
         if (response.statusCode == 200) {
@@ -65,6 +65,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
         emit(LoginError(message: e.response?.statusMessage ?? ""));
       }
    
+    });
+    on<OnClickLanguageEvent>((event, emit) async {
+
+      try {
+        emit(LoginLoading());
+        Response response = await getScreenLogin(event.userLanguage);
+        emit(LoginEndLoading());
+        if (response.statusCode == 200) {
+          ScreenLoginResponse screenLoginResponse =
+              ScreenLoginResponse.fromJson(response.data);
+
+        if (screenLoginResponse.head?.status == 200) {
+            emit(OnClickLanguageLoginScreenInfoSuccessState(response: screenLoginResponse));
+          } else {
+            emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(LoginError(message: response.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(LoginError(message: e.response?.statusMessage ?? ""));
+      }
+
     });
   }
 }

@@ -21,9 +21,9 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
   Widget build(BuildContext context) {
 
 
-    context.read<HomemoreBloc>().add(HomeMoreFAQEvent());
+    context.read<MoreBloc>().add(HomeMoreFAQEvent());
 
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreFAQLoading) {
           showProgressDialog(context);
@@ -37,7 +37,7 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
         }
       },
       child: Scaffold(
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+        body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreFAQSuccessState) {
             _screenHomeMoreFAQResponse = state.responseFAQ;
             return  Scaffold(

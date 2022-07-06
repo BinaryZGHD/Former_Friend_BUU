@@ -8,6 +8,11 @@ class LoginScreenInfoEvent extends LoginEvent {
   LoginScreenInfoEvent({required this.userLanguage});
 }
 
+class OnClickLanguageEvent extends LoginEvent {
+  String userLanguage;
+  OnClickLanguageEvent({required this.userLanguage});
+}
+
 class LoginSummitEvent extends LoginEvent {
   String users;
   String password;

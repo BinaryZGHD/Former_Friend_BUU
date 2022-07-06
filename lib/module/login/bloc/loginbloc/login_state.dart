@@ -11,6 +11,12 @@ class LoginScreenInfoSuccessState extends LoginState{
   LoginScreenInfoSuccessState({required this.response});
 
 }
+class OnClickLanguageLoginScreenInfoSuccessState extends LoginState{
+  ScreenLoginResponse  response;
+
+  OnClickLanguageLoginScreenInfoSuccessState({required this.response});
+
+}
 
 
 
