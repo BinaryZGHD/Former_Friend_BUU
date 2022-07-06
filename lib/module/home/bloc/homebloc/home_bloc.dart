@@ -21,14 +21,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
         Response responseActivity = await getApiActivity();
         emit(HomeEndLoading());
         if (responseHome.statusCode == 200 && responseProfile.statusCode == 200 && responseActivity.statusCode == 200) {
-          ScreenHomeResponse screenLoginResponse = ScreenHomeResponse.fromJson(responseHome.data);
+          ScreenHomeResponse screenHomeResponse = ScreenHomeResponse.fromJson(responseHome.data);
           ApiProfileResponse apiProfileResponse = ApiProfileResponse.fromJson(responseProfile.data);
           ScreenStatusActivityResponse apiStatusActivityResponse = ScreenStatusActivityResponse.fromJson(responseActivity.data);
 
           if (responseHome.statusCode == 200 && responseProfile.statusCode == 200 && responseActivity.statusCode == 200) {
-            emit(HomeScreenInfoSuccessState(responseHome: screenLoginResponse, responseProfile: apiProfileResponse, responseActivity: apiStatusActivityResponse));
+            emit(HomeScreenInfoSuccessState(responseHome: screenHomeResponse, responseProfile: apiProfileResponse, responseActivity: apiStatusActivityResponse));
           } else {
-            emit(HomeError(message: screenLoginResponse.head?.message ?? ""));
+            emit(HomeError(message: screenHomeResponse.head?.message ?? ""));
           }
         } else {
           emit(HomeError(message: responseHome.statusMessage ?? ""));

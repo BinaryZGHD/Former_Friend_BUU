@@ -36,10 +36,10 @@ class _moreBoardListTeacherScreenState extends State<moreBoardListTeacherScreen>
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomemoreBloc>().add(HomeMoreBoardTeacherEvent());
+    context.read<MoreBloc>().add(HomeMoreBoardTeacherEvent());
     double width = MediaQuery.of(context).size.width;
     double height = 40.0;
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreBoardTeacherLoading) {
           showProgressDialog(context);
@@ -54,7 +54,7 @@ class _moreBoardListTeacherScreenState extends State<moreBoardListTeacherScreen>
         }
       },
       child: Scaffold(
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+        body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardTeacherSuccessState) {
             _screenHomeMoreBoardTeacherResponse = state.responseBoardTeacher;
             print(_screenHomeMoreBoardTeacherResponse?.body?.teacher?.teacherone?.length);

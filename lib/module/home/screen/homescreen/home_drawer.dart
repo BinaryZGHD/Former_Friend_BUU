@@ -265,18 +265,17 @@ _buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? _screenprof
           SizedBox(
             width: 10,
           ),
-          if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
-            CircleAvatar(
-              radius: 35.0,
-              backgroundImage: AssetImage(
-                'assets/logo/profile.png',
-              ),
+          _screenprofileResponse?.body?.profileGeneralInfo?.img != null
+              ? CircleAvatar(
+            radius: 35.0,
+            backgroundImage: NetworkImage("${_screenprofileResponse?.body?.profileGeneralInfo?.img}"),
+          )
+              : CircleAvatar(
+            radius: 35.0,
+            backgroundImage: AssetImage(
+              'assets/logo/profile.png',
             ),
-          if (_screenprofileResponse?.body?.profileGeneralInfo?.img != null)
-            CircleAvatar(
-              radius: 35.0,
-              backgroundImage: NetworkImage("${_screenprofileResponse?.body?.profileGeneralInfo?.img}"),
-            ),
+          ),
         ])
       ],
     ),

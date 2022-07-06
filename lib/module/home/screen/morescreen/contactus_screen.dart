@@ -23,9 +23,9 @@ class _contactUsScreenState extends State<contactUsScreen>with ProgressDialog {
   Widget build(BuildContext context) {
 
 
-    context.read<HomemoreBloc>().add(HomeMoreContactUsEvent());
+    context.read<MoreBloc>().add(HomeMoreContactUsEvent());
 
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreContactUsLoading) {
           showProgressDialog(context);
@@ -39,7 +39,7 @@ class _contactUsScreenState extends State<contactUsScreen>with ProgressDialog {
         }
       },
       child: Scaffold(
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+        body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreContactUsSuccessState) {
             _screenHomeMoreContactUsResponse = state.responseContactUs;
             return  Scaffold(

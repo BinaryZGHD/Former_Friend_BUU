@@ -23,9 +23,9 @@ class _pdpaScreenState extends State<pdpaScreen> with ProgressDialog {
   Widget build(BuildContext context) {
 
 
-    context.read<HomemoreBloc>().add(HomeMorePDPAEvent());
+    context.read<MoreBloc>().add(HomeMorePDPAEvent());
 
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMorePDPALoading) {
           showProgressDialog(context);
@@ -39,7 +39,7 @@ class _pdpaScreenState extends State<pdpaScreen> with ProgressDialog {
         }
       },
       child: Scaffold(
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+        body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMorePDPASuccessState) {
             _screenHomeMorePDPAResponse = state.responsePDPA;
             return Scaffold(

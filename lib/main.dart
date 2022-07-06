@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
     final changepasswordBloc = BlocProvider<ChangePasswordBloc>(create: (context) => ChangePasswordBloc());
     final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
     final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
-    final homemoreBloc = BlocProvider<HomemoreBloc>(create: (context) => HomemoreBloc());
+    final moreBloc = BlocProvider<MoreBloc>(create: (context) => MoreBloc());
 
     return MultiBlocProvider(
       providers: [
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         changepasswordBloc,
         profileBloc,
         actitivtyBloc,
-        homemoreBloc,
+        moreBloc,
         // moreboarBloc,
       ],
       child: MaterialApp(
