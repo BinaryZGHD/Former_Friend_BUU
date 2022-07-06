@@ -53,8 +53,8 @@ class _ProfileDropdownCareerDataTabState
                   ignoring: isunpressed,
                   child:
                   PopupMenuButton<String>(
-                    initialValue:
-                    userjobtypevalue,
+                    // initialValue:
+                    // userjobtypevalue,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
