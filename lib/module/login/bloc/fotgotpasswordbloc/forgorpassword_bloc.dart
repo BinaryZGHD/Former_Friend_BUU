@@ -19,12 +19,13 @@ class ForgorPasswordBloc extends Bloc<ForgorpasswordEvent, ForgorPasswordState> 
 
       try {
         emit(ForgotPasswordLoading());
-        Response response = await getScreenForgotPassword();
+        Response response = await getScreenForgotPassword(event.userLanguage);
         emit(ForgotPasswordEndLoading());
+
         if (response.statusCode == 200) {
           ScreenForgotPasswordResponse screenForgotPasswordResponse =
           ScreenForgotPasswordResponse.fromJson(response.data);
-          if (screenForgotPasswordResponse.head?.status == "200") {
+          if (screenForgotPasswordResponse.head?.status == 200) {
             emit(ForgotPasswordScreenInfoSuccessState(response: screenForgotPasswordResponse));
           } else {
             emit(ForgotPasswordError(message: screenForgotPasswordResponse.head?.message ?? ""));

@@ -11,6 +11,7 @@ import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgotpassword_response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class forgotPasswordScreen extends StatefulWidget {
   const forgotPasswordScreen({Key? key}) : super(key: key);
@@ -25,12 +26,24 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
   TextEditingController email = TextEditingController();
 
   String uservalue = " ";
-
+  late String userLanguage ;
   String emailvalue = " ";
+  @override
+  void initState() {
+    super.initState();
+    language();
+  }
+  language () async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userLanguage = prefs.getString('userLanguage')?? 'TH';
+    });
+    context.read<ForgorPasswordBloc>().add(ForgotPasswordScreenInfoEvent(userLanguage: userLanguage));
+  }
 
   @override
   Widget build(BuildContext context) {
-    context.read<ForgorPasswordBloc>().add(ForgotPasswordScreenInfoEvent());
+    // context.read<ForgorPasswordBloc>().add(ForgotPasswordScreenInfoEvent());
     return BlocListener<ForgorPasswordBloc, ForgorPasswordState>(
       listener: (context, state) {
         if (state is ForgotPasswordLoading) {

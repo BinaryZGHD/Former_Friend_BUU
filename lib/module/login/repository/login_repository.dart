@@ -8,7 +8,7 @@ class LoginRepository {
     return await MyDio.createDioServerTest().post("/ServiceTest/login/loginscreen",
         // queryParameters: {"Language": userLanguage} // for get
         data: jsonEncode({
-          "Language": userLanguage,
+          "Language": "$userLanguage",
         }) //for post
         );
   }

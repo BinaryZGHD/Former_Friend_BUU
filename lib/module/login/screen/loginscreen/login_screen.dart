@@ -18,6 +18,7 @@ import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_s
 import 'package:f2fbuu/module/login/screen/registerscreen/pdparegister_screen.dart';
 
 import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({Key? key}) : super(key: key);
@@ -29,23 +30,30 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> with ProgressDialog {
   ScreenLoginResponse? _screenLoginResponse;
   bool _isDefaultLanguage = true;
-  late String userLanguage;
-
+  late String valueLanguage;
+  String  userLanguage  = "TH" ;
   @override
   void initState() {
     super.initState();
-    userLanguage = "EN";
-    context.read<LoginBloc>().add(LoginScreenInfoEvent(userLanguage: userLanguage));
+    valueLanguage = "TH";
+    context.read<LoginBloc>().add(LoginScreenInfoEvent(userLanguage: valueLanguage));
   }
 
-  void _toggleLanguageView() {
+  void _toggleLanguageView()  async{
     setState(
       () {
         _isDefaultLanguage = !_isDefaultLanguage;
-        userLanguage = _isDefaultLanguage ? "TH" : "EN";
-        context.read<LoginBloc>().add(OnClickLanguageEvent(userLanguage: userLanguage));
+        valueLanguage = _isDefaultLanguage ? "TH" : "EN";
+        context.read<LoginBloc>().add(OnClickLanguageEvent(userLanguage: valueLanguage));
       },
     );
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userLanguage', "$valueLanguage");
+    setState(() {
+
+      userLanguage = prefs.getString('userLanguage')?? 'TH';
+      print(" value is $userLanguage");
+    });
   }
 
   @override
@@ -84,7 +92,6 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     TextEditingController passwordController = TextEditingController();
     String userID = "";
     String passw = "";
-    print(userLanguage);
 
     return Scaffold(
       body: SizedBox(
