@@ -190,10 +190,10 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.025,
                     ),
+          //context.read<LoginBloc>().add(LoginSubmitEvent( userID: userID,password: passw,));
                     Center(
                       child: ButtonCustom(
                         onPressed: () {
-                          context.read<LoginBloc>().add(LoginSubmitEvent( userID: userID,password: passw,));
                           dialogOneLineOneBtn(
                               context,
                               errloin +
@@ -235,8 +235,23 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           //   }
                           // });
 
+                          // context.read<LoginBloc>().add(LoginScreenInfoEvent());
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (context) => CustomDialogBox(
+                          //           onPressed: () {
+                          //             Navigator.of(context).pop(); // dialog
+                          //             Navigator.of(context).pop(); // login
+                          //             Navigator.of(context).pop(); // login
+                          //           },
+                          //           id: '',
+                          //           textfieldvalue: "userID  :" + userID + "\n" + "Password :" + passw,
+                          //           description: errloin + '\n \n ' + 'Do you want to continue?',
+                          //           mapscreen: HomeScreen(),
+                          //         ));
                         },
-                        label: "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
+                        label:
+                        "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
                         colortext: BC_ButtonText_style_Black,
                         colorbutton: BC_ButtonText_style_White,
                         sizetext: sizeTextBig20,
@@ -244,6 +259,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                         sizeborder: 10,
                       ),
                     ),
+
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.025,
                     ),
