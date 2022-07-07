@@ -20,7 +20,7 @@ class PdpaBloc extends Bloc<PdpaEvent, PdpaState> with PDPARepository{
 
       try {
         emit(PDPALoading());
-        Response response = await getScreenPDPA();
+        Response response = await getScreenPDPA(event.userLanguage);
         emit(PDPAEndLoading());
         if (response.statusCode == 200) {
           ScreenPDPAResponse screenForgotPasswordResponse =

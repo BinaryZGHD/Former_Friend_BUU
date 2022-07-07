@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
+import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:f2fbuu/module/login/repository/login_repository.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -14,16 +15,9 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
   LoginBloc() : super(LoginInitial()) {
-    on<LoginSummitEvent>((event, emit) {
-      if (event.users == "q" //&& event.password == "q"
-          ) {
-        emit(LoginStatusState(statuscheck: true));
-      } else {
-        emit(LoginStatusState(
-          statuscheck: false,
-        ));
-      }
-    });
+
+
+
     on<LoginRegisterEvent>((event, emit) {
       if (event.regstatus == true) {
         emit(LoginRegisterState(regstatus: true));
@@ -85,5 +79,39 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
       }
 
     });
+    on<LoginSubmitEvent>((event, emit) async{
+      try {
+        emit(LoginLoading());
+        Response responseLoginSubmit = await getSubmitLogin(event.userID, event.password);
+        print(responseLoginSubmit.statusCode);
+        print('response.statusCode  ${responseLoginSubmit.statusCode}');
+        emit(LoginEndLoading());
+        if (responseLoginSubmit.statusCode == 200) {
+          SunmitLoginResponse sunmitLoginResponse = SunmitLoginResponse.fromJson(responseLoginSubmit.data);
+          print('sunmitLoginResponse.head?.status ==  ${sunmitLoginResponse.head?.status}');
+          if (sunmitLoginResponse.head?.status == 200) {
+            if (sunmitLoginResponse.head?.message == "success") {
+              print("sunmitLoginResponse.head?.message == success ==  ${sunmitLoginResponse.head?.message}");
+              emit(LoginSubmitState(statusLoginSubmit: true));
+              print("LoginSubmitState(statusLoginSubmit: true)");
+            }
+
+            else {
+              emit(LoginSubmitState(statusLoginSubmit: false));
+              print("emit(LoginSubmitState(statusLoginSubmit: false));");
+            }
+          } else {
+            emit(LoginError(message: sunmitLoginResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(LoginError(message: responseLoginSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(LoginError(message: e.response?.statusMessage ?? ""));
+      }
+    });
+
+
+
   }
 }

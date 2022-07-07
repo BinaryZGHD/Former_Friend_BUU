@@ -11,6 +11,14 @@ class LoginRepository {
           "Language": "$userLanguage",
         }) //for post
         );
+  }  Future<Response> getSubmitLogin(String userID,String password) async {
+    return await MyDio.createDioServerTest().post("/ServiceTest/login/loginsubmit",
+        // queryParameters: {"Language": userLanguage} // for get
+        data: jsonEncode({
+          "userID": "string",
+          "password": "string"
+        }) //for post
+        );
   }
   // Future<Response> getScreenForgotPassword2() async {
   //   return await MyDio.createDio().post("/v1/api/modules/login/wording/forgotpassword");

@@ -12,6 +12,7 @@ import 'package:f2fbuu/module/login/screen/registerscreen/register_confrim_scree
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class registerScreen extends StatefulWidget {
   const registerScreen({Key? key}) : super(key: key);
@@ -21,6 +22,20 @@ class registerScreen extends StatefulWidget {
 }
 
 class _registerScreenState extends State<registerScreen>  with ProgressDialog {
+  late String userLanguage ;
+  @override
+  void initState() {
+    super.initState();
+    language();
+  }
+  language () async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userLanguage = prefs.getString('userLanguage')?? 'TH';
+    });
+    context.read<RegisterBloc>().add(RegisterScreenInfoEvent(userLanguage: userLanguage));
+  }
+
   ScreenRegisterResponse? _screenRegisterResponse;
   TextEditingController user = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -40,7 +55,7 @@ class _registerScreenState extends State<registerScreen>  with ProgressDialog {
 
   @override
   Widget build(BuildContext context) {
-    context.read<RegisterBloc>().add(RegisterScreenInfoEvent());
+    // context.read<RegisterBloc>().add(RegisterScreenInfoEvent());
 
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {

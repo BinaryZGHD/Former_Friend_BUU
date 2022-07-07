@@ -11,6 +11,7 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
@@ -23,12 +24,23 @@ class conditionPDPAScreen extends StatefulWidget {
 
 class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with ProgressDialog {
   ScreenPDPAResponse? _screenPDPAResponse;
+  late String userLanguage ;
   @override
+  void initState() {
+    super.initState();
+    language();
+  }
+  language () async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userLanguage = prefs.getString('userLanguage')?? 'TH';
+    });
+    context.read<PdpaBloc>().add(PDPAScreenInfoEvent(userLanguage: userLanguage));
+  }
 
 
   @override
   Widget build(BuildContext context) {
-    context.read<PdpaBloc>().add(PDPAScreenInfoEvent());
     return BlocListener<PdpaBloc, PdpaState>(
       listener: (context, state) {
         if (state is PDPALoading) {

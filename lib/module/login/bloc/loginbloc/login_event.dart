@@ -13,10 +13,10 @@ class OnClickLanguageEvent extends LoginEvent {
   OnClickLanguageEvent({required this.userLanguage});
 }
 
-class LoginSummitEvent extends LoginEvent {
-  String users;
+class LoginSubmitEvent extends LoginEvent {
+  String userID;
   String password;
-  LoginSummitEvent({required this.users, required this.password});
+  LoginSubmitEvent({required this.userID, required this.password});
 }
 
 class LoginRegisterEvent extends LoginEvent {

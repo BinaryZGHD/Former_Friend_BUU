@@ -26,8 +26,10 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
   TextEditingController email = TextEditingController();
 
   String uservalue = " ";
-  late String userLanguage ;
+
   String emailvalue = " ";
+
+  late String userLanguage ;
   @override
   void initState() {
     super.initState();
