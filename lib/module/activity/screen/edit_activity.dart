@@ -5,12 +5,14 @@ import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker_for_edit.dart';
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
+import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -168,11 +170,25 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                         ),
                         Center(child: ButtonCustom(
                           label: "  "+"${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}"+"  ",
-                          colortext: TC_Black,
-                          colorbutton: Colors.white,
+                          colortext: BC_ButtonText_style_Black,
+                          colorbutton: BC_ButtonText_style_White,
                           sizetext: sizeTextBig20,
-                          colorborder: Colors.black,
-                          sizeborder: 1,),),
+                          colorborder: BC_ButtonText_style_Black_Boarder,
+                          sizeborder: 10,
+                          onPressed: () {
+                            dialogOneLineOneBtn(
+                                context,  'Do you want to continue?',
+                                "OK", onClickBtn: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  // int index = int.parse(widget.id);
+                                  return HomeScreen();
+                                }),
+                              );
+                            });
+                          },
+                        ),),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),

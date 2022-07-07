@@ -1,6 +1,7 @@
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
+import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
 import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'module/home/bloc/homebloc/home_bloc.dart';
 
 import 'package:flutter/services.dart';
@@ -60,7 +62,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            // primarySwatch: Colors.blue,
+            primarySwatch: white,
             scaffoldBackgroundColor: Colors.white,
             textTheme: GoogleFonts.notoSerifThaiTextTheme(
               Theme.of(context).textTheme,
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
           ),
           // home: HomeScreen(),
           routes: {
-            '/': (context) => HomeScreen(),
+            '/': (context) => loginScreen(),
           }
           // home: ProfileScreen(),
 ///////////////////////
@@ -89,3 +91,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+const MaterialColor white = const MaterialColor(
+  0xFFFFFFFF,
+  const <int, Color>{
+    50: const Color(0xFFFFFFFF),
+    100: const Color(0xFFFFFFFF),
+    200: const Color(0xFFFFFFFF),
+    300: const Color(0xFFFFFFFF),
+    400: const Color(0xFFFFFFFF),
+    500: const Color(0xFFFFFFFF),
+    600: const Color(0xFFFFFFFF),
+    700: const Color(0xFFFFFFFF),
+    800: const Color(0xFFFFFFFF),
+    900: const Color(0xFFFFFFFF),
+  },
+);

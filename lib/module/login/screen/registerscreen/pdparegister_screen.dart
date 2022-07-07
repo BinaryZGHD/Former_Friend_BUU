@@ -115,9 +115,9 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
                               child: ButtonCustom(
                                 label: "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
                                 colortext: BC_ButtonText_style_White,
-                                colorbutton: BC_ButtonText_style_Black,
+                                colorbutton: BC_ButtonText_style_Red,
                                 sizetext: sizeTextBig20,
-                                colorborder: BC_ButtonText_style_Black,
+                                colorborder: BC_ButtonText_style_Red_Boarder,
                                 sizeborder: 10,
                                 onPressed: () {
                                   dialogOneLineTwoBtn(

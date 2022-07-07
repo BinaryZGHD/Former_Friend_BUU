@@ -1,3 +1,4 @@
+import 'package:f2fbuu/customs/button/buildbuttoncustom.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,23 @@ class loginScreen extends StatefulWidget {
 
 class _loginScreenState extends State<loginScreen> with ProgressDialog {
   ScreenLoginResponse? _screenLoginResponse;
+  bool _isDefaultLanguage = true;
+  late String userLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    userLanguage = "TH";
+  }
+
+  void _toggleLanguageView() {
+    setState(
+      () {
+        _isDefaultLanguage = !_isDefaultLanguage;
+        userLanguage = _isDefaultLanguage ? "TH" : "EN";
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +52,10 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     TextEditingController passwordController = TextEditingController();
     String userID = "";
     String passw = "";
-
-    context.read<LoginBloc>().add(LoginScreenInfoEvent());
+    print(userLanguage);
+    context
+        .read<LoginBloc>()
+        .add(LoginScreenInfoEvent(userLanguage: userLanguage));
 
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
@@ -64,27 +84,36 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.05,
-                              ),
-                              Icon(
-                                Icons.language,
-                                size: sizeText18,
-                              ),
-                              Text(
-                                "${_screenLoginResponse?.body?.screeninfo?.btnchangelang}",
-                                style: TextStyle(fontSize: sizeText18),
-                              ),
-                            ],
-                          ),
+                          GestureDetector(
+                              onTap: _toggleLanguageView,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.language,
+                                    color: Colors.black,
+                                    size: 18,
+                                  ),
+                                  Text(
+                                      "  ${_screenLoginResponse?.body?.screeninfo?.btnChangeLang}" +
+                                          "   userLanguage = " +
+                                          userLanguage,
+                                      style: TextStyle(
+                                          // decoration: TextDecoration.underline,
+                                          color: Colors.black,
+                                          // decorationColor: linktextcolor,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14)),
+                                ],
+                              )),
+
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05,
                           ),
                           Center(
                               child: ChangeImageType(
-                            urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imglogo}",
+                            urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imgLogo}",
+                            // urlimge_l:
+                            //     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
                           )),
                           // buildImge(),
                           SizedBox(
@@ -96,7 +125,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               userID = value;
                               print("userID  login == " + userID);
                             },
-                            hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtID}",
+                            hint_label:
+                                "${_screenLoginResponse?.body?.screeninfo?.edtID}",
                             textInputType: TextInputType.text,
                           ),
                           buildTextFieldPasswordCustom(
@@ -105,7 +135,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               passw = value;
                               print("passwordController login  == " + value);
                             },
-                            hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtpass}",
+                            hint_label:
+                                "${_screenLoginResponse?.body?.screeninfo?.edtPass}",
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.025,
@@ -118,7 +149,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             //   // print("User :" + userID + "\n" + "Password :" + passw);
                             //   // print(event.number);
                             // },
-                            linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnforgotpass}",
+                            linklabel:
+                                "${_screenLoginResponse?.body?.screeninfo?.btnForgotPass}",
                             mapscreen: forgotPasswordScreen(),
                             linktextcolor: TC_forgot,
                             sizetext: sizeTextSmaller14,
@@ -131,8 +163,11 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             child: ButtonCustom(
                               onPressed: () {
                                 dialogOneLineOneBtn(
-                                    context, errloin + '\n \n ' + 'Do you want to continue?',
-                                     "OK", onClickBtn: () {
+                                    context,
+                                    errloin +
+                                        '\n \n ' +
+                                        'Do you want to continue?',
+                                    "OK", onClickBtn: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) {
@@ -183,7 +218,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                                 //           mapscreen: HomeScreen(),
                                 //         ));
                               },
-                              label: "  ${_screenLoginResponse?.body?.screeninfo?.btnlogin}  ",
+                              label:
+                                  "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
                               colortext: BC_ButtonText_style_Black,
                               colorbutton: BC_ButtonText_style_White,
                               sizetext: sizeTextBig20,
@@ -199,12 +235,15 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${_screenLoginResponse?.body?.screeninfo?.textreg} ",
+                                "${_screenLoginResponse?.body?.screeninfo?.textReg} ",
                                 style: TextStyle(
-                                    fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
+                                    fontSize: sizeTextSmall16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300),
                               ),
                               TextLinkToScreenCustom(
-                                linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
+                                linklabel:
+                                    "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
                                 mapscreen: conditionPDPAScreen(),
                                 linktextcolor: TC_regiter,
                                 sizetext: sizeTextSmall16,

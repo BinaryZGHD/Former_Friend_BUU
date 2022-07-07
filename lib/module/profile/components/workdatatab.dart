@@ -89,8 +89,8 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                       ignoring: isunpressed,
                       child:
                       PopupMenuButton<String>(
-                        initialValue:
-                        itemvalue,
+                        // initialValue:
+                        // itemvalue,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

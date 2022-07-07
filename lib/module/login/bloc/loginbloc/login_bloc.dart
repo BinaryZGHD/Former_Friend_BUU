@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
@@ -42,13 +44,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
     on<LoginScreenInfoEvent>((event, emit) async {
      
       try {
-        emit(LoginLoading());
-        Response response = await getScreenLogin();
-        emit(LoginEndLoading());
+        // emit(LoginLoading());
+        Response response = await getScreenLogin(event.userLanguage);
+        // emit(LoginEndLoading());
+        print("statusCode");
+        print(response.statusCode);
         if (response.statusCode == 200) {
           ScreenLoginResponse screenLoginResponse =
               ScreenLoginResponse.fromJson(response.data);
-          if (screenLoginResponse.head?.status == "200") {
+
+        if (screenLoginResponse.head?.status == 200) {
             emit(LoginScreenInfoSuccessState(response: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
