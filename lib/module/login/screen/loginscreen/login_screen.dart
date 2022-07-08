@@ -194,6 +194,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                     Center(
                       child: ButtonCustom(
                         onPressed: () {
+                          // context.read<LoginBloc>().add(LoginSubmitEvent( userID: userID,password: passw,));
+                          //--------------------------------------------------//
                           dialogOneLineOneBtn(
                               context,
                               errloin +
@@ -208,7 +210,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                               }),
                             );
                           });
-
+//--------------------------------------------------------------------------//
                           // dialogOneLineTwoBtn(
                           //     context,
                           //     errpdpadecline +

@@ -1,6 +1,6 @@
 import 'dart:convert';
 /// head : {"status":200,"message":"susccess","module":"profile"}
-/// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status"},"profile_general_info":{"name":"คณิศาสตร์","surname":"สถิติวิชาการ","nickname":"AKA คำฝอย","stu_code":"6203XXXXX","gen":"X6","genname":"กรีนทีมัทฉะลาเต้","gencolor":"#9ED9C5","studentid":"6203XXXXX","email":"StudentCodeID@morebuu.ac.th","role":"Student","img":"https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_screeninfo":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]},"profile_career_info":{"company":"Burapha company","attention":"อื่นๆ","status":"ว่างงาน","jobtype":"อื่นๆ","userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}}
+/// body : {"screeninfo":{"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textjobtype":"Job type","textstatus":"Status"},"profile_general_info":{"name":"คณิศาสตร์","surname":"สถิติวิชาการ","nickname":"AKA คำฝอย","stu_code":"6203XXXXX","gen":"X6","genname":"กรีนทีมัทฉะลาเต้","gencolor":"#9ED9C5","studentid":"6203XXXXX","email":"StudentCodeID@morebuu.ac.th","role":"Student","img":"https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"},"profile_edu_info":{"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"},"profile_address_info":{"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"},"profile_contact_info":{"phone":"085-123-4567","line":"@scimath","facebook":"scimathface","instagram":"scimathig","twitter":"scimathtwitter","youtube":"scimathutube"},"profile_career_screeninfo":{"attention":[{"attenname":"อื่นๆ"},{"attenname":"คอมพิวเตอร์ "},{"attenname":"ครู"},{"attenname":"ประกันภัย"},{"attenname":"สถิติ"},{"attenname":"ค้าขาย"},{"attenname":"อื่นๆ ครับ"}],"status":[{"statusname":"อื่นๆ"},{"statusname":"ศึกษาต่อ"},{"statusname":"ว่างงาน"},{"statusname":"มีงานทำ"},{"statusname":"กำลังจะมีงานทำ"},{"statusname":"อื่นๆ ครับครับ"}],"jobtype":[{"jobname":"0"},{"jobname":"1"},{"jobname":"2"},{"jobname":"อื่นๆ"},{"jobname":"อื่นๆ ครับครับครับ"}]},"profile_career_info":{"company":"Burapha company","attention":"อื่นๆ","status":"ว่างงาน","jobtype":"อื่นๆ","userworkplace":"BURAPHA Univer ครับ","usercareer":"Developer ครับ","usercompany":"Burapha company ครับ","userattention":"อื่นๆ ครับ","userstatus":"อื่นๆ ครับครับ","userjobtype":"อื่นๆ ครับครับครับ"}}
 
 ApiProfileResponse apiProfileFromJson(String str) => ApiProfileResponse.fromJson(json.decode(str));
 String apiProfileToJson(ApiProfileResponse data) => json.encode(data.toJson());
@@ -39,7 +39,7 @@ ApiProfileResponse copyWith({  Head? head,
 
 }
 
-/// screeninfo : {"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textJobtype":"Job type ","textemp":"Employed","textunemp":"Unemployed","textfustud":"Futher study","textstudying":"Studying","textstatus":"Status"}
+/// screeninfo : {"titleprofile":"Profile","subtitlegeninfor":"General information","subtitlecont":"Contact","subtitleeduinfo":"Education information","subtitleaddress":"Address","subtitleworkinfo":"Career","textedit":"Edit","textsave":"Save","textname":"Name","textlname":"Lastname","textnickname":"Nickname","textstdcode":"Student code","textgen":"Generation","texttel":"Tel","textfac":"Faculty","textdepart":"Department","textmajor":"Major","textgpaju":"GPA (Junior high school)","textgpase":"GPA (Senior high school)","textgpaba":"GPA (Bachelor degree)","texthousenumber":"House no.","textmoo":"Moo","textsoi":"Soi","textroad":"Road","textsubdistrict":"Subdistrict","textdistrict":"District","textprovince":"Province","textzipcode":"Zip code","subtitleworkplace":"Work place","textcomp":"Company","textatt":"Attention","textcareer":"Career","textjobtype":"Job type","textstatus":"Status"}
 /// profile_general_info : {"name":"คณิศาสตร์","surname":"สถิติวิชาการ","nickname":"AKA คำฝอย","stu_code":"6203XXXXX","gen":"X6","genname":"กรีนทีมัทฉะลาเต้","gencolor":"#9ED9C5","studentid":"6203XXXXX","email":"StudentCodeID@morebuu.ac.th","role":"Student","img":"https://yt3.ggpht.com/ytc/AKedOLTXeB8sshQ0AhZ-1HO4OSR37QHjsXtyXWLf7ZYi=s900-c-k-c0x00ffffff-no-rj"}
 /// profile_edu_info : {"faculty":"Science","department":"Mathematics","major":" Math","gpa_bd":"4.00 ","gpa_jhs":"4.00","gpa_shs":"4.00"}
 /// profile_address_info : {"number":"156/4","moo":"-","soi":"-","road":"-","subdistrict":"-","district":"-","province":"-","zipcode":"12345"}
@@ -772,11 +772,7 @@ ProfileGeneralInfo copyWith({  String? name,
 /// textcomp : "Company"
 /// textatt : "Attention"
 /// textcareer : "Career"
-/// textJobtype : "Job type "
-/// textemp : "Employed"
-/// textunemp : "Unemployed"
-/// textfustud : "Futher study"
-/// textstudying : "Studying"
+/// textjobtype : "Job type"
 /// textstatus : "Status"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
@@ -815,11 +811,7 @@ class Screeninfo {
       String? textcomp, 
       String? textatt, 
       String? textcareer, 
-      String? textJobtype, 
-      String? textemp, 
-      String? textunemp, 
-      String? textfustud, 
-      String? textstudying, 
+      String? textjobtype, 
       String? textstatus,}){
     _titleprofile = titleprofile;
     _subtitlegeninfor = subtitlegeninfor;
@@ -853,11 +845,7 @@ class Screeninfo {
     _textcomp = textcomp;
     _textatt = textatt;
     _textcareer = textcareer;
-    _textJobtype = textJobtype;
-    _textemp = textemp;
-    _textunemp = textunemp;
-    _textfustud = textfustud;
-    _textstudying = textstudying;
+    _textjobtype = textjobtype;
     _textstatus = textstatus;
 }
 
@@ -894,11 +882,7 @@ class Screeninfo {
     _textcomp = json['textcomp'];
     _textatt = json['textatt'];
     _textcareer = json['textcareer'];
-    _textJobtype = json['textJobtype'];
-    _textemp = json['textemp'];
-    _textunemp = json['textunemp'];
-    _textfustud = json['textfustud'];
-    _textstudying = json['textstudying'];
+    _textjobtype = json['textjobtype'];
     _textstatus = json['textstatus'];
   }
   String? _titleprofile;
@@ -933,11 +917,7 @@ class Screeninfo {
   String? _textcomp;
   String? _textatt;
   String? _textcareer;
-  String? _textJobtype;
-  String? _textemp;
-  String? _textunemp;
-  String? _textfustud;
-  String? _textstudying;
+  String? _textjobtype;
   String? _textstatus;
 Screeninfo copyWith({  String? titleprofile,
   String? subtitlegeninfor,
@@ -971,11 +951,7 @@ Screeninfo copyWith({  String? titleprofile,
   String? textcomp,
   String? textatt,
   String? textcareer,
-  String? textJobtype,
-  String? textemp,
-  String? textunemp,
-  String? textfustud,
-  String? textstudying,
+  String? textjobtype,
   String? textstatus,
 }) => Screeninfo(  titleprofile: titleprofile ?? _titleprofile,
   subtitlegeninfor: subtitlegeninfor ?? _subtitlegeninfor,
@@ -1009,11 +985,7 @@ Screeninfo copyWith({  String? titleprofile,
   textcomp: textcomp ?? _textcomp,
   textatt: textatt ?? _textatt,
   textcareer: textcareer ?? _textcareer,
-  textJobtype: textJobtype ?? _textJobtype,
-  textemp: textemp ?? _textemp,
-  textunemp: textunemp ?? _textunemp,
-  textfustud: textfustud ?? _textfustud,
-  textstudying: textstudying ?? _textstudying,
+  textjobtype: textjobtype ?? _textjobtype,
   textstatus: textstatus ?? _textstatus,
 );
   String? get titleprofile => _titleprofile;
@@ -1048,11 +1020,7 @@ Screeninfo copyWith({  String? titleprofile,
   String? get textcomp => _textcomp;
   String? get textatt => _textatt;
   String? get textcareer => _textcareer;
-  String? get textJobtype => _textJobtype;
-  String? get textemp => _textemp;
-  String? get textunemp => _textunemp;
-  String? get textfustud => _textfustud;
-  String? get textstudying => _textstudying;
+  String? get textjobtype => _textjobtype;
   String? get textstatus => _textstatus;
 
   Map<String, dynamic> toJson() {
@@ -1089,11 +1057,7 @@ Screeninfo copyWith({  String? titleprofile,
     map['textcomp'] = _textcomp;
     map['textatt'] = _textatt;
     map['textcareer'] = _textcareer;
-    map['textJobtype'] = _textJobtype;
-    map['textemp'] = _textemp;
-    map['textunemp'] = _textunemp;
-    map['textfustud'] = _textfustud;
-    map['textstudying'] = _textstudying;
+    map['textjobtype'] = _textjobtype;
     map['textstatus'] = _textstatus;
     return map;
   }

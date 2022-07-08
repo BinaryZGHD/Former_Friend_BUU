@@ -79,7 +79,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           textleft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
           statusarray: dataFromAPI?.body?.profileCareerScreeninfo?.status??[],
           userstatusvalue: dataFromAPI?.body?.profileCareerInfo?.userstatus??"",
-          jobtextleft: '${dataFromAPI?.body?.screeninfo?.textJobtype}',
+          jobtextleft: '${dataFromAPI?.body?.screeninfo?.textjobtype}',
           jobtypearray: dataFromAPI?.body?.profileCareerScreeninfo?.jobtype??[],
           userjobvalue: dataFromAPI?.body?.profileCareerInfo?.userjobtype??"",
           subtitleworkplace: '${dataFromAPI?.body?.screeninfo?.subtitleworkplace}',

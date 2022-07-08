@@ -13,6 +13,7 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
+    String namevalue = "";
     return Column(
       children: [
         Container(
@@ -54,7 +55,11 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
         ProfileGeneralDataTab(
           isunpressed: isunpressed,
           textleft: '${dataFromAPI?.body?.screeninfo?.textname}',
-          textright: '${dataFromAPI?.body?.profileGeneralInfo?.name}'
+          textright: '${dataFromAPI?.body?.profileGeneralInfo?.name}',
+            onChange: (value){
+              namevalue = value;
+              print(namevalue);
+            },
         ),
         ProfileGeneralDataTab(
             isunpressed: isunpressed,
@@ -86,12 +91,14 @@ class ProfileGeneralDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
   final bool isunpressed;
+  final ValueChanged<String>? onChange;
 
   ProfileGeneralDataTab(
       {Key? key,
       required this.textleft,
       required this.textright,
-      required this.isunpressed})
+      required this.isunpressed,
+               this.onChange})
       : super(key: key);
 
   @override
@@ -104,7 +111,7 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
     String textleft = widget.textleft;
     String textright = widget.textright;
     bool ispressed = widget.isunpressed;
-    String texttest = 'testtesttest';
+    String uservalue;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -131,6 +138,7 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
                     border: InputBorder.none,
                   ),
                   initialValue: textright,
+                  onChanged: widget.onChange,
                 ),
               ),
             ),
