@@ -19,8 +19,8 @@ class OnClickLanguageLoginScreenInfoSuccessState extends LoginState{
 }
 class LoginSubmitState extends LoginState {
   SunmitLoginResponse responseLoginscreen;
-  bool statusLoginSubmit  ;
-  LoginSubmitState({required this.statusLoginSubmit, required this.responseLoginscreen});
+
+  LoginSubmitState({ required this.responseLoginscreen});
 
 }
 
