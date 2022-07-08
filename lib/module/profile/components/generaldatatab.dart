@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../model/response/api_profile.dart';
 class ProfileGeneralDataHead extends StatefulWidget {
@@ -65,12 +66,12 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             textleft: '${dataFromAPI?.body?.screeninfo?.textnickname}',
             textright: '${dataFromAPI?.body?.profileGeneralInfo?.nickname}'
         ),
-        ProfileGeneralDataTab(
+        ProfileGeneralDataReadonlyTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textstdcode}',
             textright: '${dataFromAPI?.body?.profileGeneralInfo?.stuCode}'
         ),
-        ProfileGeneralDataTab(
+        ProfileGeneralDataReadonlyTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgen}',
             textright: '${dataFromAPI?.body?.profileGeneralInfo?.gen}'
@@ -124,6 +125,67 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
                   autofocus: false,
                   style: TextStyle(fontSize: 18, color: Colors.black),
                   readOnly: ispressed,
+                  // readOnly: true,
+                  textAlign: TextAlign.right,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                  initialValue: textright,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+///////////////////////////////////////////////////////////////////////////////
+class ProfileGeneralDataReadonlyTab extends StatefulWidget {
+  final String textleft;
+  final String textright;
+  final bool isunpressed;
+
+  ProfileGeneralDataReadonlyTab(
+      {Key? key,
+        required this.textleft,
+        required this.textright,
+        required this.isunpressed})
+      : super(key: key);
+
+  @override
+  State<ProfileGeneralDataReadonlyTab> createState() => _ProfileGeneralDataReadonlyTabState();
+}
+
+class _ProfileGeneralDataReadonlyTabState extends State<ProfileGeneralDataReadonlyTab> {
+  @override
+  Widget build(BuildContext context) {
+    String textleft = widget.textleft;
+    String textright = widget.textright;
+    bool ispressed = widget.isunpressed;
+    String texttest = 'testtesttest';
+    return Container(
+      decoration: BoxDecoration(
+        color: HexColor('#f5f5f5'),
+        border: Border(
+            top: BorderSide(width: 1, color: Colors.black12),
+            bottom: BorderSide(width: 1, color: Colors.black12)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          children: [
+            Text(
+              textleft + ' ',
+              style: TextStyle(fontSize: 18),
+            ),
+            Expanded(
+              child: Container(
+                child: TextFormField(
+                  autofocus: false,
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  // readOnly: ispressed,
+                  readOnly: true,
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     border: InputBorder.none,
