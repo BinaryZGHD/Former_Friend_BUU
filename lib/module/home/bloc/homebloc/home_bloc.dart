@@ -19,13 +19,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
         Response responseHome = await getScreenHome();
         Response responseProfile = await getApiProfile();
         Response responseActivity = await getApiActivity();
+        print("responseHome  = $responseHome");
+        print("responseProfile=  $responseProfile");
+        print("responseActivity=  $responseActivity");
         emit(HomeEndLoading());
         if (responseHome.statusCode == 200 && responseProfile.statusCode == 200 && responseActivity.statusCode == 200) {
           ScreenHomeResponse screenHomeResponse = ScreenHomeResponse.fromJson(responseHome.data);
           ApiProfileResponse apiProfileResponse = ApiProfileResponse.fromJson(responseProfile.data);
           ScreenStatusActivityResponse apiStatusActivityResponse = ScreenStatusActivityResponse.fromJson(responseActivity.data);
 
-          if (responseHome.statusCode == 200 && responseProfile.statusCode == 200 && responseActivity.statusCode == 200) {
+          if (screenHomeResponse.head?.status == 200 && apiStatusActivityResponse.head?.status == 200 && apiStatusActivityResponse.head?.status == 200) {
             emit(HomeScreenInfoSuccessState(responseHome: screenHomeResponse, responseProfile: apiProfileResponse, responseActivity: apiStatusActivityResponse));
           } else {
             emit(HomeError(message: screenHomeResponse.head?.message ?? ""));

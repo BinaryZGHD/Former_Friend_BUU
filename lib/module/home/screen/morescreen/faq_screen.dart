@@ -5,6 +5,28 @@ import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_faq_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+class Item {
+  Item({
+    required this.expandedValue,
+    required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List<Item>.generate(
+      20, (int index) {
+    return Item(
+      headerValue: " I have App with : ${index +1 }",
+      expandedValue: 'คำตอบ $index',
+    );
+  });
+}
+
 
 class faqScreen extends StatefulWidget {
   final String title;
@@ -17,6 +39,7 @@ class faqScreen extends StatefulWidget {
 class _faqScreenState extends State<faqScreen> with ProgressDialog {
   ScreenHomeMoreFAQResponse? _screenHomeMoreFAQResponse;
 
+  final List<Item> _data = generateItems(18);
   @override
   Widget build(BuildContext context) {
 
@@ -54,7 +77,7 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
                     color: Colors.black,
                   ),
                 ),
-                title: Text(widget.title,
+                title: Text(widget.title +"${_screenHomeMoreFAQResponse?.body?.faq?.length}",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
@@ -62,7 +85,12 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
                 ),
               ),
               body: SafeArea(
-                child: commingSoonScreen(),
+                child: SingleChildScrollView(
+                  child: Container(
+
+                    child: _buildPanel(),
+                  ),
+                ),
               ),
             );
           } else {
@@ -71,7 +99,35 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
         }),
       ),
     );
+
+  }
+
+  Widget _buildPanel() {
+
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
+          },
+          body: ListTile(
+            title: Text(item.expandedValue),
+            subtitle:
+            const Text('To delete this panel,\n tap \n the trash can iconTo delete this panel,\n tap \n the trash can iconTo delete this panel,\n tap \n the trash can iconTo delete this panel,\n tap \n the trash can icon'),
+          ),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
+    );
   }
 }
+
 
 

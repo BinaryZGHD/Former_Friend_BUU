@@ -12,15 +12,15 @@ class LoginScreenInfoSuccessState extends LoginState{
 
 }
 class OnClickLanguageLoginScreenInfoSuccessState extends LoginState{
-  ScreenLoginResponse  response;
+  ScreenLoginResponse  responseLoginscreen;
 
-  OnClickLanguageLoginScreenInfoSuccessState({required this.response});
+  OnClickLanguageLoginScreenInfoSuccessState({required this.responseLoginscreen});
 
 }
 class LoginSubmitState extends LoginState {
-
+  SunmitLoginResponse responseLoginscreen;
   bool statusLoginSubmit  ;
-  LoginSubmitState({required this.statusLoginSubmit});
+  LoginSubmitState({required this.statusLoginSubmit, required this.responseLoginscreen});
 
 }
 

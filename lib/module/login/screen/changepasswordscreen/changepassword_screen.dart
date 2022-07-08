@@ -88,6 +88,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           currentpasswordvalue = value;
                         },
                         hint_label: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcurrentpass}",
+                        textInputType: TextInputType.text,
                       ),
                       buildTextFieldPasswordCustom(
                         textEditingController: newpasswordController,
@@ -95,6 +96,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           newpasswordvalue = value;
                         },
                         hint_label: "${_screenchangepasswordResponse?.body?.screeninfo?.edtnewpass}",
+                        textInputType: TextInputType.text,
                       ),
                       buildTextFieldPasswordCustom(
                         textEditingController: confirmpasswordController,
@@ -102,6 +104,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           passwordvalue = value;
                         },
                         hint_label: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcpass}",
+                        textInputType: TextInputType.text,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
