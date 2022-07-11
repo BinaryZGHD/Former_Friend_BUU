@@ -149,6 +149,7 @@ class _registerScreenState extends State<registerScreen>  with ProgressDialog {
                           passwordvalue = value;
                         },
                         hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtpassreg}",
+                        textInputType: TextInputType.text,
                       ),
                       buildTextFieldPasswordCustom(
                         textEditingController: confirmpassword,
@@ -156,6 +157,7 @@ class _registerScreenState extends State<registerScreen>  with ProgressDialog {
                           confirmpasswordvalue = value;
                         },
                         hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtcpassreg}",
+                        textInputType: TextInputType.text,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,

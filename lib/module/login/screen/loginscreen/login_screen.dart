@@ -1,10 +1,8 @@
-import 'package:f2fbuu/customs/button/buildbuttoncustom.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:f2fbuu/customs/Imge/changimgetype.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/dialog/texterror.dart';
@@ -17,7 +15,6 @@ import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
 import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
 import 'package:f2fbuu/module/login/screen/registerscreen/pdparegister_screen.dart';
-
 import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,8 +27,9 @@ class loginScreen extends StatefulWidget {
 
 class _loginScreenState extends State<loginScreen> with ProgressDialog {
   ScreenLoginResponse? _screenLoginResponse;
-  // SunmitLoginResponse? _loginSubmitResponse;
-  late bool statusLoginSubmit ;
+  SunmitLoginResponse? _loginSubmitResponse;
+
+  late bool statusLoginSubmit;
   bool _isDefaultLanguage = true;
   late String valueLanguage;
   String userLanguage = "TH";
@@ -57,33 +55,55 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
       print(" value is $userLanguage");
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
-      if (state is LoginLoading) {
-        showProgressDialog(context);
-      }
-      if (state is LoginEndLoading) {
-        hideProgressDialog(context);
-      }
-      if (state is LoginError) {
-        // show dialog error
-        print(state.message);
-      }
-    },
-        child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+    return BlocConsumer<LoginBloc, LoginState>(
+      listener: (context, state) {
+        if (state is LoginLoading) {
+          showProgressDialog(context);
+        }
+        if (state is LoginEndLoading) {
+          hideProgressDialog(context);
+        }
+        if (state is LoginError) {
+          // show dialog error
+          dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+            Navigator.of(context).pop();
+          });
+          print(state.message);
+        }
+        if (state  is LoginSubmitState){
+          _loginSubmitResponse = state.responseLoginscreen;
+            Navigator.push(
+              context,MaterialPageRoute(
+                builder: (context) => HomeScreen(
+                  screenLoginResponse: _loginSubmitResponse,
+                )
+            )
+            );
+
+
+        }
+
+      },
+      builder: (context, state) {
         if (state is LoginScreenInfoSuccessState) {
-        _screenLoginResponse = state.response;
-        return buildContent(context);
-      } else if (state is OnClickLanguageLoginScreenInfoSuccessState) {
-        _screenLoginResponse = state.response;
-        return buildContent(context);
-      }
-      return Scaffold(body: Container());
-    }
-    ),
+          _screenLoginResponse = state.response;
+          return buildContent(context);
+        }
+        else if (state is OnClickLanguageLoginScreenInfoSuccessState) {
+          _screenLoginResponse = state.responseLoginscreen;
+          return buildContent(context);
+        }
 
-
+        return Scaffold(body: Container(
+          color: Colors.white,
+        ));
+      },
+      buildWhen: (context, state) {
+        return state is LoginScreenInfoSuccessState || state is OnClickLanguageLoginScreenInfoSuccessState;
+      },
     );
   }
 
@@ -93,7 +113,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     TextEditingController userController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     String userID = "";
-    String passw = "";
+    String password = "";
 
     return Scaffold(
       body: SizedBox(
@@ -150,12 +170,12 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                             ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
+                      height: 10,
                     ),
                     buildTextFieldCustom(
                       textEditingController: userController,
-                      onChanged: (value) {
-                        userID = value;
+                      onChanged: (valueuserID) {
+                        userID = valueuserID;
                         print("userID  login == " + userID);
                       },
                       hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtID}",
@@ -163,14 +183,15 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                     ),
                     buildTextFieldPasswordCustom(
                       textEditingController: passwordController,
-                      onChanged: (value) {
-                        passw = value;
-                        print("passwordController login  == " + value);
+                      onChanged: (valuepassword) {
+                        password = valuepassword;
+                        print("passwordController login  == " + password);
                       },
                       hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtPass}",
+                      textInputType: TextInputType.text,
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.025,
+                      height: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
@@ -188,29 +209,18 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.025,
+                      height: 10,
                     ),
-          //context.read<LoginBloc>().add(LoginSubmitEvent( userID: userID,password: passw,));
+                    //
                     Center(
                       child: ButtonCustom(
                         onPressed: () {
-                          // context.read<LoginBloc>().add(LoginSubmitEvent( userID: userID,password: passw,));
-                          //--------------------------------------------------//
-                          dialogOneLineOneBtn(
-                              context,
-                              errloin +
-                                  '\n \n ' +
-                                  'Do you want to continue?',
-                              "OK", onClickBtn: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                // int index = int.parse(widget.id);
-                                return HomeScreen();
-                              }),
-                            );
-                          });
-//--------------------------------------------------------------------------//
+                          // signIn(userID, password);
+                          context.read<LoginBloc>().add(LoginSubmitEvent(
+                                userID: userID,
+                                password: password,
+                              ));
+
                           // dialogOneLineTwoBtn(
                           //     context,
                           //     errpdpadecline +
@@ -252,8 +262,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           //           mapscreen: HomeScreen(),
                           //         ));
                         },
-                        label:
-                        "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
+                        label: "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
                         colortext: BC_ButtonText_style_Black,
                         colorbutton: BC_ButtonText_style_White,
                         sizetext: sizeTextBig20,
@@ -291,5 +300,43 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         ),
       ),
     );
+  }
+
+  signIn(String userID, String password) {
+    // context.read<LoginBloc>().add(LoginSubmitEvent( userID: userID,password: password,));
+    dialogOneLineOneBtn(context, errloin + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          // int index = int.parse(widget.id);
+          return HomeScreen();
+        }),
+      );
+    });
+    // dialogOneLineTwoBtn(
+    //     context,
+    //     errpdpadecline +
+    //         '\n \n ' +
+    //         'Do you want to continue?',
+    //     'Confirm',
+    //     'Cancel', onClickBtn: (String result) {
+    //   Navigator.of(context).pop();
+    //   switch (result) {
+    //     case 'Cancel':
+    //       {
+    //         break;
+    //       }
+    //     case 'OK':
+    //       {
+    //         Navigator.push(context,
+    //             MaterialPageRoute(builder:
+    //                 (BuildContext context) {
+    //           // int index = int.parse(widget.id);
+    //           return HomeScreen();
+    //           // DisplayBeerScreen();
+    //         }));
+    //       }
+    //   }
+    // });
   }
 }

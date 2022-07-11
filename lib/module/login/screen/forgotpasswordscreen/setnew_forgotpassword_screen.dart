@@ -115,6 +115,7 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
                   passwordvalue = value;
                 },
                 hint_label: widget.edtpassword,
+                textInputType: TextInputType.text,
               ),
               buildTextFieldPasswordCustom(
                 textEditingController: confirmpassword,
@@ -122,6 +123,7 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
                   confirmpasswordvalue = value;
                 },
                 hint_label: widget.edtcpassword,
+                textInputType: TextInputType.text,
               ),
               buildTextFieldCustom(
                 textEditingController: code,

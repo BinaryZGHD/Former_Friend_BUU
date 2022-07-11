@@ -67,7 +67,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
               ScreenLoginResponse.fromJson(response.data);
 
         if (screenLoginResponse.head?.status == 200) {
-            emit(OnClickLanguageLoginScreenInfoSuccessState(response: screenLoginResponse));
+            emit(OnClickLanguageLoginScreenInfoSuccessState(responseLoginscreen: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
           }
@@ -83,23 +83,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
       try {
         emit(LoginLoading());
         Response responseLoginSubmit = await getSubmitLogin(event.userID, event.password);
-        print(responseLoginSubmit.statusCode);
-        print('response.statusCode  ${responseLoginSubmit.statusCode}');
         emit(LoginEndLoading());
         if (responseLoginSubmit.statusCode == 200) {
           SunmitLoginResponse sunmitLoginResponse = SunmitLoginResponse.fromJson(responseLoginSubmit.data);
-          print('sunmitLoginResponse.head?.status ==  ${sunmitLoginResponse.head?.status}');
           if (sunmitLoginResponse.head?.status == 200) {
-            if (sunmitLoginResponse.head?.message == "success") {
-              print("sunmitLoginResponse.head?.message == success ==  ${sunmitLoginResponse.head?.message}");
-              emit(LoginSubmitState(statusLoginSubmit: true));
-              print("LoginSubmitState(statusLoginSubmit: true)");
-            }
-
-            else {
-              emit(LoginSubmitState(statusLoginSubmit: false));
-              print("emit(LoginSubmitState(statusLoginSubmit: false));");
-            }
+            emit(LoginSubmitState(responseLoginscreen: sunmitLoginResponse));
           } else {
             emit(LoginError(message: sunmitLoginResponse.head?.message ?? ""));
           }
