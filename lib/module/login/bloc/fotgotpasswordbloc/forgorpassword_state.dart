@@ -7,9 +7,15 @@ class ForgorpasswordInitial extends ForgorPasswordState {}
 
 
 class ForgotPasswordScreenInfoSuccessState extends ForgorPasswordState{
-  ScreenForgotPasswordResponse  response;
+  ScreenForgotPasswordResponse  responseForgotPassword;
 
-  ForgotPasswordScreenInfoSuccessState({required this.response});
+  ForgotPasswordScreenInfoSuccessState({required this.responseForgotPassword});
+
+}
+class ForgotPasswordSubmitSuccessState extends ForgorPasswordState{
+  ScreenForgotPasswordResponse  responseSubmitForgotPassword;
+
+  ForgotPasswordSubmitSuccessState({required this.responseSubmitForgotPassword});
 
 }
 class ForgotPasswordLoading extends ForgorPasswordState{

@@ -21,7 +21,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
         if (response.statusCode == 200) {
           // print('aa = ' + '${response.data}');
           ApiProfileResponse apiProfileResponse = ApiProfileResponse.fromJson(response.data);
-          if (apiProfileResponse.head?.status == "200") {
+          if (apiProfileResponse.head?.status == 200) {
             emit(ProfileApiSuccessState(response: apiProfileResponse));
           } else {
             emit(ProfileError(errormessage: apiProfileResponse.head?.message ?? ""));
