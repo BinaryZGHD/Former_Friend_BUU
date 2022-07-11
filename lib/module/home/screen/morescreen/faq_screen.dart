@@ -19,12 +19,10 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
   final List<Item> _data = generateItems(1);
 
   @override
-  Widget build(BuildContext context) {
-
-
+  Widget build(BuildContext context)
+  {
     context.read<MoreBloc>().add(HomeMoreFAQEvent());
-
-    return BlocListener<MoreBloc, HomemoreState>(
+    return  BlocConsumer<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreFAQLoading) {
           showProgressDialog(context);
@@ -34,124 +32,86 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
         }
         if (state is HomeMoreFAQError) {
           // show dialog error
+          // dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+          //   Navigator.of(context).pop();
+          // });
           print(state.message);
         }
+
       },
-      child: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
-          if (state is HomeMoreFAQSuccessState) {
-            _screenHomeMoreFAQResponse = state.responseFAQ;
+      builder: (context, state) {
+        if (state is HomeMoreFAQSuccessState) {
+          _screenHomeMoreFAQResponse = state.responseFAQ;
+          return buildContent(context,_screenHomeMoreFAQResponse);
+        }
 
-            return  Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    size: sizeTitle24,
-                    color: Colors.black,
-                  ),
-                ),
-                title: Text(widget.title +"${_screenHomeMoreFAQResponse?.body?.faq?.length}",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: sizeTitle24,
-                  ),
-                ),
-              ),
-              body: SafeArea(
-                child: SingleChildScrollView(
-                  child: MyStatefulWidget(count: _screenHomeMoreFAQResponse?.body?.faq?.length ?? 0),
-              ),
-              ),
-            );
-          } else {
-            return Container();
-          }
-        }),
 
+        return Scaffold(body: Container(
+          color: Colors.white,
+        ));
+      },
+      buildWhen: (context, state) {
+        return state is HomeMoreFAQSuccessState ;
+      },
     );
-
   }
-  _buildPanel2({required String question, required String answer}  ) {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _data[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _data.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(question),
-            );
+  buildContent(BuildContext context, ScreenHomeMoreFAQResponse? screenHomeMoreFAQResponse) {
+    return  Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
           },
-          body: ListTile(
-            title: Text(answer),
-            subtitle:
-             Text(answer),
+          icon: Icon(
+            Icons.arrow_back,
+            size: 24,
+            color: Colors.black,
           ),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+        ),
+        title: Text(" FAQ ${_screenHomeMoreFAQResponse?.body?.faq?.length}",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: MyStatefulWidget(count: _screenHomeMoreFAQResponse?.body?.faq?.length ?? 0, screenHomeMoreFAQResponse: _screenHomeMoreFAQResponse,),
+        ),
+      ),
     );
+
   }
 
-  //
-  // _buildPanel( String question, String answer) {
-  //   return ExpansionPanelList(
-  //     expansionCallback: (int index, bool isExpanded) {
-  //       setState(() {
-  //         _data[index].isExpanded = !isExpanded;
-  //       });
-  //     },
-  //     children: _data.map<ExpansionPanel>((Item item) {
-  //       return ExpansionPanel(
-  //         headerBuilder: (BuildContext context, bool isExpanded) {
-  //           return ListTile(
-  //             title: Text(item.headerValue),
-  //           );
-  //         },
-  //         body: ListTile(
-  //           title: Text(item.expandedValue),
-  //           subtitle:
-  //           const Text('To delete this panel,\n tap \n the trash can iconTo delete this panel,\n tap \n the trash can iconTo delete this panel,\n tap \n the trash can iconTo delete this panel,\n tap \n the trash can icon'),
-  //         ),
-  //         isExpanded: item.isExpanded,
-  //       );
-  //     }).toList(),
-  //   );
-  // }
 }
 
 class Item {
   Item({
-    required this.expandedValue,
-    required this.headerValue,
+
+    required this.getIndex,
     this.isExpanded = false,
   });
 
-  String expandedValue;
-  String headerValue;
+  int getIndex;
   bool isExpanded;
 }
 
-List<Item> generateItems(int numberOfItems) {
+List<Item> generateItems(int numberOfItems ) {
   return List<Item>.generate(numberOfItems, (int index) {
     return Item(
-      headerValue: 'Panel $index',
-      expandedValue: 'This is item number $index',
+
+      getIndex: index,
     );
   });
 }
 
 class MyStatefulWidget extends StatefulWidget {
   final int count;
-  const MyStatefulWidget({Key? key,  required this.count}) : super(key: key);
+  final ScreenHomeMoreFAQResponse? screenHomeMoreFAQResponse ;
+  const MyStatefulWidget({Key? key,  required this.count, required this.screenHomeMoreFAQResponse}) : super(key: key);
 
   @override
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
@@ -190,13 +150,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         return ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
-              title: Text(item.headerValue),
+              title: Text("${widget.screenHomeMoreFAQResponse?.body?.faq?.elementAt(item.getIndex).question}",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             );
           },
           body: ListTile(
-              title: Text(item.expandedValue),
+              title: Text("${widget.screenHomeMoreFAQResponse?.body?.screeninfo?.textanswer}"),
               subtitle:
-              const Text('To delete this panel, tap the trash can icon'),
+               Text("${widget.screenHomeMoreFAQResponse?.body?.faq?.elementAt(item.getIndex).answer}" ),
               // trailing: const Icon(Icons.delete),
               // onTap: () {
               //   setState(() {
