@@ -38,5 +38,12 @@ class PdpaBloc extends Bloc<PdpaEvent, PdpaState> with PDPARepository{
       }
 
     });
+    on<OnClickPDPAEvent>((event, emit) {
+      if (event.accept == true) {
+        emit(PDPAAccept());
+      } else {
+        emit(PDPADecline());
+      }
+    });
   }
 }

@@ -207,7 +207,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           //   // print(event.number);
                           // },
                           linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnForgotPass}" + " ? ",
-                          mapscreen: forgotPasswordScreen(),
+                          mapscreen: forgotPasswordScreen(valueLanguage: valueLanguage,),
                           linktextcolor: TC_forgot,
                           sizetext: sizeTextSmaller14,
                         ),

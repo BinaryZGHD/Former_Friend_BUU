@@ -8,7 +8,7 @@ import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
 import 'package:f2fbuu/customs/textlink/textlinktoscreencustom.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
-import 'package:f2fbuu/module/login/model/response/screen_changepassword_response.dart';
+import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
 import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,7 +50,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
       child: Scaffold(
         body: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(builder: (context, state) {
           if (state is ChangePasswordScreenInfoSuccessState) {
-            _screenchangepasswordResponse = state.response;
+            _screenchangepasswordResponse = state.responseChangePasswordScreenInfo;
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -113,7 +113,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                         padding: const EdgeInsets.all(12.0),
                         child: TextLinkToScreenCustom(
                           linklabel: "${_screenchangepasswordResponse?.body?.screeninfo?.btnforgotpass}",
-                          mapscreen: forgotPasswordScreen(),
+                          mapscreen: forgotPasswordScreen(valueLanguage: '',),
                           linktextcolor: TC_forgot,
                           sizetext: sizeTextSmaller14,
                         ),

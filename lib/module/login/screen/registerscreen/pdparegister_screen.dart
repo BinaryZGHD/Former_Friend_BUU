@@ -41,7 +41,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PdpaBloc, PdpaState>(
+    return BlocConsumer<PdpaBloc, PdpaState>(
       listener: (context, state) {
         if (state is PDPALoading) {
           showProgressDialog(context);
@@ -51,134 +51,172 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         }
         if (state is PDPAError) {
           // show dialog error
-          print(state.message);
+          dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+            Navigator.of(context).pop();
+          });
+        }
+        if (state is PDPADecline) {
+          // show dialog error
+          Navigator.push(
+              context,MaterialPageRoute(
+              builder: (context) => loginScreen()
+          )
+          );
+          // dialogOneLineOneBtn(context, "state.message" + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+          //   Navigator.of(context).pop();
+          // });
+
+        }
+        if (state  is PDPAAccept){
+          Navigator.push(
+              context,MaterialPageRoute(
+              builder: (context) => registerScreen()
+          )
+          );
+
+
         }
       },
-      child: Scaffold(
-        body: BlocBuilder<PdpaBloc, PdpaState>(builder: (context, state) {
-          if (state is PDPAScreenInfoSuccessState) {
-            _screenPDPAResponse = state.response;
-            return SafeArea(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                      buildContainerTitle(),
-                      Expanded(
-                        child: Container(
-                            color: BSC_transparent,
-                            width: MediaQuery.of(context).size.width,
-                            child: SfPdfViewer.network("${_screenPDPAResponse?.body?.linkpdpa}")
-                          // Image.asset(
-                          //   "assets/PDPA.png",
-                          //   fit: BoxFit.fill,
-                          // ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      // buildButtonComfirm(),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.08,
-                          ),
-                          Expanded(
-                              child: ButtonCustom(
-                                label: "${_screenPDPAResponse?.body?.screeninfo?.btnaccept}",
-                                colortext: BC_ButtonText_style_Black,
-                                colorbutton: BC_ButtonText_style_White,
-                                sizetext: sizeTextBig20,
-                                colorborder: BC_ButtonText_style_Black_Boarder,
-                                sizeborder: 10,
-                                onPressed: () {
-                                  dialogOneLineTwoBtn(
-                                      context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                                      onClickBtn: (String result) {
-                                        Navigator.of(context).pop();
-                                        switch (result) {
-                                          case 'Cancel':
-                                            {
-                                              break;
-                                            }
-                                          case 'OK':
-                                            {
-                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                                // int index = int.parse(widget.id);
-                                                return registerScreen();
-                                                // DisplayBeerScreen();
-                                              }));
-                                            }
-                                        }
-                                      });
-
-                                },
-                              )),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.1,
-                          ),
-                          Expanded(
-                              child: ButtonCustom(
-                                label: "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
-                                colortext: BC_ButtonText_style_White,
-                                colorbutton: BC_ButtonText_style_Red,
-                                sizetext: sizeTextBig20,
-                                colorborder: BC_ButtonText_style_Red_Boarder,
-                                sizeborder: 10,
-                                onPressed: () {
-                                  dialogOneLineTwoBtn(
-                                      context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                                      onClickBtn: (String result) {
-                                        Navigator.of(context).pop();
-                                        switch (result) {
-                                          case 'Cancel':
-                                            {
-                                              break;
-                                            }
-                                          case 'OK':
-                                            {
-                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                                // int index = int.parse(widget.id);
-                                                return loginScreen();
-                                                // DisplayBeerScreen();
-                                              }));
-                                            }
-                                        }
-                                      });
-                                },
-                              )),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.08,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-
-          } else {
-            return Container();
-          }
-        }),
-      ),
+      builder: (context, state) {
+        if (state is PDPAScreenInfoSuccessState) {
+          _screenPDPAResponse = state.response;
+          return buildContentPDPAScreen(context);
+        }
+        return Scaffold(body: Container(
+          color: Colors.white,
+        ));
+      },
+      buildWhen: (context, state) {
+        return state is PDPAScreenInfoSuccessState ;
+      },
     );
   }
+
   Container buildContainerTitle() {
     return Container(
       // constraints: BoxConstraints.expand(height: 60),
       child: Text("${_screenPDPAResponse?.body?.screeninfo?.textPDPAhead}" +"\n",
           textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
+    );
+  }
+
+  buildContentPDPAScreen(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  buildContainerTitle(),
+                  Expanded(
+                    child: Container(
+                        color: BSC_transparent,
+                        width: MediaQuery.of(context).size.width,
+                        child: SfPdfViewer.network("${_screenPDPAResponse?.body?.linkpdpa}")
+                      // Image.asset(
+                      //   "assets/PDPA.png",
+                      //   fit: BoxFit.fill,
+                      // ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  // buildButtonComfirm(),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                      Expanded(
+                          child: ButtonCustom(
+                            label: "${_screenPDPAResponse?.body?.screeninfo?.btnaccept}",
+                            colortext: BC_ButtonText_style_Black,
+                            colorbutton: BC_ButtonText_style_White,
+                            sizetext: sizeTextBig20,
+                            colorborder: BC_ButtonText_style_Black_Boarder,
+                            sizeborder: 10,
+                            onPressed: () {
+                              context.read<PdpaBloc>().add(OnClickPDPAEvent(accept: true));
+                              // dialogOneLineTwoBtn(
+                              //     context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                              //     onClickBtn: (String result) {
+                              //       Navigator.of(context).pop();
+                              //       switch (result) {
+                              //         case 'Cancel':
+                              //           {
+                              //             break;
+                              //           }
+                              //         case 'OK':
+                              //           {
+                              //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                              //               // int index = int.parse(widget.id);
+                              //               return registerScreen();
+                              //               // DisplayBeerScreen();
+                              //             }));
+                              //           }
+                              //       }
+                              //     });
+
+                            },
+                          )),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                          child: ButtonCustom(
+                            label: "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
+                            colortext: BC_ButtonText_style_White,
+                            colorbutton: BC_ButtonText_style_Red,
+                            sizetext: sizeTextBig20,
+                            colorborder: BC_ButtonText_style_Red_Boarder,
+                            sizeborder: 10,
+                            onPressed: () {
+                              context.read<PdpaBloc>().add(OnClickPDPAEvent(accept: false));
+                              // dialogOneLineTwoBtn(
+                              //     context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                              //     onClickBtn: (String result) {
+                              //       Navigator.of(context).pop();
+                              //       switch (result) {
+                              //         case 'Cancel':
+                              //           {
+                              //             break;
+                              //           }
+                              //         case 'OK':
+                              //           {
+                              //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                              //               // int index = int.parse(widget.id);
+                              //               return loginScreen();
+                              //               // DisplayBeerScreen();
+                              //             }));
+                              //           }
+                              //       }
+                              //     });
+                            },
+                          )),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

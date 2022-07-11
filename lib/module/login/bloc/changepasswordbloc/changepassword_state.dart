@@ -7,9 +7,9 @@ class ChangePasswordInitial extends ChangePasswordState {}
 
 
 class ChangePasswordScreenInfoSuccessState extends ChangePasswordState{
-  ScreenChangePasswordResponse  response;
+  ScreenChangePasswordResponse  responseChangePasswordScreenInfo;
 
-  ChangePasswordScreenInfoSuccessState({required this.response});
+  ChangePasswordScreenInfoSuccessState({required this.responseChangePasswordScreenInfo});
 
 }
 class ChangePasswordLoading extends ChangePasswordState{

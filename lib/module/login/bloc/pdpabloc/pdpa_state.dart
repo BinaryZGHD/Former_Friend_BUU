@@ -22,3 +22,11 @@ class PDPAError extends PdpaState{
   String message;
   PDPAError({required this.message});
 }
+
+class PDPAAccept extends PdpaState{
+
+}
+
+class PDPADecline extends PdpaState{
+
+}

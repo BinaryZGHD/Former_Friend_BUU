@@ -1,20 +1,21 @@
+import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
+import 'package:f2fbuu/module/login/model/response/submit_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setnew_forgotpassword_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
-import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
-import 'package:f2fbuu/module/login/model/response/screen_forgotpassword_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class forgotPasswordScreen extends StatefulWidget {
-  const forgotPasswordScreen({Key? key}) : super(key: key);
+  final String valueLanguage;
+  const forgotPasswordScreen( {Key? key, required this.valueLanguage}) : super(key: key);
 
   @override
   State<forgotPasswordScreen> createState() => _forgotPasswordScreenState();
@@ -22,22 +23,16 @@ class forgotPasswordScreen extends StatefulWidget {
 
 class _forgotPasswordScreenState extends State<forgotPasswordScreen> with ProgressDialog {
   ScreenForgotPasswordResponse? _screenforgotpasswordResponse;
-  ScreenForgotPasswordResponse? _forgotPasswordSubmitResponse;
+  SubmitForgotPasswordResponse? _forgotPasswordSubmitResponse;
 
   late String userLanguage;
   @override
   void initState() {
     super.initState();
-    language();
-  }
-
-  language() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userLanguage = prefs.getString('userLanguage') ?? 'TH';
-    });
+    userLanguage = widget.valueLanguage;
     context.read<ForgorPasswordBloc>().add(ForgotPasswordScreenInfoEvent(userLanguage: userLanguage));
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +57,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => setNewForgotPasswordScreen(
-                        screenforgotpasswordResponse: _screenforgotpasswordResponse,
+                  builder: (context) => setNewForgotPasswordScreen(valueLanguage: widget.valueLanguage,
                       )));
         }
       },
