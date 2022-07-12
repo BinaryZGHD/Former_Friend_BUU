@@ -19,7 +19,7 @@ import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class loginScreen extends StatefulWidget {
-  const loginScreen({Key? key}) : super(key: key);
+  const loginScreen( {Key? key, }) : super(key: key);
 
   @override
   State<loginScreen> createState() => _loginScreenState();
@@ -68,13 +68,13 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         }
         if (state is LoginError) {
           // show dialog error
-          dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
           print(state.message);
         }
-        if (state  is LoginSubmitState){
-          _loginSubmitResponse = state.responseLoginscreen;
+        if (state  is SubmitLoginState){
+          _loginSubmitResponse = state.responseSunmitLoginscreen;
             Navigator.push(
               context,MaterialPageRoute(
                 builder: (context) => HomeScreen(
@@ -88,12 +88,12 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
 
       },
       builder: (context, state) {
-        if (state is LoginScreenInfoSuccessState) {
-          _screenLoginResponse = state.response;
+        if (state is ScreenInfoLoginSuccessState) {
+          _screenLoginResponse = state.responseScreenInfoLogin;
           return buildContent(context);
         }
         else if (state is OnClickLanguageLoginScreenInfoSuccessState) {
-          _screenLoginResponse = state.responseLoginscreen;
+          _screenLoginResponse = state.responseLanguageLoginscreen;
           return buildContent(context);
         }
 
@@ -102,7 +102,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         ));
       },
       buildWhen: (context, state) {
-        return state is LoginScreenInfoSuccessState || state is OnClickLanguageLoginScreenInfoSuccessState;
+        return state is ScreenInfoLoginSuccessState || state is OnClickLanguageLoginScreenInfoSuccessState;
       },
     );
   }
@@ -115,188 +115,151 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     String userID = "";
     String password = "";
 
-    return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: GestureDetector(
-                          onTap: _toggleLanguageView,
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.language,
-                                color: Colors.black,
-                                size: 18,
-                              ),
-                              Text("  ${_screenLoginResponse?.body?.screeninfo?.btnChangeLang}",
-                                  style: TextStyle(
-                                      // decoration: TextDecoration.underline,
-                                      color: Colors.black,
-                                      // decorationColor: linktextcolor,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14)),
-                            ],
-                          )),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    Center(
-                      child: _screenLoginResponse?.body?.screeninfo?.imgLogo != null
-                          ? CircleAvatar(
-                              radius: 80.0,
-                              backgroundImage: NetworkImage("${_screenLoginResponse?.body?.screeninfo?.imgLogo}"),
-                            )
-                          : CircleAvatar(
-                              radius: 80,
-                              backgroundImage: AssetImage(
-                                'assets/logo/Buulogo.png',
-                              ),
-                              // ChangeImageType(
-                              //   urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imgLogo}" ,
-                              //   // urlimge_l:
-                              //   //     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
-                              // )),
-                              // buildImge(),
-                            ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    buildTextFieldCustom(
-                      textEditingController: userController,
-                      onChanged: (valueuserID) {
-                        userID = valueuserID;
-                        print("userID  login == " + userID);
-                      },
-                      hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtID}",
-                      textInputType: TextInputType.text,
-                    ),
-                    buildTextFieldPasswordCustom(
-                      textEditingController: passwordController,
-                      onChanged: (valuepassword) {
-                        password = valuepassword;
-                        print("passwordController login  == " + password);
-                      },
-                      hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtPass}",
-                      textInputType: TextInputType.text,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: TextLinkToScreenCustom(
-                        // onPressed: () {
-                        //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
-                        //   // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
-                        //   // print("User :" + userID + "\n" + "Password :" + passw);
-                        //   // print(event.number);
-                        // },
-                        linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnForgotPass}" + " ? ",
-                        mapscreen: forgotPasswordScreen(),
-                        linktextcolor: TC_forgot,
-                        sizetext: sizeTextSmaller14,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: GestureDetector(
+                            onTap: _toggleLanguageView,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.language,
+                                  color: Colors.black,
+                                  size: 18,
+                                ),
+                                Text("  ${_screenLoginResponse?.body?.screeninfo?.btnChangeLang}",
+                                    style: TextStyle(
+                                        // decoration: TextDecoration.underline,
+                                        color: Colors.black,
+                                        // decorationColor: linktextcolor,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14)),
+                              ],
+                            )),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    //
-                    Center(
-                      child: ButtonCustom(
-                        onPressed: () {
-                          // signIn(userID, password);
-                          context.read<LoginBloc>().add(LoginSubmitEvent(
-                                userID: userID,
-                                password: password,
-                              ));
-
-                          // dialogOneLineTwoBtn(
-                          //     context,
-                          //     errpdpadecline +
-                          //         '\n \n ' +
-                          //         'Do you want to continue?',
-                          //     'Confirm',
-                          //     'Cancel', onClickBtn: (String result) {
-                          //   Navigator.of(context).pop();
-                          //   switch (result) {
-                          //     case 'Cancel':
-                          //       {
-                          //         break;
-                          //       }
-                          //     case 'OK':
-                          //       {
-                          //         Navigator.push(context,
-                          //             MaterialPageRoute(builder:
-                          //                 (BuildContext context) {
-                          //           // int index = int.parse(widget.id);
-                          //           return HomeScreen();
-                          //           // DisplayBeerScreen();
-                          //         }));
-                          //       }
-                          //   }
-                          // });
-
-                          // context.read<LoginBloc>().add(LoginScreenInfoEvent());
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (context) => CustomDialogBox(
-                          //           onPressed: () {
-                          //             Navigator.of(context).pop(); // dialog
-                          //             Navigator.of(context).pop(); // login
-                          //             Navigator.of(context).pop(); // login
-                          //           },
-                          //           id: '',
-                          //           textfieldvalue: "userID  :" + userID + "\n" + "Password :" + passw,
-                          //           description: errloin + '\n \n ' + 'Do you want to continue?',
-                          //           mapscreen: HomeScreen(),
-                          //         ));
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      Center(
+                        child: _screenLoginResponse?.body?.screeninfo?.imgLogo != null
+                            ? CircleAvatar(
+                                radius: 80.0,
+                                backgroundImage: NetworkImage("${_screenLoginResponse?.body?.screeninfo?.imgLogo}"),
+                              )
+                            : CircleAvatar(
+                                radius: 80,
+                                backgroundImage: AssetImage(
+                                  'assets/logo/Buulogo.png',
+                                ),
+                                // ChangeImageType(
+                                //   urlimge_l: "${_screenLoginResponse?.body?.screeninfo?.imgLogo}" ,
+                                //   // urlimge_l:
+                                //   //     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Buu-logo11.png/130px-Buu-logo11.png",
+                                // )),
+                                // buildImge(),
+                              ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      buildTextFieldCustom(
+                        textEditingController: userController,
+                        onChanged: (valueuserID) {
+                          userID = valueuserID;
+                          print("userID  login == " + userID);
                         },
-                        label: "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
-                        colortext: BC_ButtonText_style_Black,
-                        colorbutton: BC_ButtonText_style_White,
-                        sizetext: sizeTextBig20,
-                        colorborder: BC_ButtonText_style_Black_Boarder,
-                        sizeborder: 10,
+                        hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtID}",
+                        textInputType: TextInputType.text,
                       ),
-                    ),
+                      buildTextFieldPasswordCustom(
+                        textEditingController: passwordController,
+                        onChanged: (valuepassword) {
+                          password = valuepassword;
+                          print("passwordController login  == " + password);
+                        },
+                        hint_label: "${_screenLoginResponse?.body?.screeninfo?.edtPass}",
+                        textInputType: TextInputType.text,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: TextLinkToScreenCustom(
+                          // onPressed: () {
+                          //   context.read<LoginBloc>().add(LoginForgotEvent(regstatus: "F1"));
+                          //   // print("User :"+user.value.text.toString() +"\n"+"Password :"+password.value.text.toString());
+                          //   // print("User :" + userID + "\n" + "Password :" + passw);
+                          //   // print(event.number);
+                          // },
+                          linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnForgotPass}" + " ? ",
+                          mapscreen: forgotPasswordScreen(valueLanguage: valueLanguage,),
+                          linktextcolor: TC_forgot,
+                          sizetext: sizeTextSmaller14,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      //
+                      Center(
+                        child: ButtonCustom(
+                          onPressed: () {
+                            context.read<LoginBloc>().add(LoginSubmitEvent(
+                                  userID: userID,
+                                  password: password,
+                                ));
+                          },
+                          label: "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
+                          colortext: BC_ButtonText_style_Black,
+                          colorbutton: BC_ButtonText_style_White,
+                          sizetext: sizeTextBig20,
+                          colorborder: BC_ButtonText_style_Black_Boarder,
+                          sizeborder: 10,
+                        ),
+                      ),
 
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.025,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${_screenLoginResponse?.body?.screeninfo?.textReg}" + " ? ",
-                          style: TextStyle(fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
-                        ),
-                        TextLinkToScreenCustom(
-                          linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
-                          mapscreen: conditionPDPAScreen(),
-                          linktextcolor: TC_regiter,
-                          sizetext: sizeTextSmall16,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.025,
-                    ),
-                  ],
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.025,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "${_screenLoginResponse?.body?.screeninfo?.textReg}" + " ? ",
+                            style: TextStyle(fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
+                          ),
+                          TextLinkToScreenCustom(
+                            linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
+                            mapscreen: conditionPDPAScreen(valueLanguage: valueLanguage,),
+                            linktextcolor: TC_regiter,
+                            sizetext: sizeTextSmall16,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.025,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -26,7 +26,12 @@ void main() async {
   ]);
 
   // debugPaintSizeEnabled = true;
-  runApp(const MyApp());
+  BlocOverrides.runZoned(
+        () {runApp(const MyApp());},
+    blocObserver: BUUBlocObserver(),
+  );
+
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -106,3 +111,29 @@ const MaterialColor white = const MaterialColor(
     900: const Color(0xFFFFFFFF),
   },
 );
+
+class BUUBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    print(event);
+    super.onEvent(bloc, event);
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    print(change);
+    super.onChange(bloc, change);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    print(transition);
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print('$error, $stackTrace');
+    super.onError(bloc, error, stackTrace);
+  }
+}

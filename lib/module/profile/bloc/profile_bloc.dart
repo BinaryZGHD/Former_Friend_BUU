@@ -16,7 +16,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
     on<ProfileApiEvent>((event, emit) async{
       try {
         emit(ProfileLoading());
-        Response response = await getApiProfile();
+        Response response = await getApiProfile(event.language,event.token);
         emit(ProfileLoadingSuccess());
         if (response.statusCode == 200) {
           // print('aa = ' + '${response.data}');

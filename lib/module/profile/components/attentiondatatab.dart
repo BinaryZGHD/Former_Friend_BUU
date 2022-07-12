@@ -45,7 +45,9 @@ class _ProfileAttentionDropdownTabState
         child: Row(
           children: [
             Container(
+
               width: MediaQuery.of(context).size.width * 0.5,
+
               child: Text(
                 textleft,
                 style: TextStyle(fontSize: 18),
@@ -88,6 +90,7 @@ class _ProfileAttentionDropdownTabState
 
                       });
                     },
+
                   ),
 
                   // DropdownButtonFormField<String>(

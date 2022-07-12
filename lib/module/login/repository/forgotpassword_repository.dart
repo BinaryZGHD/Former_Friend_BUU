@@ -13,4 +13,31 @@ class ForgotPasswordRepository  {
         })
     );
   }
+  Future<Response> getSubmitForgotPassword(String userID ,String email ) async {
+    return await MyDio.createDioServerTest().post("/ServiceTest/login/sendotpforgot",
+    //     return await MyDio.createDioTest().post("/response",
+        data: jsonEncode({
+          "userID": "$userID",
+          "email": "$email",
+        })
+    );
+  }
+  Future<Response> getSubmitSetNewForgotPassword(String userID ,String email,String otp ) async {
+    // return await MyDio.createDioServerTest().post("/ServiceTest/login/forgotscreen",
+    return await MyDio.createDioTest().post("/response",
+        data: jsonEncode({
+          "userid": "$userID",
+          "email": "$email",
+          "otp": "$otp",
+        })
+    );
+  } Future<Response> getReSendOTPSetNewForgotPassword(String userID ,String email ) async {
+    return await MyDio.createDioServerTest().post("/ServiceTest/login/resendotpforgotpassword",
+    // return await MyDio.createDioTest().post("/response",
+        data: jsonEncode({
+          "userID": "$userID",
+          "email": "$email",
+        })
+    );
+  }
 }

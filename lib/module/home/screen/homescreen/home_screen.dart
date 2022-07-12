@@ -16,6 +16,7 @@ import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../customs/button/buttoncustom.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/progress_dialog.dart';
@@ -29,21 +30,35 @@ import '../../../profile/screen/profile_page.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, SunmitLoginResponse? screenLoginResponse}) : super(key: key);
+  final SunmitLoginResponse? screenLoginResponse;
+  const HomeScreen({Key? key, this.screenLoginResponse, }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
-  @override
-  void initState() {
-    super.initState();
-    context.read<HomeBloc>().add(HomeScreenInfoEvent());
-  }
   ScreenHomeResponse? _screenhomeResponse;
   ApiProfileResponse? _screenprofileResponse;
   ScreenStatusActivityResponse? _screenstatusActivityResponse;
+  late String keytoken;
+  late String global_key;
+  @override
+  void initState()  {
+    super.initState();
+    keytoken = "${widget.screenLoginResponse?.body?.token}";
+    _setglobal_key(keytoken);
+
+  }
+  _setglobal_key(String keytoken) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('global_key', "$keytoken");
+    setState(() {
+      global_key = prefs.getString('global_key') ?? "$keytoken";
+    });
+    context.read<HomeBloc>().add(HomeScreenInfoEvent());
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +79,8 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
       },
       child: Scaffold(
         body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-          if (state is HomeScreenInfoSuccessState) {
-            _screenhomeResponse = state.responseHome;
+          if (state is ScreenInfoHomeSuccessState) {
+            _screenhomeResponse = state.responseScreenInfoHome;
             _screenprofileResponse = state.responseProfile;
             _screenstatusActivityResponse = state.responseActivity;
 

@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   void initState() {
     super.initState();
     print('เรียก initState');
-    context.read<ProfileBloc>().add(ProfileApiEvent());
+    context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: "ant"));
   }
 
   @override

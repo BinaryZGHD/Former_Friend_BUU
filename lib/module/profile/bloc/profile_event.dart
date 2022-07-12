@@ -13,6 +13,9 @@ class SaveProfileChanges extends ProfileEvent {}
 
 //----------------------------------API---------------------------------------//
 class ProfileApiEvent extends ProfileEvent {
+  String language;
+  String token;
+  ProfileApiEvent({required this.language,required this.token});
 }
 class ProfileGeneralSummitEvent extends ProfileEvent {
   bool istextbuttonpressed;

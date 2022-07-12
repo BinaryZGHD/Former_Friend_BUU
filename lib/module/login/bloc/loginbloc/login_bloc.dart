@@ -44,7 +44,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
         if (response.statusCode == 200) {
           ScreenLoginResponse screenLoginResponse = ScreenLoginResponse.fromJson(response.data);
         if (screenLoginResponse.head?.status == 200) {
-            emit(LoginScreenInfoSuccessState(response: screenLoginResponse));
+            emit(ScreenInfoLoginSuccessState(responseScreenInfoLogin: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
           }
@@ -67,7 +67,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
               ScreenLoginResponse.fromJson(response.data);
 
         if (screenLoginResponse.head?.status == 200) {
-            emit(OnClickLanguageLoginScreenInfoSuccessState(responseLoginscreen: screenLoginResponse));
+            emit(OnClickLanguageLoginScreenInfoSuccessState(responseLanguageLoginscreen: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
           }
@@ -87,7 +87,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
         if (responseLoginSubmit.statusCode == 200) {
           SunmitLoginResponse sunmitLoginResponse = SunmitLoginResponse.fromJson(responseLoginSubmit.data);
           if (sunmitLoginResponse.head?.status == 200) {
-            emit(LoginSubmitState(responseLoginscreen: sunmitLoginResponse));
+            emit(SubmitLoginState(responseSunmitLoginscreen: sunmitLoginResponse));
           } else {
             emit(LoginError(message: sunmitLoginResponse.head?.message ?? ""));
           }
