@@ -5,22 +5,22 @@ abstract class LoginState {
 }
 
 
-class LoginScreenInfoSuccessState extends LoginState{
-  ScreenLoginResponse  response;
+class ScreenInfoLoginSuccessState extends LoginState{
+  ScreenLoginResponse  responseScreenInfoLogin;
 
-  LoginScreenInfoSuccessState({required this.response});
+  ScreenInfoLoginSuccessState({required this.responseScreenInfoLogin});
 
 }
 class OnClickLanguageLoginScreenInfoSuccessState extends LoginState{
-  ScreenLoginResponse  responseLoginscreen;
+  ScreenLoginResponse  responseLanguageLoginscreen;
 
-  OnClickLanguageLoginScreenInfoSuccessState({required this.responseLoginscreen});
+  OnClickLanguageLoginScreenInfoSuccessState({required this.responseLanguageLoginscreen});
 
 }
-class LoginSubmitState extends LoginState {
-  SunmitLoginResponse responseLoginscreen;
+class SubmitLoginState extends LoginState {
+  SunmitLoginResponse responseSunmitLoginscreen;
 
-  LoginSubmitState({ required this.responseLoginscreen});
+  SubmitLoginState({ required this.responseSunmitLoginscreen});
 
 }
 

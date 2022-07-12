@@ -90,3 +90,40 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
             ));
       });
 }
+
+//exp
+// onPressed: () {
+//   dialogOneLineTwoBtn(
+//       context,
+//       errr,
+//       'Confirm',
+//       'Cancel', onClickBtn: (String result) {
+//     Navigator.of(context).pop();
+//     switch (result) {
+//       case 'Cancel':
+//         {
+//           break;
+//         }
+//       case 'OK':
+//         {
+//           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+//             // int index = int.parse(widget.id);
+//             return Screen();
+//           }));
+//         }
+//     }
+//   });
+// },
+// dialogOneLineOneBtn(
+// context,
+// err,
+// onClickBtn: () {
+// Navigator.push(
+// context,
+// MaterialPageRoute(builder: (context) {
+// // int index = int.parse(widget.id);
+// return Screen(
+// );
+// }),
+// );
+// });

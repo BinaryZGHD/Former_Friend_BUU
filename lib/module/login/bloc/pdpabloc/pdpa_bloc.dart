@@ -16,7 +16,7 @@ class PdpaBloc extends Bloc<PdpaEvent, PdpaState> with PDPARepository{
     on<PdpaEvent>((event, emit) {
       // TODO: implement event handler
     });
-    on<PDPAScreenInfoEvent>((event, emit) async {
+    on<ScreenInfoPDPAEvent>((event, emit) async {
 
       try {
         emit(PDPALoading());
@@ -25,8 +25,8 @@ class PdpaBloc extends Bloc<PdpaEvent, PdpaState> with PDPARepository{
         if (response.statusCode == 200) {
           ScreenPDPAResponse screenForgotPasswordResponse =
           ScreenPDPAResponse.fromJson(response.data);
-          if (screenForgotPasswordResponse.head?.status == "200") {
-            emit(PDPAScreenInfoSuccessState(response: screenForgotPasswordResponse));
+          if (screenForgotPasswordResponse.head?.status == 200) {
+            emit(ScreenInfoPDPASuccessState(response: screenForgotPasswordResponse));
           } else {
             emit(PDPAError(message: screenForgotPasswordResponse.head?.message ?? ""));
           }
@@ -37,6 +37,13 @@ class PdpaBloc extends Bloc<PdpaEvent, PdpaState> with PDPARepository{
         emit(PDPAError(message: e.response?.statusMessage ?? ""));
       }
 
+    });
+    on<OnClickPDPAEvent>((event, emit) {
+      if (event.accept == true) {
+        emit(PDPAAccept());
+      } else {
+        emit(PDPADecline());
+      }
     });
   }
 }

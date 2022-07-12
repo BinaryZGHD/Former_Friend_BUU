@@ -39,7 +39,7 @@ class ScreenForgotPasswordResponse {
 
 }
 
-/// screeninfo : {"textforgothead":"","edtIDforgot":"รหัสนิสิต / รหัสอาจารย์","edtemailforgot":"อีเมล","btnforgotnext":"ต่อไป","textheadsetnewpass":"","textotpwillsent":"รหัสยืนยันตัวตนจะถูกส่งไปยัง","edtpass":"รหัสผ่าน","edtcpass":"ยืนยันรหัสผ่าน","otp":"รหัส OTP","texpleaseconfirm":"กรุณายืนยัน","btnsentotpagain":"ส่งรหัสยืนยันอีกครั้ง","btnconfirm":"ยืนยัน"}
+/// screeninfo : {"titleforgot":"ลืมรหัสผ่าน","edtIDforgot":"รหัสนิสิต / รหัสอาจารย์","edtemailforgot":"อีเมล","btnforgotnext":"ต่อไป","titlesetnewpass":"ตั้งค่ารหัสผ่านใหม่","textotpwillsent":"รหัสยืนยันตัวตนจะถูกส่งไปยัง","edtpass":"รหัสผ่าน","edtcpass":"ยืนยันรหัสผ่าน","otp":"รหัส OTP","texpleaseconfirm":"กรุณายืนยัน","btnsentotpagain":"ส่งรหัสยืนยันอีกครั้ง","btnconfirm":"ยืนยัน"}
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -68,11 +68,11 @@ class Body {
 
 }
 
-/// textforgothead : ""
+/// titleforgot : "ลืมรหัสผ่าน"
 /// edtIDforgot : "รหัสนิสิต / รหัสอาจารย์"
 /// edtemailforgot : "อีเมล"
 /// btnforgotnext : "ต่อไป"
-/// textheadsetnewpass : ""
+/// titlesetnewpass : "ตั้งค่ารหัสผ่านใหม่"
 /// textotpwillsent : "รหัสยืนยันตัวตนจะถูกส่งไปยัง"
 /// edtpass : "รหัสผ่าน"
 /// edtcpass : "ยืนยันรหัสผ่าน"
@@ -85,11 +85,11 @@ Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str
 String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
 class Screeninfo {
   Screeninfo({
-    String? textforgothead,
+    String? titleforgot,
     String? edtIDforgot,
     String? edtemailforgot,
     String? btnforgotnext,
-    String? textheadsetnewpass,
+    String? titlesetnewpass,
     String? textotpwillsent,
     String? edtpass,
     String? edtcpass,
@@ -97,11 +97,11 @@ class Screeninfo {
     String? texpleaseconfirm,
     String? btnsentotpagain,
     String? btnconfirm,}){
-    _textforgothead = textforgothead;
+    _titleforgot = titleforgot;
     _edtIDforgot = edtIDforgot;
     _edtemailforgot = edtemailforgot;
     _btnforgotnext = btnforgotnext;
-    _textheadsetnewpass = textheadsetnewpass;
+    _titlesetnewpass = titlesetnewpass;
     _textotpwillsent = textotpwillsent;
     _edtpass = edtpass;
     _edtcpass = edtcpass;
@@ -112,11 +112,11 @@ class Screeninfo {
   }
 
   Screeninfo.fromJson(dynamic json) {
-    _textforgothead = json['textforgothead'];
+    _titleforgot = json['titleforgot'];
     _edtIDforgot = json['edtIDforgot'];
     _edtemailforgot = json['edtemailforgot'];
     _btnforgotnext = json['btnforgotnext'];
-    _textheadsetnewpass = json['textheadsetnewpass'];
+    _titlesetnewpass = json['titlesetnewpass'];
     _textotpwillsent = json['textotpwillsent'];
     _edtpass = json['edtpass'];
     _edtcpass = json['edtcpass'];
@@ -125,11 +125,11 @@ class Screeninfo {
     _btnsentotpagain = json['btnsentotpagain'];
     _btnconfirm = json['btnconfirm'];
   }
-  String? _textforgothead;
+  String? _titleforgot;
   String? _edtIDforgot;
   String? _edtemailforgot;
   String? _btnforgotnext;
-  String? _textheadsetnewpass;
+  String? _titlesetnewpass;
   String? _textotpwillsent;
   String? _edtpass;
   String? _edtcpass;
@@ -137,11 +137,11 @@ class Screeninfo {
   String? _texpleaseconfirm;
   String? _btnsentotpagain;
   String? _btnconfirm;
-  Screeninfo copyWith({  String? textforgothead,
+  Screeninfo copyWith({  String? titleforgot,
     String? edtIDforgot,
     String? edtemailforgot,
     String? btnforgotnext,
-    String? textheadsetnewpass,
+    String? titlesetnewpass,
     String? textotpwillsent,
     String? edtpass,
     String? edtcpass,
@@ -149,11 +149,11 @@ class Screeninfo {
     String? texpleaseconfirm,
     String? btnsentotpagain,
     String? btnconfirm,
-  }) => Screeninfo(  textforgothead: textforgothead ?? _textforgothead,
+  }) => Screeninfo(  titleforgot: titleforgot ?? _titleforgot,
     edtIDforgot: edtIDforgot ?? _edtIDforgot,
     edtemailforgot: edtemailforgot ?? _edtemailforgot,
     btnforgotnext: btnforgotnext ?? _btnforgotnext,
-    textheadsetnewpass: textheadsetnewpass ?? _textheadsetnewpass,
+    titlesetnewpass: titlesetnewpass ?? _titlesetnewpass,
     textotpwillsent: textotpwillsent ?? _textotpwillsent,
     edtpass: edtpass ?? _edtpass,
     edtcpass: edtcpass ?? _edtcpass,
@@ -162,11 +162,11 @@ class Screeninfo {
     btnsentotpagain: btnsentotpagain ?? _btnsentotpagain,
     btnconfirm: btnconfirm ?? _btnconfirm,
   );
-  String? get textforgothead => _textforgothead;
+  String? get titleforgot => _titleforgot;
   String? get edtIDforgot => _edtIDforgot;
   String? get edtemailforgot => _edtemailforgot;
   String? get btnforgotnext => _btnforgotnext;
-  String? get textheadsetnewpass => _textheadsetnewpass;
+  String? get titlesetnewpass => _titlesetnewpass;
   String? get textotpwillsent => _textotpwillsent;
   String? get edtpass => _edtpass;
   String? get edtcpass => _edtcpass;
@@ -177,11 +177,11 @@ class Screeninfo {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['textforgothead'] = _textforgothead;
+    map['titleforgot'] = _titleforgot;
     map['edtIDforgot'] = _edtIDforgot;
     map['edtemailforgot'] = _edtemailforgot;
     map['btnforgotnext'] = _btnforgotnext;
-    map['textheadsetnewpass'] = _textheadsetnewpass;
+    map['titlesetnewpass'] = _titlesetnewpass;
     map['textotpwillsent'] = _textotpwillsent;
     map['edtpass'] = _edtpass;
     map['edtcpass'] = _edtcpass;
