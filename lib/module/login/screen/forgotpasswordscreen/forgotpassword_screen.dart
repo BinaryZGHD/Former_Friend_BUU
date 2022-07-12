@@ -30,7 +30,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context.read<ForgorPasswordBloc>().add(ForgotPasswordScreenInfoEvent(userLanguage: userLanguage));
+    context.read<ForgorPasswordBloc>().add(ScreenInfoForgotPasswordEvent(userLanguage: userLanguage));
   }
 
 
@@ -47,22 +47,25 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
         }
         if (state is ForgotPasswordError) {
           // show dialog error
-          dialogOneLineOneBtn(context, state.message + '\n \n ', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
           print(state.message);
         }
-        if (state is ForgotPasswordSubmitSuccessState) {
+        if (state is SubmitForgotPasswordSuccessState) {
           _forgotPasswordSubmitResponse = state.responseSubmitForgotPassword;
+          var ForgotpasswordValueEmail = state.emailForgotPassword;
+          var ForgotpasswordValueUserID = state.userIDForgotPassword;
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => setNewForgotPasswordScreen(valueLanguage: widget.valueLanguage,
+                  builder: (context) => setNewForgotPasswordScreen(valueLanguage: widget.valueLanguage ,
+                      ForgotpasswordValueEmail: ForgotpasswordValueEmail, ForgotpasswordValueUserID: ForgotpasswordValueUserID
                       )));
         }
       },
       builder: (context, state) {
-        if (state is ForgotPasswordScreenInfoSuccessState) {
+        if (state is ScreenInfoForgotPasswordSuccessState) {
           _screenforgotpasswordResponse = state.responseForgotPassword;
           return buildContentforgotpassword(context, _screenforgotpasswordResponse,userLanguage);
         } else {
@@ -73,7 +76,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
         }
       },
       buildWhen: (context, state) {
-        return state is ForgotPasswordScreenInfoSuccessState;
+        return state is ScreenInfoForgotPasswordSuccessState;
       },
     );
   }
@@ -108,7 +111,7 @@ buildContentforgotpassword(
             ),
           ),
           title: Text(
-            "${_screenforgotpasswordResponse?.body?.screeninfo?.textforgothead}",
+            "${_screenforgotpasswordResponse?.body?.screeninfo?.titleforgot}",
             style: TextStyle(
               color: Colors.black,
               fontSize: sizeTitle24,
@@ -151,7 +154,7 @@ buildContentforgotpassword(
                       colorborder: BC_ButtonText_style_Black_Boarder,
                       sizeborder: 10,
                       onPressed: () {
-                        context.read<ForgorPasswordBloc>().add(ForgotPasswordSubmitEvent(
+                        context.read<ForgorPasswordBloc>().add(SubmitForgotPasswordEvent(
                             userID: uservalue, email: emailvalue, userLanguage: userLanguage));
                       }),
                 ),

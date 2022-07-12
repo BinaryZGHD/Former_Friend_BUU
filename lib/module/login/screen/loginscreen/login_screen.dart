@@ -19,7 +19,7 @@ import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class loginScreen extends StatefulWidget {
-  const loginScreen({Key? key}) : super(key: key);
+  const loginScreen( {Key? key, }) : super(key: key);
 
   @override
   State<loginScreen> createState() => _loginScreenState();
@@ -68,13 +68,13 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         }
         if (state is LoginError) {
           // show dialog error
-          dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
           print(state.message);
         }
-        if (state  is LoginSubmitState){
-          _loginSubmitResponse = state.responseLoginscreen;
+        if (state  is SubmitLoginState){
+          _loginSubmitResponse = state.responseSunmitLoginscreen;
             Navigator.push(
               context,MaterialPageRoute(
                 builder: (context) => HomeScreen(
@@ -88,12 +88,12 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
 
       },
       builder: (context, state) {
-        if (state is LoginScreenInfoSuccessState) {
-          _screenLoginResponse = state.response;
+        if (state is ScreenInfoLoginSuccessState) {
+          _screenLoginResponse = state.responseScreenInfoLogin;
           return buildContent(context);
         }
         else if (state is OnClickLanguageLoginScreenInfoSuccessState) {
-          _screenLoginResponse = state.responseLoginscreen;
+          _screenLoginResponse = state.responseLanguageLoginscreen;
           return buildContent(context);
         }
 
@@ -102,7 +102,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
         ));
       },
       buildWhen: (context, state) {
-        return state is LoginScreenInfoSuccessState || state is OnClickLanguageLoginScreenInfoSuccessState;
+        return state is ScreenInfoLoginSuccessState || state is OnClickLanguageLoginScreenInfoSuccessState;
       },
     );
   }
@@ -219,52 +219,10 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                       Center(
                         child: ButtonCustom(
                           onPressed: () {
-                            // signIn(userID, password);
                             context.read<LoginBloc>().add(LoginSubmitEvent(
                                   userID: userID,
                                   password: password,
                                 ));
-
-                            // dialogOneLineTwoBtn(
-                            //     context,
-                            //     errpdpadecline +
-                            //         '\n \n ' +
-                            //         'Do you want to continue?',
-                            //     'Confirm',
-                            //     'Cancel', onClickBtn: (String result) {
-                            //   Navigator.of(context).pop();
-                            //   switch (result) {
-                            //     case 'Cancel':
-                            //       {
-                            //         break;
-                            //       }
-                            //     case 'OK':
-                            //       {
-                            //         Navigator.push(context,
-                            //             MaterialPageRoute(builder:
-                            //                 (BuildContext context) {
-                            //           // int index = int.parse(widget.id);
-                            //           return HomeScreen();
-                            //           // DisplayBeerScreen();
-                            //         }));
-                            //       }
-                            //   }
-                            // });
-
-                            // context.read<LoginBloc>().add(LoginScreenInfoEvent());
-                            // showDialog(
-                            //     context: context,
-                            //     builder: (context) => CustomDialogBox(
-                            //           onPressed: () {
-                            //             Navigator.of(context).pop(); // dialog
-                            //             Navigator.of(context).pop(); // login
-                            //             Navigator.of(context).pop(); // login
-                            //           },
-                            //           id: '',
-                            //           textfieldvalue: "userID  :" + userID + "\n" + "Password :" + passw,
-                            //           description: errloin + '\n \n ' + 'Do you want to continue?',
-                            //           mapscreen: HomeScreen(),
-                            //         ));
                           },
                           label: "  ${_screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
                           colortext: BC_ButtonText_style_Black,
@@ -287,7 +245,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
                           ),
                           TextLinkToScreenCustom(
                             linklabel: "${_screenLoginResponse?.body?.screeninfo?.btnReg}",
-                            mapscreen: conditionPDPAScreen(),
+                            mapscreen: conditionPDPAScreen(valueLanguage: valueLanguage,),
                             linktextcolor: TC_regiter,
                             sizetext: sizeTextSmall16,
                           ),

@@ -4,10 +4,10 @@ part of 'pdpa_bloc.dart';
 abstract class PdpaState {}
 
 class PdpaInitial extends PdpaState {}
-class  PDPAScreenInfoSuccessState extends PdpaState{
+class  ScreenInfoPDPASuccessState extends PdpaState{
   ScreenPDPAResponse  response;
 
-  PDPAScreenInfoSuccessState({required this.response});
+  ScreenInfoPDPASuccessState({required this.response});
 
 }
 class PDPALoading extends PdpaState{

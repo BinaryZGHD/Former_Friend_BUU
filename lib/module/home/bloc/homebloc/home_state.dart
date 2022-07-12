@@ -16,11 +16,11 @@ class HomeError extends HomeState{
   String message;
   HomeError({required this.message});
 }
-class HomeScreenInfoSuccessState extends HomeState{
-  ScreenHomeResponse  responseHome;
+class ScreenInfoHomeSuccessState extends HomeState{
+  ScreenHomeResponse  responseScreenInfoHome;
   ApiProfileResponse responseProfile;
   ScreenStatusActivityResponse responseActivity;
-  HomeScreenInfoSuccessState({required this.responseHome, required this.responseProfile, required this.responseActivity});
+  ScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity});
 }
 //
 // class HomeActivityStatus extends HomeState{

@@ -36,7 +36,7 @@ class ButtonCustom extends StatelessWidget {
           elevation: MaterialStateProperty.all(sizeborder), //Defines Elevation
           // shadowColor: MaterialStateProperty.all(Colors.black), //Defines Shadow Color
           backgroundColor: MaterialStateProperty.all<Color>(colorbutton),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15)),
+          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50.0),
             side: BorderSide(color: colorborder, width: 2),

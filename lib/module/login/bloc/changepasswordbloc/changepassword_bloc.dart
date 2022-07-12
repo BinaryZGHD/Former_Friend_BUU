@@ -25,7 +25,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> 
           ScreenChangePasswordResponse screenChangePassworddResponse =
           ScreenChangePasswordResponse.fromJson(response.data);
           if (screenChangePassworddResponse.head?.status == "200") {
-            emit(ChangePasswordScreenInfoSuccessState(responseChangePasswordScreenInfo: screenChangePassworddResponse));
+            emit(ScreenInfoChangePasswordSuccessState(responseChangePasswordScreenInfo: screenChangePassworddResponse));
           } else {
             emit(ChangePasswordError(message: screenChangePassworddResponse.head?.message ?? ""));
           }

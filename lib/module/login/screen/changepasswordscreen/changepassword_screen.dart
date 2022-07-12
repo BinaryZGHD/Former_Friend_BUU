@@ -49,7 +49,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
       },
       child: Scaffold(
         body: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(builder: (context, state) {
-          if (state is ChangePasswordScreenInfoSuccessState) {
+          if (state is ScreenInfoChangePasswordSuccessState) {
             _screenchangepasswordResponse = state.responseChangePasswordScreenInfo;
             return Scaffold(
               appBar: AppBar(

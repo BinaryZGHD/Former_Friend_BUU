@@ -9,7 +9,7 @@ buildButtonCustom({required Null Function() onPressed, required Color colortext,
 
       style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(colorbutton),
-  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15)),
+  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(50.0),
   side: BorderSide(color: colorborder, width: 2),

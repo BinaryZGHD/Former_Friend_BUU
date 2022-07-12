@@ -8,6 +8,7 @@ import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
 import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
 import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
+import 'package:f2fbuu/module/login/model/response/re_send_otp_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/submit_forgot_setnew_forgotpassword_response.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
@@ -18,9 +19,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class setNewForgotPasswordScreen extends StatefulWidget with ProgressDialog {
   final String valueLanguage;
-
+  final String ForgotpasswordValueEmail;
+  final String ForgotpasswordValueUserID;
   setNewForgotPasswordScreen({
-    Key? key, required this.valueLanguage,
+    Key? key, required this.valueLanguage, required this.ForgotpasswordValueEmail, required this.ForgotpasswordValueUserID,
 
   }) : super(key: key);
 
@@ -31,6 +33,7 @@ class setNewForgotPasswordScreen extends StatefulWidget with ProgressDialog {
 class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen> with ProgressDialog {
   SubmitForgotSetNewForgotPasswordResponse? _submitForgotSetNewForgotPasswordResponse;
   ScreenForgotPasswordResponse? _screenSetNewforgotpasswordResponse;
+  ReSendOtpForgotPasswordResponse? _reSendOtpForgotPasswordResponse;
   // late String userLanguage;
   // @override
   // void initState() {
@@ -50,7 +53,7 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context.read<ForgorPasswordBloc>().add(SetNewForgotPasswordScreenInfoEvent(userLanguage: userLanguage));
+    context.read<ForgorPasswordBloc>().add(ScreenInfoSetNewForgotPasswordEvent(userLanguage: userLanguage));
   }
 
 
@@ -63,22 +66,39 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
         }
         if (state is SetNewForgotPasswordEndLoading) {
           hideProgressDialog(context);
+        }if (state is ReSentOTPSetNewForgotPasswordLoading) {
+          showProgressDialog(context);
+        }
+        if (state is ReSentOTPSetNewForgotPasswordEndLoading) {
+          hideProgressDialog(context);
         }
         if (state is SetNewForgotPasswordError) {
           // show dialog error
-          dialogOneLineOneBtn(context, state.message + '\n \n ', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, state.message + '\n  ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
-          print(state.message);
+
+        }if (state is ReSentOTPSetNewForgotPasswordError) {
+          // show dialog error
+          dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
+            Navigator.of(context).pop();
+          });
+
+        }if (state is ReSentOTPSetNewForgotPasswordSuccessState) {
+          _reSendOtpForgotPasswordResponse = state.responseReSendOtpForgotPasswordResponse;
+          dialogOneLineOneBtn(context, "${_reSendOtpForgotPasswordResponse?.head?.message}" + '\n ', "OK", onClickBtn: () {
+            Navigator.of(context).pop();
+          });
         }
-        if (state is SetNewForgotPasswordSubmitSuccessState) {
+        if (state is SubmitSetNewForgotPasswordSuccessState) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => loginScreen()));
         }
       },
       builder: (context, state) {
-        if (state is SetNewForgotPasswordScreenInfoSuccessState) {
+        if (state is ScreenInfoSetNewForgotPasswordSuccessState) {
           _screenSetNewforgotpasswordResponse = state.responseSetNewForgotPassword;
-          return buildContentsetnewforgotpassword(context, _screenSetNewforgotpasswordResponse ,userLanguage);
+          return buildContentsetnewforgotpassword(context, _screenSetNewforgotpasswordResponse ,userLanguage,
+              ForgotpasswordValueEmail:widget.ForgotpasswordValueEmail,ForgotpasswordValueUserID:widget.ForgotpasswordValueUserID);
         } else {
           return Scaffold(
               body: Container(
@@ -87,7 +107,7 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
         }
       },
       buildWhen: (context, state) {
-        return state is SetNewForgotPasswordScreenInfoSuccessState;
+        return state is ScreenInfoSetNewForgotPasswordSuccessState;
       },
     );
   }
@@ -96,6 +116,7 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
 buildContentsetnewforgotpassword(
   BuildContext context,
   ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
+    {required String ForgotpasswordValueEmail, required String ForgotpasswordValueUserID}
 ) {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
@@ -123,7 +144,7 @@ buildContentsetnewforgotpassword(
           ),
         ),
         title: Text(
-          "${_screenforgotpasswordResponse?.body?.screeninfo?.textheadsetnewpass}",
+          "${_screenforgotpasswordResponse?.body?.screeninfo?.titlesetnewpass}",
           style: TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -144,19 +165,24 @@ buildContentsetnewforgotpassword(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.025,
-                  ),
-                  Text(
-                    "${_screenforgotpasswordResponse?.body?.screeninfo?.edtemailforgot}",
-                    style: TextStyle(
-                      fontSize: sizeTextBig20,
-                      fontWeight: FontWeight.w600,
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20),
+                    child: Center(
+                      child: Text(
+                          // ${_screenforgotpasswordResponse?.body?.screeninfo?.edtemailforgot} :
+                      "${ForgotpasswordValueEmail}",
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: TC_OTPSent,
+                            decorationColor: TC_OTPSent,
+                            fontWeight: FontWeight.w500,
+                            fontSize: sizeTextBig20
+                        )
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.025,
-                  ),
+
                   Text(
                     "${_screenforgotpasswordResponse?.body?.screeninfo?.texpleaseconfirm}",
                     style: TextStyle(
@@ -165,7 +191,7 @@ buildContentsetnewforgotpassword(
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: 10,
                   ),
                 ]),
               ),
@@ -199,11 +225,15 @@ buildContentsetnewforgotpassword(
                   textcolor: TC_OTPSent,
                   sizetext: sizeTextSmall16,
                   onTap: () {
-                    dialogOneLineOneBtn(context, errregidter2 + '\n \n ' + 'Do you want to continue?', "OK",
-                        onClickBtn: () {
-                      Navigator.of(context).pop();
-                    });
+                    context.read<ForgorPasswordBloc>().add(
+                        ReSentOTPSetNewForgotPasswordEvent(userLanguage: userLanguage, userID: ForgotpasswordValueUserID, email: ForgotpasswordValueEmail));
                   },
+                  // onTap: () {
+                  //   dialogOneLineOneBtn(context, errregidter2 + '\n \n ' + 'Do you want to continue?', "OK",
+                  //       onClickBtn: () {
+                  //     Navigator.of(context).pop();
+                  //   });
+                  // },
                 ),
               ),
               SizedBox(
@@ -219,7 +249,7 @@ buildContentsetnewforgotpassword(
                   sizeborder: 10,
                   onPressed: () {
                     context.read<ForgorPasswordBloc>().add(
-                        SetNewForgotPasswordSubmitEvent(userLanguage: userLanguage , password: passwordvalue ,confirmpassword: confirmpasswordvalue, otp: codevalue));
+                        SubmitSetNewForgotPasswordEvent(userLanguage: userLanguage , password: passwordvalue ,confirmpassword: confirmpasswordvalue, otp: codevalue));
                   },
                 ),
               ),

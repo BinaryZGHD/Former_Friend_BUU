@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-/// head : {"status":"200","message":"success","module":"login"}
+/// head : {"status":200,"message":"success","module":"login"}
 /// body : {"screeninfo":{"textPDPAhead":"Terms of service and Privacy policy","btnaccept":"Accept","btndecline":"Decline"},"linkpdpa":"http://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/069/T_0052.PDF"}
 
 ScreenPDPAResponse ScreenPDPAResponseFromJson(String str) => ScreenPDPAResponse.fromJson(json.decode(str));
@@ -95,91 +95,84 @@ String screeninfoToJson(Screeninfo data) => json.encode(data.toJson());
 
 class Screeninfo {
   Screeninfo({
-    String? textPDPAhead,
+    String? titlepdpa,
     String? btnaccept,
-    String? btndecline,
-  }) {
-    _textPDPAhead = textPDPAhead;
+    String? btndecline,}){
+    _titlepdpa = titlepdpa;
     _btnaccept = btnaccept;
     _btndecline = btndecline;
   }
 
   Screeninfo.fromJson(dynamic json) {
-    _textPDPAhead = json['textPDPAhead'];
+    _titlepdpa = json['titlepdpa'];
     _btnaccept = json['btnaccept'];
     _btndecline = json['btndecline'];
   }
-  String? _textPDPAhead;
+  String? _titlepdpa;
   String? _btnaccept;
   String? _btndecline;
-  Screeninfo copyWith({
-    String? textPDPAhead,
+  Screeninfo copyWith({  String? titlepdpa,
     String? btnaccept,
     String? btndecline,
-  }) =>
-      Screeninfo(
-        textPDPAhead: textPDPAhead ?? _textPDPAhead,
-        btnaccept: btnaccept ?? _btnaccept,
-        btndecline: btndecline ?? _btndecline,
-      );
-  String? get textPDPAhead => _textPDPAhead;
+  }) => Screeninfo(  titlepdpa: titlepdpa ?? _titlepdpa,
+    btnaccept: btnaccept ?? _btnaccept,
+    btndecline: btndecline ?? _btndecline,
+  );
+  String? get titlepdpa => _titlepdpa;
   String? get btnaccept => _btnaccept;
   String? get btndecline => _btndecline;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['textPDPAhead'] = _textPDPAhead;
+    map['titlepdpa'] = _titlepdpa;
     map['btnaccept'] = _btnaccept;
     map['btndecline'] = _btndecline;
     return map;
   }
+
 }
 
-/// status : "200"
+/// status : 200
 /// message : "success"
-/// module : "login"
+/// modulename : "Home"
 
 Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
-
 class Head {
   Head({
-    String? status,
+    int? status,
     String? message,
-    String? module,
-  }) {
+    String? modulename,}){
     _status = status;
     _message = message;
-    _module = module;
+    _modulename = modulename;
   }
 
   Head.fromJson(dynamic json) {
     _status = json['status'];
     _message = json['message'];
-    _module = json['module'];
+    _modulename = json['modulename'];
   }
-  String? _status;
+  int? _status;
   String? _message;
-  String? _module;
-  Head copyWith({
-    String? status,
+  String? _modulename;
+  Head copyWith({  int? status,
     String? message,
-    String? module,
-  }) =>
-      Head(
-        status: status ?? _status,
-        message: message ?? _message,
-        module: module ?? _module,
-      );
-  String? get status => _status;
+    String? modulename,
+  }) => Head(  status: status ?? _status,
+    message: message ?? _message,
+    modulename: modulename ?? _modulename,
+  );
+  int? get status => _status;
   String? get message => _message;
-  String? get module => _module;
+  String? get modulename => _modulename;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['status'] = _status;
     map['message'] = _message;
-    map['module'] = _module;
+    map['modulename'] = _modulename;
     return map;
   }
+
 }

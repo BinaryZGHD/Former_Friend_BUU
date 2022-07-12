@@ -16,7 +16,8 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
 class conditionPDPAScreen extends StatefulWidget {
-  const conditionPDPAScreen({Key? key}) : super(key: key);
+  final String valueLanguage;
+  const conditionPDPAScreen({Key? key, required this.valueLanguage}) : super(key: key);
 
   @override
   State<conditionPDPAScreen> createState() => _conditionPDPAScreenState();
@@ -24,18 +25,12 @@ class conditionPDPAScreen extends StatefulWidget {
 
 class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with ProgressDialog {
   ScreenPDPAResponse? _screenPDPAResponse;
-  late String userLanguage ;
+  late String userLanguage;
   @override
   void initState() {
     super.initState();
-    language();
-  }
-  language () async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userLanguage = prefs.getString('userLanguage')?? 'TH';
-    });
-    context.read<PdpaBloc>().add(PDPAScreenInfoEvent(userLanguage: userLanguage));
+    userLanguage = widget.valueLanguage;
+    context.read<PdpaBloc>().add(ScreenInfoPDPAEvent(userLanguage: userLanguage));
   }
 
 
@@ -51,7 +46,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         }
         if (state is PDPAError) {
           // show dialog error
-          dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
         }
@@ -70,7 +65,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         if (state  is PDPAAccept){
           Navigator.push(
               context,MaterialPageRoute(
-              builder: (context) => registerScreen()
+              builder: (context) => registerScreen( valueLanguage: userLanguage)
           )
           );
 
@@ -78,7 +73,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         }
       },
       builder: (context, state) {
-        if (state is PDPAScreenInfoSuccessState) {
+        if (state is ScreenInfoPDPASuccessState) {
           _screenPDPAResponse = state.response;
           return buildContentPDPAScreen(context);
         }
@@ -87,7 +82,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         ));
       },
       buildWhen: (context, state) {
-        return state is PDPAScreenInfoSuccessState ;
+        return state is ScreenInfoPDPASuccessState ;
       },
     );
   }
@@ -95,7 +90,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
   Container buildContainerTitle() {
     return Container(
       // constraints: BoxConstraints.expand(height: 60),
-      child: Text("${_screenPDPAResponse?.body?.screeninfo?.textPDPAhead}" +"\n",
+      child: Text("${_screenPDPAResponse?.body?.screeninfo?.titlepdpa}",
           textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
     );
   }
@@ -113,10 +108,10 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, bottom: 10),
+                    child: buildContainerTitle(),
                   ),
-                  buildContainerTitle(),
                   Expanded(
                     child: Container(
                         color: BSC_transparent,
