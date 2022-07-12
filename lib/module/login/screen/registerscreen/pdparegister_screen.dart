@@ -52,7 +52,6 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         }
         if (state is PDPADecline) {
           // show dialog error
-
           Navigator.pushReplacement(
               context,MaterialPageRoute(
               builder: (context) => loginScreen()
@@ -64,7 +63,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
 
         }
         if (state  is PDPAAccept){
-          Navigator.push(
+          Navigator.pushReplacement(
               context,MaterialPageRoute(
               builder: (context) => registerScreen( valueLanguage: userLanguage)
           )
