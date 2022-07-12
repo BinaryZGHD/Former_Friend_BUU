@@ -6,13 +6,18 @@ import 'package:f2fbuu/utils/dio.dart';
 class ProfileRepository {
   Future<Response> getApiProfile(
       // String user,String password,
+      String language,
+      String token
       ) async {
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/wording/profile",
-      // data: jsonEncode()
+      data: jsonEncode({
+        "language": language,
+        "token": token
+      })
     );
   }
-  Future<Response> getProfileGeneralData(
+  Future<Response> sentProfileGeneralData(
       String token,
       String name,
       String surname,
@@ -22,42 +27,99 @@ class ProfileRepository {
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/editgeneral",
         data: jsonEncode({
-          "token":"string",
+          "token": "string",
           "name": "string",
           "surname": "string",
-          "nickname": "string"
+          "nickname": "string",
+          "tel": "0"
         })
     );
   }
-  Future<Response> getProfileEducationData(
-      // String user,String password,
+  Future<Response> sentProfileEducationData(
+      String token,
+      String gpajh,
+      String gpash,
+      String gpabd
       ) async {
-    return await MyDio.createDioTest().post(
-      "/v1/api/modules/profile/editgeneral",
-      // data: jsonEncode()
+    return await MyDio.createDioServerTest().post(
+      "/ServiceTest/profile/educational",
+      data: jsonEncode({
+        "token": "string",
+        "gpAbd": "0",
+        "gpAjhs": "0",
+        "gpAshs": "0"
+      })
     );
-  } Future<Response> getProfileAddressData(
-      // String user,String password,
+  } Future<Response> sentProfileAddressData(
+      String token,
+      String number,
+      String village,
+      String road,
+      String subdistrict,
+      String district,
+      String province,
+      String zipcode
       ) async {
-    return await MyDio.createDioTest().post(
-      "/v1/api/modules/profile/wording/profile",
-      // data: jsonEncode()
+    return await MyDio.createDioServerTest().post(
+      "/ServiceTest/profile/address",
+      data: jsonEncode(
+          {
+            "token": "string",
+            "number": "0",
+            "village": "string",
+            "road": "string",
+            "subdistrict": "string",
+            "district": "string",
+            "province": "string",
+            "zipcode": "0"
+          }
+      )
     );
   }
-  Future<Response> getProfileContactData(
-      // String user,String password,
+  Future<Response> sentProfileContactData(
+      String token,
+      String phone,
+      String line,
+      String facebook,
+      String instragram,
+      String twitter,
+      String youtube
       ) async {
-    return await MyDio.createDioTest().post(
-      "/v1/api/modules/profile/wording/profile",
-      // data: jsonEncode()
+    return await MyDio.createDioServerTest().post(
+      "/ServiceTest/profile/contact",
+      data: jsonEncode(
+          {
+            "token": "string",
+            "phone": "0",
+            "line": "string",
+            "facebook": "string",
+            "instragram": "string",
+            "twitter": "string",
+            "youtube": "string"
+          }
+      )
     );
   }
-  Future<Response> getProfileCareerData(
-      // String user,String password,
+  Future<Response> sentProfileCareerData(
+      String token,
+      String attention,
+      String status,
+      String jobtype,
+      String career,
+      String company
       ) async {
-    return await MyDio.createDioTest().post(
-      "/v1/api/modules/profile/wording/profile",
-      // data: jsonEncode()
+    return await MyDio.createDioServerTest().post(
+      "/ServiceTest/profile/career",
+      data: jsonEncode(
+          {
+            "token": "string",
+            "attention": "string",
+            "status": "string",
+            "jobtype": "string",
+            "career": "string",
+            "company": "string"
+          }
+      )
     );
   }
 }
