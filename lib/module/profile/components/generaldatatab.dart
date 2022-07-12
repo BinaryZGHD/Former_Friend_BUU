@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../model/response/api_profile.dart';
+
 class ProfileGeneralDataHead extends StatefulWidget {
   final ApiProfileResponse? dataFromAPI;
-  ProfileGeneralDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
+  ProfileGeneralDataHead({Key? key, required this.dataFromAPI})
+      : super(key: key);
   @override
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
 }
+
 class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
   bool isunpressed = true;
+  bool sentgeneraldata = false;
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
     String namevalue = "";
+    String surnamevalue = "";
+    String nicknamevalue = "";
+    if (isunpressed == true){
+      sentgeneraldata = true;
+    };
     return Column(
       children: [
         Container(
@@ -37,14 +46,14 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                       onPressed: () {
                         setState(() {
                           isunpressed = !isunpressed;
-                        }
-                        );
+                        });
                       },
                       child: isunpressed
                           // ? Text('บันทึก', style: TextStyle(color: Colors.green))
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก', style: TextStyle(color: Colors.green)),
-                          // : Text('แก้ไข', style: TextStyle(color: Colors.red)),
+                          : Text('บันทึก',
+                              style: TextStyle(color: Colors.green)),
+                      // : Text('แก้ไข', style: TextStyle(color: Colors.red)),
                     ),
                   ),
                 ),
@@ -56,31 +65,36 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
           isunpressed: isunpressed,
           textleft: '${dataFromAPI?.body?.screeninfo?.textname}',
           textright: '${dataFromAPI?.body?.profileGeneralInfo?.name}',
-            onChange: (value){
-              namevalue = value;
-              print(namevalue);
-            },
+          onChange: (value) {
+            namevalue = value;
+            print(namevalue);
+          },
         ),
         ProfileGeneralDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textlname}',
-            textright: '${dataFromAPI?.body?.profileGeneralInfo?.surname}'
+          isunpressed: isunpressed,
+          textleft: '${dataFromAPI?.body?.screeninfo?.textlname}',
+          textright: '${dataFromAPI?.body?.profileGeneralInfo?.surname}',
+          onChange: (value) {
+            surnamevalue = value;
+            print(surnamevalue);
+          },
         ),
         ProfileGeneralDataTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textnickname}',
-            textright: '${dataFromAPI?.body?.profileGeneralInfo?.nickname}'
-        ),
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.nickname}',
+            onChange: (value) {
+              nicknamevalue = value;
+              print(nicknamevalue);
+            }),
         ProfileGeneralDataReadonlyTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textstdcode}',
-            textright: '${dataFromAPI?.body?.profileGeneralInfo?.stuCode}'
-        ),
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.stuCode}'),
         ProfileGeneralDataReadonlyTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgen}',
-            textright: '${dataFromAPI?.body?.profileGeneralInfo?.gen}'
-        ),
+            textright: '${dataFromAPI?.body?.profileGeneralInfo?.gen}'),
       ],
     );
   }
@@ -98,7 +112,7 @@ class ProfileGeneralDataTab extends StatefulWidget {
       required this.textleft,
       required this.textright,
       required this.isunpressed,
-               this.onChange})
+      this.onChange})
       : super(key: key);
 
   @override
@@ -111,7 +125,6 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
     String textleft = widget.textleft;
     String textright = widget.textright;
     bool ispressed = widget.isunpressed;
-    String uservalue;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -148,6 +161,7 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
     );
   }
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 class ProfileGeneralDataReadonlyTab extends StatefulWidget {
   final String textleft;
@@ -156,16 +170,18 @@ class ProfileGeneralDataReadonlyTab extends StatefulWidget {
 
   ProfileGeneralDataReadonlyTab(
       {Key? key,
-        required this.textleft,
-        required this.textright,
-        required this.isunpressed})
+      required this.textleft,
+      required this.textright,
+      required this.isunpressed})
       : super(key: key);
 
   @override
-  State<ProfileGeneralDataReadonlyTab> createState() => _ProfileGeneralDataReadonlyTabState();
+  State<ProfileGeneralDataReadonlyTab> createState() =>
+      _ProfileGeneralDataReadonlyTabState();
 }
 
-class _ProfileGeneralDataReadonlyTabState extends State<ProfileGeneralDataReadonlyTab> {
+class _ProfileGeneralDataReadonlyTabState
+    extends State<ProfileGeneralDataReadonlyTab> {
   @override
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
