@@ -22,8 +22,10 @@ class setNewForgotPasswordScreen extends StatefulWidget with ProgressDialog {
   final String ForgotpasswordValueEmail;
   final String ForgotpasswordValueUserID;
   setNewForgotPasswordScreen({
-    Key? key, required this.valueLanguage, required this.ForgotpasswordValueEmail, required this.ForgotpasswordValueUserID,
-
+    Key? key,
+    required this.valueLanguage,
+    required this.ForgotpasswordValueEmail,
+    required this.ForgotpasswordValueUserID,
   }) : super(key: key);
 
   @override
@@ -56,7 +58,6 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
     context.read<ForgorPasswordBloc>().add(ScreenInfoSetNewForgotPasswordEvent(userLanguage: userLanguage));
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgorPasswordBloc, ForgorPasswordState>(
@@ -66,7 +67,8 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
         }
         if (state is SetNewForgotPasswordEndLoading) {
           hideProgressDialog(context);
-        }if (state is ReSentOTPSetNewForgotPasswordLoading) {
+        }
+        if (state is ReSentOTPSetNewForgotPasswordLoading) {
           showProgressDialog(context);
         }
         if (state is ReSentOTPSetNewForgotPasswordEndLoading) {
@@ -77,28 +79,31 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
           dialogOneLineOneBtn(context, state.message + '\n  ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
-
-        }if (state is ReSentOTPSetNewForgotPasswordError) {
+        }
+        if (state is ReSentOTPSetNewForgotPasswordError) {
           // show dialog error
           dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
             Navigator.of(context).pop();
           });
-
-        }if (state is ReSentOTPSetNewForgotPasswordSuccessState) {
+        }
+        if (state is ReSentOTPSetNewForgotPasswordSuccessState) {
           _reSendOtpForgotPasswordResponse = state.responseReSendOtpForgotPasswordResponse;
-          dialogOneLineOneBtn(context, "${_reSendOtpForgotPasswordResponse?.head?.message}" + '\n ', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, "${_reSendOtpForgotPasswordResponse?.head?.message}" + '\n ', "OK",
+              onClickBtn: () {
             Navigator.of(context).pop();
           });
         }
         if (state is SubmitSetNewForgotPasswordSuccessState) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => loginScreen()));
+          Navigator.pushAndRemoveUntil(
+              context, MaterialPageRoute(builder: (context) => loginScreen()), (Route<dynamic> route) => false);
         }
       },
       builder: (context, state) {
         if (state is ScreenInfoSetNewForgotPasswordSuccessState) {
           _screenSetNewforgotpasswordResponse = state.responseSetNewForgotPassword;
-          return buildContentsetnewforgotpassword(context, _screenSetNewforgotpasswordResponse ,userLanguage,
-              ForgotpasswordValueEmail:widget.ForgotpasswordValueEmail,ForgotpasswordValueUserID:widget.ForgotpasswordValueUserID);
+          return buildContentsetnewforgotpassword(context, _screenSetNewforgotpasswordResponse, userLanguage,
+              ForgotpasswordValueEmail: widget.ForgotpasswordValueEmail,
+              ForgotpasswordValueUserID: widget.ForgotpasswordValueUserID);
         } else {
           return Scaffold(
               body: Container(
@@ -114,10 +119,8 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
 }
 
 buildContentsetnewforgotpassword(
-  BuildContext context,
-  ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
-    {required String ForgotpasswordValueEmail, required String ForgotpasswordValueUserID}
-) {
+    BuildContext context, ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
+    {required String ForgotpasswordValueEmail, required String ForgotpasswordValueUserID}) {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   TextEditingController code = TextEditingController();
@@ -165,24 +168,20 @@ buildContentsetnewforgotpassword(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20),
                     child: Center(
                       child: Text(
                           // ${_screenforgotpasswordResponse?.body?.screeninfo?.edtemailforgot} :
-                      "${ForgotpasswordValueEmail}",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: TC_OTPSent,
-                            decorationColor: TC_OTPSent,
-                            fontWeight: FontWeight.w500,
-                            fontSize: sizeTextBig20
-                        )
-                      ),
+                          "${ForgotpasswordValueEmail}",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: TC_OTPSent,
+                              decorationColor: TC_OTPSent,
+                              fontWeight: FontWeight.w500,
+                              fontSize: sizeTextBig20)),
                     ),
                   ),
-
                   Text(
                     "${_screenforgotpasswordResponse?.body?.screeninfo?.texpleaseconfirm}",
                     style: TextStyle(
@@ -225,8 +224,10 @@ buildContentsetnewforgotpassword(
                   textcolor: TC_OTPSent,
                   sizetext: sizeTextSmall16,
                   onTap: () {
-                    context.read<ForgorPasswordBloc>().add(
-                        ReSentOTPSetNewForgotPasswordEvent(userLanguage: userLanguage, userID: ForgotpasswordValueUserID, email: ForgotpasswordValueEmail));
+                    context.read<ForgorPasswordBloc>().add(ReSentOTPSetNewForgotPasswordEvent(
+                        userLanguage: userLanguage,
+                        userID: ForgotpasswordValueUserID,
+                        email: ForgotpasswordValueEmail));
                   },
                   // onTap: () {
                   //   dialogOneLineOneBtn(context, errregidter2 + '\n \n ' + 'Do you want to continue?', "OK",
@@ -248,8 +249,11 @@ buildContentsetnewforgotpassword(
                   colorborder: BC_ButtonText_style_Black_Boarder,
                   sizeborder: 10,
                   onPressed: () {
-                    context.read<ForgorPasswordBloc>().add(
-                        SubmitSetNewForgotPasswordEvent(userLanguage: userLanguage , password: passwordvalue ,confirmpassword: confirmpasswordvalue, otp: codevalue));
+                    context.read<ForgorPasswordBloc>().add(SubmitSetNewForgotPasswordEvent(
+                        userLanguage: userLanguage,
+                        password: passwordvalue,
+                        confirmpassword: confirmpasswordvalue,
+                        otp: codevalue));
                   },
                 ),
               ),
