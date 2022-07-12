@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","modulename":"login"}
 /// body : null
 
-Education educationFromJson(String str) => Education.fromJson(json.decode(str));
-String educationToJson(Education data) => json.encode(data.toJson());
-class Education {
-  Education({
+EducationResponse educationFromJson(String str) => EducationResponse.fromJson(json.decode(str));
+String educationToJson(EducationResponse data) => json.encode(data.toJson());
+class EducationResponse {
+  EducationResponse({
       Head? head, 
       dynamic body,}){
     _head = head;
     _body = body;
 }
 
-  Education.fromJson(dynamic json) {
+  EducationResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'];
   }
   Head? _head;
   dynamic _body;
-Education copyWith({  Head? head,
+EducationResponse copyWith({  Head? head,
   dynamic body,
-}) => Education(  head: head ?? _head,
+}) => EducationResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

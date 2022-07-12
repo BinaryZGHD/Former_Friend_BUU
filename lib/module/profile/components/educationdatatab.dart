@@ -1,4 +1,6 @@
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../model/response/api_profile.dart';
 import '../model/response/api_profile.dart';
@@ -43,6 +45,9 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
                       onPressed: () {
                         setState(() {
                           isunpressed = !isunpressed;
+                          if(isunpressed == true){
+                            context.read<ProfileBloc>().add(EducationSubmitEvent(gpabd: gpabdvalue, gpash: gpashvalue, gpajh: gpajhvalue, token: ''));
+                          };
                         });
                         // setState((){
                         //   if (ispressed == true) {
@@ -73,10 +78,6 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textfac}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.faculty}'),
-        onChange: (value) {
-          surnamevalue = value;
-          print(surnamevalue);
-        },
         ProfileEducationDataReadonlyTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textdepart}',
@@ -88,15 +89,27 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
         ProfileEducationDataTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgpaju}',
-            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaJhs}'),
+            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaJhs}',
+          onChange: (value) {
+            gpajhvalue = value;
+            print(gpajhvalue);
+          },),
         ProfileEducationDataTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgpase}',
-            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaShs}'),
+            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaShs}',
+          onChange: (value) {
+          gpashvalue = value;
+          print(gpashvalue);
+        },),
         ProfileEducationDataTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textgpaba}',
-            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaBd}'),
+            textright: '${dataFromAPI?.body?.profileEduInfo?.gpaBd}',
+          onChange: (value) {
+            gpabdvalue = value;
+            print(gpabdvalue);
+          },),
       ],
     );
   }
@@ -106,12 +119,13 @@ class ProfileEducationDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
   final bool isunpressed;
-
+  final ValueChanged<String>? onChange;
   ProfileEducationDataTab(
       {Key? key,
         required this.textleft,
         required this.textright,
-        required this.isunpressed})
+        required this.isunpressed,
+        this.onChange})
       : super(key: key);
 
   @override
@@ -144,17 +158,19 @@ class _ProfileEducationDataTabState extends State<ProfileEducationDataTab> {
                 child: TextFormField(
                   autofocus: false,
                   style: TextStyle(fontSize: 18, color: Colors.black),
+                  keyboardType: TextInputType.numberWithOptions(),
                   readOnly: ispressed,
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      texttest = value;
-                      print(texttest);
-                    });
-                  },
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     texttest = value;
+                  //     print(texttest);
+                  //   });
+                  // },
+                  onChanged : widget.onChange,
                   initialValue: textright,
                 ),
 

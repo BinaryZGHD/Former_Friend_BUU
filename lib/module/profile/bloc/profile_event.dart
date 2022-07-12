@@ -46,11 +46,14 @@ class GeneralSubmitEvent extends ProfileEvent {
   });
 }
 class EducationSubmitEvent extends ProfileEvent {
-
+  String token;
+  String gpajh;
+  String gpash;
+  String gpabd;
   EducationSubmitEvent({
-   required String token,
-   required String gpajh,
-   required String gpash,
-   required String gpabd,
+   required this.token,
+   required this.gpajh,
+   required this.gpash,
+   required this.gpabd
   });
 }

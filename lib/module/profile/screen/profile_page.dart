@@ -1,4 +1,5 @@
 import 'dart:io' show File, Platform;
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
@@ -43,11 +44,20 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       }
       if (state is ProfileError) {
         print(state.errormessage);
+        dialogOneLineOneBtn(context, state.errormessage + '\n ', "OK", onClickBtn: () {
+          Navigator.of(context).pop();
+        });
       }
       if (state is GeneralSubmitSuccessState) {
-        print("TEST");
+        print("TEST general");
         print(state.responseGeneral.toJson());
-        print("TEST");
+        print("TEST general");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: "ant"));
+      }
+      if (state is EducationSubmitSuccessState) {
+        print("TEST edu");
+        print(state.responseEducation.toJson());
+        print("TEST edu");
         context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: "ant"));
       }
     },

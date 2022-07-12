@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:f2fbuu/module/profile/model/response/education.dart';
 import 'package:f2fbuu/module/profile/model/response/general.dart';
 import 'package:f2fbuu/module/profile/repository/profile_repository.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,7 +74,31 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       } on DioError catch (e) {
         emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
       }
-
+    }
+    );
+    on<EducationSubmitEvent>((event, emit) async{
+      try {
+        emit(ProfileLoading());
+        Response responseEducationSubmit = await sentProfileEducationData(
+            event.token,
+            event.gpajh,
+            event.gpash,
+            event.gpabd);
+        emit(ProfileLoadingSuccess());
+        if (responseEducationSubmit.statusCode == 200) {
+          // print('aa = ' + '${response.data}');
+          EducationResponse educationResponse = EducationResponse.fromJson(responseEducationSubmit.data);
+          if (educationResponse.head?.status == 200) {
+            emit(EducationSubmitSuccessState(responseEducation: educationResponse));
+          } else {
+            emit(ProfileError(errormessage: educationResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(ProfileError(errormessage: responseEducationSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+      }
     }
     );
 
