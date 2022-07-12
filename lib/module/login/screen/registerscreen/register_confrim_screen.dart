@@ -71,7 +71,7 @@ class _registerConfirmScreenState extends State<registerConfirmScreen> with Prog
         if (state is SubmitConfirmRegisterState) {
           _submitConfirmRegisterResponse = state.responseSubmitConfirmRegister;
           // show dialog error
-          Navigator.push(
+          Navigator.pushReplacement(
               context,MaterialPageRoute(
               builder: (context) => loginScreen(
               )
