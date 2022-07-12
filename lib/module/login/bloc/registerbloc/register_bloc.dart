@@ -128,12 +128,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
 
     on<ReSentOTPConfirmRegisterEvent>((event, emit) async {
       try {
-        emit(ConfirmRegisterLoading());
+        // emit(ConfirmRegisterLoading());
         Response responsereSendOtpConfirmRegister = await getReSendOTPConfirmRegister(
             event.userLanguage,
             event.userID,
             event.email,);
-        emit(ConfirmRegisterEndLoading());
+        // emit(ConfirmRegisterEndLoading());
         if (responsereSendOtpConfirmRegister.statusCode == 200) {
           ReSendOtpConfirmRegisterResponse reSendOtpConfirmRegisterResponse =
           ReSendOtpConfirmRegisterResponse.fromJson(responsereSendOtpConfirmRegister.data);
