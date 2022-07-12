@@ -14,25 +14,27 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-
 class conditionPDPAScreen extends StatefulWidget {
   final String valueLanguage;
-  const conditionPDPAScreen({Key? key, required this.valueLanguage}) : super(key: key);
+  const conditionPDPAScreen({Key? key, required this.valueLanguage})
+      : super(key: key);
 
   @override
   State<conditionPDPAScreen> createState() => _conditionPDPAScreenState();
 }
 
-class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with ProgressDialog {
+class _conditionPDPAScreenState extends State<conditionPDPAScreen>
+    with ProgressDialog {
   ScreenPDPAResponse? _screenPDPAResponse;
   late String userLanguage;
   @override
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context.read<PdpaBloc>().add(ScreenInfoPDPAEvent(userLanguage: userLanguage));
+    context
+        .read<PdpaBloc>()
+        .add(ScreenInfoPDPAEvent(userLanguage: userLanguage));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,30 +48,26 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
         }
         if (state is PDPAError) {
           // show dialog error
-          dialogOneLineOneBtn(context, state.message + '\n ', "OK", onClickBtn: () {
+          dialogOneLineOneBtn(context, state.message + '\n ', "OK",
+              onClickBtn: () {
             Navigator.of(context).pop();
           });
         }
         if (state is PDPADecline) {
           // show dialog error
           Navigator.pushReplacement(
-              context,MaterialPageRoute(
-              builder: (context) => loginScreen()
-          )
-          );
+              context, MaterialPageRoute(builder: (context) => loginScreen()));
           // dialogOneLineOneBtn(context, "state.message" + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
           //   Navigator.of(context).pop();
           // });
 
         }
-        if (state  is PDPAAccept){
-          Navigator.pushReplacement(
-              context,MaterialPageRoute(
-              builder: (context) => registerScreen( valueLanguage: userLanguage)
-          )
-          );
-
-
+        if (state is PDPAAccept) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      registerScreen(valueLanguage: userLanguage)));
         }
       },
       builder: (context, state) {
@@ -77,12 +75,13 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
           _screenPDPAResponse = state.response;
           return buildContentPDPAScreen(context);
         }
-        return Scaffold(body: Container(
+        return Scaffold(
+            body: Container(
           color: Colors.white,
         ));
       },
       buildWhen: (context, state) {
-        return state is ScreenInfoPDPASuccessState ;
+        return state is ScreenInfoPDPASuccessState;
       },
     );
   }
@@ -91,7 +90,8 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
     return Container(
       // constraints: BoxConstraints.expand(height: 60),
       child: Text("${_screenPDPAResponse?.body?.screeninfo?.titlepdpa}",
-          textAlign: TextAlign.center, style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: sizeTitle24, color: Colors.black)),
     );
   }
 
@@ -116,12 +116,13 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
                     child: Container(
                         color: BSC_transparent,
                         width: MediaQuery.of(context).size.width,
-                        child: SfPdfViewer.network("${_screenPDPAResponse?.body?.linkpdpa}")
-                      // Image.asset(
-                      //   "assets/PDPA.png",
-                      //   fit: BoxFit.fill,
-                      // ),
-                    ),
+                        child: SfPdfViewer.network(
+                            "${_screenPDPAResponse?.body?.linkpdpa}")
+                        // Image.asset(
+                        //   "assets/PDPA.png",
+                        //   fit: BoxFit.fill,
+                        // ),
+                        ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
@@ -134,70 +135,75 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
                       ),
                       Expanded(
                           child: ButtonCustom(
-                            label: "${_screenPDPAResponse?.body?.screeninfo?.btnaccept}",
-                            colortext: BC_ButtonText_style_Black,
-                            colorbutton: BC_ButtonText_style_White,
-                            sizetext: sizeTextBig20,
-                            colorborder: BC_ButtonText_style_Black_Boarder,
-                            sizeborder: 10,
-                            onPressed: () {
-                              context.read<PdpaBloc>().add(OnClickPDPAEvent(accept: true));
-                              // dialogOneLineTwoBtn(
-                              //     context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                              //     onClickBtn: (String result) {
-                              //       Navigator.of(context).pop();
-                              //       switch (result) {
-                              //         case 'Cancel':
-                              //           {
-                              //             break;
-                              //           }
-                              //         case 'OK':
-                              //           {
-                              //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                              //               // int index = int.parse(widget.id);
-                              //               return registerScreen();
-                              //               // DisplayBeerScreen();
-                              //             }));
-                              //           }
-                              //       }
-                              //     });
-
-                            },
-                          )),
+                        label:
+                            "${_screenPDPAResponse?.body?.screeninfo?.btnaccept}",
+                        colortext: BC_ButtonText_style_Black,
+                        colorbutton: BC_ButtonText_style_White,
+                        sizetext: sizeTextBig20,
+                        colorborder: BC_ButtonText_style_Black_Boarder,
+                        sizeborder: 10,
+                        onPressed: () {
+                          context
+                              .read<PdpaBloc>()
+                              .add(OnClickPDPAEvent(accept: true));
+                          // dialogOneLineTwoBtn(
+                          //     context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                          //     onClickBtn: (String result) {
+                          //       Navigator.of(context).pop();
+                          //       switch (result) {
+                          //         case 'Cancel':
+                          //           {
+                          //             break;
+                          //           }
+                          //         case 'OK':
+                          //           {
+                          //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                          //               // int index = int.parse(widget.id);
+                          //               return registerScreen();
+                          //               // DisplayBeerScreen();
+                          //             }));
+                          //           }
+                          //       }
+                          //     });
+                        },
+                      )),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.1,
                       ),
                       Expanded(
                           child: ButtonCustom(
-                            label: "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
-                            colortext: BC_ButtonText_style_White,
-                            colorbutton: BC_ButtonText_style_Red,
-                            sizetext: sizeTextBig20,
-                            colorborder: BC_ButtonText_style_Red_Boarder,
-                            sizeborder: 10,
-                            onPressed: () {
-                              context.read<PdpaBloc>().add(OnClickPDPAEvent(accept: false));
-                              // dialogOneLineTwoBtn(
-                              //     context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                              //     onClickBtn: (String result) {
-                              //       Navigator.of(context).pop();
-                              //       switch (result) {
-                              //         case 'Cancel':
-                              //           {
-                              //             break;
-                              //           }
-                              //         case 'OK':
-                              //           {
-                              //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                              //               // int index = int.parse(widget.id);
-                              //               return loginScreen();
-                              //               // DisplayBeerScreen();
-                              //             }));
-                              //           }
-                              //       }
-                              //     });
-                            },
-                          )),
+                        label:
+                            "${_screenPDPAResponse?.body?.screeninfo?.btndecline}",
+                        colortext: BC_ButtonText_style_White,
+                        colorbutton: BC_ButtonText_style_Red,
+                        sizetext: sizeTextBig20,
+                        colorborder: BC_ButtonText_style_Red_Boarder,
+                        sizeborder: 10,
+                        onPressed: () {
+                          context
+                              .read<PdpaBloc>()
+                              .add(OnClickPDPAEvent(accept: false));
+                          // dialogOneLineTwoBtn(
+                          //     context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                          //     onClickBtn: (String result) {
+                          //       Navigator.of(context).pop();
+                          //       switch (result) {
+                          //         case 'Cancel':
+                          //           {
+                          //             break;
+                          //           }
+                          //         case 'OK':
+                          //           {
+                          //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                          //               // int index = int.parse(widget.id);
+                          //               return loginScreen();
+                          //               // DisplayBeerScreen();
+                          //             }));
+                          //           }
+                          //       }
+                          //     });
+                        },
+                      )),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.08,
                       ),
@@ -215,4 +221,3 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>  with Progres
     );
   }
 }
-
