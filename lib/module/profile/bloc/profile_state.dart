@@ -10,6 +10,8 @@ class ProfileApiSuccessState extends ProfileState{
   ProfileApiSuccessState({required this.response});
 }
 
+
+
 class ChangeAvatarProcress extends ProfileState {
 }
 
@@ -41,3 +43,11 @@ class ProfileStatusState extends ProfileState {
   ProfileStatusState({required this.statuscheck});
 }
 
+class GeneralSubmitSuccessState extends ProfileState{
+  GeneralResponse responseGeneral;
+  GeneralSubmitSuccessState({required this.responseGeneral});
+}
+class EducationSubmitSuccessState extends ProfileState{
+  EducationResponse responseEducation;
+  EducationSubmitSuccessState({required this.responseEducation});
+}

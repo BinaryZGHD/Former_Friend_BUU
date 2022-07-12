@@ -17,6 +17,9 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
+    String gpajhvalue = "";
+    String gpashvalue = "";
+    String gpabdvalue = "";
     return Column(
       children: [
         Container(
@@ -70,6 +73,10 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textfac}',
             textright: '${dataFromAPI?.body?.profileEduInfo?.faculty}'),
+        onChange: (value) {
+          surnamevalue = value;
+          print(surnamevalue);
+        },
         ProfileEducationDataReadonlyTab(
             isunpressed: isunpressed,
             textleft: '${dataFromAPI?.body?.screeninfo?.textdepart}',

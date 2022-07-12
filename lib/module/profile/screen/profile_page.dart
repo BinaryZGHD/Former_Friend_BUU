@@ -44,6 +44,12 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       if (state is ProfileError) {
         print(state.errormessage);
       }
+      if (state is GeneralSubmitSuccessState) {
+        print("TEST");
+        print(state.responseGeneral.toJson());
+        print("TEST");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: "ant"));
+      }
     },
       builder: (context, state) {
         if (state is ProfileApiSuccessState) {

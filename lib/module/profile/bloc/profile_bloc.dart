@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:f2fbuu/module/profile/model/response/general.dart';
 import 'package:f2fbuu/module/profile/repository/profile_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -46,6 +47,32 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
         // emit(ChangeAvatarProcress());
       }
 
+
+    }
+    );
+    on<GeneralSubmitEvent>((event, emit) async{
+      try {
+        emit(ProfileLoading());
+        Response responseGeneralSubmit = await sentProfileGeneralData(event.token,
+            event.name,
+            event.surname,
+            event.nickname,
+            "tel");
+        emit(ProfileLoadingSuccess());
+        if (responseGeneralSubmit.statusCode == 200) {
+          // print('aa = ' + '${response.data}');
+          GeneralResponse generalResponse = GeneralResponse.fromJson(responseGeneralSubmit.data);
+          if (generalResponse.head?.status == 200) {
+            emit(GeneralSubmitSuccessState(responseGeneral: generalResponse));
+          } else {
+            emit(ProfileError(errormessage: generalResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(ProfileError(errormessage: responseGeneralSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+      }
 
     }
     );
