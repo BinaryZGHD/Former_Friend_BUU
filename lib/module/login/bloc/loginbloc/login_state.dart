@@ -11,7 +11,18 @@ class LoginScreenInfoSuccessState extends LoginState{
   LoginScreenInfoSuccessState({required this.response});
 
 }
+class OnClickLanguageLoginScreenInfoSuccessState extends LoginState{
+  ScreenLoginResponse  responseLoginscreen;
 
+  OnClickLanguageLoginScreenInfoSuccessState({required this.responseLoginscreen});
+
+}
+class LoginSubmitState extends LoginState {
+  SunmitLoginResponse responseLoginscreen;
+
+  LoginSubmitState({ required this.responseLoginscreen});
+
+}
 
 
 
@@ -34,11 +45,7 @@ class LoginInitial extends LoginState {
   @override
   String toString() => 'LoginInitial';
 }
-class LoginStatusState extends LoginState {
-  bool statuscheck  ;
-  LoginStatusState({required this.statuscheck});
 
-}
 class LoginRegisterState extends LoginState {
   bool regstatus  ;
   LoginRegisterState({required this.regstatus});

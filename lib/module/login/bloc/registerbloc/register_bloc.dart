@@ -20,12 +20,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
 
       try {
         emit(RegisterLoading());
-        Response response = await getScreenRegister();
+        Response response = await getScreenRegister(event.userLanguage);
         emit(RegisterEndLoading());
         if (response.statusCode == 200) {
           ScreenRegisterResponse screenRegisterResponse =
           ScreenRegisterResponse.fromJson(response.data);
-          if (screenRegisterResponse.head?.status == "200") {
+          if (screenRegisterResponse.head?.status == 200) {
             emit(RegisterScreenInfoSuccessState(response: screenRegisterResponse));
           } else {
             emit(RegisterError(message: screenRegisterResponse.head?.message ?? ""));

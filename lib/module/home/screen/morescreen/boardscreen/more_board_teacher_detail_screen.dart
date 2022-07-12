@@ -45,9 +45,9 @@ class _moreBoardTeacherDetailScreenState extends State<moreBoardTeacherDetailScr
       }
     }
 
-    context.read<HomemoreBloc>().add(HomeMoreBoardTeacherEvent());
+    context.read<MoreBloc>().add(HomeMoreBoardTeacherEvent());
 
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreBoardTeacherLoading) {
           showProgressDialog(context);
@@ -61,7 +61,7 @@ class _moreBoardTeacherDetailScreenState extends State<moreBoardTeacherDetailScr
           print(state.message);
         }
       },
-      child: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+      child: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardTeacherSuccessState) {
             _screenHomeMoreBoardTeacherResponse = state.responseBoardTeacher;
 

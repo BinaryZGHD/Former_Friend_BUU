@@ -16,8 +16,9 @@ import 'package:meta/meta.dart';
 part 'homemore_event.dart';
 part 'homemore_state.dart';
 
-class HomemoreBloc extends Bloc<HomemoreEvent, HomemoreState> with HomeMoreRepository{
-  HomemoreBloc() : super(HomemoreInitial()) {
+class MoreBloc extends Bloc<HomemoreEvent, HomemoreState> with HomeMoreRepository{
+  bool isFetching = false;
+  MoreBloc() : super(HomemoreInitial()) {
     on<HomemoreEvent>((event, emit) {
       // TODO: implement event handler
     });

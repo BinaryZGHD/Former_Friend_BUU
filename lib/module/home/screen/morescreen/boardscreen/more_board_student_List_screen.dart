@@ -20,9 +20,9 @@ class _moreBoardStudentListScreenState extends State<moreBoardStudentListScreen>
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomemoreBloc>().add(HomeMoreBoardStudentEvent());
+    context.read<MoreBloc>().add(HomeMoreBoardStudentEvent());
 
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreBoardStudentLoading) {
           showProgressDialog(context);
@@ -58,7 +58,7 @@ class _moreBoardStudentListScreenState extends State<moreBoardStudentListScreen>
             ),
           ),
         ),
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+        body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardStudentSuccessState) {
             _screenHomeMoreBoardStudentResponse = state.responseBoardStudent;
             return Container(

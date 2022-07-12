@@ -11,6 +11,7 @@ import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_drawer.dart';
 import 'package:f2fbuu/module/home/screen/morescreen/more_main_screen.dart';
+import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ import '../../../profile/screen/profile_page.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, SunmitLoginResponse? screenLoginResponse}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

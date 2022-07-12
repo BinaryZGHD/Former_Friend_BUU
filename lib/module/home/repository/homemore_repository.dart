@@ -15,7 +15,7 @@ class HomeMoreRepository {
   }
 
   Future<Response> getScreenHomeMoreFAQ() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/moreerror");
+    return await MyDio.createDioTest().post("/v1/api/modules/home/more/faq");
   }
   Future<Response> getScreenHomeMoreDetailStudent() async {
     return await MyDio.createDioTest().post("/v1/api/modules/home/wording/moreerror");

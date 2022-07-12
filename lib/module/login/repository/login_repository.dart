@@ -8,7 +8,15 @@ class LoginRepository {
     return await MyDio.createDioServerTest().post("/ServiceTest/login/loginscreen",
         // queryParameters: {"Language": userLanguage} // for get
         data: jsonEncode({
-          "Language": userLanguage,
+          "Language": "$userLanguage",
+        }) //for post
+        );
+  }  Future<Response> getSubmitLogin(String userID,String password) async {
+    return await MyDio.createDioServerTest().post("/ServiceTest/login/loginsubmit",
+        // queryParameters: {"Language": userLanguage} // for get
+        data: jsonEncode({
+          "userID": "string",
+          "password": "string"
         }) //for post
         );
   }

@@ -229,7 +229,7 @@ Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
 class Head {
   Head({
-      String? status, 
+      int? status,
       String? message, 
       String? module,}){
     _status = status;
@@ -242,17 +242,17 @@ class Head {
     _message = json['message'];
     _module = json['module'];
   }
-  String? _status;
+  int? _status;
   String? _message;
   String? _module;
-Head copyWith({  String? status,
+Head copyWith({  int? status,
   String? message,
   String? module,
 }) => Head(  status: status ?? _status,
   message: message ?? _message,
   module: module ?? _module,
 );
-  String? get status => _status;
+  int? get status => _status;
   String? get message => _message;
   String? get module => _module;
 

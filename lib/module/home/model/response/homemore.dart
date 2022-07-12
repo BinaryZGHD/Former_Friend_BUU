@@ -6,11 +6,11 @@ ScreenHomeResponse screenhomeresponseFromJson(String str) => ScreenHomeResponse.
 String screenHomeToJson(ScreenHomeResponse data) => json.encode(data.toJson());
 class ScreenHomeResponse {
   ScreenHomeResponse({
-    Head? head,
-    Body? body,}){
+      Head? head, 
+      Body? body,}){
     _head = head;
     _body = body;
-  }
+}
 
   ScreenHomeResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
@@ -18,11 +18,11 @@ class ScreenHomeResponse {
   }
   Head? _head;
   Body? _body;
-  ScreenHomeResponse copyWith({  Head? head,
-    Body? body,
-  }) => ScreenHomeResponse(  head: head ?? _head,
-    body: body ?? _body,
-  );
+ScreenHomeResponse copyWith({  Head? head,
+  Body? body,
+}) => ScreenHomeResponse(  head: head ?? _head,
+  body: body ?? _body,
+);
   Head? get head => _head;
   Body? get body => _body;
 
@@ -50,19 +50,19 @@ Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
 class Body {
   Body({
-    ScreenInfo? screenInfo,
-    String? pavatUrl,
-    String? luksuitUrl,
-    String? facebookUrl,
-    String? websiteUrl,
-    String? vs,}){
+      ScreenInfo? screenInfo, 
+      String? pavatUrl, 
+      String? luksuitUrl, 
+      String? facebookUrl, 
+      String? websiteUrl, 
+      String? vs,}){
     _screenInfo = screenInfo;
     _pavatUrl = pavatUrl;
     _luksuitUrl = luksuitUrl;
     _facebookUrl = facebookUrl;
     _websiteUrl = websiteUrl;
     _vs = vs;
-  }
+}
 
   Body.fromJson(dynamic json) {
     _screenInfo = json['screenInfo'] != null ? ScreenInfo.fromJson(json['screenInfo']) : null;
@@ -78,19 +78,19 @@ class Body {
   String? _facebookUrl;
   String? _websiteUrl;
   String? _vs;
-  Body copyWith({  ScreenInfo? screenInfo,
-    String? pavatUrl,
-    String? luksuitUrl,
-    String? facebookUrl,
-    String? websiteUrl,
-    String? vs,
-  }) => Body(  screenInfo: screenInfo ?? _screenInfo,
-    pavatUrl: pavatUrl ?? _pavatUrl,
-    luksuitUrl: luksuitUrl ?? _luksuitUrl,
-    facebookUrl: facebookUrl ?? _facebookUrl,
-    websiteUrl: websiteUrl ?? _websiteUrl,
-    vs: vs ?? _vs,
-  );
+Body copyWith({  ScreenInfo? screenInfo,
+  String? pavatUrl,
+  String? luksuitUrl,
+  String? facebookUrl,
+  String? websiteUrl,
+  String? vs,
+}) => Body(  screenInfo: screenInfo ?? _screenInfo,
+  pavatUrl: pavatUrl ?? _pavatUrl,
+  luksuitUrl: luksuitUrl ?? _luksuitUrl,
+  facebookUrl: facebookUrl ?? _facebookUrl,
+  websiteUrl: websiteUrl ?? _websiteUrl,
+  vs: vs ?? _vs,
+);
   ScreenInfo? get screenInfo => _screenInfo;
   String? get pavatUrl => _pavatUrl;
   String? get luksuitUrl => _luksuitUrl;
@@ -120,11 +120,11 @@ ScreenInfo screenInfoFromJson(String str) => ScreenInfo.fromJson(json.decode(str
 String screenInfoToJson(ScreenInfo data) => json.encode(data.toJson());
 class ScreenInfo {
   ScreenInfo({
-    Screenmore? screenmore,
-    Screenhome? screenhome,}){
+      Screenmore? screenmore, 
+      Screenhome? screenhome,}){
     _screenmore = screenmore;
     _screenhome = screenhome;
-  }
+}
 
   ScreenInfo.fromJson(dynamic json) {
     _screenmore = json['screenmore'] != null ? Screenmore.fromJson(json['screenmore']) : null;
@@ -132,11 +132,11 @@ class ScreenInfo {
   }
   Screenmore? _screenmore;
   Screenhome? _screenhome;
-  ScreenInfo copyWith({  Screenmore? screenmore,
-    Screenhome? screenhome,
-  }) => ScreenInfo(  screenmore: screenmore ?? _screenmore,
-    screenhome: screenhome ?? _screenhome,
-  );
+ScreenInfo copyWith({  Screenmore? screenmore,
+  Screenhome? screenhome,
+}) => ScreenInfo(  screenmore: screenmore ?? _screenmore,
+  screenhome: screenhome ?? _screenhome,
+);
   Screenmore? get screenmore => _screenmore;
   Screenhome? get screenhome => _screenhome;
 
@@ -183,31 +183,31 @@ Screenhome screenhomeFromJson(String str) => Screenhome.fromJson(json.decode(str
 String screenhomeToJson(Screenhome data) => json.encode(data.toJson());
 class Screenhome {
   Screenhome({
-    String? titlestatus,
-    String? textactivity,
-    String? textyear,
-    String? textterm,
-    String? textstartdate,
-    String? textfinishdate,
-    String? texttime,
-    String? texttimestatus,
-    String? textvenue,
-    String? edtapprover,
-    String? textdetail,
-    String? btnadd,
-    String? textname,
-    String? textnickname,
-    String? textgen,
-    String? textstdcode,
-    String? textemail,
-    String? textrole,
-    String? textlang,
-    String? textlangdetail,
-    String? textstdtc,
-    String? btncpass,
-    String? btndelacc,
-    String? textappver,
-    String? btnlogout,}){
+      String? titlestatus, 
+      String? textactivity, 
+      String? textyear, 
+      String? textterm, 
+      String? textstartdate, 
+      String? textfinishdate, 
+      String? texttime, 
+      String? texttimestatus, 
+      String? textvenue, 
+      String? edtapprover, 
+      String? textdetail, 
+      String? btnadd, 
+      String? textname, 
+      String? textnickname, 
+      String? textgen, 
+      String? textstdcode, 
+      String? textemail, 
+      String? textrole, 
+      String? textlang, 
+      String? textlangdetail, 
+      String? textstdtc, 
+      String? btncpass, 
+      String? btndelacc, 
+      String? textappver, 
+      String? btnlogout,}){
     _titlestatus = titlestatus;
     _textactivity = textactivity;
     _textyear = textyear;
@@ -233,7 +233,7 @@ class Screenhome {
     _btndelacc = btndelacc;
     _textappver = textappver;
     _btnlogout = btnlogout;
-  }
+}
 
   Screenhome.fromJson(dynamic json) {
     _titlestatus = json['titlestatus'];
@@ -287,57 +287,57 @@ class Screenhome {
   String? _btndelacc;
   String? _textappver;
   String? _btnlogout;
-  Screenhome copyWith({  String? titlestatus,
-    String? textactivity,
-    String? textyear,
-    String? textterm,
-    String? textstartdate,
-    String? textfinishdate,
-    String? texttime,
-    String? texttimestatus,
-    String? textvenue,
-    String? edtapprover,
-    String? textdetail,
-    String? btnadd,
-    String? textname,
-    String? textnickname,
-    String? textgen,
-    String? textstdcode,
-    String? textemail,
-    String? textrole,
-    String? textlang,
-    String? textlangdetail,
-    String? textstdtc,
-    String? btncpass,
-    String? btndelacc,
-    String? textappver,
-    String? btnlogout,
-  }) => Screenhome(  titlestatus: titlestatus ?? _titlestatus,
-    textactivity: textactivity ?? _textactivity,
-    textyear: textyear ?? _textyear,
-    textterm: textterm ?? _textterm,
-    textstartdate: textstartdate ?? _textstartdate,
-    textfinishdate: textfinishdate ?? _textfinishdate,
-    texttime: texttime ?? _texttime,
-    texttimestatus: texttimestatus ?? _texttimestatus,
-    textvenue: textvenue ?? _textvenue,
-    edtapprover: edtapprover ?? _edtapprover,
-    textdetail: textdetail ?? _textdetail,
-    btnadd: btnadd ?? _btnadd,
-    textname: textname ?? _textname,
-    textnickname: textnickname ?? _textnickname,
-    textgen: textgen ?? _textgen,
-    textstdcode: textstdcode ?? _textstdcode,
-    textemail: textemail ?? _textemail,
-    textrole: textrole ?? _textrole,
-    textlang: textlang ?? _textlang,
-    textlangdetail: textlangdetail ?? _textlangdetail,
-    textstdtc: textstdtc ?? _textstdtc,
-    btncpass: btncpass ?? _btncpass,
-    btndelacc: btndelacc ?? _btndelacc,
-    textappver: textappver ?? _textappver,
-    btnlogout: btnlogout ?? _btnlogout,
-  );
+Screenhome copyWith({  String? titlestatus,
+  String? textactivity,
+  String? textyear,
+  String? textterm,
+  String? textstartdate,
+  String? textfinishdate,
+  String? texttime,
+  String? texttimestatus,
+  String? textvenue,
+  String? edtapprover,
+  String? textdetail,
+  String? btnadd,
+  String? textname,
+  String? textnickname,
+  String? textgen,
+  String? textstdcode,
+  String? textemail,
+  String? textrole,
+  String? textlang,
+  String? textlangdetail,
+  String? textstdtc,
+  String? btncpass,
+  String? btndelacc,
+  String? textappver,
+  String? btnlogout,
+}) => Screenhome(  titlestatus: titlestatus ?? _titlestatus,
+  textactivity: textactivity ?? _textactivity,
+  textyear: textyear ?? _textyear,
+  textterm: textterm ?? _textterm,
+  textstartdate: textstartdate ?? _textstartdate,
+  textfinishdate: textfinishdate ?? _textfinishdate,
+  texttime: texttime ?? _texttime,
+  texttimestatus: texttimestatus ?? _texttimestatus,
+  textvenue: textvenue ?? _textvenue,
+  edtapprover: edtapprover ?? _edtapprover,
+  textdetail: textdetail ?? _textdetail,
+  btnadd: btnadd ?? _btnadd,
+  textname: textname ?? _textname,
+  textnickname: textnickname ?? _textnickname,
+  textgen: textgen ?? _textgen,
+  textstdcode: textstdcode ?? _textstdcode,
+  textemail: textemail ?? _textemail,
+  textrole: textrole ?? _textrole,
+  textlang: textlang ?? _textlang,
+  textlangdetail: textlangdetail ?? _textlangdetail,
+  textstdtc: textstdtc ?? _textstdtc,
+  btncpass: btncpass ?? _btncpass,
+  btndelacc: btndelacc ?? _btndelacc,
+  textappver: textappver ?? _textappver,
+  btnlogout: btnlogout ?? _btnlogout,
+);
   String? get titlestatus => _titlestatus;
   String? get textactivity => _textactivity;
   String? get textyear => _textyear;
@@ -418,23 +418,23 @@ Screenmore screenmoreFromJson(String str) => Screenmore.fromJson(json.decode(str
 String screenmoreToJson(Screenmore data) => json.encode(data.toJson());
 class Screenmore {
   Screenmore({
-    String? textmore,
-    String? textboard,
-    String? btnstd,
-    String? btntc,
-    String? textabdepart,
-    String? btndeparthis,
-    String? btncou,
-    String? btnface,
-    String? btnweb,
-    String? textsup,
-    String? btntermandcon,
-    String? btnfaq,
-    String? btnconus,
-    String? texturgo2,
-    String? textright,
-    String? textyes,
-    String? textno,}){
+      String? textmore, 
+      String? textboard, 
+      String? btnstd, 
+      String? btntc, 
+      String? textabdepart, 
+      String? btndeparthis, 
+      String? btncou, 
+      String? btnface, 
+      String? btnweb, 
+      String? textsup, 
+      String? btntermandcon, 
+      String? btnfaq, 
+      String? btnconus, 
+      String? texturgo2, 
+      String? textright, 
+      String? textyes, 
+      String? textno,}){
     _textmore = textmore;
     _textboard = textboard;
     _btnstd = btnstd;
@@ -452,7 +452,7 @@ class Screenmore {
     _textright = textright;
     _textyes = textyes;
     _textno = textno;
-  }
+}
 
   Screenmore.fromJson(dynamic json) {
     _textmore = json['textmore'];
@@ -490,41 +490,41 @@ class Screenmore {
   String? _textright;
   String? _textyes;
   String? _textno;
-  Screenmore copyWith({  String? textmore,
-    String? textboard,
-    String? btnstd,
-    String? btntc,
-    String? textabdepart,
-    String? btndeparthis,
-    String? btncou,
-    String? btnface,
-    String? btnweb,
-    String? textsup,
-    String? btntermandcon,
-    String? btnfaq,
-    String? btnconus,
-    String? texturgo2,
-    String? textright,
-    String? textyes,
-    String? textno,
-  }) => Screenmore(  textmore: textmore ?? _textmore,
-    textboard: textboard ?? _textboard,
-    btnstd: btnstd ?? _btnstd,
-    btntc: btntc ?? _btntc,
-    textabdepart: textabdepart ?? _textabdepart,
-    btndeparthis: btndeparthis ?? _btndeparthis,
-    btncou: btncou ?? _btncou,
-    btnface: btnface ?? _btnface,
-    btnweb: btnweb ?? _btnweb,
-    textsup: textsup ?? _textsup,
-    btntermandcon: btntermandcon ?? _btntermandcon,
-    btnfaq: btnfaq ?? _btnfaq,
-    btnconus: btnconus ?? _btnconus,
-    texturgo2: texturgo2 ?? _texturgo2,
-    textright: textright ?? _textright,
-    textyes: textyes ?? _textyes,
-    textno: textno ?? _textno,
-  );
+Screenmore copyWith({  String? textmore,
+  String? textboard,
+  String? btnstd,
+  String? btntc,
+  String? textabdepart,
+  String? btndeparthis,
+  String? btncou,
+  String? btnface,
+  String? btnweb,
+  String? textsup,
+  String? btntermandcon,
+  String? btnfaq,
+  String? btnconus,
+  String? texturgo2,
+  String? textright,
+  String? textyes,
+  String? textno,
+}) => Screenmore(  textmore: textmore ?? _textmore,
+  textboard: textboard ?? _textboard,
+  btnstd: btnstd ?? _btnstd,
+  btntc: btntc ?? _btntc,
+  textabdepart: textabdepart ?? _textabdepart,
+  btndeparthis: btndeparthis ?? _btndeparthis,
+  btncou: btncou ?? _btncou,
+  btnface: btnface ?? _btnface,
+  btnweb: btnweb ?? _btnweb,
+  textsup: textsup ?? _textsup,
+  btntermandcon: btntermandcon ?? _btntermandcon,
+  btnfaq: btnfaq ?? _btnfaq,
+  btnconus: btnconus ?? _btnconus,
+  texturgo2: texturgo2 ?? _texturgo2,
+  textright: textright ?? _textright,
+  textyes: textyes ?? _textyes,
+  textno: textno ?? _textno,
+);
   String? get textmore => _textmore;
   String? get textboard => _textboard;
   String? get btnstd => _btnstd;
@@ -575,13 +575,13 @@ Head headFromJson(String str) => Head.fromJson(json.decode(str));
 String headToJson(Head data) => json.encode(data.toJson());
 class Head {
   Head({
-    int? status,
-    String? message,
-    String? module,}){
+      int? status, 
+      String? message, 
+      String? module,}){
     _status = status;
     _message = message;
     _module = module;
-  }
+}
 
   Head.fromJson(dynamic json) {
     _status = json['status'];
@@ -591,13 +591,13 @@ class Head {
   int? _status;
   String? _message;
   String? _module;
-  Head copyWith({  int? status,
-    String? message,
-    String? module,
-  }) => Head(  status: status ?? _status,
-    message: message ?? _message,
-    module: module ?? _module,
-  );
+Head copyWith({  int? status,
+  String? message,
+  String? module,
+}) => Head(  status: status ?? _status,
+  message: message ?? _message,
+  module: module ?? _module,
+);
   int? get status => _status;
   String? get message => _message;
   String? get module => _module;
