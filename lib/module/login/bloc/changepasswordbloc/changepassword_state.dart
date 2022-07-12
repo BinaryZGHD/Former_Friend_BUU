@@ -6,10 +6,10 @@ abstract class ChangePasswordState {}
 class ChangePasswordInitial extends ChangePasswordState {}
 
 
-class ChangePasswordScreenInfoSuccessState extends ChangePasswordState{
-  ScreenChangePasswordResponse  response;
+class ScreenInfoChangePasswordSuccessState extends ChangePasswordState{
+  ScreenChangePasswordResponse  responseChangePasswordScreenInfo;
 
-  ChangePasswordScreenInfoSuccessState({required this.response});
+  ScreenInfoChangePasswordSuccessState({required this.responseChangePasswordScreenInfo});
 
 }
 class ChangePasswordLoading extends ChangePasswordState{

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:f2fbuu/module/login/model/response/screen_changepassword_response.dart';
+import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
 import 'package:f2fbuu/module/login/repository/changepassword_repository.dart';
 import 'package:meta/meta.dart';
 
@@ -25,7 +25,7 @@ class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> 
           ScreenChangePasswordResponse screenChangePassworddResponse =
           ScreenChangePasswordResponse.fromJson(response.data);
           if (screenChangePassworddResponse.head?.status == "200") {
-            emit(ChangePasswordScreenInfoSuccessState(response: screenChangePassworddResponse));
+            emit(ScreenInfoChangePasswordSuccessState(responseChangePasswordScreenInfo: screenChangePassworddResponse));
           } else {
             emit(ChangePasswordError(message: screenChangePassworddResponse.head?.message ?? ""));
           }

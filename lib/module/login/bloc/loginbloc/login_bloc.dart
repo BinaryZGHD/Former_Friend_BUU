@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
+import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:f2fbuu/module/login/repository/login_repository.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -12,16 +15,9 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
   LoginBloc() : super(LoginInitial()) {
-    on<LoginSummitEvent>((event, emit) {
-      if (event.users == "q" //&& event.password == "q"
-          ) {
-        emit(LoginStatusState(statuscheck: true));
-      } else {
-        emit(LoginStatusState(
-          statuscheck: false,
-        ));
-      }
-    });
+
+
+
     on<LoginRegisterEvent>((event, emit) {
       if (event.regstatus == true) {
         emit(LoginRegisterState(regstatus: true));
@@ -43,13 +39,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
      
       try {
         emit(LoginLoading());
-        Response response = await getScreenLogin();
+        Response response = await getScreenLogin(event.userLanguage);
         emit(LoginEndLoading());
         if (response.statusCode == 200) {
-          ScreenLoginResponse screenLoginResponse =
-              ScreenLoginResponse.fromJson(response.data);
-          if (screenLoginResponse.head?.status == "200") {
-            emit(LoginScreenInfoSuccessState(response: screenLoginResponse));
+          ScreenLoginResponse screenLoginResponse = ScreenLoginResponse.fromJson(response.data);
+        if (screenLoginResponse.head?.status == 200) {
+            emit(ScreenInfoLoginSuccessState(responseScreenInfoLogin: screenLoginResponse));
           } else {
             emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
           }
@@ -61,5 +56,50 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
       }
    
     });
+    on<OnClickLanguageEvent>((event, emit) async {
+
+      try {
+        emit(LoginLoading());
+        Response response = await getScreenLogin(event.userLanguage);
+        emit(LoginEndLoading());
+        if (response.statusCode == 200) {
+          ScreenLoginResponse screenLoginResponse =
+              ScreenLoginResponse.fromJson(response.data);
+
+        if (screenLoginResponse.head?.status == 200) {
+            emit(OnClickLanguageLoginScreenInfoSuccessState(responseLanguageLoginscreen: screenLoginResponse));
+          } else {
+            emit(LoginError(message: screenLoginResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(LoginError(message: response.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(LoginError(message: e.response?.statusMessage ?? ""));
+      }
+
+    });
+    on<LoginSubmitEvent>((event, emit) async{
+      try {
+        emit(LoginLoading());
+        Response responseLoginSubmit = await getSubmitLogin(event.userID, event.password);
+        emit(LoginEndLoading());
+        if (responseLoginSubmit.statusCode == 200) {
+          SunmitLoginResponse sunmitLoginResponse = SunmitLoginResponse.fromJson(responseLoginSubmit.data);
+          if (sunmitLoginResponse.head?.status == 200) {
+            emit(SubmitLoginState(responseSunmitLoginscreen: sunmitLoginResponse));
+          } else {
+            emit(LoginError(message: sunmitLoginResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(LoginError(message: responseLoginSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(LoginError(message: e.response?.statusMessage ?? ""));
+      }
+    });
+
+
+
   }
 }

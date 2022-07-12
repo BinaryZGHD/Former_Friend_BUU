@@ -20,12 +20,19 @@ class ProfileAttentionDropdownTab extends StatefulWidget {
       _ProfileAttentionDropdownTabState();
 }
 
+
 class _ProfileAttentionDropdownTabState
     extends State<ProfileAttentionDropdownTab> {
+  String? userattentionvalue;
+  @override
+  void initState(){
+    userattentionvalue = widget.userattentionvalue;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     String textleft = widget.textleft;
-    String? userattentionvalue = widget.userattentionvalue;
+
     var isunpressed = widget.isunpressed;
     return Container(
       decoration: BoxDecoration(
@@ -50,18 +57,40 @@ class _ProfileAttentionDropdownTabState
               child: SizedBox(
                 child: IgnorePointer(
                   ignoring: isunpressed,
+                  child:
+                  PopupMenuButton<String>(
+                    // initialValue:
+                    // userattentionvalue,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: Text(
+                                userattentionvalue??'',
+                                style: const TextStyle(color: Colors.black),
+                                textAlign: TextAlign.end,
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              )),
+                          const Icon(Icons.keyboard_arrow_down)
+                        ]),
+                    itemBuilder: (context) {
+                      return List.generate(widget.attentionarray.length,
+                              (index) {
+                            return PopupMenuItem(
+                              child:
+                              Text(widget.attentionarray[index].attenname ?? ''),
+                              value: widget.attentionarray[index].attenname,
+                            );
+                          });
+                    },
+                    onSelected: (value) {
+                      userattentionvalue = value;
+                      setState(() {
 
-                  child: DropdownButtonFormField<String>(
-                    // alignment: Alignment.centerRight,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    value: userattentionvalue,
-                    items: widget.attentionarray
-                        .map((item) => DropdownMenuItem<String>(
-                        value: item.attenname, child: Text(item.attenname??'',textAlign: TextAlign.right,)))
-                        .toList(),
-                    onChanged: (item) => setState(() => userattentionvalue = item),
+                      });
+                    },
+
                   ),
 
                   // DropdownButtonFormField<String>(

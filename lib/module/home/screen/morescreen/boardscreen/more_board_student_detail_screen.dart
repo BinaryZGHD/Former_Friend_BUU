@@ -21,9 +21,9 @@ class _moreBoardStudentDetailScreenState extends State<moreBoardStudentDetailScr
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomemoreBloc>().add(HomeMoreBoardStudentEvent());
+    context.read<MoreBloc>().add(HomeMoreBoardStudentEvent());
 
-    return BlocListener<HomemoreBloc, HomemoreState>(
+    return BlocListener<MoreBloc, HomemoreState>(
       listener: (context, state) {
         if (state is HomeMoreBoardStudentLoading) {
           showProgressDialog(context);
@@ -59,72 +59,91 @@ class _moreBoardStudentDetailScreenState extends State<moreBoardStudentDetailScr
             ),
           ),
         ),
-        body: BlocBuilder<HomemoreBloc, HomemoreState>(builder: (context, state) {
+        body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreBoardStudentSuccessState) {
             _screenHomeMoreBoardStudentResponse = state.responseBoardStudent;
-            return SingleChildScrollView(
-              child: Stack(children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  color: Colors.grey[200],
-                ),
-                Positioned(
-                  left: 5,
-                  right: 5,
-                  top: 70,
-                  child: Container(
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: Colors.grey[200],
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 20),
+                  child: Column(
 
-                    padding:  EdgeInsets.fromLTRB(5, 5, 5, 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(40),
-                        topLeft: Radius.circular(40),
+                    children: [
+                      SizedBox(
+                        height: 10.0,
                       ),
-                    ),
-
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                           Container(height: 35,),
-                          _buildListStudentDetail(titail: "ชื่อ", value: "Lastname"),
-                          _buildListStudentDetail(titail: "ชื่อเล่น", value: "Lastname"),
-                          _buildListStudentDetail(titail: "รุ่น", value: "65"),
-                          _buildListStudentDetail(titail: "รหัสนิสิต", value: "62X3X3XX"),
-                          _buildListStudentDetail(titail: "อาจารย์ที่ปรึกษา", value: "อาจารย์ที่ปรึกษา"),
-                          _buildListStudentDetail(titail: "เบอร์โทรศํพท์", value: "62X3X3XX"),
-                          _buildListStudentDetail(titail: "ช่องทางการติดต่อ", value: "ช่องทางการติดต่อ"),
-                          _buildListStudentDetail(titail: "สายงาน", value: "สายงาน"),
-                          _buildListStudentDetail(titail: "สถานะการทำงาน", value: "สถานะการทำงาน"),
-                          _buildListStudentDetail(titail: "ชื่อสถานที่ทำงาน", value: "ชื่อสถานที่ทำงาน"),
-                          SizedBox(
-                            height: 20,
+                      Stack(children: [
+                        // Container(
+                        //   height: MediaQuery.of(context).size.height*1.5,
+                        //   color: Colors.grey[200],
+                        // ),
+                        Container(
+                          height: MediaQuery.of(context).size.height ,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 10, right: 10, top: 70),
+                          // padding: EdgeInsets.fromLTRB(5, 5, 5, 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(40),
+                              topLeft: Radius.circular(40),
+                            ),
                           ),
-                        ],
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 35,
+                                ),
+                                _buildListStudentDetail(titail: "ชื่อ", value: "Lastname"),
+                                _buildListStudentDetail(titail: "ชื่อเล่น", value: "Lastname"),
+                                _buildListStudentDetail(titail: "รุ่น", value: "65"),
+                                _buildListStudentDetail(titail: "รหัสนิสิต", value: "62X3X3XX"),
+                                _buildListStudentDetail(titail: "อาจารย์ที่ปรึกษา", value: "อาจารย์ที่ปรึกษา"),
+                                _buildListStudentDetail(titail: "เบอร์โทรศํพท์", value: "62X3X3XX"),
+                                _buildListStudentDetail(titail: "ช่องทางการติดต่อ", value: "ช่องทางการติดต่อ"),
+                                _buildListStudentDetail(titail: "สายงาน", value: "สายงาน"),
+                                _buildListStudentDetail(titail: "สถานะการทำงาน", value: "สถานะการทำงาน"),
+                                _buildListStudentDetail(titail: "ชื่อสถานที่ทำงาน", value: "ชื่อสถานที่ทำงาน"),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 50,
+                          right: 50,
+                          top: 0,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                radius: 50.0,
+                                backgroundImage: NetworkImage(
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]),
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
+                    ],
                   ),
                 ),
-                Positioned(
-                  left: 40,
-                  right: 40,
-                  top: 0,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        radius: 50.0,
-                        backgroundImage: NetworkImage(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"),
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
+              ),
             );
           } else {
-            return Container();
+            return Container(
+              color: Colors.grey[200],
+            );
           }
         }),
       ),
@@ -138,7 +157,7 @@ _buildListStudentDetail({required String titail, required String value}) {
     child: Table(
       border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
       columnWidths: {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.05), 2: FractionColumnWidth(0.65)},
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
         TableRow(children: [
           // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)

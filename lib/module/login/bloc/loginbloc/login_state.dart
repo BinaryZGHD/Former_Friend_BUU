@@ -5,13 +5,24 @@ abstract class LoginState {
 }
 
 
-class LoginScreenInfoSuccessState extends LoginState{
-  ScreenLoginResponse  response;
+class ScreenInfoLoginSuccessState extends LoginState{
+  ScreenLoginResponse  responseScreenInfoLogin;
 
-  LoginScreenInfoSuccessState({required this.response});
+  ScreenInfoLoginSuccessState({required this.responseScreenInfoLogin});
 
 }
+class OnClickLanguageLoginScreenInfoSuccessState extends LoginState{
+  ScreenLoginResponse  responseLanguageLoginscreen;
 
+  OnClickLanguageLoginScreenInfoSuccessState({required this.responseLanguageLoginscreen});
+
+}
+class SubmitLoginState extends LoginState {
+  SunmitLoginResponse responseSunmitLoginscreen;
+
+  SubmitLoginState({ required this.responseSunmitLoginscreen});
+
+}
 
 
 
@@ -34,11 +45,7 @@ class LoginInitial extends LoginState {
   @override
   String toString() => 'LoginInitial';
 }
-class LoginStatusState extends LoginState {
-  bool statuscheck  ;
-  LoginStatusState({required this.statuscheck});
 
-}
 class LoginRegisterState extends LoginState {
   bool regstatus  ;
   LoginRegisterState({required this.regstatus});

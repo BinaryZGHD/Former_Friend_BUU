@@ -87,30 +87,89 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                   child: SizedBox(
                     child: IgnorePointer(
                       ignoring: isunpressed,
-                      child: DropdownButtonFormField<String>(
-                        // alignment: Alignment.centerRight,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                        value: itemvalue,
-                        items: widget.statusarray
-                            .map((item) => DropdownMenuItem<String>(
-                            value: item.statusname, child: Text(item.statusname??'')))
-                            .toList(),
-                        onChanged: (item) {
-                          itemvalue = item;
+                      child:
+                      PopupMenuButton<String>(
+                        // initialValue:
+                        // itemvalue,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                    itemvalue??'',
+                                    style: const TextStyle(color: Colors.black),
+                                    textAlign: TextAlign.end,
+                                    overflow: TextOverflow.fade,
+                                    softWrap: false,
+                                  )),
+                              const Icon(Icons.keyboard_arrow_down)
+                            ]),
+                        itemBuilder: (context) {
+                          return List.generate(widget.statusarray.length,
+                                  (index) {
+                                return PopupMenuItem(
+                                  child:
+                                  Text(widget.statusarray[index].statusname ?? ''),
+                                  value: widget.statusarray[index].statusname,
+                                );
+                              });
+                        },
+                        onSelected: (value) {
+                          itemvalue = value;
                           if (itemvalue == 'มีงานทำ') {
                             isJobInStatusVisible = true;
                           } else {
                             isJobInStatusVisible = false;
                           }
                           setState(() {});
-                          print(item);
+                          print(value);
                         },
                       ),
+
+                      // DropdownButtonFormField<String>(
+                      //   // alignment: Alignment.centerRight,
+                      //   decoration: InputDecoration(
+                      //     border: InputBorder.none,
+                      //   ),
+                      //   value: userattentionvalue,
+                      //   items: widget.testarray
+                      //       .map((item) => DropdownMenuItem<String>(
+                      //       value: item.attenname, child: Text(item.attenname??'', overflow: TextOverflow.fade,
+                      //       softWrap: false)))
+                      //       .toList(),
+                      //   onChanged: (item) => setState(() => userattentionvalue = item),
+                      // ),
                     ),
                   ),
                 ),
+                // Expanded(
+                //   child: SizedBox(
+                //     child: IgnorePointer(
+                //       ignoring: isunpressed,
+                //       child: DropdownButtonFormField<String>(
+                //         // alignment: Alignment.centerRight,
+                //         decoration: InputDecoration(
+                //           border: InputBorder.none,
+                //         ),
+                //         value: itemvalue,
+                //         items: widget.statusarray
+                //             .map((item) => DropdownMenuItem<String>(
+                //             value: item.statusname, child: Text(item.statusname??'')))
+                //             .toList(),
+                //         onChanged: (item) {
+                //           itemvalue = item;
+                //           if (itemvalue == 'มีงานทำ') {
+                //             isJobInStatusVisible = true;
+                //           } else {
+                //             isJobInStatusVisible = false;
+                //           }
+                //           setState(() {});
+                //           print(item);
+                //         },
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

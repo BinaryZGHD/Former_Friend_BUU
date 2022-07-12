@@ -31,7 +31,7 @@ void dialogOneLineOneBtn(BuildContext context, String content ,String btn, {requ
                       onPressed: () => {_handleClickBtn()},
                       child: Text(
                         btn,
-                        style: const TextStyle(color: BC_ButtonRed),
+                        style: const TextStyle(color: BC_ButtonText_style_Black),
                       ),
                     )
                   ],
@@ -71,16 +71,16 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
                         onPressed: () => {_handleClickBtn("OK")},
                         child: Text(
                           btn1,
-                          style: const TextStyle(color: BC_ButtonRed),
+                          style: const TextStyle(color: BC_ButtonText_style_Black),
                         ),
                       ),
                       const SizedBox(width: 20),
                       ElevatedButton(
-                        style: styleButtonDialog,
+                        style: styleButtonDialogCancel,
                         onPressed: () => {_handleClickBtn("Cancel")},
                         child: Text(
                           btn2,
-                          style: const TextStyle(color: BC_ButtonRed),
+                          style: const TextStyle(color: BC_ButtonText_style_White),
                         ),
                       )
                     ],
@@ -90,3 +90,40 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
             ));
       });
 }
+
+//exp
+// onPressed: () {
+//   dialogOneLineTwoBtn(
+//       context,
+//       errr,
+//       'Confirm',
+//       'Cancel', onClickBtn: (String result) {
+//     Navigator.of(context).pop();
+//     switch (result) {
+//       case 'Cancel':
+//         {
+//           break;
+//         }
+//       case 'OK':
+//         {
+//           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+//             // int index = int.parse(widget.id);
+//             return Screen();
+//           }));
+//         }
+//     }
+//   });
+// },
+// dialogOneLineOneBtn(
+// context,
+// err,
+// onClickBtn: () {
+// Navigator.push(
+// context,
+// MaterialPageRoute(builder: (context) {
+// // int index = int.parse(widget.id);
+// return Screen(
+// );
+// }),
+// );
+// });

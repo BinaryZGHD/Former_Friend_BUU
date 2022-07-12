@@ -8,7 +8,7 @@ import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
 import 'package:f2fbuu/customs/textlink/textlinktoscreencustom.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
-import 'package:f2fbuu/module/login/model/response/screen_changepassword_response.dart';
+import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
 import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,8 +49,8 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
       },
       child: Scaffold(
         body: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(builder: (context, state) {
-          if (state is ChangePasswordScreenInfoSuccessState) {
-            _screenchangepasswordResponse = state.response;
+          if (state is ScreenInfoChangePasswordSuccessState) {
+            _screenchangepasswordResponse = state.responseChangePasswordScreenInfo;
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -88,6 +88,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           currentpasswordvalue = value;
                         },
                         hint_label: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcurrentpass}",
+                        textInputType: TextInputType.text,
                       ),
                       buildTextFieldPasswordCustom(
                         textEditingController: newpasswordController,
@@ -95,6 +96,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           newpasswordvalue = value;
                         },
                         hint_label: "${_screenchangepasswordResponse?.body?.screeninfo?.edtnewpass}",
+                        textInputType: TextInputType.text,
                       ),
                       buildTextFieldPasswordCustom(
                         textEditingController: confirmpasswordController,
@@ -102,6 +104,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           passwordvalue = value;
                         },
                         hint_label: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcpass}",
+                        textInputType: TextInputType.text,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
@@ -110,7 +113,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                         padding: const EdgeInsets.all(12.0),
                         child: TextLinkToScreenCustom(
                           linklabel: "${_screenchangepasswordResponse?.body?.screeninfo?.btnforgotpass}",
-                          mapscreen: forgotPasswordScreen(),
+                          mapscreen: forgotPasswordScreen(valueLanguage: '',),
                           linktextcolor: TC_forgot,
                           sizetext: sizeTextSmaller14,
                         ),
@@ -121,30 +124,22 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                       Center(
                         child: ButtonCustom(
                             label: "  " + "${_screenchangepasswordResponse?.body?.screeninfo?.btnconfirm}" + "  ",
-                            colortext: TC_Black,
-                            colorbutton: BC_ButtonGreen,
+                            colortext: BC_ButtonText_style_Black,
+                            colorbutton: BC_ButtonText_style_White,
                             sizetext: sizeTextBig20,
-                            colorborder: BSC_transparent,
+                            colorborder: BC_ButtonText_style_Black_Boarder,
                             sizeborder: 10,
                             onPressed: () {
-                              dialogOneLineTwoBtn(
-                                  context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                                  onClickBtn: (String result) {
-                                Navigator.of(context).pop();
-                                switch (result) {
-                                  case 'Cancel':
-                                    {
-                                      break;
-                                    }
-                                  case 'OK':
-                                    {
-                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                        // int index = int.parse(widget.id);
-                                        return HomeScreen();
-                                        // DisplayBeerScreen();
-                                      }));
-                                    }
-                                }
+                              dialogOneLineOneBtn(
+                                  context, errchangepassword + '\n \n ' + 'Do you want to continue?',
+                                  "OK", onClickBtn: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) {
+                                    // int index = int.parse(widget.id);
+                                    return HomeScreen();
+                                  }),
+                                );
                               });
                             }),
                       ),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../color/colorconts.dart';
 
-class buildTextFieldCustom extends StatelessWidget {
+class buildTextFieldCustom extends StatefulWidget {
   final TextEditingController? textEditingController;
   final String hint_label;
   final TextInputType textInputType;
@@ -15,6 +15,12 @@ class buildTextFieldCustom extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<buildTextFieldCustom> createState() => _buildTextFieldCustomState();
+}
+
+class _buildTextFieldCustomState extends State<buildTextFieldCustom> {
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       // padding: EdgeInsets.all(12),
@@ -23,11 +29,11 @@ class buildTextFieldCustom extends StatelessWidget {
         child: TextFormField(
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
           ),
-          keyboardType: textInputType,
+          keyboardType: widget.textInputType,
           // controller: textEditingController,
-          initialValue: initialvalue,
+          initialValue: widget.initialvalue,
           // decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
-          onChanged: onChanged,
+          onChanged: widget.onChanged,
 
           // {
           //   onChangedtest!(value);
@@ -36,7 +42,7 @@ class buildTextFieldCustom extends StatelessWidget {
           decoration: InputDecoration(
               filled: true,
               fillColor: TC_Textfile,
-              hintText: "" + hint_label,
+              hintText: "" + widget.hint_label,
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: TC_Hint),
                 borderRadius: BorderRadius.all(Radius.circular(30)),

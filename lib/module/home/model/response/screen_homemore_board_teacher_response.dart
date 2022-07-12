@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 ScreenHomeMoreBoardTeacherResponse screenHomeMoreBoardTeacherResponseFromJson(String str) => ScreenHomeMoreBoardTeacherResponse.fromJson(json.decode(str));
 String screenHomeMoreBoardTeacherResponseToJson(ScreenHomeMoreBoardTeacherResponse data) => json.encode(data.toJson());
-
 class ScreenHomeMoreBoardTeacherResponse {
   ScreenHomeMoreBoardTeacherResponse({
     Head? head,
@@ -38,9 +36,9 @@ class ScreenHomeMoreBoardTeacherResponse {
 
 }
 
-/// screeninfo : {"titlenisit":"Board of Teacher","departone":"Mathematics","departtwo":"Statistics","teacher":"Teacher","staff":"Staff","name":"Name","position":"Position","phone":"Phone","email":"Email","img_depart":"http://science.buu.ac.th/newweb/img/20200513210003.jpg"}
-/// teacher : {"teacherone":[{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"}],"teachertwo":[{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"}]}
-/// staff : [{"name":"เทวทิณณ์ - เทพประทาน","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤชฐารวี - มีอาวุธที่มั่นคงดั่งพระอาทิตย์","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"}]
+/// screeninfo : {"titlenisit":"Board of Teacher","departone":"Mathematics","departtwo":"Statistics","teacher":"Teacher","staff":"Staff","name":"Name","position":"Position","phone":"Phone","email":"Email","moredetails":"More details","img_depart":"http://science.buu.ac.th/newweb/img/20200513210003.jpg"}
+/// teacher : {"teacherone":[{"name":"1กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"2สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"3กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"4สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"5กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"6สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"7กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"8สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"9ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"10นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"11กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"12สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"}],"teachertwo":[{"name":"1stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"2stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"3stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"4stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"5stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"6stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"7stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"8stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"9stats ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"10stats นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"11stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"12stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"}]}
+/// staff : [{"name":"1staffเทวทิณณ์ - เทพประทาน","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"2staffกฤชฐารวี - มีอาวุธที่มั่นคงดั่งพระอาทิตย์","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"}]
 
 Body bodyFromJson(String str) => Body.fromJson(json.decode(str));
 String bodyToJson(Body data) => json.encode(data.toJson());
@@ -94,7 +92,7 @@ class Body {
 
 }
 
-/// name : "เทวทิณณ์ - เทพประทาน"
+/// name : "1staffเทวทิณณ์ - เทพประทาน"
 /// position : "professor"
 /// phone : "098-765-4321"
 /// email : "Emailnameposition1@go.buu.ac.th"
@@ -157,8 +155,8 @@ class Staff {
 
 }
 
-/// teacherone : [{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"}]
-/// teachertwo : [{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"},{"name":"stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"}]
+/// teacherone : [{"name":"1กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"2สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"3กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"4สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"5กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"6สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"7กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"8สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"9ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"10นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"11กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"12สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"}]
+/// teachertwo : [{"name":"1stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"2stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"3stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"4stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"5stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"6stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"7stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"8stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"9stats ณัฏฐ์ธนัญ - ปราชญ์ผู้มีทรัพย์และอื่นๆง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"10stats นัทธ์ธัญธนิน - ผูกพันกับความโชคดีและร่ำรวย","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"11stats กฤษฎาภาส - การกระทำที่รุ่งเรือง","position":"professor","phone":"098-765-4321","email":"Emailnameposition1@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"},{"name":"12stats สิรินธิบดิ์ชญา - มีมงคลเป็นใหญ่และมีความรู้","position":"professor","phone":"098-765-4321","email":"Emailnameposition2@go.buu.ac.th","img_teacher":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU","wed_teacher":"https://sites.google.com/go.buu.ac.th/apisitp"}]
 
 Teacher teacherFromJson(String str) => Teacher.fromJson(json.decode(str));
 String teacherToJson(Teacher data) => json.encode(data.toJson());
@@ -207,11 +205,12 @@ class Teacher {
 
 }
 
-/// name : "stats กฤษฎาภาส - การกระทำที่รุ่งเรือง"
+/// name : "1stats กฤษฎาภาส - การกระทำที่รุ่งเรือง"
 /// position : "professor"
 /// phone : "098-765-4321"
 /// email : "Emailnameposition1@go.buu.ac.th"
 /// img_teacher : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"
+/// wed_teacher : "https://sites.google.com/go.buu.ac.th/apisitp"
 
 Teachertwo teachertwoFromJson(String str) => Teachertwo.fromJson(json.decode(str));
 String teachertwoToJson(Teachertwo data) => json.encode(data.toJson());
@@ -221,12 +220,14 @@ class Teachertwo {
     String? position,
     String? phone,
     String? email,
-    String? imgTeacher,}){
+    String? imgTeacher,
+    String? wedTeacher,}){
     _name = name;
     _position = position;
     _phone = phone;
     _email = email;
     _imgTeacher = imgTeacher;
+    _wedTeacher = wedTeacher;
   }
 
   Teachertwo.fromJson(dynamic json) {
@@ -235,28 +236,33 @@ class Teachertwo {
     _phone = json['phone'];
     _email = json['email'];
     _imgTeacher = json['img_teacher'];
+    _wedTeacher = json['wed_teacher'];
   }
   String? _name;
   String? _position;
   String? _phone;
   String? _email;
   String? _imgTeacher;
+  String? _wedTeacher;
   Teachertwo copyWith({  String? name,
     String? position,
     String? phone,
     String? email,
     String? imgTeacher,
+    String? wedTeacher,
   }) => Teachertwo(  name: name ?? _name,
     position: position ?? _position,
     phone: phone ?? _phone,
     email: email ?? _email,
     imgTeacher: imgTeacher ?? _imgTeacher,
+    wedTeacher: wedTeacher ?? _wedTeacher,
   );
   String? get name => _name;
   String? get position => _position;
   String? get phone => _phone;
   String? get email => _email;
   String? get imgTeacher => _imgTeacher;
+  String? get wedTeacher => _wedTeacher;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -265,16 +271,18 @@ class Teachertwo {
     map['phone'] = _phone;
     map['email'] = _email;
     map['img_teacher'] = _imgTeacher;
+    map['wed_teacher'] = _wedTeacher;
     return map;
   }
 
 }
 
-/// name : "กฤษฎาภาส - การกระทำที่รุ่งเรือง"
+/// name : "1กฤษฎาภาส - การกระทำที่รุ่งเรือง"
 /// position : "professor"
 /// phone : "098-765-4321"
 /// email : "Emailnameposition1@go.buu.ac.th"
 /// img_teacher : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhOaaBAY_yOcJXbL4jW0I_Y5sePbzagqN2aA&usqp=CAU"
+/// wed_teacher : "https://sites.google.com/go.buu.ac.th/apisitp"
 
 Teacherone teacheroneFromJson(String str) => Teacherone.fromJson(json.decode(str));
 String teacheroneToJson(Teacherone data) => json.encode(data.toJson());
@@ -284,12 +292,14 @@ class Teacherone {
     String? position,
     String? phone,
     String? email,
-    String? imgTeacher,}){
+    String? imgTeacher,
+    String? wedTeacher,}){
     _name = name;
     _position = position;
     _phone = phone;
     _email = email;
     _imgTeacher = imgTeacher;
+    _wedTeacher = wedTeacher;
   }
 
   Teacherone.fromJson(dynamic json) {
@@ -298,28 +308,33 @@ class Teacherone {
     _phone = json['phone'];
     _email = json['email'];
     _imgTeacher = json['img_teacher'];
+    _wedTeacher = json['wed_teacher'];
   }
   String? _name;
   String? _position;
   String? _phone;
   String? _email;
   String? _imgTeacher;
+  String? _wedTeacher;
   Teacherone copyWith({  String? name,
     String? position,
     String? phone,
     String? email,
     String? imgTeacher,
+    String? wedTeacher,
   }) => Teacherone(  name: name ?? _name,
     position: position ?? _position,
     phone: phone ?? _phone,
     email: email ?? _email,
     imgTeacher: imgTeacher ?? _imgTeacher,
+    wedTeacher: wedTeacher ?? _wedTeacher,
   );
   String? get name => _name;
   String? get position => _position;
   String? get phone => _phone;
   String? get email => _email;
   String? get imgTeacher => _imgTeacher;
+  String? get wedTeacher => _wedTeacher;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -328,6 +343,7 @@ class Teacherone {
     map['phone'] = _phone;
     map['email'] = _email;
     map['img_teacher'] = _imgTeacher;
+    map['wed_teacher'] = _wedTeacher;
     return map;
   }
 
@@ -342,6 +358,7 @@ class Teacherone {
 /// position : "Position"
 /// phone : "Phone"
 /// email : "Email"
+/// moredetails : "More details"
 /// img_depart : "http://science.buu.ac.th/newweb/img/20200513210003.jpg"
 
 Screeninfo screeninfoFromJson(String str) => Screeninfo.fromJson(json.decode(str));
@@ -357,6 +374,7 @@ class Screeninfo {
     String? position,
     String? phone,
     String? email,
+    String? moredetails,
     String? imgDepart,}){
     _titlenisit = titlenisit;
     _departone = departone;
@@ -367,6 +385,7 @@ class Screeninfo {
     _position = position;
     _phone = phone;
     _email = email;
+    _moredetails = moredetails;
     _imgDepart = imgDepart;
   }
 
@@ -380,6 +399,7 @@ class Screeninfo {
     _position = json['position'];
     _phone = json['phone'];
     _email = json['email'];
+    _moredetails = json['moredetails'];
     _imgDepart = json['img_depart'];
   }
   String? _titlenisit;
@@ -391,6 +411,7 @@ class Screeninfo {
   String? _position;
   String? _phone;
   String? _email;
+  String? _moredetails;
   String? _imgDepart;
   Screeninfo copyWith({  String? titlenisit,
     String? departone,
@@ -401,6 +422,7 @@ class Screeninfo {
     String? position,
     String? phone,
     String? email,
+    String? moredetails,
     String? imgDepart,
   }) => Screeninfo(  titlenisit: titlenisit ?? _titlenisit,
     departone: departone ?? _departone,
@@ -411,6 +433,7 @@ class Screeninfo {
     position: position ?? _position,
     phone: phone ?? _phone,
     email: email ?? _email,
+    moredetails: moredetails ?? _moredetails,
     imgDepart: imgDepart ?? _imgDepart,
   );
   String? get titlenisit => _titlenisit;
@@ -422,6 +445,7 @@ class Screeninfo {
   String? get position => _position;
   String? get phone => _phone;
   String? get email => _email;
+  String? get moredetails => _moredetails;
   String? get imgDepart => _imgDepart;
 
   Map<String, dynamic> toJson() {
@@ -435,6 +459,7 @@ class Screeninfo {
     map['position'] = _position;
     map['phone'] = _phone;
     map['email'] = _email;
+    map['moredetails'] = _moredetails;
     map['img_depart'] = _imgDepart;
     return map;
   }
