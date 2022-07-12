@@ -116,9 +116,9 @@ class ForgorPasswordBloc extends Bloc<ForgorpasswordEvent, ForgorPasswordState> 
     on<ReSentOTPSetNewForgotPasswordEvent>((event, emit) async {
 
       try {
-        emit(ReSentOTPSetNewForgotPasswordLoading());
+        // emit(ReSentOTPSetNewForgotPasswordLoading());
         Response response = await getReSendOTPSetNewForgotPassword(event.email, event.userID);
-        emit(ReSentOTPSetNewForgotPasswordEndLoading());
+        // emit(ReSentOTPSetNewForgotPasswordEndLoading());
 
         if (response.statusCode == 200) {
           ReSendOtpForgotPasswordResponse reSendOtpForgotPasswordResponse =
