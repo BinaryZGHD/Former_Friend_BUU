@@ -25,7 +25,7 @@ void main() async {
     // DeviceOrientation.landscapeLeft,
   ]);
 
-  debugPaintSizeEnabled = true;
+  // debugPaintSizeEnabled = true;
   BlocOverrides.runZoned(
         () {runApp(const MyApp());},
     blocObserver: BUUBlocObserver(),

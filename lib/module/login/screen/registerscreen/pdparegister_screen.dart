@@ -63,7 +63,7 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>
 
         }
         if (state is PDPAAccept) {
-          Navigator.pushReplacement(
+          Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) =>
