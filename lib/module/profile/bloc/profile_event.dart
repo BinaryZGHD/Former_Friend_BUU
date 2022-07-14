@@ -45,15 +45,51 @@ class GeneralSubmitEvent extends ProfileEvent {
     required this.nickname,
   });
 }
+
 class EducationSubmitEvent extends ProfileEvent {
   String token;
   String gpajh;
   String gpash;
   String gpabd;
-  EducationSubmitEvent({
-   required this.token,
-   required this.gpajh,
-   required this.gpash,
-   required this.gpabd
-  });
+  EducationSubmitEvent(
+      {required this.token,
+      required this.gpajh,
+      required this.gpash,
+      required this.gpabd});
+}
+
+class AddressSubmitEvent extends ProfileEvent {
+  String token;
+  String number;
+  String road;
+  String subdistrict;
+  String district;
+  String province;
+  String zipcode;
+  AddressSubmitEvent(
+      { required this.token,
+        required this.number,
+        required this.road,
+        required this.subdistrict,
+        required this.district,
+        required this.province,
+        required this.zipcode});
+}
+class ContactSubmitEvent extends ProfileEvent {
+  String token;
+  String phone;
+  String line;
+  String facebook;
+  String instragram;
+  String twitter;
+  String youtube;
+  ContactSubmitEvent(
+      {
+        required this.token,
+        required this.phone,
+        required this.line,
+        required this.facebook,
+        required this.instragram,
+        required this.twitter,
+        required this.youtube});
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:f2fbuu/module/profile/model/response/address.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:f2fbuu/module/profile/model/response/education.dart';
 import 'package:f2fbuu/module/profile/model/response/general.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:dio/dio.dart';
+
+import '../model/response/contact.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 
@@ -101,6 +104,63 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       }
     }
     );
-
+    on<AddressSubmitEvent>((event, emit) async{
+      try {
+        emit(ProfileLoading());
+        Response responseAddressSubmit = await sentProfileAddressData(
+            event.token,
+            event.number,
+            event.road,
+            event.subdistrict,
+            event.district,
+            event.province,
+            event.zipcode
+        );
+        emit(ProfileLoadingSuccess());
+        if (responseAddressSubmit.statusCode == 200) {
+          // print('aa = ' + '${response.data}');
+          AddressResponse addressResponse = AddressResponse.fromJson(responseAddressSubmit.data);
+          if (addressResponse.head?.status == 200) {
+            emit(AddressSubmitSuccessState(responseAddress: addressResponse));
+          } else {
+            emit(ProfileError(errormessage: addressResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(ProfileError(errormessage: responseAddressSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+      }
+    }
+    );
+    on<ContactSubmitEvent>((event, emit) async{
+      try {
+        emit(ProfileLoading());
+        Response responseContactSubmit = await sentProfileContactData(
+            event.token,
+            event.phone,
+            event.line,
+            event.facebook,
+            event.instragram,
+            event.twitter,
+            event.youtube
+        );
+        emit(ProfileLoadingSuccess());
+        if (responseContactSubmit.statusCode == 200) {
+          // print('aa = ' + '${response.data}');
+          ContactResponse contactResponse = ContactResponse.fromJson(responseContactSubmit.data);
+          if (contactResponse.head?.status == 200) {
+            emit(ContactSubmitSuccessState(responseContact: contactResponse));
+          } else {
+            emit(ProfileError(errormessage: contactResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(ProfileError(errormessage: responseContactSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+      }
+    }
+    );
   }
 }

@@ -51,3 +51,11 @@ class EducationSubmitSuccessState extends ProfileState{
   EducationResponse responseEducation;
   EducationSubmitSuccessState({required this.responseEducation});
 }
+class AddressSubmitSuccessState extends ProfileState{
+  AddressResponse responseAddress;
+  AddressSubmitSuccessState({required this.responseAddress});
+}
+class ContactSubmitSuccessState extends ProfileState{
+  ContactResponse responseContact;
+  ContactSubmitSuccessState({required this.responseContact});
+}

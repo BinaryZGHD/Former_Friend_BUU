@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","modulename":"login"}
 /// body : null
 
-Address addressFromJson(String str) => Address.fromJson(json.decode(str));
-String addressToJson(Address data) => json.encode(data.toJson());
-class Address {
-  Address({
+AddressResponse addressFromJson(String str) => AddressResponse.fromJson(json.decode(str));
+String addressToJson(AddressResponse data) => json.encode(data.toJson());
+class AddressResponse {
+  AddressResponse({
       Head? head, 
       dynamic body,}){
     _head = head;
     _body = body;
 }
 
-  Address.fromJson(dynamic json) {
+  AddressResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'];
   }
   Head? _head;
   dynamic _body;
-Address copyWith({  Head? head,
+AddressResponse copyWith({  Head? head,
   dynamic body,
-}) => Address(  head: head ?? _head,
+}) => AddressResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

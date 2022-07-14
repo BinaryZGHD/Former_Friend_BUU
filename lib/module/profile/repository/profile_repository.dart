@@ -53,7 +53,6 @@ class ProfileRepository {
   } Future<Response> sentProfileAddressData(
       String token,
       String number,
-      String village,
       String road,
       String subdistrict,
       String district,
@@ -64,14 +63,14 @@ class ProfileRepository {
       "/ServiceTest/profile/address",
       data: jsonEncode(
           {
-            "token": "string",
-            "number": "0",
-            "village": "string",
-            "road": "string",
-            "subdistrict": "string",
-            "district": "string",
-            "province": "string",
-            "zipcode": "0"
+            "token": token,
+            "number": number,
+            "village": "village",
+            "road": road,
+            "subdistrict": subdistrict,
+            "district": district,
+            "province": province,
+            "zipcode": "20000"
           }
       )
     );
