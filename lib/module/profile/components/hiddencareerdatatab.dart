@@ -119,8 +119,10 @@ class _ProfileDropdownCareerDataTabState
 class ProfileCareerDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
-  final bool isunpressed ;
-  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed}) : super(key: key);
+  final bool isunpressed;
+  final Function(String result) callback;
+
+  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed,required this.callback,}) : super(key: key);
 
   @override
   State<ProfileCareerDataTab> createState() => _ProfileCareerDataTabState();
@@ -158,6 +160,7 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
                   onChanged: (value) {
                     setState(() {
                       texttest = value;
+                      widget.callback(texttest);
                       // print(texttest);
                     });
                   },
