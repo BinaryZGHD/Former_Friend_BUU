@@ -9,14 +9,12 @@ class ProfileAttentionDropdownTab extends StatefulWidget {
   final String textleft;
   final String userattentionvalue;
   final bool isunpressed;
-  final VoidCallback? onSelected;
   const ProfileAttentionDropdownTab(
       {Key? key,
         required this.textleft,
         required this.userattentionvalue,
         required this.attentionarray,
-        required this.isunpressed,
-      this.onSelected})
+        required this.isunpressed})
       : super(key: key);
 
   @override
@@ -89,8 +87,8 @@ class _ProfileAttentionDropdownTabState
                           });
                     },
                     onSelected: (value) {
-                      userattentionvalue = value;
                       setState(() {
+                        userattentionvalue = value;
                       });
                     },
 
