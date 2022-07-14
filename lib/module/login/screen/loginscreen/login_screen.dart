@@ -32,7 +32,6 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
   late bool statusLoginSubmit;
   bool _isDefaultLanguage = true;
   late String valueLanguage;
-  String userLanguage = "TH";
   @override
   void initState() {
     super.initState();
@@ -51,8 +50,8 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('userLanguage', "$valueLanguage");
     setState(() {
-      userLanguage = prefs.getString('userLanguage') ?? 'TH';
-      print(" value is $userLanguage");
+      valueLanguage = prefs.getString('userLanguage') ?? 'TH';
+      print(" value is $valueLanguage");
     });
   }
 
@@ -78,7 +77,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
             Navigator.pushReplacement(
               context,MaterialPageRoute(
                 builder: (context) => HomeScreen(
-                  screenLoginResponse: _loginSubmitResponse,
+                  screenLoginResponse: _loginSubmitResponse,valueLanguage: valueLanguage,
                 )
             )
             );
