@@ -16,12 +16,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-class setNewForgotPasswordScreen extends StatefulWidget with ProgressDialog {
+class setNewForgotPasswordScreen extends StatelessWidget {
   final String valueLanguage;
   final String ForgotpasswordValueEmail;
   final String ForgotpasswordValueUserID;
-  setNewForgotPasswordScreen({
+  const setNewForgotPasswordScreen({Key? key,
+    required this.valueLanguage,
+    required this.ForgotpasswordValueEmail,
+    required this.ForgotpasswordValueUserID}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent(userLanguage: valueLanguage)),
+        child: setNewForgotPasswordPage(
+          valueLanguage:valueLanguage,
+          ForgotpasswordValueEmail: ForgotpasswordValueEmail,
+          ForgotpasswordValueUserID: ForgotpasswordValueUserID,));
+  }
+}
+class setNewForgotPasswordPage extends StatefulWidget with ProgressDialog {
+  final String valueLanguage;
+  final String ForgotpasswordValueEmail;
+  final String ForgotpasswordValueUserID;
+  setNewForgotPasswordPage({
     Key? key,
     required this.valueLanguage,
     required this.ForgotpasswordValueEmail,
@@ -29,10 +47,10 @@ class setNewForgotPasswordScreen extends StatefulWidget with ProgressDialog {
   }) : super(key: key);
 
   @override
-  State<setNewForgotPasswordScreen> createState() => _setNewForgotPasswordScreenState();
+  State<setNewForgotPasswordPage> createState() => _setNewForgotPasswordPageState();
 }
 
-class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen> with ProgressDialog {
+class _setNewForgotPasswordPageState extends State<setNewForgotPasswordPage> with ProgressDialog {
   SubmitForgotSetNewForgotPasswordResponse? _submitForgotSetNewForgotPasswordResponse;
   ScreenForgotPasswordResponse? _screenSetNewforgotpasswordResponse;
   ReSendOtpForgotPasswordResponse? _reSendOtpForgotPasswordResponse;
@@ -94,8 +112,9 @@ class _setNewForgotPasswordScreenState extends State<setNewForgotPasswordScreen>
           });
         }
         if (state is SubmitSetNewForgotPasswordSuccessState) {
-          Navigator.pushAndRemoveUntil(
-              context, MaterialPageRoute(builder: (context) => loginScreen()), (Route<dynamic> route) => false);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => loginScreen())
+          );
         }
       },
       builder: (context, state) {

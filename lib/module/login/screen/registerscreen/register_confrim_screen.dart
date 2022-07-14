@@ -15,16 +15,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class registerConfirmScreen extends StatelessWidget {
+class RegisterConfirmScreen extends StatelessWidget {
   final String valueLanguage;
-  final String RegistervalueEmail;
-  final String RegistervalueUserID;
+  final String registerValueEmail;
+  final String registerValueUserID;
 
-  const registerConfirmScreen(
+  const RegisterConfirmScreen(
       {Key? key,
       required this.valueLanguage,
-      required this.RegistervalueEmail,
-      required this.RegistervalueUserID})
+      required this.registerValueEmail,
+      required this.registerValueUserID})
       : super(key: key);
 
   @override
@@ -32,29 +32,29 @@ class registerConfirmScreen extends StatelessWidget {
     return BlocProvider(
         create: (context) => RegisterBloc()
           ..add(ScreenInfoConfirmRegisterEvent(userLanguage: valueLanguage)),
-        child: registerConfirmPage(
+        child: RegisterConfirmPage(
             valueLanguage: valueLanguage,
-            RegistervalueEmail: RegistervalueEmail,
-            RegistervalueUserID: RegistervalueUserID));
+            registerValueEmail: registerValueEmail,
+            registerValueUserID: registerValueUserID));
   }
 }
 
-class registerConfirmPage extends StatefulWidget {
+class RegisterConfirmPage extends StatefulWidget {
   final String valueLanguage;
-  final String RegistervalueEmail;
-  final String RegistervalueUserID;
-  registerConfirmPage({
+  final String registerValueEmail;
+  final String registerValueUserID;
+  RegisterConfirmPage({
     Key? key,
     required this.valueLanguage,
-    required this.RegistervalueEmail,
-    required this.RegistervalueUserID,
+    required this.registerValueEmail,
+    required this.registerValueUserID,
   }) : super(key: key);
 
   @override
-  State<registerConfirmPage> createState() => _registerConfirmPageState();
+  State<RegisterConfirmPage> createState() => _RegisterConfirmPageState();
 }
 
-class _registerConfirmPageState extends State<registerConfirmPage>
+class _RegisterConfirmPageState extends State<RegisterConfirmPage>
     with ProgressDialog {
   late String userLanguage;
   @override
@@ -101,18 +101,20 @@ class _registerConfirmPageState extends State<registerConfirmPage>
         if (state is SubmitConfirmRegisterState) {
           _submitConfirmRegisterResponse = state.responseSubmitConfirmRegister;
           // show dialog error
-          Navigator.pushAndRemoveUntil(
+          Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => loginScreen()),
-              (Route<dynamic> route) => false);
+              MaterialPageRoute(builder: (context) => loginScreen())
+              // ,
+              // (Route<dynamic> route) => false
+          );
         }
       },
       builder: (context, state) {
         if (state is ScreenInfoConfirmRegisterSuccessState) {
           _screenRegisterResponse = state.responseConfirmRegisterScreen;
           return buildContentRegister(context,
-              RegisterValueUserID: widget.RegistervalueUserID,
-              RegisterValueEmail: widget.RegistervalueEmail);
+              RegisterValueUserID: widget.registerValueUserID,
+              RegisterValueEmail: widget.registerValueEmail);
         }
         return Scaffold(
             body: Container(
@@ -179,7 +181,7 @@ class _registerConfirmPageState extends State<registerConfirmPage>
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 20, right: 20),
                           // ${_screenRegisterResponse?.body?.screeninfo?.edtemailreg} :
-                          child: Text("${widget.RegistervalueEmail}",
+                          child: Text("${widget.registerValueEmail}",
                               style: TextStyle(
                                   decoration: TextDecoration.underline,
                                   color: TC_OTPSent,

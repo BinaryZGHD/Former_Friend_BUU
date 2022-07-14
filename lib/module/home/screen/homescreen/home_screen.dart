@@ -21,21 +21,35 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/module/login/screen/changepasswordscreen/changepassword_screen.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   final SunmitLoginResponse? screenLoginResponse;
   final String? valueLanguage;
-  const HomeScreen({
+  const HomeScreen({Key? key, this.screenLoginResponse, this.valueLanguage}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomeBloc(),
+      child: HomePage(screenLoginResponse: screenLoginResponse, valueLanguage: valueLanguage),
+    );
+    return Container();
+  }
+}
+
+class HomePage extends StatefulWidget {
+  final SunmitLoginResponse? screenLoginResponse;
+  final String? valueLanguage;
+  const HomePage({
     Key? key,
     this.screenLoginResponse,
     this.valueLanguage,
   }) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
+class _HomePageState extends State<HomePage> with ProgressDialog {
   ScreenHomeResponse? _screenhomeResponse;
   ApiProfileResponse? _screenprofileResponse;
   ScreenStatusActivityResponse? _screenstatusActivityResponse;

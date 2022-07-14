@@ -90,7 +90,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => registerConfirmScreen(valueLanguage: userLanguage, RegistervalueEmail: RegistervalueEmail,RegistervalueUserID:RegistervalueUserID),
+              builder: (context) => RegisterConfirmScreen(valueLanguage: userLanguage, registerValueEmail: RegistervalueEmail,registerValueUserID:RegistervalueUserID),
             ),
           );
         }

@@ -17,15 +17,25 @@ import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_s
 import 'package:f2fbuu/module/login/screen/registerscreen/pdparegister_screen.dart';
 import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-class loginScreen extends StatefulWidget {
-  const loginScreen( {Key? key, }) : super(key: key);
+class loginScreen extends StatelessWidget {
+  const loginScreen({Key? key}) : super(key: key);
 
   @override
-  State<loginScreen> createState() => _loginScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => LoginBloc()..add(LoginScreenInfoEvent(userLanguage: "TH")),
+        child: loginPage());
+  }
 }
 
-class _loginScreenState extends State<loginScreen> with ProgressDialog {
+class loginPage extends StatefulWidget {
+  const loginPage( {Key? key, }) : super(key: key);
+
+  @override
+  State<loginPage> createState() => _loginPageState();
+}
+
+class _loginPageState extends State<loginPage> with ProgressDialog {
   ScreenLoginResponse? _screenLoginResponse;
   SunmitLoginResponse? _loginSubmitResponse;
 
@@ -36,7 +46,7 @@ class _loginScreenState extends State<loginScreen> with ProgressDialog {
   void initState() {
     super.initState();
     valueLanguage = "TH";
-    context.read<LoginBloc>().add(LoginScreenInfoEvent(userLanguage: valueLanguage));
+    // context.read<LoginBloc>().add(LoginScreenInfoEvent(userLanguage: valueLanguage));
   }
 
   void _toggleLanguageView() async {
