@@ -15,8 +15,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
 
-class ProfileScreenStl extends StatelessWidget {
-  const ProfileScreenStl({Key? key}) : super(key: key);
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class ProfileScreenStl extends StatelessWidget {
 
 
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
+class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
   File? image;
   ChooseAvatarSuccess? avatarimg;
@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
     setState((){
       global_key = prefs.getString("global_key")!;
     });
-    context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'a'));
+    context.read<ProfileBloc>().add(ProfileApiEvent());
   }
   @override
   Widget build(BuildContext context) {
@@ -71,31 +71,31 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
         print("TEST general");
         print(state.responseGeneral.toJson());
         print("TEST general");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is EducationSubmitSuccessState) {
         print("TEST edu");
         print(state.responseEducation.toJson());
         print("TEST edu");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is AddressSubmitSuccessState) {
         print("TEST address");
         print(state.responseAddress.toJson());
         print("TEST address");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is ContactSubmitSuccessState) {
         print("TEST contact");
         print(state.responseContact.toJson());
         print("TEST contact");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is CareerSubmitSuccessState) {
         print("TEST Career");
         print(state.responseCareer.toJson());
         print("TEST Career");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
     },
       builder: (context, state) {

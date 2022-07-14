@@ -9,9 +9,7 @@ class SaveProfileChanges extends ProfileEvent {}
 
 //----------------------------------API---------------------------------------//
 class ProfileApiEvent extends ProfileEvent {
-  String language;
-  String token;
-  ProfileApiEvent({required this.language, required this.token});
+  ProfileApiEvent();
 }
 
 class ProfileGeneralSummitEvent extends ProfileEvent {
