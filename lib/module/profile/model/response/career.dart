@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","modulename":"login"}
 /// body : null
 
-Career careerFromJson(String str) => Career.fromJson(json.decode(str));
-String careerToJson(Career data) => json.encode(data.toJson());
-class Career {
-  Career({
+CareerResponse careerFromJson(String str) => CareerResponse.fromJson(json.decode(str));
+String careerToJson(CareerResponse data) => json.encode(data.toJson());
+class CareerResponse {
+  CareerResponse({
       Head? head, 
       dynamic body,}){
     _head = head;
     _body = body;
 }
 
-  Career.fromJson(dynamic json) {
+  CareerResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'];
   }
   Head? _head;
   dynamic _body;
-Career copyWith({  Head? head,
+CareerResponse copyWith({  Head? head,
   dynamic body,
-}) => Career(  head: head ?? _head,
+}) => CareerResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

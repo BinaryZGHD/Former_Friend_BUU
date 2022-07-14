@@ -10,6 +10,8 @@ class ProfileApiSuccessState extends ProfileState{
   ProfileApiSuccessState({required this.response});
 }
 
+
+
 class ChangeAvatarProcress extends ProfileState {
 }
 
@@ -41,3 +43,23 @@ class ProfileStatusState extends ProfileState {
   ProfileStatusState({required this.statuscheck});
 }
 
+class GeneralSubmitSuccessState extends ProfileState{
+  GeneralResponse responseGeneral;
+  GeneralSubmitSuccessState({required this.responseGeneral});
+}
+class EducationSubmitSuccessState extends ProfileState{
+  EducationResponse responseEducation;
+  EducationSubmitSuccessState({required this.responseEducation});
+}
+class AddressSubmitSuccessState extends ProfileState{
+  AddressResponse responseAddress;
+  AddressSubmitSuccessState({required this.responseAddress});
+}
+class ContactSubmitSuccessState extends ProfileState{
+  ContactResponse responseContact;
+  ContactSubmitSuccessState({required this.responseContact});
+}
+class CareerSubmitSuccessState extends ProfileState{
+  CareerResponse responseCareer;
+  CareerSubmitSuccessState({required this.responseCareer});
+}

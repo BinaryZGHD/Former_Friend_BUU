@@ -1,4 +1,6 @@
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../model/response/api_profile.dart';
@@ -46,6 +48,9 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                       onPressed: () {
                         setState(() {
                           isunpressed = !isunpressed;
+                          if(isunpressed == true){
+                            context.read<ProfileBloc>().add(GeneralSubmitEvent(nickname: nicknamevalue, name: namevalue, token: "ant", surname: surnamevalue));
+                          };
                         });
                       },
                       child: isunpressed

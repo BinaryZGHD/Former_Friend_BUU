@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","modulename":"login"}
 /// body : null
 
-General generalFromJson(String str) => General.fromJson(json.decode(str));
-String generalToJson(General data) => json.encode(data.toJson());
-class General {
-  General({
+GeneralResponse generalFromJson(String str) => GeneralResponse.fromJson(json.decode(str));
+String generalToJson(GeneralResponse data) => json.encode(data.toJson());
+class GeneralResponse {
+  GeneralResponse({
       Head? head, 
       dynamic body,}){
     _head = head;
     _body = body;
 }
 
-  General.fromJson(dynamic json) {
+  GeneralResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'];
   }
   Head? _head;
   dynamic _body;
-General copyWith({  Head? head,
+GeneralResponse copyWith({  Head? head,
   dynamic body,
-}) => General(  head: head ?? _head,
+}) => GeneralResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;

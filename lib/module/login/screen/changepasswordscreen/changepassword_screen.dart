@@ -113,9 +113,11 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                         padding: const EdgeInsets.all(12.0),
                         child: TextLinkToScreenCustom(
                           linklabel: "${_screenchangepasswordResponse?.body?.screeninfo?.btnforgotpass}",
-                          mapscreen: forgotPasswordScreen(valueLanguage: '',),
                           linktextcolor: TC_forgot,
                           sizetext: sizeTextSmaller14,
+                            onTap: () async {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => forgotPasswordScreen(valueLanguage: 'IN COMMING SOON',)));
+                            }
                         ),
                       ),
                       SizedBox(

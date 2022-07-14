@@ -1,4 +1,5 @@
 import 'dart:io' show File, Platform;
+import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
 import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
@@ -10,8 +11,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
+
+class ProfileScreenStl extends StatelessWidget {
+  const ProfileScreenStl({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -24,14 +37,21 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
   File? image;
   ChooseAvatarSuccess? avatarimg;
-
+  late String global_key;
   @override
   void initState() {
     super.initState();
     print('เรียก initState');
-    context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: "ant"));
-  }
+    _setglobal_key();
 
+  }
+  void _setglobal_key() async{
+    final prefs = await SharedPreferences.getInstance();
+    setState((){
+      global_key = prefs.getString("global_key")!;
+    });
+    context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'a'));
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileBloc, ProfileState>(listener: (context, state) {
@@ -43,6 +63,39 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
       }
       if (state is ProfileError) {
         print(state.errormessage);
+        dialogOneLineOneBtn(context, state.errormessage + '\n ', "OK", onClickBtn: () {
+          Navigator.of(context).pop();
+        });
+      }
+      if (state is GeneralSubmitSuccessState) {
+        print("TEST general");
+        print(state.responseGeneral.toJson());
+        print("TEST general");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+      }
+      if (state is EducationSubmitSuccessState) {
+        print("TEST edu");
+        print(state.responseEducation.toJson());
+        print("TEST edu");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+      }
+      if (state is AddressSubmitSuccessState) {
+        print("TEST address");
+        print(state.responseAddress.toJson());
+        print("TEST address");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+      }
+      if (state is ContactSubmitSuccessState) {
+        print("TEST contact");
+        print(state.responseContact.toJson());
+        print("TEST contact");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+      }
+      if (state is CareerSubmitSuccessState) {
+        print("TEST Career");
+        print(state.responseCareer.toJson());
+        print("TEST Career");
+        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
       }
     },
       builder: (context, state) {
@@ -86,7 +139,9 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
             ),
           ),
           title: Text(
-            '${apiProfileResponse?.body?.screeninfo?.titleprofile}',
+            '${apiProfileResponse?.body?.screeninfo?.titleprofile}'
+                // '+$global_key'
+            ,
             // 'ทดสอบ bloc',
             style: TextStyle(
               color: Colors.black,
@@ -189,3 +244,4 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
         ));
   }
 }
+

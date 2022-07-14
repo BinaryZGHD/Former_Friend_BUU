@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","modulename":"login"}
 /// body : null
 
-Contact contactFromJson(String str) => Contact.fromJson(json.decode(str));
-String contactToJson(Contact data) => json.encode(data.toJson());
-class Contact {
-  Contact({
+ContactResponse contactFromJson(String str) => ContactResponse.fromJson(json.decode(str));
+String contactToJson(ContactResponse data) => json.encode(data.toJson());
+class ContactResponse {
+  ContactResponse({
       Head? head, 
       dynamic body,}){
     _head = head;
     _body = body;
 }
 
-  Contact.fromJson(dynamic json) {
+  ContactResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'];
   }
   Head? _head;
   dynamic _body;
-Contact copyWith({  Head? head,
+ContactResponse copyWith({  Head? head,
   dynamic body,
-}) => Contact(  head: head ?? _head,
+}) => ContactResponse(  head: head ?? _head,
   body: body ?? _body,
 );
   Head? get head => _head;
