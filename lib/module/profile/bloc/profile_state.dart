@@ -59,3 +59,7 @@ class ContactSubmitSuccessState extends ProfileState{
   ContactResponse responseContact;
   ContactSubmitSuccessState({required this.responseContact});
 }
+class CareerSubmitSuccessState extends ProfileState{
+  CareerResponse responseCareer;
+  CareerSubmitSuccessState({required this.responseCareer});
+}

@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
@@ -7,12 +9,14 @@ class ProfileAttentionDropdownTab extends StatefulWidget {
   final String textleft;
   final String userattentionvalue;
   final bool isunpressed;
+  final VoidCallback? onSelected;
   const ProfileAttentionDropdownTab(
       {Key? key,
         required this.textleft,
         required this.userattentionvalue,
         required this.attentionarray,
-        required this.isunpressed})
+        required this.isunpressed,
+      this.onSelected})
       : super(key: key);
 
   @override
@@ -87,9 +91,9 @@ class _ProfileAttentionDropdownTabState
                     onSelected: (value) {
                       userattentionvalue = value;
                       setState(() {
-
                       });
                     },
+
 
                   ),
 

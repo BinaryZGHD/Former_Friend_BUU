@@ -67,14 +67,15 @@ class AddressSubmitEvent extends ProfileEvent {
   String province;
   String zipcode;
   AddressSubmitEvent(
-      { required this.token,
-        required this.number,
-        required this.road,
-        required this.subdistrict,
-        required this.district,
-        required this.province,
-        required this.zipcode});
+      {required this.token,
+      required this.number,
+      required this.road,
+      required this.subdistrict,
+      required this.district,
+      required this.province,
+      required this.zipcode});
 }
+
 class ContactSubmitEvent extends ProfileEvent {
   String token;
   String phone;
@@ -84,12 +85,27 @@ class ContactSubmitEvent extends ProfileEvent {
   String twitter;
   String youtube;
   ContactSubmitEvent(
-      {
-        required this.token,
-        required this.phone,
-        required this.line,
-        required this.facebook,
-        required this.instragram,
-        required this.twitter,
-        required this.youtube});
+      {required this.token,
+      required this.phone,
+      required this.line,
+      required this.facebook,
+      required this.instragram,
+      required this.twitter,
+      required this.youtube});
+}
+
+class CareerSubmitEvent extends ProfileEvent {
+  String token;
+  String attention;
+  String status;
+  String jobtype;
+  String career;
+  String company;
+  CareerSubmitEvent(
+      {required this.token,
+        required this.attention,
+        required this.status,
+        required this.jobtype,
+        required this.career,
+        required this.company});
 }

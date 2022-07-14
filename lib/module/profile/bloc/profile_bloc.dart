@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:f2fbuu/module/profile/model/response/address.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:f2fbuu/module/profile/model/response/career.dart';
 import 'package:f2fbuu/module/profile/model/response/education.dart';
 import 'package:f2fbuu/module/profile/model/response/general.dart';
 import 'package:f2fbuu/module/profile/repository/profile_repository.dart';
@@ -156,6 +157,35 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           }
         } else {
           emit(ProfileError(errormessage: responseContactSubmit.statusMessage ?? ""));
+        }
+      } on DioError catch (e) {
+        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+      }
+    }
+    );
+
+    on<CareerSubmitEvent>((event, emit) async{
+      try {
+        emit(ProfileLoading());
+        Response responseCareerSubmit = await sentProfileCareerData(
+            event.token,
+            event.attention,
+            event.status,
+            event.jobtype,
+            event.career,
+            event.company
+        );
+        emit(ProfileLoadingSuccess());
+        if (responseCareerSubmit.statusCode == 200) {
+          // print('aa = ' + '${response.data}');
+          CareerResponse careerResponse = CareerResponse.fromJson(responseCareerSubmit.data);
+          if (careerResponse.head?.status == 200) {
+            emit(CareerSubmitSuccessState(responseCareer: careerResponse));
+          } else {
+            emit(ProfileError(errormessage: careerResponse.head?.message ?? ""));
+          }
+        } else {
+          emit(ProfileError(errormessage: responseCareerSubmit.statusMessage ?? ""));
         }
       } on DioError catch (e) {
         emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));

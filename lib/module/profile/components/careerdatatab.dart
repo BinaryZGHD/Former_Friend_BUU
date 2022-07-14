@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../model/response/api_profile.dart';
 import '../model/response/api_profile.dart';
@@ -25,6 +27,11 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
     // print(json.encode(widget.dataFromAPI));
     // print('${json.encode(widget.dataFromAPI.body?.userattention)}');
     var dataFromAPI = widget.dataFromAPI;
+    String attentionvalue ="";
+    String statusvalue ="";
+    String jobtypevalue ="";
+    String careervalue ="";
+    String companyvalue ="";
     // var statusarray = [
     //   '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
     //   '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
@@ -56,6 +63,9 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                       onPressed: () {
                         setState(() {
                           isunpressed = !isunpressed;
+                          if(isunpressed == true){
+                            context.read<ProfileBloc>().add(CareerSubmitEvent(jobtype: jobtypevalue, company: companyvalue, token: 'ant', status: statusvalue, attention: attentionvalue, career: careervalue));
+                          };
                         });
                       },
                       child: isunpressed

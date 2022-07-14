@@ -49,7 +49,7 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                         setState(() {
                           isunpressed = !isunpressed;
                           if(isunpressed == true){
-                            context.read<ProfileBloc>().add(GeneralSubmitEvent(nickname: nicknamevalue, name: namevalue, token: '', surname: surnamevalue));
+                            context.read<ProfileBloc>().add(GeneralSubmitEvent(nickname: nicknamevalue, name: namevalue, token: "ant", surname: surnamevalue));
                           };
                         });
                       },
