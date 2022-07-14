@@ -30,6 +30,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc(),
+      //context.read<HomeBloc>().add(HomeScreenInfoEvent(globalkey: global_key));
       child: HomePage(screenLoginResponse: screenLoginResponse, valueLanguage: valueLanguage),
     );
     return Container();

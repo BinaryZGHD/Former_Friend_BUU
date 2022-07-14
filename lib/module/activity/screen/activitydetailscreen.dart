@@ -154,7 +154,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
           child: Container(
             margin: EdgeInsets.only(top: 10, bottom: 10),
             // height: MediaQuery.of(context).size.height * 0.9,
-            width: MediaQuery.of(context).size.width ,
+            // width: MediaQuery.of(context).size.width ,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -224,7 +224,6 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Container(
-
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),

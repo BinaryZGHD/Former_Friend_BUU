@@ -44,10 +44,19 @@ class _loginPageState extends State<loginPage> with ProgressDialog {
   late String valueLanguage;
   @override
   void initState() {
-    super.initState();
+
     valueLanguage = "TH";
+
+     _setIsDefaultLanguage (valueLanguage);
+
     // context.read<LoginBloc>().add(LoginScreenInfoEvent(userLanguage: valueLanguage));
+    super.initState();
   }
+  void _setIsDefaultLanguage (String valueLanguage) async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userLanguage', "$valueLanguage");
+  }
+
 
   void _toggleLanguageView() async {
     setState(
