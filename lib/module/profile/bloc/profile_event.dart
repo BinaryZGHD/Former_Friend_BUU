@@ -93,17 +93,17 @@ class ContactSubmitEvent extends ProfileEvent {
 }
 
 class CareerSubmitEvent extends ProfileEvent {
-  String token;
   String attention;
   String status;
   String jobtype;
   String career;
   String company;
+  String workplace;
   CareerSubmitEvent(
-      {required this.token,
-        required this.attention,
+      {required this.attention,
         required this.status,
         required this.jobtype,
         required this.career,
-        required this.company});
+        required this.company,
+        required this.workplace});
 }

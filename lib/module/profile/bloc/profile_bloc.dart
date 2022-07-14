@@ -169,7 +169,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
             event.status,
             event.jobtype,
             event.career,
-            event.company
+            event.company,
+            event.workplace
         );
         emit(ProfileLoadingSuccess());
         if (responseCareerSubmit.statusCode == 200) {

@@ -110,7 +110,8 @@ class ProfileRepository {
       String status,
       String jobtype,
       String career,
-      String company
+      String company,
+      String workplace
       ) async {
     final prefs = await SharedPreferences.getInstance();
     String? global_key = prefs.getString("global_key");
@@ -119,11 +120,12 @@ class ProfileRepository {
       data: jsonEncode(
           {
             "token": global_key,
-            "attention": "string",
-            "status": "string",
-            "jobtype": "string",
-            "career": "string",
-            "company": "string"
+            "attention": attention,
+            "status": status,
+            "jobtype": jobtype,
+            "career": career,
+            "company": company,
+            "workplace" : workplace
           }
       )
     );

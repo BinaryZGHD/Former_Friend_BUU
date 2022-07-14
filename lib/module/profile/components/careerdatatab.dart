@@ -29,6 +29,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
     var dataFromAPI = widget.dataFromAPI;
     String attentionvalue ="";
     String statusvalue ="";
+    String workplacevalue ="";
     String jobtypevalue ="";
     String careervalue ="";
     String companyvalue ="";
@@ -64,7 +65,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                         setState(() {
                           isunpressed = !isunpressed;
                           if(isunpressed == true){
-                            context.read<ProfileBloc>().add(CareerSubmitEvent(jobtype: jobtypevalue, company: companyvalue, token: 'ant', status: statusvalue, attention: attentionvalue, career: careervalue));
+                            context.read<ProfileBloc>().add(CareerSubmitEvent(jobtype: jobtypevalue, company: companyvalue, status: statusvalue, attention: attentionvalue, career: careervalue, workplace: workplacevalue));
                           };
                         });
                       },
@@ -84,6 +85,12 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           userattentionvalue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
           textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
           isunpressed: isunpressed,
+          callbackFromAttentionDataTab: (String attentionResult){
+            setState((){
+              attentionvalue = attentionResult;
+              print(attentionvalue);
+            });
+          },
         ),
         ProfileCareerDropdownTab(
           textleft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
@@ -99,6 +106,16 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           textcomp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
           textcareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
           isunpressed: isunpressed,
+          callbackFromWorkDataTab: (String jobtype, String workplace, String career, String company){
+            print(jobtype + "และ" +  workplace + "และ" + career + "และ" + company);
+            setState((){
+              jobtypevalue = jobtype;
+              workplacevalue = workplace;
+              careervalue = career;
+              companyvalue = company;
+              print(jobtypevalue);
+            });
+          },
         ),
       ],
     );
