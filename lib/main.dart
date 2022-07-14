@@ -40,12 +40,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc());
+    final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc(),lazy: false,);
 
-    final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
-    final forgotpasswordBloc = BlocProvider<ForgorPasswordBloc>(create: (context) => ForgorPasswordBloc());
-    final pdpaBloc = BlocProvider<PdpaBloc>(create: (context) => PdpaBloc());
-    final registerBloc = BlocProvider<RegisterBloc>(create: (context) => RegisterBloc());
+    // final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
+    // final forgotpasswordBloc = BlocProvider<ForgorPasswordBloc>(create: (context) => ForgorPasswordBloc());
+    // final pdpaBloc = BlocProvider<PdpaBloc>(create: (context) => PdpaBloc(),lazy: false,);
+    // final registerBloc = BlocProvider<RegisterBloc>(create: (context) => RegisterBloc(),lazy: false,);
     final changepasswordBloc = BlocProvider<ChangePasswordBloc>(create: (context) => ChangePasswordBloc());
     final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
     final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
@@ -54,10 +54,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         loginBloc,
-        homeBloc,
-        forgotpasswordBloc,
-        pdpaBloc,
-        registerBloc,
+        // homeBloc,
+        // forgotpasswordBloc,
+        // pdpaBloc,
+        // registerBloc,
         changepasswordBloc,
         profileBloc,
         actitivtyBloc,

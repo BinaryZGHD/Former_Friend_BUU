@@ -12,16 +12,27 @@ import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-class forgotPasswordScreen extends StatefulWidget {
+class forgotPasswordScreen extends StatelessWidget {
   final String valueLanguage;
-  const forgotPasswordScreen( {Key? key, required this.valueLanguage}) : super(key: key);
+  const forgotPasswordScreen({Key? key, required this.valueLanguage}) : super(key: key);
 
   @override
-  State<forgotPasswordScreen> createState() => _forgotPasswordScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent(userLanguage: valueLanguage)),
+        child: forgotPasswordPage(valueLanguage:valueLanguage));
+  }
 }
 
-class _forgotPasswordScreenState extends State<forgotPasswordScreen> with ProgressDialog {
+class forgotPasswordPage extends StatefulWidget {
+  final String valueLanguage;
+  const forgotPasswordPage( {Key? key, required this.valueLanguage,}) : super(key: key);
+
+  @override
+  State<forgotPasswordPage> createState() => _forgotPasswordPageState();
+}
+
+class _forgotPasswordPageState extends State<forgotPasswordPage> with ProgressDialog {
   ScreenForgotPasswordResponse? _screenforgotpasswordResponse;
   SubmitForgotPasswordResponse? _forgotPasswordSubmitResponse;
 
@@ -30,13 +41,13 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context.read<ForgorPasswordBloc>().add(ScreenInfoForgotPasswordEvent(userLanguage: userLanguage));
+    // context.read<ForgorPasswordBloc>().add(ScreenInfoForgotPasswordEvent(userLanguage: userLanguage));
   }
 
 
   @override
   Widget build(BuildContext context) {
-    // context.read<ForgorPasswordBloc>().add(ForgotPasswordScreenInfoEvent());
+    // context.read<ForgorPasswordBloc>().add(forgotPasswordPageInfoEvent());
     return BlocConsumer<ForgorPasswordBloc, ForgorPasswordState>(
       listener: (context, state) {
         if (state is ForgotPasswordLoading) {
@@ -61,7 +72,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
               MaterialPageRoute(
                   builder: (context) => setNewForgotPasswordScreen(valueLanguage: widget.valueLanguage ,
                       ForgotpasswordValueEmail: ForgotpasswordValueEmail, ForgotpasswordValueUserID: ForgotpasswordValueUserID
-                      )));
+                  )));
         }
       },
       builder: (context, state) {
@@ -71,8 +82,8 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
         } else {
           return Scaffold(
               body: Container(
-            color: Colors.white,
-          ));
+                color: Colors.white,
+              ));
         }
       },
       buildWhen: (context, state) {
@@ -83,9 +94,9 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> with Progre
 }
 
 buildContentforgotpassword(
-  BuildContext context,
-  ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
-) {
+    BuildContext context,
+    ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
+    ) {
   TextEditingController userID = TextEditingController();
   TextEditingController email = TextEditingController();
 
