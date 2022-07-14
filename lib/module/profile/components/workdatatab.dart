@@ -187,15 +187,21 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
               ProfileCareerDataTab(
                   isunpressed: isunpressed,
                   textleft: subtitleworkplace,
-                  textright: userworkplace),
+                  textright: userworkplace, callback: (String result) {
+                    print(result);
+              },),
               ProfileCareerDataTab(
                   isunpressed: isunpressed,
                   textleft: textcareer,
-                  textright: usercareer),
+                  textright: usercareer, callback: (String result) {
+                print(result);
+              },),
               ProfileCareerDataTab(
                   isunpressed: isunpressed,
                   textleft: textcomp,
-                  textright: usercompany)
+                  textright: usercompany, callback: (String result) {
+                print(result);
+              },)
             ],
           ),
         )
