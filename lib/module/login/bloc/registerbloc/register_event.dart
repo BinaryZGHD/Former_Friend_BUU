@@ -7,6 +7,7 @@ class ScreenInfoRegisterEvent extends RegisterEvent{
   ScreenInfoRegisterEvent({
     required this.userLanguage
   });
+
 }class ScreenInfoConfirmRegisterEvent extends RegisterEvent{
   String userLanguage;
   ScreenInfoConfirmRegisterEvent({

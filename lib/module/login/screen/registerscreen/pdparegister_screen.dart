@@ -14,16 +14,32 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class conditionPDPAScreen extends StatefulWidget {
+
+class conditionPDPAScreen extends StatelessWidget {
   final String valueLanguage;
+
   const conditionPDPAScreen({Key? key, required this.valueLanguage})
       : super(key: key);
 
   @override
-  State<conditionPDPAScreen> createState() => _conditionPDPAScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => PdpaBloc()..add(ScreenInfoPDPAEvent(userLanguage: valueLanguage)),
+        child: conditionPDPApage(valueLanguage:valueLanguage));
+
+  }
+
+}
+class conditionPDPApage extends StatefulWidget {
+  final String valueLanguage;
+  const conditionPDPApage( {Key? key, required this.valueLanguage})
+      : super(key: key);
+
+  @override
+  State<conditionPDPApage> createState() => _conditionPDPApageState();
 }
 
-class _conditionPDPAScreenState extends State<conditionPDPAScreen>
+class _conditionPDPApageState extends State<conditionPDPApage>
     with ProgressDialog {
   ScreenPDPAResponse? _screenPDPAResponse;
   late String userLanguage;
@@ -31,9 +47,9 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context
-        .read<PdpaBloc>()
-        .add(ScreenInfoPDPAEvent(userLanguage: userLanguage));
+    // context
+    //     .read<PdpaBloc>()
+    //     .add(ScreenInfoPDPAEvent(userLanguage: userLanguage));
   }
 
   @override
@@ -143,9 +159,8 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>
                         colorborder: BC_ButtonText_style_Black_Boarder,
                         sizeborder: 10,
                         onPressed: () {
-                          context
-                              .read<PdpaBloc>()
-                              .add(OnClickPDPAEvent(accept: true));
+                          BlocProvider.of<PdpaBloc>(context)
+                            ..add(OnClickPDPAEvent(accept: true));
                           // dialogOneLineTwoBtn(
                           //     context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
                           //     onClickBtn: (String result) {
@@ -180,9 +195,13 @@ class _conditionPDPAScreenState extends State<conditionPDPAScreen>
                         colorborder: BC_ButtonText_style_Red_Boarder,
                         sizeborder: 10,
                         onPressed: () {
-                          context
-                              .read<PdpaBloc>()
-                              .add(OnClickPDPAEvent(accept: false));
+
+                          BlocProvider.of<PdpaBloc>(context)
+                            // ..isFetching = true
+                            ..add(OnClickPDPAEvent(accept: false));
+                          // context
+                          //     .read<PdpaBloc>()
+                          //     .add(OnClickPDPAEvent(accept: false));
                           // dialogOneLineTwoBtn(
                           //     context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
                           //     onClickBtn: (String result) {
