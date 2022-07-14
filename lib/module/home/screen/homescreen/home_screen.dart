@@ -21,25 +21,42 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/module/login/screen/changepasswordscreen/changepassword_screen.dart';
 import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   final SunmitLoginResponse? screenLoginResponse;
-  const HomeScreen({
+  final String? valueLanguage;
+  const HomeScreen({Key? key, this.screenLoginResponse, this.valueLanguage}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomeBloc(),
+      child: HomePage(screenLoginResponse: screenLoginResponse, valueLanguage: valueLanguage),
+    );
+    return Container();
+  }
+}
+
+class HomePage extends StatefulWidget {
+  final SunmitLoginResponse? screenLoginResponse;
+  final String? valueLanguage;
+  const HomePage({
     Key? key,
     this.screenLoginResponse,
+    this.valueLanguage,
   }) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
+class _HomePageState extends State<HomePage> with ProgressDialog {
   ScreenHomeResponse? _screenhomeResponse;
   ApiProfileResponse? _screenprofileResponse;
   ScreenStatusActivityResponse? _screenstatusActivityResponse;
   late String keytoken;
   late String global_key;
+  late String _userLanguage;
+  late bool _isHidden;
   @override
   void initState() {
     super.initState();
@@ -49,36 +66,59 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
 
   _setglobal_key(String keytoken) async {
     final prefs = await SharedPreferences.getInstance();
+
     await prefs.setString('global_key', "$keytoken");
     setState(() {
       global_key = prefs.getString('global_key') ?? "$keytoken";
+      _userLanguage = prefs.getString('userLanguage')!;
     });
-    context.read<HomeBloc>().add(HomeScreenInfoEvent());
-  }
-  bool _isHidden = true;
-  void _togglePasswordView() {
-    setState(() {
-      _isHidden = !_isHidden;
-    });
+    if (_userLanguage == "TH") {
+      _isHidden = true;
+    } else {
+      _isHidden = false;
+    }
+    context.read<HomeBloc>().add(HomeScreenInfoEvent(globalkey: global_key));
   }
 
+  void _toggleLanguageView() async {
+    // final prefs = await SharedPreferences.getInstance();
+    // await prefs.setString('userLanguage', "$_userLanguage");
+    setState(
+      () {
+        _isHidden = !_isHidden;
+        _isHidden
+            ? context.read<HomeBloc>().add(OnClickHomeLanguageEvent(globalkey: global_key))
+            : context.read<HomeBloc>().add(OnClickHomeLanguageEvent(globalkey: global_key));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomeBloc>().add(HomeScreenInfoEvent());
-
-    return BlocConsumer<HomeBloc, HomeState>(listener: (context, state) {
-      if (state is HomeLoading) {
-        showProgressDialog(context);
-      }
-      if (state is HomeEndLoading) {
-        hideProgressDialog(context);
-      }
-      if (state is HomeError) {
-        // show dialog error
-        print(state.message);
-      }
-    },
+    return BlocConsumer<HomeBloc, HomeState>(
+      listener: (context, state) {
+        if (state is HomeLoading) {
+          showProgressDialog(context);
+        }
+        if (state is HomeEndLoading) {
+          hideProgressDialog(context);
+        }
+        if (state is HomeError) {
+          // show dialog error
+          print(state.message);
+        }
+        if (state is OnClickScreenInfoHomeSuccessState) {
+          _screenhomeResponse = state.responseScreenInfoHome;
+          _screenprofileResponse = state.responseProfile;
+          _screenstatusActivityResponse = state.responseActivity;
+          return buildContentHomeScreen(context);
+        }
+        if (state is OnClickHomeLogoutState) {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
+            return loginScreen();
+          }));
+        }
+      },
       builder: (context, state) {
         if (state is ScreenInfoHomeSuccessState) {
           _screenhomeResponse = state.responseScreenInfoHome;
@@ -87,7 +127,8 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
           return buildContentHomeScreen(context);
         }
 
-        return Scaffold(body: Container(
+        return Scaffold(
+            body: Container(
           color: Colors.white,
         ));
       },
@@ -97,168 +138,168 @@ class _HomeScreenState extends State<HomeScreen> with ProgressDialog {
     );
   }
 
-buildContentHomeScreen(BuildContext context) {
-  return Scaffold(
-    drawer: Drawer(
-      child: drawerhome(context,
+  buildContentHomeScreen(BuildContext context) {
+    return Scaffold(
+      drawer: Drawer(
+        child: drawerhome(
+          context,
           _screenhomeResponse,
           _screenprofileResponse,
-      ),
-    ),
-    appBar: AppBar(
-      // backgroundColor: Colors.white,
-      leading: Builder(
-        builder: (BuildContext context) {
-          return IconButton(
-            icon: const Icon(Icons.settings, color: TC_Black),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        },
-      ),
-      title: Center(
-          child: Text("${_screenhomeResponse?.body?.screenInfo?.screenhome?.titlestatus}",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
-      actions: <Widget>[
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.1,
         ),
-      ],
-    ),
-    body: Column(
-      children: [
-        SizedBox(
-          height: 5,
+      ),
+      appBar: AppBar(
+        // backgroundColor: Colors.white,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.settings, color: TC_Black),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-        if (_screenstatusActivityResponse?.body?.activity?.length.toInt() == 0)
-          Expanded(
-            child: Card(
-              color: Colors.grey[200],
-              child: Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: transparent),
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.error,
-                        color: TC_NoActivity,
-                        size: 100,
-                      ),
-                      Text("No Activity",
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_NoActivity)),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("Please check your internet connection",
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: TC_NoActivity)),
-                    ],
-                  )),
-            ),
+        title: Center(
+            child: Text("${_screenhomeResponse?.body?.screenInfo?.screenhome?.titlestatus} + $_userLanguage",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
+        actions: <Widget>[
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.1,
           ),
-        if (_screenstatusActivityResponse?.body?.activity?.length.toInt() != 0)
-        // Expanded(
-        //   child: Container(
-        //     color: BC_ButtonRed,
-        //     height: MediaQuery.of(context).size.height,
-        //     width: MediaQuery.of(context).size.width,
-        //     child: Center(
-        //       child: Text(
-        //         "No Activity",
-        //         style: TextStyle(color: Colors.white, fontSize: 20),
-        //       ),
-        //     ),
-        //   ),
-        // ),
-          Expanded(
-            child: Container(
-              color: BC_ButtonText_style_White,
-              // height: MediaQuery.of(context).size.height*0.1,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      buildListActivity(context, _screenstatusActivityResponse),
-                      SizedBox(
-                        // height: MediaQuery.of(context).size.height * 0.2,
-                      ),
-                    ],
+        ],
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 5,
+          ),
+          if (_screenstatusActivityResponse?.body?.activity?.length.toInt() == 0)
+            Expanded(
+              child: Card(
+                color: Colors.grey[200],
+                child: Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: transparent),
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.error,
+                          color: TC_NoActivity,
+                          size: 100,
+                        ),
+                        Text("No Activity",
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_NoActivity)),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Please check your internet connection",
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: TC_NoActivity)),
+                      ],
+                    )),
+              ),
+            ),
+          if (_screenstatusActivityResponse?.body?.activity?.length.toInt() != 0)
+            // Expanded(
+            //   child: Container(
+            //     color: BC_ButtonRed,
+            //     height: MediaQuery.of(context).size.height,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: Center(
+            //       child: Text(
+            //         "No Activity",
+            //         style: TextStyle(color: Colors.white, fontSize: 20),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            Expanded(
+              child: Container(
+                color: BC_ButtonText_style_White,
+                // height: MediaQuery.of(context).size.height*0.1,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        buildListActivity(context, _screenstatusActivityResponse),
+                        SizedBox(
+                            // height: MediaQuery.of(context).size.height * 0.2,
+                            ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
           ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.01,
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
-          child: ButtonCustom(
-            label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
-            colortext: BC_ButtonText_style_Black,
-            colorbutton: BC_ButtonText_style_White,
-            sizetext: sizeTextSmaller14,
-            colorborder: BC_ButtonText_style_Black_Boarder,
-            sizeborder: 1.0,
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
-            },
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-
-          // padding: const EdgeInsets.only(bottom: 10.0),
-          child: Container(
-            color: BC_ButtonText_style_White,
-            height: 50,
-            child: Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                    child: IconButton(
-                      icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                      },
-                    )),
-                Expanded(
-                    child: IconButton(
-                      icon: Icon(Icons.home, color: Colors.blue, size: 50),
-                      onPressed: () {},
-                    )),
-                Expanded(
-                    child: IconButton(
-                      icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
-                      onPressed: ()  {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>   screenMoreMain(
-                                  responseHomeMore: _screenhomeResponse,
-                                )));
-                      },
-                    )),
-              ],
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+            child: ButtonCustom(
+              label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
+              colortext: BC_ButtonText_style_Black,
+              colorbutton: BC_ButtonText_style_White,
+              sizetext: sizeTextSmaller14,
+              colorborder: BC_ButtonText_style_Black_Boarder,
+              sizeborder: 1.0,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
+              },
             ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
 
-
-
+            // padding: const EdgeInsets.only(bottom: 10.0),
+            child: Container(
+              color: BC_ButtonText_style_White,
+              height: 50,
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                      child: IconButton(
+                    icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                    },
+                  )),
+                  Expanded(
+                      child: IconButton(
+                    icon: Icon(Icons.home, color: Colors.blue, size: 50),
+                    onPressed: () {},
+                  )),
+                  Expanded(
+                      child: IconButton(
+                    icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                    onPressed: () {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => screenMoreMain(
+                                    responseHomeMore: _screenhomeResponse,
+                                  )));
+                    },
+                  )),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   drawerhome(
-      BuildContext context, ScreenHomeResponse? _screenhomeResponse, ApiProfileResponse? _screenprofileResponse,
-      ) {
+    BuildContext context,
+    ScreenHomeResponse? _screenhomeResponse,
+    ApiProfileResponse? _screenprofileResponse,
+  ) {
     VoidCallback? onPressed;
     return SafeArea(
       child: SingleChildScrollView(
@@ -329,7 +370,7 @@ buildContentHomeScreen(BuildContext context) {
               Container(
                 width: double.infinity,
                 color: BSC_transparent,
-                padding: EdgeInsets.only(top: 0, bottom:0, left: 15, right: 15),
+                padding: EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
                 child: _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textrole}',
@@ -369,30 +410,25 @@ buildContentHomeScreen(BuildContext context) {
                     tb3: 0.45,
                   ),
                 ),
-
               ),
-
               GestureDetector(
                 onTap: () {
                   dialogOneLineTwoBtn(
                       context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
                       onClickBtn: (String result) {
-                        Navigator.of(context).pop();
-                        switch (result) {
-                          case 'Cancel':
-                            {
-                              break;
-                            }
-                          case 'OK':
-                            {
-                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                // int index = int.parse(widget.id);
-                                return loginScreen();
-                                // DisplayBeerScreen();
-                              }));
-                            }
+                    Navigator.of(context).pop();
+                    switch (result) {
+                      case 'Cancel':
+                        {
+                          break;
                         }
-                      });
+                      case 'OK':
+                        {
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => loginScreen()),
+                              (Route<dynamic> route) => false);
+                        }
+                    }
+                  });
                 },
                 child: Container(
                   width: double.infinity,
@@ -407,7 +443,6 @@ buildContentHomeScreen(BuildContext context) {
                     tb3: 0.45,
                   ),
                 ),
-
               ),
               Container(
                 width: double.infinity,
@@ -416,13 +451,12 @@ buildContentHomeScreen(BuildContext context) {
                 child: _buildTableGeneralinfo(
                   context,
                   textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textappver}',
-                  textrightdetail:  '${_screenhomeResponse?.body?.vs}',
+                  textrightdetail: '${_screenhomeResponse?.body?.vs}',
                   tb1: 0.5,
                   tb2: 0.05,
                   tb3: 0.45,
                 ),
               ),
-
               SizedBox(
                 height: 20,
               ),
@@ -433,22 +467,18 @@ buildContentHomeScreen(BuildContext context) {
                   onPressed: () {
                     dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
                         onClickBtn: (String result) {
-                          Navigator.of(context).pop();
-                          switch (result) {
-                            case 'Cancel':
-                              {
-                                break;
-                              }
-                            case 'OK':
-                              {
-                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                  // int index = int.parse(widget.id);
-                                  return loginScreen();
-                                  // DisplayBeerScreen();
-                                }));
-                              }
+                      Navigator.of(context).pop();
+                      switch (result) {
+                        case 'Cancel':
+                          {
+                            break;
                           }
-                        });
+                        case 'OK':
+                          {
+                            context.read<HomeBloc>().add(OnClickHomeLogoutEvent(globalkey: global_key));
+                          }
+                      }
+                    });
                   },
                   label: "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnlogout}  ",
                   colortext: BC_ButtonLogout,
@@ -471,7 +501,7 @@ buildContentHomeScreen(BuildContext context) {
   _buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? _screenprofileResponse,
       {required tb1, required tb2, required tb3}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom:10.0),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: Table(
         border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
         columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
@@ -501,15 +531,15 @@ buildContentHomeScreen(BuildContext context) {
             ),
             _screenprofileResponse?.body?.profileGeneralInfo?.img != null
                 ? CircleAvatar(
-              radius: 35.0,
-              backgroundImage: NetworkImage("${_screenprofileResponse?.body?.profileGeneralInfo?.img}"),
-            )
+                    radius: 35.0,
+                    backgroundImage: NetworkImage("${_screenprofileResponse?.body?.profileGeneralInfo?.img}"),
+                  )
                 : CircleAvatar(
-              radius: 35.0,
-              backgroundImage: AssetImage(
-                'assets/logo/profile.png',
-              ),
-            ),
+                    radius: 35.0,
+                    backgroundImage: AssetImage(
+                      'assets/logo/profile.png',
+                    ),
+                  ),
           ])
         ],
       ),
@@ -517,13 +547,13 @@ buildContentHomeScreen(BuildContext context) {
   }
 
   _buildTableGeneralinfo(
-      BuildContext context, {
-        required textlefttitile,
-        required String textrightdetail,
-        required tb1,
-        required tb2,
-        required tb3,
-      }) {
+    BuildContext context, {
+    required textlefttitile,
+    required String textrightdetail,
+    required tb1,
+    required tb2,
+    required tb3,
+  }) {
     return Table(
       border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
       columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
@@ -547,13 +577,13 @@ buildContentHomeScreen(BuildContext context) {
   }
 
   _buildTableIconLanginfo(
-      BuildContext context, {
-        required String textlefttitile,
-        required String textrightdetail,
-        required tb1,
-        required tb2,
-        required tb3,
-      }) {
+    BuildContext context, {
+    required String textlefttitile,
+    required String textrightdetail,
+    required tb1,
+    required tb2,
+    required tb3,
+  }) {
     bool _isVisible = false;
     VoidCallback? onPressed;
 
@@ -579,12 +609,10 @@ buildContentHomeScreen(BuildContext context) {
               //
               // _toggle(),
               IconButton(
-                  onPressed: _togglePasswordView,
+                  onPressed: _toggleLanguageView,
                   icon: _isHidden
-                      ? Icon(Icons.toggle_off, color: Color(0xFF4F4F4F))
-                      : Icon(Icons.toggle_on, color: Color(0xFF00A80A))
-
-              )
+                      ? Icon(Icons.toggle_on, color: Color(0xFF00A80A))
+                      : Icon(Icons.toggle_off, color: Color(0xFF4F4F4F)))
               // IconButton(
               //     onPressed: () {
               //       _isVisible = !_isVisible;
@@ -598,5 +626,4 @@ buildContentHomeScreen(BuildContext context) {
       ],
     );
   }
-
 }

@@ -15,31 +15,53 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class registerConfirmScreen extends StatefulWidget {
+class RegisterConfirmScreen extends StatelessWidget {
   final String valueLanguage;
-  final String RegistervalueEmail;
-  final String RegistervalueUserID;
-  registerConfirmScreen({
+  final String registerValueEmail;
+  final String registerValueUserID;
+
+  const RegisterConfirmScreen(
+      {Key? key,
+      required this.valueLanguage,
+      required this.registerValueEmail,
+      required this.registerValueUserID})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => RegisterBloc()
+          ..add(ScreenInfoConfirmRegisterEvent(userLanguage: valueLanguage)),
+        child: RegisterConfirmPage(
+            valueLanguage: valueLanguage,
+            registerValueEmail: registerValueEmail,
+            registerValueUserID: registerValueUserID));
+  }
+}
+
+class RegisterConfirmPage extends StatefulWidget {
+  final String valueLanguage;
+  final String registerValueEmail;
+  final String registerValueUserID;
+  RegisterConfirmPage({
     Key? key,
     required this.valueLanguage,
-    required this.RegistervalueEmail,
-    required this.RegistervalueUserID,
+    required this.registerValueEmail,
+    required this.registerValueUserID,
   }) : super(key: key);
 
   @override
-  State<registerConfirmScreen> createState() => _registerConfirmScreenState();
+  State<RegisterConfirmPage> createState() => _RegisterConfirmPageState();
 }
 
-class _registerConfirmScreenState extends State<registerConfirmScreen>
+class _RegisterConfirmPageState extends State<RegisterConfirmPage>
     with ProgressDialog {
   late String userLanguage;
   @override
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context
-        .read<RegisterBloc>()
-        .add(ScreenInfoConfirmRegisterEvent(userLanguage: userLanguage));
+    // context.read<RegisterBloc>().add(ScreenInfoConfirmRegisterEvent(userLanguage: userLanguage));
   }
 
   ScreenRegisterResponse? _screenRegisterResponse;
@@ -79,18 +101,20 @@ class _registerConfirmScreenState extends State<registerConfirmScreen>
         if (state is SubmitConfirmRegisterState) {
           _submitConfirmRegisterResponse = state.responseSubmitConfirmRegister;
           // show dialog error
-          Navigator.pushAndRemoveUntil(
+          Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => loginScreen()),
-              (Route<dynamic> route) => false);
+              MaterialPageRoute(builder: (context) => loginScreen())
+              // ,
+              // (Route<dynamic> route) => false
+          );
         }
       },
       builder: (context, state) {
         if (state is ScreenInfoConfirmRegisterSuccessState) {
           _screenRegisterResponse = state.responseConfirmRegisterScreen;
           return buildContentRegister(context,
-              RegisterValueUserID: widget.RegistervalueUserID,
-              RegisterValueEmail: widget.RegistervalueEmail);
+              RegisterValueUserID: widget.registerValueUserID,
+              RegisterValueEmail: widget.registerValueEmail);
         }
         return Scaffold(
             body: Container(
@@ -157,7 +181,7 @@ class _registerConfirmScreenState extends State<registerConfirmScreen>
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 20, right: 20),
                           // ${_screenRegisterResponse?.body?.screeninfo?.edtemailreg} :
-                          child: Text("${widget.RegistervalueEmail}",
+                          child: Text("${widget.registerValueEmail}",
                               style: TextStyle(
                                   decoration: TextDecoration.underline,
                                   color: TC_OTPSent,
@@ -193,11 +217,14 @@ class _registerConfirmScreenState extends State<registerConfirmScreen>
                         textcolor: TC_OTPSent,
                         sizetext: sizeTextSmall16,
                         onTap: () {
-                          context.read<RegisterBloc>().add(
-                              ReSentOTPConfirmRegisterEvent(
-                                  userLanguage: userLanguage,
-                                  userID: RegisterValueUserID,
-                                  email: RegisterValueEmail));
+                          BlocProvider.of<RegisterBloc>(context)
+                            // ..isFetching = true
+                            ..add(ReSentOTPConfirmRegisterEvent(
+                                userLanguage: userLanguage,
+                                userID: RegisterValueUserID,
+                                email: RegisterValueEmail));
+                          // context.read<RegisterBloc>().add(ReSentOTPConfirmRegisterEvent(
+                          //     userLanguage: userLanguage, userID: RegisterValueUserID, email: RegisterValueEmail));
                         },
                       ),
                     ),
@@ -214,12 +241,17 @@ class _registerConfirmScreenState extends State<registerConfirmScreen>
                         colorborder: BC_ButtonText_style_Black_Boarder,
                         sizeborder: 10,
                         onPressed: () {
-                          context.read<RegisterBloc>().add(
-                              SubmitConfirmRegisterEvent(
-                                  userLanguage: userLanguage,
-                                  email: RegisterValueEmail,
-                                  userID: RegisterValueUserID,
-                                  otp: confirmregisterOTPvalue));
+                          BlocProvider.of<RegisterBloc>(context)
+                            // ..isFetching = true
+                            ..add(SubmitConfirmRegisterEvent(
+                                userLanguage: userLanguage,
+                                email: RegisterValueEmail,
+                                userID: RegisterValueUserID,
+                                otp: confirmregisterOTPvalue));
+                          // context.read<RegisterBloc>().add(SubmitConfirmRegisterEvent(userLanguage: userLanguage,
+                          //     email: RegisterValueEmail,
+                          //     userID: RegisterValueUserID,
+                          //     otp: confirmregisterOTPvalue));
                         },
                       ),
                     ),

@@ -36,7 +36,51 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
       } on DioError catch (e) {
         emit(HomeError(message: e.response?.statusMessage ?? ""));
       }
+      on<OnClickHomeLanguageEvent>((event, emit) async {
 
+        try {
+          emit(HomeLoading());
+          Response responseHome = await getScreenHome();
+          Response responseProfile = await getApiProfile();
+          Response responseActivity = await getApiActivity();
+          emit(HomeEndLoading());
+          if (responseHome.statusCode == 200 && responseProfile.statusCode == 200 && responseActivity.statusCode == 200) {
+            ScreenHomeResponse screenHomeResponse = ScreenHomeResponse.fromJson(responseHome.data);
+            ApiProfileResponse apiProfileResponse = ApiProfileResponse.fromJson(responseProfile.data);
+            ScreenStatusActivityResponse apiStatusActivityResponse = ScreenStatusActivityResponse.fromJson(responseActivity.data);
+
+            if (screenHomeResponse.head?.status == 200 && apiProfileResponse.head?.status == 200 && apiStatusActivityResponse.head?.status == "200") {
+              emit(OnClickScreenInfoHomeSuccessState(responseScreenInfoHome: screenHomeResponse, responseProfile: apiProfileResponse, responseActivity: apiStatusActivityResponse));
+            } else {
+              emit(HomeError(message: screenHomeResponse.head?.message ?? ""));
+            }
+          } else {
+            emit(HomeError(message: responseHome.statusMessage ?? ""));
+          }
+        } on DioError catch (e) {
+          emit(HomeError(message: e.response?.statusMessage ?? ""));
+        }
+
+      }); on<OnClickHomeLogoutEvent>((event, emit) async {
+
+        try {
+          Response responseHome = await getScreenHome();
+          if (responseHome.statusCode == 200 ) {
+            ScreenHomeResponse screenHomeResponse = ScreenHomeResponse.fromJson(responseHome.data);
+
+            if (screenHomeResponse.head?.status == 200 ) {
+              emit(OnClickHomeLogoutState());
+            } else {
+              emit(HomeError(message: screenHomeResponse.head?.message ?? ""));
+            }
+          } else {
+            emit(HomeError(message: responseHome.statusMessage ?? ""));
+          }
+        } on DioError catch (e) {
+          emit(HomeError(message: e.response?.statusMessage ?? ""));
+        }
+
+      });
     });
   }
 }

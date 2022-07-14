@@ -14,21 +14,36 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class registerScreen extends StatefulWidget {
+class registerScreen extends StatelessWidget {
   final String valueLanguage;
-  const registerScreen({Key? key, required this.valueLanguage}) : super(key: key);
+
+  const registerScreen({Key? key, required this.valueLanguage})
+      : super(key: key);
 
   @override
-  State<registerScreen> createState() => _registerScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => RegisterBloc()..add(ScreenInfoRegisterEvent(userLanguage: valueLanguage)),
+        child: registerPage(valueLanguage: valueLanguage));
+
+  }
+
+}
+class registerPage extends StatefulWidget {
+  final String valueLanguage;
+  const registerPage({Key? key, required this.valueLanguage}) : super(key: key);
+
+  @override
+  State<registerPage> createState() => _registerPageState();
 }
 
-class _registerScreenState extends State<registerScreen> with ProgressDialog {
+class _registerPageState extends State<registerPage> with ProgressDialog {
   late String userLanguage;
   @override
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    context.read<RegisterBloc>().add(ScreenInfoRegisterEvent(userLanguage: userLanguage));
+    // context.read<RegisterBloc>().add(ScreenInfoRegisterEvent(userLanguage: userLanguage));
   }
 
   ScreenRegisterResponse? _screenRegisterResponse;
@@ -75,7 +90,7 @@ class _registerScreenState extends State<registerScreen> with ProgressDialog {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => registerConfirmScreen(valueLanguage: userLanguage, RegistervalueEmail: RegistervalueEmail,RegistervalueUserID:RegistervalueUserID),
+              builder: (context) => RegisterConfirmScreen(valueLanguage: userLanguage, registerValueEmail: RegistervalueEmail,registerValueUserID:RegistervalueUserID),
             ),
           );
         }
@@ -193,16 +208,30 @@ class _registerScreenState extends State<registerScreen> with ProgressDialog {
                 Center(
                   child: ButtonCustom(
                     onPressed: () {
-                      context.read<RegisterBloc>().add(SubmitRegisterEvent(
-                        userLanguage: userLanguage,
-                        userID: uservalue,
-                        phone: phonevalue,
-                        emailRegister: emailvalue,
-                        name: namevalue,
-                        lastName: lastnamevalue,
-                        password: passwordvalue,
-                        confirmPassword: confirmpasswordvalue,
-                      ));
+
+                      BlocProvider.of<RegisterBloc>(context)
+                      // ..isFetching = true
+                        ..add(SubmitRegisterEvent(
+                          userLanguage: userLanguage,
+                          userID: uservalue,
+                          phone: phonevalue,
+                          emailRegister: emailvalue,
+                          name: namevalue,
+                          lastName: lastnamevalue,
+                          password: passwordvalue,
+                          confirmPassword: confirmpasswordvalue,
+                        ));
+
+                      // context.read<RegisterBloc>().add(SubmitRegisterEvent(
+                      //   userLanguage: userLanguage,
+                      //   userID: uservalue,
+                      //   phone: phonevalue,
+                      //   emailRegister: emailvalue,
+                      //   name: namevalue,
+                      //   lastName: lastnamevalue,
+                      //   password: passwordvalue,
+                      //   confirmPassword: confirmpasswordvalue,
+                      // ));
                     },
                     label: "  " + "${_screenRegisterResponse?.body?.screeninfo?.edtsignup}" + "  ",
                     colortext: BC_ButtonText_style_Black,
