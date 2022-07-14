@@ -20,7 +20,9 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return BlocProvider(create: (context) => ProfileBloc(),
+    child: ProfilePage(),
+    );
   }
 }
 
@@ -42,14 +44,6 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
   void initState() {
     super.initState();
     print('เรียก initState');
-    _setglobal_key();
-
-  }
-  void _setglobal_key() async{
-    final prefs = await SharedPreferences.getInstance();
-    setState((){
-      global_key = prefs.getString("global_key")!;
-    });
     context.read<ProfileBloc>().add(ProfileApiEvent());
   }
   @override
