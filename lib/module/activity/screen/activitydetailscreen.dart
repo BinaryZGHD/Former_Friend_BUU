@@ -160,53 +160,55 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
             ],
           ),
           child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.65,
-                decoration: BoxDecoration(
-                  color: HexColor('${data.color}'),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0, left: 5, right: 5, bottom: 20),
-                    child: Table(
-                      border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
-                      columnWidths: <int, TableColumnWidth>{
-                        0: FractionColumnWidth(0.35),
-                        1: FractionColumnWidth(0.05),
-                        2: FractionColumnWidth(0.60),
-                      },
-                      // defaultVerticalAlignment:
-                      // TableCellVerticalAlignment.middle,
-                      children: [
-                        BuildTableRow(context, textlefttable: title.textactivity, textrighttabledetail: '${data.name}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.textyear}', textrighttabledetail: '${data.year}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.textterm}', textrighttabledetail: '${data.term}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.textstartdate}', textrighttabledetail: '${data.startdate}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.textfinishdate}', textrighttabledetail: '${data.finishdate}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.texttime}', textrighttabledetail: '${data.time}' + " ( hh:mm ) "),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.edtapprover}', textrighttabledetail: '${data.approver}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.textvenue}', textrighttabledetail: '${data.venue}'),
-                        _buildListenpty(),
-                        BuildTableRow(context,
-                            textlefttable: '${title.textdetail}', textrighttabledetail: '${data.detail}')
-                      ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+                child: Container(
+                  // height: MediaQuery.of(context).size.height * 0.65,
+                  decoration: BoxDecoration(
+                    color: HexColor('${data.color}'),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20.0, left: 5, right: 5, bottom: 20),
+                      child: Table(
+                        border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
+                        columnWidths: <int, TableColumnWidth>{
+                          0: FractionColumnWidth(0.35),
+                          1: FractionColumnWidth(0.05),
+                          2: FractionColumnWidth(0.60),
+                        },
+                        // defaultVerticalAlignment:
+                        // TableCellVerticalAlignment.middle,
+                        children: [
+                          BuildTableRow(context, textlefttable: title.textactivity, textrighttabledetail: '${data.name}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.textyear}', textrighttabledetail: '${data.year}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.textterm}', textrighttabledetail: '${data.term}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.textstartdate}', textrighttabledetail: '${data.startdate}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.textfinishdate}', textrighttabledetail: '${data.finishdate}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.texttime}', textrighttabledetail: '${data.time}' + " ( hh:mm ) "),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.edtapprover}', textrighttabledetail: '${data.approver}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.textvenue}', textrighttabledetail: '${data.venue}'),
+                          _buildListenpty(),
+                          BuildTableRow(context,
+                              textlefttable: '${title.textdetail}', textrighttabledetail: '${data.detail}')
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -236,7 +238,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
             ),
             showbutton
                 ? Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.transparent,
