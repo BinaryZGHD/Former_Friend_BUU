@@ -1,4 +1,4 @@
-import 'dart:io' show File, Platform;
+import 'dart:io' show File;
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
@@ -11,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
 
@@ -38,8 +37,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
   File? image;
-  ChooseAvatarSuccess? avatarimg;
-  late String global_key;
+  ChooseAvatarSuccess? avatarImage;
   @override
   void initState() {
     super.initState();
@@ -56,8 +54,8 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
         hideProgressDialog(context);
       }
       if (state is ProfileError) {
-        print(state.errormessage);
-        dialogOneLineOneBtn(context, state.errormessage + '\n ', "OK", onClickBtn: () {
+        print(state.errorMessage);
+        dialogOneLineOneBtn(context, state.errorMessage + '\n ', "OK", onClickBtn: () {
           Navigator.of(context).pop();
         });
       }
@@ -97,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
           _apiProfileResponse = state.response;
           return buildContent(context, _apiProfileResponse, image);
         } else if (state is ChooseAvatarSuccess) {
-          return buildContent(context, _apiProfileResponse, state.avatarimg);
+          return buildContent(context, _apiProfileResponse, state.avatarImage);
         }
         return Scaffold(body: Container());
       },

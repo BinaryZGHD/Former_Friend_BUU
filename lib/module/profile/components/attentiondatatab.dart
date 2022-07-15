@@ -5,17 +5,17 @@ import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileAttentionDropdownTab extends StatefulWidget {
-  final List<Attention> attentionarray;
-  final String textleft;
-  final String userattentionvalue;
-  final bool isunpressed;
+  final List<Attention> attentionArray;
+  final String textLeft;
+  final String userAttentionValue;
+  final bool isUnpressed;
   final Function(String attentionResult) callbackFromAttentionDataTab;
   const ProfileAttentionDropdownTab(
       {Key? key,
-        required this.textleft,
-        required this.userattentionvalue,
-        required this.attentionarray,
-        required this.isunpressed,
+        required this.textLeft,
+        required this.userAttentionValue,
+        required this.attentionArray,
+        required this.isUnpressed,
         required this.callbackFromAttentionDataTab})
       : super(key: key);
 
@@ -30,14 +30,14 @@ class _ProfileAttentionDropdownTabState
   String? userattentionvalue;
   @override
   void initState(){
-    userattentionvalue = widget.userattentionvalue;
+    userattentionvalue = widget.userAttentionValue;
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.textleft;
+    String textleft = widget.textLeft;
 
-    var isunpressed = widget.isunpressed;
+    var isunpressed = widget.isUnpressed;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -79,12 +79,12 @@ class _ProfileAttentionDropdownTabState
                           const Icon(Icons.keyboard_arrow_down)
                         ]),
                     itemBuilder: (context) {
-                      return List.generate(widget.attentionarray.length,
+                      return List.generate(widget.attentionArray.length,
                               (index) {
                             return PopupMenuItem(
                               child:
-                              Text(widget.attentionarray[index].attenname ?? ''),
-                              value: widget.attentionarray[index].attenname,
+                              Text(widget.attentionArray[index].attenname ?? ''),
+                              value: widget.attentionArray[index].attenname,
                             );
                           });
                     },
