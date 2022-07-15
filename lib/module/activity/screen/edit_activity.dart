@@ -121,10 +121,10 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              customDropdownForEdit(dropdownList: yearList, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,
+                              customDropdownForEdit(dropdownList: yearList??<String>[], hint: 'Year',width: MediaQuery.of(context).size.width*0.4,
                                   dropdownValue: yearValue
                               ),
-                              customDropdownForEdit(dropdownList: termList, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownValue: termValue),
+                              customDropdownForEdit(dropdownList: termList??<String>[], hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownValue: termValue),
                             ],
                           ),
                         ),
@@ -148,7 +148,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
-                        customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownList: approverList, hint: 'Approver',dropdownValue: approverValue),
+                        customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownList: approverList??<String>[], hint: 'Approver',dropdownValue: approverValue),
                         buildTextformfieldUnlimitCustom(
                           initialvalue: detailValue,
                           textEditingController: detail,
