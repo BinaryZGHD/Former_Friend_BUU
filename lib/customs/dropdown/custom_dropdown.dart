@@ -6,7 +6,7 @@ class customDropdown extends StatefulWidget {
   final String hint;
   final List<String> dropdownList;
   final double width;
-  final dropdownValue;
+  final String? dropdownValue;
   final Function(String result) callbackFromCustomDropdown;
   const customDropdown(
       {Key? key,
@@ -107,7 +107,7 @@ class _customDropdownState extends State<customDropdown> {
           onSelected: (value) {
             setState(() {
               dropdownValue = value;
-              // widget.callbackFromCustomDropdown(dropdownValue??"-");
+              widget.callbackFromCustomDropdown(dropdownValue??"-");
             });
 
           },

@@ -30,7 +30,7 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
   String activityNameValue = "";
-  String yearValue = "";
+  String? yearValue;
   String termValue = "";
   String sDateValue = "";
   String fDateValue = "";
@@ -115,11 +115,12 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                             dropdownList: yearList??<String>[],
                             hint: 'Year',
                             width: MediaQuery.of(context).size.width * 0.4,
+                            dropdownValue:yearValue,
                             callbackFromCustomDropdown: (String result) {
-                              setState(() {
+
                                 yearValue = result;
                                 print(yearValue);
-                              });
+
                             },
                           ),
                           customDropdown(
