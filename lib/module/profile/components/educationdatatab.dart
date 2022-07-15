@@ -44,7 +44,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
                         setState(() {
                           isUnpressed = !isUnpressed;
                           if(isUnpressed == true){
-                            context.read<ProfileBloc>().add(EducationSubmitEvent(gpaBd: gpaBdValue, gpaSh: gpaShValue, gpaJh: gpaJhValue, token: ''));
+                            context.read<ProfileBloc>().add(EducationSubmitEvent(gpaBd: gpaBdValue, gpaSh: gpaShValue, gpaJh: gpaJhValue));
                           };
                         });
                         // setState((){
