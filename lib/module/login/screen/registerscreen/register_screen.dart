@@ -12,42 +12,41 @@ import 'package:f2fbuu/module/login/screen/registerscreen/register_confrim_scree
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class registerScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   final String valueLanguage;
 
-  const registerScreen({Key? key, required this.valueLanguage})
+  const RegisterScreen({Key? key, required this.valueLanguage})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => RegisterBloc()..add(ScreenInfoRegisterEvent(userLanguage: valueLanguage)),
-        child: registerPage(valueLanguage: valueLanguage));
+        child: RegisterPage(valueLanguage: valueLanguage));
 
   }
 
 }
-class registerPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final String valueLanguage;
-  const registerPage({Key? key, required this.valueLanguage}) : super(key: key);
+  const RegisterPage({Key? key, required this.valueLanguage}) : super(key: key);
 
   @override
-  State<registerPage> createState() => _registerPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _registerPageState extends State<registerPage> with ProgressDialog {
+class _RegisterPageState extends State<RegisterPage> with ProgressDialog {
   late String userLanguage;
   @override
   void initState() {
     super.initState();
     userLanguage = widget.valueLanguage;
-    // context.read<RegisterBloc>().add(ScreenInfoRegisterEvent(userLanguage: userLanguage));
   }
 
   ScreenRegisterResponse? _screenRegisterResponse;
   SubmitRegisterResponse? _submitRegisterResponse;
+
   TextEditingController user = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -56,13 +55,13 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
 
-  String uservalue = " ";
-  String phonevalue = " ";
-  String emailvalue = " ";
-  String namevalue = " ";
-  String lastnamevalue = "";
-  String passwordvalue = "";
-  String confirmpasswordvalue = "";
+  String userValue = " ";
+  String phoneValue = " ";
+  String emailValue = " ";
+  String nameValue = " ";
+  String lastnameValue = "";
+  String passwordValue = "";
+  String confirmpasswordValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +84,12 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
         }
         if (state is SubmitRegisterState) {
           _submitRegisterResponse = state.responseRegisterSubmit;
-          var RegistervalueEmail = state.email;
-          var RegistervalueUserID = state.userID;
+          var registervalueEmail = state.email;
+          var registervalueUserID = state.userID;
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RegisterConfirmScreen(valueLanguage: userLanguage, registerValueEmail: RegistervalueEmail,registerValueUserID:RegistervalueUserID),
+              builder: (context) => RegisterConfirmScreen(valueLanguage: userLanguage, registerValueEmail: registervalueEmail,registerValueUserID:registervalueUserID),
             ),
           );
         }
@@ -149,7 +148,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldCustom(
                   textEditingController: user,
                   onChanged: (value) {
-                    uservalue = value;
+                    userValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtIDreg}",
                   textInputType: TextInputType.text,
@@ -157,7 +156,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldCustom(
                   textEditingController: phone,
                   onChanged: (value) {
-                    phonevalue = value;
+                    phoneValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtphonereg}",
                   textInputType: TextInputType.number,
@@ -165,7 +164,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldCustom(
                   textEditingController: email,
                   onChanged: (value) {
-                    emailvalue = value;
+                    emailValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtemailreg}",
                   textInputType: TextInputType.text,
@@ -173,7 +172,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldCustom(
                   textEditingController: name,
                   onChanged: (value) {
-                    namevalue = value;
+                    nameValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtnamereg}",
                   textInputType: TextInputType.text,
@@ -181,7 +180,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldCustom(
                   textEditingController: lastname,
                   onChanged: (value) {
-                    lastnamevalue = value;
+                    lastnameValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtlnamereg}",
                   textInputType: TextInputType.text,
@@ -189,7 +188,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldPasswordCustom(
                   textEditingController: password,
                   onChanged: (value) {
-                    passwordvalue = value;
+                    passwordValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtpassreg}",
                   textInputType: TextInputType.text,
@@ -197,7 +196,7 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                 buildTextFieldPasswordCustom(
                   textEditingController: confirmpassword,
                   onChanged: (value) {
-                    confirmpasswordvalue = value;
+                    confirmpasswordValue = value;
                   },
                   hint_label: "${_screenRegisterResponse?.body?.screeninfo?.edtcpassreg}",
                   textInputType: TextInputType.text,
@@ -213,13 +212,13 @@ class _registerPageState extends State<registerPage> with ProgressDialog {
                       // ..isFetching = true
                         ..add(SubmitRegisterEvent(
                           userLanguage: userLanguage,
-                          userID: uservalue,
-                          phone: phonevalue,
-                          emailRegister: emailvalue,
-                          name: namevalue,
-                          lastName: lastnamevalue,
-                          password: passwordvalue,
-                          confirmPassword: confirmpasswordvalue,
+                          userID: userValue,
+                          phone: phoneValue,
+                          emailRegister: emailValue,
+                          name: nameValue,
+                          lastName: lastnameValue,
+                          password: passwordValue,
+                          confirmPassword: confirmpasswordValue,
                         ));
 
                       // context.read<RegisterBloc>().add(SubmitRegisterEvent(

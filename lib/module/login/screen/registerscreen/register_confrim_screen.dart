@@ -103,7 +103,7 @@ class _RegisterConfirmPageState extends State<RegisterConfirmPage>
           // show dialog error
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => loginScreen())
+              MaterialPageRoute(builder: (context) => LoginScreen())
               // ,
               // (Route<dynamic> route) => false
           );

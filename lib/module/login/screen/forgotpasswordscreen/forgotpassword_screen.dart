@@ -13,20 +13,18 @@ import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class forgotPasswordScreen extends StatelessWidget {
-  final String valueLanguage;
-  const forgotPasswordScreen({Key? key, required this.valueLanguage}) : super(key: key);
+  const forgotPasswordScreen({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent(userLanguage: valueLanguage)),
-        child: forgotPasswordPage(valueLanguage:valueLanguage));
+        create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent()),
+        child: forgotPasswordPage());
   }
 }
 
 class forgotPasswordPage extends StatefulWidget {
-  final String valueLanguage;
-  const forgotPasswordPage( {Key? key, required this.valueLanguage,}) : super(key: key);
+  const forgotPasswordPage( {Key? key,}) : super(key: key);
 
   @override
   State<forgotPasswordPage> createState() => _forgotPasswordPageState();
@@ -36,11 +34,9 @@ class _forgotPasswordPageState extends State<forgotPasswordPage> with ProgressDi
   ScreenForgotPasswordResponse? _screenforgotpasswordResponse;
   SubmitForgotPasswordResponse? _forgotPasswordSubmitResponse;
 
-  late String userLanguage;
   @override
   void initState() {
     super.initState();
-    userLanguage = widget.valueLanguage;
     // context.read<ForgorPasswordBloc>().add(ScreenInfoForgotPasswordEvent(userLanguage: userLanguage));
   }
 
@@ -70,7 +66,7 @@ class _forgotPasswordPageState extends State<forgotPasswordPage> with ProgressDi
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => setNewForgotPasswordScreen(valueLanguage: widget.valueLanguage ,
+                  builder: (context) => setNewForgotPasswordScreen(
                       ForgotpasswordValueEmail: ForgotpasswordValueEmail, ForgotpasswordValueUserID: ForgotpasswordValueUserID
                   )));
         }
@@ -78,7 +74,7 @@ class _forgotPasswordPageState extends State<forgotPasswordPage> with ProgressDi
       builder: (context, state) {
         if (state is ScreenInfoForgotPasswordSuccessState) {
           _screenforgotpasswordResponse = state.responseForgotPassword;
-          return buildContentforgotpassword(context, _screenforgotpasswordResponse,userLanguage);
+          return buildContentforgotpassword(context, _screenforgotpasswordResponse);
         } else {
           return Scaffold(
               body: Container(
@@ -95,14 +91,10 @@ class _forgotPasswordPageState extends State<forgotPasswordPage> with ProgressDi
 
 buildContentforgotpassword(
     BuildContext context,
-    ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
+    ScreenForgotPasswordResponse? _screenforgotpasswordResponse,
     ) {
-  TextEditingController userID = TextEditingController();
-  TextEditingController email = TextEditingController();
-
-  String uservalue = " ";
-
-  String emailvalue = " ";
+  TextEditingController userIDController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   return WillPopScope(
     onWillPop: () async {
       return false;
@@ -138,17 +130,17 @@ buildContentforgotpassword(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
                 buildTextFieldCustom(
-                  textEditingController: userID,
-                  onChanged: (value) {
-                    uservalue = value;
+                  textEditingController: userIDController,
+                  onChanged: (valueUserID) {
+                    userIDController.text = valueUserID;
                   },
                   hint_label: "${_screenforgotpasswordResponse?.body?.screeninfo?.edtIDforgot}",
                   textInputType: TextInputType.text,
                 ),
                 buildTextFieldCustom(
-                  textEditingController: email,
-                  onChanged: (value) {
-                    emailvalue = value;
+                  textEditingController: emailController,
+                  onChanged: (valueEmail) {
+                    emailController.text = valueEmail;
                   },
                   hint_label: "${_screenforgotpasswordResponse?.body?.screeninfo?.edtemailforgot}",
                   textInputType: TextInputType.text,
@@ -166,7 +158,7 @@ buildContentforgotpassword(
                       sizeborder: 10,
                       onPressed: () {
                         context.read<ForgorPasswordBloc>().add(SubmitForgotPasswordEvent(
-                            userID: uservalue, email: emailvalue, userLanguage: userLanguage));
+                            userID: userIDController.text, email: emailController.text, ));
                       }),
                 ),
                 SizedBox(

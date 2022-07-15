@@ -23,15 +23,14 @@ import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 class HomeScreen extends StatelessWidget {
   final SunmitLoginResponse? screenLoginResponse;
-  final String? valueLanguage;
-  const HomeScreen({Key? key, this.screenLoginResponse, this.valueLanguage}) : super(key: key);
+  const HomeScreen({Key? key, this.screenLoginResponse}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc(),
       //context.read<HomeBloc>().add(HomeScreenInfoEvent(globalkey: global_key));
-      child: HomePage(screenLoginResponse: screenLoginResponse, valueLanguage: valueLanguage),
+      child: HomePage(screenLoginResponse: screenLoginResponse),
     );
     return Container();
   }
@@ -39,11 +38,9 @@ class HomeScreen extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   final SunmitLoginResponse? screenLoginResponse;
-  final String? valueLanguage;
   const HomePage({
     Key? key,
     this.screenLoginResponse,
-    this.valueLanguage,
   }) : super(key: key);
 
   @override
@@ -55,7 +52,6 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
   ApiProfileResponse? _screenprofileResponse;
   ScreenStatusActivityResponse? _screenstatusActivityResponse;
   late String keytoken;
-  late String global_key;
   late String _userLanguage;
   late bool _isHidden;
   @override
@@ -70,7 +66,6 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
 
     await prefs.setString('global_key', "$keytoken");
     setState(() {
-      global_key = prefs.getString('global_key') ?? "$keytoken";
       _userLanguage = prefs.getString('userLanguage')!;
     });
     if (_userLanguage == "TH") {
@@ -78,20 +73,25 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
     } else {
       _isHidden = false;
     }
-    context.read<HomeBloc>().add(HomeScreenInfoEvent(globalkey: global_key));
+    context.read<HomeBloc>().add(HomeScreenInfoEvent());
   }
 
   void _toggleLanguageView() async {
-    // final prefs = await SharedPreferences.getInstance();
-    // await prefs.setString('userLanguage', "$_userLanguage");
+    final prefs = await SharedPreferences.getInstance();
+
     setState(
       () {
         _isHidden = !_isHidden;
         _isHidden
-            ? context.read<HomeBloc>().add(OnClickHomeLanguageEvent(globalkey: global_key))
-            : context.read<HomeBloc>().add(OnClickHomeLanguageEvent(globalkey: global_key));
+            ? _userLanguage = "TH"
+            : _userLanguage = "EN";
+        context.read<HomeBloc>().add(OnClickHomeLanguageEvent(userLanguage:_userLanguage));
+        // _isHidden
+        //     ? context.read<HomeBloc>().add(OnClickHomeLanguageEvent(userLanguage:_userLanguage))
+        //     : context.read<HomeBloc>().add(OnClickHomeLanguageEvent(userLanguage:_userLanguage));
       },
     );
+    await prefs.setString('userLanguage', "$_userLanguage");
   }
 
   @override
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         }
         if (state is OnClickHomeLogoutState) {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
-            return loginScreen();
+            return LoginScreen();
           }));
         }
       },
@@ -140,158 +140,163 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
   }
 
   buildContentHomeScreen(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-        child: drawerhome(
-          context,
-          _screenhomeResponse,
-          _screenprofileResponse,
-        ),
-      ),
-      appBar: AppBar(
-        // backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.settings, color: TC_Black),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
-        title: Center(
-            child: Text("${_screenhomeResponse?.body?.screenInfo?.screenhome?.titlestatus} + $_userLanguage",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
-        actions: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.1,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        drawer: Drawer(
+          child: drawerhome(
+            context,
+            _screenhomeResponse,
+            _screenprofileResponse,
           ),
-        ],
-      ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 5,
+        ),
+        appBar: AppBar(
+          // backgroundColor: Colors.white,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.settings, color: TC_Black),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
           ),
-          if (_screenstatusActivityResponse?.body?.activity?.length.toInt() == 0)
-            Expanded(
-              child: Card(
-                color: Colors.grey[200],
-                child: Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: transparent),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.error,
-                          color: TC_NoActivity,
-                          size: 100,
-                        ),
-                        Text("No Activity",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_NoActivity)),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("Please check your internet connection",
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: TC_NoActivity)),
-                      ],
-                    )),
-              ),
+          title: Center(
+              child: Text("${_screenhomeResponse?.body?.screenInfo?.screenhome?.titlestatus} + $_userLanguage",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
+          actions: <Widget>[
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.1,
             ),
-          if (_screenstatusActivityResponse?.body?.activity?.length.toInt() != 0)
-            // Expanded(
-            //   child: Container(
-            //     color: BC_ButtonRed,
-            //     height: MediaQuery.of(context).size.height,
-            //     width: MediaQuery.of(context).size.width,
-            //     child: Center(
-            //       child: Text(
-            //         "No Activity",
-            //         style: TextStyle(color: Colors.white, fontSize: 20),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            Expanded(
-              child: Container(
-                color: BC_ButtonText_style_White,
-                // height: MediaQuery.of(context).size.height*0.1,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        buildListActivity(context, _screenstatusActivityResponse),
-                        SizedBox(
-                            // height: MediaQuery.of(context).size.height * 0.2,
-                            ),
-                      ],
+          ],
+        ),
+        body: Column(
+          children: [
+            SizedBox(
+              height: 5,
+            ),
+            if (_screenstatusActivityResponse?.body?.activity?.length.toInt() == 0)
+              Expanded(
+                child: Card(
+                  color: Colors.grey[200],
+                  child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: transparent),
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.error,
+                            color: TC_NoActivity,
+                            size: 100,
+                          ),
+                          Text("No Activity",
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_NoActivity)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text("Please check your internet connection",
+                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: TC_NoActivity)),
+                        ],
+                      )),
+                ),
+              ),
+            if (_screenstatusActivityResponse?.body?.activity?.length.toInt() != 0)
+              // Expanded(
+              //   child: Container(
+              //     color: BC_ButtonRed,
+              //     height: MediaQuery.of(context).size.height,
+              //     width: MediaQuery.of(context).size.width,
+              //     child: Center(
+              //       child: Text(
+              //         "No Activity",
+              //         style: TextStyle(color: Colors.white, fontSize: 20),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Expanded(
+                child: Container(
+                  color: BC_ButtonText_style_White,
+                  // height: MediaQuery.of(context).size.height*0.1,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          buildListActivity(context, _screenstatusActivityResponse),
+                          SizedBox(
+                              // height: MediaQuery.of(context).size.height * 0.2,
+                              ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
             ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
-            child: ButtonCustom(
-              label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
-              colortext: BC_ButtonText_style_Black,
-              colorbutton: BC_ButtonText_style_White,
-              sizetext: sizeTextSmaller14,
-              colorborder: BC_ButtonText_style_Black_Boarder,
-              sizeborder: 1.0,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-
-            // padding: const EdgeInsets.only(bottom: 10.0),
-            child: Container(
-              color: BC_ButtonText_style_White,
-              height: 50,
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                      child: IconButton(
-                    icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                    },
-                  )),
-                  Expanded(
-                      child: IconButton(
-                    icon: Icon(Icons.home, color: Colors.blue, size: 50),
-                    onPressed: () {},
-                  )),
-                  Expanded(
-                      child: IconButton(
-                    icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
-                    onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => screenMoreMain(
-                                    responseHomeMore: _screenhomeResponse,
-                                  )));
-                    },
-                  )),
-                ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+              child: ButtonCustom(
+                label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
+                colortext: BC_ButtonText_style_Black,
+                colorbutton: BC_ButtonText_style_White,
+                sizetext: sizeTextSmaller14,
+                colorborder: BC_ButtonText_style_Black_Boarder,
+                sizeborder: 1.0,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
+                },
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+
+              // padding: const EdgeInsets.only(bottom: 10.0),
+              child: Container(
+                color: BC_ButtonText_style_White,
+                height: 50,
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                        child: IconButton(
+                      icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                      },
+                    )),
+                    Expanded(
+                        child: IconButton(
+                      icon: Icon(Icons.home, color: Colors.blue, size: 50),
+                      onPressed: () {},
+                    )),
+                    Expanded(
+                        child: IconButton(
+                      icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                      onPressed: () {
+                        // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => screenMoreMain(
+                                      responseHomeMore: _screenhomeResponse,
+                                    )));
+                      },
+                    )),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -425,7 +430,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                         }
                       case 'OK':
                         {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => loginScreen()),
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()),
                               (Route<dynamic> route) => false);
                         }
                     }
@@ -476,7 +481,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                           }
                         case 'OK':
                           {
-                            context.read<HomeBloc>().add(OnClickHomeLogoutEvent(globalkey: global_key));
+                            context.read<HomeBloc>().add(OnClickHomeLogoutEvent());
                           }
                       }
                     });

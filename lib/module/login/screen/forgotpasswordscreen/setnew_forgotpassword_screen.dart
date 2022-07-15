@@ -17,31 +17,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class setNewForgotPasswordScreen extends StatelessWidget {
-  final String valueLanguage;
   final String ForgotpasswordValueEmail;
   final String ForgotpasswordValueUserID;
   const setNewForgotPasswordScreen({Key? key,
-    required this.valueLanguage,
     required this.ForgotpasswordValueEmail,
     required this.ForgotpasswordValueUserID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent(userLanguage: valueLanguage)),
+        create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent()),
         child: setNewForgotPasswordPage(
-          valueLanguage:valueLanguage,
           ForgotpasswordValueEmail: ForgotpasswordValueEmail,
           ForgotpasswordValueUserID: ForgotpasswordValueUserID,));
   }
 }
 class setNewForgotPasswordPage extends StatefulWidget with ProgressDialog {
-  final String valueLanguage;
   final String ForgotpasswordValueEmail;
   final String ForgotpasswordValueUserID;
   setNewForgotPasswordPage({
     Key? key,
-    required this.valueLanguage,
     required this.ForgotpasswordValueEmail,
     required this.ForgotpasswordValueUserID,
   }) : super(key: key);
@@ -68,12 +63,11 @@ class _setNewForgotPasswordPageState extends State<setNewForgotPasswordPage> wit
   //   });
   //   context.read<ForgorPasswordBloc>().add(SetNewForgotPasswordScreenInfoEvent(userLanguage: userLanguage));
   // }
-  late String userLanguage;
+
   @override
   void initState() {
     super.initState();
-    userLanguage = widget.valueLanguage;
-    context.read<ForgorPasswordBloc>().add(ScreenInfoSetNewForgotPasswordEvent(userLanguage: userLanguage));
+    context.read<ForgorPasswordBloc>().add(ScreenInfoSetNewForgotPasswordEvent());
   }
 
   @override
@@ -113,14 +107,14 @@ class _setNewForgotPasswordPageState extends State<setNewForgotPasswordPage> wit
         }
         if (state is SubmitSetNewForgotPasswordSuccessState) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => loginScreen())
+              context, MaterialPageRoute(builder: (context) => LoginScreen())
           );
         }
       },
       builder: (context, state) {
         if (state is ScreenInfoSetNewForgotPasswordSuccessState) {
           _screenSetNewforgotpasswordResponse = state.responseSetNewForgotPassword;
-          return buildContentsetnewforgotpassword(context, _screenSetNewforgotpasswordResponse, userLanguage,
+          return buildContentsetnewforgotpassword(context, _screenSetNewforgotpasswordResponse,
               ForgotpasswordValueEmail: widget.ForgotpasswordValueEmail,
               ForgotpasswordValueUserID: widget.ForgotpasswordValueUserID);
         } else {
@@ -138,7 +132,7 @@ class _setNewForgotPasswordPageState extends State<setNewForgotPasswordPage> wit
 }
 
 buildContentsetnewforgotpassword(
-    BuildContext context, ScreenForgotPasswordResponse? _screenforgotpasswordResponse, String userLanguage,
+    BuildContext context, ScreenForgotPasswordResponse? _screenforgotpasswordResponse,
     {required String ForgotpasswordValueEmail, required String ForgotpasswordValueUserID}) {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
@@ -244,7 +238,7 @@ buildContentsetnewforgotpassword(
                   sizetext: sizeTextSmall16,
                   onTap: () {
                     context.read<ForgorPasswordBloc>().add(ReSentOTPSetNewForgotPasswordEvent(
-                        userLanguage: userLanguage,
+
                         userID: ForgotpasswordValueUserID,
                         email: ForgotpasswordValueEmail));
                   },
@@ -269,7 +263,7 @@ buildContentsetnewforgotpassword(
                   sizeborder: 10,
                   onPressed: () {
                     context.read<ForgorPasswordBloc>().add(SubmitSetNewForgotPasswordEvent(
-                        userLanguage: userLanguage,
+
                         password: passwordvalue,
                         confirmpassword: confirmpasswordvalue,
                         otp: codevalue));

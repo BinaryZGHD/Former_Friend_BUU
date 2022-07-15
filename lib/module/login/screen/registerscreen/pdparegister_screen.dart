@@ -15,31 +15,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
-class conditionPDPAScreen extends StatelessWidget {
+class ConditionPDPAScreen extends StatelessWidget {
   final String valueLanguage;
 
-  const conditionPDPAScreen({Key? key, required this.valueLanguage})
+  const ConditionPDPAScreen({Key? key, required this.valueLanguage})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => PdpaBloc()..add(ScreenInfoPDPAEvent(userLanguage: valueLanguage)),
-        child: conditionPDPApage(valueLanguage:valueLanguage));
+        child: ConditionPDPApage(valueLanguage:valueLanguage));
 
   }
 
 }
-class conditionPDPApage extends StatefulWidget {
+class ConditionPDPApage extends StatefulWidget {
   final String valueLanguage;
-  const conditionPDPApage( {Key? key, required this.valueLanguage})
+  const ConditionPDPApage( {Key? key, required this.valueLanguage})
       : super(key: key);
 
   @override
-  State<conditionPDPApage> createState() => _conditionPDPApageState();
+  State<ConditionPDPApage> createState() => _ConditionPDPApageState();
 }
 
-class _conditionPDPApageState extends State<conditionPDPApage>
+class _ConditionPDPApageState extends State<ConditionPDPApage>
     with ProgressDialog {
   ScreenPDPAResponse? _screenPDPAResponse;
   late String userLanguage;
@@ -72,7 +72,7 @@ class _conditionPDPApageState extends State<conditionPDPApage>
         if (state is PDPADecline) {
           // show dialog error
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => loginScreen()));
+              context, MaterialPageRoute(builder: (context) => LoginScreen()));
           // dialogOneLineOneBtn(context, "state.message" + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
           //   Navigator.of(context).pop();
           // });
@@ -83,7 +83,7 @@ class _conditionPDPApageState extends State<conditionPDPApage>
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      registerScreen(valueLanguage: userLanguage)));
+                      RegisterScreen(valueLanguage: userLanguage)));
         }
       },
       builder: (context, state) {

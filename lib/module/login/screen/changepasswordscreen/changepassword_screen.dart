@@ -116,7 +116,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                           linktextcolor: TC_forgot,
                           sizetext: sizeTextSmaller14,
                             onTap: () async {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => forgotPasswordScreen(valueLanguage: 'IN COMMING SOON',)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => forgotPasswordScreen()));
                             }
                         ),
                       ),

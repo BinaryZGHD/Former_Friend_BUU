@@ -9,21 +9,7 @@ class HomeRepository  {
   Future<Response> getScreenHome() async {
     final prefs = await SharedPreferences.getInstance();
     String? _userLanguage = prefs.getString('userLanguage');
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print("_userLanguage");
-    print(_userLanguage);
-    print(_userLanguage);
-    print(_userLanguage);
-
-
-    print(_userLanguage);
+    String? global_key = prefs.getString('global_key');
     return await MyDio.createDioTest().post("/v1/api/modules/home/wording/homemore",
         data: jsonEncode({
           "Language": _userLanguage
@@ -31,10 +17,23 @@ class HomeRepository  {
     );
   }
   Future<Response> getApiProfile() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/profile/wording/profile");
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString('global_key');
+    return await MyDio.createDioTest().post("/v1/api/modules/profile/wording/profile",
+        data: jsonEncode({
+          "token": global_key
+        })
+    );
   }
   Future<Response> getApiActivity() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/activity/wording/statusactivity");
-    // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString('global_key');
+    return await MyDio.createDioTest().post("/v1/api/modules/activity/wording/statusactivity"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": global_key
+        })
+    );
+
   }
 }
