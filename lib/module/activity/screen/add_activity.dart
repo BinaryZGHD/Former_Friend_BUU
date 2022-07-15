@@ -115,23 +115,23 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                             dropdownList: yearList??<String>[],
                             hint: 'Year',
                             width: MediaQuery.of(context).size.width * 0.4,
-                            // callbackFromCustomDropdown: (String result) {
-                            //   setState(() {
-                            //     yearValue = result;
-                            //     print(yearValue);
-                            //   });
-                            // },
+                            callbackFromCustomDropdown: (String result) {
+                              setState(() {
+                                yearValue = result;
+                                print(yearValue);
+                              });
+                            },
                           ),
                           customDropdown(
                             dropdownList: termList??<String>[],
                             hint: 'Term',
                             width: MediaQuery.of(context).size.width * 0.4,
-                            // callbackFromCustomDropdown: (String result) {
-                            //   setState(() {
-                            //     termValue = result;
-                            //     print(termValue);
-                            //   });
-                            // },
+                            callbackFromCustomDropdown: (String result) {
+                              setState(() {
+                                termValue = result;
+                                print(termValue);
+                              });
+                            },
                           ),
                         ],
                       ),
@@ -163,12 +163,12 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                       width: MediaQuery.of(context).size.width,
                       dropdownList: approverList??<String>[],
                       hint: 'Approver',
-                      // callbackFromCustomDropdown: (String result) {
-                      //   setState(() {
-                      //     approverValue = result;
-                      //     print(approverValue);
-                      //   });
-                      // },
+                      callbackFromCustomDropdown: (String result) {
+                        setState(() {
+                          approverValue = result;
+                          print(approverValue);
+                        });
+                      },
                     ),
                     buildTextformfieldUnlimitCustom(
                       textEditingController: detail,

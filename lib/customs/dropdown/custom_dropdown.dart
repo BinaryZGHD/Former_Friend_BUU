@@ -7,14 +7,14 @@ class customDropdown extends StatefulWidget {
   final List<String> dropdownList;
   final double width;
   final dropdownValue;
-  // final Function(String result) callbackFromCustomDropdown;
+  final Function(String result) callbackFromCustomDropdown;
   const customDropdown(
       {Key? key,
       required this.hint,
       required this.dropdownList,
       required this.width,
       this.dropdownValue
-        // , required this.callbackFromCustomDropdown
+        , required this.callbackFromCustomDropdown
       })
       : super(key: key);
 
@@ -107,8 +107,9 @@ class _customDropdownState extends State<customDropdown> {
           onSelected: (value) {
             setState(() {
               dropdownValue = value;
-              // widget.callbackFromAttentionDataTab(userattentionvalue??"-");
+              // widget.callbackFromCustomDropdown(dropdownValue??"-");
             });
+
           },
         ),
       ),
