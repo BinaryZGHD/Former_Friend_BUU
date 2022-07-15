@@ -32,12 +32,10 @@ class ProfileGeneralUpdateEvent extends ProfileEvent {
 }
 
 class GeneralSubmitEvent extends ProfileEvent {
-  String token;
   String name;
   String surname;
   String nickname;
   GeneralSubmitEvent({
-    required this.token,
     required this.name,
     required this.surname,
     required this.nickname,
@@ -45,19 +43,17 @@ class GeneralSubmitEvent extends ProfileEvent {
 }
 
 class EducationSubmitEvent extends ProfileEvent {
-  String token;
   String gpaJh;
   String gpaSh;
   String gpaBd;
   EducationSubmitEvent(
-      {required this.token,
+      {
       required this.gpaJh,
       required this.gpaSh,
       required this.gpaBd});
 }
 
 class AddressSubmitEvent extends ProfileEvent {
-  String token;
   String number;
   String road;
   String subDistrict;
@@ -65,7 +61,7 @@ class AddressSubmitEvent extends ProfileEvent {
   String province;
   String zipcode;
   AddressSubmitEvent(
-      {required this.token,
+      {
       required this.number,
       required this.road,
       required this.subDistrict,
@@ -75,7 +71,6 @@ class AddressSubmitEvent extends ProfileEvent {
 }
 
 class ContactSubmitEvent extends ProfileEvent {
-  String token;
   String phone;
   String line;
   String facebook;
@@ -83,7 +78,7 @@ class ContactSubmitEvent extends ProfileEvent {
   String twitter;
   String youtube;
   ContactSubmitEvent(
-      {required this.token,
+      {
       required this.phone,
       required this.line,
       required this.facebook,

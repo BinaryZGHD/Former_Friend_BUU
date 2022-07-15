@@ -27,11 +27,11 @@ class ItemActivity extends StatelessWidget {
               // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: [
                 _buildListActivity(
-                    title: title?.textactivity, datadetail:data?.name),
+                    title: title?.textactivity, dataDetail:data?.name),
                 _buildListenpty(),
-                _buildListActivity(title: title?.edtapprover, datadetail: data?.approver),
+                _buildListActivity(title: title?.edtapprover, dataDetail: data?.approver),
                 _buildListenpty(),
-                _buildListActivity(title: title?.texttime , datadetail: data?.startdate +" - "+ data?.finishdate + "\n"+ data?.time+ title?.texttimestatus ),
+                _buildListActivity(title: title?.texttime , dataDetail: data?.startdate +" - "+ data?.finishdate + "\n"+ data?.time+ title?.texttimestatus ),
               ],
             ),
           ),
@@ -44,7 +44,7 @@ class ItemActivity extends StatelessWidget {
   }
 }
 
-_buildListActivity({required String datadetail, required String title}) {
+_buildListActivity({required String dataDetail, required String title}) {
   return TableRow(children: [
     Text(
       title,
@@ -52,7 +52,7 @@ _buildListActivity({required String datadetail, required String title}) {
     ),
     Text(':', textAlign: TextAlign.start),
     Text(
-      datadetail,
+      dataDetail,
       style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,),
     ),
   ]);

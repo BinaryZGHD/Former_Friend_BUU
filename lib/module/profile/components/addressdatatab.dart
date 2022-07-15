@@ -50,7 +50,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
                         setState(() {
                           isUnpressed = !isUnpressed;
                           if(isUnpressed == true){
-                            context.read<ProfileBloc>().add(AddressSubmitEvent(zipcode: zipcodeValue, token: "demotoken", district: districtValue, road: roadValue, province: provinceValue, number: numberValue, subDistrict: subDistrictValue));
+                            context.read<ProfileBloc>().add(AddressSubmitEvent(zipcode: zipcodeValue, district: districtValue, road: roadValue, province: provinceValue, number: numberValue, subDistrict: subDistrictValue));
                           };
                         });
                       },

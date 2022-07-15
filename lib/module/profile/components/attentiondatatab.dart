@@ -63,8 +63,6 @@ class _ProfileAttentionDropdownTabState
                   ignoring: isunpressed,
                   child:
                   PopupMenuButton<String>(
-                    // initialValue:
-                    // userattentionvalue,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

@@ -54,8 +54,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                                 youtube: youtubeValue,
                                 facebook: facebookValue,
                                 line: lineValue,
-                                phone: phoneValue,
-                                token: 'demotoken'));
+                                phone: phoneValue));
                           }
                           ;
                         });
