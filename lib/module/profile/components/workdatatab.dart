@@ -5,36 +5,36 @@ import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCareerDropdownTab extends StatefulWidget {
-  final List<Status> statusarray;
-  final String textleft;
-  final String userstatusvalue;
-  final String jobtextleft;
-  final String userjobvalue;
-  final List<Jobtype> jobtypearray;
-  final bool isunpressed;
-  final String subtitleworkplace;
-  final String userworkplace;
-  final String usercareer;
-  final String usercompany;
-  final String textcareer;
-  final String textcomp;
+  final List<Status> statusArray;
+  final String textLeft;
+  final String userStatusValue;
+  final String jobTextLeft;
+  final String userJobValue;
+  final List<Jobtype> jobTypeArray;
+  final bool isUnpressed;
+  final String subtitleWorkplace;
+  final String userWorkplace;
+  final String userCareer;
+  final String userCompany;
+  final String textCareer;
+  final String textComp;
   final Function(String jobtype, String workplace, String career, String company) callbackFromWorkDataTab;
   final Function(String status) callbackFromWorkDataTabStatus;
   const ProfileCareerDropdownTab(
       {Key? key,
-        required this.textleft,
-        required this.userstatusvalue,
-        required this.jobtextleft,
-        required this.jobtypearray,
-        required this.userjobvalue,
-        required this.isunpressed,
-        required this.subtitleworkplace,
-        required this.userworkplace,
-        required this.usercareer,
-        required this.usercompany,
-        required this.textcareer,
-        required this.textcomp,
-        required this.statusarray,
+        required this.textLeft,
+        required this.userStatusValue,
+        required this.jobTextLeft,
+        required this.jobTypeArray,
+        required this.userJobValue,
+        required this.isUnpressed,
+        required this.subtitleWorkplace,
+        required this.userWorkplace,
+        required this.userCareer,
+        required this.userCompany,
+        required this.textCareer,
+        required this.textComp,
+        required this.statusArray,
         required this.callbackFromWorkDataTab,
         required this.callbackFromWorkDataTabStatus})
       : super(key: key);
@@ -52,20 +52,20 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
 
   @override
   void initState() {
-    textleft = widget.textleft;
-    itemvalue = widget.userstatusvalue;
+    textleft = widget.textLeft;
+    itemvalue = widget.userStatusValue;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isunpressed = widget.isunpressed;
-    String subtitleworkplace = widget.subtitleworkplace;
-    String userworkplace = widget.userworkplace;
-    String usercareer = widget.usercareer;
-    String usercompany = widget.usercompany;
-    String textcareer = widget.textcareer;
-    String textcomp = widget.textcomp;
+    bool isunpressed = widget.isUnpressed;
+    String subtitleworkplace = widget.subtitleWorkplace;
+    String userworkplace = widget.userWorkplace;
+    String usercareer = widget.userCareer;
+    String usercompany = widget.userCompany;
+    String textcareer = widget.textCareer;
+    String textcomp = widget.textComp;
 
 
     return Column(
@@ -109,12 +109,12 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                               const Icon(Icons.keyboard_arrow_down)
                             ]),
                         itemBuilder: (context) {
-                          return List.generate(widget.statusarray.length,
+                          return List.generate(widget.statusArray.length,
                                   (index) {
                                 return PopupMenuItem(
                                   child:
-                                  Text(widget.statusarray[index].statusname ?? ''),
-                                  value: widget.statusarray[index].statusname,
+                                  Text(widget.statusArray[index].statusname ?? ''),
+                                  value: widget.statusArray[index].statusname,
                                 );
                               });
                         },
@@ -186,9 +186,9 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
             children: [
               ProfileDropdownCareerDataTab(
                 isunpressed: isunpressed,
-                userjobtypevalue: widget.userjobvalue,
-                jobtextleft: widget.jobtextleft,
-                jobtypearray: widget.jobtypearray, callbackHiddenCareerDataTab: (String? jobtype) {
+                userjobtypevalue: widget.userJobValue,
+                jobtextleft: widget.jobTextLeft,
+                jobtypearray: widget.jobTypeArray, callbackHiddenCareerDataTab: (String? jobtype) {
                   print(jobtype);
               },
               ),
