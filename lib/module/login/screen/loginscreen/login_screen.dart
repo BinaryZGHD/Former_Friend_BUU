@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => LoginBloc()..add(LoginScreenInfoEvent(userLanguage: "TH")),
-        child: Generative());
+        child: LoginPage());
   }
 }
 
@@ -139,7 +139,8 @@ class _LoginPageState extends State<LoginPage> with ProgressDialog {
         return false;
       },
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
