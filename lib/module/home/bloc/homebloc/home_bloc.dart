@@ -1,6 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/repository/home_repository.dart';

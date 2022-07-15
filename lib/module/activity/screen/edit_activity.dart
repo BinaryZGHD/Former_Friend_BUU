@@ -115,13 +115,13 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
-                        buildTextformfieldUnlimitCustom(
+                        BuildTextformfieldUnlimitCustom(
                           initialvalue: namevalue,
                           textEditingController: activityname,
                           onChanged: (value) {
                             activitynamevalue = value;
                           },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                          hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
                           textInputType: TextInputType.text,
                         ),
                         Container(
@@ -135,34 +135,34 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                             ],
                           ),
                         ),
-                        customDatePickerForEdit(hint_label: 'Start date',datevalue: sdatevalue,),
-                        customDatePickerForEdit(hint_label: 'Finish date',datevalue: fdatevalue,),
-                        buildTextFieldCustom(
+                        customDatePickerForEdit(hintLabel: 'Start date',dateValue: sdatevalue,),
+                        customDatePickerForEdit(hintLabel: 'Finish date',dateValue: fdatevalue,),
+                        BuildTextFieldCustom(
                           initialvalue: timevalue,
                           textEditingController: time,
                           onChanged: (value) {
                             timevalue = value;
                           },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
+                          hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                           textInputType: TextInputType.number,
                         ),
-                        buildTextformfieldUnlimitCustom(
+                        BuildTextformfieldUnlimitCustom(
                           initialvalue: venuevalue,
                           textEditingController: venue,
                           onChanged: (value) {
                             venuevalue = value;
                           },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                          hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
                         customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',dropdownvalue: approvervalue),
-                        buildTextformfieldUnlimitCustom(
+                        BuildTextformfieldUnlimitCustom(
                           initialvalue: detailvalue,
                           textEditingController: detail,
                           onChanged: (value) {
                             detailvalue = value;
                           },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                          hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
                           textInputType: TextInputType.text,
                         ),
                         SizedBox(
@@ -170,10 +170,10 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                         ),
                         Center(child: ButtonCustom(
                           label: "  "+"${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}"+"  ",
-                          colortext: BC_ButtonText_style_Black,
-                          colorbutton: BC_ButtonText_style_White,
+                          colortext: tcButtonTextBlack,
+                          colorbutton: tcButtonTextWhite,
                           sizetext: sizeTextBig20,
-                          colorborder: BC_ButtonText_style_Black_Boarder,
+                          colorborder: tcButtonTextBoarder,
                           sizeborder: 10,
                           onPressed: () {
                             dialogOneLineOneBtn(

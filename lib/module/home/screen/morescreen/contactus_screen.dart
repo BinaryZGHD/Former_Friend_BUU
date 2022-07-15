@@ -4,20 +4,19 @@ import 'package:f2fbuu/customs/commingsoon_screen.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
-import 'package:f2fbuu/module/home/model/response/screen_homemore_contact_response.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class contactUsScreen extends StatefulWidget {
+class ContactUsScreen extends StatefulWidget {
   final String title;
-  const contactUsScreen({Key? key, required this.title}) : super(key: key);
+  const ContactUsScreen({Key? key, required this.title}) : super(key: key);
 
   @override
-  State<contactUsScreen> createState() => _contactUsScreenState();
+  State<ContactUsScreen> createState() => _ContactUsScreenState();
 }
 
-class _contactUsScreenState extends State<contactUsScreen>with ProgressDialog {
-  ScreenHomeMoreContactUsResponse? _screenHomeMoreContactUsResponse;
+class _ContactUsScreenState extends State<ContactUsScreen>with ProgressDialog {
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +34,14 @@ class _contactUsScreenState extends State<contactUsScreen>with ProgressDialog {
         }
         if (state is HomeMoreContactUsError) {
           // show dialog error
-          print(state.message);
+          if (kDebugMode) {
+            print(state.message);
+          }
         }
       },
       child: Scaffold(
         body: BlocBuilder<MoreBloc, HomemoreState>(builder: (context, state) {
           if (state is HomeMoreContactUsSuccessState) {
-            _screenHomeMoreContactUsResponse = state.responseContactUs;
             return  Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -50,21 +50,21 @@ class _contactUsScreenState extends State<contactUsScreen>with ProgressDialog {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     size: sizeTitle24,
                     color: Colors.black,
                   ),
                 ),
                 title: Text(widget.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
                   ),
                 ),
               ),
-              body: SafeArea(
-                child: commingSoonScreen(),
+              body: const SafeArea(
+                child: CommingSoonScreen(),
               ),
             );
           } else {

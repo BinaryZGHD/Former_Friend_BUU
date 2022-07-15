@@ -1,32 +1,31 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class commingSoonScreen extends StatefulWidget {
-  const commingSoonScreen({Key? key}) : super(key: key);
+class CommingSoonScreen extends StatefulWidget {
+  const CommingSoonScreen({Key? key}) : super(key: key);
 
   @override
-  State<commingSoonScreen> createState() => _commingSoonScreenState();
+  State<CommingSoonScreen> createState() => _CommingSoonScreenState();
 }
 
-class _commingSoonScreenState extends State<commingSoonScreen> {
+class _CommingSoonScreenState extends State<CommingSoonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: <Widget>[
-            Text(
+            const Text(
               "COMMING",
               style: TextStyle(color: Colors.red,
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
+            const Text(
               "SOON",
 
               style: TextStyle(color: Colors.red,
@@ -34,10 +33,10 @@ class _commingSoonScreenState extends State<commingSoonScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Center(
+            const Center(
               child: Text(
                 "   No information found  \nin the current database.",
 
@@ -47,7 +46,7 @@ class _commingSoonScreenState extends State<commingSoonScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CircleAvatar(
@@ -55,7 +54,7 @@ class _commingSoonScreenState extends State<commingSoonScreen> {
               backgroundColor: Colors.grey[200],
               child: IconButton(onPressed: (){
                 Navigator.pop(context);
-              }, icon: Icon(
+              }, icon: const Icon(
                 Icons.arrow_back,color: Colors.grey,
               ),
 

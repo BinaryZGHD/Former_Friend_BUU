@@ -149,7 +149,7 @@ boardItemStudent2({
     onTap: onTap,
     child: Card(
       // color: HexColor('#F5F5F5'),
-      color: TC_White,
+      color: tcWhite,
       child: Table(
         border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
         columnWidths: {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.05), 2: FractionColumnWidth(0.65)},

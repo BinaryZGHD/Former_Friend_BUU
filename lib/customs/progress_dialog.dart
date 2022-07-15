@@ -8,7 +8,7 @@ class ProgressDialog {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return Container(
-            color: TC_White,
+            color: tcWhite,
             height: double.infinity,
             width: double.infinity,
             alignment: Alignment.center,

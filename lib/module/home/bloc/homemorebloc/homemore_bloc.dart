@@ -1,17 +1,15 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/scree_homemore_pdpa_response.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_board_student_list_detail_response.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_board_student_response.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_board_teacher_response.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_contact_response.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_faq_response.dart';
-
 import 'package:f2fbuu/module/home/repository/homemore_repository.dart';
-import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/cupertino.dart';
+// import 'package:meta/meta.dart';
 
 part 'homemore_event.dart';
 part 'homemore_state.dart';

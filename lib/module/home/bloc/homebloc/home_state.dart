@@ -12,9 +12,9 @@ class HomeEndLoading extends HomeState{
 
 }
 
-class HomeError extends HomeState{
+ class  HomeError extends HomeState{
   String message;
-  HomeError({required this.message});
+   HomeError({required this.message});
 }
 class ScreenInfoHomeSuccessState extends HomeState{
   ScreenHomeResponse  responseScreenInfoHome;

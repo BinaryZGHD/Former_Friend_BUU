@@ -1,10 +1,9 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
 import 'package:f2fbuu/module/login/repository/changepassword_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/cupertino.dart';
 
 
 part 'changepassword_event.dart';

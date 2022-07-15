@@ -2,8 +2,8 @@ import 'dart:convert';
 /// head : {"status":"200","message":"success","module":"home"}
 /// body : {"screeninfo":{"texturgo2":"You are going to","textright":"right ?","textyes":"Yes","textno":"No"}}
 
-ScreenHomeMoreContactUsResponse ScreenHomeMoreContactUsResponseFromJson(String str) => ScreenHomeMoreContactUsResponse.fromJson(json.decode(str));
-String ScreenHomeMoreContactUsResponseToJson(ScreenHomeMoreContactUsResponse data) => json.encode(data.toJson());
+ScreenHomeMoreContactUsResponse screenHomeMoreContactUsResponseFromJson(String str) => ScreenHomeMoreContactUsResponse.fromJson(json.decode(str));
+String screenHomeMoreContactUsResponseToJson(ScreenHomeMoreContactUsResponse data) => json.encode(data.toJson());
 class ScreenHomeMoreContactUsResponse {
   ScreenHomeMoreContactUsResponse({
       Head? head, 

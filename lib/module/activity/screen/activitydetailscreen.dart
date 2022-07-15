@@ -256,10 +256,10 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                                   }));
                                 },
                                 label: '${title.buttonleft}',
-                                colortext: BC_ButtonText_style_Black,
-                                colorbutton: BC_ButtonText_style_White,
+                                colortext: tcButtonTextBlack,
+                                colorbutton: tcButtonTextWhite,
                                 sizetext: sizeTextSmaller14,
-                                colorborder: BC_ButtonText_style_Black_Boarder,
+                                colorborder: tcButtonTextBoarder,
                                 sizeborder: 1.0,
                               )),
                           SizedBox(
@@ -268,10 +268,10 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                           Container(
                               width: 100,
                               child: ButtonCustom(
-                                colortext: BC_ButtonText_style_White,
-                                colorbutton: BC_ButtonText_style_Red,
+                                colortext: tcButtonTextWhite,
+                                colorbutton: tcButtonTextRed,
                                 sizetext: sizeTextSmaller14,
-                                colorborder: BC_ButtonText_style_Red_Boarder,
+                                colorborder: tcButtonTextRedBoarder,
                                 sizeborder: 10,
                                 label: '${title.buttonright}',
                                 onPressed: () {
