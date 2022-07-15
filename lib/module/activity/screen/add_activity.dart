@@ -12,12 +12,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import '../../../customs/size/size.dart';
 import '../../../customs/textfile/buildtextfieldcustom.dart';
+
 class addActivity extends StatefulWidget {
   const addActivity({Key? key}) : super(key: key);
   @override
   State<addActivity> createState() => _addActivityState();
 }
-class _addActivityState extends State<addActivity> with ProgressDialog{
+
+class _addActivityState extends State<addActivity> with ProgressDialog {
   TextEditingController activityName = TextEditingController();
   TextEditingController year = TextEditingController();
   TextEditingController term = TextEditingController();
@@ -42,8 +44,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
   Widget build(BuildContext context) {
     context.read<ActivityBloc>().add(AddActivityScreenInfoEvent());
 
-    return BlocListener<ActivityBloc,ActivityState>(
-      listener: (context,state){
+    return BlocListener<ActivityBloc, ActivityState>(
+      listener: (context, state) {
         if (state is ActivityLoading) {
           showProgressDialog(context);
         }
@@ -55,126 +57,168 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
           print(state.message);
         }
       },
-      child: BlocBuilder<ActivityBloc,ActivityState>(
-          builder: (context,state){
-            if (state is ActivityScreenInfoSuccessState){
-              _addActivityScreenApi = state.response;
-              print(_addActivityScreenApi?.head?.status);
-              print(_addActivityScreenApi?.body?.screeninfo?.titleaddact);
-              List<String>? yearList = _addActivityScreenApi?.body?.yearlist;
-              List<String>? termList = _addActivityScreenApi?.body?.termlist;
-              List<String>? approverList = _addActivityScreenApi?.body?.approverlist;;
+      child:
+          BlocBuilder<ActivityBloc, ActivityState>(builder: (context, state) {
+        if (state is ActivityScreenInfoSuccessState) {
+          _addActivityScreenApi = state.response;
+          print(_addActivityScreenApi?.head?.status);
+          print(_addActivityScreenApi?.body?.screeninfo?.titleaddact);
+          List<String>? yearList = _addActivityScreenApi?.body?.yearlist;
+          List<String>? termList = _addActivityScreenApi?.body?.termlist;
+          List<String>? approverList = _addActivityScreenApi?.body?.approverlist;
+          ;
 
-              return Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  elevation: 0,
-                  leading: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: sizeTitle24,
-                      color: Colors.black,
-                    ),
-                  ),
-                  title: Text(
-                    "${_addActivityScreenApi?.body?.screeninfo?.titleaddact}",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: sizeTitle24,
-                    ),
-                  ),
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: sizeTitle24,
+                  color: Colors.black,
                 ),
-                body: SafeArea(
-                  // height: MediaQuery.of(context).size.height,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                        ),
-                        buildTextFieldCustom(
-                          textEditingController: activityName,
-                          onChanged: (value) {
-                            activityNameValue = value;
-                          },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
-                          textInputType: TextInputType.text,
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              customDropdown(dropdownList: yearList, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
-                              customDropdown(dropdownList: termList, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
-                            ],
+              ),
+              title: Text(
+                "${_addActivityScreenApi?.body?.screeninfo?.titleaddact}",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: sizeTitle24,
+                ),
+              ),
+            ),
+            body: SafeArea(
+              // height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    ),
+                    buildTextFieldCustom(
+                      textEditingController: activityName,
+                      onChanged: (value) {
+                        activityNameValue = value;
+                      },
+                      hint_label:
+                          "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                      textInputType: TextInputType.text,
+                    ),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          customDropdown(
+                            dropdownList: yearList??<String>[],
+                            hint: 'Year',
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            // callbackFromCustomDropdown: (String result) {
+                            //   setState(() {
+                            //     yearValue = result;
+                            //     print(yearValue);
+                            //   });
+                            // },
                           ),
-                        ),
-                        customDatePicker(hint_label: 'Start date',),
-                        customDatePicker(hint_label: 'Finish date'),
-                        buildTextFieldCustom(
-                          textEditingController: time,
-                          onChanged: (value) {
-                            timeValue = value;
-                          },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
-                          textInputType: TextInputType.number,
-                        ),
-                        buildTextFieldCustom(
-                          textEditingController: venue,
-                          onChanged: (value) {
-                            venueValue = value;
-                          },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
-                          textInputType: TextInputType.text,
-                        ),
-                        customDropdown(width: MediaQuery.of(context).size.width, dropdownList: approverList, hint: 'Approver',),
-                        buildTextformfieldUnlimitCustom(
-                          textEditingController: detail,
-                          onChanged: (value) {
-                            detailValue = value;
-                          },
-                          hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
-                          textInputType: TextInputType.text,
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                        ),
-                        Center(child: ButtonCustom(
-                          label: "  "+"${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}"+"  ",
-                          colortext: BC_ButtonText_style_Black,
-                          colorbutton: BC_ButtonText_style_White,
-                          sizetext: sizeTextBig20,
-                          colorborder: BC_ButtonText_style_Black_Boarder,
-                          sizeborder: 10,
-                           onPressed: () {
-                             dialogOneLineOneBtn(
-                                 context,  'Do you want to continue?',
-                                 "OK", onClickBtn: () {
-                               Navigator.push(
-                                 context,
-                                 MaterialPageRoute(builder: (context) {
-                                   // int index = int.parse(widget.id);
-                                   return HomeScreen();
-                                 }),
-                               );
-                             });
-                            },
-                        ),),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.1,
-                        ),
-                      ],
+                          customDropdown(
+                            dropdownList: termList??<String>[],
+                            hint: 'Term',
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            // callbackFromCustomDropdown: (String result) {
+                            //   setState(() {
+                            //     termValue = result;
+                            //     print(termValue);
+                            //   });
+                            // },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                    customDatePicker(
+                      hint_label: 'Start date',
+                    ),
+                    customDatePicker(hint_label: 'Finish date'),
+                    buildTextFieldCustom(
+                      textEditingController: time,
+                      onChanged: (value) {
+                        time.text = value;
+                        print("time ====" + time.text);
+                      },
+                      hint_label:
+                          "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
+                      textInputType: TextInputType.number,
+                    ),
+                    buildTextFieldCustom(
+                      textEditingController: venue,
+                      onChanged: (value) {
+                        venue.text = value;
+                      },
+                      hint_label:
+                          "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                      textInputType: TextInputType.text,
+                    ),
+                    customDropdown(
+                      width: MediaQuery.of(context).size.width,
+                      dropdownList: approverList??<String>[],
+                      hint: 'Approver',
+                      // callbackFromCustomDropdown: (String result) {
+                      //   setState(() {
+                      //     approverValue = result;
+                      //     print(approverValue);
+                      //   });
+                      // },
+                    ),
+                    buildTextformfieldUnlimitCustom(
+                      textEditingController: detail,
+                      onChanged: (value) {
+                        detail.text = value;
+                      },
+                      hint_label:
+                          "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                      textInputType: TextInputType.text,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    ),
+                    Center(
+                      child: ButtonCustom(
+                        label: "  " +
+                            "${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}" +
+                            "  ",
+                        colortext: BC_ButtonText_style_Black,
+                        colorbutton: BC_ButtonText_style_White,
+                        sizetext: sizeTextBig20,
+                        colorborder: BC_ButtonText_style_Black_Boarder,
+                        sizeborder: 10,
+                        onPressed: () {
+                          dialogOneLineOneBtn(
+                              context, 'Do you want to continue?', "OK",
+                              onClickBtn: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                // int index = int.parse(widget.id);
+                                return HomeScreen();
+                              }),
+                            );
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                  ],
                 ),
-              );
-            } else {
-              return Container();
-            }
-          }),
+              ),
+            ),
+          );
+        } else {
+          return Container();
+        }
+      }),
     );
   }
 }
