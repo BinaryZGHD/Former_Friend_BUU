@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dialog/texterror.dart';
@@ -9,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/size/size.dart';
-import 'package:http/http.dart' as http;
 
 class ActivityDetailScreen extends StatefulWidget {
   final title;
@@ -24,7 +21,7 @@ class ActivityDetailScreen extends StatefulWidget {
 class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
   var title;
   var data;
-  bool showbutton = false;
+  bool showButton = false;
 
   //---------------------------------API----------------------------------------//
   @override
@@ -35,79 +32,34 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
     // getActivityDetailApi();
     super.initState();
   }
-
-  // Future<ActivityDetailApi> getActivityDetailApi() async {
-  //   var url =
-  //   Uri.parse('https://test-api-ceecf.web.app/v1/home/activityscreen');
-  //   var response = await http.get(url);
-  //   // print(response.body);
-  //   _dataFromAPI = activityDetailApiFromJson(utf8.decode(response.bodyBytes));
-  //   // print('${_dataFromAPI.body}');
-  //   return _dataFromAPI;
-  // }
-
-//---------------------------------API----------------------------------------//
-//   @override
-//   void initState() {
-//     id = widget.id;
-//     data = widget.data;
-//     super.initState();
-//   }
   @override
   Widget build(BuildContext context) {
-    // print('${_dataFromAPI?.body?.activity?.status}');
-    // var myicon = Icon(
-    //   Icons.keyboard_arrow_down,
-    //   color: Colors.black,
-    // );
-    // if({_dataFromAPI.body?.activity?.status} == "Unapproved!"){
-    //   myicon = Icon(
-    //     Icons.check_circle_outline,
-    //     color: Colors.green,
-    //   );
-    // }else if({_dataFromAPI.body?.activity?.status} == "Approved!"){
-    //   myicon = Icon(
-    //     Icons.check_circle,
-    //     color: Colors.green,
-    //   );
-    // }else if({_dataFromAPI.body?.activity?.status} == "Rejected!"){
-    //   myicon = Icon(
-    //     Icons.cancel,
-    //     color: Colors.red,
-    //   );
-    // }
-    // return FutureBuilder(
-    //     future: getActivityDetailApi(),
-    //     builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-    //       // print('${_dataFromAPI.body?.activity?.status}');
-    //       if (snapshot.connectionState == ConnectionState.done) {
-
     print('${data.status}');
-    var myicon = Icon(
+    var myIcon = Icon(
       Icons.question_mark,
       color: Colors.black,
     );
     if (data.status == "Unapproved!") {
       print('เข้า Unapproved!');
-      myicon = Icon(
+      myIcon = Icon(
         Icons.alarm,
         color: Colors.black,
       );
-      showbutton = true;
+      showButton = true;
     } else if (data.status == "Approved!") {
       print('เข้า Approved!');
-      myicon = Icon(
+      myIcon = Icon(
         Icons.check_circle,
         color: Colors.black,
       );
-      showbutton = false;
+      showButton = false;
     } else if (data.status == "Rejected!") {
       print('เข้า Rejected');
-      myicon = Icon(
+      myIcon = Icon(
         Icons.cancel,
         color: Colors.black,
       );
-      showbutton = false;
+      showButton = false;
     }
     return Scaffold(
       appBar: AppBar(
@@ -182,31 +134,31 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                         // defaultVerticalAlignment:
                         // TableCellVerticalAlignment.middle,
                         children: [
-                          BuildTableRow(context, textlefttable: title.textactivity, textrighttabledetail: '${data.name}'),
+                          BuildTableRow(context, textLeftTable: title.textactivity, textRightTableDetail: '${data.name}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.textyear}', textrighttabledetail: '${data.year}'),
+                              textLeftTable: '${title.textyear}', textRightTableDetail: '${data.year}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.textterm}', textrighttabledetail: '${data.term}'),
+                              textLeftTable: '${title.textterm}', textRightTableDetail: '${data.term}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.textstartdate}', textrighttabledetail: '${data.startdate}'),
+                              textLeftTable: '${title.textstartdate}', textRightTableDetail: '${data.startdate}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.textfinishdate}', textrighttabledetail: '${data.finishdate}'),
+                              textLeftTable: '${title.textfinishdate}', textRightTableDetail: '${data.finishdate}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.texttime}', textrighttabledetail: '${data.time}' + " ( hh:mm ) "),
+                              textLeftTable: '${title.texttime}', textRightTableDetail: '${data.time}' + " ( hh:mm ) "),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.edtapprover}', textrighttabledetail: '${data.approver}'),
+                              textLeftTable: '${title.edtapprover}', textRightTableDetail: '${data.approver}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.textvenue}', textrighttabledetail: '${data.venue}'),
+                              textLeftTable: '${title.textvenue}', textRightTableDetail: '${data.venue}'),
                           _buildListenpty(),
                           BuildTableRow(context,
-                              textlefttable: '${title.textdetail}', textrighttabledetail: '${data.detail}')
+                              textLeftTable: '${title.textdetail}', textRightTableDetail: '${data.detail}')
                         ],
                       ),
                     ),
@@ -224,7 +176,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    myicon,
+                    myIcon,
                     SizedBox(
                       width: 10,
                     ),
@@ -236,7 +188,7 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                 ),
               ),
             ),
-            showbutton
+            showButton
                 ? Padding(
                     padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
                     child: Container(
@@ -295,37 +247,22 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                                         }
                                       });
                                 },
-
                               )),
                         ],
                       ),
                     ),
                   )
                 : Text(''),
-            //ปุ่ม
           ]),
         ),
       ),
     );
   }
-  // return Scaffold(
-  //   appBar: AppBar(
-  //     backgroundColor: Colors.white,
-  //     title: Text(''),
-  //     centerTitle: true,
-  //   ),
-  //   body: Center(
-  //     child: CircularProgressIndicator(),
-  //   ),
-  // );
-  // }
-  // );
 }
-
-BuildTableRow(BuildContext context, {required String textlefttable, required String textrighttabledetail}) {
+BuildTableRow(BuildContext context, {required String textLeftTable, required String textRightTableDetail}) {
   return TableRow(children: [
     Text(
-      '   ' + textlefttable,
+      '   ' + textLeftTable,
       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
@@ -333,12 +270,11 @@ BuildTableRow(BuildContext context, {required String textlefttable, required Str
       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
-      textrighttabledetail,
+      textRightTableDetail,
       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
     )
   ]);
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 _buildListenpty() {
   return TableRow(children: [

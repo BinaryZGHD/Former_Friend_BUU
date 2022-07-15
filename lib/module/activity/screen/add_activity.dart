@@ -2,7 +2,6 @@ import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
-import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
@@ -19,24 +18,24 @@ class addActivity extends StatefulWidget {
   State<addActivity> createState() => _addActivityState();
 }
 class _addActivityState extends State<addActivity> with ProgressDialog{
-  TextEditingController activityname = TextEditingController();
+  TextEditingController activityName = TextEditingController();
   TextEditingController year = TextEditingController();
   TextEditingController term = TextEditingController();
-  TextEditingController sdate = TextEditingController();
-  TextEditingController fdate = TextEditingController();
+  TextEditingController sDate = TextEditingController();
+  TextEditingController fDate = TextEditingController();
   TextEditingController time = TextEditingController();
   TextEditingController venue = TextEditingController();
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
-  String activitynamevalue = " ";
-  String yearvalue = " ";
-  String termvalue = " ";
-  String sdatevalue = " ";
-  String fdatevalue = "";
-  String timevalue = "";
-  String venuevalue = "";
-  String approvervalue = "";
-  String detailvalue = "";
+  String activityNameValue = "";
+  String yearValue = "";
+  String termValue = "";
+  String sDateValue = "";
+  String fDateValue = "";
+  String timeValue = "";
+  String venueValue = "";
+  String approverValue = "";
+  String detailValue = "";
   AddActivityScreenApi? _addActivityScreenApi;
 
   @override
@@ -62,9 +61,9 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
               _addActivityScreenApi = state.response;
               print(_addActivityScreenApi?.head?.status);
               print(_addActivityScreenApi?.body?.screeninfo?.titleaddact);
-              List<String>? yearlist = _addActivityScreenApi?.body?.yearlist;
-              List<String>? termlist = _addActivityScreenApi?.body?.termlist;
-              List<String>? approverlist = _addActivityScreenApi?.body?.approverlist;;
+              List<String>? yearList = _addActivityScreenApi?.body?.yearlist;
+              List<String>? termList = _addActivityScreenApi?.body?.termlist;
+              List<String>? approverList = _addActivityScreenApi?.body?.approverlist;;
 
               return Scaffold(
                 appBar: AppBar(
@@ -97,9 +96,9 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
                         buildTextFieldCustom(
-                          textEditingController: activityname,
+                          textEditingController: activityName,
                           onChanged: (value) {
-                            activitynamevalue = value;
+                            activityNameValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
                           textInputType: TextInputType.text,
@@ -108,8 +107,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              customDropdown(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
-                              customDropdown(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
+                              customDropdown(dropdownList: yearList, hint: 'Year',width: MediaQuery.of(context).size.width*0.4),
+                              customDropdown(dropdownList: termList, hint: 'Term',width: MediaQuery.of(context).size.width*0.4),
                             ],
                           ),
                         ),
@@ -118,7 +117,7 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
                         buildTextFieldCustom(
                           textEditingController: time,
                           onChanged: (value) {
-                            timevalue = value;
+                            timeValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                           textInputType: TextInputType.number,
@@ -126,16 +125,16 @@ class _addActivityState extends State<addActivity> with ProgressDialog{
                         buildTextFieldCustom(
                           textEditingController: venue,
                           onChanged: (value) {
-                            venuevalue = value;
+                            venueValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
-                        customDropdown(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',),
+                        customDropdown(width: MediaQuery.of(context).size.width, dropdownList: approverList, hint: 'Approver',),
                         buildTextformfieldUnlimitCustom(
                           textEditingController: detail,
                           onChanged: (value) {
-                            detailvalue = value;
+                            detailValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
                           textInputType: TextInputType.text,

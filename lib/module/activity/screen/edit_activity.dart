@@ -1,12 +1,7 @@
-
-import 'dart:convert';
-
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker_for_edit.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
-import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
@@ -14,9 +9,7 @@ import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-
 import '../../../customs/size/size.dart';
 import '../../../customs/textfile/buildtextfieldcustom.dart';
 
@@ -29,24 +22,24 @@ class editActivity extends StatefulWidget {
 }
 
 class _editActivityState extends State<editActivity> with ProgressDialog{
-  TextEditingController activityname = TextEditingController();
+  TextEditingController activityName = TextEditingController();
   TextEditingController year = TextEditingController();
   TextEditingController term = TextEditingController();
-  TextEditingController sdate = TextEditingController();
-  TextEditingController fdate = TextEditingController();
+  TextEditingController sDate = TextEditingController();
+  TextEditingController fDate = TextEditingController();
   TextEditingController time = TextEditingController();
   TextEditingController venue = TextEditingController();
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
-  String activitynamevalue = " ";
-  String yearvalue = " ";
-  String termvalue = " ";
-  String sdatevalue = " ";
-  String fdatevalue = "";
-  String timevalue = "";
-  String venuevalue = "";
-  String approvervalue = "";
-  String detailvalue = "";
+  String activityNameValue = " ";
+  String yearValue = " ";
+  String termValue = " ";
+  String sDateValue = " ";
+  String fDateValue = "";
+  String timeValue = "";
+  String venueValue = "";
+  String approverValue = "";
+  String detailValue = "";
   AddActivityScreenApi? _addActivityScreenApi;
 
   @override
@@ -72,18 +65,18 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
               _addActivityScreenApi = state.response;
               print(_addActivityScreenApi?.head?.status);
               print(_addActivityScreenApi?.body?.screeninfo?.titleaddact);
-              List<String>? yearlist = _addActivityScreenApi?.body?.yearlist;
-              List<String>? termlist = _addActivityScreenApi?.body?.termlist;
-              List<String>? approverlist = _addActivityScreenApi?.body?.approverlist;
-              String namevalue = "${widget.data.name}";
-              String yearvalue = "${widget.data.year}";
-              String termvalue = "${widget.data.term}";
-              String sdatevalue = "${widget.data.startdate}";
-              String fdatevalue = "${widget.data.finishdate}";
-              String timevalue = "${widget.data.time}";
-              String venuevalue = "${widget.data.venue}";
-              String approvervalue = "${widget.data.approver}";
-              String detailvalue = "${widget.data.detail}";
+              List<String>? yearList = _addActivityScreenApi?.body?.yearlist;
+              List<String>? termList = _addActivityScreenApi?.body?.termlist;
+              List<String>? approverList = _addActivityScreenApi?.body?.approverlist;
+              String nameValue = "${widget.data.name}";
+              String yearValue = "${widget.data.year}";
+              String termValue = "${widget.data.term}";
+              String sDateValue = "${widget.data.startdate}";
+              String fDateValue = "${widget.data.finishdate}";
+              String timeValue = "${widget.data.time}";
+              String venueValue = "${widget.data.venue}";
+              String approverValue = "${widget.data.approver}";
+              String detailValue = "${widget.data.detail}";
 
               return Scaffold(
                 appBar: AppBar(
@@ -116,10 +109,10 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
                         buildTextformfieldUnlimitCustom(
-                          initialvalue: namevalue,
-                          textEditingController: activityname,
+                          initialvalue: nameValue,
+                          textEditingController: activityName,
                           onChanged: (value) {
-                            activitynamevalue = value;
+                            activityNameValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
                           textInputType: TextInputType.text,
@@ -128,39 +121,39 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              customDropdownForEdit(dropdownlist: yearlist, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,
-                                  dropdownvalue: yearvalue
+                              customDropdownForEdit(dropdownList: yearList, hint: 'Year',width: MediaQuery.of(context).size.width*0.4,
+                                  dropdownValue: yearValue
                               ),
-                              customDropdownForEdit(dropdownlist: termlist, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownvalue: termvalue),
+                              customDropdownForEdit(dropdownList: termList, hint: 'Term',width: MediaQuery.of(context).size.width*0.4,dropdownValue: termValue),
                             ],
                           ),
                         ),
-                        customDatePickerForEdit(hint_label: 'Start date',datevalue: sdatevalue,),
-                        customDatePickerForEdit(hint_label: 'Finish date',datevalue: fdatevalue,),
+                        customDatePickerForEdit(hint_label: 'Start date',datevalue: sDateValue,),
+                        customDatePickerForEdit(hint_label: 'Finish date',datevalue: fDateValue,),
                         buildTextFieldCustom(
-                          initialvalue: timevalue,
+                          initialvalue: timeValue,
                           textEditingController: time,
                           onChanged: (value) {
-                            timevalue = value;
+                            timeValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                           textInputType: TextInputType.number,
                         ),
                         buildTextformfieldUnlimitCustom(
-                          initialvalue: venuevalue,
+                          initialvalue: venueValue,
                           textEditingController: venue,
                           onChanged: (value) {
-                            venuevalue = value;
+                            venueValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                           textInputType: TextInputType.text,
                         ),
-                        customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownlist: approverlist, hint: 'Approver',dropdownvalue: approvervalue),
+                        customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownList: approverList, hint: 'Approver',dropdownValue: approverValue),
                         buildTextformfieldUnlimitCustom(
-                          initialvalue: detailvalue,
+                          initialvalue: detailValue,
                           textEditingController: detail,
                           onChanged: (value) {
-                            detailvalue = value;
+                            detailValue = value;
                           },
                           hint_label: "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
                           textInputType: TextInputType.text,

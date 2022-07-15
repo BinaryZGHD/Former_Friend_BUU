@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class customDropdown extends StatefulWidget {
   final String hint;
-  final List<String>? dropdownlist;
+  final List<String>? dropdownList;
   final double width;
   final dropdownvalue;
   const customDropdown(
       {Key? key,
       required this.hint,
-      required this.dropdownlist,
+      required this.dropdownList,
       required this.width,
       this.dropdownvalue})
       : super(key: key);
@@ -22,7 +22,7 @@ class _customDropdownState extends State<customDropdown> {
   @override
   Widget build(BuildContext context) {
     String hint = widget.hint;
-    List<String>? dropdownlist = widget.dropdownlist;
+    List<String>? dropdownlist = widget.dropdownList;
     var dropdownValue = widget.dropdownvalue;
     print(dropdownValue);
     return Container(
