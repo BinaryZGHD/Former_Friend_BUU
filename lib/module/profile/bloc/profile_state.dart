@@ -16,14 +16,14 @@ class ChangeAvatarProcress extends ProfileState {
 }
 
 class ChooseAvatarSuccess extends ProfileState {
-  final avatarimg;
-  ChooseAvatarSuccess({required this.avatarimg});
+  final avatarImage;
+  ChooseAvatarSuccess({required this.avatarImage});
 }
 
 
 class ProfileError extends ProfileState{
-  String errormessage;
-  ProfileError({required this.errormessage});
+  String errorMessage;
+  ProfileError({required this.errorMessage});
 }
 
 class ProfileInitial extends ProfileState {

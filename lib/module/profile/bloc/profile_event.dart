@@ -46,21 +46,21 @@ class GeneralSubmitEvent extends ProfileEvent {
 
 class EducationSubmitEvent extends ProfileEvent {
   String token;
-  String gpajh;
-  String gpash;
-  String gpabd;
+  String gpaJh;
+  String gpaSh;
+  String gpaBd;
   EducationSubmitEvent(
       {required this.token,
-      required this.gpajh,
-      required this.gpash,
-      required this.gpabd});
+      required this.gpaJh,
+      required this.gpaSh,
+      required this.gpaBd});
 }
 
 class AddressSubmitEvent extends ProfileEvent {
   String token;
   String number;
   String road;
-  String subdistrict;
+  String subDistrict;
   String district;
   String province;
   String zipcode;
@@ -68,7 +68,7 @@ class AddressSubmitEvent extends ProfileEvent {
       {required this.token,
       required this.number,
       required this.road,
-      required this.subdistrict,
+      required this.subDistrict,
       required this.district,
       required this.province,
       required this.zipcode});
@@ -95,14 +95,14 @@ class ContactSubmitEvent extends ProfileEvent {
 class CareerSubmitEvent extends ProfileEvent {
   String attention;
   String status;
-  String jobtype;
+  String jobType;
   String career;
   String company;
   String workplace;
   CareerSubmitEvent(
       {required this.attention,
         required this.status,
-        required this.jobtype,
+        required this.jobType,
         required this.career,
         required this.company,
         required this.workplace});

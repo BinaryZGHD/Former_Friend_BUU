@@ -14,16 +14,16 @@ class ProfileContactDataHead extends StatefulWidget {
 }
 
 class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
-  bool isunpressed = true;
+  bool isUnpressed = true;
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
-    String phonevalue ="";
-    String linevalue ="";
-    String facebookvalue ="";
-    String instagramvalue ="";
-    String twittervalue ="";
-    String youtubevalue ="";
+    String phoneValue ="";
+    String lineValue ="";
+    String facebookValue ="";
+    String instagramValue ="";
+    String twitterValue ="";
+    String youtubeValue ="";
     return Column(
       children: [
         Container(
@@ -46,15 +46,15 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          isunpressed = !isunpressed;
-                          if (isunpressed == true) {
+                          isUnpressed = !isUnpressed;
+                          if (isUnpressed == true) {
                             context.read<ProfileBloc>().add(ContactSubmitEvent(
-                                instragram: instagramvalue,
-                                twitter: twittervalue,
-                                youtube: youtubevalue,
-                                facebook: facebookvalue,
-                                line: linevalue,
-                                phone: phonevalue,
+                                instragram: instagramValue,
+                                twitter: twitterValue,
+                                youtube: youtubeValue,
+                                facebook: facebookValue,
+                                line: lineValue,
+                                phone: phoneValue,
                                 token: 'demotoken'));
                           }
                           ;
@@ -69,7 +69,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                         // });
                         // }, child: Text(editorsave,
                       },
-                      child: isunpressed
+                      child: isUnpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
@@ -86,72 +86,72 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
           ),
         ),
         ProfileContactDataTab(
-          isunpressed: isunpressed,
-          iconcontact: Icon(
+          isUnpressed: isUnpressed,
+          iconContact: Icon(
             Icons.phone,
             color: HexColor('#000000'),
           ),
-          textcontact: '${dataFromAPI?.body?.profileContactInfo?.phone}',
-          keyboardtype: TextInputType.numberWithOptions(),
+          textContact: '${dataFromAPI?.body?.profileContactInfo?.phone}',
+          keyboardType: TextInputType.numberWithOptions(),
           onChange: (value) {
-            phonevalue = value;
-            print(phonevalue);
+            phoneValue = value;
+            print(phoneValue);
           },
         ),
         ProfileContactDataTab(
-            isunpressed: isunpressed,
-            iconcontact: Icon(
+            isUnpressed: isUnpressed,
+            iconContact: Icon(
               FontAwesomeIcons.line,
               color: HexColor('#00B900'),
             ),
-            textcontact: '${dataFromAPI?.body?.profileContactInfo?.line}',
+            textContact: '${dataFromAPI?.body?.profileContactInfo?.line}',
           onChange: (value) {
-            linevalue = value;
-            print(linevalue);
+            lineValue = value;
+            print(lineValue);
           },),
         ProfileContactDataTab(
-            isunpressed: isunpressed,
-            iconcontact: Icon(
+            isUnpressed: isUnpressed,
+            iconContact: Icon(
               FontAwesomeIcons.facebook,
               color: HexColor('#3B5998'),
             ),
-            textcontact: '${dataFromAPI?.body?.profileContactInfo?.facebook}',
+            textContact: '${dataFromAPI?.body?.profileContactInfo?.facebook}',
           onChange: (value) {
-            facebookvalue = value;
-            print(facebookvalue);
+            facebookValue = value;
+            print(facebookValue);
           },),
         ProfileContactDataTab(
-            isunpressed: isunpressed,
-            iconcontact: Icon(
+            isUnpressed: isUnpressed,
+            iconContact: Icon(
               FontAwesomeIcons.instagram,
               color: HexColor('#E1306C'),
             ),
-            textcontact: '${dataFromAPI?.body?.profileContactInfo?.instagram}',
+            textContact: '${dataFromAPI?.body?.profileContactInfo?.instagram}',
           onChange: (value) {
-            instagramvalue = value;
-            print(instagramvalue);
+            instagramValue = value;
+            print(instagramValue);
           },),
         ProfileContactDataTab(
-            isunpressed: isunpressed,
-            iconcontact: Icon(
+            isUnpressed: isUnpressed,
+            iconContact: Icon(
               FontAwesomeIcons.twitter,
               color: HexColor('#00acee'),
             ),
-            textcontact: '${dataFromAPI?.body?.profileContactInfo?.twitter}',
+            textContact: '${dataFromAPI?.body?.profileContactInfo?.twitter}',
           onChange: (value) {
-            twittervalue = value;
-            print(twittervalue);
+            twitterValue = value;
+            print(twitterValue);
           },),
         ProfileContactDataTab(
-            isunpressed: isunpressed,
-            iconcontact: Icon(
+            isUnpressed: isUnpressed,
+            iconContact: Icon(
               FontAwesomeIcons.youtube,
               color: HexColor('#FF0000'),
             ),
-            textcontact: '${dataFromAPI?.body?.profileContactInfo?.youtube}',
+            textContact: '${dataFromAPI?.body?.profileContactInfo?.youtube}',
           onChange: (value) {
-            youtubevalue = value;
-            print(youtubevalue);
+            youtubeValue = value;
+            print(youtubeValue);
           },),
       ],
     );
@@ -160,17 +160,17 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
 
 //////
 class ProfileContactDataTab extends StatefulWidget {
-  final Widget iconcontact;
-  final String textcontact;
-  final bool isunpressed;
+  final Widget iconContact;
+  final String textContact;
+  final bool isUnpressed;
   final ValueChanged<String>? onChange;
-  final keyboardtype;
+  final keyboardType;
   ProfileContactDataTab(
       {Key? key,
-      required this.iconcontact,
-      required this.textcontact,
-      required this.isunpressed,
-      this.keyboardtype,
+      required this.iconContact,
+      required this.textContact,
+      required this.isUnpressed,
+      this.keyboardType,
       this.onChange})
       : super(key: key);
 
@@ -181,10 +181,9 @@ class ProfileContactDataTab extends StatefulWidget {
 class _ProfileContactDataTabState extends State<ProfileContactDataTab> {
   @override
   Widget build(BuildContext context) {
-    Widget iconcontact = widget.iconcontact;
-    String textcontact = widget.textcontact;
-    bool ispressed = widget.isunpressed;
-    String texttest = 'testtesttest';
+    Widget iconContact = widget.iconContact;
+    String textContact = widget.textContact;
+    bool isUnpressed = widget.isUnpressed;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -195,18 +194,18 @@ class _ProfileContactDataTabState extends State<ProfileContactDataTab> {
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: [
-            iconcontact,
+            iconContact,
             Expanded(
               child: Container(
                 child: TextFormField(
-                  keyboardType: widget.keyboardtype,
-                  readOnly: ispressed,
+                  keyboardType: widget.keyboardType,
+                  readOnly: isUnpressed,
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
                   onChanged: widget.onChange,
-                  initialValue: textcontact,
+                  initialValue: textContact,
                 ),
 
                 // Text(

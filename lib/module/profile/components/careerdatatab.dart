@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../model/response/api_profile.dart';
 import '../model/response/api_profile.dart';
 
 class ProfileCareerDataHead extends StatefulWidget {
@@ -19,28 +15,18 @@ class ProfileCareerDataHead extends StatefulWidget {
 
 ////////////////////////////////////////////////////////////////////////////////
 class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
-  bool isunpressed = true;
+  bool isUnpressed = true;
   bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
-    // print(json.encode(widget.dataFromAPI));
-    // print('${json.encode(widget.dataFromAPI.body?.userattention)}');
     var dataFromAPI = widget.dataFromAPI;
-    String attentionvalue ="";
-    String statusvalue ="";
-    String workplacevalue ="";
-    String jobtypevalue ="";
-    String careervalue ="";
-    String companyvalue ="";
-    // var statusarray = [
-    //   '${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.status[1]?.statusname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.status[2]?.statusname}',
-    //   '${dataFromAPI.body?.profileCareerInfo?.status[3]?.statusname}',
-    // ];
-    // print('${dataFromAPI.body?.profileCareerInfo?.status[0]?.statusname}');
-    // print(dataFromAPI.body?.profileCareerInfo?.attention);
+    String attentionValue ="";
+    String statusValue ="";
+    String workplaceValue ="";
+    String jobTypeValue ="";
+    String careerValue ="";
+    String companyValue ="";
     return Column(
       children: [
         Container(
@@ -63,13 +49,13 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          isunpressed = !isunpressed;
-                          if(isunpressed == true){
-                            context.read<ProfileBloc>().add(CareerSubmitEvent(jobtype: jobtypevalue, company: companyvalue, status: statusvalue, attention: attentionvalue, career: careervalue, workplace: workplacevalue));
+                          isUnpressed = !isUnpressed;
+                          if(isUnpressed == true){
+                            context.read<ProfileBloc>().add(CareerSubmitEvent(jobType: jobTypeValue, company: companyValue, status: statusValue, attention: attentionValue, career: careerValue, workplace: workplaceValue));
                           };
                         });
                       },
-                      child: isunpressed
+                      child: isUnpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
@@ -81,44 +67,44 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           ),
         ),
         ProfileAttentionDropdownTab(
-          attentionarray: dataFromAPI?.body?.profileCareerScreeninfo?.attention??[],
-          userattentionvalue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
-          textleft: '${dataFromAPI?.body?.screeninfo?.textatt}',
-          isunpressed: isunpressed,
+          attentionArray: dataFromAPI?.body?.profileCareerScreeninfo?.attention??[],
+          userAttentionValue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
+          textLeft: '${dataFromAPI?.body?.screeninfo?.textatt}',
+          isUnpressed: isUnpressed,
           callbackFromAttentionDataTab: (String attentionResult){
             setState((){
-              attentionvalue = attentionResult;
-              print(attentionvalue);
+              attentionValue = attentionResult;
+              print(attentionValue);
             });
           },
         ),
         ProfileCareerDropdownTab(
-          textleft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
-          statusarray: dataFromAPI?.body?.profileCareerScreeninfo?.status??[],
-          userstatusvalue: dataFromAPI?.body?.profileCareerInfo?.userstatus??"",
-          jobtextleft: '${dataFromAPI?.body?.screeninfo?.textjobtype}',
-          jobtypearray: dataFromAPI?.body?.profileCareerScreeninfo?.jobtype??[],
-          userjobvalue: dataFromAPI?.body?.profileCareerInfo?.userjobtype??"",
-          subtitleworkplace: '${dataFromAPI?.body?.screeninfo?.subtitleworkplace}',
-          userworkplace: dataFromAPI?.body?.profileCareerInfo?.userworkplace??"",
-          usercareer: dataFromAPI?.body?.profileCareerInfo?.usercareer??"",
-          usercompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"",
-          textcomp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
-          textcareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
-          isunpressed: isunpressed,
-          callbackFromWorkDataTab: (String jobtype, String workplace, String career, String company){
+          textLeft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
+          statusArray: dataFromAPI?.body?.profileCareerScreeninfo?.status??[],
+          userStatusValue: dataFromAPI?.body?.profileCareerInfo?.userstatus??"",
+          jobTextLeft: '${dataFromAPI?.body?.screeninfo?.textjobtype}',
+          jobTypeArray: dataFromAPI?.body?.profileCareerScreeninfo?.jobtype??[],
+          userJobValue: dataFromAPI?.body?.profileCareerInfo?.userjobtype??"",
+          subtitleWorkplace: '${dataFromAPI?.body?.screeninfo?.subtitleworkplace}',
+          userWorkplace: dataFromAPI?.body?.profileCareerInfo?.userworkplace??"",
+          userCareer: dataFromAPI?.body?.profileCareerInfo?.usercareer??"",
+          userCompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"",
+          textComp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
+          textCareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
+          isUnpressed: isUnpressed,
+          callbackFromWorkDataTab: (String jobType, String workplace, String career, String company){
             setState((){
-              jobtypevalue = jobtype;
-              workplacevalue = workplace;
-              careervalue = career;
-              companyvalue = company;
-              print(jobtype + "และ" +  workplace + "และ" + career + "และ" + company);
+              jobTypeValue = jobType;
+              workplaceValue = workplace;
+              careerValue = career;
+              companyValue = company;
+              print(jobType + "และ" +  workplace + "และ" + career + "และ" + company);
             });
           },
           callbackFromWorkDataTabStatus: (String status){
             setState((){
-              statusvalue = status;
-              print(statusvalue);
+              statusValue = status;
+              print(statusValue);
             });
           },
         ),

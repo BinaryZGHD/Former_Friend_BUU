@@ -30,13 +30,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (apiProfileResponse.head?.status == 200) {
             emit(ProfileApiSuccessState(response: apiProfileResponse));
           } else {
-            emit(ProfileError(errormessage: apiProfileResponse.head?.message ?? ""));
+            emit(ProfileError(errorMessage: apiProfileResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileError(errormessage: response.statusMessage ?? ""));
+          emit(ProfileError(errorMessage: response.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errorMessage: e.response?.statusMessage ?? ""));
       }
 
     }
@@ -47,7 +47,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
         final image = await ImagePicker().pickImage(source: ImageSource.gallery);
         if (image == null) return;
         final imageTemp = File(image.path);
-        emit(ChooseAvatarSuccess(avatarimg: imageTemp));
+        emit(ChooseAvatarSuccess(avatarImage: imageTemp));
         print(imageTemp);
         // emit(ChangeAvatarProcress());
       }
@@ -70,13 +70,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (generalResponse.head?.status == 200) {
             emit(GeneralSubmitSuccessState(responseGeneral: generalResponse));
           } else {
-            emit(ProfileError(errormessage: generalResponse.head?.message ?? ""));
+            emit(ProfileError(errorMessage: generalResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileError(errormessage: responseGeneralSubmit.statusMessage ?? ""));
+          emit(ProfileError(errorMessage: responseGeneralSubmit.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errorMessage: e.response?.statusMessage ?? ""));
       }
     }
     );
@@ -84,9 +84,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       try {
         emit(ProfileLoading());
         Response responseEducationSubmit = await sentProfileEducationData(
-            event.gpajh,
-            event.gpash,
-            event.gpabd);
+            event.gpaJh,
+            event.gpaSh,
+            event.gpaBd);
         emit(ProfileLoadingSuccess());
         if (responseEducationSubmit.statusCode == 200) {
           // print('aa = ' + '${response.data}');
@@ -94,13 +94,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (educationResponse.head?.status == 200) {
             emit(EducationSubmitSuccessState(responseEducation: educationResponse));
           } else {
-            emit(ProfileError(errormessage: educationResponse.head?.message ?? ""));
+            emit(ProfileError(errorMessage: educationResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileError(errormessage: responseEducationSubmit.statusMessage ?? ""));
+          emit(ProfileError(errorMessage: responseEducationSubmit.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errorMessage: e.response?.statusMessage ?? ""));
       }
     }
     );
@@ -110,7 +110,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
         Response responseAddressSubmit = await sentProfileAddressData(
             event.number,
             event.road,
-            event.subdistrict,
+            event.subDistrict,
             event.district,
             event.province,
             event.zipcode
@@ -122,13 +122,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (addressResponse.head?.status == 200) {
             emit(AddressSubmitSuccessState(responseAddress: addressResponse));
           } else {
-            emit(ProfileError(errormessage: addressResponse.head?.message ?? ""));
+            emit(ProfileError(errorMessage: addressResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileError(errormessage: responseAddressSubmit.statusMessage ?? ""));
+          emit(ProfileError(errorMessage: responseAddressSubmit.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errorMessage: e.response?.statusMessage ?? ""));
       }
     }
     );
@@ -150,13 +150,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (contactResponse.head?.status == 200) {
             emit(ContactSubmitSuccessState(responseContact: contactResponse));
           } else {
-            emit(ProfileError(errormessage: contactResponse.head?.message ?? ""));
+            emit(ProfileError(errorMessage: contactResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileError(errormessage: responseContactSubmit.statusMessage ?? ""));
+          emit(ProfileError(errorMessage: responseContactSubmit.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errorMessage: e.response?.statusMessage ?? ""));
       }
     }
     );
@@ -167,7 +167,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
         Response responseCareerSubmit = await sentProfileCareerData(
             event.attention,
             event.status,
-            event.jobtype,
+            event.jobType,
             event.career,
             event.company,
             event.workplace
@@ -179,13 +179,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
           if (careerResponse.head?.status == 200) {
             emit(CareerSubmitSuccessState(responseCareer: careerResponse));
           } else {
-            emit(ProfileError(errormessage: careerResponse.head?.message ?? ""));
+            emit(ProfileError(errorMessage: careerResponse.head?.message ?? ""));
           }
         } else {
-          emit(ProfileError(errormessage: responseCareerSubmit.statusMessage ?? ""));
+          emit(ProfileError(errorMessage: responseCareerSubmit.statusMessage ?? ""));
         }
       } on DioError catch (e) {
-        emit(ProfileError(errormessage: e.response?.statusMessage ?? ""));
+        emit(ProfileError(errorMessage: e.response?.statusMessage ?? ""));
       }
     }
     );
