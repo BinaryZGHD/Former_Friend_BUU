@@ -18,6 +18,8 @@ class ProfileCareerDropdownTab extends StatefulWidget {
   final String usercompany;
   final String textcareer;
   final String textcomp;
+  final Function(String jobtype, String workplace, String career, String company) callbackFromWorkDataTab;
+  final Function(String status) callbackFromWorkDataTabStatus;
   const ProfileCareerDropdownTab(
       {Key? key,
         required this.textleft,
@@ -32,7 +34,9 @@ class ProfileCareerDropdownTab extends StatefulWidget {
         required this.usercompany,
         required this.textcareer,
         required this.textcomp,
-        required this.statusarray})
+        required this.statusarray,
+        required this.callbackFromWorkDataTab,
+        required this.callbackFromWorkDataTabStatus})
       : super(key: key);
 
   @override
@@ -121,8 +125,10 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                           } else {
                             isJobInStatusVisible = false;
                           }
-                          setState(() {});
-                          print(value);
+                          setState(() {
+                            // print(value);
+                            widget.callbackFromWorkDataTabStatus(value);
+                          });
                         },
                       ),
 
@@ -182,25 +188,27 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                 isunpressed: isunpressed,
                 userjobtypevalue: widget.userjobvalue,
                 jobtextleft: widget.jobtextleft,
-                jobtypearray: widget.jobtypearray,
+                jobtypearray: widget.jobtypearray, callbackHiddenCareerDataTab: (String? jobtype) {
+                  print(jobtype);
+              },
               ),
               ProfileCareerDataTab(
                   isunpressed: isunpressed,
                   textleft: subtitleworkplace,
-                  textright: userworkplace, callback: (String result) {
-                    print(result);
+                  textright: userworkplace, callbackFromHiddenCareerDataTab: (String workplace) {
+                    print(workplace);
               },),
               ProfileCareerDataTab(
                   isunpressed: isunpressed,
                   textleft: textcareer,
-                  textright: usercareer, callback: (String result) {
-                print(result);
+                  textright: usercareer, callbackFromHiddenCareerDataTab: (String career) {
+                print(career);
               },),
               ProfileCareerDataTab(
                   isunpressed: isunpressed,
                   textleft: textcomp,
-                  textright: usercompany, callback: (String result) {
-                print(result);
+                  textright: usercompany, callbackFromHiddenCareerDataTab: (String company) {
+                print(company);
               },)
             ],
           ),

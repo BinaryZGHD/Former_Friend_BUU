@@ -2,32 +2,35 @@ import 'dart:convert';
 
 import 'package:dio/src/response.dart';
 import 'package:f2fbuu/utils/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
 
 class ProfileRepository {
   Future<Response> getApiProfile(
       // String user,String password,
-      String language,
-      String token
       ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString("global_key");
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/wording/profile",
       data: jsonEncode({
-        "language": language,
-        "token": token
+        "token": global_key
       })
     );
   }
   Future<Response> sentProfileGeneralData(
-      String token,
       String name,
       String surname,
       String nickname,
       String tel
       ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString("global_key");
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/editgeneral",
         data: jsonEncode({
-          "token": "string",
+          "token": global_key,
           "name": "string",
           "surname": "string",
           "nickname": "string",
@@ -36,22 +39,22 @@ class ProfileRepository {
     );
   }
   Future<Response> sentProfileEducationData(
-      String token,
       String gpajh,
       String gpash,
       String gpabd
       ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString("global_key");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/educational",
       data: jsonEncode({
-        "token": "string",
+        "token": global_key,
         "gpAbd": "0",
         "gpAjhs": "0",
         "gpAshs": "0"
       })
     );
   } Future<Response> sentProfileAddressData(
-      String token,
       String number,
       String road,
       String subdistrict,
@@ -59,11 +62,13 @@ class ProfileRepository {
       String province,
       String zipcode
       ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString("global_key");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/address",
       data: jsonEncode(
           {
-            "token": token,
+            "token": global_key,
             "number": number,
             "village": "village",
             "road": road,
@@ -76,7 +81,6 @@ class ProfileRepository {
     );
   }
   Future<Response> sentProfileContactData(
-      String token,
       String phone,
       String line,
       String facebook,
@@ -84,11 +88,13 @@ class ProfileRepository {
       String twitter,
       String youtube
       ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString("global_key");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/contact",
       data: jsonEncode(
           {
-            "token": "string",
+            "token": global_key,
             "phone": "0",
             "line": "string",
             "facebook": "string",
@@ -100,23 +106,26 @@ class ProfileRepository {
     );
   }
   Future<Response> sentProfileCareerData(
-      String token,
       String attention,
       String status,
       String jobtype,
       String career,
-      String company
+      String company,
+      String workplace
       ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? global_key = prefs.getString("global_key");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/career",
       data: jsonEncode(
           {
-            "token": "string",
-            "attention": "string",
-            "status": "string",
-            "jobtype": "string",
-            "career": "string",
-            "company": "string"
+            "token": global_key,
+            "attention": attention,
+            "status": status,
+            "jobtype": jobtype,
+            "career": career,
+            "company": company,
+            "workplace" : workplace
           }
       )
     );

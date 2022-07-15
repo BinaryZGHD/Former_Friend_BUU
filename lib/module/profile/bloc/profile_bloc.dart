@@ -22,7 +22,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
     on<ProfileApiEvent>((event, emit) async{
       try {
         emit(ProfileLoading());
-        Response response = await getApiProfile(event.language,event.token);
+        Response response = await getApiProfile();
         emit(ProfileLoadingSuccess());
         if (response.statusCode == 200) {
           // print('aa = ' + '${response.data}');
@@ -58,7 +58,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
     on<GeneralSubmitEvent>((event, emit) async{
       try {
         emit(ProfileLoading());
-        Response responseGeneralSubmit = await sentProfileGeneralData(event.token,
+        Response responseGeneralSubmit = await sentProfileGeneralData(
             event.name,
             event.surname,
             event.nickname,
@@ -84,7 +84,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       try {
         emit(ProfileLoading());
         Response responseEducationSubmit = await sentProfileEducationData(
-            event.token,
             event.gpajh,
             event.gpash,
             event.gpabd);
@@ -109,7 +108,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       try {
         emit(ProfileLoading());
         Response responseAddressSubmit = await sentProfileAddressData(
-            event.token,
             event.number,
             event.road,
             event.subdistrict,
@@ -138,7 +136,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       try {
         emit(ProfileLoading());
         Response responseContactSubmit = await sentProfileContactData(
-            event.token,
             event.phone,
             event.line,
             event.facebook,
@@ -168,12 +165,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> with ProfileRepositor
       try {
         emit(ProfileLoading());
         Response responseCareerSubmit = await sentProfileCareerData(
-            event.token,
             event.attention,
             event.status,
             event.jobtype,
             event.career,
-            event.company
+            event.company,
+            event.workplace
         );
         emit(ProfileLoadingSuccess());
         if (responseCareerSubmit.statusCode == 200) {
