@@ -2,6 +2,7 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
 
+
 class customDropdownForEdit extends StatefulWidget {
   final String hint;
   final List<String> dropdownList;
@@ -34,7 +35,7 @@ class _customDropdownForEditState extends State<customDropdownForEdit> {
     // print(dropdownValue);
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: TC_Hint),
+        border: Border.all(color: tcHint),
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.all(15),

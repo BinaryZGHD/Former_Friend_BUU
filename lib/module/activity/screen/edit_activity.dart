@@ -108,7 +108,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
-                        buildTextformfieldUnlimitCustom(
+                        BuildTextformfieldUnlimitCustom(
                           initialvalue: nameValue,
                           textEditingController: activityName,
                           onChanged: (value) {
@@ -128,9 +128,9 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                             ],
                           ),
                         ),
-                        customDatePickerForEdit(hint_label: 'Start date',datevalue: sDateValue,),
-                        customDatePickerForEdit(hint_label: 'Finish date',datevalue: fDateValue,),
-                        buildTextFieldCustom(
+                        customDatePickerForEdit(hintLabel: 'Start date',dateValue: sDateValue,),
+                        customDatePickerForEdit(hintLabel: 'Finish date',dateValue: fDateValue,),
+                        BuildTextFieldCustom(
                           initialvalue: timeValue,
                           textEditingController: time,
                           onChanged: (value) {
@@ -139,7 +139,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                           textInputType: TextInputType.number,
                         ),
-                        buildTextformfieldUnlimitCustom(
+                        BuildTextformfieldUnlimitCustom(
                           initialvalue: venueValue,
                           textEditingController: venue,
                           onChanged: (value) {
@@ -149,7 +149,7 @@ class _editActivityState extends State<editActivity> with ProgressDialog{
                           textInputType: TextInputType.text,
                         ),
                         customDropdownForEdit(width: MediaQuery.of(context).size.width, dropdownList: approverList??<String>[], hint: 'Approver',dropdownValue: approverValue),
-                        buildTextformfieldUnlimitCustom(
+                        BuildTextformfieldUnlimitCustom(
                           initialvalue: detailValue,
                           textEditingController: detail,
                           onChanged: (value) {

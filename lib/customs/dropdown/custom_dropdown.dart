@@ -38,7 +38,7 @@ class _customDropdownState extends State<customDropdown> {
     return Container(
       // height: 50,
       decoration: BoxDecoration(
-        border: Border.all(color: TC_Hint),
+        border: Border.all(color: tcHint),
             borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.all(15),

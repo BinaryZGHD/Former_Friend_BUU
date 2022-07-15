@@ -98,12 +98,12 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    buildTextFieldCustom(
+                    BuildTextFieldCustom(
                       textEditingController: activityName,
                       onChanged: (value) {
                         activityNameValue = value;
                       },
-                      hint_label:
+                      hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
                       textInputType: TextInputType.text,
                     ),
@@ -137,25 +137,25 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                       ),
                     ),
                     customDatePicker(
-                      hint_label: 'Start date',
+                      hintLabel: 'Start date',
                     ),
-                    customDatePicker(hint_label: 'Finish date'),
-                    buildTextFieldCustom(
+                    customDatePicker(hintLabel: 'Finish date'),
+                    BuildTextFieldCustom(
                       textEditingController: time,
                       onChanged: (value) {
                         time.text = value;
                         print("time ====" + time.text);
                       },
-                      hint_label:
+                      hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                       textInputType: TextInputType.number,
                     ),
-                    buildTextFieldCustom(
+                    BuildTextFieldCustom(
                       textEditingController: venue,
                       onChanged: (value) {
                         venue.text = value;
                       },
-                      hint_label:
+                      hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
                       textInputType: TextInputType.text,
                     ),
@@ -170,12 +170,12 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                         });
                       },
                     ),
-                    buildTextformfieldUnlimitCustom(
+                    BuildTextformfieldUnlimitCustom(
                       textEditingController: detail,
                       onChanged: (value) {
                         detail.text = value;
                       },
-                      hint_label:
+                      hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
                       textInputType: TextInputType.text,
                     ),
@@ -187,10 +187,10 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                         label: "  " +
                             "${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}" +
                             "  ",
-                        colortext: BC_ButtonText_style_Black,
-                        colorbutton: BC_ButtonText_style_White,
+                        colortext: tcButtonTextBlack,
+                        colorbutton: tcButtonTextWhite,
                         sizetext: sizeTextBig20,
-                        colorborder: BC_ButtonText_style_Black_Boarder,
+                        colorborder: tcButtonTextBoarder,
                         sizeborder: 10,
                         onPressed: () {
                           dialogOneLineOneBtn(
