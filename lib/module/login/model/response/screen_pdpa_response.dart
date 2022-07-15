@@ -3,7 +3,7 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","module":"login"}
 /// body : {"screeninfo":{"textPDPAhead":"Terms of service and Privacy policy","btnaccept":"Accept","btndecline":"Decline"},"linkpdpa":"http://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/069/T_0052.PDF"}
 
-ScreenPDPAResponse ScreenPDPAResponseFromJson(String str) => ScreenPDPAResponse.fromJson(json.decode(str));
+ScreenPDPAResponse screenPDPAResponseFromJson(String str) => ScreenPDPAResponse.fromJson(json.decode(str));
 String pdpawordingToJson(ScreenPDPAResponse data) => json.encode(data.toJson());
 
 class ScreenPDPAResponse {

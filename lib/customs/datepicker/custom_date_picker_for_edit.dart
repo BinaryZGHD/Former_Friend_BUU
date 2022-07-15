@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class customDatePickerForEdit extends StatefulWidget {
-  final String hint_label;
-  final String datevalue;
-  const customDatePickerForEdit({Key? key, required this.hint_label, required this.datevalue}) : super(key: key);
+  final String hintLabel;
+  final String dateValue;
+  const customDatePickerForEdit({Key? key, required this.hintLabel, required this.dateValue}) : super(key: key);
 
 
   @override
@@ -20,8 +20,8 @@ class _customDatePickerForEditState extends State<customDatePickerForEdit> {
   @override
   Widget build(BuildContext context) {
     // String dateformated = DateFormat('EEEE, d/M/y').format(date);
-    String datevalue = widget.datevalue;
-    String hint_label = widget.hint_label;
+    String datevalue = widget.dateValue;
+    String hint_label = widget.hintLabel;
     // return InkWell(
     //   onTap: () async {
     //     DateTime? newDate = await showDatePicker(
@@ -65,7 +65,7 @@ class _customDatePickerForEditState extends State<customDatePickerForEdit> {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(left:10, right: 10),
       decoration: BoxDecoration(
-        border: Border.all(color: TC_Hint),
+        border: Border.all(color: tcHint),
         borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Row(

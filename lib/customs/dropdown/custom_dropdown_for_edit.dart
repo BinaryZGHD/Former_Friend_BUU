@@ -36,12 +36,12 @@ class _customDropdownForEditState extends State<customDropdownForEdit> {
               contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: TC_Hint),
+                borderSide: BorderSide(color: tcHint),
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                borderSide: BorderSide(color: FC_Blue, width: 2.0),
+                borderSide: BorderSide(color: fcBlue, width: 2.0),
               )),
           hint: Text(hint),
           value: dropdownValue,

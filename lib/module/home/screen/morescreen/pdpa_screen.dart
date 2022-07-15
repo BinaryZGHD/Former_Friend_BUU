@@ -66,7 +66,7 @@ class _pdpaScreenState extends State<pdpaScreen> with ProgressDialog {
               body: SafeArea(
                 child: Container(
                     padding: EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 20),
-                    color: BSC_transparent,
+                    color: bscTransparent,
                     width: MediaQuery.of(context).size.width,
                     child: SfPdfViewer.network("${_screenHomeMorePDPAResponse?.body?.linkpdpa}")
                   // Image.asset(

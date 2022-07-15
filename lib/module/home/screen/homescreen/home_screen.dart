@@ -1,3 +1,4 @@
+import 'package:f2fbuu/customs/button/button_icon_text.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
@@ -11,11 +12,10 @@ import 'package:f2fbuu/module/home/screen/morescreen/more_main_screen.dart';
 import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:f2fbuu/module/profile/screen/profile_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:f2fbuu/customs/button/buildbuttoncustom.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/module/login/screen/changepasswordscreen/changepassword_screen.dart';
@@ -32,7 +32,6 @@ class HomeScreen extends StatelessWidget {
       //context.read<HomeBloc>().add(HomeScreenInfoEvent(globalkey: global_key));
       child: HomePage(screenLoginResponse: screenLoginResponse),
     );
-    return Container();
   }
 }
 
@@ -58,13 +57,13 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
   void initState() {
     super.initState();
     keytoken = "${widget.screenLoginResponse?.body?.token}";
-    _setglobal_key(keytoken);
+    _setGlobalkey(keytoken);
   }
 
-  _setglobal_key(String keytoken) async {
+  _setGlobalkey(String keytoken) async {
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setString('global_key', "$keytoken");
+    await prefs.setString('globalKey', keytoken);
     setState(() {
       _userLanguage = prefs.getString('userLanguage')!;
     });
@@ -91,7 +90,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         //     : context.read<HomeBloc>().add(OnClickHomeLanguageEvent(userLanguage:_userLanguage));
       },
     );
-    await prefs.setString('userLanguage', "$_userLanguage");
+    await prefs.setString('userLanguage', _userLanguage);
   }
 
   @override
@@ -106,18 +105,19 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         }
         if (state is HomeError) {
           // show dialog error
-          print(state.message);
+          if (kDebugMode) {
+            print(state.message);
+          }
         }
         if (state is OnClickScreenInfoHomeSuccessState) {
           _screenhomeResponse = state.responseScreenInfoHome;
           _screenprofileResponse = state.responseProfile;
           _screenstatusActivityResponse = state.responseActivity;
-          return buildContentHomeScreen(context);
+           buildContentHomeScreen(context);
         }
         if (state is OnClickHomeLogoutState) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
-            return LoginScreen();
-          }));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
+
         }
       },
       builder: (context, state) {
@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.settings, color: TC_Black),
+                icon: const Icon(Icons.settings, color: tcBlack),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
           ),
           title: Center(
               child: Text("${_screenhomeResponse?.body?.screenInfo?.screenhome?.titlestatus} + $_userLanguage",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_Black))),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: tcBlack))),
           actions: <Widget>[
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.1,
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         ),
         body: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             if (_screenstatusActivityResponse?.body?.activity?.length.toInt() == 0)
@@ -188,19 +188,19 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.error,
-                            color: TC_NoActivity,
+                            color: tcNoActivity,
                             size: 100,
                           ),
                           Text("No Activity",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: TC_NoActivity)),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: tcNoActivity)),
                           SizedBox(
                             height: 10,
                           ),
                           Text("Please check your internet connection",
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: TC_NoActivity)),
+                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: tcNoActivity)),
                         ],
                       )),
                 ),
@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
               // ),
               Expanded(
                 child: Container(
-                  color: BC_ButtonText_style_White,
+                  color: tcButtonTextWhite,
                   // height: MediaQuery.of(context).size.height*0.1,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -229,7 +229,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                       child: Column(
                         children: [
                           buildListActivity(context, _screenstatusActivityResponse),
-                          SizedBox(
+                          const SizedBox(
                               // height: MediaQuery.of(context).size.height * 0.2,
                               ),
                         ],
@@ -244,14 +244,14 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
               child: ButtonCustom(
-                label: "     " + "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd} " + "     ",
-                colortext: BC_ButtonText_style_Black,
-                colorbutton: BC_ButtonText_style_White,
+                label: "       ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnadd}      ",
+                colortext: tcButtonTextBlack,
+                colorbutton: tcButtonTextWhite,
                 sizetext: sizeTextSmaller14,
-                colorborder: BC_ButtonText_style_Black_Boarder,
+                colorborder: tcButtonTextBoarder,
                 sizeborder: 1.0,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => addActivity()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const addActivity()));
                 },
               ),
             ),
@@ -260,7 +260,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
 
               // padding: const EdgeInsets.only(bottom: 10.0),
               child: Container(
-                color: BC_ButtonText_style_White,
+                color: tcButtonTextWhite,
                 height: 50,
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -268,26 +268,26 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                   children: [
                     Expanded(
                         child: IconButton(
-                      icon: Icon(Icons.account_circle, color: Colors.black, size: 50),
+                      icon: const Icon(Icons.account_circle, color: Colors.black, size: 50),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
                       },
                     )),
                     Expanded(
                         child: IconButton(
-                      icon: Icon(Icons.home, color: Colors.blue, size: 50),
+                      icon: const Icon(Icons.home, color: Colors.blue, size: 50),
                       onPressed: () {},
                     )),
                     Expanded(
                         child: IconButton(
-                      icon: Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
+                      icon: const Icon(Icons.auto_awesome_mosaic, color: Colors.black, size: 50),
                       onPressed: () {
                         // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => screenMoreMain(
-                                      responseHomeMore: _screenhomeResponse,
+                                builder: (context) => ScreenMoreMain(
+                                      responseHomeMoreResponse: _screenhomeResponse,
                                     )));
                       },
                     )),
@@ -303,124 +303,171 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
 
   drawerhome(
     BuildContext context,
-    ScreenHomeResponse? _screenhomeResponse,
-    ApiProfileResponse? _screenprofileResponse,
+    ScreenHomeResponse? screenhomeResponse,
+    ApiProfileResponse? screenprofileResponse,
   ) {
-    VoidCallback? onPressed;
     return SafeArea(
       child: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                color: HexColor('${_screenprofileResponse?.body?.profileGeneralInfo?.gencolor}'),
-                padding: EdgeInsets.all(20),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-                  _buildTableGeneralImgeinfo(
-                    context,
-                    _screenprofileResponse,
-                    tb1: 0.65,
-                    tb2: 0.05,
-                    tb3: 0.3,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  _buildTableGeneralinfo(
-                    context,
-                    textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textname}',
-                    textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.name}' +
-                        ' ' +
-                        '${_screenprofileResponse?.body?.profileGeneralInfo?.surname}',
-                    tb1: 0.25,
-                    tb2: 0.05,
-                    tb3: 0.70,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  _buildTableGeneralinfo(
-                    context,
-                    textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textnickname}',
-                    textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.nickname}',
-                    tb1: 0.45,
-                    tb2: 0.05,
-                    tb3: 0.5,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  _buildTableGeneralinfo(
-                    context,
-                    textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textstdcode}',
-                    textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.stuCode}',
-                    tb1: 0.45,
-                    tb2: 0.05,
-                    tb3: 0.5,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  _buildTableGeneralinfo(
-                    context,
-                    textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textemail}',
-                    textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.email}',
-                    tb1: 0.2,
-                    tb2: 0.02,
-                    tb3: 0.77,
-                  ),
-                ]),
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              color: HexColor('${screenprofileResponse?.body?.profileGeneralInfo?.gencolor}'),
+              padding: const EdgeInsets.all(20),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                _buildTableGeneralImgeinfo(
+                  context,
+                  screenprofileResponse,
+                  tb1: 0.65,
+                  tb2: 0.05,
+                  tb3: 0.3,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                _buildTableGeneralinfo(
+                  context,
+                  textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textname}',
+                  textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.name} ${screenprofileResponse?.body?.profileGeneralInfo?.surname}',
+                  tb1: 0.25,
+                  tb2: 0.05,
+                  tb3: 0.70,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                _buildTableGeneralinfo(
+                  context,
+                  textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textnickname}',
+                  textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.nickname}',
+                  tb1: 0.45,
+                  tb2: 0.05,
+                  tb3: 0.5,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                _buildTableGeneralinfo(
+                  context,
+                  textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textstdcode}',
+                  textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.stuCode}',
+                  tb1: 0.45,
+                  tb2: 0.05,
+                  tb3: 0.5,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                _buildTableGeneralinfo(
+                  context,
+                  textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textemail}',
+                  textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.email}',
+                  tb1: 0.2,
+                  tb2: 0.02,
+                  tb3: 0.77,
+                ),
+              ]),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              color: bscTransparent,
+              padding: const EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
+              child: _buildTableGeneralinfo(
+                context,
+                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textrole}',
+                textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.role}',
+                tb1: 0.5,
+                tb2: 0.05,
+                tb3: 0.45,
               ),
-              SizedBox(height: 10),
-              Container(
+            ),
+            Container(
+              width: double.infinity,
+              color: bscTransparent,
+              padding: const EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
+              child: _buildTableIconLanginfo(
+                context,
+                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textlang}',
+                textrightdetail: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textlangdetail}',
+                tb1: 0.5,
+                tb2: 0.00,
+                tb3: 0.55,
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ChangePasswordScreen()));
+              },
+              child: Container(
                 width: double.infinity,
-                color: BSC_transparent,
-                padding: EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
+                color: bscTransparent,
+                padding: const EdgeInsets.only(top: 0, bottom: 10, left: 15, right: 15),
                 child: _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textrole}',
-                  textrightdetail: '${_screenprofileResponse?.body?.profileGeneralInfo?.role}',
+                  textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.btncpass}',
+                  textrightdetail: '',
                   tb1: 0.5,
                   tb2: 0.05,
                   tb3: 0.45,
                 ),
               ),
-              Container(
+            ),
+            GestureDetector(
+              onTap: () {
+                dialogOneLineTwoBtn(
+                    context, '$errchangepassword\n \n Do you want to continue?', 'Confirm', 'Cancel',
+                    onClickBtn: (String result) {
+                  Navigator.of(context).pop();
+                  switch (result) {
+                    case 'Cancel':
+                      {
+                        break;
+                      }
+                    case 'OK':
+                      {
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()),
+                            (Route<dynamic> route) => false);
+                      }
+                  }
+                });
+              },
+              child: Container(
                 width: double.infinity,
-                color: BSC_transparent,
-                padding: EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
-                child: _buildTableIconLanginfo(
+                color: bscTransparent,
+                padding: const EdgeInsets.only(top: 0, bottom: 10, left: 15, right: 15),
+                child: _buildTableGeneralinfo(
                   context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textlang}',
-                  textrightdetail: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textlangdetail}',
+                  textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.btndelacc}',
+                  textrightdetail: '',
                   tb1: 0.5,
-                  tb2: 0.00,
-                  tb3: 0.55,
+                  tb2: 0.05,
+                  tb3: 0.45,
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => changePasswordScreen()));
-                },
-                child: Container(
-                  width: double.infinity,
-                  color: BSC_transparent,
-                  padding: EdgeInsets.only(top: 0, bottom: 10, left: 15, right: 15),
-                  child: _buildTableGeneralinfo(
-                    context,
-                    textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.btncpass}',
-                    textrightdetail: '',
-                    tb1: 0.5,
-                    tb2: 0.05,
-                    tb3: 0.45,
-                  ),
-                ),
+            ),
+            Container(
+              width: double.infinity,
+              color: bscTransparent,
+              padding: const EdgeInsets.only(top: 0, bottom: 15, left: 15, right: 15),
+              child: _buildTableGeneralinfo(
+                context,
+                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.screenhome?.textappver}',
+                textrightdetail: '${screenhomeResponse?.body?.vs}',
+                tb1: 0.5,
+                tb2: 0.05,
+                tb3: 0.45,
               ),
-              GestureDetector(
-                onTap: () {
-                  dialogOneLineTwoBtn(
-                      context, errchangepassword + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(left: 15, right: 15),
+              child: buttonIconsText(
+                onPressed: () {
+                  dialogOneLineTwoBtn(context, '$errlogout\n \n Do you want to continue?', 'Confirm', 'Cancel',
                       onClickBtn: (String result) {
                     Navigator.of(context).pop();
                     switch (result) {
@@ -430,86 +477,34 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                         }
                       case 'OK':
                         {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()),
-                              (Route<dynamic> route) => false);
+                          context.read<HomeBloc>().add(OnClickHomeLogoutEvent());
                         }
                     }
                   });
                 },
-                child: Container(
-                  width: double.infinity,
-                  color: BSC_transparent,
-                  padding: EdgeInsets.only(top: 0, bottom: 10, left: 15, right: 15),
-                  child: _buildTableGeneralinfo(
-                    context,
-                    textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.btndelacc}',
-                    textrightdetail: '',
-                    tb1: 0.5,
-                    tb2: 0.05,
-                    tb3: 0.45,
-                  ),
-                ),
+                label: "  ${screenhomeResponse?.body?.screenInfo?.screenhome?.btnlogout}  ",
+                colortext: bcButtonLogout,
+                colorbutton: tcButtonTextWhite,
+                sizetext: sizeTextBig20,
+                colorborder: bcButtonLogout,
+                iconlabel: Icons.exit_to_app,
               ),
-              Container(
-                width: double.infinity,
-                color: BSC_transparent,
-                padding: EdgeInsets.only(top: 0, bottom: 15, left: 15, right: 15),
-                child: _buildTableGeneralinfo(
-                  context,
-                  textlefttitile: '${_screenhomeResponse?.body?.screenInfo?.screenhome?.textappver}',
-                  textrightdetail: '${_screenhomeResponse?.body?.vs}',
-                  tb1: 0.5,
-                  tb2: 0.05,
-                  tb3: 0.45,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 15, right: 15),
-                child: buildButtonCustom(
-                  onPressed: () {
-                    dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                        onClickBtn: (String result) {
-                      Navigator.of(context).pop();
-                      switch (result) {
-                        case 'Cancel':
-                          {
-                            break;
-                          }
-                        case 'OK':
-                          {
-                            context.read<HomeBloc>().add(OnClickHomeLogoutEvent());
-                          }
-                      }
-                    });
-                  },
-                  label: "  ${_screenhomeResponse?.body?.screenInfo?.screenhome?.btnlogout}  ",
-                  colortext: BC_ButtonLogout,
-                  colorbutton: BC_ButtonText_style_White,
-                  sizetext: sizeTextBig20,
-                  colorborder: BC_ButtonLogout,
-                  iconlabel: Icons.exit_to_app,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
         ),
       ),
     );
   }
 
-  _buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? _screenprofileResponse,
+  _buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? screenprofileResponse,
       {required tb1, required tb2, required tb3}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Table(
-        border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
+        border: TableBorder.symmetric(outside: const BorderSide(width: 2, color: Colors.transparent)),
         columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
@@ -518,29 +513,29 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "${_screenprofileResponse?.body?.profileGeneralInfo?.gen}",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  "${screenprofileResponse?.body?.profileGeneralInfo?.gen}",
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Table(children: [
                   TableRow(children: [
                     Text(
-                      '${_screenprofileResponse?.body?.profileGeneralInfo?.genname}',
+                      '${screenprofileResponse?.body?.profileGeneralInfo?.genname}',
                       textAlign: TextAlign.end,
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ]),
                 ]),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            _screenprofileResponse?.body?.profileGeneralInfo?.img != null
+            screenprofileResponse?.body?.profileGeneralInfo?.img != null
                 ? CircleAvatar(
                     radius: 35.0,
-                    backgroundImage: NetworkImage("${_screenprofileResponse?.body?.profileGeneralInfo?.img}"),
+                    backgroundImage: NetworkImage("${screenprofileResponse?.body?.profileGeneralInfo?.img}"),
                   )
-                : CircleAvatar(
+                : const CircleAvatar(
                     radius: 35.0,
                     backgroundImage: AssetImage(
                       'assets/logo/profile.png',
@@ -561,7 +556,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
     required tb3,
   }) {
     return Table(
-      border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
+      border: TableBorder.symmetric(outside: const BorderSide(width: 2, color: Colors.transparent)),
       columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
       defaultVerticalAlignment: TableCellVerticalAlignment.top,
       children: [
@@ -569,13 +564,13 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
           Text(
             textlefttitile,
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: sizeTextSmaller14, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: sizeTextSmaller14, fontWeight: FontWeight.bold),
           ),
-          SizedBox(),
+          const SizedBox(),
           Text(
             textrightdetail,
             textAlign: TextAlign.end,
-            style: TextStyle(fontSize: sizeTextSmaller14),
+            style: const TextStyle(fontSize: sizeTextSmaller14),
           ),
         ])
       ],
@@ -590,11 +585,9 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
     required tb2,
     required tb3,
   }) {
-    bool _isVisible = false;
-    VoidCallback? onPressed;
 
     return Table(
-      border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
+      border: TableBorder.symmetric(outside: const BorderSide(width: 2, color: Colors.transparent)),
       columnWidths: {0: FractionColumnWidth(tb1), 1: FractionColumnWidth(tb2), 2: FractionColumnWidth(tb3)},
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
@@ -602,23 +595,23 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
           Text(
             textlefttitile,
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: sizeTextSmaller14, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: sizeTextSmaller14, fontWeight: FontWeight.bold),
           ),
-          SizedBox(),
+          const SizedBox(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
                 textrightdetail,
-                style: TextStyle(fontSize: sizeTextSmaller14),
+                style: const TextStyle(fontSize: sizeTextSmaller14),
               ),
               //
               // _toggle(),
               IconButton(
                   onPressed: _toggleLanguageView,
                   icon: _isHidden
-                      ? Icon(Icons.toggle_on, color: Color(0xFF00A80A))
-                      : Icon(Icons.toggle_off, color: Color(0xFF4F4F4F)))
+                      ? const Icon(Icons.toggle_on, color: Color(0xFF00A80A))
+                      : const Icon(Icons.toggle_off, color: Color(0xFF4F4F4F)))
               // IconButton(
               //     onPressed: () {
               //       _isVisible = !_isVisible;

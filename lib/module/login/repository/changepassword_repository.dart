@@ -1,5 +1,5 @@
 
-import 'package:dio/src/response.dart';
+import 'package:dio/dio.dart';
 import 'package:f2fbuu/utils/dio.dart';
 
 class ChangePasswordRepository  {

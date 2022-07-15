@@ -10,19 +10,18 @@ import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
 import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-class changePasswordScreen extends StatefulWidget {
-  const changePasswordScreen({Key? key}) : super(key: key);
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<changePasswordScreen> createState() => _changePasswordScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _changePasswordScreenState extends State<changePasswordScreen> with ProgressDialog {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> with ProgressDialog {
   ScreenChangePasswordResponse? _screenchangepasswordResponse;
   TextEditingController currentpasswordController = TextEditingController();
   TextEditingController newpasswordController = TextEditingController();
@@ -44,7 +43,9 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
         }
         if (state is ChangePasswordError) {
           // show dialog error
-          print(state.message);
+          if (kDebugMode) {
+            print(state.message);
+          }
         }
       },
       child: Scaffold(
@@ -59,7 +60,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     size: sizeTitle24,
                     color: Colors.black,
@@ -67,7 +68,7 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                 ),
                 title: Text(
                   "${_screenchangepasswordResponse?.body?.screeninfo?.textheadsetnewpass}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
                   ),
@@ -112,34 +113,33 @@ class _changePasswordScreenState extends State<changePasswordScreen> with Progre
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: TextLinkToScreenCustom(
-                          linklabel: "${_screenchangepasswordResponse?.body?.screeninfo?.btnforgotpass}",
-                          linktextcolor: TC_forgot,
-                          sizetext: sizeTextSmaller14,
+                            linklabel: "${_screenchangepasswordResponse?.body?.screeninfo?.btnforgotpass}",
+                            linktextcolor: tcForgot,
+                            sizetext: sizeTextSmaller14,
                             onTap: () async {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => forgotPasswordScreen()));
-                            }
-                        ),
+                              Navigator.push(
+                                  context, MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()));
+                            }),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),
                       Center(
                         child: ButtonCustom(
-                            label: "  " + "${_screenchangepasswordResponse?.body?.screeninfo?.btnconfirm}" + "  ",
-                            colortext: BC_ButtonText_style_Black,
-                            colorbutton: BC_ButtonText_style_White,
+                            label: "  ${_screenchangepasswordResponse?.body?.screeninfo?.btnconfirm}  ",
+                            colortext: tcButtonTextBlack,
+                            colorbutton: tcButtonTextWhite,
                             sizetext: sizeTextBig20,
-                            colorborder: BC_ButtonText_style_Black_Boarder,
+                            colorborder: tcButtonTextBoarder,
                             sizeborder: 10,
                             onPressed: () {
-                              dialogOneLineOneBtn(
-                                  context, errchangepassword + '\n \n ' + 'Do you want to continue?',
-                                  "OK", onClickBtn: () {
+                              dialogOneLineOneBtn(context, '$errchangepassword\n \n Do you want to continue?', "OK",
+                                  onClickBtn: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) {
                                     // int index = int.parse(widget.id);
-                                    return HomeScreen();
+                                    return const HomeScreen();
                                   }),
                                 );
                               });

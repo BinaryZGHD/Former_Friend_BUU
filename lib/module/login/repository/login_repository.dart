@@ -1,6 +1,8 @@
+
+
 import 'dart:convert';
 
-import 'package:dio/src/response.dart';
+import 'package:dio/dio.dart';
 import 'package:f2fbuu/utils/dio.dart';
 
 class LoginRepository {
@@ -8,7 +10,7 @@ class LoginRepository {
     return await MyDio.createDioServerTest().post("/ServiceTest/login/loginscreen",
         // queryParameters: {"Language": userLanguage} // for get
         data: jsonEncode({
-          "Language": "$userLanguage",
+          "Language": userLanguage,
         }) //for post
         );
   }  Future<Response> getSubmitLogin(String userID,String password) async {

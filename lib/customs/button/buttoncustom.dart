@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../color/colorconts.dart';
-import '../dialog/dialogboxcutom.dart';
 
 class ButtonCustom extends StatelessWidget {
   final String label;
@@ -28,9 +25,6 @@ class ButtonCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      // onPressed: () {
-      //   Navigator.push(context, MaterialPageRoute(builder: (context) => screengo ));
-      //   },
       style: ButtonStyle(
 
           elevation: MaterialStateProperty.all(sizeborder), //Defines Elevation
@@ -42,7 +36,7 @@ class ButtonCustom extends StatelessWidget {
             side: BorderSide(color: colorborder, width: 2),
           ))),
       child: Text(
-        "  " + label + "  ",
+        "   $label   ",
         style: TextStyle(fontSize: sizetext, color: colortext, fontWeight: FontWeight.w600),
       ),
     );

@@ -7,42 +7,27 @@ import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/more_board_teac
 import 'package:f2fbuu/module/home/screen/morescreen/contactus_screen.dart';
 import 'package:f2fbuu/module/home/screen/morescreen/faq_screen.dart';
 import 'package:f2fbuu/module/home/screen/morescreen/pdpa_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class screenMoreMain extends StatefulWidget {
-  final ScreenHomeResponse? responseHomeMore;
-  screenMoreMain({
+class ScreenMoreMain extends StatefulWidget {
+  final ScreenHomeResponse? responseHomeMoreResponse;
+  const ScreenMoreMain({
     Key? key,
-    required this.responseHomeMore,
+    required this.responseHomeMoreResponse,
   }) : super(key: key);
 
   @override
-  State<screenMoreMain> createState() => _screenMoreMainState();
+  State<ScreenMoreMain> createState() => _ScreenMoreMainState();
 }
 
-class _screenMoreMainState extends State<screenMoreMain> {
-  var _screenhomeResponse;
+class _ScreenMoreMainState extends State<ScreenMoreMain> {
   @override
   void initState() {
-    _screenhomeResponse = widget.responseHomeMore;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Future<void>? _launched;
-
-    Future<void> _launchInBrowser(Uri url) async {
-      if (!await launchUrl(
-        url,
-        mode: LaunchMode.externalApplication,
-      )) {
-        throw 'Could not launch $url';
-      }
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundAppBar,
@@ -51,15 +36,15 @@ class _screenMoreMainState extends State<screenMoreMain> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: sizeTitle24,
             color: Colors.black,
           ),
         ),
         title: Text(
-          "${_screenhomeResponse?.body?.screenInfo?.screenmore?.textmore}",
-          style: TextStyle(
+          "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.textmore}",
+          style: const TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
           ),
@@ -74,8 +59,8 @@ class _screenMoreMainState extends State<screenMoreMain> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${_screenhomeResponse?.body?.screenInfo?.screenmore?.textboard}",
-                style: TextStyle(
+                "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.textboard}",
+                style: const TextStyle(
                   fontSize: sizeTextBig20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -89,13 +74,13 @@ class _screenMoreMainState extends State<screenMoreMain> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => moreBoardListStudentScreen(),
+                        builder: (context) => const moreBoardListStudentScreen(),
                       ),
                     );
                   },
                   context,
-                  title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnstd}",
-                  IconBoard: Icons.auto_stories_outlined,
+                  title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnstd}",
+                  iconBoard: Icons.auto_stories_outlined,
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.01,
@@ -105,21 +90,21 @@ class _screenMoreMainState extends State<screenMoreMain> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => moreBoardListTeacherScreen(),
+                        builder: (context) => const moreBoardListTeacherScreen(),
                       ),
                     );
                   },
                   context,
-                  title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btntc}",
-                  IconBoard: Icons.badge_outlined,
+                  title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btntc}",
+                  iconBoard: Icons.badge_outlined,
                 ),
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${_screenhomeResponse?.body?.screenInfo?.screenmore?.textabdepart}",
-                style: TextStyle(
+                "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.textabdepart}",
+                style: const TextStyle(
                   fontSize: sizeTextBig20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -128,44 +113,36 @@ class _screenMoreMainState extends State<screenMoreMain> {
             buildCardMore(
               context: context,
               onTap: () {
-                setState(() {
-                  _launched = _launchInBrowser(Uri.parse("${_screenhomeResponse?.body?.pavatUrl}"));
-                });
+                setState(() {});
               },
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btndeparthis}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btndeparthis}",
             ),
             buildCardMore(
               context: context,
               onTap: () {
-                setState(() {
-                  _launched = _launchInBrowser(Uri.parse("${_screenhomeResponse?.body?.luksuitUrl}"));
-                });
+                setState(() {});
               },
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btncou}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btncou}",
             ),
             buildCardMore(
               context: context,
               onTap: () {
-                setState(() {
-                  _launched = _launchInBrowser(Uri.parse("${_screenhomeResponse?.body?.facebookUrl}"));
-                });
+                setState(() {});
               },
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnface}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnface}",
             ),
             buildCardMore(
               context: context,
               onTap: () {
-                setState(() {
-                  _launched = _launchInBrowser(Uri.parse("${_screenhomeResponse?.body?.websiteUrl}"));
-                });
+                setState(() {});
               },
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnweb}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnweb}",
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${_screenhomeResponse?.body?.screenInfo?.screenmore?.textsup}",
-                style: TextStyle(
+                "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.textsup}",
+                style: const TextStyle(
                   fontSize: sizeTextBig20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -173,36 +150,39 @@ class _screenMoreMainState extends State<screenMoreMain> {
             ),
             buildCardMore(
               context: context,
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btntermandcon}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btntermandcon}",
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => pdpaScreen(title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btntermandcon}"),
+                    builder: (context) => pdpaScreen(
+                        title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btntermandcon}"),
                   ),
                 );
               },
             ),
             buildCardMore(
               context: context,
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnfaq}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnfaq}",
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => faqScreen(title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnfaq}"),
+                    builder: (context) =>
+                        FaqScreen(title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnfaq}"),
                   ),
                 );
               },
             ),
             buildCardMore(
               context: context,
-              title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnconus}",
+              title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnconus}",
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => contactUsScreen(title: "${_screenhomeResponse?.body?.screenInfo?.screenmore?.btnconus}"),
+                    builder: (context) => ContactUsScreen(
+                        title: "${widget.responseHomeMoreResponse?.body?.screenInfo?.screenmore?.btnconus}"),
                   ),
                 );
               },

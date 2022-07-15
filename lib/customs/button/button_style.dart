@@ -1,18 +1,17 @@
+import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:flutter/material.dart';
 
-import '../color/colorconts.dart';
-
 var styleButtonDialog = ButtonStyle(
-    backgroundColor: MaterialStateProperty.all(BC_ButtonText_style_White),
+    backgroundColor: MaterialStateProperty.all(tcButtonTextWhite),
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-      side: const BorderSide(color: BC_ButtonText_style_Black_Boarder),
+      side: const BorderSide(color: tcButtonTextBoarder),
       borderRadius: BorderRadius.circular(16),
     )));
 
 
 var styleButtonDialogCancel = ButtonStyle(
-    backgroundColor: MaterialStateProperty.all(BC_ButtonText_style_Red),
+    backgroundColor: MaterialStateProperty.all(tcButtonTextRed),
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-      side: const BorderSide(color: BC_ButtonText_style_Red),
+      side: const BorderSide(color: tcButtonTextRed),
       borderRadius: BorderRadius.circular(16),
     )));
