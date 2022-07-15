@@ -19,6 +19,7 @@ class ProfileCareerDropdownTab extends StatefulWidget {
   final String textcareer;
   final String textcomp;
   final Function(String jobtype, String workplace, String career, String company) callbackFromWorkDataTab;
+  final Function(String status) callbackFromWorkDataTabStatus;
   const ProfileCareerDropdownTab(
       {Key? key,
         required this.textleft,
@@ -34,7 +35,8 @@ class ProfileCareerDropdownTab extends StatefulWidget {
         required this.textcareer,
         required this.textcomp,
         required this.statusarray,
-        required this.callbackFromWorkDataTab})
+        required this.callbackFromWorkDataTab,
+        required this.callbackFromWorkDataTabStatus})
       : super(key: key);
 
   @override
@@ -123,8 +125,10 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                           } else {
                             isJobInStatusVisible = false;
                           }
-                          setState(() {});
-                          print(value);
+                          setState(() {
+                            // print(value);
+                            widget.callbackFromWorkDataTabStatus(value);
+                          });
                         },
                       ),
 

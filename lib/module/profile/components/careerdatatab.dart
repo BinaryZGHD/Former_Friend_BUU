@@ -107,13 +107,18 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           textcareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
           isunpressed: isunpressed,
           callbackFromWorkDataTab: (String jobtype, String workplace, String career, String company){
-            print(jobtype + "และ" +  workplace + "และ" + career + "และ" + company);
             setState((){
               jobtypevalue = jobtype;
               workplacevalue = workplace;
               careervalue = career;
               companyvalue = company;
-              print(jobtypevalue);
+              print(jobtype + "และ" +  workplace + "และ" + career + "และ" + company);
+            });
+          },
+          callbackFromWorkDataTabStatus: (String status){
+            setState((){
+              statusvalue = status;
+              print(statusvalue);
             });
           },
         ),
