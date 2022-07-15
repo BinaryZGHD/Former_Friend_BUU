@@ -116,10 +116,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                             hint: 'Year',
                             width: MediaQuery.of(context).size.width * 0.4,
                             callbackFromCustomDropdown: (String result) {
-                              setState(() {
                                 yearValue = result;
                                 print(yearValue);
-                              });
                             },
                           ),
                           customDropdown(
@@ -127,10 +125,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                             hint: 'Term',
                             width: MediaQuery.of(context).size.width * 0.4,
                             callbackFromCustomDropdown: (String result) {
-                              setState(() {
                                 termValue = result;
                                 print(termValue);
-                              });
                             },
                           ),
                         ],
@@ -164,10 +160,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                       dropdownList: approverList??<String>[],
                       hint: 'Approver',
                       callbackFromCustomDropdown: (String result) {
-                        setState(() {
                           approverValue = result;
                           print(approverValue);
-                        });
                       },
                     ),
                     BuildTextformfieldUnlimitCustom(

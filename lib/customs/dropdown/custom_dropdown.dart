@@ -107,7 +107,7 @@ class _customDropdownState extends State<customDropdown> {
           onSelected: (value) {
             setState(() {
               dropdownValue = value;
-              // widget.callbackFromCustomDropdown(dropdownValue??"-");
+              widget.callbackFromCustomDropdown(dropdownValue??"-");
             });
 
           },
