@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> with ProgressDialog {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginLoading) {
-          showProgressDialog(context);
+          showProgressTransparent(context);
         }
         if (state is LoginEndLoading) {
           hideProgressDialog(context);

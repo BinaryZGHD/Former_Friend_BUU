@@ -8,9 +8,10 @@ class BuildTextFieldCustom extends StatefulWidget {
   final String hintLabel;
   final TextInputType textInputType;
   final ValueChanged<String>? onChanged;
+  final int? maxLengthOTP;
   final String? initialvalue;
   const BuildTextFieldCustom(
-      {Key? key, this.textEditingController, required this.hintLabel, this.onChanged, required this.textInputType, this.initialvalue})
+      {Key? key, this.textEditingController, required this.hintLabel, this.onChanged, required this.textInputType, this.initialvalue, this.maxLengthOTP})
       : super(key: key);
 
   @override
@@ -26,6 +27,7 @@ class _BuildTextFieldCustomState extends State<BuildTextFieldCustom> {
         margin: const EdgeInsets.all(12),
         // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
         child: TextFormField(
+          maxLength: widget.maxLengthOTP,
           style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
           ),
           keyboardType: widget.textInputType,
