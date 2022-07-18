@@ -25,19 +25,19 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
   TextEditingController term = TextEditingController();
   TextEditingController sDate = TextEditingController();
   TextEditingController fDate = TextEditingController();
-  TextEditingController time = TextEditingController();
+  TextEditingController totalTime = TextEditingController();
   TextEditingController venue = TextEditingController();
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
-  String activityNameValue = "";
-  String yearValue = "";
-  String termValue = "";
-  String sDateValue = "";
-  String fDateValue = "";
-  String timeValue = "";
-  String venueValue = "";
-  String approverValue = "";
-  String detailValue = "";
+  // String activityNameValue = "";
+  // String yearValue = "";
+  // String termValue = "";
+  // String sDateValue = "";
+  // String fDateValue = "";
+  // String timeValue = "";
+  // String venueValue = "";
+  // String approverValue = "";
+  // String detailValue = "";
   AddActivityScreenApi? _addActivityScreenApi;
 
   @override
@@ -101,7 +101,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                     BuildTextFieldCustom(
                       textEditingController: activityName,
                       onChanged: (value) {
-                        activityNameValue = value;
+                        activityName.text = value;
+                        print(activityName.text);
                       },
                       hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
@@ -116,8 +117,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                             hint: 'Year',
                             width: MediaQuery.of(context).size.width * 0.4,
                             callbackFromCustomDropdown: (String result) {
-                                yearValue = result;
-                                print(yearValue);
+                                year.text = result;
+                                print(year.text);
                             },
                           ),
                           customDropdown(
@@ -125,8 +126,8 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                             hint: 'Term',
                             width: MediaQuery.of(context).size.width * 0.4,
                             callbackFromCustomDropdown: (String result) {
-                                termValue = result;
-                                print(termValue);
+                                term.text = result;
+                                print(term.text);
                             },
                           ),
                         ],
@@ -137,10 +138,10 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                     ),
                     customDatePicker(hintLabel: 'Finish date'),
                     BuildTextFieldCustom(
-                      textEditingController: time,
+                      textEditingController: totalTime,
                       onChanged: (value) {
-                        time.text = value;
-                        print("time ====" + time.text);
+                        totalTime.text = value;
+                        print("time ====" + totalTime.text);
                       },
                       hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
@@ -150,6 +151,7 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                       textEditingController: venue,
                       onChanged: (value) {
                         venue.text = value;
+                        print(venue.text);
                       },
                       hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
@@ -160,14 +162,15 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                       dropdownList: approverList??<String>[],
                       hint: 'Approver',
                       callbackFromCustomDropdown: (String result) {
-                          approverValue = result;
-                          print(approverValue);
+                          approver.text = result;
+                          print(approver.text);
                       },
                     ),
                     BuildTextformfieldUnlimitCustom(
                       textEditingController: detail,
                       onChanged: (value) {
                         detail.text = value;
+                        print(detail.text);
                       },
                       hintLabel:
                           "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
@@ -187,6 +190,7 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
                         colorborder: tcButtonTextBoarder,
                         sizeborder: 10,
                         onPressed: () {
+                          context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(id: '',year: year.text, totalTime: totalTime.text, approver: approver.text, fDate: fDate.text, venue: venue.text, detail: detail.text, sDate: sDate.text, activityName: activityName.text, term: term.text));
                           dialogOneLineOneBtn(
                               context, 'Do you want to continue?', "OK",
                               onClickBtn: () {
