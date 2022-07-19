@@ -28,4 +28,10 @@ class SubmitAddEditActivityEvent extends ActivityEvent {
     required this.detail,
 });
 }
+class SubmitDeleteActivityEvent extends ActivityEvent {
+  String id;
+  SubmitDeleteActivityEvent({
+    required this.id,
+});
+}
 

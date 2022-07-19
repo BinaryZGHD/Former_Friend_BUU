@@ -1,9 +1,11 @@
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dialog/texterror.dart';
+import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
 import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/size/size.dart';
@@ -237,12 +239,14 @@ class _ActivityDetailScreenState extends State<ActivityDetailScreen> {
                                             }
                                           case 'OK':
                                             {
-                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                                                // int index = int.parse(widget.id);
-                                                return HomeScreen(
-                                                );
-                                                // DisplayBeerScreen();
-                                              }));
+                                              context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
+                                              print('${data.id}');
+                                              // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                              //   // int index = int.parse(widget.id);
+                                              //   return HomeScreen(
+                                              //   );
+                                              //   // DisplayBeerScreen();
+                                              // }));
                                             }
                                         }
                                       });

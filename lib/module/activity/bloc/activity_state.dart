@@ -25,3 +25,7 @@ class SubmitAddEditActivityState extends ActivityState{
   AddEditResponse responseAddEdit;
   SubmitAddEditActivityState({required this.responseAddEdit});
 }
+class SubmitDeleteActivityState extends ActivityState{
+  DeleteResponse responseDelete;
+  SubmitDeleteActivityState({required this.responseDelete});
+}
