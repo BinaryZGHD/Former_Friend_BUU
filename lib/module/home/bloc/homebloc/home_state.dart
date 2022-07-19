@@ -22,12 +22,15 @@ class ScreenInfoHomeSuccessState extends HomeState{
   ScreenHomeResponse  responseScreenInfoHome;
   ApiProfileResponse responseProfile;
   ScreenStatusActivityResponse responseActivity;
-  ScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity});
-}class OnClickScreenInfoHomeSuccessState extends HomeState{
+  AlertNoActivityResponse  responseNoActivity;
+  ScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity, required this.responseNoActivity});
+}
+class OnClickScreenInfoHomeSuccessState extends HomeState{
   ScreenHomeResponse  responseScreenInfoHome;
   ApiProfileResponse responseProfile;
   ScreenStatusActivityResponse responseActivity;
-  OnClickScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity});
+  AlertNoActivityResponse  responseNoActivity;
+  OnClickScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity, required this.responseNoActivity});
 }
 //
 // class HomeActivityStatus extends HomeState{

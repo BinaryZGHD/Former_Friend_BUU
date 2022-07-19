@@ -4,6 +4,7 @@ import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dar
 import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/alert_delete_account_response.dart';
 import 'package:f2fbuu/module/home/model/response/alert_logout_response.dart';
+import 'package:f2fbuu/module/home/model/response/alert_noactivity_respone.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/screen/widget/home_widget.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
   ScreenStatusActivityResponse? _screenstatusActivityResponse;
   AlertLogoutHomeResponse? _logoutHomeResponse;
   AlertDeleteAccountResponse? _deleteAccountResponse;
+  AlertNoActivityResponse? _noActivityResponse;
   late SharedPreferences prefs;
   late String keytoken;
   late String _userLanguage;
@@ -166,18 +168,20 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         if (state is OnClickConfirmDeleteAccountState) {
           cleanDelete();
         }
-        if (state is OnClickScreenInfoHomeSuccessState) {
+        if (state is OnClickScreenInfoHomeSuccessState ) {
           _screenhomeResponse = state.responseScreenInfoHome;
           _screenprofileResponse = state.responseProfile;
           _screenstatusActivityResponse = state.responseActivity;
+          _noActivityResponse = state.responseNoActivity;
           buildContentHomeScreen(
-            context,
-            _toggleLanguageView,
-            _isHidden,
-            _screenhomeResponse,
-            _screenprofileResponse,
-            _screenstatusActivityResponse,
-            _userLanguage,
+              context,
+              _toggleLanguageView,
+              _isHidden,
+              _screenhomeResponse,
+              _screenprofileResponse,
+              _userLanguage,
+              _screenstatusActivityResponse,
+              _noActivityResponse
           );
         }
       },
@@ -186,14 +190,16 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
           _screenhomeResponse = state.responseScreenInfoHome;
           _screenprofileResponse = state.responseProfile;
           _screenstatusActivityResponse = state.responseActivity;
+          _noActivityResponse = state.responseNoActivity ;
           return buildContentHomeScreen(
             context,
             _toggleLanguageView,
             _isHidden,
             _screenhomeResponse,
             _screenprofileResponse,
-            _screenstatusActivityResponse,
             _userLanguage,
+              _screenstatusActivityResponse,
+              _noActivityResponse
           );
         }
 
