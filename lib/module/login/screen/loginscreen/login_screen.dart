@@ -2,6 +2,7 @@ import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:f2fbuu/module/login/widget/generative_widget.dart';
 import 'package:f2fbuu/module/login/widget/login_widget.dart';
+import 'package:f2fbuu/utils/set_global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,12 +91,12 @@ class _LoginPageState extends State<LoginPage> with ProgressDialog {
             print(state.message);
           }
         }
-        if (state  is SubmitLoginState){
+        if (state  is SubmitLoginState) {
           _loginSubmitResponse = state.responseSunmitLoginscreen;
+          setGlobalKey(globalKey: _loginSubmitResponse?.body?.token);
             Navigator.push(
               context,MaterialPageRoute(
                 builder: (context) => HomeScreen(
-                  screenLoginResponse: _loginSubmitResponse,
                 )
             )
             );
