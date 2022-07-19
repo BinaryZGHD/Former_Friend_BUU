@@ -13,13 +13,26 @@ import 'package:flutter/material.dart';
 import '../../../customs/size/size.dart';
 import '../../../customs/textfile/buildtextfieldcustom.dart';
 
-class addActivity extends StatefulWidget {
-  const addActivity({Key? key}) : super(key: key);
+class AddActivityScreen extends StatelessWidget {
+  const AddActivityScreen({Key? key}) : super(key: key);
+
   @override
-  State<addActivity> createState() => _addActivityState();
+  Widget build(BuildContext context) {
+    return BlocProvider(create: (context) => ActivityBloc(),
+    child: AddActivityPage(),
+    );
+  }
 }
 
-class _addActivityState extends State<addActivity> with ProgressDialog {
+
+
+class AddActivityPage extends StatefulWidget {
+  const AddActivityPage({Key? key}) : super(key: key);
+  @override
+  State<AddActivityPage> createState() => _AddActivityPageState();
+}
+
+class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
   TextEditingController activityName = TextEditingController();
   TextEditingController year = TextEditingController();
   TextEditingController term = TextEditingController();
@@ -45,7 +58,7 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
   Widget build(BuildContext context) {
     context.read<ActivityBloc>().add(AddActivityScreenInfoEvent());
 
-    return BlocListener<ActivityBloc, ActivityState>(
+    return BlocConsumer<ActivityBloc, ActivityState>(
       listener: (context, state) {
         if (state is ActivityLoading) {
           showProgressDialog(context);
@@ -57,9 +70,14 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
           // show dialog error
           print(state.message);
         }
+        if (state is SubmitAddEditActivityEvent) {
+          print("TEST SubmitAddEditActivityEvent");
+          // print(state.responseAddEdit.toJson());
+          print("TEST SubmitAddEditActivityEvent");
+          // context.read<ActivityBloc>().add(ActivityEvent());
+        }
       },
-      child:
-          BlocBuilder<ActivityBloc, ActivityState>(builder: (context, state) {
+        builder: (context, state) {
         if (state is ActivityScreenInfoSuccessState) {
           _addActivityScreenApi = state.response;
           print(_addActivityScreenApi?.head?.status);
@@ -218,7 +236,6 @@ class _addActivityState extends State<addActivity> with ProgressDialog {
         } else {
           return Container();
         }
-      }),
-    );
-  }
+      }
+    );}
 }
