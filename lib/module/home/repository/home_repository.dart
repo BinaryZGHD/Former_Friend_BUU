@@ -67,5 +67,16 @@ class HomeRepository  {
     );
 
   }
+  Future<Response> getApiNoActivity() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/alert/noactivity"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  }
 
 }
