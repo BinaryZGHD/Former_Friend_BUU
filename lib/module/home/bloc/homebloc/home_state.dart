@@ -6,6 +6,8 @@ abstract class HomeState {}
 class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState{
 
+}class HomeAlertLoading extends HomeState{
+
 }
 
 class HomeEndLoading extends HomeState{
@@ -33,5 +35,16 @@ class ScreenInfoHomeSuccessState extends HomeState{
 //   HomeActivityStatus({required this.message});
 // }
 class OnClickHomeLogoutState extends HomeState{
+  AlertLogoutHomeResponse responseAlertLogoutHome;
+  OnClickHomeLogoutState({required this.responseAlertLogoutHome});
 
+}
+class OnClickConfirmHomeLogoutState extends HomeState{
+}
+class OnClickDeleteAccountState extends HomeState{
+  AlertDeleteAccountResponse responseAlertDeleteAccount;
+  OnClickDeleteAccountState({required this.responseAlertDeleteAccount});
+
+}
+class OnClickConfirmDeleteAccountState extends HomeState{
 }

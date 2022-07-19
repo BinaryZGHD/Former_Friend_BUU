@@ -82,6 +82,7 @@ Widget confirmRegisterPageWidget(
                     ]),
                   ),
                   BuildTextFieldCustom(
+                    maxLengthOTP: 6,
                     textEditingController: confirmOTPController,
                     onChanged: (valueConfirmrRegisterOTP) {
                       confirmOTPController.text = valueConfirmrRegisterOTP;

@@ -10,3 +10,10 @@ class OnClickHomeLanguageEvent extends HomeEvent{
 }
 class OnClickHomeLogoutEvent extends HomeEvent{
 }
+class OnClickConfirmHomeLogoutEvent extends HomeEvent{
+}
+
+class OnClickDeleteAccountEvent extends HomeEvent{
+}
+class OnClickConfirmDeleteAccountEvent extends HomeEvent{
+}

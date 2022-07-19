@@ -70,7 +70,7 @@ class _FaqScreenState extends State<FaqScreen> with ProgressDialog {
             color: Colors.black,
           ),
         ),
-        title: Text(" FAQ ${_screenHomeMoreFAQResponse?.body?.faq?.length}",
+        title: Text("${_screenHomeMoreFAQResponse?.body?.screeninfo?.titleafq}",
           style: const TextStyle(
             color: Colors.black,
             fontSize: 24,
@@ -152,7 +152,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             return ListTile(
               title: Text("${widget.screenHomeMoreFAQResponse?.body?.faq?.elementAt(item.getIndex).question}",
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),

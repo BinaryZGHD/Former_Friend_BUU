@@ -22,7 +22,7 @@ const String errlogout = "Are you confirming to delete your account"
     "If you encounter problems, please contact us."
     'scibuu@go.buu.ac.th'
     'or 023-456-78"'
-    "\nOTP is incorrect? \nPlease check your value and try again?";
+    ;
 const String errchangepassword =  "Are you confirming to delete your account"
     "If you want to delete the user account, press the “OK” button."
     "or press the “Cancel” button to return to use"
