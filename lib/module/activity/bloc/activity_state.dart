@@ -1,7 +1,9 @@
 part of 'activity_bloc.dart';
 
 @immutable
-abstract class ActivityState {}
+abstract class ActivityState {
+  const ActivityState();
+}
 
 class ActivityInitial extends ActivityState {}
 

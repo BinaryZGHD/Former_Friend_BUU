@@ -49,12 +49,12 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> with ActivityRepos
         );
         emit(ActivityEndLoading());
         if (responseAddEditSubmit.statusCode == 200) {
-          AddActivityScreenApi screenActivityResponse =
-          AddActivityScreenApi.fromJson(responseAddEditSubmit.data);
-          if (screenActivityResponse.head?.status == "200") {
-            emit(ActivityScreenInfoSuccessState(response: screenActivityResponse));
+          AddEditResponse addEditResponse =
+          AddEditResponse.fromJson(responseAddEditSubmit.data);
+          if (addEditResponse.head?.status == 200) {
+            emit(SubmitAddEditActivityState(responseAddEdit: addEditResponse));
           } else {
-            emit(ActivityError(message: screenActivityResponse.head?.message ?? ""));
+            emit(ActivityError(message: addEditResponse.head?.message ?? ""));
           }
         } else {
           emit(ActivityError(message: responseAddEditSubmit.statusMessage ?? ""));

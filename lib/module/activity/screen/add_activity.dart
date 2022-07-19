@@ -57,12 +57,11 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
   Widget build(BuildContext context) {
     context.read<ActivityBloc>().add(AddActivityScreenInfoEvent());
 
-    return BlocConsumer<ActivityBloc, ActivityState>(
-      listener: (context, state) {
+    return BlocConsumer<ActivityBloc, ActivityState>(listener: (context, state) {
         if (state is ActivityLoading) {
           showProgressDialog(context);
         }
-        if (state is ActivityLoading) {
+        if (state is ActivityEndLoading) {
           hideProgressDialog(context);
         }
         if (state is ActivityError) {
