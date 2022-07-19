@@ -42,6 +42,7 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
   TextEditingController venue = TextEditingController();
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
+
   // String activityNameValue = "";
   // String yearValue = "";
   // String termValue = "";
@@ -134,6 +135,7 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
                             hint: 'Year',
                             width: MediaQuery.of(context).size.width * 0.4,
                             callbackFromCustomDropdown: (String result) {
+
                                 year.text = result;
                                 print(year.text);
                             },

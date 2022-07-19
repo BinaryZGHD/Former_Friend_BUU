@@ -49,16 +49,18 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
     data = widget.data;
     print('เรียก initState');
     // getActivityDetailApi();
+
     super.initState();
+
   }
   @override
   Widget build(BuildContext context) {
    return BlocConsumer<ActivityBloc,ActivityState>(
        listener: (context, state){
-         if (state is ActivityLoading) {
+         if (state is ActivityDetailLoading) {
            showProgressDialog(context);
          }
-         if (state is ActivityEndLoading) {
+         if (state is ActivityDetailEndLoading) {
            hideProgressDialog(context);
          }
          if (state is ActivityError) {
@@ -68,21 +70,23 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
            }
          }
          if (state is SubmitDeleteActivityState) {
-           // Navigator.pop(context);
-           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-             // int index = int.parse(widget.id);
-             return HomePage();
-             // DisplayBeerScreen();
-           }
-           ));
-         } BuildContextActivity(context, data,showButton,title);
+           Navigator.pop(context);
+
+         }
        },
      builder: (context, state){
-       return BuildContextActivity(context, data,showButton,title);
+
+         if(state is ActivityInitial) {
+           return BuildContextActivity(context, data, showButton, title);
+         }
+         return Scaffold(
+             body: Container(
+               color: Colors.white,
+             ));
      },
-   //   buildWhen: (context, state){
-   //       return state is DefaultState;
-   // },
+     buildWhen: (context, state){
+         return state is ActivityInitial || state is DefaultState;
+   },
 
    );
   }
