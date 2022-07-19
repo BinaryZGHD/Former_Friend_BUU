@@ -4,6 +4,7 @@ import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/activity/screen/add_activity.dart';
 import 'package:f2fbuu/module/activity/screen/buildlistactivity.dart';
+import 'package:f2fbuu/module/home/model/response/alert_noactivity_respone.dart';
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/screen/morescreen/more_main_screen.dart';
 import 'package:f2fbuu/module/home/screen/widget/drawer_widget.dart';
@@ -17,8 +18,9 @@ buildContentHomeScreen(
     isHidden,
     ScreenHomeResponse? screenhomeResponse,
     ApiProfileResponse? screenprofileResponse,
-    ScreenStatusActivityResponse? screenstatusActivityResponse,
     userLanguage,
+    ScreenStatusActivityResponse? screenstatusActivityResponse,
+    AlertNoActivityResponse? alertNoActivityResponse,
     ) {
   return WillPopScope(
     onWillPop: () async {
@@ -64,18 +66,26 @@ buildContentHomeScreen(
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children:  [
                         Icon(
-                          Icons.error,
+                          Icons.running_with_errors_outlined,
                           color: tcNoActivity,
                           size: 100,
                         ),
-                        Text("No Activity",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: tcNoActivity)),
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Please check your internet connection",
+                        Text("${alertNoActivityResponse?.body?.noactiviry}",
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: tcNoActivity)),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("${alertNoActivityResponse?.body?.subactlineone}",
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: tcNoActivity)),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("${alertNoActivityResponse?.body?.subactlinetwo}",
                             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: tcNoActivity)),
                       ],
                     )),
