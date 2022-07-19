@@ -127,7 +127,7 @@ buildContentHomeScreen(
               colorborder: tcButtonTextBoarder,
               sizeborder: 1.0,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const addActivity()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddActivityScreen()));
               },
             ),
           ),
