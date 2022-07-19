@@ -6,6 +6,11 @@ abstract class ActivityState {}
 class ActivityInitial extends ActivityState {}
 
 class ActivityLoading extends ActivityState{
+}
+class ActivityDetailLoading extends ActivityState{
+}
+
+class ActivityDetailEndLoading extends ActivityState{
 
 }
 

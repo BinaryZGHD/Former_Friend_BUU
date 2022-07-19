@@ -169,20 +169,6 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
           cleanDelete();
         }
         if (state is OnClickScreenInfoHomeSuccessState ) {
-          _screenhomeResponse = state.responseScreenInfoHome;
-          _screenprofileResponse = state.responseProfile;
-          _screenstatusActivityResponse = state.responseActivity;
-          _noActivityResponse = state.responseNoActivity;
-          buildContentHomeScreen(
-              context,
-              _toggleLanguageView,
-              _isHidden,
-              _screenhomeResponse,
-              _screenprofileResponse,
-              _userLanguage,
-              _screenstatusActivityResponse,
-              _noActivityResponse
-          );
         }
       },
       builder: (context, state) {
