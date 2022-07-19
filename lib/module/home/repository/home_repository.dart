@@ -35,4 +35,37 @@ class HomeRepository  {
     );
 
   }
+  Future<Response> getLogoutHome() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/response"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  }
+  Future<Response> getAlertLogout() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/alert/logout"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  } Future<Response> getAlertDeleteAccount() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/alert/deleteaccount"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  }
+
 }

@@ -101,6 +101,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                 textInputType: TextInputType.text,
               ),
               BuildTextFieldCustom(
+                maxLengthOTP: 6,
                 textEditingController: code,
                 onChanged: (value) {
                   codevalue = value;

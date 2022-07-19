@@ -62,22 +62,6 @@ registerPageWidget(
                 textInputType: TextInputType.text,
               ),
               BuildTextFieldCustom(
-                textEditingController: phoneController,
-                onChanged: (value) {
-                  phoneController.text = value;
-                },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtphonereg}",
-                textInputType: TextInputType.number,
-              ),
-              BuildTextFieldCustom(
-                textEditingController: emailController,
-                onChanged: (value) {
-                  emailController.text = value;
-                },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtemailreg}",
-                textInputType: TextInputType.text,
-              ),
-              BuildTextFieldCustom(
                 textEditingController: nameController,
                 onChanged: (value) {
                   nameController.text = value;
@@ -93,6 +77,25 @@ registerPageWidget(
                 hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtlnamereg}",
                 textInputType: TextInputType.text,
               ),
+              BuildTextFieldCustom(
+                textEditingController: emailController,
+                onChanged: (value) {
+                  emailController.text = value;
+                },
+                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtemailreg}",
+                textInputType: TextInputType.text,
+              ),
+              BuildTextFieldCustom(
+                maxLengthOTP: 10,
+                textEditingController: phoneController,
+                onChanged: (value) {
+                  phoneController.text = value;
+                },
+                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtphonereg}",
+                textInputType: TextInputType.number,
+              ),
+
+
               buildTextFieldPasswordCustom(
                 textEditingController: passwordController,
                 onChanged: (value) {

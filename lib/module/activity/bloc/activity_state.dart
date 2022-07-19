@@ -21,3 +21,13 @@ class ActivityScreenInfoSuccessState extends ActivityState{
   AddActivityScreenApi response;
   ActivityScreenInfoSuccessState({required this.response});
 }
+class SubmitAddEditActivityState extends ActivityState{
+  AddEditResponse responseAddEdit;
+  SubmitAddEditActivityState({required this.responseAddEdit});
+}
+class SubmitDeleteActivityState extends ActivityState{
+  DeleteResponse responseDelete;
+  SubmitDeleteActivityState({required this.responseDelete});
+}
+class DefaultState extends ActivityState{
+}
