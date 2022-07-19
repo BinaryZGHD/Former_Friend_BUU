@@ -29,3 +29,5 @@ class SubmitDeleteActivityState extends ActivityState{
   DeleteResponse responseDelete;
   SubmitDeleteActivityState({required this.responseDelete});
 }
+class DefaultState extends ActivityState{
+}

@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:f2fbuu/module/activity/model/response/add_edit.dart';
 import 'package:f2fbuu/module/activity/model/response/delete.dart';
 import 'package:f2fbuu/module/activity/repository/activity_repository.dart';
-import 'package:f2fbuu/module/profile/model/response/address.dart';
 import 'package:meta/meta.dart';
 
 part 'activity_event.dart';
@@ -74,12 +71,12 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> with ActivityRepos
         );
         emit(ActivityEndLoading());
         if (responseDeleteSubmit.statusCode == 200) {
-          AddActivityScreenApi screenActivityResponse =
-          AddActivityScreenApi.fromJson(responseDeleteSubmit.data);
-          if (screenActivityResponse.head?.status == "200") {
-            emit(ActivityScreenInfoSuccessState(response: screenActivityResponse));
+          DeleteResponse deleteResponse =
+          DeleteResponse.fromJson(responseDeleteSubmit.data);
+          if (deleteResponse.head?.status == "200") {
+            emit(SubmitDeleteActivityState(responseDelete: deleteResponse));
           } else {
-            emit(ActivityError(message: screenActivityResponse.head?.message ?? ""));
+            emit(ActivityError(message: deleteResponse.head?.message ?? ""));
           }
         } else {
           emit(ActivityError(message: responseDeleteSubmit.statusMessage ?? ""));

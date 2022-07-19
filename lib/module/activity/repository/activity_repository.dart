@@ -27,7 +27,7 @@ class ActivityRepository  {
       ) async {
     final prefs = await SharedPreferences.getInstance();
     String? globalKey = prefs.getString("globalKey");
-    return await MyDio.createDioTest().post("/v1/api/modules/activity/wording/submitaddeditactivity",
+    return await MyDio.createDioTest().post("/response",
     data: jsonEncode({
       "token": globalKey,
       "activityname": activityName,
@@ -47,7 +47,7 @@ class ActivityRepository  {
       ) async {
     final prefs = await SharedPreferences.getInstance();
     String? globalKey = prefs.getString("globalKey");
-    return await MyDio.createDioTest().post("/v1/api/modules/activity/wording/submitdeleteactivity",
+    return await MyDio.createDioTest().post("/response",
     data: jsonEncode({
       "token": globalKey,
       "id": id
