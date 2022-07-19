@@ -115,7 +115,7 @@ _buildListenpty() {
 }
 
 BuildContextActivity(BuildContext context, data, bool showButton, title,){
-  print('${data.status}');
+  // print('${data.status}');
   var myIcon = Icon(
     Icons.question_mark,
     color: Colors.black,
