@@ -9,9 +9,7 @@ class SaveProfileChanges extends ProfileEvent {}
 
 //----------------------------------API---------------------------------------//
 class ProfileApiEvent extends ProfileEvent {
-  String language;
-  String token;
-  ProfileApiEvent({required this.language, required this.token});
+  ProfileApiEvent();
 }
 
 class ProfileGeneralSummitEvent extends ProfileEvent {
@@ -34,12 +32,10 @@ class ProfileGeneralUpdateEvent extends ProfileEvent {
 }
 
 class GeneralSubmitEvent extends ProfileEvent {
-  String token;
   String name;
   String surname;
   String nickname;
   GeneralSubmitEvent({
-    required this.token,
     required this.name,
     required this.surname,
     required this.nickname,
@@ -47,37 +43,34 @@ class GeneralSubmitEvent extends ProfileEvent {
 }
 
 class EducationSubmitEvent extends ProfileEvent {
-  String token;
-  String gpajh;
-  String gpash;
-  String gpabd;
+  String gpaJh;
+  String gpaSh;
+  String gpaBd;
   EducationSubmitEvent(
-      {required this.token,
-      required this.gpajh,
-      required this.gpash,
-      required this.gpabd});
+      {
+      required this.gpaJh,
+      required this.gpaSh,
+      required this.gpaBd});
 }
 
 class AddressSubmitEvent extends ProfileEvent {
-  String token;
   String number;
   String road;
-  String subdistrict;
+  String subDistrict;
   String district;
   String province;
   String zipcode;
   AddressSubmitEvent(
-      {required this.token,
+      {
       required this.number,
       required this.road,
-      required this.subdistrict,
+      required this.subDistrict,
       required this.district,
       required this.province,
       required this.zipcode});
 }
 
 class ContactSubmitEvent extends ProfileEvent {
-  String token;
   String phone;
   String line;
   String facebook;
@@ -85,7 +78,7 @@ class ContactSubmitEvent extends ProfileEvent {
   String twitter;
   String youtube;
   ContactSubmitEvent(
-      {required this.token,
+      {
       required this.phone,
       required this.line,
       required this.facebook,
@@ -95,17 +88,17 @@ class ContactSubmitEvent extends ProfileEvent {
 }
 
 class CareerSubmitEvent extends ProfileEvent {
-  String token;
   String attention;
   String status;
-  String jobtype;
+  String jobType;
   String career;
   String company;
+  String workplace;
   CareerSubmitEvent(
-      {required this.token,
-        required this.attention,
+      {required this.attention,
         required this.status,
-        required this.jobtype,
+        required this.jobType,
         required this.career,
-        required this.company});
+        required this.company,
+        required this.workplace});
 }

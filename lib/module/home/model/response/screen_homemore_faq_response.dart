@@ -3,7 +3,7 @@ import 'dart:convert';
 /// body : {"screeninfo":{"titleafq":"FAQ","textquestion":"Question","textanswer":"Answer"},"faq":[{"question":"Question","answer":"Answer"},{"question":"Question","answer":"Answer"},{"question":"Question","answer":"Answer"}]}
 
 ScreenHomeMoreFAQResponse screenHomeMoreFAQResponseFromJson(String str) => ScreenHomeMoreFAQResponse.fromJson(json.decode(str));
-String ScreenHomeMoreFAQResponseToJson(ScreenHomeMoreFAQResponse data) => json.encode(data.toJson());
+String screenHomeMoreFAQResponseToJson(ScreenHomeMoreFAQResponse data) => json.encode(data.toJson());
 class ScreenHomeMoreFAQResponse {
   ScreenHomeMoreFAQResponse({
     Head? head,

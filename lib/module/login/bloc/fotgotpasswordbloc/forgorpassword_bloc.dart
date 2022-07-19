@@ -1,14 +1,13 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:f2fbuu/module/login/model/response/re_send_otp_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/submit_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/submit_forgot_setnew_forgotpassword_response.dart';
 import 'package:f2fbuu/module/login/repository/forgotpassword_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/cupertino.dart';
 
-import '../../model/response/re_send_otp_forgot_password_response.dart';
 
 
 part 'forgorpassword_event.dart';
@@ -23,7 +22,7 @@ class ForgorPasswordBloc extends Bloc<ForgorpasswordEvent, ForgorPasswordState> 
 
       try {
         emit(ForgotPasswordLoading());
-        Response response = await getScreenForgotPassword(event.userLanguage);
+        Response response = await getScreenForgotPassword();
         emit(ForgotPasswordEndLoading());
 
         if (response.statusCode == 200) {
@@ -47,7 +46,7 @@ class ForgorPasswordBloc extends Bloc<ForgorpasswordEvent, ForgorPasswordState> 
 
       try {
         emit(SetNewForgotPasswordLoading());
-        Response response = await getScreenForgotPassword(event.userLanguage);
+        Response response = await getScreenForgotPassword();
         emit(SetNewForgotPasswordEndLoading());
 
         if (response.statusCode == 200) {

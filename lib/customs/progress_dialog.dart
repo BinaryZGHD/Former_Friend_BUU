@@ -8,7 +8,23 @@ class ProgressDialog {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return Container(
-            color: TC_White,
+            color: tcWhite,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator(
+              color: circleprogresscolor,
+            ),
+          );
+        });
+  }
+  void showProgressTransparent(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Container(
+            color: transparent,
             height: double.infinity,
             width: double.infinity,
             alignment: Alignment.center,

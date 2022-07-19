@@ -1,6 +1,6 @@
 import 'dart:convert';
 SubmitForgotPasswordResponse submitForgotPasswordResponseFromJson(String str) => SubmitForgotPasswordResponse.fromJson(json.decode(str));
-String SubmitForgotPasswordResponseToJson(SubmitForgotPasswordResponse data) => json.encode(data.toJson());
+String submitForgotPasswordResponseToJson(SubmitForgotPasswordResponse data) => json.encode(data.toJson());
 class SubmitForgotPasswordResponse {
   SubmitForgotPasswordResponse({
       Head? head,}){

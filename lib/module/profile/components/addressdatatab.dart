@@ -15,17 +15,17 @@ class ProfileAddressDataHead extends StatefulWidget {
 }
 
 class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
-  bool isunpressed = true;
+  bool isUnpressed = true;
 
   @override
   Widget build(BuildContext context) {
     var dataFromAPI = widget.dataFromAPI;
-    String numbervalue ="";
-    String roadvalue ="";
-    String subdistrictvalue ="";
-    String districtvalue ="";
-    String provincevalue ="";
-    String zipcodevalue ="";
+    String numberValue ="";
+    String roadValue ="";
+    String subDistrictValue ="";
+    String districtValue ="";
+    String provinceValue ="";
+    String zipcodeValue ="";
     return Column(
       children: [
         Container(
@@ -48,101 +48,87 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          isunpressed = !isunpressed;
-                          if(isunpressed == true){
-                            context.read<ProfileBloc>().add(AddressSubmitEvent(zipcode: zipcodevalue, token: "demotoken", district: districtvalue, road: roadvalue, province: provincevalue, number: numbervalue, subdistrict: subdistrictvalue));
+                          isUnpressed = !isUnpressed;
+                          if(isUnpressed == true){
+                            context.read<ProfileBloc>().add(AddressSubmitEvent(zipcode: zipcodeValue, district: districtValue, road: roadValue, province: provinceValue, number: numberValue, subDistrict: subDistrictValue));
                           };
                         });
-                        // setState((){
-                        //   if (ispressed == true) {
-                        //     editorsave = 'บันทึก';
-                        //   } else {
-                        //     editorsave = 'แก้ไข';
-                        //   }
-                        //   print(ispressed);
-                        // });
-                        // }, child: Text(editorsave,
                       },
-                      child: isunpressed
+                      child: isUnpressed
                           ? Text('แก้ไข', style: TextStyle(color: Colors.red))
                           : Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
                     ),
                   ),
-
-                  // Text(editorsave,
-                  //       style:
-                  //       TextStyle(fontSize: 18, color: Colors.red),
-                  //       textAlign: TextAlign.right),
                 ),
               ],
             ),
           ),
         ),
         ProfileAddressDataTab(
-          isunpressed: isunpressed,
-          textleft: '${dataFromAPI?.body?.screeninfo?.texthousenumber}',
-          textright: '${dataFromAPI?.body?.profileAddressInfo?.number}',
+          isUnpressed: isUnpressed,
+          textLeft: '${dataFromAPI?.body?.screeninfo?.texthousenumber}',
+          textRight: '${dataFromAPI?.body?.profileAddressInfo?.number}',
           onChange: (value) {
-            numbervalue = value;
-            print(numbervalue);
+            numberValue = value;
+            print(numberValue);
           },
         ),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textmoo}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.moo}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textmoo}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.moo}',
           onChange: (value) {
-            numbervalue = value;
-            print(numbervalue);
+            numberValue = value;
+            print(numberValue);
           },),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textsoi}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.soi}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textsoi}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.soi}',
           onChange: (value) {
-            numbervalue = value;
-            print(numbervalue);
+            numberValue = value;
+            print(numberValue);
           },),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textroad}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.road}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textroad}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.road}',
           onChange: (value) {
-            roadvalue = value;
-            print(roadvalue);
+            roadValue = value;
+            print(roadValue);
           },),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textsubdistrict}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.subdistrict}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textsubdistrict}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.subdistrict}',
           onChange: (value) {
-            subdistrictvalue = value;
-            print(subdistrictvalue);
+            subDistrictValue = value;
+            print(subDistrictValue);
           },),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textdistrict}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.district}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textdistrict}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.district}',
           onChange: (value) {
-            districtvalue = value;
-            print(districtvalue);
+            districtValue = value;
+            print(districtValue);
           },),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textprovince}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.province}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textprovince}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.province}',
           onChange: (value) {
-            provincevalue = value;
-            print(provincevalue);
+            provinceValue = value;
+            print(provinceValue);
           },),
         ProfileAddressDataTab(
-            isunpressed: isunpressed,
-            textleft: '${dataFromAPI?.body?.screeninfo?.textzipcode}',
-            textright: '${dataFromAPI?.body?.profileAddressInfo?.zipcode}',
+            isUnpressed: isUnpressed,
+            textLeft: '${dataFromAPI?.body?.screeninfo?.textzipcode}',
+            textRight: '${dataFromAPI?.body?.profileAddressInfo?.zipcode}',
           onChange: (value) {
-            zipcodevalue = value;
-            print(zipcodevalue);
+            zipcodeValue = value;
+            print(zipcodeValue);
           },),
       ],
     );
@@ -151,15 +137,15 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
 
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileAddressDataTab extends StatefulWidget {
-  final String textleft;
-  final String textright;
-  final bool isunpressed;
+  final String textLeft;
+  final String textRight;
+  final bool isUnpressed;
   final ValueChanged<String>? onChange;
   ProfileAddressDataTab(
       {Key? key,
-      required this.textleft,
-      required this.textright,
-      required this.isunpressed,
+      required this.textLeft,
+      required this.textRight,
+      required this.isUnpressed,
         this.onChange})
       : super(key: key);
 
@@ -170,10 +156,9 @@ class ProfileAddressDataTab extends StatefulWidget {
 class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.textleft;
-    String textright = widget.textright;
-    bool ispressed = widget.isunpressed;
-    String texttest = 'testtesttest';
+    String textLeft = widget.textLeft;
+    String textRight = widget.textRight;
+    bool isUnpressed = widget.isUnpressed;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -185,7 +170,7 @@ class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
         child: Row(
           children: [
             Text(
-              textleft + ' ',
+              textLeft + ' ',
               style: TextStyle(fontSize: 18),
             ),
             Expanded(
@@ -193,13 +178,13 @@ class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
                 child: TextFormField(
                   autofocus: false,
                   style: TextStyle(fontSize: 18, color: Colors.black),
-                  readOnly: ispressed,
+                  readOnly: isUnpressed,
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                   ),
                   onChanged: widget.onChange,
-                  initialValue: textright,
+                  initialValue: textRight,
                 ),
 
                 // Text(

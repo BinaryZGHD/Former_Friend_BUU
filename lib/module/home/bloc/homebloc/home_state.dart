@@ -6,24 +6,45 @@ abstract class HomeState {}
 class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState{
 
+}class HomeAlertLoading extends HomeState{
+
 }
 
 class HomeEndLoading extends HomeState{
 
 }
 
-class HomeError extends HomeState{
+ class  HomeError extends HomeState{
   String message;
-  HomeError({required this.message});
+   HomeError({required this.message});
 }
 class ScreenInfoHomeSuccessState extends HomeState{
   ScreenHomeResponse  responseScreenInfoHome;
   ApiProfileResponse responseProfile;
   ScreenStatusActivityResponse responseActivity;
   ScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity});
+}class OnClickScreenInfoHomeSuccessState extends HomeState{
+  ScreenHomeResponse  responseScreenInfoHome;
+  ApiProfileResponse responseProfile;
+  ScreenStatusActivityResponse responseActivity;
+  OnClickScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity});
 }
 //
 // class HomeActivityStatus extends HomeState{
 //   String message;
 //   HomeActivityStatus({required this.message});
 // }
+class OnClickHomeLogoutState extends HomeState{
+  AlertLogoutHomeResponse responseAlertLogoutHome;
+  OnClickHomeLogoutState({required this.responseAlertLogoutHome});
+
+}
+class OnClickConfirmHomeLogoutState extends HomeState{
+}
+class OnClickDeleteAccountState extends HomeState{
+  AlertDeleteAccountResponse responseAlertDeleteAccount;
+  OnClickDeleteAccountState({required this.responseAlertDeleteAccount});
+
+}
+class OnClickConfirmDeleteAccountState extends HomeState{
+}

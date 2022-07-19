@@ -1,6 +1,5 @@
 import 'package:f2fbuu/customs/button/button_style.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -25,13 +24,13 @@ void dialogOneLineOneBtn(BuildContext context, String content ,String btn, {requ
                   children: [
                     const SizedBox(height: 10),
                     Text(content, textAlign: TextAlign.center),
-                    SizedBox( height: 15),
+                    const SizedBox( height: 15),
                     ElevatedButton(
                       style: styleButtonDialog,
                       onPressed: () => {_handleClickBtn()},
                       child: Text(
                         btn,
-                        style: const TextStyle(color: BC_ButtonText_style_Black),
+                        style: const TextStyle(color: tcButtonTextBlack),
                       ),
                     )
                   ],
@@ -71,7 +70,7 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
                         onPressed: () => {_handleClickBtn("OK")},
                         child: Text(
                           btn1,
-                          style: const TextStyle(color: BC_ButtonText_style_Black),
+                          style: const TextStyle(color: tcButtonTextBlack),
                         ),
                       ),
                       const SizedBox(width: 20),
@@ -80,7 +79,7 @@ void dialogOneLineTwoBtn(BuildContext context, String content, String btn1, Stri
                         onPressed: () => {_handleClickBtn("Cancel")},
                         child: Text(
                           btn2,
-                          style: const TextStyle(color: BC_ButtonText_style_White),
+                          style: const TextStyle(color: tcButtonTextWhite),
                         ),
                       )
                     ],

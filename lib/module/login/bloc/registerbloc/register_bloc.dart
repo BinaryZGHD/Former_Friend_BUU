@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -7,7 +6,7 @@ import 'package:f2fbuu/module/login/model/response/screen_register_response.dart
 import 'package:f2fbuu/module/login/model/response/submit_confirm_register_response.dart';
 import 'package:f2fbuu/module/login/model/response/submit_register_response.dart';
 import 'package:f2fbuu/module/login/repository/register_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 
 part 'register_event.dart';
@@ -23,7 +22,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
 
       try {
         emit(RegisterLoading());
-        Response response = await getScreenRegister(event.userLanguage);
+        Response response = await getScreenRegister();
         emit(RegisterEndLoading());
         if (response.statusCode == 200) {
           ScreenRegisterResponse screenRegisterResponse =
@@ -45,7 +44,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
       try {
         emit(RegisterLoading());
         Response responseSubmitRegister = await getSubmitRegister(
-            event.userLanguage,
             event.userID,
             event.phone,
             event.emailRegister,
@@ -75,7 +73,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
 
       try {
         emit(ConfirmRegisterLoading());
-        Response responseConfirmRegisterScreenInfo = await getScreenRegister(event.userLanguage);
+        Response responseConfirmRegisterScreenInfo = await getScreenRegister();
         emit(ConfirmRegisterEndLoading());
         if (responseConfirmRegisterScreenInfo.statusCode == 200) {
           ScreenRegisterResponse screenConfirmRegisterResponse =
@@ -100,7 +98,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
       try {
         emit(ConfirmRegisterLoading());
         Response responseSubmitConfirmRegister = await geSubmitConfirmRegister(
-            event.userLanguage,
             event.userID,
             event.email,
             event.otp,);
@@ -130,7 +127,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with RegisterRepos
       try {
         // emit(ConfirmRegisterLoading());
         Response responsereSendOtpConfirmRegister = await getReSendOTPConfirmRegister(
-            event.userLanguage,
             event.userID,
             event.email,);
         // emit(ConfirmRegisterEndLoading());

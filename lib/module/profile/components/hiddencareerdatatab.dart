@@ -6,12 +6,14 @@ class ProfileDropdownCareerDataTab extends StatefulWidget {
   final String userjobtypevalue;
   final List<Jobtype> jobtypearray;
   final bool isunpressed;
-
+  final Function(String? jobtype) callbackHiddenCareerDataTab;
   const ProfileDropdownCareerDataTab(
       {Key? key,
         required this.jobtextleft,
         required this.userjobtypevalue,
-        required this.jobtypearray, required this.isunpressed})
+        required this.jobtypearray, required this.isunpressed,
+        required this.callbackHiddenCareerDataTab
+      })
       : super(key: key);
 
   @override
@@ -79,8 +81,10 @@ class _ProfileDropdownCareerDataTabState
                           });
                     },
                     onSelected: (value) {
-                      userjobtypevalue = value;
+
                       setState(() {
+                        userjobtypevalue = value;
+                        widget.callbackHiddenCareerDataTab(userjobtypevalue);
                       });
                     },
                   ),
@@ -119,8 +123,10 @@ class _ProfileDropdownCareerDataTabState
 class ProfileCareerDataTab extends StatefulWidget {
   final String textleft;
   final String textright;
-  final bool isunpressed ;
-  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed}) : super(key: key);
+  final bool isunpressed;
+  final Function(String result) callbackFromHiddenCareerDataTab;
+
+  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed,required this.callbackFromHiddenCareerDataTab,}) : super(key: key);
 
   @override
   State<ProfileCareerDataTab> createState() => _ProfileCareerDataTabState();
@@ -132,7 +138,7 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
     String textleft = widget.textleft;
     String textright = widget.textright;
     bool ispressed = widget.isunpressed;
-    String texttest = 'testtesttest';
+    String uservalue = 'testtesttest';
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -157,7 +163,8 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      texttest = value;
+                      uservalue = value;
+                      widget.callbackFromHiddenCareerDataTab(uservalue);
                       // print(texttest);
                     });
                   },

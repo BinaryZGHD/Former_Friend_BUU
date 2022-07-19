@@ -1,17 +1,16 @@
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../color/colorconts.dart';
 
-class buildTextformfieldUnlimitCustom extends StatelessWidget {
+class BuildTextformfieldUnlimitCustom extends StatelessWidget {
   final TextEditingController? textEditingController;
-  final String hint_label;
+  final String hintLabel;
   final TextInputType textInputType;
   final ValueChanged<String>? onChanged;
   final String? initialvalue;
-  const buildTextformfieldUnlimitCustom(
-      {Key? key, this.textEditingController, required this.hint_label, this.onChanged, required this.textInputType, this.initialvalue})
+  const BuildTextformfieldUnlimitCustom(
+      {Key? key, this.textEditingController, required this.hintLabel, this.onChanged, required this.textInputType, this.initialvalue})
       : super(key: key);
 
   @override
@@ -21,7 +20,7 @@ class buildTextformfieldUnlimitCustom extends StatelessWidget {
         margin: const EdgeInsets.all(12),
         // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
         child: TextFormField(
-          style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
+          style: const TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
           ),
           keyboardType: textInputType,
           maxLines: null,
@@ -36,16 +35,16 @@ class buildTextformfieldUnlimitCustom extends StatelessWidget {
           // },
           decoration: InputDecoration(
               filled: true,
-              fillColor: TC_Textfile,
-              hintText: "" + hint_label,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: TC_Hint),
+              fillColor: tcTextfile,
+              hintText: " $hintLabel",
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: tcHint),
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-              contentPadding: EdgeInsets.all(10),
-              focusedBorder: OutlineInputBorder(
+              contentPadding: const EdgeInsets.all(10),
+              focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                borderSide: BorderSide(color: FC_Blue, width: 2.0),
+                borderSide: BorderSide(color: fcBlue, width: 2.0),
               )),
         ));
   }

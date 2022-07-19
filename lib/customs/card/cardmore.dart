@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
-import '../color/colorconts.dart';
-import '../size/size.dart';
 
 
-buildCardBoard(BuildContext context, {VoidCallback? onTap, required String title, required IconBoard}) {
+
+buildCardBoard(BuildContext context, {VoidCallback? onTap, required String title, required iconBoard}) {
   return GestureDetector(
     onTap: onTap,
     child: Card(
@@ -29,7 +29,7 @@ buildCardBoard(BuildContext context, {VoidCallback? onTap, required String title
                     //   size: MediaQuery.of(context).size.width * 0.2,
                     // ),
                     ShaderMask(
-                      shaderCallback: (bounds) => RadialGradient(
+                      shaderCallback: (bounds) => const RadialGradient(
                         center: Alignment(0.2, -0.6),
                         radius: 0.5,
                         colors: [
@@ -40,14 +40,14 @@ buildCardBoard(BuildContext context, {VoidCallback? onTap, required String title
                         stops: <double>[0.1, 2.6],
                       ).createShader(bounds),
                       child: Icon(
-                        IconBoard,
+                        iconBoard,
                         size: MediaQuery.of(context).size.width * 0.2,
                         color: Colors.white,
                       ),
                     ),
                     Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: sizeTextBig20,
                         fontWeight: FontWeight.w600,
                       ),
@@ -82,16 +82,16 @@ buildCardMore({
         ),
         elevation: 8,
         child: Container(
-          margin: EdgeInsets.all(1),
+          margin: const EdgeInsets.all(1),
           // padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
           decoration: BoxDecoration(
-            color: Color(0xFF94CCF9),
+            color: const Color(0xFF94CCF9),
             border: Border.all(
               color: transparent,
               width: 4,
             ),
             borderRadius: BorderRadius.circular(12.0),
-            gradient: LinearGradient(stops: [
+            gradient: const LinearGradient(stops: [
               0.02,
               0.02,
               0.94
@@ -109,12 +109,12 @@ buildCardMore({
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "   " + title,
-                style: TextStyle(fontSize: 20, color: TC_Black),
+                "    $title",
+                style: const TextStyle(fontSize: 20, color: tcBlack),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
-                color: TC_Black,
+                color: tcBlack,
                 size: 20,
               ),
             ],
@@ -150,7 +150,7 @@ buildCardStunent(BuildContext context, {VoidCallback? onTap, required String tit
                     //   size: MediaQuery.of(context).size.width * 0.2,
                     // ),
                     ShaderMask(
-                      shaderCallback: (bounds) => RadialGradient(
+                      shaderCallback: (bounds) => const RadialGradient(
                         center: Alignment(0.2, -0.6),
                         radius: 0.5,
                         colors: [
@@ -168,7 +168,7 @@ buildCardStunent(BuildContext context, {VoidCallback? onTap, required String tit
                     ),
                     Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: sizeTextBig20,
                         fontWeight: FontWeight.w600,
                       ),

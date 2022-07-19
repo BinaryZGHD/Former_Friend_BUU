@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class TextLinkToScreenCustom extends StatelessWidget {
   final String linklabel;
 
-  final linktextcolor;
+  final Color? linktextcolor;
   final double sizetext;
   final VoidCallback? onTap;
   const TextLinkToScreenCustom(
@@ -16,6 +16,7 @@ class TextLinkToScreenCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap:onTap ,
       child: Text(linklabel,
           style: TextStyle(
             decoration: TextDecoration.underline,
@@ -24,7 +25,7 @@ class TextLinkToScreenCustom extends StatelessWidget {
             fontWeight: FontWeight.w600,
               fontSize: sizetext
           )),
-      onTap:onTap ,
+
 
     );
   }

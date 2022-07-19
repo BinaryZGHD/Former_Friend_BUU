@@ -1,16 +1,71 @@
 
-import 'package:dio/src/response.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:f2fbuu/utils/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeRepository  {
   Future<Response> getScreenHome() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/homemore");
+    final prefs = await SharedPreferences.getInstance();
+    String? userLanguage = prefs.getString('userLanguage');
+    // String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/homemore",
+        data: jsonEncode({
+          "Language": userLanguage
+        })
+    );
   }
   Future<Response> getApiProfile() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/profile/wording/profile");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/profile/wording/profile",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
   Future<Response> getApiActivity() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/activity/wording/statusactivity");
-    // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/activity/wording/statusactivity"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
   }
+  Future<Response> getLogoutHome() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/response"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  }
+  Future<Response> getAlertLogout() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/alert/logout"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  } Future<Response> getAlertDeleteAccount() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/alert/deleteaccount"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  }
+
 }

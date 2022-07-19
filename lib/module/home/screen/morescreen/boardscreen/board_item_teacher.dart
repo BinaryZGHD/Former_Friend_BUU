@@ -122,7 +122,7 @@ boardItemStaff({
     onTap: onTap,
     child: Card(
       // color: HexColor('#F5F5F5'),
-      color: TC_White,
+      color: tcWhite,
       child: Padding(
         padding: const EdgeInsets.all(3.0),
         child: Table(

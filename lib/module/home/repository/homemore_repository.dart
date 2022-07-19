@@ -1,27 +1,65 @@
-import 'package:dio/src/response.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:f2fbuu/utils/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeMoreRepository {
   Future<Response> getScreenHomeMoreBoardStudent() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/more/data/boardstudy");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/more/data/boardstudy",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
 
   Future<Response> getScreenHomeMoreBoardTeacher() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/more/data/boardteacher");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/more/data/boardteacher",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
 
   Future<Response> getScreenHomeMoreContactUs() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/moreerror");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/moreerror",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
 
   Future<Response> getScreenHomeMoreFAQ() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/more/faq");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/more/faq",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
   Future<Response> getScreenHomeMoreDetailStudent() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/moreerror");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/moreerror",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
   Future<Response> getScreenHomeMorePDPA() async {
-    return await MyDio.createDioTest().post("/v1/api/modules/login/wording/PDPA");
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/login/wording/PDPA",
+        data: jsonEncode({
+          "token": globalKey
+        })
+    );
   }
 
 }

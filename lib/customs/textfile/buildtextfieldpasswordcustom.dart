@@ -37,7 +37,7 @@ class _buildTextFieldPasswordCustomState extends State<buildTextFieldPasswordCus
           obscureText: !_isVisible,
           decoration: InputDecoration(
               filled: true,
-              fillColor: TC_Textfile,
+              fillColor: tcTextfile,
               hintText: "" + widget.hint_label,
 
               suffixIcon: IconButton(
@@ -50,13 +50,13 @@ class _buildTextFieldPasswordCustomState extends State<buildTextFieldPasswordCus
                       ? Icon(Icons.visibility, color: Color(0xFF4F4F4F))
                       : Icon(Icons.visibility_off, color: Color(0xFF4F4F4F))),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: TC_Hint),
+                borderSide: BorderSide(color: tcHint),
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               contentPadding: EdgeInsets.all(10),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                borderSide: BorderSide(color: FC_Blue, width: 2.0),
+                borderSide: BorderSide(color: fcBlue, width: 2.0),
               )),
         ));
   }

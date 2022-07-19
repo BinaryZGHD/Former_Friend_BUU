@@ -1,11 +1,10 @@
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class customDatePicker extends StatefulWidget {
-  final String hint_label;
-  const customDatePicker({Key? key, required this.hint_label}) : super(key: key);
+  final String hintLabel;
+  const customDatePicker({Key? key, required this.hintLabel}) : super(key: key);
 
 
   @override
@@ -19,7 +18,7 @@ class _customDatePickerState extends State<customDatePicker> {
   @override
   Widget build(BuildContext context) {
     String dateformated = DateFormat('d-M-y').format(date);
-    String hint_label = widget.hint_label;
+    String hint_label = widget.hintLabel;
     // return InkWell(
     //   onTap: () async {
     //     DateTime? newDate = await showDatePicker(
@@ -63,7 +62,7 @@ class _customDatePickerState extends State<customDatePicker> {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(left:10, right: 10),
       decoration: BoxDecoration(
-        border: Border.all(color: TC_Hint),
+        border: Border.all(color: tcHint),
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Row(

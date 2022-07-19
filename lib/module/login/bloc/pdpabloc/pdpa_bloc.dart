@@ -1,10 +1,10 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
 import 'package:f2fbuu/module/login/repository/pdpa_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/cupertino.dart';
+
 
 
 
@@ -20,7 +20,7 @@ class PdpaBloc extends Bloc<PdpaEvent, PdpaState> with PDPARepository{
 
       try {
         emit(PDPALoading());
-        Response response = await getScreenPDPA(event.userLanguage);
+        Response response = await getScreenPDPA();
         emit(PDPAEndLoading());
         if (response.statusCode == 200) {
           ScreenPDPAResponse screenForgotPasswordResponse =

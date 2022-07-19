@@ -1,4 +1,4 @@
-import 'dart:io' show File, Platform;
+import 'dart:io' show File;
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/addressdatatab.dart';
@@ -11,46 +11,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
 
-class ProfileScreenStl extends StatelessWidget {
-  const ProfileScreenStl({Key? key}) : super(key: key);
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return BlocProvider(create: (context) => ProfileBloc(),
+    child: ProfilePage(),
+    );
   }
 }
 
 
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
+class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
   ApiProfileResponse? _apiProfileResponse;
   File? image;
-  ChooseAvatarSuccess? avatarimg;
-  late String global_key;
+  ChooseAvatarSuccess? avatarImage;
   @override
   void initState() {
     super.initState();
     print('เรียก initState');
-    _setglobal_key();
-
-  }
-  void _setglobal_key() async{
-    final prefs = await SharedPreferences.getInstance();
-    setState((){
-      global_key = prefs.getString("global_key")!;
-    });
-    context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'a'));
+    context.read<ProfileBloc>().add(ProfileApiEvent());
   }
   @override
   Widget build(BuildContext context) {
@@ -62,8 +54,8 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
         hideProgressDialog(context);
       }
       if (state is ProfileError) {
-        print(state.errormessage);
-        dialogOneLineOneBtn(context, state.errormessage + '\n ', "OK", onClickBtn: () {
+        print(state.errorMessage);
+        dialogOneLineOneBtn(context, state.errorMessage + '\n ', "OK", onClickBtn: () {
           Navigator.of(context).pop();
         });
       }
@@ -71,31 +63,31 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
         print("TEST general");
         print(state.responseGeneral.toJson());
         print("TEST general");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is EducationSubmitSuccessState) {
         print("TEST edu");
         print(state.responseEducation.toJson());
         print("TEST edu");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is AddressSubmitSuccessState) {
         print("TEST address");
         print(state.responseAddress.toJson());
         print("TEST address");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is ContactSubmitSuccessState) {
         print("TEST contact");
         print(state.responseContact.toJson());
         print("TEST contact");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is CareerSubmitSuccessState) {
         print("TEST Career");
         print(state.responseCareer.toJson());
         print("TEST Career");
-        context.read<ProfileBloc>().add(ProfileApiEvent(language: "TH",token: 'ฟ'));
+        context.read<ProfileBloc>().add(ProfileApiEvent());
       }
     },
       builder: (context, state) {
@@ -103,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> with ProgressDialog {
           _apiProfileResponse = state.response;
           return buildContent(context, _apiProfileResponse, image);
         } else if (state is ChooseAvatarSuccess) {
-          return buildContent(context, _apiProfileResponse, state.avatarimg);
+          return buildContent(context, _apiProfileResponse, state.avatarImage);
         }
         return Scaffold(body: Container());
       },

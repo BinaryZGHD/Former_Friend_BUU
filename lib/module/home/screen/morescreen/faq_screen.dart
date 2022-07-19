@@ -1,22 +1,20 @@
-import 'package:f2fbuu/customs/commingsoon_screen.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/screen_homemore_faq_response.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class faqScreen extends StatefulWidget {
+class FaqScreen extends StatefulWidget {
   final String title;
-  const faqScreen({Key? key, required this.title}) : super(key: key);
+  const FaqScreen({Key? key, required this.title}) : super(key: key);
 
   @override
-  State<faqScreen> createState() => _faqScreenState();
+  State<FaqScreen> createState() => _FaqScreenState();
 }
 
-class _faqScreenState extends State<faqScreen> with ProgressDialog {
+class _FaqScreenState extends State<FaqScreen> with ProgressDialog {
   ScreenHomeMoreFAQResponse? _screenHomeMoreFAQResponse;
-  final List<Item> _data = generateItems(1);
 
   @override
   Widget build(BuildContext context)
@@ -35,7 +33,9 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
           // dialogOneLineOneBtn(context, state.message + '\n \n ' + 'Do you want to continue?', "OK", onClickBtn: () {
           //   Navigator.of(context).pop();
           // });
-          print(state.message);
+          if (kDebugMode) {
+            print(state.message);
+          }
         }
 
       },
@@ -64,14 +64,14 @@ class _faqScreenState extends State<faqScreen> with ProgressDialog {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: 24,
             color: Colors.black,
           ),
         ),
-        title: Text(" FAQ ${_screenHomeMoreFAQResponse?.body?.faq?.length}",
-          style: TextStyle(
+        title: Text("${_screenHomeMoreFAQResponse?.body?.screeninfo?.titleafq}",
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 24,
           ),
@@ -151,8 +151,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
               title: Text("${widget.screenHomeMoreFAQResponse?.body?.faq?.elementAt(item.getIndex).question}",
-                style: TextStyle(
-                  fontSize: 18,
+                style: const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
