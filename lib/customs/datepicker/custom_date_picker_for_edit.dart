@@ -6,7 +6,8 @@ import 'package:intl/intl.dart';
 class customDatePickerForEdit extends StatefulWidget {
   final String hintLabel;
   final String dateValue;
-  const customDatePickerForEdit({Key? key, required this.hintLabel, required this.dateValue}) : super(key: key);
+  final Function(String result) callbackFromCustomDatePickerForEdit;
+  const customDatePickerForEdit({Key? key, required this.hintLabel, required this.dateValue, required this.callbackFromCustomDatePickerForEdit}) : super(key: key);
 
 
   @override
@@ -19,7 +20,6 @@ class _customDatePickerForEditState extends State<customDatePickerForEdit> {
   DateTime date = DateTime.now() ;
   @override
   Widget build(BuildContext context) {
-    // String dateformated = DateFormat('EEEE, d/M/y').format(date);
     String datevalue = widget.dateValue;
     String hint_label = widget.hintLabel;
     // return InkWell(
@@ -85,12 +85,28 @@ class _customDatePickerForEditState extends State<customDatePickerForEdit> {
           Text(datevalue,style: TextStyle(fontSize: 18),),
           IconButton(onPressed: ()async {
             DateTime? newDate = await showDatePicker(
+                builder: (context, child) {
+                  return Theme(data: Theme.of(context).copyWith(
+                    colorScheme: ColorScheme.light(
+                      primary: Color(0xfff9ccff),
+                      onPrimary: Colors.black,
+                      onSurface: Colors.black,
+                    ), textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(primary: Colors.black,
+                    ),
+                  ),
+                  ), child: child!,);},
+
                 context: context,
                 initialDate: date,
                 firstDate: DateTime(2000),
                 lastDate: DateTime(2100));
             if (newDate == null) return;
-            setState(() => date = newDate);
+            setState((){
+              date = newDate;
+              String dateFormated = DateFormat('d-M-y').format(date);
+              widget.callbackFromCustomDatePickerForEdit(dateFormated);
+            });
           }, icon: Icon(Icons.calendar_month))
         ],
       ),

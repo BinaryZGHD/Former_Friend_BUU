@@ -5,7 +5,10 @@ import 'package:intl/intl.dart';
 class customDatePicker extends StatefulWidget {
   final String hintLabel;
   final Function(String result) callbackFromCustomDatePicker;
-  const customDatePicker({Key? key, required this.hintLabel, required this.callbackFromCustomDatePicker}) : super(key: key);
+
+  const customDatePicker(
+      {Key? key, required this.hintLabel, required this.callbackFromCustomDatePicker})
+      : super(key: key);
 
   @override
   State<customDatePicker> createState() => _customDatePickerState();
@@ -13,6 +16,7 @@ class customDatePicker extends StatefulWidget {
 
 class _customDatePickerState extends State<customDatePicker> {
   DateTime date = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     String dateFormated = DateFormat('d-M-y').format(date);
@@ -34,6 +38,19 @@ class _customDatePickerState extends State<customDatePicker> {
           IconButton(
               onPressed: () async {
                 DateTime? newDate = await showDatePicker(
+
+                    builder: (context, child) {
+                      return Theme(data: Theme.of(context).copyWith(
+                        colorScheme: ColorScheme.light(
+                          primary: Color(0xfff9ccff),
+                          onPrimary: Colors.black,
+                          onSurface: Colors.black,
+                        ), textButtonTheme: TextButtonThemeData(
+                        style: TextButton.styleFrom(primary: Colors.black,
+                        ),
+                      ),
+                      ), child: child!,);},
+
                     context: context,
                     initialDate: date,
                     firstDate: DateTime(2000),
@@ -41,7 +58,8 @@ class _customDatePickerState extends State<customDatePicker> {
                 if (newDate == null) return;
                 setState(() {
                   date = newDate;
-                  widget.callbackFromCustomDatePicker(date.toString()??"-");
+                  String dateFormated = DateFormat('d-M-y').format(date);
+                  widget.callbackFromCustomDatePicker(dateFormated);
                 });
               },
               icon: Icon(Icons.calendar_month))

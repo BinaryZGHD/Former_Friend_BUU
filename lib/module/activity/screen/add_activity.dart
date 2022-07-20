@@ -15,6 +15,7 @@ import '../../../customs/textfile/buildtextfieldcustom.dart';
 
 class AddActivityScreen extends StatelessWidget {
   const AddActivityScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -27,6 +28,7 @@ class AddActivityScreen extends StatelessWidget {
 
 class AddActivityPage extends StatefulWidget {
   const AddActivityPage({Key? key}) : super(key: key);
+
   @override
   State<AddActivityPage> createState() => _AddActivityPageState();
 }
@@ -265,22 +267,27 @@ BuildAddActitivtyBody(
                 colorborder: tcButtonTextBoarder,
                 sizeborder: 10,
                 onPressed: () {
-                  context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(
-                      id: '',
-                      year: year.text,
-                      totalTime: totalTime.text,
-                      approver: approver.text,
-                      fDate: fDate.text,
-                      venue: venue.text,
-                      detail: detail.text,
-                      sDate: sDate.text,
-                      activityName: activityName.text,
-                      term: term.text));
-                  // dialogOneLineOneBtn(
-                  //     context, "state.message", "OK",
-                  //     onClickBtn: () {
-                  //       Navigator.of(context).pop();
-                  //     });
+                  if (year.text.isNotEmpty &&
+                      totalTime.text.isNotEmpty &&
+                      approver.text.isNotEmpty &&
+                      fDate.text.isNotEmpty &&
+                      venue.text.isNotEmpty &&
+                      detail.text.isNotEmpty &&
+                      sDate.text.isNotEmpty &&
+                      activityName.text.isNotEmpty &&
+                      term.text.isNotEmpty) {
+                    context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(
+                        id: "",
+                        year: year.text,
+                        totalTime: totalTime.text,
+                        approver: approver.text,
+                        fDate: fDate.text,
+                        venue: venue.text,
+                        detail: detail.text,
+                        sDate: sDate.text,
+                        activityName: activityName.text,
+                        term: term.text));
+                  }
                 },
               ),
             ),

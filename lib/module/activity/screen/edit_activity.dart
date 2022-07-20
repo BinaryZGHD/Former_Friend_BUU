@@ -15,6 +15,7 @@ import '../../../customs/textfile/buildtextfieldcustom.dart';
 
 class EditActivityScreen extends StatelessWidget {
   final data;
+
   const EditActivityScreen({Key? key, required this.data}) : super(key: key);
 
   @override
@@ -31,6 +32,7 @@ class EditActivityScreen extends StatelessWidget {
 
 class EditActivityPage extends StatefulWidget {
   final data;
+
   const EditActivityPage({Key? key, required this.data}) : super(key: key);
 
   @override
@@ -48,6 +50,7 @@ class _EditActivityPageState extends State<EditActivityPage>
   TextEditingController venue = TextEditingController();
   TextEditingController approver = TextEditingController();
   TextEditingController detail = TextEditingController();
+
   // String activityNameValue = " ";
   // String yearValue = " ";
   // String termValue = " ";
@@ -102,7 +105,7 @@ class _EditActivityPageState extends State<EditActivityPage>
         String venueValue = "${widget.data.venue}";
         String approverValue = "${widget.data.approver}";
         String detailValue = "${widget.data.detail}";
-
+        String idValue = "${widget.data.id}";
         return BuildEditActivityBody(
             context,
             _addActivityScreenApi,
@@ -124,9 +127,11 @@ class _EditActivityPageState extends State<EditActivityPage>
             venueValue,
             approverValue,
             detailValue,
+            idValue,
             yearList,
             termList,
-            approverList);
+            approverList
+            );
       } else {
         return Container();
       }
@@ -154,7 +159,11 @@ BuildEditActivityBody(
   String timeValue,
   String venueValue,
   String approverValue,
-  String detailValue, List<String>? yearList, List<String>? termList, List<String>? approverList,
+  String detailValue,
+  String idValue,
+  List<String>? yearList,
+  List<String>? termList,
+  List<String>? approverList,
 ) {
   return Scaffold(
     appBar: AppBar(
@@ -205,22 +214,40 @@ BuildEditActivityBody(
                       dropdownList: yearList ?? <String>[],
                       hint: 'Year',
                       width: MediaQuery.of(context).size.width * 0.4,
-                      dropdownValue: yearValue),
+                      dropdownValue: yearValue,
+                  callbackFromCustomDropdownForEdit: (String result){
+                        year.text = result;
+                  },),
                   customDropdownForEdit(
                       dropdownList: termList ?? <String>[],
                       hint: 'Term',
                       width: MediaQuery.of(context).size.width * 0.4,
-                      dropdownValue: termValue),
+                      dropdownValue: termValue,
+                      callbackFromCustomDropdownForEdit: (String result){
+                        term.text = result;
+                      }),
                 ],
               ),
             ),
             customDatePickerForEdit(
               hintLabel: 'Start date',
               dateValue: sDateValue,
+              callbackFromCustomDatePickerForEdit: (String result) {
+                sDate.text = result;
+                if (kDebugMode) {
+                  print(sDate.text);
+                }
+              },
             ),
             customDatePickerForEdit(
               hintLabel: 'Finish date',
               dateValue: fDateValue,
+              callbackFromCustomDatePickerForEdit: (String result) {
+                fDate.text = result;
+                if (kDebugMode) {
+                  print(fDate.text);
+                }
+              },
             ),
             BuildTextFieldCustom(
               initialvalue: timeValue,
@@ -248,10 +275,17 @@ BuildEditActivityBody(
               textInputType: TextInputType.text,
             ),
             customDropdownForEdit(
-                width: MediaQuery.of(context).size.width,
-                dropdownList: approverList ?? <String>[],
-                hint: 'Approver',
-                dropdownValue: approverValue),
+              width: MediaQuery.of(context).size.width,
+              dropdownList: approverList ?? <String>[],
+              hint: 'Approver',
+              dropdownValue: approverValue,
+              callbackFromCustomDropdownForEdit: (String result) {
+                approver.text = result;
+                if (kDebugMode) {
+                  print(approver.text);
+                }
+              },
+            ),
             BuildTextformfieldUnlimitCustom(
               initialvalue: detailValue,
               textEditingController: detail,
@@ -279,8 +313,19 @@ BuildEditActivityBody(
                 colorborder: tcButtonTextBoarder,
                 sizeborder: 10,
                 onPressed: () {
+                  if(
+                      year.text.isNotEmpty&&
+                      totalTime.text.isNotEmpty&&
+                      approver.text.isNotEmpty&&
+                      fDate.text.isNotEmpty&&
+                      venue.text.isNotEmpty&&
+                      detail.text.isNotEmpty&&
+                      sDate.text.isNotEmpty&&
+                      activityName.text.isNotEmpty&&
+                      term.text.isNotEmpty
+                  ){
                   context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(
-                      id: '',
+                      id: idValue,
                       year: year.text,
                       totalTime: totalTime.text,
                       approver: approver.text,
@@ -290,6 +335,12 @@ BuildEditActivityBody(
                       sDate: sDate.text,
                       activityName: activityName.text,
                       term: term.text));
+                  }else{
+                    dialogOneLineOneBtn(context, 'Please fill all box', "OK",
+                        onClickBtn: () {
+                          Navigator.of(context).pop();
+                        });
+                  }
                 },
               ),
             ),

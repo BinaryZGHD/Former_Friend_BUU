@@ -8,12 +8,13 @@ class customDropdownForEdit extends StatefulWidget {
   final List<String> dropdownList;
   final double width;
   final dropdownValue;
+  final Function(String result) callbackFromCustomDropdownForEdit;
   const customDropdownForEdit(
       {Key? key,
         required this.hint,
         required this.dropdownList,
         required this.width,
-        this.dropdownValue})
+        this.dropdownValue, required this.callbackFromCustomDropdownForEdit})
       : super(key: key);
 
   @override
@@ -101,7 +102,7 @@ class _customDropdownForEditState extends State<customDropdownForEdit> {
           onSelected: (value) {
             setState(() {
               dropdownValue = value;
-              // widget.callbackFromAttentionDataTab(userattentionvalue??"-");
+              widget.callbackFromCustomDropdownForEdit(dropdownValue??"-");
             });
           },
         ),
