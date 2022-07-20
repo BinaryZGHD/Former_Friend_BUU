@@ -336,7 +336,7 @@ BuildEditActivityBody(
                       activityName: activityName.text,
                       term: term.text));
                   }else{
-                    dialogOneLineOneBtn(context, 'Please fill all box', "OK",
+                    dialogOneLineOneBtn(context, 'Please fill in all information', "OK",
                         onClickBtn: () {
                           Navigator.of(context).pop();
                         });

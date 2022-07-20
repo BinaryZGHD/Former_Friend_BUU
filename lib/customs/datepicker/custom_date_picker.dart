@@ -25,7 +25,7 @@ class _customDatePickerState extends State<customDatePicker> {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(left: 10, right: 10),
       decoration: BoxDecoration(
-        border: Border.all(color: tcBlack),
+        border: Border.all(color: tcHint),
         borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Row(
