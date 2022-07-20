@@ -13,7 +13,7 @@ part 'activity_state.dart';
 class ActivityBloc extends Bloc<ActivityEvent, ActivityState>
     with ActivityRepository {
   ActivityBloc() : super(ActivityInitial()) {
-    on<AddActivityScreenInfoEvent>((event, emit) async {
+    on<AddEditActivityScreenInfoEvent>((event, emit) async {
       try {
         emit(ActivityLoading());
         Response response = await getScreenActivity();
@@ -79,7 +79,7 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>
             DeleteResponse deleteResponse =
                 DeleteResponse.fromJson(responseDeleteSubmit.data);
 
-            print("deleteResponse.head?.status + ${deleteResponse.head?.status}");
+            print("deleteResponse.head?.status is ${deleteResponse.head?.status}");
 
             if (deleteResponse.head?.status == 200) {
               emit(SubmitDeleteActivityState(responseDelete: deleteResponse));

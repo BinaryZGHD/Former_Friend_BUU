@@ -287,7 +287,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                       child: ButtonCustom(
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return editActivity(data: data);
+                            return EditActivityPage(data: data);
                           }));
                         },
                         label: '${title.buttonleft}',
