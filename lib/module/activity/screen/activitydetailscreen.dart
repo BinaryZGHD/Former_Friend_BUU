@@ -4,6 +4,7 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
+import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class ActivityDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => ActivityBloc(),
+    return BlocProvider(create: (context) => ActivityBloc()..add(AddEditActivityScreenInfoEvent()),
       child: ActivityDetailPage(title: title,data: data),
     );
   }
@@ -47,7 +48,6 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
     data = widget.data;
     print('เรียก initState');
     // getActivityDetailApi();
-
     super.initState();
 
   }
@@ -68,8 +68,8 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
            }
          }
          if (state is SubmitDeleteActivityState) {
+           // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
            Navigator.pop(context);
-
          }
        },
      builder: (context, state){
@@ -310,7 +310,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                         sizeborder: 10,
                         label: '${title.buttonright}',
                         onPressed: () {
-                          dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                          dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Please make sure you want to delete', 'Confirm', 'Cancel',
                               onClickBtn: (String result) {
                                 Navigator.of(context).pop();
                                 switch (result) {
