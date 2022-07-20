@@ -1,3 +1,4 @@
+import 'package:custom_timer/src/custom_timer_controller.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
@@ -6,11 +7,12 @@ import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
 import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
+import 'package:f2fbuu/module/login/widget/count_time_otp_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? screenforgotpasswordResponse,
-    {required String valueEmailForgotpassword, required String valueUserIDForgotpassword}) {
+    {required String valueEmailForgotpassword, required String valueUserIDForgotpassword, required CustomTimerController controller}) {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   TextEditingController code = TextEditingController();
@@ -100,6 +102,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                 hint_label: "${screenforgotpasswordResponse?.body?.screeninfo?.edtcpass}",
                 textInputType: TextInputType.text,
               ),
+
               BuildTextFieldCustom(
                 maxLengthOTP: 6,
                 textEditingController: code,
@@ -109,22 +112,18 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                 hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.otp}",
                 textInputType: TextInputType.number,
               ),
-              Center(
-                child: TextSentOTPCustom(
-                  textlabel: "${screenforgotpasswordResponse?.body?.screeninfo?.btnsentotpagain}",
-                  textcolor: tcOTPSent,
-                  sizetext: sizeTextSmall16,
-                  onTap: () {
-                    context.read<ForgorPasswordBloc>().add(ReSentOTPSetNewForgotPasswordEvent(
-                        userID: valueUserIDForgotpassword, email: valueEmailForgotpassword));
-                  },
-                  // onTap: () {
-                  //   dialogOneLineOneBtn(context, errregidter2 + '\n \n ' + 'Do you want to continue?', "OK",
-                  //       onClickBtn: () {
-                  //     Navigator.of(context).pop();
-                  //   });
-                  // },
-                ),
+              CountTimeOTPWidget(
+                   SendOTP : TextSendOTPCustom(
+                     textlabel: "${screenforgotpasswordResponse?.body?.screeninfo?.btnsentotpagain}",
+                     textcolor: tcOTPSent,
+                     sizetext: sizeTextSmall16,
+                     onTap: () {
+                       context.read<ForgorPasswordBloc>().add(ReSentOTPSetNewForgotPasswordEvent(
+                           userID: valueUserIDForgotpassword, email: valueEmailForgotpassword));
+                     },
+                   ),
+                    controller: controller,
+
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,

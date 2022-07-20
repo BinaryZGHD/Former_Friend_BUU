@@ -1,3 +1,4 @@
+import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SetNewForgotPasswordScreen extends StatefulWidget {
+
   final String valueEmailForgotpassword;
   final String valueUserIDForgotpassword;
   const SetNewForgotPasswordScreen(
@@ -20,6 +22,7 @@ class SetNewForgotPasswordScreen extends StatefulWidget {
 }
 
 class _SetNewForgotPasswordScreenState extends State<SetNewForgotPasswordScreen> {
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -45,6 +48,7 @@ class SetNewForgotPasswordPage extends StatefulWidget with ProgressDialog {
 }
 
 class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> with ProgressDialog {
+  final CustomTimerController _controller = CustomTimerController();
   ScreenForgotPasswordResponse? _screenSetNewforgotpasswordResponse;
   ReSendOtpForgotPasswordResponse? _reSendOtpForgotPasswordResponse;
   @override
@@ -52,7 +56,12 @@ class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> wit
     super.initState();
     context.read<ForgorPasswordBloc>().add(ScreenInfoSetNewForgotPasswordEvent());
   }
-
+  resetTimer() {
+    _controller.reset();
+  }
+  startTimer() {
+    _controller.start();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgorPasswordBloc, ForgorPasswordState>(
@@ -61,12 +70,6 @@ class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> wit
           showProgressDialog(context);
         }
         if (state is SetNewForgotPasswordEndLoading) {
-          hideProgressDialog(context);
-        }
-        if (state is ReSentOTPSetNewForgotPasswordLoading) {
-          showProgressDialog(context);
-        }
-        if (state is ReSentOTPSetNewForgotPasswordEndLoading) {
           hideProgressDialog(context);
         }
         if (state is SetNewForgotPasswordError) {
@@ -82,7 +85,9 @@ class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> wit
           });
         }
         if (state is ReSentOTPSetNewForgotPasswordSuccessState) {
+          resetTimer();
           _reSendOtpForgotPasswordResponse = state.responseReSendOtpForgotPasswordResponse;
+          startTimer();
           dialogOneLineOneBtn(context, "${_reSendOtpForgotPasswordResponse?.head?.message}" '\n ', "OK",
               onClickBtn: () {
             Navigator.of(context).pop();
@@ -94,10 +99,12 @@ class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> wit
       },
       builder: (context, state) {
         if (state is ScreenInfoSetNewForgotPasswordSuccessState) {
+          startTimer();
           _screenSetNewforgotpasswordResponse = state.responseSetNewForgotPassword;
           return setnewForgotPasswordPageWidget(context, _screenSetNewforgotpasswordResponse,
               valueEmailForgotpassword: widget.valueEmailForgotpassword,
-              valueUserIDForgotpassword: widget.valueUserIDForgotpassword);
+              valueUserIDForgotpassword: widget.valueUserIDForgotpassword,
+              controller:_controller);
         } else {
           return Scaffold(
               body: Container(

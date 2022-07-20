@@ -33,8 +33,6 @@ class SetNewForgotPasswordError extends ForgorPasswordState{
   String message;
   SetNewForgotPasswordError({required this.message});}
 
-class ReSentOTPSetNewForgotPasswordLoading extends ForgorPasswordState{}
-class ReSentOTPSetNewForgotPasswordEndLoading extends ForgorPasswordState{}
 class ReSentOTPSetNewForgotPasswordError extends ForgorPasswordState{
   String message;
   ReSentOTPSetNewForgotPasswordError({required this.message});}

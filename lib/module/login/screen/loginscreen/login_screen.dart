@@ -19,7 +19,8 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => LoginBloc()..add(LoginScreenInfoEvent(userLanguage: "TH")),
-        child: const GenerativeWidget());
+        // child: const GenerativeWidget());
+        child: const LoginPage());
   }
 }
 

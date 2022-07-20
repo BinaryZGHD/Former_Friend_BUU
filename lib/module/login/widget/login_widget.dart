@@ -24,8 +24,8 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
       return false;
     },
     child: Scaffold(
-      backgroundColor: Colors.transparent,
-      // backgroundColor: Colors.white,
+      // backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SizedBox(
             height: MediaQuery.of(context).size.height,

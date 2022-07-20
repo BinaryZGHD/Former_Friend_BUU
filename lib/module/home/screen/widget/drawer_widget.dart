@@ -130,7 +130,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
           ),
           GestureDetector(
             onTap: () {
-              context.read<HomeBloc>().add(OnClickDeleteAccountEvent());
+              context.read<HomeBloc>().add(OnClickDeleteAccountHomeEvent());
             },
             child: Container(
               width: double.infinity,
@@ -167,7 +167,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
             margin: const EdgeInsets.only(left: 15, right: 15),
             child: buttonIconsText(
               onPressed: () {
-                context.read<HomeBloc>().add(OnClickHomeLogoutEvent());
+                context.read<HomeBloc>().add(OnClickLogoutHomeEvent());
               },
               label: "  ${screenhomeResponse?.body?.screenInfo?.screenhome?.btnlogout}  ",
               colortext: bcButtonLogout,

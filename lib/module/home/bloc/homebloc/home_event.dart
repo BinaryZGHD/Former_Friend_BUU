@@ -4,16 +4,16 @@ part of 'home_bloc.dart';
 abstract class HomeEvent {}
 class HomeScreenInfoEvent extends HomeEvent{
 }
-class OnClickHomeLanguageEvent extends HomeEvent{
+class OnClickChangeLanguageHomeEvent extends HomeEvent{
   final String userLanguage;
-  OnClickHomeLanguageEvent({ required this.userLanguage});
+  OnClickChangeLanguageHomeEvent({ required this.userLanguage});
 }
-class OnClickHomeLogoutEvent extends HomeEvent{
+class OnClickLogoutHomeEvent extends HomeEvent{
 }
-class OnClickConfirmHomeLogoutEvent extends HomeEvent{
+class OnClickConfirmLogoutHomeEvent extends HomeEvent{
 }
 
-class OnClickDeleteAccountEvent extends HomeEvent{
+class OnClickDeleteAccountHomeEvent extends HomeEvent{
 }
-class OnClickConfirmDeleteAccountEvent extends HomeEvent{
+class OnClickConfirmDeleteAccountHomeEvent extends HomeEvent{
 }

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 
 
-class TextSentOTPCustom extends StatelessWidget {
+class TextSendOTPCustom extends StatelessWidget {
   final String textlabel;
   final Color? textcolor;
   final double sizetext;
   final VoidCallback? onTap;
-  const TextSentOTPCustom(
+  const TextSendOTPCustom(
       {Key? key, required this.textlabel, required this.textcolor, this.onTap, required this.sizetext,})
       : super(key: key);
 

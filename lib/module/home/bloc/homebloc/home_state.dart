@@ -26,11 +26,8 @@ class ScreenInfoHomeSuccessState extends HomeState{
   ScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity, required this.responseNoActivity});
 }
 class OnClickScreenInfoHomeSuccessState extends HomeState{
-  ScreenHomeResponse  responseScreenInfoHome;
-  ApiProfileResponse responseProfile;
-  ScreenStatusActivityResponse responseActivity;
-  AlertNoActivityResponse  responseNoActivity;
-  OnClickScreenInfoHomeSuccessState({required this.responseScreenInfoHome, required this.responseProfile, required this.responseActivity, required this.responseNoActivity});
+  String userLanguage;
+  OnClickScreenInfoHomeSuccessState({required this.userLanguage});
 }
 //
 // class HomeActivityStatus extends HomeState{

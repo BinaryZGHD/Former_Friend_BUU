@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/home/model/response/alert_delete_account_response.dart';
 import 'package:f2fbuu/module/home/model/response/alert_logout_response.dart';
 import 'package:f2fbuu/module/home/model/response/alert_noactivity_respone.dart';
+import 'package:f2fbuu/module/home/model/response/change_language_response.dart';
 import 'package:f2fbuu/module/home/model/response/logout_home_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc/bloc.dart';
@@ -49,41 +50,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
       }
     });
 
-    on<OnClickHomeLanguageEvent>((event, emit) async {
+    on<OnClickChangeLanguageHomeEvent>((event, emit) async {
       try {
         emit(HomeLoading());
-        Response responseHome = await getScreenHome();
-        Response responseProfile = await getApiProfile();
-        Response responseActivity = await getApiActivity();
-        Response responseAlertNoActivityResponse = await getApiNoActivity();
+        Response responseChangeLanguage = await getChangeLanguageHome(event.userLanguage);
         emit(HomeEndLoading());
-        if (responseHome.statusCode == 200 && responseProfile.statusCode == 200 && responseActivity.statusCode == 200) {
-          ScreenHomeResponse screenHomeResponse = ScreenHomeResponse.fromJson(responseHome.data);
-          ApiProfileResponse apiProfileResponse = ApiProfileResponse.fromJson(responseProfile.data);
-          ScreenStatusActivityResponse apiStatusActivityResponse =
-              ScreenStatusActivityResponse.fromJson(responseActivity.data);
-          AlertNoActivityResponse alertNoActivityResponse = AlertNoActivityResponse.fromJson(responseAlertNoActivityResponse.data);
-
-          if (screenHomeResponse.head?.status == 200 &&
-              apiProfileResponse.head?.status == 200 &&
-              apiStatusActivityResponse.head?.status == "200") {
-            emit(OnClickScreenInfoHomeSuccessState(
-                responseScreenInfoHome: screenHomeResponse,
-                responseProfile: apiProfileResponse,
-                responseActivity: apiStatusActivityResponse,
-                responseNoActivity: alertNoActivityResponse));
+        if (responseChangeLanguage.statusCode == 200 ) {
+          print( responseChangeLanguage.statusCode);
+          ChangeLanguageResponse changeLanguageResponse = ChangeLanguageResponse.fromJson(responseChangeLanguage.data);
+          if (changeLanguageResponse.head?.status == 200) {
+            print(changeLanguageResponse.head?.status);
+            emit(OnClickScreenInfoHomeSuccessState(userLanguage:event.userLanguage));
           } else {
-            emit(HomeError(message: screenHomeResponse.head?.message ?? ""));
+            emit(HomeError(message: changeLanguageResponse.head?.message ?? ""));
           }
         } else {
-          emit(HomeError(message: responseHome.statusMessage ?? ""));
+          emit(HomeError(message: responseChangeLanguage.statusMessage ?? ""));
         }
       } on DioError catch (e) {
         emit(HomeError(message: e.response?.statusMessage ?? ""));
       }
     });
 
-    on<OnClickHomeLogoutEvent>((event, emit) async {
+    on<OnClickLogoutHomeEvent>((event, emit) async {
       try {
         emit(HomeAlertLoading());
         Response responseAlertLogout = await getAlertLogout();
@@ -103,7 +92,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
       }
     });
 
-    on<OnClickConfirmHomeLogoutEvent>((event, emit) async {
+    on<OnClickConfirmLogoutHomeEvent>((event, emit) async {
       try {
         emit(HomeLoading());
         Response responseLogoutHome = await getLogoutHome();
@@ -123,7 +112,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
       }
     });
 
-    on<OnClickDeleteAccountEvent>((event, emit) async {
+    on<OnClickDeleteAccountHomeEvent>((event, emit) async {
       try {
         emit(HomeAlertLoading());
         Response responseAlertLogout = await getAlertDeleteAccount();
@@ -144,7 +133,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeRepository {
       }
     });
 
-    on<OnClickConfirmDeleteAccountEvent>((event, emit) async {
+    on<OnClickConfirmDeleteAccountHomeEvent>((event, emit) async {
       try {
         emit(HomeLoading());
         Response responseLogoutHome = await getLogoutHome();

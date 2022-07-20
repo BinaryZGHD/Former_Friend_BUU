@@ -8,6 +8,7 @@ import 'package:f2fbuu/module/home/model/response/alert_noactivity_respone.dart'
 import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/screen/widget/home_widget.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:f2fbuu/utils/set_global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,6 +46,8 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
   AlertLogoutHomeResponse? _logoutHomeResponse;
   AlertDeleteAccountResponse? _deleteAccountResponse;
   AlertNoActivityResponse? _noActivityResponse;
+
+
   late SharedPreferences prefs;
   late String keytoken;
   late String _userLanguage;
@@ -70,16 +73,20 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
   }
 
   void _toggleLanguageView() async {
-    prefs = await SharedPreferences.getInstance();
+
+    _isHidden = !_isHidden;
+    _isHidden ? _userLanguage = "TH" : _userLanguage = "EN";
 
     setState(
       () {
-        _isHidden = !_isHidden;
-        _isHidden ? _userLanguage = "TH" : _userLanguage = "EN";
-        context.read<HomeBloc>().add(OnClickHomeLanguageEvent(userLanguage: _userLanguage));
+        context.read<HomeBloc>().add(OnClickChangeLanguageHomeEvent(userLanguage: _userLanguage));
       },
     );
-    await prefs.setString('userLanguage', _userLanguage);
+
+  }
+  void _changeLanguageSuccess(String userLanguage) async {
+    setGlobalLanguage(userLanguage);
+    context.read<HomeBloc>().add(HomeScreenInfoEvent());
   }
 
   void cleanDelete() async {
@@ -138,7 +145,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                 }
               case 'OK':
                 {
-                  context.read<HomeBloc>().add(OnClickConfirmHomeLogoutEvent());
+                  context.read<HomeBloc>().add(OnClickConfirmDeleteAccountHomeEvent());
                 }
             }
           });
@@ -157,7 +164,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
                 }
               case 'OK':
                 {
-                  context.read<HomeBloc>().add(OnClickConfirmHomeLogoutEvent());
+                  context.read<HomeBloc>().add(OnClickConfirmLogoutHomeEvent());
                 }
             }
           });
@@ -168,22 +175,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         if (state is OnClickConfirmDeleteAccountState) {
           cleanDelete();
         }
-        if (state is OnClickScreenInfoHomeSuccessState ) {
-          _screenhomeResponse = state.responseScreenInfoHome;
-          _screenprofileResponse = state.responseProfile;
-          _screenstatusActivityResponse = state.responseActivity;
-          _noActivityResponse = state.responseNoActivity;
-          buildContentHomeScreen(
-              context,
-              _toggleLanguageView,
-              _isHidden,
-              _screenhomeResponse,
-              _screenprofileResponse,
-              _userLanguage,
-              _screenstatusActivityResponse,
-              _noActivityResponse
-          );
-        }
+
       },
       builder: (context, state) {
         if (state is ScreenInfoHomeSuccessState) {
@@ -202,6 +194,9 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
               _noActivityResponse
           );
         }
+        else if (state is OnClickScreenInfoHomeSuccessState ) {
+          _changeLanguageSuccess(state.userLanguage);
+        }
 
         return Scaffold(
             body: Container(
@@ -209,7 +204,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         ));
       },
       buildWhen: (context, state) {
-        return state is ScreenInfoHomeSuccessState;
+        return state is ScreenInfoHomeSuccessState || state is OnClickScreenInfoHomeSuccessState;
       },
     );
   }

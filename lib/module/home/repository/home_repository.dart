@@ -46,6 +46,19 @@ class HomeRepository  {
     );
 
   }
+  Future<Response> getChangeLanguageHome( String userLanguage ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    String? userLanguage = prefs.getString('userLanguage');
+    return await MyDio.createDioTest().post("/response"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey,
+          "Language": userLanguage
+        })
+    );
+
+  }
   Future<Response> getAlertLogout() async {
     final prefs = await SharedPreferences.getInstance();
     String? globalKey = prefs.getString('globalKey');

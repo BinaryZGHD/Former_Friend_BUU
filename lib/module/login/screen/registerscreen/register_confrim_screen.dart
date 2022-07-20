@@ -1,3 +1,4 @@
+import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
@@ -38,8 +39,14 @@ class RegisterConfirmPage extends StatefulWidget {
 }
 
 class _RegisterConfirmPageState extends State<RegisterConfirmPage> with ProgressDialog {
+  final CustomTimerController _controller = CustomTimerController();
   late String userLanguage;
-
+  resetTimer() {
+    _controller.reset();
+  }
+  startTimer() {
+    _controller.start();
+  }
   @override
   void initState() {
     super.initState();
@@ -71,8 +78,9 @@ class _RegisterConfirmPageState extends State<RegisterConfirmPage> with Progress
           }
         }
         if (state is ReSentOTPConfirmRegisterState) {
+          resetTimer();
           _reSendOtpConfirmRegisterResponse = state.responseReSentOTPConfirmRegistern;
-          // show dialog error
+          startTimer();
           dialogOneLineOneBtn(context, "${_reSendOtpConfirmRegisterResponse?.head?.message}" '\n ', "OK",
               onClickBtn: () {
             Navigator.of(context).pop();
@@ -88,9 +96,15 @@ class _RegisterConfirmPageState extends State<RegisterConfirmPage> with Progress
       },
       builder: (context, state) {
         if (state is ScreenInfoConfirmRegisterSuccessState) {
+          startTimer();
           _screenRegisterResponse = state.responseConfirmRegisterScreen;
-          return confirmRegisterPageWidget(context, _screenRegisterResponse, confirmOTPController,
-              valueUserRegister: widget.registerValueUserID, valueEmailRegister: widget.registerValueEmail);
+          return confirmRegisterPageWidget(context,
+              _screenRegisterResponse,
+              confirmOTPController,
+              valueUserRegister: widget.registerValueUserID,
+              valueEmailRegister: widget.registerValueEmail,
+              controller:_controller
+          );
         }
         return Scaffold(
             body: Container(
