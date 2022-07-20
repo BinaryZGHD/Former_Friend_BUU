@@ -24,7 +24,7 @@ buildListActivity(BuildContext context,
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return ActivityDetailPage(
+                      return ActivityDetailScreen(
                           title: screenstatusActivityResponse?.body?.screeninfo,
                           data: screenstatusActivityResponse
                               ?.body?.activity?[index]);
