@@ -1,9 +1,9 @@
 part of 'activity_bloc.dart';
 
-@immutable
+// @immutable
 abstract class ActivityEvent {}
 
-class AddActivityScreenInfoEvent extends ActivityEvent {}
+class AddEditActivityScreenInfoEvent extends ActivityEvent {}
 class SubmitAddEditActivityEvent extends ActivityEvent {
   String id;
   String activityName;

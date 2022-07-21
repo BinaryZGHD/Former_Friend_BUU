@@ -1,6 +1,6 @@
 part of 'profile_bloc.dart';
 
-@immutable
+// @immutable
 abstract class ProfileEvent {}
 
 class ChangeAvatarRequest extends ProfileEvent {}

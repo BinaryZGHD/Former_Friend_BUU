@@ -20,6 +20,7 @@ class BuildTextformfieldUnlimitCustom extends StatelessWidget {
         margin: const EdgeInsets.all(12),
         // decoration: BoxDecoration(color: Colors.red[50], borderRadius: BorderRadius.circular(16)),
         child: TextFormField(
+
           style: const TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
           ),
           keyboardType: textInputType,
@@ -28,7 +29,6 @@ class BuildTextformfieldUnlimitCustom extends StatelessWidget {
           initialValue: initialvalue,
           // decoration: InputDecoration.collapsed(hintText: hint_label), style: TextStyle(fontSize: 18)
           onChanged: onChanged,
-
           // {
           //   onChangedtest!(value);
           //   print(hint_label + "    :" + value);

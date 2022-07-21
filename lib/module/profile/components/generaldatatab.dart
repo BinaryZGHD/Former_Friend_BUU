@@ -1,4 +1,5 @@
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -6,7 +7,7 @@ import '../model/response/api_profile.dart';
 
 class ProfileGeneralDataHead extends StatefulWidget {
   final ApiProfileResponse? dataFromAPI;
-  ProfileGeneralDataHead({Key? key, required this.dataFromAPI})
+  const ProfileGeneralDataHead({Key? key, required this.dataFromAPI})
       : super(key: key);
   @override
   State<ProfileGeneralDataHead> createState() => _ProfileGeneralDataHeadState();
@@ -23,11 +24,11 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
     String nicknameValue = "";
     if (isUnpressed == true){
       sentGeneralData = true;
-    };
+    }
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 top: BorderSide(width: 1, color: Colors.black12),
                 bottom: BorderSide(width: 1, color: Colors.transparent)),
@@ -38,7 +39,7 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
               children: [
                 Text(
                   '${dataFromAPI?.body?.screeninfo?.subtitlegeninfor}',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
                   child: Container(
@@ -49,13 +50,13 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                           isUnpressed = !isUnpressed;
                           if(isUnpressed == true){
                             context.read<ProfileBloc>().add(GeneralSubmitEvent(nickname: nicknameValue, name: nameValueController.text, surname: surnameValue));
-                          };
+                          }
                         });
                       },
                       child: isUnpressed
                           // ? Text('บันทึก', style: TextStyle(color: Colors.green))
-                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก',
+                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          : const Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
                       // : Text('แก้ไข', style: TextStyle(color: Colors.red)),
                     ),
@@ -72,7 +73,9 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
           textEditingController: nameValueController,
           onChange: (value) {
             nameValueController.text = value;
-            print(nameValueController.text);
+            if (kDebugMode) {
+              print(nameValueController.text);
+            }
           },
         ),
         ProfileGeneralDataTab(
@@ -81,7 +84,9 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
           textRight: '${dataFromAPI?.body?.profileGeneralInfo?.surname}',
           onChange: (value) {
             surnameValue = value;
-            print(surnameValue);
+            if (kDebugMode) {
+              print(surnameValue);
+            }
           },
         ),
         ProfileGeneralDataTab(
@@ -90,7 +95,9 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             textRight: '${dataFromAPI?.body?.profileGeneralInfo?.nickname}',
             onChange: (value) {
               nicknameValue = value;
-              print(nicknameValue);
+              if (kDebugMode) {
+                print(nicknameValue);
+              }
             }),
         ProfileGeneralDataReadonlyTab(
             isUnpressed: isUnpressed,
@@ -112,7 +119,7 @@ class ProfileGeneralDataTab extends StatefulWidget {
   final bool isUnpressed;
   final ValueChanged<String>? onChange;
   final TextEditingController? textEditingController;
-  ProfileGeneralDataTab(
+  const ProfileGeneralDataTab(
       {Key? key,
       required this.textLeft,
       required this.textRight,
@@ -131,7 +138,7 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
     String textRight = widget.textRight;
     bool isUnpressed = widget.isUnpressed;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -141,23 +148,21 @@ class _ProfileGeneralDataTabState extends State<ProfileGeneralDataTab> {
         child: Row(
           children: [
             Text(
-              textLeft + ' ',
-              style: TextStyle(fontSize: 18),
+              '$textLeft ',
+              style: const TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  autofocus: false,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  readOnly: isUnpressed,
-                  // readOnly: true,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  initialValue: textRight,
-                  onChanged: widget.onChange,
+              child: TextFormField(
+                autofocus: false,
+                style: const TextStyle(fontSize: 18, color: Colors.black),
+                readOnly: isUnpressed,
+                // readOnly: true,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
+                initialValue: textRight,
+                onChanged: widget.onChange,
               ),
             ),
           ],
@@ -173,7 +178,7 @@ class ProfileGeneralDataReadonlyTab extends StatefulWidget {
   final String textRight;
   final bool isUnpressed;
 
-  ProfileGeneralDataReadonlyTab(
+  const ProfileGeneralDataReadonlyTab(
       {Key? key,
       required this.textLeft,
       required this.textRight,
@@ -194,7 +199,7 @@ class _ProfileGeneralDataReadonlyTabState
     return Container(
       decoration: BoxDecoration(
         color: HexColor('#f5f5f5'),
-        border: Border(
+        border: const Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
       ),
@@ -203,22 +208,19 @@ class _ProfileGeneralDataReadonlyTabState
         child: Row(
           children: [
             Text(
-              textLeft + ' ',
-              style: TextStyle(fontSize: 18),
+              '$textLeft ',
+              style: const TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  autofocus: false,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  // readOnly: ispressed,
-                  readOnly: true,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  initialValue: textRight,
+              child: TextFormField(
+                autofocus: false,
+                style: const TextStyle(fontSize: 18, color: Colors.black),
+                readOnly: true,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
+                initialValue: textRight,
               ),
             ),
           ],

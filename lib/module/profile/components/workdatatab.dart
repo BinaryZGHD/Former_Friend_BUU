@@ -1,7 +1,6 @@
-
-import 'package:f2fbuu/module/profile/components/careerdatatab.dart';
 import 'package:f2fbuu/module/profile/components/hiddencareerdatatab.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCareerDropdownTab extends StatefulWidget {
@@ -45,33 +44,33 @@ class ProfileCareerDropdownTab extends StatefulWidget {
 }
 
 class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
-  late String textleft;
-  late String? itemvalue;
+  late String textLeft;
+  late String? itemValue;
   bool isJobInStatusVisible = false;
 
 
   @override
   void initState() {
-    textleft = widget.textLeft;
-    itemvalue = widget.userStatusValue;
+    textLeft = widget.textLeft;
+    itemValue = widget.userStatusValue;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isunpressed = widget.isUnpressed;
-    String subtitleworkplace = widget.subtitleWorkplace;
-    String userworkplace = widget.userWorkplace;
-    String usercareer = widget.userCareer;
-    String usercompany = widget.userCompany;
-    String textcareer = widget.textCareer;
-    String textcomp = widget.textComp;
+    bool isUnpressed = widget.isUnpressed;
+    String subTitleWorkPlace = widget.subtitleWorkplace;
+    String userWorkPlace = widget.userWorkplace;
+    String userCareer = widget.userCareer;
+    String userCompany = widget.userCompany;
+    String textCareer = widget.textCareer;
+    String textComp = widget.textComp;
 
 
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 top: BorderSide(width: 1, color: Colors.black12),
                 bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -80,27 +79,25 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
             padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: Text(
-                    textleft,
-                    style: TextStyle(fontSize: 18),
+                    textLeft,
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ),
                 Expanded(
                   child: SizedBox(
                     child: IgnorePointer(
-                      ignoring: isunpressed,
+                      ignoring: isUnpressed,
                       child:
                       PopupMenuButton<String>(
-                        // initialValue:
-                        // itemvalue,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                   child: Text(
-                                    itemvalue??'',
+                                    itemValue??'',
                                     style: const TextStyle(color: Colors.black),
                                     textAlign: TextAlign.end,
                                     overflow: TextOverflow.fade,
@@ -112,15 +109,15 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                           return List.generate(widget.statusArray.length,
                                   (index) {
                                 return PopupMenuItem(
+                                  value: widget.statusArray[index].statusname,
                                   child:
                                   Text(widget.statusArray[index].statusname ?? ''),
-                                  value: widget.statusArray[index].statusname,
                                 );
                               });
                         },
                         onSelected: (value) {
-                          itemvalue = value;
-                          if (itemvalue == 'มีงานทำ') {
+                          itemValue = value;
+                          if (itemValue == 'มีงานทำ') {
                             isJobInStatusVisible = true;
                           } else {
                             isJobInStatusVisible = false;
@@ -131,51 +128,9 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
                           });
                         },
                       ),
-
-                      // DropdownButtonFormField<String>(
-                      //   // alignment: Alignment.centerRight,
-                      //   decoration: InputDecoration(
-                      //     border: InputBorder.none,
-                      //   ),
-                      //   value: userattentionvalue,
-                      //   items: widget.testarray
-                      //       .map((item) => DropdownMenuItem<String>(
-                      //       value: item.attenname, child: Text(item.attenname??'', overflow: TextOverflow.fade,
-                      //       softWrap: false)))
-                      //       .toList(),
-                      //   onChanged: (item) => setState(() => userattentionvalue = item),
-                      // ),
                     ),
                   ),
                 ),
-                // Expanded(
-                //   child: SizedBox(
-                //     child: IgnorePointer(
-                //       ignoring: isunpressed,
-                //       child: DropdownButtonFormField<String>(
-                //         // alignment: Alignment.centerRight,
-                //         decoration: InputDecoration(
-                //           border: InputBorder.none,
-                //         ),
-                //         value: itemvalue,
-                //         items: widget.statusarray
-                //             .map((item) => DropdownMenuItem<String>(
-                //             value: item.statusname, child: Text(item.statusname??'')))
-                //             .toList(),
-                //         onChanged: (item) {
-                //           itemvalue = item;
-                //           if (itemvalue == 'มีงานทำ') {
-                //             isJobInStatusVisible = true;
-                //           } else {
-                //             isJobInStatusVisible = false;
-                //           }
-                //           setState(() {});
-                //           print(item);
-                //         },
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -185,30 +140,38 @@ class _ProfileCareerDropdownTabState extends State<ProfileCareerDropdownTab> {
           child: Column(
             children: [
               ProfileDropdownCareerDataTab(
-                isunpressed: isunpressed,
-                userjobtypevalue: widget.userJobValue,
-                jobtextleft: widget.jobTextLeft,
-                jobtypearray: widget.jobTypeArray, callbackHiddenCareerDataTab: (String? jobtype) {
-                  print(jobtype);
+                isUnpressed: isUnpressed,
+                userJobTypeValue: widget.userJobValue,
+                jobTextLeft: widget.jobTextLeft,
+                jobTypeArray: widget.jobTypeArray, callbackHiddenCareerDataTab: (String? jobType) {
+                  if (kDebugMode) {
+                    print(jobType);
+                  }
               },
               ),
               ProfileCareerDataTab(
-                  isunpressed: isunpressed,
-                  textleft: subtitleworkplace,
-                  textright: userworkplace, callbackFromHiddenCareerDataTab: (String workplace) {
-                    print(workplace);
+                  isUnpressed: isUnpressed,
+                  textLeft: subTitleWorkPlace,
+                  textRight: userWorkPlace, callbackFromHiddenCareerDataTab: (String workplace) {
+                    if (kDebugMode) {
+                      print(workplace);
+                    }
               },),
               ProfileCareerDataTab(
-                  isunpressed: isunpressed,
-                  textleft: textcareer,
-                  textright: usercareer, callbackFromHiddenCareerDataTab: (String career) {
-                print(career);
+                  isUnpressed: isUnpressed,
+                  textLeft: textCareer,
+                  textRight: userCareer, callbackFromHiddenCareerDataTab: (String career) {
+                if (kDebugMode) {
+                  print(career);
+                }
               },),
               ProfileCareerDataTab(
-                  isunpressed: isunpressed,
-                  textleft: textcomp,
-                  textright: usercompany, callbackFromHiddenCareerDataTab: (String company) {
-                print(company);
+                  isUnpressed: isUnpressed,
+                  textLeft: textComp,
+                  textRight: userCompany, callbackFromHiddenCareerDataTab: (String company) {
+                if (kDebugMode) {
+                  print(company);
+                }
               },)
             ],
           ),

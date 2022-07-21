@@ -7,11 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeRepository  {
   Future<Response> getScreenHome() async {
     final prefs = await SharedPreferences.getInstance();
-    String? userLanguage = prefs.getString('userLanguage');
-    // String? globalKey = prefs.getString('globalKey');
-    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/homemore",
+    // String? userLanguage = prefs.getString('userLanguage');
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/home",
         data: jsonEncode({
-          "Language": userLanguage
+          "token": globalKey
         })
     );
   }
@@ -46,6 +46,19 @@ class HomeRepository  {
     );
 
   }
+  Future<Response> getChangeLanguageHome( String userLanguage ) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    String? userLanguage = prefs.getString('userLanguage');
+    return await MyDio.createDioTest().post("/response"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey,
+          "Language": userLanguage
+        })
+    );
+
+  }
   Future<Response> getAlertLogout() async {
     final prefs = await SharedPreferences.getInstance();
     String? globalKey = prefs.getString('globalKey');
@@ -60,6 +73,17 @@ class HomeRepository  {
     final prefs = await SharedPreferences.getInstance();
     String? globalKey = prefs.getString('globalKey');
     return await MyDio.createDioTest().post("/alert/deleteaccount"
+        // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
+        , data: jsonEncode({
+          "token": globalKey
+        })
+    );
+
+  }
+  Future<Response> getApiNoActivity() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/alert/noactivity"
         // return await MyDio.createDio().post("/v1/api/modules/home/wording/homestatusactivity");
         , data: jsonEncode({
           "token": globalKey

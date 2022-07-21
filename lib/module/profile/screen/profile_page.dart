@@ -7,7 +7,7 @@ import 'package:f2fbuu/module/profile/components/contactdatatab.dart';
 import 'package:f2fbuu/module/profile/components/educationdatatab.dart';
 import 'package:f2fbuu/module/profile/components/generaldatatab.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (context) => ProfileBloc(),
-    child: ProfilePage(),
+    child: const ProfilePage(),
     );
   }
 }
@@ -41,7 +41,9 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
   @override
   void initState() {
     super.initState();
-    print('เรียก initState');
+    if (kDebugMode) {
+      print('เรียก initState');
+    }
     context.read<ProfileBloc>().add(ProfileApiEvent());
   }
   @override
@@ -54,39 +56,40 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
         hideProgressDialog(context);
       }
       if (state is ProfileError) {
-        print(state.errorMessage);
-        dialogOneLineOneBtn(context, state.errorMessage + '\n ', "OK", onClickBtn: () {
+        // print(state.errorMessage);
+        dialogOneLineOneBtn(context, '${state.errorMessage}\n ', "OK", onClickBtn: () {
+        // dialogOneLineOneBtn(context, state.errorMessage + '\n ', "OK", onClickBtn: () {
           Navigator.of(context).pop();
         });
       }
       if (state is GeneralSubmitSuccessState) {
-        print("TEST general");
-        print(state.responseGeneral.toJson());
-        print("TEST general");
+        // print("TEST general");
+        // print(state.responseGeneral.toJson());
+        // print("TEST general");
         context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is EducationSubmitSuccessState) {
-        print("TEST edu");
-        print(state.responseEducation.toJson());
-        print("TEST edu");
+        // print("TEST edu");
+        // print(state.responseEducation.toJson());
+        // print("TEST edu");
         context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is AddressSubmitSuccessState) {
-        print("TEST address");
-        print(state.responseAddress.toJson());
-        print("TEST address");
+        // print("TEST address");
+        // print(state.responseAddress.toJson());
+        // print("TEST address");
         context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is ContactSubmitSuccessState) {
-        print("TEST contact");
-        print(state.responseContact.toJson());
-        print("TEST contact");
+        // print("TEST contact");
+        // print(state.responseContact.toJson());
+        // print("TEST contact");
         context.read<ProfileBloc>().add(ProfileApiEvent());
       }
       if (state is CareerSubmitSuccessState) {
-        print("TEST Career");
-        print(state.responseCareer.toJson());
-        print("TEST Career");
+        // print("TEST Career");
+        // print(state.responseCareer.toJson());
+        // print("TEST Career");
         context.read<ProfileBloc>().add(ProfileApiEvent());
       }
     },
@@ -124,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               size: sizeTitle24,
               color: Colors.black,
@@ -135,7 +138,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
                 // '+$global_key'
             ,
             // 'ทดสอบ bloc',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontSize: sizeTitle24,
             ),
@@ -166,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
                       Container(
                         height: 150,
                         width: 150,
-                        margin: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(20),
                         child: InkWell(
                           onTap: () {
                             context
@@ -177,7 +180,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
                           child: CircleAvatar(
                             radius: 40,
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 gradient: LinearGradient(
                                   colors: [
@@ -197,7 +200,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
                           : Container(
                         height: 50,
                         width: 50,
-                        margin: EdgeInsets.all(10),
+                        margin: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(

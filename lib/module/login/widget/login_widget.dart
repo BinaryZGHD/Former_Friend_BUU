@@ -1,13 +1,13 @@
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
-import 'package:f2fbuu/customs/textlink/textlinktoscreencustom.dart';
-import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
+import 'package:f2fbuu/customs/textlink/textlink_to_screen_custom.dart';
+import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
-import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
-import 'package:f2fbuu/module/login/screen/registerscreen/pdparegister_screen.dart';
+import 'package:f2fbuu/module/login/screen/forgot_password_screen/forgot_password_screen.dart';
+import 'package:f2fbuu/module/login/screen/register_screen/pdpa_register_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,8 +24,8 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
       return false;
     },
     child: Scaffold(
-      backgroundColor: Colors.transparent,
-      // backgroundColor: Colors.white,
+      // backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SizedBox(
             height: MediaQuery.of(context).size.height,
@@ -81,7 +81,7 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                     const SizedBox(
                       height: 10,
                     ),
-                    BuildTextFieldCustom(
+                    TextFieldCustom(
                       textEditingController: userController,
                       onChanged: (valueuserID) {
                         userController.text = valueuserID;
@@ -92,7 +92,7 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                       hintLabel: "${screenLoginResponse?.body?.screeninfo?.edtID}",
                       textInputType: TextInputType.text,
                     ),
-                    buildTextFieldPasswordCustom(
+                    TextFieldPasswordCustom(
                       textEditingController: passwordController,
                       onChanged: (valuepassword) {
                         passwordController.text = valuepassword;
@@ -100,7 +100,7 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                           print("passwordController login  == ${passwordController.text}");
                         }
                       },
-                      hint_label: "${screenLoginResponse?.body?.screeninfo?.edtPass}",
+                      hintLabel: "${screenLoginResponse?.body?.screeninfo?.edtPass}",
                       textInputType: TextInputType.text,
                     ),
                     const SizedBox(

@@ -2,93 +2,70 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class customDatePicker extends StatefulWidget {
+class CustomDatePicker extends StatefulWidget {
   final String hintLabel;
-  const customDatePicker({Key? key, required this.hintLabel}) : super(key: key);
+  final Function(String result) callbackFromCustomDatePicker;
 
+  const CustomDatePicker(
+      {Key? key, required this.hintLabel, required this.callbackFromCustomDatePicker})
+      : super(key: key);
 
   @override
-  State<customDatePicker> createState() => _customDatePickerState();
-
-
+  State<CustomDatePicker> createState() => CustomDatePickerState();
 }
 
-class _customDatePickerState extends State<customDatePicker> {
-  DateTime date = DateTime.now() ;
+class CustomDatePickerState extends State<CustomDatePicker> {
+  // DateTime date = DateTime(2020,10,20);
+  // DateTime date = DateTime.now();
+  DateTime date = DateTime.now();
+  // DateTime date = DateTime(2022, 12, 24);
+
   @override
   Widget build(BuildContext context) {
-    String dateformated = DateFormat('d-M-y').format(date);
-    String hint_label = widget.hintLabel;
-    // return InkWell(
-    //   onTap: () async {
-    //     DateTime? newDate = await showDatePicker(
-    //         context: context,
-    //         initialDate: date,
-    //         firstDate: DateTime(2000),
-    //         lastDate: DateTime(2100));
-    //
-    //
-    //     if (newDate == null) return;
-    //
-    //     setState(() => date = newDate);
-    //   },
-    //   child: Container(
-    //     child: Text(
-    //       '${date.year}/${date.month}/${date.day}',style: TextStyle(fontSize: 18),
-    //     ),
-    //   ),
-    // );
-    /////////////////////////////////
-    
-    // var hint_label = widget.hint_label;
-    // return TextFormField(
-    //   style: TextStyle(fontSize: sizeText18, color: Colors.black // height: 2.0,
-    //   ),
-    //   decoration: InputDecoration(
-    //       filled: true,
-    //       fillColor: TC_Textfile,
-    //       hintText: "" + hint_label,
-    //       enabledBorder: OutlineInputBorder(
-    //         borderSide: BorderSide(color: TC_Hint),
-    //         borderRadius: BorderRadius.all(Radius.circular(30)),
-    //       ),
-    //       contentPadding: EdgeInsets.all(10),
-    //       focusedBorder: OutlineInputBorder(
-    //         borderRadius: BorderRadius.all(Radius.circular(30)),
-    //         borderSide: BorderSide(color: FC_Blue, width: 2.0),
-    //       )),
-    // );
+    String dateFormated = DateFormat('d-M-y').format(date);
+
     return Container(
       margin: const EdgeInsets.all(12),
-      padding: const EdgeInsets.only(left:10, right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       decoration: BoxDecoration(
         border: Border.all(color: tcHint),
-            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Container(
-          //   // color: Colors.red,
-          //   width: MediaQuery.of(context).size.width*0.6,
-          //   child: TextField(
-          //     decoration: InputDecoration(
-          //       border: InputBorder.none,
-          //       // labelText: hint_label,
-          //       hintText: hint_label,
-          //     ),
-          //   ),
-          // ),
-          Text(dateformated,style: TextStyle(fontSize: 18),),
-          IconButton(onPressed: ()async {
-          DateTime? newDate = await showDatePicker(
-              context: context,
-              initialDate: date,
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100));
-          if (newDate == null) return;
-          setState(() => date = newDate);
-        }, icon: Icon(Icons.calendar_month))
+          Text(
+            dateFormated,
+            style: const TextStyle(fontSize: 18),
+          ),
+          IconButton(
+              onPressed: () async {
+                DateTime? newDate = await showDatePicker(
+
+                    builder: (context, child) {
+                      return Theme(data: Theme.of(context).copyWith(
+                        colorScheme: const ColorScheme.light(
+                          primary: Color(0xfff9ccff),
+                          onPrimary: Colors.black,
+                          onSurface: Colors.black,
+                        ), textButtonTheme: TextButtonThemeData(
+                        style: TextButton.styleFrom(primary: Colors.black,
+                        ),
+                      ),
+                      ), child: child!,);},
+
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2100));
+                if (newDate == null) return;
+                setState(() {
+                  date = newDate;
+                  String dateFormated = DateFormat('d-M-y').format(date);
+                  widget.callbackFromCustomDatePicker(dateFormated);
+                });
+              },
+              icon: const Icon(Icons.calendar_month))
         ],
       ),
     );

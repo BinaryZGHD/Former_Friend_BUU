@@ -4,8 +4,6 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
-import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
-import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,32 +12,34 @@ import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/size/size.dart';
 
 class ActivityDetailScreen extends StatelessWidget {
-  final title;
-  final data;
-  const ActivityDetailScreen({Key? key, this.title, this.data}) : super(key: key);
+  final dynamic title;
+  final dynamic data;
+  const ActivityDetailScreen({Key? key, this.title, this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => ActivityBloc(),
+    return BlocProvider(create: (context) => ActivityBloc()..add(AddEditActivityScreenInfoEvent()),
       child: ActivityDetailPage(title: title,data: data),
     );
   }
 }
 
-
 class ActivityDetailPage extends StatefulWidget {
-  final title;
-  final data;
+  final dynamic title;
+  final dynamic data;
 
-  const ActivityDetailPage({Key? key, required this.title, this.data}) : super(key: key);
+  const ActivityDetailPage({Key? key, required this.title, this.data})
+      : super(key: key);
 
   @override
   State<ActivityDetailPage> createState() => _ActivityDetailPageState();
 }
 
-class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDialog{
-  var title;
-  var data;
+class _ActivityDetailPageState extends State<ActivityDetailPage>
+    with ProgressDialog {
+  dynamic title;
+  dynamic data;
   bool showButton = false;
 
   //---------------------------------API----------------------------------------//
@@ -47,18 +47,21 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
   void initState() {
     title = widget.title;
     data = widget.data;
-    print('เรียก initState');
+    if (kDebugMode) {
+      print('เรียก initState');
+    }
     // getActivityDetailApi();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
    return BlocConsumer<ActivityBloc,ActivityState>(
        listener: (context, state){
-         if (state is ActivityLoading) {
+         if (state is ActivityDetailLoading) {
            showProgressDialog(context);
          }
-         if (state is ActivityEndLoading) {
+         if (state is ActivityDetailEndLoading) {
            hideProgressDialog(context);
          }
          if (state is ActivityError) {
@@ -68,44 +71,52 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
            }
          }
          if (state is SubmitDeleteActivityState) {
-           // Navigator.pop(context);
-           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-             // int index = int.parse(widget.id);
-             return HomePage();
-             // DisplayBeerScreen();
-           }
-           ));
-         } BuildContextActivity(context, data,showButton,title);
+           // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+           Navigator.pop(context);
+         }
        },
      builder: (context, state){
-       return BuildContextActivity(context, data,showButton,title);
+
+         if(state is ActivityInitial) {
+           return buildContextActivity(context, data, showButton, title);
+         }
+         return Scaffold(
+             body: Container(
+               color: Colors.white,
+             ));
      },
-   //   buildWhen: (context, state){
-   //       return state is DefaultState;
-   // },
+     buildWhen: (context, state){
+         return state is ActivityInitial || state is DefaultState;
+   },
 
    );
   }
 }
-BuildTableRow(BuildContext context, {required String textLeftTable, required String textRightTableDetail}) {
+
+buildTableRow(BuildContext context,
+    {required String textLeftTable, required String textRightTableDetail}) {
   return TableRow(children: [
     Text(
-      '   ' + textLeftTable,
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+      '   $textLeftTable',
+      style: const TextStyle(
+          fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
-    Text(
+    const Text(
       ':',
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+      style: TextStyle(
+          fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
       textRightTableDetail,
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
+      style: const TextStyle(
+          fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
     )
   ]);
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 _buildListenpty() {
-  return TableRow(children: [
+  return const TableRow(children: [
     SizedBox(),
     SizedBox(),
     SizedBox(
@@ -114,29 +125,40 @@ _buildListenpty() {
   ]);
 }
 
-BuildContextActivity(BuildContext context, data, bool showButton, title,){
+buildContextActivity(
+  BuildContext context,
+  data,
+  bool showButton,
+  title,
+) {
   // print('${data.status}');
-  var myIcon = Icon(
+  var myIcon = const Icon(
     Icons.question_mark,
     color: Colors.black,
   );
   if (data.status == "Unapproved!") {
-    print('เข้า Unapproved!');
-    myIcon = Icon(
+    if (kDebugMode) {
+      print('เข้า Unapproved!');
+    }
+    myIcon = const Icon(
       Icons.alarm,
       color: Colors.black,
     );
     showButton = true;
   } else if (data.status == "Approved!") {
-    print('เข้า Approved!');
-    myIcon = Icon(
+    if (kDebugMode) {
+      print('เข้า Approved!');
+    }
+    myIcon = const Icon(
       Icons.check_circle,
       color: Colors.black,
     );
     showButton = false;
   } else if (data.status == "Rejected!") {
-    print('เข้า Rejected');
-    myIcon = Icon(
+    if (kDebugMode) {
+      print('เข้า Rejected');
+    }
+    myIcon = const Icon(
       Icons.cancel,
       color: Colors.black,
     );
@@ -154,7 +176,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
           // });
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back,
           size: sizeTitle24,
           color: Colors.black,
@@ -164,7 +186,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
         child: Text(
           // 'ทดสอบ',
           '${data.status}',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 22,
           ),
@@ -178,7 +200,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
     ),
     body: Center(
       child: Container(
-        margin: EdgeInsets.only(top: 10, bottom: 10),
+        margin: const EdgeInsets.only(top: 10, bottom: 10),
         // height: MediaQuery.of(context).size.height * 0.9,
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
@@ -204,10 +226,13 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                 ),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0, left: 5, right: 5, bottom: 20),
+                    padding: const EdgeInsets.only(
+                        top: 20.0, left: 5, right: 5, bottom: 20),
                     child: Table(
-                      border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
-                      columnWidths: <int, TableColumnWidth>{
+                      border: TableBorder.symmetric(
+                          outside:
+                              const BorderSide(width: 2, color: Colors.transparent)),
+                      columnWidths: const <int, TableColumnWidth>{
                         0: FractionColumnWidth(0.35),
                         1: FractionColumnWidth(0.05),
                         2: FractionColumnWidth(0.60),
@@ -215,31 +240,42 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                       // defaultVerticalAlignment:
                       // TableCellVerticalAlignment.middle,
                       children: [
-                        BuildTableRow(context, textLeftTable: title.textactivity, textRightTableDetail: '${data.name}'),
+                        buildTableRow(context,
+                            textLeftTable: title.textactivity,
+                            textRightTableDetail: '${data.name}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.textyear}', textRightTableDetail: '${data.year}'),
+                        buildTableRow(context,
+                            textLeftTable: '${title.textyear}',
+                            textRightTableDetail: '${data.year}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.textterm}', textRightTableDetail: '${data.term}'),
+                        buildTableRow(context,
+                            textLeftTable: '${title.textterm}',
+                            textRightTableDetail: '${data.term}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.textstartdate}', textRightTableDetail: '${data.startdate}'),
+                        buildTableRow(context,
+                            textLeftTable: '${title.textstartdate}',
+                            textRightTableDetail: '${data.startdate}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.textfinishdate}', textRightTableDetail: '${data.finishdate}'),
+                        buildTableRow(context,
+                            textLeftTable: '${title.textfinishdate}',
+                            textRightTableDetail: '${data.finishdate}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.texttime}', textRightTableDetail: '${data.time}' + " ( hh:mm ) "),
+                        buildTableRow(context,
+                            textLeftTable: '${title.texttime}',
+                            textRightTableDetail:
+                                '${data.time}' " ( hh:mm ) "),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.edtapprover}', textRightTableDetail: '${data.approver}'),
+                        buildTableRow(context,
+                            textLeftTable: '${title.edtapprover}',
+                            textRightTableDetail: '${data.approver}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.textvenue}', textRightTableDetail: '${data.venue}'),
+                        buildTableRow(context,
+                            textLeftTable: '${title.textvenue}',
+                            textRightTableDetail: '${data.venue}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
-                            textLeftTable: '${title.textdetail}', textRightTableDetail: '${data.detail}')
+                        buildTableRow(context,
+                            textLeftTable: '${title.textdetail}',
+                            textRightTableDetail: '${data.detail}')
                       ],
                     ),
                   ),
@@ -258,12 +294,12 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   myIcon,
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
                     '${data.status}',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -271,34 +307,35 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
           ),
           showButton
               ? Padding(
-            padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      width: 100,
-                      child: ButtonCustom(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return editActivity(data: data);
-                          }));
-                        },
-                        label: '${title.buttonleft}',
-                        colortext: tcButtonTextBlack,
-                        colorbutton: tcButtonTextWhite,
-                        sizetext: sizeTextSmaller14,
-                        colorborder: tcButtonTextBoarder,
-                        sizeborder: 1.0,
-                      )),
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            width: 100,
+                            child: ButtonCustom(
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return EditActivityPage(data: data);
+                                }));
+                              },
+                              label: '${title.buttonleft}',
+                              colortext: tcButtonTextBlack,
+                              colorbutton: tcButtonTextWhite,
+                              sizetext: sizeTextSmaller14,
+                              colorborder: tcButtonTextBoarder,
+                              sizeborder: 1.0,
+                            )),
+                        const SizedBox(
+                          width: 50,
+                        ),
                   SizedBox(
-                    width: 50,
-                  ),
-                  Container(
                       width: 100,
                       child: ButtonCustom(
                         colortext: tcButtonTextWhite,
@@ -308,7 +345,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                         sizeborder: 10,
                         label: '${title.buttonright}',
                         onPressed: () {
-                          dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
+                          dialogOneLineTwoBtn(context, '$errlogout\n \n Please make sure you want to delete', 'Confirm', 'Cancel',
                               onClickBtn: (String result) {
                                 Navigator.of(context).pop();
                                 switch (result) {
@@ -319,7 +356,9 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                                   case 'OK':
                                     {
                                       context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
-                                      print('id คือ ${data.id}');
+                                      if (kDebugMode) {
+                                        print('id คือ ${data.id}');
+                                      }
 
                                     }
                                 }
@@ -330,7 +369,7 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
               ),
             ),
           )
-              : Text(''),
+              : const Text(''),
         ]),
       ),
     ),

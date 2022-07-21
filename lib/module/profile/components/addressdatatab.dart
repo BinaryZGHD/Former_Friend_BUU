@@ -1,4 +1,5 @@
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,7 +8,7 @@ import '../model/response/api_profile.dart';
 class ProfileAddressDataHead extends StatefulWidget {
   final ApiProfileResponse? dataFromAPI;
 
-  ProfileAddressDataHead({Key? key, required this.dataFromAPI})
+  const ProfileAddressDataHead({Key? key, required this.dataFromAPI})
       : super(key: key);
 
   @override
@@ -29,7 +30,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 top: BorderSide(width: 1, color: Colors.black12),
                 bottom: BorderSide(width: 1, color: Colors.transparent)),
@@ -40,7 +41,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
               children: [
                 Text(
                   '${dataFromAPI?.body?.screeninfo?.subtitleaddress}',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
                   child: Container(
@@ -51,12 +52,12 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
                           isUnpressed = !isUnpressed;
                           if(isUnpressed == true){
                             context.read<ProfileBloc>().add(AddressSubmitEvent(zipcode: zipcodeValue, district: districtValue, road: roadValue, province: provinceValue, number: numberValue, subDistrict: subDistrictValue));
-                          };
+                          }
                         });
                       },
                       child: isUnpressed
-                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก',
+                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          : const Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
                     ),
                   ),
@@ -71,7 +72,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           textRight: '${dataFromAPI?.body?.profileAddressInfo?.number}',
           onChange: (value) {
             numberValue = value;
-            print(numberValue);
+            if (kDebugMode) {
+              print(numberValue);
+            }
           },
         ),
         ProfileAddressDataTab(
@@ -80,7 +83,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.moo}',
           onChange: (value) {
             numberValue = value;
-            print(numberValue);
+            if (kDebugMode) {
+              print(numberValue);
+            }
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
@@ -88,7 +93,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.soi}',
           onChange: (value) {
             numberValue = value;
-            print(numberValue);
+            if (kDebugMode) {
+              print(numberValue);
+            }
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
@@ -96,7 +103,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.road}',
           onChange: (value) {
             roadValue = value;
-            print(roadValue);
+            if (kDebugMode) {
+              print(roadValue);
+            }
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
@@ -104,7 +113,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.subdistrict}',
           onChange: (value) {
             subDistrictValue = value;
-            print(subDistrictValue);
+            if (kDebugMode) {
+              print(subDistrictValue);
+            }
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
@@ -112,7 +123,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.district}',
           onChange: (value) {
             districtValue = value;
-            print(districtValue);
+            if (kDebugMode) {
+              print(districtValue);
+            }
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
@@ -120,7 +133,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.province}',
           onChange: (value) {
             provinceValue = value;
-            print(provinceValue);
+            if (kDebugMode) {
+              print(provinceValue);
+            }
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
@@ -128,7 +143,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             textRight: '${dataFromAPI?.body?.profileAddressInfo?.zipcode}',
           onChange: (value) {
             zipcodeValue = value;
-            print(zipcodeValue);
+            if (kDebugMode) {
+              print(zipcodeValue);
+            }
           },),
       ],
     );
@@ -141,7 +158,7 @@ class ProfileAddressDataTab extends StatefulWidget {
   final String textRight;
   final bool isUnpressed;
   final ValueChanged<String>? onChange;
-  ProfileAddressDataTab(
+  const ProfileAddressDataTab(
       {Key? key,
       required this.textLeft,
       required this.textRight,
@@ -160,7 +177,7 @@ class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
     String textRight = widget.textRight;
     bool isUnpressed = widget.isUnpressed;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -170,28 +187,20 @@ class _ProfileAddressDataTabState extends State<ProfileAddressDataTab> {
         child: Row(
           children: [
             Text(
-              textLeft + ' ',
-              style: TextStyle(fontSize: 18),
+              '$textLeft ',
+              style: const TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  autofocus: false,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  readOnly: isUnpressed,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  onChanged: widget.onChange,
-                  initialValue: textRight,
+              child: TextFormField(
+                autofocus: false,
+                style: const TextStyle(fontSize: 18, color: Colors.black),
+                readOnly: isUnpressed,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
-
-                // Text(
-                //   textright,
-                //   style: TextStyle(fontSize: 18),
-                //   textAlign: TextAlign.right,
-                // ),
+                onChanged: widget.onChange,
+                initialValue: textRight,
               ),
             ),
           ],
