@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/re_send_otp_forgot_password_response.dart';
@@ -6,16 +5,13 @@ import 'package:f2fbuu/module/login/model/response/screen_forgot_password_respon
 import 'package:f2fbuu/module/login/model/response/submit_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/submit_forgot_setnew_forgotpassword_response.dart';
 import 'package:f2fbuu/module/login/repository/forgot_password_repository.dart';
-import 'package:flutter/cupertino.dart';
-
-
 
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
-class ForgorPasswordBloc extends Bloc<ForgorpasswordEvent, ForgorPasswordState>  with ForgotPasswordRepository{
-  ForgorPasswordBloc() : super(ForgorpasswordInitial()) {
-    on<ForgorpasswordEvent>((event, emit) {
+class ForgorPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>  with ForgotPasswordRepository{
+  ForgorPasswordBloc() : super(ForgotPasswordInitial()) {
+    on<ForgotPasswordEvent>((event, emit) {
       // TODO: implement event handler
     });
     on<ScreenInfoForgotPasswordEvent>((event, emit) async {

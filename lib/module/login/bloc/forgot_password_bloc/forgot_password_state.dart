@@ -1,43 +1,43 @@
 part of 'forgot_password_bloc.dart';
 
-@immutable
-abstract class ForgorPasswordState {}
 
-class ForgorpasswordInitial extends ForgorPasswordState {}
+abstract class ForgotPasswordState {}
 
-class ForgotPasswordLoading extends ForgorPasswordState{}
-class ForgotPasswordEndLoading extends ForgorPasswordState{}
-class ScreenInfoForgotPasswordSuccessState extends ForgorPasswordState{
+class ForgotPasswordInitial extends ForgotPasswordState {}
+
+class ForgotPasswordLoading extends ForgotPasswordState{}
+class ForgotPasswordEndLoading extends ForgotPasswordState{}
+class ScreenInfoForgotPasswordSuccessState extends ForgotPasswordState{
   ScreenForgotPasswordResponse  responseForgotPassword;
- ScreenInfoForgotPasswordSuccessState({required this.responseForgotPassword});}
-class SubmitForgotPasswordSuccessState extends ForgorPasswordState{
+  ScreenInfoForgotPasswordSuccessState({required this.responseForgotPassword});}
+class SubmitForgotPasswordSuccessState extends ForgotPasswordState{
   SubmitForgotPasswordResponse  responseSubmitForgotPassword;
   String emailForgotPassword;
   String userIDForgotPassword;
   SubmitForgotPasswordSuccessState({required this.responseSubmitForgotPassword, required this.emailForgotPassword, required this.userIDForgotPassword});}
-class ForgotPasswordError extends ForgorPasswordState{
+class ForgotPasswordError extends ForgotPasswordState{
   String message;
   ForgotPasswordError({required this.message});}
 
 
-class SetNewForgotPasswordLoading extends ForgorPasswordState{}
-class SetNewForgotPasswordEndLoading extends ForgorPasswordState{}
-class ScreenInfoSetNewForgotPasswordSuccessState extends ForgorPasswordState{
+class SetNewForgotPasswordLoading extends ForgotPasswordState{}
+class SetNewForgotPasswordEndLoading extends ForgotPasswordState{}
+class ScreenInfoSetNewForgotPasswordSuccessState extends ForgotPasswordState{
   ScreenForgotPasswordResponse  responseSetNewForgotPassword;
   ScreenInfoSetNewForgotPasswordSuccessState({required this.responseSetNewForgotPassword});}
-class SubmitSetNewForgotPasswordSuccessState extends ForgorPasswordState{
+class SubmitSetNewForgotPasswordSuccessState extends ForgotPasswordState{
   SubmitForgotSetNewForgotPasswordResponse  responseSetNewSubmitForgotPassword;
 
   SubmitSetNewForgotPasswordSuccessState({required this.responseSetNewSubmitForgotPassword});}
-class SetNewForgotPasswordError extends ForgorPasswordState{
+class SetNewForgotPasswordError extends ForgotPasswordState{
   String message;
   SetNewForgotPasswordError({required this.message});}
 
-class ReSentOTPSetNewForgotPasswordError extends ForgorPasswordState{
+class ReSentOTPSetNewForgotPasswordError extends ForgotPasswordState{
   String message;
   ReSentOTPSetNewForgotPasswordError({required this.message});}
 
-class ReSentOTPSetNewForgotPasswordSuccessState extends ForgorPasswordState{
+class ReSentOTPSetNewForgotPasswordSuccessState extends ForgotPasswordState{
   ReSendOtpForgotPasswordResponse  responseReSendOtpForgotPasswordResponse;
   String emailForgotPassword;
   String userIDForgotPassword;

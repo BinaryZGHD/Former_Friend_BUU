@@ -1,6 +1,5 @@
-import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
-import 'package:f2fbuu/module/login/widget/generative_widget.dart';
 import 'package:f2fbuu/module/login/widget/login_widget.dart';
 import 'package:f2fbuu/utils/set_global.dart';
 import 'package:flutter/foundation.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
-import 'package:f2fbuu/module/login/bloc/loginbloc/login_bloc.dart';
+import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -78,7 +77,7 @@ class _LoginPageState extends State<LoginPage> with ProgressDialog {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginLoading) {
-          showProgressTransparent(context);
+          showProgressDialog(context);
         }
         if (state is LoginEndLoading) {
           hideProgressDialog(context);
@@ -97,7 +96,7 @@ class _LoginPageState extends State<LoginPage> with ProgressDialog {
           setGlobalKey(globalKey: _loginSubmitResponse?.body?.token);
             Navigator.push(
               context,MaterialPageRoute(
-                builder: (context) => HomeScreen(
+                builder: (context) => const HomeScreen(
                 )
             )
             );

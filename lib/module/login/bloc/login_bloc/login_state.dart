@@ -3,6 +3,9 @@ part of 'login_bloc.dart';
 abstract class LoginState {
  const LoginState();
 }
+class LoginInitial extends LoginState {
+
+}
 
 
 class ScreenInfoLoginSuccessState extends LoginState{
@@ -41,19 +44,3 @@ class LoginError extends LoginState{
 
 
 
-class LoginInitial extends LoginState {
-  @override
-  String toString() => 'LoginInitial';
-}
-
-class LoginRegisterState extends LoginState {
-  bool regstatus  ;
-  LoginRegisterState({required this.regstatus});
-
-}
-class LoginForgotState extends LoginState {
-   final String regstatus  ;
-
-  LoginForgotState({required this.regstatus});
-
-}

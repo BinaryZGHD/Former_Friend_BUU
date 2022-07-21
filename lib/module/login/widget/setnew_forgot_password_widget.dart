@@ -3,10 +3,10 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
-import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
-import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
+import 'package:f2fbuu/customs/textlink/textlink_otp_custom.dart';
+import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/widget/count_time_otp_widget.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +87,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                   ),
                 ]),
               ),
-              BuildTextFieldPasswordCustom(
+              TextFieldPasswordCustom(
                 textEditingController: password,
                 onChanged: (value) {
                   passwordvalue = value;
@@ -95,7 +95,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                 hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.edtpass}",
                 textInputType: TextInputType.text,
               ),
-              BuildTextFieldPasswordCustom(
+              TextFieldPasswordCustom(
                 textEditingController: confirmpassword,
                 onChanged: (value) {
                   confirmpasswordvalue = value;
@@ -104,7 +104,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                 textInputType: TextInputType.text,
               ),
 
-              BuildTextFieldCustom(
+              TextFieldCustom(
                 maxLengthOTP: 6,
                 textEditingController: code,
                 onChanged: (value) {

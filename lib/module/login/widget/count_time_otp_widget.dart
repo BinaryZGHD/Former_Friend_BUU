@@ -1,12 +1,12 @@
 import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
+import 'package:f2fbuu/customs/textlink/textlink_otp_custom.dart';
 import 'package:flutter/material.dart';
 
 class CountTimeOTPWidget extends StatefulWidget {
-  final TextSendOTPCustom SendOTP;
+  final TextSendOTPCustom sendOTP;
   final CustomTimerController controller;
-  const CountTimeOTPWidget({Key? key, required this.SendOTP, required this.controller, }) : super(key: key);
+  const CountTimeOTPWidget({Key? key, required this.sendOTP, required this.controller, }) : super(key: key);
 
   @override
   State<CountTimeOTPWidget> createState() => _CountTimeOTPWidgetState();
@@ -32,7 +32,7 @@ class _CountTimeOTPWidgetState extends State<CountTimeOTPWidget> {
             return (int.parse(remaining.minutes) <= 1)
                 ? (int.parse(remaining.minutes) == 0 && int.parse(remaining.seconds) == 0)
                 ?  Center(
-                child: widget.SendOTP,)
+                child: widget.sendOTP,)
                 : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -44,7 +44,7 @@ class _CountTimeOTPWidgetState extends State<CountTimeOTPWidget> {
                     style: const TextStyle(fontSize:sizeTextSmall16),
                   ),
                 ),
-                widget.SendOTP,
+                widget.sendOTP,
               ],
             )
                 : Center(

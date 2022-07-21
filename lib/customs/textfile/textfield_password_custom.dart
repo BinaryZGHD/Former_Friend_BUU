@@ -4,20 +4,20 @@ import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
 
 
-class BuildTextFieldPasswordCustom extends StatefulWidget {
+class TextFieldPasswordCustom extends StatefulWidget {
   final TextEditingController? textEditingController;
   final String hintLabel;
   final TextInputType textInputType;
   final ValueChanged<String>? onChanged;
   final String? initialvalue;
-  const BuildTextFieldPasswordCustom(
+  const TextFieldPasswordCustom(
       {Key? key, this.textEditingController, required this.hintLabel, this.onChanged, required this.textInputType, this.initialvalue})
       : super(key: key);
   @override
-  State<BuildTextFieldPasswordCustom> createState() => _BuildTextFieldPasswordCustomState();
+  State<TextFieldPasswordCustom> createState() => _TextFieldPasswordCustomState();
 }
 
-class _BuildTextFieldPasswordCustomState extends State<BuildTextFieldPasswordCustom> {
+class _TextFieldPasswordCustomState extends State<TextFieldPasswordCustom> {
   bool _isVisible = false;
   @override
   Widget build(BuildContext context) {

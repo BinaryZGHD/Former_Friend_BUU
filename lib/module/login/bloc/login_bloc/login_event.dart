@@ -1,6 +1,5 @@
 part of 'login_bloc.dart';
 
-@immutable
 abstract class LoginEvent {}
 
 class LoginScreenInfoEvent extends LoginEvent {
@@ -19,12 +18,3 @@ class LoginSubmitEvent extends LoginEvent {
   LoginSubmitEvent({required this.userID, required this.password});
 }
 
-class LoginRegisterEvent extends LoginEvent {
-  bool regstatus;
-  LoginRegisterEvent({required this.regstatus});
-}
-
-class LoginForgotEvent extends LoginEvent {
-  String regstatus;
-  LoginForgotEvent({required this.regstatus});
-}

@@ -1,6 +1,6 @@
 
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_board_teacher_response.dart';
-import 'package:f2fbuu/module/home/screen/more_screen/board_screen/board_item_teacher.dart';
+import 'package:f2fbuu/module/home/screen/more_widget/board_item_teacher.dart';
 import 'package:f2fbuu/module/home/screen/more_screen/board_screen/more_board_staff_detail_screen.dart';
 import 'package:f2fbuu/module/home/screen/more_screen/board_screen/more_board_teacher_detail_screen.dart';
 import 'package:flutter/material.dart';

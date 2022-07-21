@@ -4,7 +4,7 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
-import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

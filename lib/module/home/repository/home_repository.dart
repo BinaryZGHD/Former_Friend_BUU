@@ -7,11 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeRepository  {
   Future<Response> getScreenHome() async {
     final prefs = await SharedPreferences.getInstance();
-    String? userLanguage = prefs.getString('userLanguage');
-    // String? globalKey = prefs.getString('globalKey');
-    return await MyDio.createDioTest().post("/v1/api/modules/home/wording/homemore",
+    // String? userLanguage = prefs.getString('userLanguage');
+    String? globalKey = prefs.getString('globalKey');
+    return await MyDio.createDioTest().post("/v1/api/modules/home/home",
         data: jsonEncode({
-          "Language": userLanguage
+          "token": globalKey
         })
     );
   }

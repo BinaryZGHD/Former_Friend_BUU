@@ -1,29 +1,28 @@
 part of 'forgot_password_bloc.dart';
 
-@immutable
-abstract class ForgorpasswordEvent {}
-class ScreenInfoForgotPasswordEvent extends ForgorpasswordEvent{
-}class ScreenInfoSetNewForgotPasswordEvent extends ForgorpasswordEvent{
+abstract class ForgotPasswordEvent {}
+class ScreenInfoForgotPasswordEvent extends ForgotPasswordEvent{
+}class ScreenInfoSetNewForgotPasswordEvent extends ForgotPasswordEvent{
 }
-class SubmitForgotPasswordEvent extends ForgorpasswordEvent{
+class SubmitForgotPasswordEvent extends ForgotPasswordEvent{
   String email;
   String userID;
   SubmitForgotPasswordEvent({required this.email,required this.userID});
 }
 
 
-class  SentOTPSetNewForgotPasswordEvent extends ForgorpasswordEvent{
+class  SentOTPSetNewForgotPasswordEvent extends ForgotPasswordEvent{
   String email;
   String userID;
   SentOTPSetNewForgotPasswordEvent({required this.email,required this.userID});
 }
-class SubmitSetNewForgotPasswordEvent extends ForgorpasswordEvent{
+class SubmitSetNewForgotPasswordEvent extends ForgotPasswordEvent{
   String password;
   String confirmpassword;
   String otp;
   SubmitSetNewForgotPasswordEvent({required this.password,required this.confirmpassword,required this.otp});
 }
-class  ReSentOTPSetNewForgotPasswordEvent extends ForgorpasswordEvent{
+class  ReSentOTPSetNewForgotPasswordEvent extends ForgotPasswordEvent{
   String email;
   String userID;
   ReSentOTPSetNewForgotPasswordEvent({required this.email,required this.userID});

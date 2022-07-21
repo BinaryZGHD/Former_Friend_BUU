@@ -1,8 +1,8 @@
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
+import 'package:f2fbuu/module/login/bloc/register_bloc/register_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
-import 'package:f2fbuu/module/login/screen/registerscreen/register_confrim_screen.dart';
+import 'package:f2fbuu/module/login/screen/register_screen/register_confirm_screen.dart';
 import 'package:f2fbuu/module/login/widget/register_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

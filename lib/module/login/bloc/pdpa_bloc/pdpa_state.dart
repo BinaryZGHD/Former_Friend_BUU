@@ -1,6 +1,5 @@
 part of 'pdpa_bloc.dart';
 
-@immutable
 abstract class PdpaState {}
 
 class PdpaInitial extends PdpaState {}

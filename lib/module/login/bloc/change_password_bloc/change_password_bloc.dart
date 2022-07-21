@@ -1,12 +1,12 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
-import 'package:f2fbuu/module/login/repository/changepassword_repository.dart';
+import 'package:f2fbuu/module/login/repository/change_password_repository.dart';
 import 'package:flutter/cupertino.dart';
 
 
-part 'changepassword_event.dart';
-part 'changepassword_state.dart';
+part 'change_password_event.dart';
+part 'change_password_state.dart';
 
 class ChangePasswordBloc extends Bloc<ChangePasswordEvent, ChangePasswordState> with ChangePasswordRepository {
   ChangePasswordBloc() : super(ChangePasswordInitial()) {

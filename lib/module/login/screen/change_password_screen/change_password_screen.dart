@@ -4,24 +4,37 @@ import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
-import 'package:f2fbuu/customs/textlink/textlinktoscreencustom.dart';
-import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
-import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
+import 'package:f2fbuu/customs/textlink/textlink_to_screen_custom.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
+import 'package:f2fbuu/module/login/bloc/change_password_bloc/change_password_bloc.dart';
+import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
-import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/forgotpassword_screen.dart';
+import 'package:f2fbuu/module/login/screen/forgot_password_screen/forgot_password_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-
-class ChangePasswordScreen extends StatefulWidget {
+class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
 
+
   @override
-  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => ChangePasswordBloc(),
+        // child: const GenerativeWidget());
+        child: const ChangePasswordPage());
+  }
 }
 
-class _ChangePasswordScreenState extends State<ChangePasswordScreen> with ProgressDialog {
+class ChangePasswordPage extends StatefulWidget {
+  const ChangePasswordPage({Key? key}) : super(key: key);
+
+  @override
+  State<ChangePasswordPage> createState() => _ChangePasswordPageState();
+}
+
+class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDialog {
   ScreenChangePasswordResponse? _screenchangepasswordResponse;
   TextEditingController currentpasswordController = TextEditingController();
   TextEditingController newpasswordController = TextEditingController();
@@ -83,7 +96,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> with Progre
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),
-                      BuildTextFieldPasswordCustom(
+                      TextFieldPasswordCustom(
                         textEditingController: currentpasswordController,
                         onChanged: (value) {
                           currentpasswordvalue = value;
@@ -91,7 +104,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> with Progre
                         hintLabel: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcurrentpass}",
                         textInputType: TextInputType.text,
                       ),
-                      BuildTextFieldPasswordCustom(
+                      TextFieldPasswordCustom(
                         textEditingController: newpasswordController,
                         onChanged: (value) {
                           newpasswordvalue = value;
@@ -99,7 +112,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> with Progre
                         hintLabel: "${_screenchangepasswordResponse?.body?.screeninfo?.edtnewpass}",
                         textInputType: TextInputType.text,
                       ),
-                      BuildTextFieldPasswordCustom(
+                      TextFieldPasswordCustom(
                         textEditingController: confirmpasswordController,
                         onChanged: (value) {
                           passwordvalue = value;

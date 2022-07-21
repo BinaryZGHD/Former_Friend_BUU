@@ -1,5 +1,5 @@
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/login/model/response/re_send_otp_confirm_register_response.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';

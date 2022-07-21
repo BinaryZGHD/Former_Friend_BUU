@@ -2,25 +2,25 @@ import 'dart:convert';
 /// head : {"status":200,"message":"success","module":"home"}
 /// body : {"alert":"คุณต้องการออกจากระบบใช่หรือไม่","cancel":"ยกเลิก","ok":"ตกลง","confirm":"ยืนยัน","no":"ไม่ใช่","yes":"ใช่","apccrpt":"ยินยอม","Decline":"ปฏิเสธ","close":"ปิด"}
 
-AlertConfirmForgotPasswordrResponse alertConfirmForgotPasswordrResponseFromJson(String str) => AlertConfirmForgotPasswordrResponse.fromJson(json.decode(str));
-String alertConfirmForgotPasswordrResponseToJson(AlertConfirmForgotPasswordrResponse data) => json.encode(data.toJson());
-class AlertConfirmForgotPasswordrResponse {
-  AlertConfirmForgotPasswordrResponse({
+AlertConfirmForgotPasswordResponse alertConfirmForgotPasswordResponseFromJson(String str) => AlertConfirmForgotPasswordResponse.fromJson(json.decode(str));
+String alertConfirmForgotPasswordResponseToJson(AlertConfirmForgotPasswordResponse data) => json.encode(data.toJson());
+class AlertConfirmForgotPasswordResponse {
+  AlertConfirmForgotPasswordResponse({
     Head? head,
     Body? body,}){
     _head = head;
     _body = body;
   }
 
-  AlertConfirmForgotPasswordrResponse.fromJson(dynamic json) {
+  AlertConfirmForgotPasswordResponse.fromJson(dynamic json) {
     _head = json['head'] != null ? Head.fromJson(json['head']) : null;
     _body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
   Head? _head;
   Body? _body;
-  AlertConfirmForgotPasswordrResponse copyWith({  Head? head,
+  AlertConfirmForgotPasswordResponse copyWith({  Head? head,
     Body? body,
-  }) => AlertConfirmForgotPasswordrResponse(  head: head ?? _head,
+  }) => AlertConfirmForgotPasswordResponse(  head: head ?? _head,
     body: body ?? _body,
   );
   Head? get head => _head;

@@ -1,23 +1,22 @@
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/module/home/bloc/morebloc/more_bloc.dart';
+import 'package:f2fbuu/module/home/bloc/more_bloc/more_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_board_teacher_response.dart';
-import 'package:f2fbuu/module/home/screen/morescreen/boardscreen/BuildListTeacher.dart';
+import 'package:f2fbuu/module/home/screen/more_widget/teacher_math_widget.dart';
+import 'package:f2fbuu/module/home/screen/more_widget/teacher_stats_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class MoreBoardListTeacherScreen extends StatelessWidget {
   const MoreBoardListTeacherScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => MoreBloc()..add(MoreBoardTeacherEvent()),
-        child:  const MoreBoardListTeacherPage());
+        create: (context) => MoreBloc()..add(MoreBoardTeacherEvent()), child: const MoreBoardListTeacherPage());
   }
 }
-
-
 
 class MoreBoardListTeacherPage extends StatefulWidget {
   const MoreBoardListTeacherPage({Key? key}) : super(key: key);
@@ -26,14 +25,14 @@ class MoreBoardListTeacherPage extends StatefulWidget {
   State<MoreBoardListTeacherPage> createState() => _MoreBoardListTeacherPageState();
 }
 
-bool _isSelected = true;
+bool isSelected = true;
 const double yalign = -1;
 const Color selectedColor = Colors.black;
 const Color normalColor = Colors.black54;
 
 class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> with ProgressDialog {
   ScreenMoreBoardTeacherResponse? _screenMoreBoardTeacherResponse;
-  late double   defaultalign;
+  late double defaultalign;
   late Color departleftcolor;
   late Color departrightcolor;
 
@@ -51,7 +50,6 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
     double width = MediaQuery.of(context).size.width;
     double height = 40.0;
 
-
     return BlocConsumer<MoreBloc, MoreState>(
       listener: (context, state) {
         if (state is MoreBoardTeacherLoading) {
@@ -66,7 +64,6 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
             // show dialog error
             print(state.message);
           }
-
         }
       },
       builder: (context, state) {
@@ -75,7 +72,7 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
           if (kDebugMode) {
             print(_screenMoreBoardTeacherResponse?.body?.teacher?.teacherone?.length);
           }
-          return Scaffold(
+          return  Scaffold(
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -122,7 +119,7 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
                     child: Stack(
                       children: [
                         AnimatedAlign(
-                          alignment: Alignment(  defaultalign, 0),
+                          alignment: Alignment(defaultalign, 0),
                           duration: const Duration(milliseconds: 300),
                           child: Container(
                             width: width * 0.5,
@@ -140,7 +137,7 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
                             setState(() {
                               defaultalign = yalign;
                               departleftcolor = selectedColor;
-                              _isSelected = true;
+                              isSelected = true;
                               departrightcolor = normalColor;
                             });
                           },
@@ -165,7 +162,7 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
                             setState(() {
                               defaultalign = xalign;
                               departrightcolor = selectedColor;
-                              _isSelected = false;
+                              isSelected = false;
                               departleftcolor = normalColor;
                             });
                           },
@@ -190,75 +187,10 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
                   ),
                 ),
                 Container(
-                    child: _isSelected
-                        ? Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
-                        color: Colors.transparent,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 10),
-                                child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: sizeTitle24,
-                                    )),
-                              ),
-                              buildListTeacherLeft(context, _screenMoreBoardTeacherResponse),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 5),
-                                child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: sizeTitle24,
-                                    )),
-                              ),
-                              buildListStaff(context, _screenMoreBoardTeacherResponse),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                        : Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
-                        color: Colors.transparent,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 10),
-                                child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: sizeTitle24,
-                                    )),
-                              ),
-                              buildListTeacherRight(context, _screenMoreBoardTeacherResponse),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 5),
-                                child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: sizeTitle24,
-                                    )),
-                              ),
-                              buildListStaff(context, _screenMoreBoardTeacherResponse),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )),
+                    child: isSelected
+                        ? teacherMathWidget(context,_screenMoreBoardTeacherResponse)
+                        : teacherStatsWidget(context,_screenMoreBoardTeacherResponse),
+                    ),
               ],
             ),
           );
@@ -266,7 +198,10 @@ class _MoreBoardListTeacherPageState extends State<MoreBoardListTeacherPage> wit
           return Container();
         }
       },
-
     );
+
+
   }
+
+
 }

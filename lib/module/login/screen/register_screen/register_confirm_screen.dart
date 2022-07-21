@@ -1,10 +1,10 @@
 import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
+import 'package:f2fbuu/module/login/bloc/register_bloc/register_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/re_send_otp_confirm_register_response.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
 import 'package:f2fbuu/module/login/widget/confirm_register_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

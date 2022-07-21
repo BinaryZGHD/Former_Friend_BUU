@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:f2fbuu/module/home/model/response/alert_delete_account_response.dart';
-import 'package:f2fbuu/module/home/model/response/alert_logout_response.dart';
-import 'package:f2fbuu/module/home/model/response/alert_noactivity_respone.dart';
-import 'package:f2fbuu/module/home/model/response/change_language_response.dart';
-import 'package:f2fbuu/module/home/model/response/logout_home_response.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
-import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/alert_delete_account_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/alert_logout_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/alert_no_activity_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/change_language_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/logout_home_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/repository/home_repository.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 

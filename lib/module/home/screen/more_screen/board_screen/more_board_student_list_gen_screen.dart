@@ -7,24 +7,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MoreBoardListStudentScreen extends StatelessWidget {
-  const MoreBoardListStudentScreen({Key? key}) : super(key: key);
+class MoreBoardListStudentListGenScreen extends StatelessWidget {
+  const MoreBoardListStudentListGenScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => MoreBloc()..add(MoreBoardStudentEvent()),
-        child:  const MoreBoardListStudentPage());
+        child:  const MoreBoardListStudentListGenPage());
   }
 }
-class MoreBoardListStudentPage extends StatefulWidget {
-  const MoreBoardListStudentPage({Key? key}) : super(key: key);
+class MoreBoardListStudentListGenPage extends StatefulWidget {
+  const MoreBoardListStudentListGenPage({Key? key}) : super(key: key);
 
   @override
-  State<MoreBoardListStudentPage> createState() => _MoreBoardListStudentPageState();
+  State<MoreBoardListStudentListGenPage> createState() => _MoreBoardListStudentListGenPageState();
 }
 
-class _MoreBoardListStudentPageState extends State<MoreBoardListStudentPage> with ProgressDialog {
+class _MoreBoardListStudentListGenPageState extends State<MoreBoardListStudentListGenPage> with ProgressDialog {
   ScreenMoreBoardStudentResponse? _screenMoreBoardStudentResponse;
 
   @override

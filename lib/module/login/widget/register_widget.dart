@@ -1,9 +1,9 @@
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldpasswordcustom.dart';
-import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
+import 'package:f2fbuu/module/login/bloc/register_bloc/register_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +53,7 @@ registerPageWidget(
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
-              BuildTextFieldCustom(
+             TextFieldCustom(
                 textEditingController: userController,
                 onChanged: (value) {
                   userController.text = value;
@@ -61,7 +61,7 @@ registerPageWidget(
                 hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtIDreg}",
                 textInputType: TextInputType.text,
               ),
-              BuildTextFieldCustom(
+              TextFieldCustom(
                 textEditingController: nameController,
                 onChanged: (value) {
                   nameController.text = value;
@@ -69,7 +69,7 @@ registerPageWidget(
                 hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtnamereg}",
                 textInputType: TextInputType.text,
               ),
-              BuildTextFieldCustom(
+              TextFieldCustom(
                 textEditingController: lastnameController,
                 onChanged: (value) {
                   lastnameController.text = value;
@@ -77,7 +77,7 @@ registerPageWidget(
                 hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtlnamereg}",
                 textInputType: TextInputType.text,
               ),
-              BuildTextFieldCustom(
+              TextFieldCustom(
                 textEditingController: emailController,
                 onChanged: (value) {
                   emailController.text = value;
@@ -85,7 +85,7 @@ registerPageWidget(
                 hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtemailreg}",
                 textInputType: TextInputType.text,
               ),
-              BuildTextFieldCustom(
+              TextFieldCustom(
                 maxLengthOTP: 10,
                 textEditingController: phoneController,
                 onChanged: (value) {
@@ -96,20 +96,20 @@ registerPageWidget(
               ),
 
 
-              buildTextFieldPasswordCustom(
+              TextFieldPasswordCustom(
                 textEditingController: passwordController,
                 onChanged: (value) {
                   passwordController.text = value;
                 },
-                hint_label: "${screenRegisterResponse?.body?.screeninfo?.edtpassreg}",
+                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtpassreg}",
                 textInputType: TextInputType.text,
               ),
-              buildTextFieldPasswordCustom(
+              TextFieldPasswordCustom(
                 textEditingController: confirmpasswordController,
                 onChanged: (value) {
                   confirmpasswordController.text = value;
                 },
-                hint_label: "${screenRegisterResponse?.body?.screeninfo?.edtcpassreg}",
+                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtcpassreg}",
                 textInputType: TextInputType.text,
               ),
               SizedBox(

@@ -1,14 +1,12 @@
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
-import 'package:f2fbuu/module/home/bloc/homemorebloc/homemore_bloc.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+// import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
+import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
-import 'package:f2fbuu/module/login/bloc/changepasswordbloc/changepassword_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
-import 'module/login/bloc/loginbloc/login_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,28 +30,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc(),lazy: false,);
+    // final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc(),lazy: false,);
 
     // final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
     // final forgotpasswordBloc = BlocProvider<ForgorPasswordBloc>(create: (context) => ForgorPasswordBloc());
     // final pdpaBloc = BlocProvider<PdpaBloc>(create: (context) => PdpaBloc(),lazy: false,);
     // final registerBloc = BlocProvider<RegisterBloc>(create: (context) => RegisterBloc(),lazy: false,);
-    final changepasswordBloc = BlocProvider<ChangePasswordBloc>(create: (context) => ChangePasswordBloc());
+    // final changepasswordBloc = BlocProvider<ChangePasswordBloc>(create: (context) => ChangePasswordBloc());
     final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
     final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
-    final moreBloc = BlocProvider<MoreBloc>(create: (context) => MoreBloc());
 
     return MultiBlocProvider(
       providers: [
-        loginBloc,
+        // loginBloc,
         // homeBloc,
         // forgotpasswordBloc,
         // pdpaBloc,
         // registerBloc,
-        changepasswordBloc,
+        // changepasswordBloc,
         profileBloc,
         actitivtyBloc,
-        moreBloc,
         // moreboarBloc,
       ],
       child: MaterialApp(

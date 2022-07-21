@@ -1,12 +1,12 @@
+import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
-import 'package:f2fbuu/module/login/screen/forgotpasswordscreen/setnew_forgotpassword_screen.dart';
-import 'package:f2fbuu/module/login/widget/forgotpassword_widget.dart';
+import 'package:f2fbuu/module/login/screen/forgot_password_screen/setnew_forgot_password_screen.dart';
+import 'package:f2fbuu/module/login/widget/forgot_password_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({
@@ -48,7 +48,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> with ProgressDi
   @override
   Widget build(BuildContext context) {
     // context.read<ForgorPasswordBloc>().add(forgotPasswordPageInfoEvent());
-    return BlocConsumer<ForgorPasswordBloc, ForgorPasswordState>(
+    return BlocConsumer<ForgorPasswordBloc, ForgotPasswordState>(
       listener: (context, state) {
         if (state is ForgotPasswordLoading) {
           showProgressDialog(context);

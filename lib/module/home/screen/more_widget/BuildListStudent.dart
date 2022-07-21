@@ -1,8 +1,9 @@
+
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_board_student_response.dart';
-import 'package:f2fbuu/module/home/screen/more_screen/board_screen/board_Item_student.dart';
+import 'package:f2fbuu/module/home/screen/more_widget/board_Item_student.dart';
 import 'package:flutter/material.dart';
-import 'more_board_student_List_screen.dart';
-import 'more_board_student_detail_screen.dart';
+import '../more_screen/board_screen/more_board_student_List_screen.dart';
+import '../more_screen/board_screen/more_board_student_detail_screen.dart';
 
 buildListStudent(BuildContext context, ScreenMoreBoardStudentResponse? screenMoreBoardStudentResponse) {
   return SingleChildScrollView(

@@ -1,8 +1,8 @@
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
-import 'package:f2fbuu/module/login/bloc/fotgotpasswordbloc/forgorpassword_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +43,7 @@ forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? scr
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
-                BuildTextFieldCustom(
+                TextFieldCustom(
                   textEditingController: userIDController,
                   onChanged: (valueUserID) {
                     userIDController.text = valueUserID;
@@ -51,7 +51,7 @@ forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? scr
                   hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.edtIDforgot}",
                   textInputType: TextInputType.text,
                 ),
-                BuildTextFieldCustom(
+                TextFieldCustom(
                   textEditingController: emailController,
                   onChanged: (valueEmail) {
                     emailController.text = valueEmail;

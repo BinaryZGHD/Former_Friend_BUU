@@ -1,9 +1,9 @@
 
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/home/bloc/morebloc/more_bloc.dart';
+import 'package:f2fbuu/module/home/bloc/more_bloc/more_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_response.dart';
-import 'package:f2fbuu/module/home/screen/widget/more_body_widget.dart';
+import 'package:f2fbuu/module/home/screen/more_widget/more_body_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

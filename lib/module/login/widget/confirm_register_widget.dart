@@ -1,10 +1,11 @@
-import 'package:custom_timer/src/custom_timer_controller.dart';
+
+import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
-import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
-import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/customs/textlink/textlink_otp_custom.dart';
+import 'package:f2fbuu/module/login/bloc/register_bloc/register_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
 import 'package:f2fbuu/module/login/widget/count_time_otp_widget.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,7 @@ Widget confirmRegisterPageWidget(
                       ),
                     ]),
                   ),
-                  BuildTextFieldCustom(
+                  TextFieldCustom(
                     maxLengthOTP: 6,
                     textEditingController: confirmOTPController,
                     onChanged: (valueConfirmrRegisterOTP) {
@@ -97,7 +98,7 @@ Widget confirmRegisterPageWidget(
                     textInputType: TextInputType.number,
                   ),
                   CountTimeOTPWidget(
-                    SendOTP : TextSendOTPCustom(
+                    sendOTP : TextSendOTPCustom(
                       textlabel: "${screenRegisterResponse?.body?.screeninfo?.textsentotpagain}",
                       textcolor: tcOTPSent,
                       sizetext: sizeTextSmall16,

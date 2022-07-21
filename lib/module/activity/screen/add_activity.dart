@@ -4,14 +4,14 @@ import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
-import 'package:f2fbuu/module/home/screen/homescreen/home_screen.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import '../../../customs/size/size.dart';
-import '../../../customs/textfile/buildtextfieldcustom.dart';
 
 class AddActivityScreen extends StatelessWidget {
   const AddActivityScreen({Key? key}) : super(key: key);
@@ -116,7 +116,7 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    BuildTextFieldCustom(
+                    TextFieldCustom(
                       textEditingController: activityName,
                       onChanged: (value) {
                         activityName.text = value;
@@ -155,7 +155,7 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
                       hintLabel: 'Start date',
                     ),
                     customDatePicker(hintLabel: 'Finish date'),
-                    BuildTextFieldCustom(
+                    TextFieldCustom(
                       textEditingController: totalTime,
                       onChanged: (value) {
                         totalTime.text = value;
@@ -165,7 +165,7 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
                           "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
                       textInputType: TextInputType.number,
                     ),
-                    BuildTextFieldCustom(
+                    TextFieldCustom(
                       textEditingController: venue,
                       onChanged: (value) {
                         venue.text = value;

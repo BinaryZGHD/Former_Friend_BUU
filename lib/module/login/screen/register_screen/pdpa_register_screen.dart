@@ -1,11 +1,11 @@
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
-import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
+import 'package:f2fbuu/module/login/bloc/pdpa_bloc/pdpa_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
-import 'package:f2fbuu/module/login/screen/registerscreen/register_screen.dart';
+import 'package:f2fbuu/module/login/screen/register_screen/register_screen.dart';
 import 'package:f2fbuu/module/login/widget/pdpa_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ConditionPDPAScreen extends StatelessWidget {

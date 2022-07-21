@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 
 import '../color/colorconts.dart';
 
-class BuildTextFieldCustom extends StatefulWidget {
+class TextFieldCustom extends StatefulWidget {
   final TextEditingController? textEditingController;
   final String hintLabel;
   final TextInputType textInputType;
   final ValueChanged<String>? onChanged;
   final int? maxLengthOTP;
   final String? initialvalue;
-  const BuildTextFieldCustom(
+  const TextFieldCustom(
       {Key? key, this.textEditingController, required this.hintLabel, this.onChanged, required this.textInputType, this.initialvalue, this.maxLengthOTP})
       : super(key: key);
 
   @override
-  State<BuildTextFieldCustom> createState() => _BuildTextFieldCustomState();
+  State<TextFieldCustom> createState() => _TextFieldCustomState();
 }
 
-class _BuildTextFieldCustomState extends State<BuildTextFieldCustom> {
+class _TextFieldCustomState extends State<TextFieldCustom> {
 
   @override
   Widget build(BuildContext context) {

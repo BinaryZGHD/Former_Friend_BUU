@@ -1,7 +1,7 @@
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/module/login/bloc/pdpabloc/pdpa_bloc.dart';
+import 'package:f2fbuu/module/login/bloc/pdpa_bloc/pdpa_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

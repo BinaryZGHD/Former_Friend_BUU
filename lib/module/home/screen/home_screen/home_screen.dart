@@ -1,19 +1,19 @@
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
-import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
-import 'package:f2fbuu/module/home/model/response/alert_delete_account_response.dart';
-import 'package:f2fbuu/module/home/model/response/alert_logout_response.dart';
-import 'package:f2fbuu/module/home/model/response/alert_noactivity_respone.dart';
-import 'package:f2fbuu/module/home/model/response/screen_home_response.dart';
-import 'package:f2fbuu/module/home/screen/widget/home_widget.dart';
+import 'package:f2fbuu/module/home/bloc/home_bloc/home_bloc.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/alert_delete_account_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/alert_logout_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/alert_no_activity_response.dart';
+import 'package:f2fbuu/module/home/model/response/home_response/screen_home_response.dart';
+import 'package:f2fbuu/module/home/screen/home_widget/home_widget.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:f2fbuu/utils/set_global.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

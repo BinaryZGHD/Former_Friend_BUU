@@ -3,7 +3,7 @@ import 'package:f2fbuu/module/home/model/response/more_response/screen_more_boar
 import 'package:f2fbuu/module/home/screen/more_widget/BuildListTeacher.dart';
 import 'package:flutter/material.dart';
 
-teacherMathWidget (BuildContext context, ScreenMoreBoardTeacherResponse? _screenMoreBoardTeacherResponse){
+teacherStatsWidget(BuildContext context, ScreenMoreBoardTeacherResponse? _screenMoreBoardTeacherResponse) {
   return Expanded(
     child: Container(
       padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
@@ -20,7 +20,7 @@ teacherMathWidget (BuildContext context, ScreenMoreBoardTeacherResponse? _screen
                     fontSize: sizeTitle24,
                   )),
             ),
-            buildListTeacherLeft(context, _screenMoreBoardTeacherResponse),
+            buildListTeacherRight(context, _screenMoreBoardTeacherResponse),
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.staff}",

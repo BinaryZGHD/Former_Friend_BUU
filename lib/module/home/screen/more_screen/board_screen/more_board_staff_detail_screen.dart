@@ -1,6 +1,6 @@
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/module/home/bloc/morebloc/more_bloc.dart';
+import 'package:f2fbuu/module/home/bloc/more_bloc/more_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class MoreBoardStaffDetailScreen extends StatelessWidget {
