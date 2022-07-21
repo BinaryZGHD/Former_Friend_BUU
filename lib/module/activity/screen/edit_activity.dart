@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class EditActivityScreen extends StatelessWidget {
-  final data;
+  final dynamic data;
 
   const EditActivityScreen({Key? key, required this.data}) : super(key: key);
 
@@ -31,7 +31,7 @@ class EditActivityScreen extends StatelessWidget {
 }
 
 class EditActivityPage extends StatefulWidget {
-  final data;
+  final dynamic data;
 
   const EditActivityPage({Key? key, required this.data}) : super(key: key);
 
@@ -323,15 +323,15 @@ buildEditActivityBody(
                 colorborder: tcButtonTextBoarder,
                 sizeborder: 10,
                 onPressed: () {
-                  if (year.text.isNotEmpty &&
-                      totalTime.text.isNotEmpty &&
-                      approver.text.isNotEmpty &&
-                      fDate.text.isNotEmpty &&
-                      venue.text.isNotEmpty &&
-                      detail.text.isNotEmpty &&
-                      sDate.text.isNotEmpty &&
-                      activityName.text.isNotEmpty &&
-                      term.text.isNotEmpty) {
+                  // if (year.text.isNotEmpty &&
+                  //     totalTime.text.isNotEmpty &&
+                  //     approver.text.isNotEmpty &&
+                  //     fDate.text.isNotEmpty &&
+                  //     venue.text.isNotEmpty &&
+                  //     detail.text.isNotEmpty &&
+                  //     sDate.text.isNotEmpty &&
+                  //     activityName.text.isNotEmpty &&
+                  //     term.text.isNotEmpty) {
                     context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(
                         id: idValue,
                         year: year.text,
@@ -343,13 +343,13 @@ buildEditActivityBody(
                         sDate: sDate.text,
                         activityName: activityName.text,
                         term: term.text));
-                  } else {
-                    dialogOneLineOneBtn(
-                        context, 'Please fill in all information', "OK",
-                        onClickBtn: () {
-                      Navigator.of(context).pop();
-                    });
-                  }
+                  // } else {
+                  //   dialogOneLineOneBtn(
+                  //       context, 'Please fill in all information', "OK",
+                  //       onClickBtn: () {
+                  //     Navigator.of(context).pop();
+                  //   });
+                  // }
                 },
               ),
             ),

@@ -4,8 +4,6 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
-import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
-import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,8 +12,8 @@ import '../../../../customs/color/colorconts.dart';
 import '../../../../customs/size/size.dart';
 
 class ActivityDetailScreen extends StatelessWidget {
-  final title;
-  final data;
+  final dynamic title;
+  final dynamic data;
   const ActivityDetailScreen({Key? key, this.title, this.data})
       : super(key: key);
 
@@ -28,8 +26,8 @@ class ActivityDetailScreen extends StatelessWidget {
 }
 
 class ActivityDetailPage extends StatefulWidget {
-  final title;
-  final data;
+  final dynamic title;
+  final dynamic data;
 
   const ActivityDetailPage({Key? key, required this.title, this.data})
       : super(key: key);
@@ -40,8 +38,8 @@ class ActivityDetailPage extends StatefulWidget {
 
 class _ActivityDetailPageState extends State<ActivityDetailPage>
     with ProgressDialog {
-  var title;
-  var data;
+  dynamic title;
+  dynamic data;
   bool showButton = false;
 
   //---------------------------------API----------------------------------------//
@@ -49,7 +47,9 @@ class _ActivityDetailPageState extends State<ActivityDetailPage>
   void initState() {
     title = widget.title;
     data = widget.data;
-    print('เรียก initState');
+    if (kDebugMode) {
+      print('เรียก initState');
+    }
     // getActivityDetailApi();
     super.initState();
   }
@@ -78,7 +78,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage>
      builder: (context, state){
 
          if(state is ActivityInitial) {
-           return BuildContextActivity(context, data, showButton, title);
+           return buildContextActivity(context, data, showButton, title);
          }
          return Scaffold(
              body: Container(
@@ -93,22 +93,22 @@ class _ActivityDetailPageState extends State<ActivityDetailPage>
   }
 }
 
-BuildTableRow(BuildContext context,
+buildTableRow(BuildContext context,
     {required String textLeftTable, required String textRightTableDetail}) {
   return TableRow(children: [
     Text(
-      '   ' + textLeftTable,
-      style: TextStyle(
+      '   $textLeftTable',
+      style: const TextStyle(
           fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
-    Text(
+    const Text(
       ':',
       style: TextStyle(
           fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
       textRightTableDetail,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
     )
   ]);
@@ -116,7 +116,7 @@ BuildTableRow(BuildContext context,
 
 ////////////////////////////////////////////////////////////////////////////////
 _buildListenpty() {
-  return TableRow(children: [
+  return const TableRow(children: [
     SizedBox(),
     SizedBox(),
     SizedBox(
@@ -125,34 +125,40 @@ _buildListenpty() {
   ]);
 }
 
-BuildContextActivity(
+buildContextActivity(
   BuildContext context,
   data,
   bool showButton,
   title,
 ) {
   // print('${data.status}');
-  var myIcon = Icon(
+  var myIcon = const Icon(
     Icons.question_mark,
     color: Colors.black,
   );
   if (data.status == "Unapproved!") {
-    print('เข้า Unapproved!');
-    myIcon = Icon(
+    if (kDebugMode) {
+      print('เข้า Unapproved!');
+    }
+    myIcon = const Icon(
       Icons.alarm,
       color: Colors.black,
     );
     showButton = true;
   } else if (data.status == "Approved!") {
-    print('เข้า Approved!');
-    myIcon = Icon(
+    if (kDebugMode) {
+      print('เข้า Approved!');
+    }
+    myIcon = const Icon(
       Icons.check_circle,
       color: Colors.black,
     );
     showButton = false;
   } else if (data.status == "Rejected!") {
-    print('เข้า Rejected');
-    myIcon = Icon(
+    if (kDebugMode) {
+      print('เข้า Rejected');
+    }
+    myIcon = const Icon(
       Icons.cancel,
       color: Colors.black,
     );
@@ -170,7 +176,7 @@ BuildContextActivity(
           // });
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back,
           size: sizeTitle24,
           color: Colors.black,
@@ -180,7 +186,7 @@ BuildContextActivity(
         child: Text(
           // 'ทดสอบ',
           '${data.status}',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 22,
           ),
@@ -194,7 +200,7 @@ BuildContextActivity(
     ),
     body: Center(
       child: Container(
-        margin: EdgeInsets.only(top: 10, bottom: 10),
+        margin: const EdgeInsets.only(top: 10, bottom: 10),
         // height: MediaQuery.of(context).size.height * 0.9,
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
@@ -225,8 +231,8 @@ BuildContextActivity(
                     child: Table(
                       border: TableBorder.symmetric(
                           outside:
-                              BorderSide(width: 2, color: Colors.transparent)),
-                      columnWidths: <int, TableColumnWidth>{
+                              const BorderSide(width: 2, color: Colors.transparent)),
+                      columnWidths: const <int, TableColumnWidth>{
                         0: FractionColumnWidth(0.35),
                         1: FractionColumnWidth(0.05),
                         2: FractionColumnWidth(0.60),
@@ -234,40 +240,40 @@ BuildContextActivity(
                       // defaultVerticalAlignment:
                       // TableCellVerticalAlignment.middle,
                       children: [
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: title.textactivity,
                             textRightTableDetail: '${data.name}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.textyear}',
                             textRightTableDetail: '${data.year}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.textterm}',
                             textRightTableDetail: '${data.term}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.textstartdate}',
                             textRightTableDetail: '${data.startdate}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.textfinishdate}',
                             textRightTableDetail: '${data.finishdate}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.texttime}',
                             textRightTableDetail:
-                                '${data.time}' + " ( hh:mm ) "),
+                                '${data.time}' " ( hh:mm ) "),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.edtapprover}',
                             textRightTableDetail: '${data.approver}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.textvenue}',
                             textRightTableDetail: '${data.venue}'),
                         _buildListenpty(),
-                        BuildTableRow(context,
+                        buildTableRow(context,
                             textLeftTable: '${title.textdetail}',
                             textRightTableDetail: '${data.detail}')
                       ],
@@ -288,12 +294,12 @@ BuildContextActivity(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   myIcon,
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
                     '${data.status}',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -310,7 +316,7 @@ BuildContextActivity(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
                             width: 100,
                             child: ButtonCustom(
                               onPressed: () {
@@ -326,10 +332,10 @@ BuildContextActivity(
                               colorborder: tcButtonTextBoarder,
                               sizeborder: 1.0,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 50,
                         ),
-                  Container(
+                  SizedBox(
                       width: 100,
                       child: ButtonCustom(
                         colortext: tcButtonTextWhite,
@@ -339,7 +345,7 @@ BuildContextActivity(
                         sizeborder: 10,
                         label: '${title.buttonright}',
                         onPressed: () {
-                          dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Please make sure you want to delete', 'Confirm', 'Cancel',
+                          dialogOneLineTwoBtn(context, '$errlogout\n \n Please make sure you want to delete', 'Confirm', 'Cancel',
                               onClickBtn: (String result) {
                                 Navigator.of(context).pop();
                                 switch (result) {
@@ -350,7 +356,9 @@ BuildContextActivity(
                                   case 'OK':
                                     {
                                       context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
-                                      print('id คือ ${data.id}');
+                                      if (kDebugMode) {
+                                        print('id คือ ${data.id}');
+                                      }
 
                                     }
                                 }
@@ -361,7 +369,7 @@ BuildContextActivity(
               ),
             ),
           )
-              : Text(''),
+              : const Text(''),
         ]),
       ),
     ),

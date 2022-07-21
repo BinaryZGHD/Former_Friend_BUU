@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'activitydetailscreen.dart';
 import 'itemactivity.dart';
-import 'package:flutter/cupertino.dart';
 
 buildListActivity(BuildContext context,
     ScreenStatusActivityResponse? screenstatusActivityResponse) {
   return SingleChildScrollView(
-    padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
+    padding: const EdgeInsets.fromLTRB(0, 5, 0, 20),
     scrollDirection: Axis.vertical,
     child: Column(
         children: List.generate(

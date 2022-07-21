@@ -1,10 +1,10 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:f2fbuu/module/activity/model/response/add_edit.dart';
 import 'package:f2fbuu/module/activity/model/response/delete.dart';
 import 'package:f2fbuu/module/activity/repository/activity_repository.dart';
-import 'package:meta/meta.dart';
 
 part 'activity_event.dart';
 
@@ -79,12 +79,16 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>
             DeleteResponse deleteResponse =
                 DeleteResponse.fromJson(responseDeleteSubmit.data);
 
-            print("deleteResponse.head?.status is ${deleteResponse.head?.status}");
+            if (kDebugMode) {
+              print("deleteResponse.head?.status is ${deleteResponse.head?.status}");
+            }
 
             if (deleteResponse.head?.status == 200) {
               emit(SubmitDeleteActivityState(responseDelete: deleteResponse));
             } else {
-              print("ActivityError  + 1");
+              if (kDebugMode) {
+                print("ActivityError  + 1");
+              }
               emit(ActivityError(message: deleteResponse.head?.message ?? ""));
             }
           } catch (e) {
