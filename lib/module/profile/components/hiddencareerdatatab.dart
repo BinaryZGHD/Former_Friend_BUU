@@ -2,16 +2,16 @@ import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDropdownCareerDataTab extends StatefulWidget {
-  final String jobtextleft;
-  final String userjobtypevalue;
-  final List<Jobtype> jobtypearray;
-  final bool isunpressed;
+  final String jobTextLeft;
+  final String userJobTypeValue;
+  final List<Jobtype> jobTypeArray;
+  final bool isUnpressed;
   final Function(String? jobtype) callbackHiddenCareerDataTab;
   const ProfileDropdownCareerDataTab(
       {Key? key,
-        required this.jobtextleft,
-        required this.userjobtypevalue,
-        required this.jobtypearray, required this.isunpressed,
+        required this.jobTextLeft,
+        required this.userJobTypeValue,
+        required this.jobTypeArray, required this.isUnpressed,
         required this.callbackHiddenCareerDataTab
       })
       : super(key: key);
@@ -23,17 +23,17 @@ class ProfileDropdownCareerDataTab extends StatefulWidget {
 
 class _ProfileDropdownCareerDataTabState
     extends State<ProfileDropdownCareerDataTab> {
-  String? userjobtypevalue;
+  String? userJobTypeValue;
   @override
   void initState(){
-    userjobtypevalue = widget.userjobtypevalue;
+    userJobTypeValue = widget.userJobTypeValue;
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    bool isunpressed = widget.isunpressed;
+    bool isUnpressed = widget.isUnpressed;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -42,27 +42,25 @@ class _ProfileDropdownCareerDataTabState
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.5,
               child: Text(
-                widget.jobtextleft,
-                style: TextStyle(fontSize: 18),
+                widget.jobTextLeft,
+                style: const TextStyle(fontSize: 18),
               ),
             ),
             Expanded(
               child: SizedBox(
                 child: IgnorePointer(
-                  ignoring: isunpressed,
+                  ignoring: isUnpressed,
                   child:
                   PopupMenuButton<String>(
-                    // initialValue:
-                    // userjobtypevalue,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                               child: Text(
-                                userjobtypevalue??'',
+                                userJobTypeValue??'',
                                 style: const TextStyle(color: Colors.black),
                                 textAlign: TextAlign.end,
                                 overflow: TextOverflow.fade,
@@ -71,48 +69,26 @@ class _ProfileDropdownCareerDataTabState
                           const Icon(Icons.keyboard_arrow_down)
                         ]),
                     itemBuilder: (context) {
-                      return List.generate(widget.jobtypearray.length,
+                      return List.generate(widget.jobTypeArray.length,
                               (index) {
                             return PopupMenuItem(
+                              value: widget.jobTypeArray[index].jobname,
                               child:
-                              Text(widget.jobtypearray[index].jobname ?? ''),
-                              value: widget.jobtypearray[index].jobname,
+                              Text(widget.jobTypeArray[index].jobname ?? ''),
                             );
                           });
                     },
                     onSelected: (value) {
 
                       setState(() {
-                        userjobtypevalue = value;
-                        widget.callbackHiddenCareerDataTab(userjobtypevalue);
+                        userJobTypeValue = value;
+                        widget.callbackHiddenCareerDataTab(userJobTypeValue);
                       });
                     },
                   ),
                 ),
               ),
             ),
-
-
-
-            // Expanded(
-            //   child: SizedBox(
-            //     child: IgnorePointer(
-            //       ignoring: isunpressed,
-            //       child: DropdownButtonFormField<String>(
-            //         // alignment: Alignment.centerRight,
-            //         decoration: InputDecoration(
-            //           border: InputBorder.none,
-            //         ),
-            //         value: userjobtypevalue,
-            //         items: widget.jobtypearray
-            //             .map((item) => DropdownMenuItem<String>(
-            //             value: item.jobname, child: Text(item.jobname??'')))
-            //             .toList(),
-            //         onChanged: (item) => setState(() => userjobtypevalue = item),
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -121,12 +97,12 @@ class _ProfileDropdownCareerDataTabState
 }
 ////////////////////////////////////////////////////////////////////////////////
 class ProfileCareerDataTab extends StatefulWidget {
-  final String textleft;
-  final String textright;
-  final bool isunpressed;
+  final String textLeft;
+  final String textRight;
+  final bool isUnpressed;
   final Function(String result) callbackFromHiddenCareerDataTab;
 
-  ProfileCareerDataTab({Key? key, required this.textleft, required this.textright, required this.isunpressed,required this.callbackFromHiddenCareerDataTab,}) : super(key: key);
+  const ProfileCareerDataTab({Key? key, required this.textLeft, required this.textRight, required this.isUnpressed,required this.callbackFromHiddenCareerDataTab,}) : super(key: key);
 
   @override
   State<ProfileCareerDataTab> createState() => _ProfileCareerDataTabState();
@@ -135,12 +111,12 @@ class ProfileCareerDataTab extends StatefulWidget {
 class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
   @override
   Widget build(BuildContext context) {
-    String textleft = widget.textleft;
-    String textright = widget.textright;
-    bool ispressed = widget.isunpressed;
-    String uservalue = 'testtesttest';
+    String textLeft = widget.textLeft;
+    String textRight = widget.textRight;
+    bool isUnpressed = widget.isUnpressed;
+    String userValue = '';
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -150,32 +126,23 @@ class _ProfileCareerDataTabState extends State<ProfileCareerDataTab> {
         child: Row(
           children: [
             Text(
-              textleft + ' ',
-              style: TextStyle(fontSize: 18),
+              '$textLeft ',
+              style: const TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  readOnly: ispressed,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      uservalue = value;
-                      widget.callbackFromHiddenCareerDataTab(uservalue);
-                      // print(texttest);
-                    });
-                  },
-                  initialValue: textright,
+              child: TextFormField(
+                readOnly: isUnpressed,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
-
-                // Text(
-                //   textright,
-                //   style: TextStyle(fontSize: 18),
-                //   textAlign: TextAlign.right,
-                // ),
+                onChanged: (value) {
+                  setState(() {
+                    userValue = value;
+                    widget.callbackFromHiddenCareerDataTab(userValue);
+                  });
+                },
+                initialValue: textRight,
               ),
             ),
           ],

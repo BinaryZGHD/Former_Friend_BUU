@@ -21,9 +21,8 @@ class ActivityDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ActivityBloc(),
-      child: ActivityDetailPage(title: title, data: data),
+    return BlocProvider(create: (context) => ActivityBloc()..add(AddEditActivityScreenInfoEvent()),
+      child: ActivityDetailPage(title: title,data: data),
     );
   }
 }
@@ -52,43 +51,45 @@ class _ActivityDetailPageState extends State<ActivityDetailPage>
     data = widget.data;
     print('เรียก initState');
     // getActivityDetailApi();
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ActivityBloc, ActivityState>(
-      listener: (context, state) {
-        if (state is ActivityDetailLoading) {
-          showProgressDialog(context);
-        }
-        if (state is ActivityDetailEndLoading) {
-          hideProgressDialog(context);
-        }
-        if (state is ActivityError) {
-          // show dialog error
-          if (kDebugMode) {
-            print(state.message);
-          }
-        }
-        if (state is SubmitDeleteActivityState) {
-          Navigator.pop(context);
-        }
-      },
-      builder: (context, state) {
-        if (state is ActivityInitial) {
-          return BuildContextActivity(context, data, showButton, title);
-        }
-        return Scaffold(
-            body: Container(
-          color: Colors.white,
-        ));
-      },
-      buildWhen: (context, state) {
-        return state is ActivityInitial || state is DefaultState;
-      },
-    );
+   return BlocConsumer<ActivityBloc,ActivityState>(
+       listener: (context, state){
+         if (state is ActivityDetailLoading) {
+           showProgressDialog(context);
+         }
+         if (state is ActivityDetailEndLoading) {
+           hideProgressDialog(context);
+         }
+         if (state is ActivityError) {
+           // show dialog error
+           if (kDebugMode) {
+             print(state.message);
+           }
+         }
+         if (state is SubmitDeleteActivityState) {
+           // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+           Navigator.pop(context);
+         }
+       },
+     builder: (context, state){
+
+         if(state is ActivityInitial) {
+           return BuildContextActivity(context, data, showButton, title);
+         }
+         return Scaffold(
+             body: Container(
+               color: Colors.white,
+             ));
+     },
+     buildWhen: (context, state){
+         return state is ActivityInitial || state is DefaultState;
+   },
+
+   );
   }
 }
 
@@ -328,44 +329,38 @@ BuildContextActivity(
                         SizedBox(
                           width: 50,
                         ),
-                        Container(
-                            width: 100,
-                            child: ButtonCustom(
-                              colortext: tcButtonTextWhite,
-                              colorbutton: tcButtonTextRed,
-                              sizetext: sizeTextSmaller14,
-                              colorborder: tcButtonTextRedBoarder,
-                              sizeborder: 10,
-                              label: '${title.buttonright}',
-                              onPressed: () {
-                                dialogOneLineTwoBtn(
-                                    context,
-                                    errlogout +
-                                        '\n \n ' +
-                                        'Do you want to continue?',
-                                    'Confirm',
-                                    'Cancel', onClickBtn: (String result) {
-                                  Navigator.of(context).pop();
-                                  switch (result) {
-                                    case 'Cancel':
-                                      {
-                                        break;
-                                      }
-                                    case 'OK':
-                                      {
-                                        context.read<ActivityBloc>().add(
-                                            SubmitDeleteActivityEvent(
-                                                id: '${data.id}'));
-                                        print('id คือ ${data.id}');
-                                      }
-                                  }
-                                });
-                              },
-                            )),
-                      ],
-                    ),
-                  ),
-                )
+                  Container(
+                      width: 100,
+                      child: ButtonCustom(
+                        colortext: tcButtonTextWhite,
+                        colorbutton: tcButtonTextRed,
+                        sizetext: sizeTextSmaller14,
+                        colorborder: tcButtonTextRedBoarder,
+                        sizeborder: 10,
+                        label: '${title.buttonright}',
+                        onPressed: () {
+                          dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Please make sure you want to delete', 'Confirm', 'Cancel',
+                              onClickBtn: (String result) {
+                                Navigator.of(context).pop();
+                                switch (result) {
+                                  case 'Cancel':
+                                    {
+                                      break;
+                                    }
+                                  case 'OK':
+                                    {
+                                      context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
+                                      print('id คือ ${data.id}');
+
+                                    }
+                                }
+                              });
+                        },
+                      )),
+                ],
+              ),
+            ),
+          )
               : Text(''),
         ]),
       ),

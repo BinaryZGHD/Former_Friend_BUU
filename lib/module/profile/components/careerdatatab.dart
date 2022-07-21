@@ -1,13 +1,14 @@
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../model/response/api_profile.dart';
 
 class ProfileCareerDataHead extends StatefulWidget {
   final ApiProfileResponse? dataFromAPI;
-  ProfileCareerDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
+  const ProfileCareerDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
   State<ProfileCareerDataHead> createState() => _ProfileCareerDataHeadState();
@@ -30,7 +31,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 top: BorderSide(width: 1, color: Colors.black12),
                 bottom: BorderSide(width: 1, color: Colors.transparent)),
@@ -41,7 +42,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
               children: [
                 Text(
                   '${dataFromAPI?.body?.screeninfo?.textcareer}',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
                   child: Container(
@@ -52,12 +53,12 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                           isUnpressed = !isUnpressed;
                           if(isUnpressed == true){
                             context.read<ProfileBloc>().add(CareerSubmitEvent(jobType: jobTypeValue, company: companyValue, status: statusValue, attention: attentionValue, career: careerValue, workplace: workplaceValue));
-                          };
+                          }
                         });
                       },
                       child: isUnpressed
-                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก',
+                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          : const Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
                     ),
                   ),
@@ -74,7 +75,9 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           callbackFromAttentionDataTab: (String attentionResult){
             setState((){
               attentionValue = attentionResult;
-              print(attentionValue);
+              if (kDebugMode) {
+                print(attentionValue);
+              }
             });
           },
         ),
@@ -98,13 +101,17 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
               workplaceValue = workplace;
               careerValue = career;
               companyValue = company;
-              print(jobType + "และ" +  workplace + "และ" + career + "และ" + company);
+              if (kDebugMode) {
+                print("$jobTypeและ$workplaceและ$careerและ$company");
+              }
             });
           },
           callbackFromWorkDataTabStatus: (String status){
             setState((){
               statusValue = status;
-              print(statusValue);
+              if (kDebugMode) {
+                print(statusValue);
+              }
             });
           },
         ),
