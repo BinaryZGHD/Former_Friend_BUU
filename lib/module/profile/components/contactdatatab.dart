@@ -1,12 +1,14 @@
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ProfileContactDataHead extends StatefulWidget {
-  final dataFromAPI;
-  ProfileContactDataHead({Key? key, required this.dataFromAPI})
+  final ApiProfileResponse? dataFromAPI;
+  const ProfileContactDataHead({Key? key, required this.dataFromAPI})
       : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 top: BorderSide(width: 1, color: Colors.black12),
                 bottom: BorderSide(width: 1, color: Colors.transparent)),
@@ -37,8 +39,8 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI.body?.screeninfo?.subtitlecont}',
-                  style: TextStyle(fontSize: 20),
+                  '${dataFromAPI?.body?.screeninfo?.subtitlecont}',
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
                   child: Container(
@@ -56,29 +58,14 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                                 line: lineValue,
                                 phone: phoneValue));
                           }
-                          ;
                         });
-                        // setState((){
-                        //   if (ispressed == true) {
-                        //     editorsave = 'บันทึก';
-                        //   } else {
-                        //     editorsave = 'แก้ไข';
-                        //   }
-                        //   print(ispressed);
-                        // });
-                        // }, child: Text(editorsave,
                       },
                       child: isUnpressed
-                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก',
+                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          : const Text('บันทึก',
                               style: TextStyle(color: Colors.green)),
                     ),
                   ),
-
-                  // Text(editorsave,
-                  //       style:
-                  //       TextStyle(fontSize: 18, color: Colors.red),
-                  //       textAlign: TextAlign.right),
                 ),
               ],
             ),
@@ -91,10 +78,12 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             color: HexColor('#000000'),
           ),
           textContact: '${dataFromAPI?.body?.profileContactInfo?.phone}',
-          keyboardType: TextInputType.numberWithOptions(),
+          keyboardType: const TextInputType.numberWithOptions(),
           onChange: (value) {
             phoneValue = value;
-            print(phoneValue);
+            if (kDebugMode) {
+              print(phoneValue);
+            }
           },
         ),
         ProfileContactDataTab(
@@ -106,7 +95,9 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             textContact: '${dataFromAPI?.body?.profileContactInfo?.line}',
           onChange: (value) {
             lineValue = value;
-            print(lineValue);
+            if (kDebugMode) {
+              print(lineValue);
+            }
           },),
         ProfileContactDataTab(
             isUnpressed: isUnpressed,
@@ -117,7 +108,9 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             textContact: '${dataFromAPI?.body?.profileContactInfo?.facebook}',
           onChange: (value) {
             facebookValue = value;
-            print(facebookValue);
+            if (kDebugMode) {
+              print(facebookValue);
+            }
           },),
         ProfileContactDataTab(
             isUnpressed: isUnpressed,
@@ -128,7 +121,9 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             textContact: '${dataFromAPI?.body?.profileContactInfo?.instagram}',
           onChange: (value) {
             instagramValue = value;
-            print(instagramValue);
+            if (kDebugMode) {
+              print(instagramValue);
+            }
           },),
         ProfileContactDataTab(
             isUnpressed: isUnpressed,
@@ -139,7 +134,9 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             textContact: '${dataFromAPI?.body?.profileContactInfo?.twitter}',
           onChange: (value) {
             twitterValue = value;
-            print(twitterValue);
+            if (kDebugMode) {
+              print(twitterValue);
+            }
           },),
         ProfileContactDataTab(
             isUnpressed: isUnpressed,
@@ -150,7 +147,9 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             textContact: '${dataFromAPI?.body?.profileContactInfo?.youtube}',
           onChange: (value) {
             youtubeValue = value;
-            print(youtubeValue);
+            if (kDebugMode) {
+              print(youtubeValue);
+            }
           },),
       ],
     );
@@ -163,8 +162,8 @@ class ProfileContactDataTab extends StatefulWidget {
   final String textContact;
   final bool isUnpressed;
   final ValueChanged<String>? onChange;
-  final keyboardType;
-  ProfileContactDataTab(
+  final TextInputType? keyboardType;
+  const ProfileContactDataTab(
       {Key? key,
       required this.iconContact,
       required this.textContact,
@@ -184,7 +183,7 @@ class _ProfileContactDataTabState extends State<ProfileContactDataTab> {
     String textContact = widget.textContact;
     bool isUnpressed = widget.isUnpressed;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -195,23 +194,15 @@ class _ProfileContactDataTabState extends State<ProfileContactDataTab> {
           children: [
             iconContact,
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  keyboardType: widget.keyboardType,
-                  readOnly: isUnpressed,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  onChanged: widget.onChange,
-                  initialValue: textContact,
+              child: TextFormField(
+                keyboardType: widget.keyboardType,
+                readOnly: isUnpressed,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
-
-                // Text(
-                //   textright,
-                //   style: TextStyle(fontSize: 18),
-                //   textAlign: TextAlign.right,
-                // ),
+                onChanged: widget.onChange,
+                initialValue: textContact,
               ),
             ),
           ],

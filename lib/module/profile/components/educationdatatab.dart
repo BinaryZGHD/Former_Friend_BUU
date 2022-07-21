@@ -1,4 +1,5 @@
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../model/response/api_profile.dart';
@@ -7,7 +8,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 class ProfileEducationDataHead extends StatefulWidget {
   final ApiProfileResponse? dataFromAPI;
-  ProfileEducationDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
+  const ProfileEducationDataHead({Key? key, required this.dataFromAPI}) : super(key: key);
 
   @override
   State<ProfileEducationDataHead> createState() => _ProfileEducationDataHeadState();
@@ -23,7 +24,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 top: BorderSide(width: 1, color: Colors.black12),
                 bottom: BorderSide(width: 1, color: Colors.transparent)),
@@ -34,7 +35,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
               children: [
                 Text(
                   '${dataFromAPI?.body?.screeninfo?.subtitleeduinfo}',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
                   child: Container(
@@ -45,28 +46,14 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
                           isUnpressed = !isUnpressed;
                           if(isUnpressed == true){
                             context.read<ProfileBloc>().add(EducationSubmitEvent(gpaBd: gpaBdValue, gpaSh: gpaShValue, gpaJh: gpaJhValue));
-                          };
+                          }
                         });
-                        // setState((){
-                        //   if (ispressed == true) {
-                        //     editorsave = 'บันทึก';
-                        //   } else {
-                        //     editorsave = 'แก้ไข';
-                        //   }
-                        //   print(ispressed);
-                        // });
-                        // }, child: Text(editorsave,
                       },
                       child: isUnpressed
-                          ? Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : Text('บันทึก', style: TextStyle(color: Colors.green)),
+                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
+                          : const Text('บันทึก', style: TextStyle(color: Colors.green)),
                     ),
                   ),
-
-                  // Text(editorsave,
-                  //       style:
-                  //       TextStyle(fontSize: 18, color: Colors.red),
-                  //       textAlign: TextAlign.right),
                 ),
               ],
             ),
@@ -90,7 +77,9 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             textRight: '${dataFromAPI?.body?.profileEduInfo?.gpaJhs}',
           onChange: (value) {
             gpaJhValue = value;
-            print(gpaJhValue);
+            if (kDebugMode) {
+              print(gpaJhValue);
+            }
           },),
         ProfileEducationDataTab(
             isUnpressed: isUnpressed,
@@ -98,7 +87,9 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             textRight: '${dataFromAPI?.body?.profileEduInfo?.gpaShs}',
           onChange: (value) {
           gpaShValue = value;
-          print(gpaShValue);
+          if (kDebugMode) {
+            print(gpaShValue);
+          }
         },),
         ProfileEducationDataTab(
             isUnpressed: isUnpressed,
@@ -106,7 +97,9 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             textRight: '${dataFromAPI?.body?.profileEduInfo?.gpaBd}',
           onChange: (value) {
             gpaBdValue = value;
-            print(gpaBdValue);
+            if (kDebugMode) {
+              print(gpaBdValue);
+            }
           },),
       ],
     );
@@ -118,7 +111,7 @@ class ProfileEducationDataTab extends StatefulWidget {
   final String textRight;
   final bool isUnpressed;
   final ValueChanged<String>? onChange;
-  ProfileEducationDataTab(
+  const ProfileEducationDataTab(
       {Key? key,
         required this.textLeft,
         required this.textRight,
@@ -137,7 +130,7 @@ class _ProfileEducationDataTabState extends State<ProfileEducationDataTab> {
     String textRight = widget.textRight;
     bool isUnpressed = widget.isUnpressed;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -147,35 +140,21 @@ class _ProfileEducationDataTabState extends State<ProfileEducationDataTab> {
         child: Row(
           children: [
             Text(
-              textLeft + ' ',
-              style: TextStyle(fontSize: 18),
+              '$textLeft ',
+              style: const TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  autofocus: false,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  keyboardType: TextInputType.numberWithOptions(),
-                  readOnly: isUnpressed,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  // onChanged: (value) {
-                  //   setState(() {
-                  //     texttest = value;
-                  //     print(texttest);
-                  //   });
-                  // },
-                  onChanged : widget.onChange,
-                  initialValue: textRight,
+              child: TextFormField(
+                autofocus: false,
+                style: const TextStyle(fontSize: 18, color: Colors.black),
+                keyboardType: const TextInputType.numberWithOptions(),
+                readOnly: isUnpressed,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
-
-                // Text(
-                //   textright,
-                //   style: TextStyle(fontSize: 18),
-                //   textAlign: TextAlign.right,
-                // ),
+                onChanged : widget.onChange,
+                initialValue: textRight,
               ),
             ),
           ],
@@ -191,7 +170,7 @@ class ProfileEducationDataReadonlyTab extends StatefulWidget {
   final String textRight;
   final bool isUnpressed;
 
-  ProfileEducationDataReadonlyTab(
+  const ProfileEducationDataReadonlyTab(
       {Key? key,
         required this.textLeft,
         required this.textRight,
@@ -211,7 +190,7 @@ class _ProfileEducationDataReadonlyTabState extends State<ProfileEducationDataRe
     return Container(
       decoration: BoxDecoration(
         color: HexColor('#f5f5f5'),
-        border: Border(
+        border: const Border(
             top: BorderSide(width: 1, color: Colors.black12),
             bottom: BorderSide(width: 1, color: Colors.black12)),
       ),
@@ -220,33 +199,27 @@ class _ProfileEducationDataReadonlyTabState extends State<ProfileEducationDataRe
         child: Row(
           children: [
             Text(
-              textLeft + ' ',
-              style: TextStyle(fontSize: 18),
+              '$textLeft ',
+              style: const TextStyle(fontSize: 18),
             ),
             Expanded(
-              child: Container(
-                child: TextFormField(
-                  autofocus: false,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  readOnly: true,
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      textEduData = value;
-                      print(textEduData);
-                    });
-                  },
-                  initialValue: textRight,
+              child: TextFormField(
+                autofocus: false,
+                style: const TextStyle(fontSize: 18, color: Colors.black),
+                readOnly: true,
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
-
-                // Text(
-                //   textright,
-                //   style: TextStyle(fontSize: 18),
-                //   textAlign: TextAlign.right,
-                // ),
+                onChanged: (value) {
+                  setState(() {
+                    textEduData = value;
+                    if (kDebugMode) {
+                      print(textEduData);
+                    }
+                  });
+                },
+                initialValue: textRight,
               ),
             ),
           ],
