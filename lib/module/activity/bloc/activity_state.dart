@@ -1,6 +1,6 @@
 part of 'activity_bloc.dart';
 
-@immutable
+// @immutable
 abstract class ActivityState {
   const ActivityState();
 }
