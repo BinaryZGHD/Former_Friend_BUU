@@ -68,7 +68,7 @@ buildCardMore({
   return GestureDetector(
     onTap: onTap,
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
       child:
           // Container(
           //   padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),

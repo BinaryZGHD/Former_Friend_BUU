@@ -5,9 +5,11 @@ const String loginBtnLogin   = 'เข้าสู่ระบบ';
 const String loginBtnForgotPassword   = 'ลืมรหัสผ่าน';
 const String loginTextRegister   = 'ไม่มีบัญชีใช่หรือไม่';
 const String loginBtnRegister   = 'ลงทะเบียน';
+// ---------------------------------------------------------------------------------------------------------------------
 const String pDPATitlePDPA   = 'เงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว';
 const String pDPABtnAccept   = 'ยอมรับ';
 const String pDPABtnDecline   = 'ปฏิเสธ';
+// ---------------------------------------------------------------------------------------------------------------------
 const String registerTitleRegister   = 'ลงทะเบียน';
 const String registerEdtIDRegister   = 'รหัสนิสิต / รหัสอาจารย์';
 const String registerEdtPhoneRegister   = 'เบอร์โทรศัพท์';
@@ -17,30 +19,34 @@ const String registerEdtLastNameRegister   = 'นามสกุล';
 const String registerEdtPasswordRegister   = 'รหัสผ่าน';
 const String registerEdtConfirmPasswordRegister   = 'ยืนยันรหัสผ่าน';
 const String registerEdtSignup   = 'ลงทะเบียน';
+// ---------------------------------------------------------------------------------------------------------------------
 const String confirmRegisterTitleConfirmRegister   = 'ยืนยันการลงทะเบียน';
 const String confirmRegisterEdtOTP   = 'รหัส OTP';
 const String confirmRegisterTextOTPWilSent   = 'รหัสยืนยันตัวตนจะถูกส่งไปยัง';
 const String confirmRegisterTextPleaseConfirm   = 'กรุณายืนยัน';
 const String confirmRegisterTextSentOTPAgain   = 'ส่งรหัสยืนยันอีกครั้ง';
 const String confirmRegisterBtnConfirm   = 'ยืนยัน';
+// ---------------------------------------------------------------------------------------------------------------------
 const String forgotPasswordTitleForgotPassword   = 'ลืมรหัสผ่าน';
 const String forgotPasswordEdtIDForgotPassword   = 'รหัสนิสิต / รหัสอาจารย์';
 const String forgotPasswordEdtEmailForgotPassword   = 'อีเมล';
 const String forgotPasswordBtnForgotPasswordNext   = 'ต่อไป';
 const String forgotPasswordSetNewTitleSetNewPassword   = 'ตั้งค่ารหัสผ่านใหม่';
-const String forgotPasswordSetNewTextOTPwillsent   = 'รหัสยืนยันตัวตนจะถูกส่งไปยัง';
+const String forgotPasswordSetNewTextOTPWillSent   = 'รหัสยืนยันตัวตนจะถูกส่งไปยัง';
 const String forgotPasswordSetNewEdtPassword   = 'รหัสผ่าน';
 const String forgotPasswordSetNewEdtConfirmPassword   = 'ยืนยันรหัสผ่าน';
 const String forgotPasswordSetNewOTP   = 'รหัส OTP';
 const String forgotPasswordSetNewTextPleaseConfirm   = 'กรุณายืนยัน';
-const String forgotPasswordSetNewBtnsentOTPagain   = 'ส่งรหัสยืนยันอีกครั้ง';
+const String forgotPasswordSetNewBtnSentOTPAgain   = 'ส่งรหัสยืนยันอีกครั้ง';
 const String forgotPasswordSetNewBtnConfirm   = 'ยืนยัน';
+// ---------------------------------------------------------------------------------------------------------------------
 const String changePasswordTitleChangeNewPassword   = 'เปลี่ยนรหัสผ่าน';
 const String changePasswordEdtCurrentPassword   = 'รหัสผ่านปัจจุบัน';
 const String changePasswordEdtPassword   = 'รหัสผ่านใหม่';
 const String changePasswordEdtConfirmPassword   = 'ยืนยันรหัสผ่าน';
 const String changePasswordTextForgotPassword   = 'ลืมรหัสผ่าน';
 const String changePasswordBtnConfirm   = 'ยืนยัน';
+// ---------------------------------------------------------------------------------------------------------------------
 const String homeTitleAct   = 'กิจกรรมของฉัน';
 const String homeTextAdd   = 'เพิ่ม';
 const String homeTextName   = 'ชื่อ';
@@ -56,6 +62,7 @@ const String homeBtnChangePin   = 'เปลี่ยนรหัส PIN';
 const String homeBtnDelAcc   = 'ลบบัญชี';
 const String homeTextAppVer   = 'เวอร์ชันแอปพลิเคชัน';
 const String homeBtnLogout   = 'ออกจากระบบ';
+// ---------------------------------------------------------------------------------------------------------------------
 const String addActivityTitleAddAct   = 'บันทึกกิจกรรม';
 const String addActivityTitleEditAct   = 'แก้ไขกิจกรรม';
 const String addActivityEdtActName   = 'ชื่อกิจกรรม / โครงการ';
@@ -67,6 +74,7 @@ const String addActivityEdtTime   = 'จำนวนชั่วโมง';
 const String addActivityEdttVenue   = 'สถานที่จัดกิจกรรม';
 const String addActivityEdtDetail   = 'รายละเอียดกิจกรรม ( โดยสังเขป )';
 const String addActivityBtnConfirm   = 'ยืนยัน';
+// ---------------------------------------------------------------------------------------------------------------------
 const String statusActivityTitleApproved   = 'ได้รับการอนุมัติแล้ว!';
 const String statusActivityTitleUnapproved   = 'รอรับการอนุมัติ!';
 const String statusActivityTileRejected   = 'ไม่อนุมัติ!';
@@ -80,12 +88,13 @@ const String statusActivityTextTime   = 'จำนวนชั่วโมง';
 const String statusActivityTextVenue   = 'สถานที่จัดกิจกรรม';
 const String statusActivityEdtApprover   = 'ผู้ยืนยัน';
 const String statusActivityTextDetail   = 'รายละเอียดกิจกรรม';
+// ---------------------------------------------------------------------------------------------------------------------
 const String profileTitleProfile   = 'โปรไฟล์';
 const String profileSubTitleGenInfor   = 'ข้อมูลทั่วไป';
 const String profileSubTitleConFirm   = 'ข้อมูลการติดต่อ';
 const String profileSubTitleEduInfo   = 'ข้อมูลการศึกษา';
 const String profileSubTitleAddress   = 'ข้อมูลที่อยู่ปัจจุบัน';
-const String profileSubTitleWorkinfo   = 'อาชีพ';
+const String profileSubTitleWorkInfo   = 'อาชีพ';
 const String profileTextedit   = 'แก้ไข';
 const String profileTextSave   = 'บันทึก';
 const String profileTextName   = 'ชื่อ';
@@ -113,6 +122,7 @@ const String profileTextAtt   = 'ความสนใจ';
 const String profileTextCareer   = 'อาชีพ';
 const String profileTextJobType   = 'ประเภทงาน';
 const String profileTextStatus   = 'สถานะ';
+// ---------------------------------------------------------------------------------------------------------------------
 const String moreTitleMore   = 'เพิ่มเติม';
 const String moreSubTitleBoard   = 'ทำเนียบ';
 const String moreBtnStd   = 'นักเรียน';
@@ -130,6 +140,7 @@ const String moreTextUrGoto   = 'คุณกำลังไปยัง';
 const String moreTextRight   = 'ใช่หรือไม่';
 const String moreTextYes   = 'ตกลง';
 const String moreTextNo   = 'ยกเลิก';
+// ---------------------------------------------------------------------------------------------------------------------
 const String boardDetailNiSitTitleBoardNiSit   = 'ทำเนียบนิสิต';
 const String boardDetailNiSitTitleNiSit   = 'นักศึกษา';
 const String boardDetailNiSitTextName   = 'ชื่อ';
@@ -151,3 +162,4 @@ const String boardPersonalTextPosition   = 'ตำแหน่ง';
 const String boardPersonalTextTel   = 'โทร';
 const String boardPersonalTextEmail   = 'อีเมล';
 const String boardPersonalTextGotoWeb   = 'ไปยังเว็บไซต์';
+// ---------------------------------------------------------------------------------------------------------------------
