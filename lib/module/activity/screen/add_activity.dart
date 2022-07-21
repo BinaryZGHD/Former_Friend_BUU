@@ -10,7 +10,6 @@ import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:flutter/foundation.dart';
-import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -149,7 +148,7 @@ BuildAddActitivtyBody(
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            BuildTextFieldCustom(
+            TextFieldCustom(
               textEditingController: activityName,
               onChanged: (value) {
                 activityName.text = value;
@@ -208,7 +207,7 @@ BuildAddActitivtyBody(
                 }
               },
             ),
-            BuildTextFieldCustom(
+            TextFieldCustom(
               textEditingController: totalTime,
               onChanged: (value) {
                 totalTime.text = value;
@@ -219,7 +218,7 @@ BuildAddActitivtyBody(
               hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
               textInputType: TextInputType.number,
             ),
-            BuildTextFieldCustom(
+            TextFieldCustom(
               textEditingController: venue,
               onChanged: (value) {
                 venue.text = value;

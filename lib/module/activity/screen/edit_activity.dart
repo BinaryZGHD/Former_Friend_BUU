@@ -10,7 +10,6 @@ import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:flutter/foundation.dart';
-import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -80,20 +79,32 @@ class _EditActivityPageState extends State<EditActivityPage>
             onClickBtn: () {
           Navigator.of(context).pop();
         });
-        print(state.message);
+        if (kDebugMode) {
+          print(state.message);
+        }
       }
       if (state is SubmitAddEditActivityState) {
-        print("TEST SubmitAddEditActivityState");
-        print(state.responseAddEdit.toJson());
-        print("TEST SubmitAddEditActivityState");
+        if (kDebugMode) {
+          print("TEST SubmitAddEditActivityState");
+        }
+        if (kDebugMode) {
+          print(state.responseAddEdit.toJson());
+        }
+        if (kDebugMode) {
+          print("TEST SubmitAddEditActivityState");
+        }
         // context.read<ActivityBloc>().add(ActivityEvent());
         Navigator.pop(context);
       }
     }, builder: (context, state) {
       if (state is ActivityScreenInfoSuccessState) {
         _addActivityScreenApi = state.response;
-        print(_addActivityScreenApi?.head?.status);
-        print(_addActivityScreenApi?.body?.screeninfo?.titleeditact);
+        if (kDebugMode) {
+          print(_addActivityScreenApi?.head?.status);
+        }
+        if (kDebugMode) {
+          print(_addActivityScreenApi?.body?.screeninfo?.titleeditact);
+        }
         List<String>? yearList = _addActivityScreenApi?.body?.yearlist;
         List<String>? termList = _addActivityScreenApi?.body?.termlist;
         List<String>? approverList = _addActivityScreenApi?.body?.approverlist;
@@ -107,7 +118,7 @@ class _EditActivityPageState extends State<EditActivityPage>
         String approverValue = "${widget.data.approver}";
         String detailValue = "${widget.data.detail}";
         String idValue = "${widget.data.id}";
-        return BuildEditActivityBody(
+        return buildEditActivityBody(
             context,
             _addActivityScreenApi,
             activityName,
@@ -139,9 +150,9 @@ class _EditActivityPageState extends State<EditActivityPage>
   }
 }
 
-BuildEditActivityBody(
+buildEditActivityBody(
   BuildContext context,
-  AddActivityScreenApi? _addActivityScreenApi,
+  AddActivityScreenApi? addActivityScreenApi,
   TextEditingController activityName,
   TextEditingController year,
   TextEditingController term,
@@ -173,15 +184,15 @@ BuildEditActivityBody(
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back,
           size: sizeTitle24,
           color: Colors.black,
         ),
       ),
       title: Text(
-        "${_addActivityScreenApi?.body?.screeninfo?.titleeditact}",
-        style: TextStyle(
+        "${addActivityScreenApi?.body?.screeninfo?.titleeditact}",
+        style: const TextStyle(
           color: Colors.black,
           fontSize: sizeTitle24,
         ),
@@ -200,35 +211,35 @@ BuildEditActivityBody(
               textEditingController: activityName,
               onChanged: (value) {
                 activityName.text = value;
-                print(activityName.text);
+                if (kDebugMode) {
+                  print(activityName.text);
+                }
               },
               hintLabel:
-                  "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                  "${addActivityScreenApi?.body?.screeninfo?.edtactname}",
               textInputType: TextInputType.text,
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  customDropdownForEdit(
-                    dropdownList: yearList ?? <String>[],
-                    hint: 'Year',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                customDropdownForEdit(
+                  dropdownList: yearList ?? <String>[],
+                  hint: 'Year',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  dropdownValue: yearValue,
+                  callbackFromCustomDropdownForEdit: (String result) {
+                    year.text = result;
+                  },
+                ),
+                customDropdownForEdit(
+                    dropdownList: termList ?? <String>[],
+                    hint: 'Term',
                     width: MediaQuery.of(context).size.width * 0.4,
-                    dropdownValue: yearValue,
+                    dropdownValue: termValue,
                     callbackFromCustomDropdownForEdit: (String result) {
-                      year.text = result;
-                    },
-                  ),
-                  customDropdownForEdit(
-                      dropdownList: termList ?? <String>[],
-                      hint: 'Term',
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      dropdownValue: termValue,
-                      callbackFromCustomDropdownForEdit: (String result) {
-                        term.text = result;
-                      }),
-                ],
-              ),
+                      term.text = result;
+                    }),
+              ],
             ),
             customDatePickerForEdit(
               hintLabel: 'Start date',
@@ -250,16 +261,16 @@ BuildEditActivityBody(
                 }
               },
             ),
-            BuildTextFieldCustom(
+            TextFieldCustom(
               initialvalue: timeValue,
               textEditingController: totalTime,
               onChanged: (value) {
                 totalTime.text = value;
                 if (kDebugMode) {
-                  print("time ====" + totalTime.text);
+                  print("time ====${totalTime.text}");
                 }
               },
-              hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
+              hintLabel: "${addActivityScreenApi?.body?.screeninfo?.edttime}",
               textInputType: TextInputType.number,
             ),
             BuildTextformfieldUnlimitCustom(
@@ -272,7 +283,7 @@ BuildEditActivityBody(
                 }
               },
               hintLabel:
-                  "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                  "${addActivityScreenApi?.body?.screeninfo?.edttvenue}",
               textInputType: TextInputType.text,
             ),
             customDropdownForEdit(
@@ -297,7 +308,7 @@ BuildEditActivityBody(
                 }
               },
               hintLabel:
-                  "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                  "${addActivityScreenApi?.body?.screeninfo?.edtdetail}",
               textInputType: TextInputType.text,
             ),
             SizedBox(
@@ -305,9 +316,7 @@ BuildEditActivityBody(
             ),
             Center(
               child: ButtonCustom(
-                label: "  " +
-                    "${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}" +
-                    "  ",
+                label: "  ${addActivityScreenApi?.body?.screeninfo?.btnconfirm}  ",
                 colortext: tcButtonTextBlack,
                 colorbutton: tcButtonTextWhite,
                 sizetext: sizeTextBig20,
