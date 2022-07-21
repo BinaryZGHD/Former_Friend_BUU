@@ -4,14 +4,15 @@ import 'package:f2fbuu/customs/datepicker/custom_date_picker.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:flutter/foundation.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import '../../../customs/size/size.dart';
-import '../../../customs/textfile/buildtextfieldcustom.dart';
 
 class AddActivityScreen extends StatelessWidget {
   const AddActivityScreen({Key? key}) : super(key: key);
@@ -287,11 +288,12 @@ BuildAddActitivtyBody(
                         sDate: sDate.text,
                         activityName: activityName.text,
                         term: term.text));
-                  }else{
-                    dialogOneLineOneBtn(context, 'Please fill in all information', "OK",
+                  } else {
+                    dialogOneLineOneBtn(
+                        context, 'Please fill in all information', "OK",
                         onClickBtn: () {
-                          Navigator.of(context).pop();
-                        });
+                      Navigator.of(context).pop();
+                    });
                   }
                 },
               ),

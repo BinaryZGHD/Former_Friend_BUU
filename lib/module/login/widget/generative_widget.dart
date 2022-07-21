@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:f2fbuu/customs/particle.dart';
-import 'package:f2fbuu/module/login/screen/loginscreen/login_screen.dart';
+import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class GenerativeWidget extends StatefulWidget {

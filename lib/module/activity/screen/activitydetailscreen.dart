@@ -4,6 +4,8 @@ import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/screen/edit_activity.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
+import 'package:f2fbuu/module/profile/screen/profile_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,28 +16,31 @@ import '../../../../customs/size/size.dart';
 class ActivityDetailScreen extends StatelessWidget {
   final title;
   final data;
-  const ActivityDetailScreen({Key? key, this.title, this.data}) : super(key: key);
+  const ActivityDetailScreen({Key? key, this.title, this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => ActivityBloc(),
-      child: ActivityDetailPage(title: title,data: data),
+    return BlocProvider(
+      create: (context) => ActivityBloc(),
+      child: ActivityDetailPage(title: title, data: data),
     );
   }
 }
-
 
 class ActivityDetailPage extends StatefulWidget {
   final title;
   final data;
 
-  const ActivityDetailPage({Key? key, required this.title, this.data}) : super(key: key);
+  const ActivityDetailPage({Key? key, required this.title, this.data})
+      : super(key: key);
 
   @override
   State<ActivityDetailPage> createState() => _ActivityDetailPageState();
 }
 
-class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDialog{
+class _ActivityDetailPageState extends State<ActivityDetailPage>
+    with ProgressDialog {
   var title;
   var data;
   bool showButton = false;
@@ -49,62 +54,65 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> with ProgressDi
     // getActivityDetailApi();
 
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
-   return BlocConsumer<ActivityBloc,ActivityState>(
-       listener: (context, state){
-         if (state is ActivityDetailLoading) {
-           showProgressDialog(context);
-         }
-         if (state is ActivityDetailEndLoading) {
-           hideProgressDialog(context);
-         }
-         if (state is ActivityError) {
-           // show dialog error
-           if (kDebugMode) {
-             print(state.message);
-           }
-         }
-         if (state is SubmitDeleteActivityState) {
-           Navigator.pop(context);
-
-         }
-       },
-     builder: (context, state){
-
-         if(state is ActivityInitial) {
-           return BuildContextActivity(context, data, showButton, title);
-         }
-         return Scaffold(
-             body: Container(
-               color: Colors.white,
-             ));
-     },
-     buildWhen: (context, state){
-         return state is ActivityInitial || state is DefaultState;
-   },
-
-   );
+    return BlocConsumer<ActivityBloc, ActivityState>(
+      listener: (context, state) {
+        if (state is ActivityDetailLoading) {
+          showProgressDialog(context);
+        }
+        if (state is ActivityDetailEndLoading) {
+          hideProgressDialog(context);
+        }
+        if (state is ActivityError) {
+          // show dialog error
+          if (kDebugMode) {
+            print(state.message);
+          }
+        }
+        if (state is SubmitDeleteActivityState) {
+          Navigator.pop(context);
+        }
+      },
+      builder: (context, state) {
+        if (state is ActivityInitial) {
+          return BuildContextActivity(context, data, showButton, title);
+        }
+        return Scaffold(
+            body: Container(
+          color: Colors.white,
+        ));
+      },
+      buildWhen: (context, state) {
+        return state is ActivityInitial || state is DefaultState;
+      },
+    );
   }
 }
-BuildTableRow(BuildContext context, {required String textLeftTable, required String textRightTableDetail}) {
+
+BuildTableRow(BuildContext context,
+    {required String textLeftTable, required String textRightTableDetail}) {
   return TableRow(children: [
     Text(
       '   ' + textLeftTable,
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+      style: TextStyle(
+          fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
       ':',
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
+      style: TextStyle(
+          fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF333333)),
     ),
     Text(
       textRightTableDetail,
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
+      style: TextStyle(
+          fontSize: 14, fontWeight: FontWeight.w300, color: Color(0xFF333333)),
     )
   ]);
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 _buildListenpty() {
   return TableRow(children: [
@@ -116,7 +124,12 @@ _buildListenpty() {
   ]);
 }
 
-BuildContextActivity(BuildContext context, data, bool showButton, title,){
+BuildContextActivity(
+  BuildContext context,
+  data,
+  bool showButton,
+  title,
+) {
   // print('${data.status}');
   var myIcon = Icon(
     Icons.question_mark,
@@ -206,9 +219,12 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                 ),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0, left: 5, right: 5, bottom: 20),
+                    padding: const EdgeInsets.only(
+                        top: 20.0, left: 5, right: 5, bottom: 20),
                     child: Table(
-                      border: TableBorder.symmetric(outside: BorderSide(width: 2, color: Colors.transparent)),
+                      border: TableBorder.symmetric(
+                          outside:
+                              BorderSide(width: 2, color: Colors.transparent)),
                       columnWidths: <int, TableColumnWidth>{
                         0: FractionColumnWidth(0.35),
                         1: FractionColumnWidth(0.05),
@@ -217,31 +233,42 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
                       // defaultVerticalAlignment:
                       // TableCellVerticalAlignment.middle,
                       children: [
-                        BuildTableRow(context, textLeftTable: title.textactivity, textRightTableDetail: '${data.name}'),
+                        BuildTableRow(context,
+                            textLeftTable: title.textactivity,
+                            textRightTableDetail: '${data.name}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.textyear}', textRightTableDetail: '${data.year}'),
+                            textLeftTable: '${title.textyear}',
+                            textRightTableDetail: '${data.year}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.textterm}', textRightTableDetail: '${data.term}'),
+                            textLeftTable: '${title.textterm}',
+                            textRightTableDetail: '${data.term}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.textstartdate}', textRightTableDetail: '${data.startdate}'),
+                            textLeftTable: '${title.textstartdate}',
+                            textRightTableDetail: '${data.startdate}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.textfinishdate}', textRightTableDetail: '${data.finishdate}'),
+                            textLeftTable: '${title.textfinishdate}',
+                            textRightTableDetail: '${data.finishdate}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.texttime}', textRightTableDetail: '${data.time}' + " ( hh:mm ) "),
+                            textLeftTable: '${title.texttime}',
+                            textRightTableDetail:
+                                '${data.time}' + " ( hh:mm ) "),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.edtapprover}', textRightTableDetail: '${data.approver}'),
+                            textLeftTable: '${title.edtapprover}',
+                            textRightTableDetail: '${data.approver}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.textvenue}', textRightTableDetail: '${data.venue}'),
+                            textLeftTable: '${title.textvenue}',
+                            textRightTableDetail: '${data.venue}'),
                         _buildListenpty(),
                         BuildTableRow(context,
-                            textLeftTable: '${title.textdetail}', textRightTableDetail: '${data.detail}')
+                            textLeftTable: '${title.textdetail}',
+                            textRightTableDetail: '${data.detail}')
                       ],
                     ),
                   ),
@@ -273,65 +300,72 @@ BuildContextActivity(BuildContext context, data, bool showButton, title,){
           ),
           showButton
               ? Padding(
-            padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      width: 100,
-                      child: ButtonCustom(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return EditActivityPage(data: data);
-                          }));
-                        },
-                        label: '${title.buttonleft}',
-                        colortext: tcButtonTextBlack,
-                        colorbutton: tcButtonTextWhite,
-                        sizetext: sizeTextSmaller14,
-                        colorborder: tcButtonTextBoarder,
-                        sizeborder: 1.0,
-                      )),
-                  SizedBox(
-                    width: 50,
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            width: 100,
+                            child: ButtonCustom(
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return EditActivityPage(data: data);
+                                }));
+                              },
+                              label: '${title.buttonleft}',
+                              colortext: tcButtonTextBlack,
+                              colorbutton: tcButtonTextWhite,
+                              sizetext: sizeTextSmaller14,
+                              colorborder: tcButtonTextBoarder,
+                              sizeborder: 1.0,
+                            )),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Container(
+                            width: 100,
+                            child: ButtonCustom(
+                              colortext: tcButtonTextWhite,
+                              colorbutton: tcButtonTextRed,
+                              sizetext: sizeTextSmaller14,
+                              colorborder: tcButtonTextRedBoarder,
+                              sizeborder: 10,
+                              label: '${title.buttonright}',
+                              onPressed: () {
+                                dialogOneLineTwoBtn(
+                                    context,
+                                    errlogout +
+                                        '\n \n ' +
+                                        'Do you want to continue?',
+                                    'Confirm',
+                                    'Cancel', onClickBtn: (String result) {
+                                  Navigator.of(context).pop();
+                                  switch (result) {
+                                    case 'Cancel':
+                                      {
+                                        break;
+                                      }
+                                    case 'OK':
+                                      {
+                                        context.read<ActivityBloc>().add(
+                                            SubmitDeleteActivityEvent(
+                                                id: '${data.id}'));
+                                        print('id คือ ${data.id}');
+                                      }
+                                  }
+                                });
+                              },
+                            )),
+                      ],
+                    ),
                   ),
-                  Container(
-                      width: 100,
-                      child: ButtonCustom(
-                        colortext: tcButtonTextWhite,
-                        colorbutton: tcButtonTextRed,
-                        sizetext: sizeTextSmaller14,
-                        colorborder: tcButtonTextRedBoarder,
-                        sizeborder: 10,
-                        label: '${title.buttonright}',
-                        onPressed: () {
-                          dialogOneLineTwoBtn(context, errlogout + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                              onClickBtn: (String result) {
-                                Navigator.of(context).pop();
-                                switch (result) {
-                                  case 'Cancel':
-                                    {
-                                      break;
-                                    }
-                                  case 'OK':
-                                    {
-                                      context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
-                                      print('id คือ ${data.id}');
-
-                                    }
-                                }
-                              });
-                        },
-                      )),
-                ],
-              ),
-            ),
-          )
+                )
               : Text(''),
         ]),
       ),

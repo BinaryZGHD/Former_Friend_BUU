@@ -1,13 +1,12 @@
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/activity/screen/activitydetailscreen.dart';
 import 'package:f2fbuu/module/activity/screen/itemactivity.dart';
-import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'activitydetailscreen.dart';
 import 'itemactivity.dart';
+import 'package:f2fbuu/module/home/bloc/homebloc/home_bloc.dart';
+import 'package:flutter/cupertino.dart';
 
 buildListActivity(BuildContext context,
     ScreenStatusActivityResponse? screenstatusActivityResponse) {

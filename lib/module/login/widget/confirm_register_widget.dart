@@ -1,16 +1,23 @@
+
+import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/button/buttoncustom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/buildtextfieldcustom.dart';
-import 'package:f2fbuu/customs/textlink/textlinkotpcustom.dart';
-import 'package:f2fbuu/module/login/bloc/registerbloc/register_bloc.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/customs/textlink/textlink_otp_custom.dart';
+import 'package:f2fbuu/module/login/bloc/register_bloc/register_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
+import 'package:f2fbuu/module/login/widget/count_time_otp_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Widget confirmRegisterPageWidget(
-    BuildContext context, ScreenRegisterResponse? screenRegisterResponse, TextEditingController confirmOTPController,
-    {required String valueUserRegister, required String valueEmailRegister}) {
+    BuildContext context,
+    ScreenRegisterResponse? screenRegisterResponse,
+    TextEditingController confirmOTPController,
+    {required String valueUserRegister,
+      required String valueEmailRegister,
+      required CustomTimerController controller}) {
   return WillPopScope(
     onWillPop: () async {
       return false;
@@ -81,7 +88,7 @@ Widget confirmRegisterPageWidget(
                       ),
                     ]),
                   ),
-                  BuildTextFieldCustom(
+                  TextFieldCustom(
                     maxLengthOTP: 6,
                     textEditingController: confirmOTPController,
                     onChanged: (valueConfirmrRegisterOTP) {
@@ -90,20 +97,20 @@ Widget confirmRegisterPageWidget(
                     hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtotp}",
                     textInputType: TextInputType.number,
                   ),
-                  Center(
-                    child: TextSentOTPCustom(
+                  CountTimeOTPWidget(
+                    sendOTP : TextSendOTPCustom(
                       textlabel: "${screenRegisterResponse?.body?.screeninfo?.textsentotpagain}",
                       textcolor: tcOTPSent,
                       sizetext: sizeTextSmall16,
                       onTap: () {
                         BlocProvider.of<RegisterBloc>(context)
-                            // ..isFetching = true
                             .add(ReSentOTPConfirmRegisterEvent(userID: valueUserRegister, email: valueEmailRegister));
-                        // context.read<RegisterBloc>().add(ReSentOTPConfirmRegisterEvent(
-                        //     userLanguage: userLanguage, userID: RegisterValueUserID, email: RegisterValueEmail));
-                      },
+                       },
                     ),
+                    controller: controller,
+
                   ),
+
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),

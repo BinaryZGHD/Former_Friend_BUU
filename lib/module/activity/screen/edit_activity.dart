@@ -4,14 +4,15 @@ import 'package:f2fbuu/customs/datepicker/custom_date_picker_for_edit.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
+import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
+import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
 import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 import 'package:f2fbuu/module/activity/model/response/add_activity_screen_api.dart';
 import 'package:flutter/foundation.dart';
+import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import '../../../customs/size/size.dart';
-import '../../../customs/textfile/buildtextfieldcustom.dart';
 
 class EditActivityScreen extends StatelessWidget {
   final data;
@@ -130,8 +131,7 @@ class _EditActivityPageState extends State<EditActivityPage>
             idValue,
             yearList,
             termList,
-            approverList
-            );
+            approverList);
       } else {
         return Container();
       }
@@ -211,19 +211,20 @@ BuildEditActivityBody(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   customDropdownForEdit(
-                      dropdownList: yearList ?? <String>[],
-                      hint: 'Year',
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      dropdownValue: yearValue,
-                  callbackFromCustomDropdownForEdit: (String result){
-                        year.text = result;
-                  },),
+                    dropdownList: yearList ?? <String>[],
+                    hint: 'Year',
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    dropdownValue: yearValue,
+                    callbackFromCustomDropdownForEdit: (String result) {
+                      year.text = result;
+                    },
+                  ),
                   customDropdownForEdit(
                       dropdownList: termList ?? <String>[],
                       hint: 'Term',
                       width: MediaQuery.of(context).size.width * 0.4,
                       dropdownValue: termValue,
-                      callbackFromCustomDropdownForEdit: (String result){
+                      callbackFromCustomDropdownForEdit: (String result) {
                         term.text = result;
                       }),
                 ],
@@ -313,33 +314,32 @@ BuildEditActivityBody(
                 colorborder: tcButtonTextBoarder,
                 sizeborder: 10,
                 onPressed: () {
-                  if(
-                      year.text.isNotEmpty&&
-                      totalTime.text.isNotEmpty&&
-                      approver.text.isNotEmpty&&
-                      fDate.text.isNotEmpty&&
-                      venue.text.isNotEmpty&&
-                      detail.text.isNotEmpty&&
-                      sDate.text.isNotEmpty&&
-                      activityName.text.isNotEmpty&&
-                      term.text.isNotEmpty
-                  ){
-                  context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(
-                      id: idValue,
-                      year: year.text,
-                      totalTime: totalTime.text,
-                      approver: approver.text,
-                      fDate: fDate.text,
-                      venue: venue.text,
-                      detail: detail.text,
-                      sDate: sDate.text,
-                      activityName: activityName.text,
-                      term: term.text));
-                  }else{
-                    dialogOneLineOneBtn(context, 'Please fill in all information', "OK",
+                  if (year.text.isNotEmpty &&
+                      totalTime.text.isNotEmpty &&
+                      approver.text.isNotEmpty &&
+                      fDate.text.isNotEmpty &&
+                      venue.text.isNotEmpty &&
+                      detail.text.isNotEmpty &&
+                      sDate.text.isNotEmpty &&
+                      activityName.text.isNotEmpty &&
+                      term.text.isNotEmpty) {
+                    context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(
+                        id: idValue,
+                        year: year.text,
+                        totalTime: totalTime.text,
+                        approver: approver.text,
+                        fDate: fDate.text,
+                        venue: venue.text,
+                        detail: detail.text,
+                        sDate: sDate.text,
+                        activityName: activityName.text,
+                        term: term.text));
+                  } else {
+                    dialogOneLineOneBtn(
+                        context, 'Please fill in all information', "OK",
                         onClickBtn: () {
-                          Navigator.of(context).pop();
-                        });
+                      Navigator.of(context).pop();
+                    });
                   }
                 },
               ),

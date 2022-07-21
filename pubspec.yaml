@@ -11,9 +11,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# Read more_response about Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
+# Read more_response about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
@@ -47,6 +47,7 @@ dependencies:
   url_launcher: ^6.1.3
   dio: ^4.0.6
   shared_preferences: ^2.0.15
+  custom_timer: ^0.1.1
 
 dev_dependencies:
   flutter_test:
@@ -81,7 +82,7 @@ flutter:
 
 
 
-  # An image asset can refer to one or more resolution-specific "variants", see
+  # An image asset can refer to one or more_response resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
   # For details regarding adding assets from package dependencies, see
