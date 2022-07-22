@@ -31,159 +31,162 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
         ),
       ),
     ),
-    body: Container(
-      color: Colors.grey[100],
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-            child: Text(
-              "${screenMoreResponse?.body?.screenInfo?.textboard}",
-              style: const TextStyle(
-                fontSize: sizeTextBig20,
-                fontWeight: FontWeight.w600,
+    body: SafeArea(
+
+      child: Container(
+        color: Colors.grey[100],
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: SingleChildScrollView(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+              child: Text(
+                "${screenMoreResponse?.body?.screenInfo?.textboard}",
+                style: const TextStyle(
+                  fontSize: sizeTextBig20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildCardBoard(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MoreBoardListStudentListGenScreen(),
-                    ),
-                  );
-                },
-                context,
-                title: "${screenMoreResponse?.body?.screenInfo?.btnstd}",
-                iconBoard: Icons.auto_stories_outlined,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.01,
-              ),
-              buildCardBoard(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MoreBoardListTeacherScreen(),
-                    ),
-                  );
-                },
-                context,
-                title: "${screenMoreResponse?.body?.screenInfo?.btntc}",
-                iconBoard: Icons.badge_outlined,
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-            child: Text(
-              "${screenMoreResponse?.body?.screenInfo?.textabdepart}",
-              style: const TextStyle(
-                fontSize: sizeTextBig20,
-                fontWeight: FontWeight.w600,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildCardBoard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MoreBoardListStudentListGenScreen(),
+                      ),
+                    );
+                  },
+                  context,
+                  title: "${screenMoreResponse?.body?.screenInfo?.btnstd}",
+                  iconBoard: Icons.auto_stories_outlined,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+                ),
+                buildCardBoard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MoreBoardListTeacherScreen(),
+                      ),
+                    );
+                  },
+                  context,
+                  title: "${screenMoreResponse?.body?.screenInfo?.btntc}",
+                  iconBoard: Icons.badge_outlined,
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+              child: Text(
+                "${screenMoreResponse?.body?.screenInfo?.textabdepart}",
+                style: const TextStyle(
+                  fontSize: sizeTextBig20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          buildCardMore(
-            context: context,
-            onTap: () {
-              setState(() {
-                launchInBrowser(Uri.parse("${screenMoreResponse?.body?.pavatUrl}"));
-              });
-            },
+            buildCardMore(
+              context: context,
+              onTap: () {
+                setState(() {
+                  launchInBrowser(Uri.parse("${screenMoreResponse?.body?.pavatUrl}"));
+                });
+              },
 
-            title: "${screenMoreResponse?.body?.screenInfo?.btndeparthis}",
-          ),
-          buildCardMore(
-            context: context,
-            onTap: () {
-              setState(() {
-                launchInBrowser(Uri.parse("${screenMoreResponse?.body?.luksuitUrl}"));
-              });
-            },
+              title: "${screenMoreResponse?.body?.screenInfo?.btndeparthis}",
+            ),
+            buildCardMore(
+              context: context,
+              onTap: () {
+                setState(() {
+                  launchInBrowser(Uri.parse("${screenMoreResponse?.body?.luksuitUrl}"));
+                });
+              },
 
-            title: "${screenMoreResponse?.body?.screenInfo?.btncou}",
-          ),
-          buildCardMore(
-            context: context,
-            onTap: () {
-              setState(() {
-                launchInBrowser(Uri.parse("${screenMoreResponse?.body?.facebookUrl}"));
-              });
-            },
+              title: "${screenMoreResponse?.body?.screenInfo?.btncou}",
+            ),
+            buildCardMore(
+              context: context,
+              onTap: () {
+                setState(() {
+                  launchInBrowser(Uri.parse("${screenMoreResponse?.body?.facebookUrl}"));
+                });
+              },
 
-            title: "${screenMoreResponse?.body?.screenInfo?.btnface}",
-          ),
-          buildCardMore(
-            context: context,
-            onTap: () {
-              setState(() {
-                launchInBrowser(Uri.parse("${screenMoreResponse?.body?.websiteUrl}"));
-              });
-            },
-            title: "${screenMoreResponse?.body?.screenInfo?.btnweb}",
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-            child: Text(
-              "${screenMoreResponse?.body?.screenInfo?.textsup}",
-              style: const TextStyle(
-                fontSize: sizeTextBig20,
-                fontWeight: FontWeight.w600,
+              title: "${screenMoreResponse?.body?.screenInfo?.btnface}",
+            ),
+            buildCardMore(
+              context: context,
+              onTap: () {
+                setState(() {
+                  launchInBrowser(Uri.parse("${screenMoreResponse?.body?.websiteUrl}"));
+                });
+              },
+              title: "${screenMoreResponse?.body?.screenInfo?.btnweb}",
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+              child: Text(
+                "${screenMoreResponse?.body?.screenInfo?.textsup}",
+                style: const TextStyle(
+                  fontSize: sizeTextBig20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          buildCardMore(
-            context: context,
-            title: "${screenMoreResponse?.body?.screenInfo?.btntermandcon}",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const PDPAScreen(),
-                ),
-              );
-            },
-          ),
-          buildCardMore(
-            context: context,
-            title: "${screenMoreResponse?.body?.screenInfo?.btnfaq}",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const FaqScreen(),
-                ),
-              );
-            },
-          ),
-          buildCardMore(
-            context: context,
-            title: "${screenMoreResponse?.body?.screenInfo?.btnconus}",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const ContactUsScreen(),
-                ),
-              );
-            },
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
-        ]),
+            buildCardMore(
+              context: context,
+              title: "${screenMoreResponse?.body?.screenInfo?.btntermandcon}",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                    const PDPAScreen(),
+                  ),
+                );
+              },
+            ),
+            buildCardMore(
+              context: context,
+              title: "${screenMoreResponse?.body?.screenInfo?.btnfaq}",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                    const FaqScreen(),
+                  ),
+                );
+              },
+            ),
+            buildCardMore(
+              context: context,
+              title: "${screenMoreResponse?.body?.screenInfo?.btnconus}",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                    const ContactUsScreen(),
+                  ),
+                );
+              },
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+          ]),
+        ),
       ),
-    ),
+    )
   );
 }
