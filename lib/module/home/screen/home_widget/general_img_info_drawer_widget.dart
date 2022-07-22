@@ -15,13 +15,13 @@ buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? screenprofil
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "${screenprofileResponse?.body?.profileGeneralInfo?.gen}",
+                screenprofileResponse?.body?.profileGeneralInfo?.gen?? '-',
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Table(children: [
                 TableRow(children: [
                   Text(
-                    '${screenprofileResponse?.body?.profileGeneralInfo?.genname}',
+                    screenprofileResponse?.body?.profileGeneralInfo?.genname?? '-',
                     textAlign: TextAlign.end,
                     style: const TextStyle(fontSize: 18),
                   ),

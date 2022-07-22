@@ -93,18 +93,12 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
     prefs = await SharedPreferences.getInstance();
     prefs.remove("globalKey");
     prefs.remove("userLanguage");
-    setState(() {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
-    });
   }
 
   void cleanLogout() async {
     prefs = await SharedPreferences.getInstance();
     prefs.remove("globalKey");
     prefs.remove("userLanguage");
-    setState(() {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
-    });
   }
 
   @override
@@ -171,9 +165,11 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         }
         if (state is OnClickConfirmHomeLogoutState) {
           cleanLogout();
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
         }
         if (state is OnClickConfirmDeleteAccountState) {
           cleanDelete();
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
         }
       },
       builder: (context, state) {
