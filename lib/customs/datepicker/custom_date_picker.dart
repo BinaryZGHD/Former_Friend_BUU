@@ -2,20 +2,23 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class customDatePicker extends StatefulWidget {
+class CustomDatePicker extends StatefulWidget {
   final String hintLabel;
   final Function(String result) callbackFromCustomDatePicker;
 
-  const customDatePicker(
+  const CustomDatePicker(
       {Key? key, required this.hintLabel, required this.callbackFromCustomDatePicker})
       : super(key: key);
 
   @override
-  State<customDatePicker> createState() => _customDatePickerState();
+  State<CustomDatePicker> createState() => CustomDatePickerState();
 }
 
-class _customDatePickerState extends State<customDatePicker> {
+class CustomDatePickerState extends State<CustomDatePicker> {
+  // DateTime date = DateTime(2020,10,20);
+  // DateTime date = DateTime.now();
   DateTime date = DateTime.now();
+  // DateTime date = DateTime(2022, 12, 24);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +29,14 @@ class _customDatePickerState extends State<customDatePicker> {
       padding: const EdgeInsets.only(left: 10, right: 10),
       decoration: BoxDecoration(
         border: Border.all(color: tcHint),
-        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             dateFormated,
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
           IconButton(
               onPressed: () async {
@@ -41,7 +44,7 @@ class _customDatePickerState extends State<customDatePicker> {
 
                     builder: (context, child) {
                       return Theme(data: Theme.of(context).copyWith(
-                        colorScheme: ColorScheme.light(
+                        colorScheme: const ColorScheme.light(
                           primary: Color(0xfff9ccff),
                           onPrimary: Colors.black,
                           onSurface: Colors.black,
@@ -62,7 +65,7 @@ class _customDatePickerState extends State<customDatePicker> {
                   widget.callbackFromCustomDatePicker(dateFormated);
                 });
               },
-              icon: Icon(Icons.calendar_month))
+              icon: const Icon(Icons.calendar_month))
         ],
       ),
     );

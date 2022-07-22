@@ -1,6 +1,6 @@
 part of 'profile_bloc.dart';
 
-@immutable
+// @immutable
 abstract class ProfileState {
   const ProfileState();
 }
@@ -16,7 +16,7 @@ class ChangeAvatarProcress extends ProfileState {
 }
 
 class ChooseAvatarSuccess extends ProfileState {
-  final avatarImage;
+  final File avatarImage;
   ChooseAvatarSuccess({required this.avatarImage});
 }
 

@@ -17,8 +17,8 @@ class LoginRepository {
     return await MyDio.createDioServerTest().post("/ServiceTest/login/loginsubmit",
         // queryParameters: {"Language": userLanguage} // for get
         data: jsonEncode({
-          "userID": "string",
-          "password": "string"
+          "userID": userID,
+          "password": password
         }) //for post
         );
   }

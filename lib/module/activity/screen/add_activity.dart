@@ -21,7 +21,7 @@ class AddActivityScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           ActivityBloc()..add(AddEditActivityScreenInfoEvent()),
-      child: AddActivityPage(),
+      child: const AddActivityPage(),
     );
   }
 }
@@ -62,12 +62,14 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
               onClickBtn: () {
             Navigator.of(context).pop();
           });
-          print(state.message);
+          if (kDebugMode) {
+            print(state.message);
+          }
         }
         if (state is SubmitAddEditActivityState) {
-          print("TEST SubmitAddEditActivityState");
-          print(state.responseAddEdit.toJson());
-          print("TEST SubmitAddEditActivityState");
+          // print("TEST SubmitAddEditActivityState");
+          // print(state.responseAddEdit.toJson());
+          // print("TEST SubmitAddEditActivityState");
           // context.read<ActivityBloc>().add(ActivityEvent());
           Navigator.pop(context);
         }
@@ -76,7 +78,7 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
         if (state is ActivityScreenInfoSuccessState) {
           _addActivityScreenApi = state.response;
 
-          return BuildAddActitivtyBody(
+          return buildAddActivityBody(
             context,
             _addActivityScreenApi,
             activityName,
@@ -100,9 +102,9 @@ class _AddActivityPageState extends State<AddActivityPage> with ProgressDialog {
   }
 }
 
-BuildAddActitivtyBody(
+buildAddActivityBody(
   BuildContext context,
-  AddActivityScreenApi? _addActivityScreenApi,
+  AddActivityScreenApi? addActivityScreenApi,
   TextEditingController activityName,
   TextEditingController year,
   TextEditingController term,
@@ -113,11 +115,11 @@ BuildAddActitivtyBody(
   TextEditingController approver,
   TextEditingController detail,
 ) {
-  print(_addActivityScreenApi?.head?.status);
-  print(_addActivityScreenApi?.body?.screeninfo?.titleaddact);
-  List<String>? yearList = _addActivityScreenApi?.body?.yearlist;
-  List<String>? termList = _addActivityScreenApi?.body?.termlist;
-  List<String>? approverList = _addActivityScreenApi?.body?.approverlist;
+  // print(addActivityScreenApi?.head?.status);
+  // print(addActivityScreenApi?.body?.screeninfo?.titleaddact);
+  List<String>? yearList = addActivityScreenApi?.body?.yearlist;
+  List<String>? termList = addActivityScreenApi?.body?.termlist;
+  List<String>? approverList = addActivityScreenApi?.body?.approverlist;
   return Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.white,
@@ -126,15 +128,15 @@ BuildAddActitivtyBody(
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back,
           size: sizeTitle24,
           color: Colors.black,
         ),
       ),
       title: Text(
-        "${_addActivityScreenApi?.body?.screeninfo?.titleaddact}",
-        style: TextStyle(
+        "${addActivityScreenApi?.body?.screeninfo?.titleaddact}",
+        style: const TextStyle(
           color: Colors.black,
           fontSize: sizeTitle24,
         ),
@@ -157,39 +159,37 @@ BuildAddActitivtyBody(
                 }
               },
               hintLabel:
-                  "${_addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                  "${addActivityScreenApi?.body?.screeninfo?.edtactname}",
               textInputType: TextInputType.text,
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  customDropdown(
-                    dropdownList: yearList ?? <String>[],
-                    hint: 'Year',
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    callbackFromCustomDropdown: (String result) {
-                      year.text = result;
-                      if (kDebugMode) {
-                        print(year.text);
-                      }
-                    },
-                  ),
-                  customDropdown(
-                    dropdownList: termList ?? <String>[],
-                    hint: 'Term',
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    callbackFromCustomDropdown: (String result) {
-                      term.text = result;
-                      if (kDebugMode) {
-                        print(term.text);
-                      }
-                    },
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                customDropdown(
+                  dropdownList: yearList ?? <String>[],
+                  hint: 'Year',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  callbackFromCustomDropdown: (String result) {
+                    year.text = result;
+                    if (kDebugMode) {
+                      print(year.text);
+                    }
+                  },
+                ),
+                customDropdown(
+                  dropdownList: termList ?? <String>[],
+                  hint: 'Term',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  callbackFromCustomDropdown: (String result) {
+                    term.text = result;
+                    if (kDebugMode) {
+                      print(term.text);
+                    }
+                  },
+                ),
+              ],
             ),
-            customDatePicker(
+            CustomDatePicker(
               hintLabel: 'Start date',
               callbackFromCustomDatePicker: (String result) {
                 sDate.text = result;
@@ -198,7 +198,7 @@ BuildAddActitivtyBody(
                 }
               },
             ),
-            customDatePicker(
+            CustomDatePicker(
               hintLabel: 'Finish date',
               callbackFromCustomDatePicker: (String result) {
                 fDate.text = result;
@@ -212,10 +212,10 @@ BuildAddActitivtyBody(
               onChanged: (value) {
                 totalTime.text = value;
                 if (kDebugMode) {
-                  print("time ====" + totalTime.text);
+                  print("time ====${totalTime.text}");
                 }
               },
-              hintLabel: "${_addActivityScreenApi?.body?.screeninfo?.edttime}",
+              hintLabel: "${addActivityScreenApi?.body?.screeninfo?.edttime}",
               textInputType: TextInputType.number,
             ),
             TextFieldCustom(
@@ -227,7 +227,7 @@ BuildAddActitivtyBody(
                 }
               },
               hintLabel:
-                  "${_addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                  "${addActivityScreenApi?.body?.screeninfo?.edttvenue}",
               textInputType: TextInputType.text,
             ),
             customDropdown(
@@ -250,7 +250,7 @@ BuildAddActitivtyBody(
                 }
               },
               hintLabel:
-                  "${_addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                  "${addActivityScreenApi?.body?.screeninfo?.edtdetail}",
               textInputType: TextInputType.text,
             ),
             SizedBox(
@@ -258,9 +258,7 @@ BuildAddActitivtyBody(
             ),
             Center(
               child: ButtonCustom(
-                label: "  " +
-                    "${_addActivityScreenApi?.body?.screeninfo?.btnconfirm}" +
-                    "  ",
+                label: "  ${addActivityScreenApi?.body?.screeninfo?.btnconfirm}  ",
                 colortext: tcButtonTextBlack,
                 colorbutton: tcButtonTextWhite,
                 sizetext: sizeTextBig20,
@@ -270,10 +268,10 @@ BuildAddActitivtyBody(
                   if (year.text.isNotEmpty &&
                       totalTime.text.isNotEmpty &&
                       approver.text.isNotEmpty &&
-                      fDate.text.isNotEmpty &&
+                      // fDate.text.isNotEmpty &&
                       venue.text.isNotEmpty &&
                       detail.text.isNotEmpty &&
-                      sDate.text.isNotEmpty &&
+                      // sDate.text.isNotEmpty &&
                       activityName.text.isNotEmpty &&
                       term.text.isNotEmpty) {
                     context.read<ActivityBloc>().add(SubmitAddEditActivityEvent(

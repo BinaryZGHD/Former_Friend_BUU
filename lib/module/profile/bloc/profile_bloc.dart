@@ -1,15 +1,13 @@
 import 'dart:io';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:f2fbuu/module/profile/model/response/address.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:f2fbuu/module/profile/model/response/career.dart';
 import 'package:f2fbuu/module/profile/model/response/education.dart';
 import 'package:f2fbuu/module/profile/model/response/general.dart';
 import 'package:f2fbuu/module/profile/repository/profile_repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:dio/dio.dart';
 
 import '../model/response/contact.dart';
