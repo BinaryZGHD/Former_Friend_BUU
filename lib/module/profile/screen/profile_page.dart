@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
         } else if (state is ChooseAvatarSuccess) {
           return buildContent(context, _apiProfileResponse, state.avatarImage);
         }
-        return SafeArea(child: Scaffold(body: Container()));
+        return Scaffold(body: Container());
       },
       buildWhen: (context, state){
       return state is ProfileApiSuccessState || state is ChooseAvatarSuccess;
