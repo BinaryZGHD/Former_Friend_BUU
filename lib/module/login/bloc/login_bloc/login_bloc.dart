@@ -92,7 +92,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with LoginRepository {
     on<LoginSubmitEvent>((event, emit) async{
       try {
         emit(LoginLoading());
-        Response responseLoginSubmit = await getSubmitLogin(event.userID, event.password);
+        Response responseLoginSubmit = await getSubmitLogin(event.userID , event.password);
         emit(LoginEndLoading());
         if (responseLoginSubmit.statusCode == 200) {
           SunmitLoginResponse sunmitLoginResponse = SunmitLoginResponse.fromJson(responseLoginSubmit.data);

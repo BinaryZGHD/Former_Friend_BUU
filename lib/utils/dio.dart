@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/utils/shared_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyDio {
   static final _optionsBinary = BaseOptions(
@@ -39,12 +38,10 @@ class MyInterceptors extends Interceptor  {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler)  async{
-    // String? token = prefs.getString('globalKey');
-    // String? token = getGlobalKey() ;
     String token = await getGlobalKey() ?? "";
-    // options.headers["Authorization"] = "Bearer ${getGlobalKey()??""}";
-    print(" token getGlobalKey() : $token");
+    // print(token);
     options.headers["Authorization"] = "Bearer $token";
+
     super.onRequest(options, handler);
   }
 
