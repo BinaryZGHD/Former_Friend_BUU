@@ -144,97 +144,99 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  // MaterialButton(
-                  //     color: Colors.blue,
-                  //     child: Text('Pick image'),
-                  //     onPressed: (){
-                  //       pickImage();
-                  // }),
-                  Container(
-                      height: height * 0.3,
-                      width: width,
-                      color: HexColor('#FFF7FD'),
-                      child: image == null
-                          ?
-                      // Icon(
-                      //         Icons.account_circle,
-                      //         size: 100,
-                      //       )
-                      Container(
-                        height: 150,
-                        width: 150,
-                        margin: const EdgeInsets.all(20),
-                        child: InkWell(
-                          onTap: () {
-                            context
-                                .read<ProfileBloc>()
-                                .add(ChangeAvatarRequest());
-                            // pickImage();
-                          },
-                          child: CircleAvatar(
-                            radius: 40,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.red,
-                                    Colors.orange,
-                                    Colors.yellow,
-                                    Colors.green,
-                                    Colors.blue,
-                                    Colors.purple,
-                                  ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    // MaterialButton(
+                    //     color: Colors.blue,
+                    //     child: Text('Pick image'),
+                    //     onPressed: (){
+                    //       pickImage();
+                    // }),
+                    Container(
+                        height: height * 0.3,
+                        width: width,
+                        color: HexColor('#FFF7FD'),
+                        child: image == null
+                            ?
+                        // Icon(
+                        //         Icons.account_circle,
+                        //         size: 100,
+                        //       )
+                        Container(
+                          height: 150,
+                          width: 150,
+                          margin: const EdgeInsets.all(20),
+                          child: InkWell(
+                            onTap: () {
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(ChangeAvatarRequest());
+                              // pickImage();
+                            },
+                            child: CircleAvatar(
+                              radius: 40,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.red,
+                                      Colors.orange,
+                                      Colors.yellow,
+                                      Colors.green,
+                                      Colors.blue,
+                                      Colors.purple,
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                          : Container(
-                        height: 50,
-                        width: 50,
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: FileImage(image),
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                                Colors.white.withOpacity(0.1),
-                                BlendMode.dstATop),
+                        )
+                            : Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: FileImage(image),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.white.withOpacity(0.1),
+                                  BlendMode.dstATop),
+                            ),
                           ),
-                        ),
-                        child: InkWell(
-                            onTap: () =>
-                                context
-                                    .read<ProfileBloc>()
-                                    .add(ChangeAvatarRequest()),
-                            // onTap: () => pickImage(),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: FileImage(image),
+                          child: InkWell(
+                              onTap: () =>
+                                  context
+                                      .read<ProfileBloc>()
+                                      .add(ChangeAvatarRequest()),
+                              // onTap: () => pickImage(),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: FileImage(image),
+                                  ),
                                 ),
-                              ),
-                            )
-                        ),
-                      )),
-                ],
-              ),
-              ProfileGeneralDataHead(dataFromAPI: apiProfileResponse),
-              ProfileEducationDataHead(dataFromAPI: apiProfileResponse),
-              ProfileAddressDataHead(dataFromAPI: apiProfileResponse),
-              ProfileContactDataHead(dataFromAPI: apiProfileResponse),
-              ProfileCareerDataHead(dataFromAPI: apiProfileResponse),
-            ],
+                              )
+                          ),
+                        )),
+                  ],
+                ),
+                ProfileGeneralDataHead(dataFromAPI: apiProfileResponse),
+                ProfileEducationDataHead(dataFromAPI: apiProfileResponse),
+                ProfileAddressDataHead(dataFromAPI: apiProfileResponse),
+                ProfileContactDataHead(dataFromAPI: apiProfileResponse),
+                ProfileCareerDataHead(dataFromAPI: apiProfileResponse),
+              ],
+            ),
           ),
         ));
   }
