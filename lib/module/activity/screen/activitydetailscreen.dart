@@ -198,180 +198,182 @@ buildContextActivity(
         ),
       ],
     ),
-    body: Center(
-      child: Container(
-        margin: const EdgeInsets.only(top: 10, bottom: 10),
-        // height: MediaQuery.of(context).size.height * 0.9,
-        width: MediaQuery.of(context).size.width * 0.9,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              blurRadius: 10,
-              spreadRadius: 5,
+    body: SafeArea(
+      child:Center(
+        child: Container(
+          margin: const EdgeInsets.only(top: 10, bottom: 10),
+          // height: MediaQuery.of(context).size.height * 0.9,
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                blurRadius: 10,
+                spreadRadius: 5,
+              ),
+            ],
+          ),
+          child: Column(children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+                child: Container(
+                  // height: MediaQuery.of(context).size.height * 0.65,
+                  decoration: BoxDecoration(
+                    color: HexColor('${data.color}'),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 20.0, left: 5, right: 5, bottom: 20),
+                      child: Table(
+                        border: TableBorder.symmetric(
+                            outside:
+                            const BorderSide(width: 2, color: Colors.transparent)),
+                        columnWidths: const <int, TableColumnWidth>{
+                          0: FractionColumnWidth(0.35),
+                          1: FractionColumnWidth(0.05),
+                          2: FractionColumnWidth(0.60),
+                        },
+                        // defaultVerticalAlignment:
+                        // TableCellVerticalAlignment.middle,
+                        children: [
+                          buildTableRow(context,
+                              textLeftTable: title.textactivity,
+                              textRightTableDetail: '${data.name}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.textyear}',
+                              textRightTableDetail: '${data.year}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.textterm}',
+                              textRightTableDetail: '${data.term}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.textstartdate}',
+                              textRightTableDetail: '${data.startdate}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.textfinishdate}',
+                              textRightTableDetail: '${data.finishdate}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.texttime}',
+                              textRightTableDetail:
+                              '${data.time}' " ( hh:mm ) "),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.edtapprover}',
+                              textRightTableDetail: '${data.approver}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.textvenue}',
+                              textRightTableDetail: '${data.venue}'),
+                          _buildListenpty(),
+                          buildTableRow(context,
+                              textLeftTable: '${title.textdetail}',
+                              textRightTableDetail: '${data.detail}')
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ],
-        ),
-        child: Column(children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
               child: Container(
-                // height: MediaQuery.of(context).size.height * 0.65,
                 decoration: BoxDecoration(
-                  color: HexColor('${data.color}'),
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 20.0, left: 5, right: 5, bottom: 20),
-                    child: Table(
-                      border: TableBorder.symmetric(
-                          outside:
-                              const BorderSide(width: 2, color: Colors.transparent)),
-                      columnWidths: const <int, TableColumnWidth>{
-                        0: FractionColumnWidth(0.35),
-                        1: FractionColumnWidth(0.05),
-                        2: FractionColumnWidth(0.60),
-                      },
-                      // defaultVerticalAlignment:
-                      // TableCellVerticalAlignment.middle,
-                      children: [
-                        buildTableRow(context,
-                            textLeftTable: title.textactivity,
-                            textRightTableDetail: '${data.name}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.textyear}',
-                            textRightTableDetail: '${data.year}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.textterm}',
-                            textRightTableDetail: '${data.term}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.textstartdate}',
-                            textRightTableDetail: '${data.startdate}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.textfinishdate}',
-                            textRightTableDetail: '${data.finishdate}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.texttime}',
-                            textRightTableDetail:
-                                '${data.time}' " ( hh:mm ) "),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.edtapprover}',
-                            textRightTableDetail: '${data.approver}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.textvenue}',
-                            textRightTableDetail: '${data.venue}'),
-                        _buildListenpty(),
-                        buildTableRow(context,
-                            textLeftTable: '${title.textdetail}',
-                            textRightTableDetail: '${data.detail}')
-                      ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    myIcon,
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
+                    Text(
+                      '${data.status}',
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  myIcon,
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    '${data.status}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          showButton
-              ? Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: 100,
-                            child: ButtonCustom(
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
+            showButton
+                ? Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        width: 100,
+                        child: ButtonCustom(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
                                   return EditActivityPage(data: data);
                                 }));
-                              },
-                              label: '${title.buttonleft}',
-                              colortext: tcButtonTextBlack,
-                              colorbutton: tcButtonTextWhite,
-                              sizetext: sizeTextSmaller14,
-                              colorborder: tcButtonTextBoarder,
-                              sizeborder: 1.0,
-                            )),
-                        const SizedBox(
-                          width: 50,
-                        ),
-                  SizedBox(
-                      width: 100,
-                      child: ButtonCustom(
-                        colortext: tcButtonTextWhite,
-                        colorbutton: tcButtonTextRed,
-                        sizetext: sizeTextSmaller14,
-                        colorborder: tcButtonTextRedBoarder,
-                        sizeborder: 10,
-                        label: '${title.buttonright}',
-                        onPressed: () {
-                          dialogOneLineTwoBtn(context, '$errlogout\n \n Please make sure you want to delete', 'Confirm', 'Cancel',
-                              onClickBtn: (String result) {
-                                Navigator.of(context).pop();
-                                switch (result) {
-                                  case 'Cancel':
-                                    {
-                                      break;
-                                    }
-                                  case 'OK':
-                                    {
-                                      context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
-                                      if (kDebugMode) {
-                                        print('id คือ ${data.id}');
+                          },
+                          label: '${title.buttonleft}',
+                          colortext: tcButtonTextBlack,
+                          colorbutton: tcButtonTextWhite,
+                          sizetext: sizeTextSmaller14,
+                          colorborder: tcButtonTextBoarder,
+                          sizeborder: 1.0,
+                        )),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    SizedBox(
+                        width: 100,
+                        child: ButtonCustom(
+                          colortext: tcButtonTextWhite,
+                          colorbutton: tcButtonTextRed,
+                          sizetext: sizeTextSmaller14,
+                          colorborder: tcButtonTextRedBoarder,
+                          sizeborder: 10,
+                          label: '${title.buttonright}',
+                          onPressed: () {
+                            dialogOneLineTwoBtn(context, '$errlogout\n \n Please make sure you want to delete', 'Confirm', 'Cancel',
+                                onClickBtn: (String result) {
+                                  Navigator.of(context).pop();
+                                  switch (result) {
+                                    case 'Cancel':
+                                      {
+                                        break;
                                       }
+                                    case 'OK':
+                                      {
+                                        context.read<ActivityBloc>().add(SubmitDeleteActivityEvent(id:'${data.id}'));
+                                        if (kDebugMode) {
+                                          print('id คือ ${data.id}');
+                                        }
 
-                                    }
-                                }
-                              });
-                        },
-                      )),
-                ],
+                                      }
+                                  }
+                                });
+                          },
+                        )),
+                  ],
+                ),
               ),
-            ),
-          )
-              : const Text(''),
-        ]),
+            )
+                : const Text(''),
+          ]),
+        ),
       ),
-    ),
+    )
   );
 }
