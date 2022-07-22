@@ -125,8 +125,8 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                       child: ButtonCustom(
                         onPressed: () {
                           context.read<LoginBloc>().add(LoginSubmitEvent(
-                                userID: userController.text,
-                                password: passwordController.text,
+                                userID: userController.text.isEmpty ? "demo":userController.text  ,
+                                password: passwordController.text.isEmpty ? "demo": passwordController.text
                               ));
                         },
                         label: "  ${screenLoginResponse?.body?.screeninfo?.btnLogin}  ",

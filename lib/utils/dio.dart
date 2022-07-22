@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:f2fbuu/utils/shared_preferences.dart';
 
 class MyDio {
   static final _optionsBinary = BaseOptions(
@@ -28,18 +29,21 @@ class MyDio {
 }
 
 
-class MyInterceptors extends Interceptor {
+class MyInterceptors extends Interceptor  {
   // @override
   // void onError(DioError err, ErrorInterceptorHandler handler) {
   //   // TODO: implement onError
   //   super.onError(err, handler);
   // }
 
-  // @override
-  // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-  //   // TODO: implement onRequest
-  //   super.onRequest(options, handler);
-  // }
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler)  async{
+    String token = await getGlobalKey() ?? "";
+    // print(token);
+    options.headers["Authorization"] = "Bearer $token";
+
+    super.onRequest(options, handler);
+  }
 
   // @override
   // void onResponse(Response response, ResponseInterceptorHandler handler) {

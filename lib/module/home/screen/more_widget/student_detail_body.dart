@@ -24,7 +24,7 @@ studentDetailBody(BuildContext context, String title) {
         ),
       ),
     ),
-    body: Container(
+    body: SafeArea (child:  Container(
       height: double.infinity,
       width: double.infinity,
       color: Colors.grey[200],
@@ -100,7 +100,7 @@ studentDetailBody(BuildContext context, String title) {
           ),
         ),
       ),
-    ),
+    ),),
   );
 }
 

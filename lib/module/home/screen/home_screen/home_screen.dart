@@ -8,7 +8,7 @@ import 'package:f2fbuu/module/home/model/response/home_response/alert_no_activit
 import 'package:f2fbuu/module/home/model/response/home_response/screen_home_response.dart';
 import 'package:f2fbuu/module/home/screen/home_widget/home_widget.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
-import 'package:f2fbuu/utils/set_global.dart';
+import 'package:f2fbuu/utils/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,18 +93,12 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
     prefs = await SharedPreferences.getInstance();
     prefs.remove("globalKey");
     prefs.remove("userLanguage");
-    setState(() {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
-    });
   }
 
   void cleanLogout() async {
     prefs = await SharedPreferences.getInstance();
     prefs.remove("globalKey");
     prefs.remove("userLanguage");
-    setState(() {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
-    });
   }
 
   @override
@@ -171,9 +165,11 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         }
         if (state is OnClickConfirmHomeLogoutState) {
           cleanLogout();
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
         }
         if (state is OnClickConfirmDeleteAccountState) {
           cleanDelete();
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
         }
       },
       builder: (context, state) {
@@ -203,7 +199,7 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
         ));
       },
       buildWhen: (context, state) {
-        return state is ScreenInfoHomeSuccessState || state is OnClickScreenInfoHomeSuccessState;
+        return state is ScreenInfoHomeSuccessState || state is OnClickScreenInfoHomeSuccessState  || state is  HomeError;
       },
     );
   }

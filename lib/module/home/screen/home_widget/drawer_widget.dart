@@ -21,7 +21,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
         children: <Widget>[
           Container(
             width: double.infinity,
-            color: HexColor('${screenprofileResponse?.body?.profileGeneralInfo?.gencolor}'),
+            color: HexColor( screenprofileResponse?.body?.profileGeneralInfo?.gencolor ?? '#ffffff'),
             padding: const EdgeInsets.all(20),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
               buildTableGeneralImgeinfo(
@@ -36,9 +36,9 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               ),
               buildTableGeneralinfo(
                 context,
-                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textname}',
+                textlefttitile: screenhomeResponse?.body?.screenInfo?.textname ?? '-',
                 textrightdetail:
-                '${screenprofileResponse?.body?.profileGeneralInfo?.name} ${screenprofileResponse?.body?.profileGeneralInfo?.surname}',
+                screenprofileResponse?.body?.profileGeneralInfo?.name?? '-' "${screenprofileResponse?.body?.profileGeneralInfo?.surname ?? '-'}" ,
                 tb1: 0.3,
                 tb2: 0.05,
                 tb3: 0.65,
@@ -49,7 +49,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               buildTableGeneralinfo(
                 context,
                 textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textnickname}',
-                textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.nickname}',
+                textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.nickname ?? '-',
                 tb1: 0.45,
                 tb2: 0.05,
                 tb3: 0.5,
@@ -60,7 +60,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               buildTableGeneralinfo(
                 context,
                 textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textstdcode}',
-                textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.stuCode}',
+                textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.stuCode?? '-',
                 tb1: 0.45,
                 tb2: 0.05,
                 tb3: 0.5,
@@ -71,7 +71,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               buildTableGeneralinfo(
                 context,
                 textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textemail}',
-                textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.email}',
+                textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.email?? '-',
                 tb1: 0.2,
                 tb2: 0.02,
                 tb3: 0.77,
@@ -86,7 +86,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
             child: buildTableGeneralinfo(
               context,
               textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textrole}',
-              textrightdetail: '${screenprofileResponse?.body?.profileGeneralInfo?.role}',
+              textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.role?? '-',
               tb1: 0.5,
               tb2: 0.05,
               tb3: 0.45,
