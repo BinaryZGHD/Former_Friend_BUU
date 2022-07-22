@@ -8,7 +8,6 @@ import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
 import 'package:f2fbuu/customs/textlink/textlink_to_screen_custom.dart';
 import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:f2fbuu/module/login/bloc/change_password_bloc/change_password_bloc.dart';
-import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
 import 'package:f2fbuu/module/login/screen/forgot_password_screen/forgot_password_screen.dart';
 import 'package:flutter/foundation.dart';

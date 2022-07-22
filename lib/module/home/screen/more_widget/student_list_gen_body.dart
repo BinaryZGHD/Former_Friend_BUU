@@ -29,7 +29,7 @@ studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? _scree
         ),
       ),
     ),
-    body: Column(
+    body: SafeArea( child :Column(
       children: [
         Container(
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -64,7 +64,7 @@ studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? _scree
           ),
         ),
       ],
-    ),
+    ) ,),
   );
 
 

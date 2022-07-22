@@ -26,7 +26,7 @@ studentListBody(BuildContext context, ScreenMoreBoardStudentResponse? screenMore
         ),
       ),
     ),
-    body: Container(
+    body: SafeArea( child:  Container(
       padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
       color: Colors.grey[200],
       child: SingleChildScrollView(
@@ -41,7 +41,7 @@ studentListBody(BuildContext context, ScreenMoreBoardStudentResponse? screenMore
         ),
       ),
 
-    ),
+    ), ),
 
   );
 }

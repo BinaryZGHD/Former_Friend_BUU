@@ -7,6 +7,12 @@ setGlobalKey(  {String? globalKey} ) async{
   prefs = await SharedPreferences.getInstance();
   await prefs.setString('globalKey', globalKey ?? "");
 }
+getGlobalKey() async{
+  prefs = await SharedPreferences.getInstance();
+  return prefs.getString('globalKey');
+}
+
+
 setGlobalLanguage( String userLanguage) async{
   prefs = await SharedPreferences.getInstance();
   await prefs.setString('userLanguage', userLanguage);

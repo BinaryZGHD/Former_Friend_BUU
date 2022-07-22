@@ -1,7 +1,7 @@
 import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:f2fbuu/module/login/model/response/sunmit_login_response.dart';
 import 'package:f2fbuu/module/login/widget/login_widget.dart';
-import 'package:f2fbuu/utils/set_global.dart';
+import 'package:f2fbuu/utils/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
