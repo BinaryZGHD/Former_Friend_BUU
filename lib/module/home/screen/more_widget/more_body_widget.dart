@@ -38,7 +38,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
       child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
             child: Text(
               "${screenMoreResponse?.body?.screenInfo?.textboard}",
               style: const TextStyle(
@@ -82,7 +82,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
             child: Text(
               "${screenMoreResponse?.body?.screenInfo?.textabdepart}",
               style: const TextStyle(
@@ -131,7 +131,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             title: "${screenMoreResponse?.body?.screenInfo?.btnweb}",
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
             child: Text(
               "${screenMoreResponse?.body?.screenInfo?.textsup}",
               style: const TextStyle(

@@ -17,6 +17,7 @@ const tcButtonADD = Color(0xFF474554);
 const tcButtonLogin = Color(0xFF737373);
 const tcButtonTextWhite = Color(0xFFFFFFFF);
 const tcButtonTextBlack = Color(0xFF474554);
+const tcButtonLine =  Color(0xFF00C000);
 const tcButtonTextRed = Color(0xFFFF8F8F);
 const tcButtonTextBoarder = Color(0xFF4F4F4F);
 const tcButtonTextRedBoarder = Color(0xFFFCA6A6);
