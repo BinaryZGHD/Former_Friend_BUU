@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:f2fbuu/utils/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -11,6 +12,9 @@ class ProfileRepository {
       ) async {
     final prefs = await SharedPreferences.getInstance();
     String? globalKey = prefs.getString("globalKey");
+    if (kDebugMode) {
+      print(globalKey);
+    }
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/wording/profile",
       data: jsonEncode({
