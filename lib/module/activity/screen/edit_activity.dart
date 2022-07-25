@@ -3,6 +3,7 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/datepicker/custom_date_picker_for_edit.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dropdown/custom_dropdown_for_edit.dart';
+import 'package:f2fbuu/customs/message/text_add_edit_activity.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/customs/textfile/build_textformfiled_unlimit_custom.dart';
@@ -191,7 +192,7 @@ buildEditActivityBody(
         ),
       ),
       title: Text(
-        "${addActivityScreenApi?.body?.screeninfo?.titleeditact}",
+        addActivityScreenApi?.body?.screeninfo?.titleeditact??activityTitleEditAct,
         style: const TextStyle(
           color: Colors.black,
           fontSize: sizeTitle24,
@@ -216,7 +217,7 @@ buildEditActivityBody(
                 }
               },
               hintLabel:
-                  "${addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                  addActivityScreenApi?.body?.screeninfo?.edtactname??activityEdtActName,
               textInputType: TextInputType.text,
             ),
             Row(
@@ -242,7 +243,7 @@ buildEditActivityBody(
               ],
             ),
             customDatePickerForEdit(
-              hintLabel: 'Start date',
+              hintLabel: addActivityScreenApi?.body?.screeninfo?.edtstartdate??activityEdtStartDate,
               dateValue: sDateValue,
               callbackFromCustomDatePickerForEdit: (String result) {
                 sDate.text = result;
@@ -252,7 +253,7 @@ buildEditActivityBody(
               },
             ),
             customDatePickerForEdit(
-              hintLabel: 'Finish date',
+              hintLabel: addActivityScreenApi?.body?.screeninfo?.edtfinishdate??activityEdtFinishDate,
               dateValue: fDateValue,
               callbackFromCustomDatePickerForEdit: (String result) {
                 fDate.text = result;
@@ -270,7 +271,7 @@ buildEditActivityBody(
                   print("time ====${totalTime.text}");
                 }
               },
-              hintLabel: "${addActivityScreenApi?.body?.screeninfo?.edttime}",
+              hintLabel: addActivityScreenApi?.body?.screeninfo?.edttime??activityEdtTime,
               textInputType: TextInputType.number,
             ),
             BuildTextformfieldUnlimitCustom(
@@ -283,7 +284,7 @@ buildEditActivityBody(
                 }
               },
               hintLabel:
-                  "${addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                  addActivityScreenApi?.body?.screeninfo?.edttvenue??activityEdtVenue,
               textInputType: TextInputType.text,
             ),
             customDropdownForEdit(

@@ -1,3 +1,4 @@
+import 'package:f2fbuu/customs/message/text_profile.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/foundation.dart';
@@ -39,7 +40,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.subtitlecont}',
+                  dataFromAPI?.body?.screeninfo?.subtitlecont??profileSubTitleContact,
                   style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -61,9 +62,9 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
                         });
                       },
                       child: isUnpressed
-                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : const Text('บันทึก',
-                              style: TextStyle(color: Colors.green)),
+                          ? Text(dataFromAPI?.body?.screeninfo?.textedit??profileTextEdit, style: const TextStyle(color: Colors.red))
+                          : Text(dataFromAPI?.body?.screeninfo?.textsave??profileTextSave,
+                              style: const TextStyle(color: Colors.green)),
                     ),
                   ),
                 ),
@@ -77,7 +78,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
             Icons.phone,
             color: HexColor('#000000'),
           ),
-          textContact: '${dataFromAPI?.body?.profileContactInfo?.phone}',
+          textContact: dataFromAPI?.body?.profileContactInfo?.phone??"-",
           keyboardType: const TextInputType.numberWithOptions(),
           onChange: (value) {
             phoneValue = value;
@@ -92,7 +93,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
               FontAwesomeIcons.line,
               color: HexColor('#00B900'),
             ),
-            textContact: '${dataFromAPI?.body?.profileContactInfo?.line}',
+            textContact: dataFromAPI?.body?.profileContactInfo?.line??"-",
           onChange: (value) {
             lineValue = value;
             if (kDebugMode) {
@@ -105,7 +106,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
               FontAwesomeIcons.facebook,
               color: HexColor('#3B5998'),
             ),
-            textContact: '${dataFromAPI?.body?.profileContactInfo?.facebook}',
+            textContact: dataFromAPI?.body?.profileContactInfo?.facebook??"-",
           onChange: (value) {
             facebookValue = value;
             if (kDebugMode) {
@@ -118,7 +119,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
               FontAwesomeIcons.instagram,
               color: HexColor('#E1306C'),
             ),
-            textContact: '${dataFromAPI?.body?.profileContactInfo?.instagram}',
+            textContact: dataFromAPI?.body?.profileContactInfo?.instagram??"-",
           onChange: (value) {
             instagramValue = value;
             if (kDebugMode) {
@@ -131,7 +132,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
               FontAwesomeIcons.twitter,
               color: HexColor('#00acee'),
             ),
-            textContact: '${dataFromAPI?.body?.profileContactInfo?.twitter}',
+            textContact: dataFromAPI?.body?.profileContactInfo?.twitter??"-",
           onChange: (value) {
             twitterValue = value;
             if (kDebugMode) {
@@ -144,7 +145,7 @@ class _ProfileContactDataHeadState extends State<ProfileContactDataHead> {
               FontAwesomeIcons.youtube,
               color: HexColor('#FF0000'),
             ),
-            textContact: '${dataFromAPI?.body?.profileContactInfo?.youtube}',
+            textContact: dataFromAPI?.body?.profileContactInfo?.youtube??"-",
           onChange: (value) {
             youtubeValue = value;
             if (kDebugMode) {

@@ -2,6 +2,7 @@ import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../customs/message/text_profile.dart';
 import '../model/response/api_profile.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -34,7 +35,7 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.subtitleeduinfo}',
+                  dataFromAPI?.body?.screeninfo?.subtitleeduinfo??profileSubTitleEduInfo,
                   style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -50,8 +51,8 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
                         });
                       },
                       child: isUnpressed
-                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : const Text('บันทึก', style: TextStyle(color: Colors.green)),
+                          ? Text(dataFromAPI?.body?.screeninfo?.textedit??profileTextEdit, style: const TextStyle(color: Colors.red))
+                          : Text(dataFromAPI?.body?.screeninfo?.textedit??profileTextSave, style: const TextStyle(color: Colors.green)),
                     ),
                   ),
                 ),
@@ -61,20 +62,20 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
         ),
         ProfileEducationDataReadonlyTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textfac}',
-            textRight: '${dataFromAPI?.body?.profileEduInfo?.faculty}'),
+            textLeft: dataFromAPI?.body?.screeninfo?.textfac??profileTextFac,
+            textRight: dataFromAPI?.body?.profileEduInfo?.faculty??"-"),
         ProfileEducationDataReadonlyTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textdepart}',
-            textRight: '${dataFromAPI?.body?.profileEduInfo?.department}'),
+            textLeft: dataFromAPI?.body?.screeninfo?.textdepart??profileTextDepart,
+            textRight: dataFromAPI?.body?.profileEduInfo?.department??"-"),
         ProfileEducationDataReadonlyTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textmajor}',
-            textRight: '${dataFromAPI?.body?.profileEduInfo?.major}'),
+            textLeft: dataFromAPI?.body?.screeninfo?.textmajor??profileTextMajor,
+            textRight: dataFromAPI?.body?.profileEduInfo?.major??"-"),
         ProfileEducationDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textgpaju}',
-            textRight: '${dataFromAPI?.body?.profileEduInfo?.gpaJhs}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textgpaju??profileTextGpaJu,
+            textRight: dataFromAPI?.body?.profileEduInfo?.gpaJhs??"-",
           onChange: (value) {
             gpaJhValue = value;
             if (kDebugMode) {
@@ -83,8 +84,8 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
           },),
         ProfileEducationDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textgpase}',
-            textRight: '${dataFromAPI?.body?.profileEduInfo?.gpaShs}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textgpase??profileTextGpaSe,
+            textRight: dataFromAPI?.body?.profileEduInfo?.gpaShs??"-",
           onChange: (value) {
           gpaShValue = value;
           if (kDebugMode) {
@@ -93,8 +94,8 @@ class _ProfileEducationDataHeadState extends State<ProfileEducationDataHead> {
         },),
         ProfileEducationDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textgpaba}',
-            textRight: '${dataFromAPI?.body?.profileEduInfo?.gpaBd}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textgpaba??profileTextGpaBa,
+            textRight: dataFromAPI?.body?.profileEduInfo?.gpaBd??"-",
           onChange: (value) {
             gpaBdValue = value;
             if (kDebugMode) {

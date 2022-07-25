@@ -13,6 +13,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../customs/message/text_add_edit_activity.dart';
+
 class AddActivityScreen extends StatelessWidget {
   const AddActivityScreen({Key? key}) : super(key: key);
 
@@ -135,7 +137,7 @@ buildAddActivityBody(
         ),
       ),
       title: Text(
-        "${addActivityScreenApi?.body?.screeninfo?.titleaddact}",
+        addActivityScreenApi?.body?.screeninfo?.titleaddact??activityTitleAddAct,
         style: const TextStyle(
           color: Colors.black,
           fontSize: sizeTitle24,
@@ -159,7 +161,7 @@ buildAddActivityBody(
                 }
               },
               hintLabel:
-                  "${addActivityScreenApi?.body?.screeninfo?.edtactname}",
+                  addActivityScreenApi?.body?.screeninfo?.edtactname??activityEdtActName,
               textInputType: TextInputType.text,
             ),
             Row(
@@ -215,7 +217,7 @@ buildAddActivityBody(
                   print("time ====${totalTime.text}");
                 }
               },
-              hintLabel: "${addActivityScreenApi?.body?.screeninfo?.edttime}",
+              hintLabel: addActivityScreenApi?.body?.screeninfo?.edttime??activityEdtTime,
               textInputType: TextInputType.number,
             ),
             TextFieldCustom(
@@ -227,7 +229,7 @@ buildAddActivityBody(
                 }
               },
               hintLabel:
-                  "${addActivityScreenApi?.body?.screeninfo?.edttvenue}",
+                  addActivityScreenApi?.body?.screeninfo?.edttvenue??activityEdtVenue,
               textInputType: TextInputType.text,
             ),
             customDropdown(
@@ -250,7 +252,7 @@ buildAddActivityBody(
                 }
               },
               hintLabel:
-                  "${addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                  addActivityScreenApi?.body?.screeninfo?.edtdetail??activityEdtDetail,
               textInputType: TextInputType.text,
             ),
             SizedBox(
@@ -258,7 +260,7 @@ buildAddActivityBody(
             ),
             Center(
               child: ButtonCustom(
-                label: "  ${addActivityScreenApi?.body?.screeninfo?.btnconfirm}  ",
+                label: addActivityScreenApi?.body?.screeninfo?.btnconfirm??activityBtnConfirm,
                 colortext: tcButtonTextBlack,
                 colorbutton: tcButtonTextWhite,
                 sizetext: sizeTextBig20,

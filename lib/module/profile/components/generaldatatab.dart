@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import '../../../customs/message/text_profile.dart';
 import '../model/response/api_profile.dart';
 
 class ProfileGeneralDataHead extends StatefulWidget {
@@ -38,7 +39,7 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.subtitlegeninfor}',
+                  dataFromAPI?.body?.screeninfo?.subtitlegeninfor??profileSubTitleGenInfo,
                   style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -55,9 +56,9 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
                       },
                       child: isUnpressed
                           // ? Text('บันทึก', style: TextStyle(color: Colors.green))
-                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : const Text('บันทึก',
-                              style: TextStyle(color: Colors.green)),
+                          ? Text(dataFromAPI?.body?.screeninfo?.textedit??profileTextEdit, style: const TextStyle(color: Colors.red))
+                          : Text(dataFromAPI?.body?.screeninfo?.textsave??profileTextSave,
+                              style: const TextStyle(color: Colors.green)),
                       // : Text('แก้ไข', style: TextStyle(color: Colors.red)),
                     ),
                   ),
@@ -68,8 +69,8 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
         ),
         ProfileGeneralDataTab(
           isUnpressed: isUnpressed,
-          textLeft: '${dataFromAPI?.body?.screeninfo?.textname}',
-          textRight: '${dataFromAPI?.body?.profileGeneralInfo?.name}',
+          textLeft: dataFromAPI?.body?.screeninfo?.textname??profileTextName,
+          textRight: dataFromAPI?.body?.profileGeneralInfo?.name??"-",
           textEditingController: nameValueController,
           onChange: (value) {
             nameValueController.text = value;
@@ -80,8 +81,8 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
         ),
         ProfileGeneralDataTab(
           isUnpressed: isUnpressed,
-          textLeft: '${dataFromAPI?.body?.screeninfo?.textlname}',
-          textRight: '${dataFromAPI?.body?.profileGeneralInfo?.surname}',
+          textLeft: dataFromAPI?.body?.screeninfo?.textlname??profileTextLastName,
+          textRight: dataFromAPI?.body?.profileGeneralInfo?.surname??"-",
           onChange: (value) {
             surnameValue = value;
             if (kDebugMode) {
@@ -91,8 +92,8 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
         ),
         ProfileGeneralDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textnickname}',
-            textRight: '${dataFromAPI?.body?.profileGeneralInfo?.nickname}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textnickname??profileTextNickName,
+            textRight: dataFromAPI?.body?.profileGeneralInfo?.nickname??"-",
             onChange: (value) {
               nicknameValue = value;
               if (kDebugMode) {
@@ -101,12 +102,12 @@ class _ProfileGeneralDataHeadState extends State<ProfileGeneralDataHead> {
             }),
         ProfileGeneralDataReadonlyTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textstdcode}',
-            textRight: '${dataFromAPI?.body?.profileGeneralInfo?.stuCode}'),
+            textLeft: dataFromAPI?.body?.screeninfo?.textstdcode??profileTextStdCode,
+            textRight: dataFromAPI?.body?.profileGeneralInfo?.stuCode??"-"),
         ProfileGeneralDataReadonlyTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textgen}',
-            textRight: '${dataFromAPI?.body?.profileGeneralInfo?.gen}'),
+            textLeft: dataFromAPI?.body?.screeninfo?.textgen??profileTextGen,
+            textRight: dataFromAPI?.body?.profileGeneralInfo?.gen??"-"),
       ],
     );
   }

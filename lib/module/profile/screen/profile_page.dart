@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import '../../../customs/message/text_profile.dart';
 import '../../../customs/progress_dialog.dart';
 import '../../../customs/size/size.dart';
 
@@ -134,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> with ProgressDialog {
             ),
           ),
           title: Text(
-            '${apiProfileResponse?.body?.screeninfo?.titleprofile}'
+            apiProfileResponse?.body?.screeninfo?.titleprofile??profileTitleProfile
                 // '+$global_key'
             ,
             // 'ทดสอบ bloc',
