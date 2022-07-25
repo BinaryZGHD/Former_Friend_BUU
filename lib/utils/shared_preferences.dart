@@ -17,3 +17,9 @@ setGlobalLanguage( String userLanguage) async{
   prefs = await SharedPreferences.getInstance();
   await prefs.setString('userLanguage', userLanguage);
 }
+
+void cleanDelete() async {
+  prefs = await SharedPreferences.getInstance();
+  prefs.remove("globalKey");
+  prefs.remove("userLanguage");
+}

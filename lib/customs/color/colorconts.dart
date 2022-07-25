@@ -34,3 +34,5 @@ const circleprogresscolor = Color(0xFFF73D93);
 const iconBoarder = Color(0xFF000000);
 const tcNoActivity = Color(0xFF6A6775);
 String drawerColor = "#e6eeff";
+const contactUsMath = Color(0xFF050000);
+const contactUsFaulty = Color(0xFFFFEA11);
