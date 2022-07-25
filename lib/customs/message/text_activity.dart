@@ -1,17 +1,3 @@
-//--Add/Edit Activity--//
-const String addActivityTitleAddAct   = 'เพิ่มกิจกรรม';
-const String addActivityTitleEditAct   = 'แก้ไขกิจกรรม';
-const String addActivityEdtActName   = 'ชื่อกิจกรรม / โครงการ';
-const String addActivityEdtYear   = 'ปี';
-const String addActivityEdtTerm   = 'เทอม';
-const String addActivityEdtStartDate   = 'วันเริ่มกิจกรรม';
-const String addActivityEdtFinishDate   = 'วันสิ้นสุดกิจกรรม';
-const String addActivityEdtTime   = 'จำนวนชั่วโมง';
-const String addActivityEdtVenue   = 'สถานที่จัดกิจกรรม';
-const String addActivityEdtApprover   = 'ผู้ยืนยัน';
-const String addActivityEdtDetail   = 'รายละเอียดกิจกรรม ( โดยสังเขป )';
-const String addActivityBtnConfirm   = 'ยืนยัน';
-//--ActivityDetail--//
 const String statusActivityTitleApproved   = 'ได้รับการอนุมัติแล้ว!';
 const String statusActivityTitleUnapproved   = 'รอรับการอนุมัติ!';
 const String statusActivityTileRejected   = 'ไม่อนุมัติ!';

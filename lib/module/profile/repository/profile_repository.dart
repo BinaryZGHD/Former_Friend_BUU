@@ -18,7 +18,6 @@ class ProfileRepository {
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/wording/profile",
       data: jsonEncode({
-        "token": globalKey
       })
     );
   }
@@ -28,12 +27,11 @@ class ProfileRepository {
       String nickname,
       String tel
       ) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? globalKey = prefs.getString("globalKey");
+    // final prefs = await SharedPreferences.getInstance();
+    // String? globalKey = prefs.getString("globalKey");
     return await MyDio.createDioTest().post(
       "/v1/api/modules/profile/editgeneral",
         data: jsonEncode({
-          "token": globalKey,
           "name": name,
           "surname": surname,
           "nickname": nickname,
@@ -46,12 +44,11 @@ class ProfileRepository {
       String gpaSh,
       String gpaBd
       ) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? globalKey = prefs.getString("globalKey");
+    // final prefs = await SharedPreferences.getInstance();
+    // String? globalKey = prefs.getString("globalKey");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/educational",
       data: jsonEncode({
-        "token": globalKey,
         "gpAbd": gpaBd,
         "gpAjhs": gpaJh,
         "gpAshs": gpaSh
@@ -65,13 +62,12 @@ class ProfileRepository {
       String province,
       String zipcode
       ) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? globalKey = prefs.getString("globalKey");
+    // final prefs = await SharedPreferences.getInstance();
+    // String? globalKey = prefs.getString("globalKey");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/address",
       data: jsonEncode(
           {
-            "token": globalKey,
             "number": number,
             "village": "village",
             "road": road,
@@ -91,13 +87,12 @@ class ProfileRepository {
       String twitter,
       String youtube
       ) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? globalKey = prefs.getString("globalKey");
+    // final prefs = await SharedPreferences.getInstance();
+    // String? globalKey = prefs.getString("globalKey");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/contact",
       data: jsonEncode(
           {
-            "token": globalKey,
             "phone": phone,
             "line": line,
             "facebook": facebook,
@@ -116,13 +111,12 @@ class ProfileRepository {
       String company,
       String workplace
       ) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? globalKey = prefs.getString("globalKey");
+    // final prefs = await SharedPreferences.getInstance();
+    // String? globalKey = prefs.getString("globalKey");
     return await MyDio.createDioServerTest().post(
       "/ServiceTest/profile/career",
       data: jsonEncode(
           {
-            "token": globalKey,
             "attention": attention,
             "status": status,
             "jobtype": jobType,

@@ -1,0 +1,15 @@
+const String homeTitleAct   = 'กิจกรรมของฉัน';
+const String homeTextAdd   = 'เพิ่ม';
+const String homeTextName   = 'ชื่อ';
+const String homeTexNickName   = 'ชื่่อเล่น';
+const String homeTextGen   = 'รุ่น';
+const String homeTextStdCode   = 'รหัสนิสิต';
+const String homeTextEmail   = 'อิเมล';
+const String homeTextRole   = 'ประเภทผู้ใช้งาน';
+const String homeTextLang   = 'ภาษา';
+const String homeTextThai   = 'Thai';
+const String homeBtnConfirmPassword   = 'เปลี่ยนรหัสผ่าน';
+const String homeBtnChangePin   = 'เปลี่ยนรหัส PIN';
+const String homeBtnDelAcc   = 'ลบบัญชี';
+const String homeTextAppVer   = 'เวอร์ชันแอปพลิเคชัน';
+const String homeBtnLogout   = 'ออกจากระบบ';
