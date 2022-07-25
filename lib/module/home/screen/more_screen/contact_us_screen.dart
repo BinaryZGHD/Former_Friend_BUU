@@ -5,6 +5,7 @@ import 'package:f2fbuu/module/home/screen/more_widget/contact_us_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({Key? key}) : super(key: key);
@@ -22,7 +23,14 @@ class ContactUsPage extends StatefulWidget {
   @override
   State<ContactUsPage> createState() => _ContactUsPageState();
 }
-
+Future<void> _launchInBrowser(Uri url) async {
+  if (!await launchUrl(
+    url,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $url';
+  }
+}
 class _ContactUsPageState extends State<ContactUsPage> with ProgressDialog {
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,7 @@ class _ContactUsPageState extends State<ContactUsPage> with ProgressDialog {
       },
       builder: (context, state) {
         if (state is MoreContactUsSuccessState) {
-          return contactUsWidget(context,);
+          return contactUsWidget(context,setState,_launchInBrowser);
         } else {
           return Container();
         }

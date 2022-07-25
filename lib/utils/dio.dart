@@ -39,7 +39,9 @@ class MyInterceptors extends Interceptor  {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler)  async{
     String token = await getGlobalKey() ?? "";
-    // print(token);
+    // if (kDebugMode) {
+    //   print(" token : $token");
+    // }
     options.headers["Authorization"] = "Bearer $token";
 
     super.onRequest(options, handler);
