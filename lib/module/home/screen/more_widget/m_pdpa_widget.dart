@@ -32,10 +32,7 @@ mPDPAWidget(BuildContext context, ScreenMorePDPAResponse? screenHomeMorePDPAResp
           color: bscTransparent,
           width: MediaQuery.of(context).size.width,
           child: SfPdfViewer.network("${screenHomeMorePDPAResponse?.body?.linkpdpa}")
-        // Image.asset(
-        //   "assets/PDPA.png",
-        //   fit: BoxFit.fill,
-        // ),
+
       ),
     ),
   );

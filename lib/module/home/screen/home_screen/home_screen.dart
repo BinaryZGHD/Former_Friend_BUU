@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc(),
-      //context.read<HomeBloc>().add(HomeScreenInfoEvent(globalkey: global_key));
       child: const HomePage(),
     );
   }
@@ -40,16 +39,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with ProgressDialog {
-  ScreenHomeResponse? _screenhomeResponse;
-  ApiProfileResponse? _screenprofileResponse;
-  ScreenStatusActivityResponse? _screenstatusActivityResponse;
+  ScreenHomeResponse? _screenHomeResponse;
+  ApiProfileResponse? _screenProfileResponse;
+  ScreenStatusActivityResponse? _screenStatusActivityResponse;
   AlertLogoutHomeResponse? _logoutHomeResponse;
   AlertDeleteAccountResponse? _deleteAccountResponse;
   AlertNoActivityResponse? _noActivityResponse;
 
 
   late SharedPreferences prefs;
-  late String keytoken;
+  late String keyToken;
   late String _userLanguage;
   late bool _isHidden;
 
@@ -174,18 +173,18 @@ class _HomePageState extends State<HomePage> with ProgressDialog {
       },
       builder: (context, state) {
         if (state is ScreenInfoHomeSuccessState) {
-          _screenhomeResponse = state.responseScreenInfoHome;
-          _screenprofileResponse = state.responseProfile;
-          _screenstatusActivityResponse = state.responseActivity;
+          _screenHomeResponse = state.responseScreenInfoHome;
+          _screenProfileResponse = state.responseProfile;
+          _screenStatusActivityResponse = state.responseActivity;
           _noActivityResponse = state.responseNoActivity ;
           return buildContentHomeScreen(
             context,
             _toggleLanguageView,
             _isHidden,
-            _screenhomeResponse,
-            _screenprofileResponse,
+            _screenHomeResponse,
+            _screenProfileResponse,
             _userLanguage,
-              _screenstatusActivityResponse,
+              _screenStatusActivityResponse,
               _noActivityResponse
           );
         }

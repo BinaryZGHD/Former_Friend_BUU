@@ -26,7 +26,6 @@ boardItemStudent({
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
-              // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
@@ -67,9 +66,9 @@ boardItemStudent({
   );
 }
 
-boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
+boardItemStudentUser({VoidCallback? onTap, UserGen? dataUserStudent}) {
   if (kDebugMode) {
-    print("${datauserstudent?.numgen}  ==== ${datauserstudent?.colorgen}");
+    print("${dataUserStudent?.numgen}  ==== ${dataUserStudent?.colorgen}");
   }
   return GestureDetector(
     onTap: onTap,
@@ -88,10 +87,10 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
           0.25,
           1,
         ], colors: [
-          HexColor("${datauserstudent?.colorgen}"),
+          HexColor("${dataUserStudent?.colorgen}"),
           Colors.white,
           Colors.white,
-          HexColor("${datauserstudent?.colorgen}"),
+          HexColor("${dataUserStudent?.colorgen}"),
         ], begin: Alignment.centerLeft, end: Alignment.centerRight),
       ),
       child: Table(
@@ -100,7 +99,6 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
           TableRow(children: [
-            // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
@@ -112,7 +110,7 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
                       gradient: LinearGradient(
                         colors: [
                           HexColor('#F5F5F5'),
-                          HexColor("${datauserstudent?.colorgen}"),
+                          HexColor("${dataUserStudent?.colorgen}"),
                         ],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
@@ -123,7 +121,7 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
                   ),
                   Center(
                       child: Text(
-                    "${datauserstudent?.numgen}",
+                    "${dataUserStudent?.numgen}",
                     style: const TextStyle(color: Colors.black, fontSize: 30),
                   )),
                 ]),
@@ -131,7 +129,7 @@ boardItemStudentUser({VoidCallback? onTap, UserGen? datauserstudent}) {
             ),
             const SizedBox(),
             Text(
-              "${datauserstudent?.namegen1}",
+              "${dataUserStudent?.namegen1}",
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ])
@@ -156,7 +154,6 @@ boardItemStudent2({
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
           TableRow(children: [
-            // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(

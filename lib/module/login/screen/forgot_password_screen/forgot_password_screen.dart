@@ -1,6 +1,6 @@
 import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
-import 'package:f2fbuu/module/login/screen/forgot_password_screen/setnew_forgot_password_screen.dart';
+import 'package:f2fbuu/module/login/screen/forgot_password_screen/set_new_forgot_password_screen.dart';
 import 'package:f2fbuu/module/login/widget/forgot_password_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,18 +36,16 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> with ProgressDialog {
-  ScreenForgotPasswordResponse? _screenforgotpasswordResponse;
+  ScreenForgotPasswordResponse? _screenForgotPasswordResponse;
   TextEditingController userIDController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   @override
   void initState() {
     super.initState();
-    // context.read<ForgorPasswordBloc>().add(ScreenInfoForgotPasswordEvent(userLanguage: userLanguage));
   }
 
   @override
   Widget build(BuildContext context) {
-    // context.read<ForgorPasswordBloc>().add(forgotPasswordPageInfoEvent());
     return BlocConsumer<ForgorPasswordBloc, ForgotPasswordState>(
       listener: (context, state) {
         if (state is ForgotPasswordLoading) {
@@ -67,19 +65,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> with ProgressDi
         }
         if (state is SubmitForgotPasswordSuccessState) {
           var valueEmailForgotPassword = state.emailForgotPassword;
-          var valueUserIDForgotpassword = state.userIDForgotPassword;
+          var valueUserIDForgotPassword = state.userIDForgotPassword;
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => SetNewForgotPasswordScreen(
-                      valueEmailForgotpassword: valueEmailForgotPassword,
-                      valueUserIDForgotpassword: valueUserIDForgotpassword)));
+                      valueEmailForgotPassword: valueEmailForgotPassword,
+                      valueUserIDForgotPassword: valueUserIDForgotPassword)));
         }
       },
       builder: (context, state) {
         if (state is ScreenInfoForgotPasswordSuccessState) {
-          _screenforgotpasswordResponse = state.responseForgotPassword;
-          return forgotPasswordPageWidget(context, _screenforgotpasswordResponse, emailController, userIDController);
+          _screenForgotPasswordResponse = state.responseForgotPassword;
+          return forgotPasswordPageWidget(context, _screenForgotPasswordResponse, emailController, userIDController);
         } else {
           return Scaffold(
               body: Container(

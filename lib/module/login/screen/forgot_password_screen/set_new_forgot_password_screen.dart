@@ -5,16 +5,16 @@ import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bl
 import 'package:f2fbuu/module/login/model/response/re_send_otp_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
-import 'package:f2fbuu/module/login/widget/setnew_forgot_password_widget.dart';
+import 'package:f2fbuu/module/login/widget/set_new_forgot_password_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SetNewForgotPasswordScreen extends StatefulWidget {
 
-  final String valueEmailForgotpassword;
-  final String valueUserIDForgotpassword;
+  final String valueEmailForgotPassword;
+  final String valueUserIDForgotPassword;
   const SetNewForgotPasswordScreen(
-      {Key? key, required this.valueEmailForgotpassword, required this.valueUserIDForgotpassword})
+      {Key? key, required this.valueEmailForgotPassword, required this.valueUserIDForgotPassword})
       : super(key: key);
 
   @override
@@ -28,19 +28,19 @@ class _SetNewForgotPasswordScreenState extends State<SetNewForgotPasswordScreen>
     return BlocProvider(
         create: (context) => ForgorPasswordBloc()..add(ScreenInfoForgotPasswordEvent()),
         child: SetNewForgotPasswordPage(
-          valueEmailForgotpassword: widget.valueEmailForgotpassword,
-          valueUserIDForgotpassword: widget.valueUserIDForgotpassword,
+          valueEmailForgotPassword: widget.valueEmailForgotPassword,
+          valueUserIDForgotPassword: widget.valueUserIDForgotPassword,
         ));
   }
 }
 
 class SetNewForgotPasswordPage extends StatefulWidget with ProgressDialog {
-  final String valueEmailForgotpassword;
-  final String valueUserIDForgotpassword;
+  final String valueEmailForgotPassword;
+  final String valueUserIDForgotPassword;
   SetNewForgotPasswordPage({
     Key? key,
-    required this.valueEmailForgotpassword,
-    required this.valueUserIDForgotpassword,
+    required this.valueEmailForgotPassword,
+    required this.valueUserIDForgotPassword,
   }) : super(key: key);
 
   @override
@@ -49,7 +49,7 @@ class SetNewForgotPasswordPage extends StatefulWidget with ProgressDialog {
 
 class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> with ProgressDialog {
   final CustomTimerController _controller = CustomTimerController();
-  ScreenForgotPasswordResponse? _screenSetNewforgotpasswordResponse;
+  ScreenForgotPasswordResponse? _screenSetNewForgotPasswordResponse;
   ReSendOtpForgotPasswordResponse? _reSendOtpForgotPasswordResponse;
   @override
   void initState() {
@@ -100,10 +100,10 @@ class _SetNewForgotPasswordPageState extends State<SetNewForgotPasswordPage> wit
       builder: (context, state) {
         if (state is ScreenInfoSetNewForgotPasswordSuccessState) {
           startTimer();
-          _screenSetNewforgotpasswordResponse = state.responseSetNewForgotPassword;
-          return setnewForgotPasswordPageWidget(context, _screenSetNewforgotpasswordResponse,
-              valueEmailForgotpassword: widget.valueEmailForgotpassword,
-              valueUserIDForgotpassword: widget.valueUserIDForgotpassword,
+          _screenSetNewForgotPasswordResponse = state.responseSetNewForgotPassword;
+          return setNewForgotPasswordPageWidget(context, _screenSetNewForgotPasswordResponse,
+              valueEmailForgotPassword: widget.valueEmailForgotPassword,
+              valueUserIDForgotPassword: widget.valueUserIDForgotPassword,
               controller:_controller);
         } else {
           return Scaffold(

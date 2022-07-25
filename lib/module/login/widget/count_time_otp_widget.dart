@@ -1,6 +1,6 @@
 import 'package:custom_timer/custom_timer.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textlink/textlink_otp_custom.dart';
+import 'package:f2fbuu/customs/text_link/text_link_otp_custom.dart';
 import 'package:flutter/material.dart';
 
 class CountTimeOTPWidget extends StatefulWidget {

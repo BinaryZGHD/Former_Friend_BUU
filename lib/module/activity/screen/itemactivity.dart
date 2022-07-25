@@ -1,4 +1,5 @@
 
+import 'package:f2fbuu/customs/message/text_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -27,11 +28,11 @@ class ItemActivity extends StatelessWidget {
               // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: [
                 _buildListActivity(
-                    title: title?.textactivity, dataDetail:data?.name),
+                    title: title?.textactivity?? statusActivityTextActivity, dataDetail:data?.name ??'-'),
                 _buildListEmpty(),
-                _buildListActivity(title: title?.edtapprover, dataDetail: data?.approver),
+                _buildListActivity(title: title?.edtapprover?? statusActivityEdtApprover, dataDetail: data?.approver??'-'),
                 _buildListEmpty(),
-                _buildListActivity(title: title?.texttime , dataDetail: data?.startdate +" - "+ data?.finishdate + "\n"+ data?.time+ title?.texttimestatus ),
+                _buildListActivity(title: title?.texttime?? statusActivityTextTime , dataDetail: "${data?.startdate??'----:--:--'} - ${data?.finishdat??'----:--:--'}\n${data?.time??'--:--'}${title?.texttimestatus??'-'}" ),
               ],
             ),
           ),

@@ -1,4 +1,4 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
@@ -57,13 +57,13 @@ contactUsWidget(
                           height: 40,
                         ),
                         _contactDetail(
-                            titail: "widget.titlename", value:" widget.name"),
+                            title: "widget.Filename", value:" widget.name"),
                         _contactDetail(
-                            titail: "widget.titleposition", value: "widget.position"),
+                            title: "widget.interposition", value: "widget.position"),
                         _contactDetail(
-                            titail: "widget.titlephone", value: "widget.phone"),
+                            title: "widget.telephone", value: "widget.phone"),
                         _contactDetail(
-                            titail: "widget.titleemail", value: "widget.email"),
+                            title: "widget.title's", value: "widget.email"),
                         const SizedBox(
                           height: 30,
                         ),
@@ -94,7 +94,7 @@ contactUsWidget(
               child: Center(
                 child: ButtonCustom(
                   onPressed: () {},
-                  label: "  @mathf2fbuu  ",
+                  label: "  @math2fibula  ",
                   colortext: tcButtonTextWhite,
                   colorbutton: tcButtonLine,
                   sizetext: sizeTextBig20,
@@ -111,7 +111,7 @@ contactUsWidget(
   );
 }
 
-_contactDetail({required String titail, required String value}) {
+_contactDetail({required String title, required String value}) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 10.0, top: 8.0, bottom: 15.0),
     child: Table(
@@ -120,9 +120,8 @@ _contactDetail({required String titail, required String value}) {
       // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
         TableRow(children: [
-          // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
           Text(
-            titail,
+            title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(

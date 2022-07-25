@@ -44,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> with ProgressDialog {
   TextEditingController nameController = TextEditingController();
   TextEditingController lastnameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmpasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +68,13 @@ class _RegisterPageState extends State<RegisterPage> with ProgressDialog {
           }
         }
         if (state is SubmitRegisterState) {
-          var registervalueEmail = state.email;
-          var registervalueUserID = state.userID;
+          var registerValueEmail = state.email;
+          var registerValueUserID = state.userID;
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => RegisterConfirmScreen(
-                  registerValueEmail: registervalueEmail, registerValueUserID: registervalueUserID),
+                  registerValueEmail: registerValueEmail, registerValueUserID: registerValueUserID),
             ),
           );
         }
@@ -91,7 +91,7 @@ class _RegisterPageState extends State<RegisterPage> with ProgressDialog {
             nameController,
             lastnameController,
             passwordController,
-            confirmpasswordController,
+            confirmPasswordController,
           );
         }
         return Scaffold(

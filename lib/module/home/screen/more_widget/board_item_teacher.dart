@@ -2,7 +2,7 @@ import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_board_teacher_response.dart';
 import 'package:flutter/material.dart';
 
-boardItemTeacherLeft({VoidCallback? onTap, Screeninfo? tiaileteacher, Teacherone? datateacher}) {
+boardItemTeacherLeft({VoidCallback? onTap, Screeninfo? titleTeacher, Teacherone? dataTeacher}) {
   return GestureDetector(
     onTap: onTap,
     child: Card(
@@ -20,22 +20,21 @@ boardItemTeacherLeft({VoidCallback? onTap, Screeninfo? tiaileteacher, Teacherone
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
-              // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 35.0,
-                  backgroundImage: NetworkImage("${datateacher?.imgTeacher}"),
+                  backgroundImage: NetworkImage("${dataTeacher?.imgTeacher}"),
                 ),
               ),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      tableaJ(tiaileteacher: tiaileteacher?.name, datateacher: datateacher?.name),
-                      tableaJ(tiaileteacher: tiaileteacher?.position, datateacher: datateacher?.position),
-                      tableaJ(tiaileteacher: tiaileteacher?.phone, datateacher: datateacher?.phone),
-                      tableaJ(tiaileteacher: tiaileteacher?.email, datateacher: datateacher?.email),
+                      tableAJ(titleTeacher: titleTeacher?.name, dataTeacher: dataTeacher?.name),
+                      tableAJ(titleTeacher: titleTeacher?.position, dataTeacher: dataTeacher?.position),
+                      tableAJ(titleTeacher: titleTeacher?.phone, dataTeacher: dataTeacher?.phone),
+                      tableAJ(titleTeacher: titleTeacher?.email, dataTeacher: dataTeacher?.email),
                     ],
                   )),
             ])
@@ -46,7 +45,7 @@ boardItemTeacherLeft({VoidCallback? onTap, Screeninfo? tiaileteacher, Teacherone
   );
 }
 
-boardItemTeacherRight({VoidCallback? onTap, Screeninfo? tiaileteacher, Teachertwo? datateachertwo}) {
+boardItemTeacherRight({VoidCallback? onTap, Screeninfo? titleTeacher, Teachertwo? dataTeacherTwo}) {
   return GestureDetector(
     onTap: onTap,
     child: Card(
@@ -64,22 +63,21 @@ boardItemTeacherRight({VoidCallback? onTap, Screeninfo? tiaileteacher, Teachertw
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
-              // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 35.0,
-                  backgroundImage: NetworkImage("${datateachertwo?.imgTeacher}"),
+                  backgroundImage: NetworkImage("${dataTeacherTwo?.imgTeacher}"),
                 ),
               ),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      tableaJ(tiaileteacher: tiaileteacher?.name, datateacher: datateachertwo?.name),
-                      tableaJ(tiaileteacher: tiaileteacher?.position, datateacher: datateachertwo?.position),
-                      tableaJ(tiaileteacher: tiaileteacher?.phone, datateacher: datateachertwo?.phone),
-                      tableaJ(tiaileteacher: tiaileteacher?.email, datateacher: datateachertwo?.email),
+                      tableAJ(titleTeacher: titleTeacher?.name, dataTeacher: dataTeacherTwo?.name),
+                      tableAJ(titleTeacher: titleTeacher?.position, dataTeacher: dataTeacherTwo?.position),
+                      tableAJ(titleTeacher: titleTeacher?.phone, dataTeacher: dataTeacherTwo?.phone),
+                      tableAJ(titleTeacher: titleTeacher?.email, dataTeacher: dataTeacherTwo?.email),
                     ],
                   )),
             ])
@@ -90,7 +88,7 @@ boardItemTeacherRight({VoidCallback? onTap, Screeninfo? tiaileteacher, Teachertw
   );
 }
 
-tableaJ({String? tiaileteacher, String? datateacher}) {
+tableAJ({String? titleTeacher, String? dataTeacher}) {
   return Table(
     border: TableBorder.symmetric(outside: const BorderSide(width: 2, color: Colors.transparent)),
     columnWidths: const {0: FractionColumnWidth(0.3), 1: FractionColumnWidth(0.7)},
@@ -98,11 +96,11 @@ tableaJ({String? tiaileteacher, String? datateacher}) {
     children: [
       TableRow(children: [
         Text(
-          "$tiaileteacher :",
+          "$titleTeacher :",
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         Text(
-          "$datateacher",
+          "$dataTeacher",
           style: const TextStyle(fontSize: 14),
         ),
       ])
@@ -112,8 +110,8 @@ tableaJ({String? tiaileteacher, String? datateacher}) {
 
 boardItemStaff({
   VoidCallback? onTap,
-  Staff? datastaff,
-  Screeninfo? tiaileteacher,
+  Staff? dataStaff,
+  Screeninfo? titleTeacher,
 }) {
   return GestureDetector(
     onTap: onTap,
@@ -128,22 +126,21 @@ boardItemStaff({
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(children: [
-              // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 35.0,
-                  backgroundImage: NetworkImage("${datastaff?.imgTeacher}"),
+                  backgroundImage: NetworkImage("${dataStaff?.imgTeacher}"),
                 ),
               ),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      tableaJ(tiaileteacher: tiaileteacher?.name, datateacher: datastaff?.name),
-                      tableaJ(tiaileteacher: tiaileteacher?.position, datateacher: datastaff?.position),
-                      tableaJ(tiaileteacher: tiaileteacher?.phone, datateacher: datastaff?.phone),
-                      tableaJ(tiaileteacher: tiaileteacher?.email, datateacher: datastaff?.email),
+                      tableAJ(titleTeacher: titleTeacher?.name, dataTeacher: dataStaff?.name),
+                      tableAJ(titleTeacher: titleTeacher?.position, dataTeacher: dataStaff?.position),
+                      tableAJ(titleTeacher: titleTeacher?.phone, dataTeacher: dataStaff?.phone),
+                      tableAJ(titleTeacher: titleTeacher?.email, dataTeacher: dataStaff?.email),
                     ],
                   )),
             ])

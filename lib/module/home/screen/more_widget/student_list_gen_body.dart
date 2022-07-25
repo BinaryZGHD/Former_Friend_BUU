@@ -5,7 +5,7 @@ import 'package:f2fbuu/module/home/screen/more_widget/board_Item_student.dart';
 import 'package:f2fbuu/module/home/screen/more_screen/board_screen/more_board_student_List_screen.dart';
 import 'package:flutter/material.dart';
 
-studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? _screenMoreBoardStudentResponse) {
+studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? screenMoreBoardStudentResponse) {
   return Scaffold(
     backgroundColor: Colors.grey[200],
     appBar: AppBar(
@@ -22,7 +22,7 @@ studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? _scree
         ),
       ),
       title: Text(
-        "${_screenMoreBoardStudentResponse?.body?.screeninfo?.titlenisit}",
+        "${screenMoreBoardStudentResponse?.body?.screeninfo?.titlenisit}",
         style: const TextStyle(
           color: Colors.black,
           fontSize: sizeTitle24,
@@ -35,14 +35,13 @@ studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? _scree
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           color: Colors.transparent,
           child: boardItemStudentUser(
-            datauserstudent: _screenMoreBoardStudentResponse?.body?.userGen,
+            dataUserStudent: screenMoreBoardStudentResponse?.body?.userGen,
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      MoreBoardStudentListScreen(title: "${_screenMoreBoardStudentResponse?.body?.userGen?.numgen}",),
-                  // commingSoonScreen(),
+                      MoreBoardStudentListScreen(title: "${screenMoreBoardStudentResponse?.body?.userGen?.numgen}",),
                 ),
               );
             },
@@ -54,7 +53,7 @@ studentListGenBody (BuildContext context, ScreenMoreBoardStudentResponse? _scree
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  buildListStudent(context, _screenMoreBoardStudentResponse),
+                  buildListStudent(context, screenMoreBoardStudentResponse),
                   const SizedBox(
                     // height: MediaQuery.of(context).size.height * 0.2,
                   ),

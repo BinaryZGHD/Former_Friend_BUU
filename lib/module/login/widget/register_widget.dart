@@ -1,8 +1,9 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_message.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
-import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_password_custom.dart';
 import 'package:f2fbuu/module/login/bloc/register_bloc/register_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_register_response.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ registerPageWidget(
   TextEditingController nameController,
   TextEditingController lastnameController,
   TextEditingController passwordController,
-  TextEditingController confirmpasswordController,
+  TextEditingController confirmPasswordController,
 ) {
   return WillPopScope(
     onWillPop: () async {
@@ -38,7 +39,7 @@ registerPageWidget(
           ),
         ),
         title: Text(
-          "${screenRegisterResponse?.body?.screeninfo?.titlereg}",
+          screenRegisterResponse?.body?.screeninfo?.titlereg?? registerTitleRegister,
           style: const TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -58,7 +59,7 @@ registerPageWidget(
                 onChanged: (value) {
                   userController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtIDreg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtIDreg?? registerEdtIDRegister,
                 textInputType: TextInputType.text,
               ),
               TextFieldCustom(
@@ -66,7 +67,7 @@ registerPageWidget(
                 onChanged: (value) {
                   nameController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtnamereg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtnamereg?? registerEdtNameRegister,
                 textInputType: TextInputType.text,
               ),
               TextFieldCustom(
@@ -74,7 +75,7 @@ registerPageWidget(
                 onChanged: (value) {
                   lastnameController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtlnamereg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtlnamereg?? registerEdtLastNameRegister,
                 textInputType: TextInputType.text,
               ),
               TextFieldCustom(
@@ -82,7 +83,7 @@ registerPageWidget(
                 onChanged: (value) {
                   emailController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtemailreg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtemailreg?? registerEdtEmailRegister,
                 textInputType: TextInputType.text,
               ),
               TextFieldCustom(
@@ -91,7 +92,7 @@ registerPageWidget(
                 onChanged: (value) {
                   phoneController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtphonereg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtphonereg?? registerEdtPhoneRegister,
                 textInputType: TextInputType.number,
               ),
 
@@ -101,15 +102,15 @@ registerPageWidget(
                 onChanged: (value) {
                   passwordController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtpassreg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtpassreg?? registerEdtPasswordRegister,
                 textInputType: TextInputType.text,
               ),
               TextFieldPasswordCustom(
-                textEditingController: confirmpasswordController,
+                textEditingController: confirmPasswordController,
                 onChanged: (value) {
-                  confirmpasswordController.text = value;
+                  confirmPasswordController.text = value;
                 },
-                hintLabel: "${screenRegisterResponse?.body?.screeninfo?.edtcpassreg}",
+                hintLabel: screenRegisterResponse?.body?.screeninfo?.edtcpassreg?? registerEdtConfirmPasswordRegister,
                 textInputType: TextInputType.text,
               ),
               SizedBox(
@@ -127,21 +128,11 @@ registerPageWidget(
                       name: nameController.text,
                       lastName: lastnameController.text,
                       password: passwordController.text,
-                      confirmPassword: confirmpasswordController.text,
+                      confirmPassword: confirmPasswordController.text,
                     ));
 
-                    // context.read<RegisterBloc>().add(SubmitRegisterEvent(
-                    //   userLanguage: userLanguage,
-                    //   userID: uservalue,
-                    //   phone: phonevalue,
-                    //   emailRegister: emailvalue,
-                    //   name: namevalue,
-                    //   lastName: lastnamevalue,
-                    //   password: passwordvalue,
-                    //   confirmPassword: confirmpasswordvalue,
-                    // ));
                   },
-                  label: "  ${screenRegisterResponse?.body?.screeninfo?.edtsignup}  ",
+                  label: screenRegisterResponse?.body?.screeninfo?.edtsignup?? registerEdtSignup,
                   colortext: tcButtonTextBlack,
                   colorbutton: tcButtonTextWhite,
                   sizetext: sizeTextBig20,

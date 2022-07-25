@@ -1,13 +1,14 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_forgot_password.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_custom.dart';
 import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? screenforgotpasswordResponse,
+forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? screenForgotPasswordResponse,
     TextEditingController emailController, TextEditingController userIDController) {
   return WillPopScope(
     onWillPop: () async {
@@ -28,7 +29,7 @@ forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? scr
             ),
           ),
           title: Text(
-            "${screenforgotpasswordResponse?.body?.screeninfo?.titleforgot}",
+            screenForgotPasswordResponse?.body?.screeninfo?.titleforgot?? forgotPasswordTitleForgotPassword,
             style: const TextStyle(
               color: Colors.black,
               fontSize: sizeTitle24,
@@ -48,7 +49,7 @@ forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? scr
                   onChanged: (valueUserID) {
                     userIDController.text = valueUserID;
                   },
-                  hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.edtIDforgot}",
+                  hintLabel: screenForgotPasswordResponse?.body?.screeninfo?.edtIDforgot?? forgotPasswordEdtIDForgotPassword,
                   textInputType: TextInputType.text,
                 ),
                 TextFieldCustom(
@@ -56,7 +57,7 @@ forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? scr
                   onChanged: (valueEmail) {
                     emailController.text = valueEmail;
                   },
-                  hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.edtemailforgot}",
+                  hintLabel: screenForgotPasswordResponse?.body?.screeninfo?.edtemailforgot?? forgotPasswordEdtEmailForgotPassword,
                   textInputType: TextInputType.text,
                 ),
                 SizedBox(
@@ -64,7 +65,7 @@ forgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? scr
                 ),
                 Center(
                   child: ButtonCustom(
-                      label: "  ${screenforgotpasswordResponse?.body?.screeninfo?.btnforgotnext}  ",
+                      label: screenForgotPasswordResponse?.body?.screeninfo?.btnforgotnext?? forgotPasswordBtnForgotPasswordNext,
                       colortext: tcButtonTextBlack,
                       colorbutton: tcButtonTextWhite,
                       sizetext: sizeTextBig20,
