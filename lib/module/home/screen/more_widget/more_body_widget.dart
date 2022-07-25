@@ -1,6 +1,6 @@
 import 'package:f2fbuu/customs/card/card_more.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:f2fbuu/customs/message/text_message.dart';
+import 'package:f2fbuu/customs/message/text_more.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_response.dart';
 import 'package:f2fbuu/module/home/screen/more_screen/board_screen/more_board_student_list_gen_screen.dart';

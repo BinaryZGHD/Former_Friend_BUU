@@ -1,6 +1,6 @@
 import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:f2fbuu/customs/message/text_message.dart';
+import 'package:f2fbuu/customs/message/text_pdpa.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/login/bloc/pdpa_bloc/pdpa_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';

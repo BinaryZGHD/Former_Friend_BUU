@@ -32,7 +32,7 @@ class ItemActivity extends StatelessWidget {
                 _buildListEmpty(),
                 _buildListActivity(title: title?.edtapprover?? statusActivityEdtApprover, dataDetail: data?.approver??'-'),
                 _buildListEmpty(),
-                _buildListActivity(title: title?.texttime?? statusActivityTextTime , dataDetail: "${data?.startdate??'----:--:--'} - ${data?.finishdat??'----:--:--'}\n${data?.time??'--:--'}${title?.texttimestatus??'-'}" ),
+                _buildListActivity(title: title?.texttime?? statusActivityTextTime , dataDetail: "${data?.startdate??'----:--:--'} - ${data?.finishdate??'----:--:--'}\n${data?.time??'--:--'}${title?.texttimestatus??'-'}" ),
               ],
             ),
           ),
