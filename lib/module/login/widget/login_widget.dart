@@ -1,9 +1,10 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_login.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
-import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
-import 'package:f2fbuu/customs/textlink/textlink_to_screen_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_password_custom.dart';
+import 'package:f2fbuu/customs/text_link/text_link_to_screen_custom.dart';
 import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_login_response.dart';
 import 'package:f2fbuu/module/login/screen/forgot_password_screen/forgot_password_screen.dart';
@@ -48,11 +49,9 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                                     color: Colors.black,
                                     size: 18,
                                   ),
-                                  Text("  ${screenLoginResponse?.body?.screeninfo?.btnChangeLang}",
+                                  Text(screenLoginResponse?.body?.screeninfo?.btnChangeLang?? loginBtnChangeLanguage,
                                       style: const TextStyle(
-                                        // decoration: TextDecoration.underline,
                                           color: Colors.black,
-                                          // decorationColor: linktextcolor,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14)),
                                 ],
@@ -69,38 +68,39 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                       child: screenLoginResponse?.body?.screeninfo?.imgLogo != null
                           ? CircleAvatar(
                               radius: 80.0,
-                              backgroundImage: NetworkImage("${screenLoginResponse?.body?.screeninfo?.imgLogo}"),
+                              backgroundImage: NetworkImage(screenLoginResponse?.body?.screeninfo?.imgLogo??
+                                  'https://www.f2fbuu.com/images/logo.png'),
                             )
                           : const CircleAvatar(
                               radius: 80,
                               backgroundImage: AssetImage(
                                 'assets/logo/Buulogo.png',
                               ),
-                            ),
+                            )
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     TextFieldCustom(
                       textEditingController: userController,
-                      onChanged: (valueuserID) {
-                        userController.text = valueuserID;
+                      onChanged: (valueUserID) {
+                        userController.text = valueUserID;
                         if (kDebugMode) {
                           print("userController  login == ${userController.text}");
                         }
                       },
-                      hintLabel: "${screenLoginResponse?.body?.screeninfo?.edtID}",
+                      hintLabel: screenLoginResponse?.body?.screeninfo?.edtID?? loginEdtID,
                       textInputType: TextInputType.text,
                     ),
                     TextFieldPasswordCustom(
                       textEditingController: passwordController,
-                      onChanged: (valuepassword) {
-                        passwordController.text = valuepassword;
+                      onChanged: (valuePassword) {
+                        passwordController.text = valuePassword;
                         if (kDebugMode) {
                           print("passwordController login  == ${passwordController.text}");
                         }
                       },
-                      hintLabel: "${screenLoginResponse?.body?.screeninfo?.edtPass}",
+                      hintLabel: screenLoginResponse?.body?.screeninfo?.edtPass?? loginEdtPassword,
                       textInputType: TextInputType.text,
                     ),
                     const SizedBox(
@@ -109,7 +109,7 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: TextLinkToScreenCustom(
-                          linklabel: "${screenLoginResponse?.body?.screeninfo?.btnForgotPass}" " ? ",
+                          linklabel: screenLoginResponse?.body?.screeninfo?.btnForgotPass?? loginBtnForgotPassword,
                           linktextcolor: tcForgot,
                           sizetext: sizeTextSmaller14,
                           onTap: () async {
@@ -129,7 +129,7 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                                 password: passwordController.text.isEmpty ? "demo": passwordController.text
                               ));
                         },
-                        label: "  ${screenLoginResponse?.body?.screeninfo?.btnLogin}  ",
+                        label: screenLoginResponse?.body?.screeninfo?.btnLogin?? loginBtnLogin,
                         colortext: tcButtonTextBlack,
                         colorbutton: tcButtonTextWhite,
                         sizetext: sizeTextBig20,
@@ -145,12 +145,12 @@ loginPageWidget(BuildContext context, ScreenLoginResponse? screenLoginResponse, 
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "${screenLoginResponse?.body?.screeninfo?.textReg}" " ? ",
+                          screenLoginResponse?.body?.screeninfo?.textReg?? loginTextRegister,
                           style: const TextStyle(
                               fontSize: sizeTextSmall16, color: Colors.black, fontWeight: FontWeight.w300),
                         ),
                         TextLinkToScreenCustom(
-                            linklabel: "${screenLoginResponse?.body?.screeninfo?.btnReg}",
+                            linklabel: screenLoginResponse?.body?.screeninfo?.btnReg?? loginBtnRegister,
                             linktextcolor: tcRegiter,
                             sizetext: sizeTextSmall16,
                             onTap: () async {

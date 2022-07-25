@@ -3,7 +3,7 @@ import 'package:f2fbuu/module/home/model/response/more_response/screen_more_boar
 import 'package:f2fbuu/module/home/screen/more_widget/BuildListTeacher.dart';
 import 'package:flutter/material.dart';
 
-teacherStatsWidget(BuildContext context, ScreenMoreBoardTeacherResponse? _screenMoreBoardTeacherResponse) {
+teacherStatsWidget(BuildContext context, ScreenMoreBoardTeacherResponse? screenMoreBoardTeacherResponse) {
   return Expanded(
     child: Container(
       padding: const EdgeInsets.fromLTRB(2, 5, 2, 10),
@@ -14,22 +14,22 @@ teacherStatsWidget(BuildContext context, ScreenMoreBoardTeacherResponse? _screen
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 10),
-              child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
+              child: Text("${screenMoreBoardTeacherResponse?.body?.screeninfo?.teacher}",
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
                   )),
             ),
-            buildListTeacherRight(context, _screenMoreBoardTeacherResponse),
+            buildListTeacherRight(context, screenMoreBoardTeacherResponse),
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 5),
-              child: Text("${_screenMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
+              child: Text("${screenMoreBoardTeacherResponse?.body?.screeninfo?.staff}",
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
                   )),
             ),
-            buildListStaff(context, _screenMoreBoardTeacherResponse),
+            buildListStaff(context, screenMoreBoardTeacherResponse),
             const SizedBox(
               height: 20,
             ),

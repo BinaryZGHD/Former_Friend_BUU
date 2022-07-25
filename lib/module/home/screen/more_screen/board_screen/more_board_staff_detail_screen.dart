@@ -8,56 +8,56 @@ class MoreBoardStaffDetailScreen extends StatelessWidget {
   final String position;
   final String phone;
   final String email;
-  final String titlename;
-  final String titleposition;
-  final String titlephone;
-  final String titleemail;
+  final String titleName;
+  final String titlePosition;
+  final String titlePhone;
+  final String titleEmail;
   final String image;
   const MoreBoardStaffDetailScreen({
-    Key? key, required this.name, required this.position, required this.phone, required this.email,required this.image, required this.titlename, required this.titleposition, required this.titlephone, required this.titleemail,
+    Key? key, required this.name, required this.position, required this.phone, required this.email,required this.image, required this.titleName, required this.titlePosition, required this.titlePhone, required this.titleEmail,
 
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => MoreBloc(),
-        child:  MoreBoardStaffrDetailPage(
+        child:  MoreBoardStaffDetailPage(
           name: name,
           position: position,
           phone: phone,
           email: email,
           image: image,
-          titlename: titlename,
-          titleposition: titleposition,
-          titlephone: titlephone,
-          titleemail: titleemail,
+          titleName: titleName,
+          titlePosition: titlePosition,
+          titlePhone: titlePhone,
+          titleEmail: titleEmail,
 
 
         ));
   }
 }
 
-class MoreBoardStaffrDetailPage extends StatefulWidget {
+class MoreBoardStaffDetailPage extends StatefulWidget {
 
   final String name;
   final String position;
   final String phone;
   final String email;
-  final String titlename;
-  final String titleposition;
-  final String titlephone;
-  final String titleemail;
+  final String titleName;
+  final String titlePosition;
+  final String titlePhone;
+  final String titleEmail;
   final String image;
-  const MoreBoardStaffrDetailPage({
-    Key? key, required this.name, required this.position, required this.phone, required this.email,required this.image, required this.titlename, required this.titleposition, required this.titlephone, required this.titleemail,
+  const MoreBoardStaffDetailPage({
+    Key? key, required this.name, required this.position, required this.phone, required this.email,required this.image, required this.titleName, required this.titlePosition, required this.titlePhone, required this.titleEmail,
 
   }) : super(key: key);
 
   @override
-  State<MoreBoardStaffrDetailPage> createState() => _MoreBoardStaffrDetailPageState();
+  State<MoreBoardStaffDetailPage> createState() => _MoreBoardStaffDetailPageState();
 }
 
-class _MoreBoardStaffrDetailPageState extends State<MoreBoardStaffrDetailPage> with ProgressDialog {
+class _MoreBoardStaffDetailPageState extends State<MoreBoardStaffDetailPage> with ProgressDialog {
   // ScreenMoreBoardTeacherResponse? _screenHomeMoreBoardTeacherResponse;
 
   @override
@@ -116,13 +116,13 @@ class _MoreBoardStaffrDetailPageState extends State<MoreBoardStaffrDetailPage> w
                         height: 40,
                       ),
                       _buildStaffDetail(
-                          titail: widget.titlename, value: widget.name),
+                          title: widget.titleName, value: widget.name),
                       _buildStaffDetail(
-                          titail: widget.titleposition, value: widget.position),
+                          title: widget.titlePosition, value: widget.position),
                       _buildStaffDetail(
-                          titail: widget.titlephone, value: widget.phone),
+                          title: widget.titlePhone, value: widget.phone),
                       _buildStaffDetail(
-                          titail: widget.titleemail, value: widget.email),
+                          title: widget.titleEmail, value: widget.email),
                       const SizedBox(
                         height: 30,
                       ),
@@ -171,7 +171,7 @@ class _MoreBoardStaffrDetailPageState extends State<MoreBoardStaffrDetailPage> w
   }
 }
 
-_buildStaffDetail({required String titail, required String value}) {
+_buildStaffDetail({required String title, required String value}) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 10.0, top: 8.0, bottom: 15.0),
     child: Table(
@@ -180,9 +180,8 @@ _buildStaffDetail({required String titail, required String value}) {
       // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
         TableRow(children: [
-          // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
           Text(
-            titail,
+            title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(

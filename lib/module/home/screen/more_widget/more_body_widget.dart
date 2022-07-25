@@ -1,5 +1,6 @@
-import 'package:f2fbuu/customs/card/cardmore.dart';
+import 'package:f2fbuu/customs/card/card_more.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_message.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/model/response/more_response/screen_more_response.dart';
 import 'package:f2fbuu/module/home/screen/more_screen/board_screen/more_board_student_list_gen_screen.dart';
@@ -24,7 +25,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
         ),
       ),
       title: Text(
-        "${screenMoreResponse?.body?.screenInfo?.textmore}",
+        screenMoreResponse?.body?.screenInfo?.textmore?? moreTitleMore,
         style: const TextStyle(
           color: Colors.black,
           fontSize: sizeTitle24,
@@ -42,7 +43,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
               child: Text(
-                "${screenMoreResponse?.body?.screenInfo?.textboard}",
+                screenMoreResponse?.body?.screenInfo?.textboard?? moreSubTitleBoard,
                 style: const TextStyle(
                   fontSize: sizeTextBig20,
                   fontWeight: FontWeight.w600,
@@ -62,7 +63,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
                     );
                   },
                   context,
-                  title: "${screenMoreResponse?.body?.screenInfo?.btnstd}",
+                  title: screenMoreResponse?.body?.screenInfo?.btnstd?? moreBtnStd,
                   iconBoard: Icons.auto_stories_outlined,
                 ),
                 SizedBox(
@@ -78,7 +79,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
                     );
                   },
                   context,
-                  title: "${screenMoreResponse?.body?.screenInfo?.btntc}",
+                  title: screenMoreResponse?.body?.screenInfo?.btntc?? moreBtnTc,
                   iconBoard: Icons.badge_outlined,
                 ),
               ],
@@ -86,7 +87,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
               child: Text(
-                "${screenMoreResponse?.body?.screenInfo?.textabdepart}",
+                screenMoreResponse?.body?.screenInfo?.textabdepart ??moreSubTitleDepart,
                 style: const TextStyle(
                   fontSize: sizeTextBig20,
                   fontWeight: FontWeight.w600,
@@ -101,7 +102,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
                 });
               },
 
-              title: "${screenMoreResponse?.body?.screenInfo?.btndeparthis}",
+              title: screenMoreResponse?.body?.screenInfo?.btndeparthis?? moreBtnDepartHis,
             ),
             buildCardMore(
               context: context,
@@ -111,7 +112,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
                 });
               },
 
-              title: "${screenMoreResponse?.body?.screenInfo?.btncou}",
+              title: screenMoreResponse?.body?.screenInfo?.btncou?? moreBtnCou,
             ),
             buildCardMore(
               context: context,
@@ -121,7 +122,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
                 });
               },
 
-              title: "${screenMoreResponse?.body?.screenInfo?.btnface}",
+              title: screenMoreResponse?.body?.screenInfo?.btnface??moreBtnFace,
             ),
             buildCardMore(
               context: context,
@@ -130,12 +131,12 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
                   launchInBrowser(Uri.parse("${screenMoreResponse?.body?.websiteUrl}"));
                 });
               },
-              title: "${screenMoreResponse?.body?.screenInfo?.btnweb}",
+              title: screenMoreResponse?.body?.screenInfo?.btnweb??moreBtnWeb,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
               child: Text(
-                "${screenMoreResponse?.body?.screenInfo?.textsup}",
+                screenMoreResponse?.body?.screenInfo?.textsup??moreSubTitleSup,
                 style: const TextStyle(
                   fontSize: sizeTextBig20,
                   fontWeight: FontWeight.w600,
@@ -144,7 +145,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             ),
             buildCardMore(
               context: context,
-              title: "${screenMoreResponse?.body?.screenInfo?.btntermandcon}",
+              title: screenMoreResponse?.body?.screenInfo?.btntermandcon??moreBtnTermAndCon,
               onTap: () {
                 Navigator.push(
                   context,
@@ -157,7 +158,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             ),
             buildCardMore(
               context: context,
-              title: "${screenMoreResponse?.body?.screenInfo?.btnfaq}",
+              title: screenMoreResponse?.body?.screenInfo?.btnfaq??moreBtnFaq,
               onTap: () {
                 Navigator.push(
                   context,
@@ -170,7 +171,7 @@ moreBodyWidget(BuildContext context, ScreenMoreResponse? screenMoreResponse,Futu
             ),
             buildCardMore(
               context: context,
-              title: "${screenMoreResponse?.body?.screenInfo?.btnconus}",
+              title: screenMoreResponse?.body?.screenInfo?.btnconus?? moreBtnContactus,
               onTap: () {
                 Navigator.push(
                   context,

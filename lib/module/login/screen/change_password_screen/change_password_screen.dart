@@ -1,11 +1,11 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
 import 'package:f2fbuu/customs/dialog/dialog_widget.dart';
 import 'package:f2fbuu/customs/dialog/texterror.dart';
 import 'package:f2fbuu/customs/progress_dialog.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
-import 'package:f2fbuu/customs/textlink/textlink_to_screen_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_password_custom.dart';
+import 'package:f2fbuu/customs/text_link/text_link_to_screen_custom.dart';
 import 'package:f2fbuu/module/home/screen/home_screen/home_screen.dart';
 import 'package:f2fbuu/module/login/bloc/change_password_bloc/change_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_change_password_response.dart';
@@ -34,14 +34,14 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDialog {
-  ScreenChangePasswordResponse? _screenchangepasswordResponse;
-  TextEditingController currentpasswordController = TextEditingController();
-  TextEditingController newpasswordController = TextEditingController();
-  TextEditingController confirmpasswordController = TextEditingController();
+  ScreenChangePasswordResponse? _screenChangePasswordResponse;
+  TextEditingController currentPasswordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
-  String currentpasswordvalue = "";
-  String newpasswordvalue = "";
-  String passwordvalue = " ";
+  String currentPasswordValue = "";
+  String newPasswordValue = "";
+  String passwordValue = " ";
   @override
   Widget build(BuildContext context) {
     context.read<ChangePasswordBloc>().add(ChangePasswordScreenInfoEvent());
@@ -63,7 +63,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDi
       child: Scaffold(
         body: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(builder: (context, state) {
           if (state is ScreenInfoChangePasswordSuccessState) {
-            _screenchangepasswordResponse = state.responseChangePasswordScreenInfo;
+            _screenChangePasswordResponse = state.responseChangePasswordScreenInfo;
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -79,7 +79,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDi
                   ),
                 ),
                 title: Text(
-                  "${_screenchangepasswordResponse?.body?.screeninfo?.textheadsetnewpass}",
+                  "${_screenChangePasswordResponse?.body?.screeninfo?.textheadsetnewpass}",
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: sizeTitle24,
@@ -96,27 +96,27 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDi
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),
                       TextFieldPasswordCustom(
-                        textEditingController: currentpasswordController,
+                        textEditingController: currentPasswordController,
                         onChanged: (value) {
-                          currentpasswordvalue = value;
+                          currentPasswordValue = value;
                         },
-                        hintLabel: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcurrentpass}",
+                        hintLabel: "${_screenChangePasswordResponse?.body?.screeninfo?.edtcurrentpass}",
                         textInputType: TextInputType.text,
                       ),
                       TextFieldPasswordCustom(
-                        textEditingController: newpasswordController,
+                        textEditingController: newPasswordController,
                         onChanged: (value) {
-                          newpasswordvalue = value;
+                          newPasswordValue = value;
                         },
-                        hintLabel: "${_screenchangepasswordResponse?.body?.screeninfo?.edtnewpass}",
+                        hintLabel: "${_screenChangePasswordResponse?.body?.screeninfo?.edtnewpass}",
                         textInputType: TextInputType.text,
                       ),
                       TextFieldPasswordCustom(
-                        textEditingController: confirmpasswordController,
+                        textEditingController: confirmPasswordController,
                         onChanged: (value) {
-                          passwordvalue = value;
+                          passwordValue = value;
                         },
-                        hintLabel: "${_screenchangepasswordResponse?.body?.screeninfo?.edtcpass}",
+                        hintLabel: "${_screenChangePasswordResponse?.body?.screeninfo?.edtcpass}",
                         textInputType: TextInputType.text,
                       ),
                       SizedBox(
@@ -125,7 +125,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDi
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: TextLinkToScreenCustom(
-                            linklabel: "${_screenchangepasswordResponse?.body?.screeninfo?.btnforgotpass}",
+                            linklabel: "${_screenChangePasswordResponse?.body?.screeninfo?.btnforgotpass}",
                             linktextcolor: tcForgot,
                             sizetext: sizeTextSmaller14,
                             onTap: () async {
@@ -138,7 +138,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> with ProgressDi
                       ),
                       Center(
                         child: ButtonCustom(
-                            label: "  ${_screenchangepasswordResponse?.body?.screeninfo?.btnconfirm}  ",
+                            label: "  ${_screenChangePasswordResponse?.body?.screeninfo?.btnconfirm}  ",
                             colortext: tcButtonTextBlack,
                             colorbutton: tcButtonTextWhite,
                             sizetext: sizeTextBig20,

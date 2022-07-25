@@ -18,8 +18,8 @@ buildListTeacherLeft(
         children: List.generate(
             int.parse("${screenMoreBoardTeacherResponse?.body?.teacher?.teacherone?.length}"),
             (index) => boardItemTeacherLeft(
-                  datateacher: screenMoreBoardTeacherResponse?.body?.teacher?.teacherone?[index],
-                  tiaileteacher: screenMoreBoardTeacherResponse?.body?.screeninfo,
+                  dataTeacher: screenMoreBoardTeacherResponse?.body?.teacher?.teacherone?[index],
+                  titleTeacher: screenMoreBoardTeacherResponse?.body?.screeninfo,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -58,8 +58,8 @@ buildListTeacherRight(
         children: List.generate(
             int.parse("${screenMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.length}"),
                 (index) => boardItemTeacherRight(
-              datateachertwo: screenMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.elementAt(index),
-              tiaileteacher: screenMoreBoardTeacherResponse?.body?.screeninfo,
+              dataTeacherTwo: screenMoreBoardTeacherResponse?.body?.teacher?.teachertwo?.elementAt(index),
+              titleTeacher: screenMoreBoardTeacherResponse?.body?.screeninfo,
               onTap: () {
                 Navigator.push(
                   context,
@@ -94,8 +94,8 @@ buildListStaff(BuildContext context, ScreenMoreBoardTeacherResponse? screenMoreB
         children: List.generate(
             int.parse("${screenMoreBoardTeacherResponse?.body?.staff?.length}"),
             (index) => boardItemStaff(
-                  datastaff: screenMoreBoardTeacherResponse?.body?.staff?[index],
-                  tiaileteacher: screenMoreBoardTeacherResponse?.body?.screeninfo,
+                  dataStaff: screenMoreBoardTeacherResponse?.body?.staff?[index],
+                  titleTeacher: screenMoreBoardTeacherResponse?.body?.screeninfo,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -107,10 +107,10 @@ buildListStaff(BuildContext context, ScreenMoreBoardTeacherResponse? screenMoreB
                           email: "${screenMoreBoardTeacherResponse?.body?.staff?[index].email}",
                           image: "${screenMoreBoardTeacherResponse?.body?.staff?[index].imgTeacher}",
 
-                          titlename: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.name}",
-                          titleposition: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.position}",
-                          titlephone: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.phone}",
-                          titleemail: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.email}",
+                          titleName: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.name}",
+                          titlePosition: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.position}",
+                          titlePhone: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.phone}",
+                          titleEmail: "${screenMoreBoardTeacherResponse?.body?.screeninfo?.email}",
                         ),
                       ),
                     );

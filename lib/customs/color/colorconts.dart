@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 
 const colorBoxOne = Color(0xFFFFFF00);
@@ -32,3 +33,4 @@ const backgroundDawer = Color(0xFFD7DBFF);
 const circleprogresscolor = Color(0xFFF73D93);
 const iconBoarder = Color(0xFF000000);
 const tcNoActivity = Color(0xFF6A6775);
+String drawerColor = "#e6eeff";

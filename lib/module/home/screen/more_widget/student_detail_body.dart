@@ -63,16 +63,16 @@ studentDetailBody(BuildContext context, String title) {
                         Container(
                           height: 35,
                         ),
-                        _buildListStudentDetail(titail: "ชื่อ", value: "Lastname"),
-                        _buildListStudentDetail(titail: "ชื่อเล่น", value: "Lastname"),
-                        _buildListStudentDetail(titail: "รุ่น", value: "65"),
-                        _buildListStudentDetail(titail: "รหัสนิสิต", value: "62X3X3XX"),
-                        _buildListStudentDetail(titail: "อาจารย์ที่ปรึกษา", value: "อาจารย์ที่ปรึกษา"),
-                        _buildListStudentDetail(titail: "เบอร์โทรศํพท์", value: "62X3X3XX"),
-                        _buildListStudentDetail(titail: "ช่องทางการติดต่อ", value: "ช่องทางการติดต่อ"),
-                        _buildListStudentDetail(titail: "สายงาน", value: "สายงาน"),
-                        _buildListStudentDetail(titail: "สถานะการทำงาน", value: "สถานะการทำงาน"),
-                        _buildListStudentDetail(titail: "ชื่อสถานที่ทำงาน", value: "ชื่อสถานที่ทำงาน"),
+                        _buildListStudentDetail(title: "ชื่อ", value: "Lastname"),
+                        _buildListStudentDetail(title: "ชื่อเล่น", value: "Lastname"),
+                        _buildListStudentDetail(title: "รุ่น", value: "65"),
+                        _buildListStudentDetail(title: "รหัสนิสิต", value: "62X3X3XX"),
+                        _buildListStudentDetail(title: "อาจารย์ที่ปรึกษา", value: "อาจารย์ที่ปรึกษา"),
+                        _buildListStudentDetail(title: "เบอร์โทรศํพท์", value: "62X3X3XX"),
+                        _buildListStudentDetail(title: "ช่องทางการติดต่อ", value: "ช่องทางการติดต่อ"),
+                        _buildListStudentDetail(title: "สายงาน", value: "สายงาน"),
+                        _buildListStudentDetail(title: "สถานะการทำงาน", value: "สถานะการทำงาน"),
+                        _buildListStudentDetail(title: "ชื่อสถานที่ทำงาน", value: "ชื่อสถานที่ทำงาน"),
                       ],
                     ),
                   ),
@@ -104,7 +104,7 @@ studentDetailBody(BuildContext context, String title) {
   );
 }
 
-_buildListStudentDetail({required String titail, required String value}) {
+_buildListStudentDetail({required String title, required String value}) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 10.0, top: 8.0, bottom: 15.0),
     child: Table(
@@ -113,9 +113,8 @@ _buildListStudentDetail({required String titail, required String value}) {
       // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
         TableRow(children: [
-          // if (_screenprofileResponse?.body?.profileGeneralInfo?.img == null)
           Text(
-            titail,
+            title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(

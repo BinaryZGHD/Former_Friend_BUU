@@ -1,5 +1,6 @@
 import 'package:f2fbuu/customs/button/button_icon_text.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_home.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/home/bloc/home_bloc/home_bloc.dart';
 import 'package:f2fbuu/module/home/model/response/home_response/screen_home_response.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 
-drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,ScreenHomeResponse? screenhomeResponse, ApiProfileResponse? screenprofileResponse,
+drawerHome(BuildContext context,void Function() toggleLanguageView , isHidden,ScreenHomeResponse? screenHomeResponse, ApiProfileResponse? screenProfileResponse,
     ) {
   return SafeArea(
     child: SingleChildScrollView(
@@ -21,12 +22,12 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
         children: <Widget>[
           Container(
             width: double.infinity,
-            color: HexColor( screenprofileResponse?.body?.profileGeneralInfo?.gencolor ?? '#ffffff'),
+            color: HexColor( screenProfileResponse?.body?.profileGeneralInfo?.gencolor?? drawerColor),
             padding: const EdgeInsets.all(20),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-              buildTableGeneralImgeinfo(
+              buildTableGeneralImageInfo(
                 context,
-                screenprofileResponse,
+                screenProfileResponse,
                 tb1: 0.65,
                 tb2: 0.05,
                 tb3: 0.3,
@@ -34,11 +35,11 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               const SizedBox(
                 height: 5,
               ),
-              buildTableGeneralinfo(
+              buildTableGeneralInfo(
                 context,
-                textlefttitile: screenhomeResponse?.body?.screenInfo?.textname ?? '-',
-                textrightdetail:
-                screenprofileResponse?.body?.profileGeneralInfo?.name?? '-' "${screenprofileResponse?.body?.profileGeneralInfo?.surname ?? '-'}" ,
+                textLeftTitle: screenHomeResponse?.body?.screenInfo?.textname ?? '-',
+                textRightDetail:
+                screenProfileResponse?.body?.profileGeneralInfo?.name?? '-' "${screenProfileResponse?.body?.profileGeneralInfo?.surname ?? '-'}" ,
                 tb1: 0.3,
                 tb2: 0.05,
                 tb3: 0.65,
@@ -46,10 +47,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               const SizedBox(
                 height: 5,
               ),
-              buildTableGeneralinfo(
+              buildTableGeneralInfo(
                 context,
-                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textnickname}',
-                textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.nickname ?? '-',
+                textLeftTitle: screenHomeResponse?.body?.screenInfo?.textnickname?? homeTextName,
+                textRightDetail: screenProfileResponse?.body?.profileGeneralInfo?.nickname ?? '-',
                 tb1: 0.45,
                 tb2: 0.05,
                 tb3: 0.5,
@@ -57,10 +58,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               const SizedBox(
                 height: 5,
               ),
-              buildTableGeneralinfo(
+              buildTableGeneralInfo(
                 context,
-                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textstdcode}',
-                textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.stuCode?? '-',
+                textLeftTitle: screenHomeResponse?.body?.screenInfo?.textstdcode?? homeTextStdCode,
+                textRightDetail: screenProfileResponse?.body?.profileGeneralInfo?.stuCode?? '-',
                 tb1: 0.45,
                 tb2: 0.05,
                 tb3: 0.5,
@@ -68,10 +69,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               const SizedBox(
                 height: 5,
               ),
-              buildTableGeneralinfo(
+              buildTableGeneralInfo(
                 context,
-                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textemail}',
-                textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.email?? '-',
+                textLeftTitle: screenHomeResponse?.body?.screenInfo?.textemail?? homeTextEmail,
+                textRightDetail: screenProfileResponse?.body?.profileGeneralInfo?.email?? '-',
                 tb1: 0.2,
                 tb2: 0.02,
                 tb3: 0.77,
@@ -83,10 +84,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
             width: double.infinity,
             color: bscTransparent,
             padding: const EdgeInsets.only(top: 0, bottom: 0, left: 15, right: 15),
-            child: buildTableGeneralinfo(
+            child: buildTableGeneralInfo(
               context,
-              textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textrole}',
-              textrightdetail: screenprofileResponse?.body?.profileGeneralInfo?.role?? '-',
+              textLeftTitle: screenHomeResponse?.body?.screenInfo?.textrole?? homeTextRole,
+              textRightDetail: screenProfileResponse?.body?.profileGeneralInfo?.role?? '-',
               tb1: 0.5,
               tb2: 0.05,
               tb3: 0.45,
@@ -100,8 +101,8 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               context,
               toggleLanguageView,
               isHidden,
-              textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textlang}',
-              textrightdetail: '${screenhomeResponse?.body?.screenInfo?.textlangdetail}',
+              textLeftTitle: screenHomeResponse?.body?.screenInfo?.textlang?? homeTextLang,
+              textRightDetail: screenHomeResponse?.body?.screenInfo?.textlangdetail?? homeTextThai,
               tb1: 0.5,
               tb2: 0.00,
               tb3: 0.55,
@@ -115,10 +116,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               width: double.infinity,
               color: bscTransparent,
               padding: const EdgeInsets.only(top: 0, bottom: 10, left: 15, right: 15),
-              child: buildTableGeneralinfo(
+              child: buildTableGeneralInfo(
                 context,
-                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.btncpass}',
-                textrightdetail: '',
+                textLeftTitle: screenHomeResponse?.body?.screenInfo?.btncpass?? homeBtnConfirmPassword,
+                textRightDetail: '',
                 tb1: 0.5,
                 tb2: 0.05,
                 tb3: 0.45,
@@ -133,10 +134,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               width: double.infinity,
               color: bscTransparent,
               padding: const EdgeInsets.only(top: 0, bottom: 10, left: 15, right: 15),
-              child: buildTableGeneralinfo(
+              child: buildTableGeneralInfo(
                 context,
-                textlefttitile: '${screenhomeResponse?.body?.screenInfo?.btndelacc}',
-                textrightdetail: '',
+                textLeftTitle: screenHomeResponse?.body?.screenInfo?.btndelacc?? homeBtnDelAcc,
+                textRightDetail: '',
                 tb1: 0.5,
                 tb2: 0.05,
                 tb3: 0.45,
@@ -147,10 +148,10 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
             width: double.infinity,
             color: bscTransparent,
             padding: const EdgeInsets.only(top: 0, bottom: 15, left: 15, right: 15),
-            child: buildTableGeneralinfo(
+            child: buildTableGeneralInfo(
               context,
-              textlefttitile: '${screenhomeResponse?.body?.screenInfo?.textappver}',
-              textrightdetail: '${screenhomeResponse?.body?.vs}',
+              textLeftTitle: screenHomeResponse?.body?.screenInfo?.textappver??homeTextAppVer,
+              textRightDetail: screenHomeResponse?.body?.vs?? '-',
               tb1: 0.5,
               tb2: 0.05,
               tb3: 0.45,
@@ -166,7 +167,7 @@ drawerhome(BuildContext context,void Function() toggleLanguageView , isHidden,Sc
               onPressed: () {
                 context.read<HomeBloc>().add(OnClickLogoutHomeEvent());
               },
-              label: "  ${screenhomeResponse?.body?.screenInfo?.btnlogout}  ",
+              label: screenHomeResponse?.body?.screenInfo?.btnlogout??homeBtnLogout,
               colortext: bcButtonLogout,
               colorbutton: tcButtonTextWhite,
               sizetext: sizeTextBig20,

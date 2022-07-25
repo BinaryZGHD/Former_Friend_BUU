@@ -1,10 +1,10 @@
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:flutter/material.dart';
 
-buildTableGeneralinfo(
+buildTableGeneralInfo(
     BuildContext context, {
-      required textlefttitile,
-      required String textrightdetail,
+      required textLeftTitle,
+      required String textRightDetail,
       required tb1,
       required tb2,
       required tb3,
@@ -16,13 +16,13 @@ buildTableGeneralinfo(
     children: [
       TableRow(children: [
         Text(
-          textlefttitile,
+          textLeftTitle,
           textAlign: TextAlign.start,
           style: const TextStyle(fontSize: sizeTextSmaller14, fontWeight: FontWeight.bold),
         ),
         const SizedBox(),
         Text(
-          textrightdetail,
+          textRightDetail,
           textAlign: TextAlign.end,
           style: const TextStyle(fontSize: sizeTextSmaller14),
         ),

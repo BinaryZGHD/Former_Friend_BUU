@@ -1,7 +1,7 @@
 import 'package:f2fbuu/module/profile/model/response/api_profile.dart';
 import 'package:flutter/material.dart';
 
-buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? screenprofileResponse,
+buildTableGeneralImageInfo(BuildContext context, ApiProfileResponse? screenProfileResponse,
     {required tb1, required tb2, required tb3}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 10.0),
@@ -15,13 +15,13 @@ buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? screenprofil
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                screenprofileResponse?.body?.profileGeneralInfo?.gen?? '-',
+                screenProfileResponse?.body?.profileGeneralInfo?.gen?? '-',
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Table(children: [
                 TableRow(children: [
                   Text(
-                    screenprofileResponse?.body?.profileGeneralInfo?.genname?? '-',
+                    screenProfileResponse?.body?.profileGeneralInfo?.genname?? '-',
                     textAlign: TextAlign.end,
                     style: const TextStyle(fontSize: 18),
                   ),
@@ -32,10 +32,10 @@ buildTableGeneralImgeinfo(BuildContext context, ApiProfileResponse? screenprofil
           const SizedBox(
             width: 10,
           ),
-          screenprofileResponse?.body?.profileGeneralInfo?.img != null
+          screenProfileResponse?.body?.profileGeneralInfo?.img != null
               ? CircleAvatar(
             radius: 35.0,
-            backgroundImage: NetworkImage("${screenprofileResponse?.body?.profileGeneralInfo?.img}"),
+            backgroundImage: NetworkImage(screenProfileResponse?.body?.profileGeneralInfo?.img?? '-'),
           )
               : const CircleAvatar(
             radius: 35.0,

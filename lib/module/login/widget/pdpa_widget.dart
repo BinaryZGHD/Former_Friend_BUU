@@ -1,5 +1,6 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_message.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/login/bloc/pdpa_bloc/pdpa_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_pdpa_response.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
+pDPAScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
   return WillPopScope(
     onWillPop: () async {
       return false;
@@ -22,7 +23,7 @@ pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 15, bottom: 10),
-                  child: Text("${screenPDPAResponse?.body?.screeninfo?.titlepdpa}",
+                  child: Text(screenPDPAResponse?.body?.screeninfo?.titlepdpa?? pDPATitlePDPA,
                       textAlign: TextAlign.center, style: const TextStyle(fontSize: sizeTitle24, color: Colors.black)),
                 ),
                 Expanded(
@@ -30,16 +31,11 @@ pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
                       color: bscTransparent,
                       width: MediaQuery.of(context).size.width,
                       child: SfPdfViewer.network("${screenPDPAResponse?.body?.linkpdpa}")
-                      // Image.asset(
-                      //   "assets/PDPA.png",
-                      //   fit: BoxFit.fill,
-                      // ),
                       ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                // buildButtonComfirm(),
                 Row(
                   children: [
                     SizedBox(
@@ -47,7 +43,7 @@ pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
                     ),
                     Expanded(
                         child: ButtonCustom(
-                      label: "${screenPDPAResponse?.body?.screeninfo?.btnaccept}",
+                      label: screenPDPAResponse?.body?.screeninfo?.btnaccept ?? pDPABtnAccept,
                       colortext: tcButtonTextBlack,
                       colorbutton: tcButtonTextWhite,
                       sizetext: sizeTextBig20,
@@ -55,25 +51,7 @@ pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
                       sizeborder: 10,
                       onPressed: () {
                         BlocProvider.of<PdpaBloc>(context).add(OnClickPDPAEvent(accept: true));
-                        // dialogOneLineTwoBtn(
-                        //     context, errpdpaaccept + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                        //     onClickBtn: (String result) {
-                        //       Navigator.of(context).pop();
-                        //       switch (result) {
-                        //         case 'Cancel':
-                        //           {
-                        //             break;
-                        //           }
-                        //         case 'OK':
-                        //           {
-                        //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                        //               // int index = int.parse(widget.id);
-                        //               return registerScreen();
-                        //               // DisplayBeerScreen();
-                        //             }));
-                        //           }
-                        //       }
-                        //     });
+
                       },
                     )),
                     SizedBox(
@@ -81,7 +59,7 @@ pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
                     ),
                     Expanded(
                         child: ButtonCustom(
-                      label: "${screenPDPAResponse?.body?.screeninfo?.btndecline}",
+                      label: screenPDPAResponse?.body?.screeninfo?.btndecline??pDPABtnDecline,
                       colortext: tcButtonTextWhite,
                       colorbutton: tcButtonTextRed,
                       sizetext: sizeTextBig20,
@@ -91,28 +69,7 @@ pdpaScreenWidget(BuildContext context, ScreenPDPAResponse? screenPDPAResponse) {
                         BlocProvider.of<PdpaBloc>(context)
                             // ..isFetching = true
                             .add(OnClickPDPAEvent(accept: false));
-                        // context
-                        //     .read<PdpaBloc>()
-                        //     .add(OnClickPDPAEvent(accept: false));
-                        // dialogOneLineTwoBtn(
-                        //     context, errpdpadecline + '\n \n ' + 'Do you want to continue?', 'Confirm', 'Cancel',
-                        //     onClickBtn: (String result) {
-                        //       Navigator.of(context).pop();
-                        //       switch (result) {
-                        //         case 'Cancel':
-                        //           {
-                        //             break;
-                        //           }
-                        //         case 'OK':
-                        //           {
-                        //             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                        //               // int index = int.parse(widget.id);
-                        //               return loginScreen();
-                        //               // DisplayBeerScreen();
-                        //             }));
-                        //           }
-                        //       }
-                        //     });
+
                       },
                     )),
                     SizedBox(

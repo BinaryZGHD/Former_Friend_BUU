@@ -1,26 +1,27 @@
 
 import 'package:custom_timer/custom_timer.dart';
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_forgot_password.dart';
 import 'package:f2fbuu/customs/size/size.dart';
-import 'package:f2fbuu/customs/textfile/textfield_custom.dart';
-import 'package:f2fbuu/customs/textfile/textfield_password_custom.dart';
-import 'package:f2fbuu/customs/textlink/textlink_otp_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_custom.dart';
+import 'package:f2fbuu/customs/text_file/text_field_password_custom.dart';
+import 'package:f2fbuu/customs/text_link/text_link_otp_custom.dart';
 import 'package:f2fbuu/module/login/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:f2fbuu/module/login/model/response/screen_forgot_password_response.dart';
 import 'package:f2fbuu/module/login/widget/count_time_otp_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? screenforgotpasswordResponse,
-    {required String valueEmailForgotpassword, required String valueUserIDForgotpassword, required CustomTimerController controller}) {
+setNewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordResponse? screenForgotPasswordResponse,
+    {required String valueEmailForgotPassword, required String valueUserIDForgotPassword, required CustomTimerController controller}) {
   TextEditingController password = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
   TextEditingController code = TextEditingController();
 
-  String passwordvalue = "";
-  String confirmpasswordvalue = "";
-  String codevalue = " ";
+  String passwordValue = "";
+  String confirmPasswordValue = "";
+  String codeValue = " ";
   return WillPopScope(
     onWillPop: () async {
       return false;
@@ -40,7 +41,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
           ),
         ),
         title: Text(
-          "${screenforgotpasswordResponse?.body?.screeninfo?.titlesetnewpass}",
+          screenForgotPasswordResponse?.body?.screeninfo?.titlesetnewpass?? forgotPasswordSetNewTitleSetNewPassword,
           style: const TextStyle(
             color: Colors.black,
             fontSize: sizeTitle24,
@@ -55,7 +56,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
               Center(
                 child: Column(children: [
                   Text(
-                    "${screenforgotpasswordResponse?.body?.screeninfo?.textotpwillsent}",
+                    screenForgotPasswordResponse?.body?.screeninfo?.textotpwillsent?? forgotPasswordSetNewTextOTPWillSent,
                     style: const TextStyle(
                       fontSize: sizeTextBig20,
                       fontWeight: FontWeight.w600,
@@ -65,8 +66,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                     padding: const EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20),
                     child: Center(
                       child: Text(
-                          // ${_screenforgotpasswordResponse?.body?.screeninfo?.edtemailforgot} :
-                          valueEmailForgotpassword,
+                          valueEmailForgotPassword,
                           style: const TextStyle(
                               decoration: TextDecoration.underline,
                               color: tcOTPSent,
@@ -76,7 +76,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                     ),
                   ),
                   Text(
-                    "${screenforgotpasswordResponse?.body?.screeninfo?.texpleaseconfirm}",
+                    screenForgotPasswordResponse?.body?.screeninfo?.texpleaseconfirm?? forgotPasswordSetNewTextPleaseConfirm,
                     style: const TextStyle(
                       fontSize: sizeTextBig20,
                       fontWeight: FontWeight.w600,
@@ -90,17 +90,17 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
               TextFieldPasswordCustom(
                 textEditingController: password,
                 onChanged: (value) {
-                  passwordvalue = value;
+                  passwordValue = value;
                 },
-                hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.edtpass}",
+                hintLabel: screenForgotPasswordResponse?.body?.screeninfo?.edtpass?? forgotPasswordSetNewEdtPassword,
                 textInputType: TextInputType.text,
               ),
               TextFieldPasswordCustom(
-                textEditingController: confirmpassword,
+                textEditingController: confirmPassword,
                 onChanged: (value) {
-                  confirmpasswordvalue = value;
+                  confirmPasswordValue = value;
                 },
-                hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.edtcpass}",
+                hintLabel: screenForgotPasswordResponse?.body?.screeninfo?.edtcpass?? forgotPasswordSetNewEdtConfirmPassword,
                 textInputType: TextInputType.text,
               ),
 
@@ -108,19 +108,19 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                 maxLengthOTP: 6,
                 textEditingController: code,
                 onChanged: (value) {
-                  codevalue = value;
+                  codeValue = value;
                 },
-                hintLabel: "${screenforgotpasswordResponse?.body?.screeninfo?.otp}",
+                hintLabel: screenForgotPasswordResponse?.body?.screeninfo?.otp?? forgotPasswordSetNewOTP,
                 textInputType: TextInputType.number,
               ),
               CountTimeOTPWidget(
                    sendOTP : TextSendOTPCustom(
-                     textlabel: "${screenforgotpasswordResponse?.body?.screeninfo?.btnsentotpagain}",
+                     textlabel: screenForgotPasswordResponse?.body?.screeninfo?.btnsentotpagain?? forgotPasswordSetNewBtnSentOTPAgain,
                      textcolor: tcOTPSent,
                      sizetext: sizeTextSmall16,
                      onTap: () {
                        context.read<ForgorPasswordBloc>().add(ReSentOTPSetNewForgotPasswordEvent(
-                           userID: valueUserIDForgotpassword, email: valueEmailForgotpassword));
+                           userID: valueUserIDForgotPassword, email: valueEmailForgotPassword));
                      },
                    ),
                     controller: controller,
@@ -131,7 +131,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
               ),
               Center(
                 child: ButtonCustom(
-                  label: "  ${screenforgotpasswordResponse?.body?.screeninfo?.btnconfirm}  ",
+                  label: screenForgotPasswordResponse?.body?.screeninfo?.btnconfirm?? forgotPasswordSetNewBtnConfirm ,
                   colortext: tcButtonTextBlack,
                   colorbutton: tcButtonTextWhite,
                   sizetext: sizeTextBig20,
@@ -139,7 +139,7 @@ setnewForgotPasswordPageWidget(BuildContext context, ScreenForgotPasswordRespons
                   sizeborder: 10,
                   onPressed: () {
                     context.read<ForgorPasswordBloc>().add(SubmitSetNewForgotPasswordEvent(
-                        password: passwordvalue, confirmpassword: confirmpasswordvalue, otp: codevalue));
+                        password: passwordValue, confirmpassword: confirmPasswordValue, otp: codeValue));
                   },
                 ),
               ),

@@ -7,8 +7,8 @@ changLanguage(
     BuildContext context,
     void Function() toggleLanguageView,
     bool isHidden, {
-      required String textlefttitile,
-      required String textrightdetail,
+      required String textLeftTitle,
+      required String textRightDetail,
       required tb1,
       required tb2,
       required tb3,
@@ -20,7 +20,7 @@ changLanguage(
     children: [
       TableRow(children: [
         Text(
-          textlefttitile,
+          textLeftTitle,
           textAlign: TextAlign.start,
           style: const TextStyle(fontSize: sizeTextSmaller14, fontWeight: FontWeight.bold),
         ),
@@ -29,7 +29,7 @@ changLanguage(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              textrightdetail,
+              textRightDetail,
               style: const TextStyle(fontSize: sizeTextSmaller14),
             ),
             //

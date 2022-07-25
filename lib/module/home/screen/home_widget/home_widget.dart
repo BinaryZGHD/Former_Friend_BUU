@@ -1,5 +1,6 @@
-import 'package:f2fbuu/customs/button/buttoncustom.dart';
+import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
+import 'package:f2fbuu/customs/message/text_home.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/module/activity/model/response/screen_status_activity.dart';
 import 'package:f2fbuu/module/activity/screen/add_activity.dart';
@@ -16,10 +17,10 @@ buildContentHomeScreen(
     BuildContext context,
     void Function() toggleLanguageView,
     isHidden,
-    ScreenHomeResponse? screenhomeResponse,
-    ApiProfileResponse? screenprofileResponse,
+    ScreenHomeResponse? screenHomeResponse,
+    ApiProfileResponse? screenProfileResponse,
     userLanguage,
-    ScreenStatusActivityResponse? screenstatusActivityResponse,
+    ScreenStatusActivityResponse? screenStatusActivityResponse,
     AlertNoActivityResponse? alertNoActivityResponse,
     ) {
   return WillPopScope(
@@ -28,7 +29,7 @@ buildContentHomeScreen(
     },
     child: Scaffold(
       drawer: Drawer(
-        child: drawerhome(context,toggleLanguageView,isHidden, screenhomeResponse, screenprofileResponse, ),
+        child: drawerHome(context,toggleLanguageView,isHidden, screenHomeResponse, screenProfileResponse, ),
       ),
       appBar: AppBar(
         // backgroundColor: Colors.white,
@@ -44,11 +45,12 @@ buildContentHomeScreen(
           },
         ),
         title: Center(
-            child: Text("${screenhomeResponse?.body?.screenInfo?.titlestatus}    $userLanguage",
+            child: Text(screenHomeResponse?.body?.screenInfo?.titlestatus?? homeTitleAct ,
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: tcBlack))),
         actions: <Widget>[
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.1,
+            child: Text(userLanguage),
           ),
         ],
       ),
@@ -58,7 +60,7 @@ buildContentHomeScreen(
             const SizedBox(
               height: 5,
             ),
-            if (screenstatusActivityResponse?.body?.activity?.length.toInt() == 0)
+            if (screenStatusActivityResponse?.body?.activity?.length.toInt() == 0)
               Expanded(
                 child: Card(
                   color: Colors.grey[200],
@@ -92,7 +94,7 @@ buildContentHomeScreen(
                       )),
                 ),
               ),
-            if (screenstatusActivityResponse?.body?.activity?.length.toInt() != 0)
+            if (screenStatusActivityResponse?.body?.activity?.length.toInt() != 0)
               Expanded(
                 child: Container(
                   color: tcButtonTextWhite,
@@ -101,7 +103,7 @@ buildContentHomeScreen(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          buildListActivity(context, screenstatusActivityResponse),
+                          buildListActivity(context, screenStatusActivityResponse),
                           const SizedBox(
                             // height: MediaQuery.of(context).size.height * 0.2,
                           ),
@@ -117,7 +119,7 @@ buildContentHomeScreen(
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
               child: ButtonCustom(
-                label: "       ${screenhomeResponse?.body?.screenInfo?.btnadd}      ",
+                label: screenHomeResponse?.body?.screenInfo?.btnadd?? homeTextAdd,
                 colortext: tcButtonTextBlack,
                 colorbutton: tcButtonTextWhite,
                 sizetext: sizeTextSmaller14,

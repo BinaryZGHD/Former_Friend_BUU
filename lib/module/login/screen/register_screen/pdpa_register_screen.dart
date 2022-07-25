@@ -30,14 +30,9 @@ class ConditionPDPAPage extends StatefulWidget {
 
 class _ConditionPDPAPageState extends State<ConditionPDPAPage> with ProgressDialog {
   ScreenPDPAResponse? _screenPDPAResponse;
-  late String userLanguage;
   @override
   void initState() {
     super.initState();
-
-    // context
-    //     .read<PdpaBloc>()
-    //     .add(ScreenInfoPDPAEvent(userLanguage: userLanguage));
   }
 
   @override
@@ -67,7 +62,7 @@ class _ConditionPDPAPageState extends State<ConditionPDPAPage> with ProgressDial
       builder: (context, state) {
         if (state is ScreenInfoPDPASuccessState) {
           _screenPDPAResponse = state.response;
-          return pdpaScreenWidget(context, _screenPDPAResponse);
+          return pDPAScreenWidget(context, _screenPDPAResponse);
         }
         return Scaffold(
             body: Container(
