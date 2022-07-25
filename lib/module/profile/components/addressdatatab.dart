@@ -1,3 +1,4 @@
+import 'package:f2fbuu/customs/message/text_profile.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.subtitleaddress}',
+                  dataFromAPI?.body?.screeninfo?.subtitleaddress??profileSubTitleAddress,
                   style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -56,9 +57,9 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
                         });
                       },
                       child: isUnpressed
-                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : const Text('บันทึก',
-                              style: TextStyle(color: Colors.green)),
+                          ? Text(dataFromAPI?.body?.screeninfo?.textedit??profileTextEdit, style: const TextStyle(color: Colors.red))
+                          : Text(dataFromAPI?.body?.screeninfo?.textsave??profileTextSave,
+                              style: const TextStyle(color: Colors.green)),
                     ),
                   ),
                 ),
@@ -68,8 +69,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
         ),
         ProfileAddressDataTab(
           isUnpressed: isUnpressed,
-          textLeft: '${dataFromAPI?.body?.screeninfo?.texthousenumber}',
-          textRight: '${dataFromAPI?.body?.profileAddressInfo?.number}',
+          textLeft: dataFromAPI?.body?.screeninfo?.texthousenumber??profileTextHouseNumber,
+          textRight: dataFromAPI?.body?.profileAddressInfo?.number??"-",
           onChange: (value) {
             numberValue = value;
             if (kDebugMode) {
@@ -79,8 +80,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
         ),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textmoo}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.moo}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textmoo??profileTextMoo,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.moo??"-",
           onChange: (value) {
             numberValue = value;
             if (kDebugMode) {
@@ -89,8 +90,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textsoi}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.soi}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textsoi??profileTextSoi,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.soi??"-",
           onChange: (value) {
             numberValue = value;
             if (kDebugMode) {
@@ -99,8 +100,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textroad}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.road}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textroad??profileTextRoad,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.road??"-",
           onChange: (value) {
             roadValue = value;
             if (kDebugMode) {
@@ -109,8 +110,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textsubdistrict}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.subdistrict}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textsubdistrict??profileTextSubDistrict,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.subdistrict??"-",
           onChange: (value) {
             subDistrictValue = value;
             if (kDebugMode) {
@@ -119,8 +120,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textdistrict}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.district}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textdistrict??profileTextDistrict,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.district??"-",
           onChange: (value) {
             districtValue = value;
             if (kDebugMode) {
@@ -129,8 +130,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textprovince}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.province}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textprovince??profileTextProvince,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.province??"-",
           onChange: (value) {
             provinceValue = value;
             if (kDebugMode) {
@@ -139,8 +140,8 @@ class _ProfileAddressDataHeadState extends State<ProfileAddressDataHead> {
           },),
         ProfileAddressDataTab(
             isUnpressed: isUnpressed,
-            textLeft: '${dataFromAPI?.body?.screeninfo?.textzipcode}',
-            textRight: '${dataFromAPI?.body?.profileAddressInfo?.zipcode}',
+            textLeft: dataFromAPI?.body?.screeninfo?.textzipcode??profileTextPostcode,
+            textRight: dataFromAPI?.body?.profileAddressInfo?.zipcode??"-",
           onChange: (value) {
             zipcodeValue = value;
             if (kDebugMode) {

@@ -1,3 +1,4 @@
+import 'package:f2fbuu/customs/message/text_profile.dart';
 import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:f2fbuu/module/profile/components/attentiondatatab.dart';
 import 'package:f2fbuu/module/profile/components/workdatatab.dart';
@@ -41,7 +42,7 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
             child: Row(
               children: [
                 Text(
-                  '${dataFromAPI?.body?.screeninfo?.textcareer}',
+                  dataFromAPI?.body?.screeninfo?.textcareer??profileTextCareer,
                   style: const TextStyle(fontSize: 20),
                 ),
                 Expanded(
@@ -57,9 +58,9 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
                         });
                       },
                       child: isUnpressed
-                          ? const Text('แก้ไข', style: TextStyle(color: Colors.red))
-                          : const Text('บันทึก',
-                              style: TextStyle(color: Colors.green)),
+                          ? Text(dataFromAPI?.body?.screeninfo?.textedit??profileTextEdit, style: const TextStyle(color: Colors.red))
+                          : Text(dataFromAPI?.body?.screeninfo?.textsave??profileTextSave,
+                              style: const TextStyle(color: Colors.green)),
                     ),
                   ),
                 ),
@@ -69,8 +70,8 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
         ),
         ProfileAttentionDropdownTab(
           attentionArray: dataFromAPI?.body?.profileCareerScreeninfo?.attention??[],
-          userAttentionValue: dataFromAPI?.body?.profileCareerInfo?.userattention??"",
-          textLeft: '${dataFromAPI?.body?.screeninfo?.textatt}',
+          userAttentionValue: dataFromAPI?.body?.profileCareerInfo?.userattention??"-",
+          textLeft: dataFromAPI?.body?.screeninfo?.textatt??profileTextAttention,
           isUnpressed: isUnpressed,
           callbackFromAttentionDataTab: (String attentionResult){
             setState((){
@@ -82,18 +83,18 @@ class _ProfileCareerDataHeadState extends State<ProfileCareerDataHead> {
           },
         ),
         ProfileCareerDropdownTab(
-          textLeft: '${dataFromAPI?.body?.screeninfo?.textstatus}',
+          textLeft: dataFromAPI?.body?.screeninfo?.textstatus??profileTextStatus,
           statusArray: dataFromAPI?.body?.profileCareerScreeninfo?.status??[],
-          userStatusValue: dataFromAPI?.body?.profileCareerInfo?.userstatus??"",
-          jobTextLeft: '${dataFromAPI?.body?.screeninfo?.textjobtype}',
+          userStatusValue: dataFromAPI?.body?.profileCareerInfo?.userstatus??"-",
+          jobTextLeft: dataFromAPI?.body?.screeninfo?.textjobtype??profileTextJobType,
           jobTypeArray: dataFromAPI?.body?.profileCareerScreeninfo?.jobtype??[],
-          userJobValue: dataFromAPI?.body?.profileCareerInfo?.userjobtype??"",
-          subtitleWorkplace: '${dataFromAPI?.body?.screeninfo?.subtitleworkplace}',
-          userWorkplace: dataFromAPI?.body?.profileCareerInfo?.userworkplace??"",
-          userCareer: dataFromAPI?.body?.profileCareerInfo?.usercareer??"",
-          userCompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"",
-          textComp: '${dataFromAPI?.body?.screeninfo?.textcomp}',
-          textCareer: '${dataFromAPI?.body?.screeninfo?.textcareer}',
+          userJobValue: dataFromAPI?.body?.profileCareerInfo?.userjobtype??"-",
+          subtitleWorkplace: dataFromAPI?.body?.screeninfo?.subtitleworkplace??profileSubTitleWorkplace,
+          userWorkplace: dataFromAPI?.body?.profileCareerInfo?.userworkplace??"-",
+          userCareer: dataFromAPI?.body?.profileCareerInfo?.usercareer??"-",
+          userCompany: dataFromAPI?.body?.profileCareerInfo?.usercompany??"-",
+          textComp: dataFromAPI?.body?.screeninfo?.textcomp??profileTextCompany,
+          textCareer: dataFromAPI?.body?.screeninfo?.textcareer??profileTextCareer,
           isUnpressed: isUnpressed,
           callbackFromWorkDataTab: (String jobType, String workplace, String career, String company){
             setState((){
