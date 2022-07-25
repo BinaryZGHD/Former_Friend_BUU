@@ -284,7 +284,7 @@ buildEditActivityBody(
                 }
               },
               hintLabel:
-                  addActivityScreenApi?.body?.screeninfo?.edtvenue??activityEdtVenue,
+                  addActivityScreenApi?.body?.screeninfo?.edtvenue??activityEdtApprover,
               textInputType: TextInputType.text,
             ),
             customDropdownForEdit(
@@ -309,7 +309,7 @@ buildEditActivityBody(
                 }
               },
               hintLabel:
-                  "${addActivityScreenApi?.body?.screeninfo?.edtdetail}",
+                  addActivityScreenApi?.body?.screeninfo?.edtdetail??activityEdtDetail,
               textInputType: TextInputType.text,
             ),
             SizedBox(
@@ -317,7 +317,7 @@ buildEditActivityBody(
             ),
             Center(
               child: ButtonCustom(
-                label: "  ${addActivityScreenApi?.body?.screeninfo?.btnconfirm}  ",
+                label: addActivityScreenApi?.body?.screeninfo?.btnconfirm??activityBtnConfirm,
                 colortext: tcButtonTextBlack,
                 colorbutton: tcButtonTextWhite,
                 sizetext: sizeTextBig20,

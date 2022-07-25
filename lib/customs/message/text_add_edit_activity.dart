@@ -9,3 +9,4 @@ const String activityEdtTime   = 'จำนวนชั่วโมง';
 const String activityEdtVenue   = 'สถานที่จัดกิจกรรม';
 const String activityEdtDetail   = 'รายละเอียดกิจกรรม ( โดยสังเขป )';
 const String activityBtnConfirm   = 'ยืนยัน';
+const String activityEdtApprover   = 'ผู้ยืนยัน';

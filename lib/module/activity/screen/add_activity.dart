@@ -235,7 +235,7 @@ buildAddActivityBody(
             customDropdown(
               width: MediaQuery.of(context).size.width,
               dropdownList: approverList ?? <String>[],
-              hint: 'Approver',
+              hint: addActivityScreenApi?.body?.screeninfo?.edtapprover??activityEdtApprover,
               callbackFromCustomDropdown: (String result) {
                 approver.text = result;
                 if (kDebugMode) {
