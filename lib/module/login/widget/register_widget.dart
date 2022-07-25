@@ -1,6 +1,6 @@
 import 'package:f2fbuu/customs/button/button_custom.dart';
 import 'package:f2fbuu/customs/color/colorconts.dart';
-import 'package:f2fbuu/customs/message/text_message.dart';
+import 'package:f2fbuu/customs/message/text_register.dart';
 import 'package:f2fbuu/customs/size/size.dart';
 import 'package:f2fbuu/customs/text_file/text_field_custom.dart';
 import 'package:f2fbuu/customs/text_file/text_field_password_custom.dart';

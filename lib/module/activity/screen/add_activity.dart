@@ -229,7 +229,7 @@ buildAddActivityBody(
                 }
               },
               hintLabel:
-                  addActivityScreenApi?.body?.screeninfo?.edttvenue??activityEdtVenue,
+                  addActivityScreenApi?.body?.screeninfo?.edtvenue??activityEdtVenue,
               textInputType: TextInputType.text,
             ),
             customDropdown(
