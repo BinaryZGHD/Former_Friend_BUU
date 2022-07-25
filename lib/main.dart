@@ -1,7 +1,7 @@
-import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
+// import 'package:f2fbuu/module/activity/bloc/activity_bloc.dart';
 // import 'package:f2fbuu/module/login/bloc/login_bloc/login_bloc.dart';
 import 'package:f2fbuu/module/login/screen/login_screen/login_screen.dart';
-import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
+// import 'package:f2fbuu/module/profile/bloc/profile_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
     // final pdpaBloc = BlocProvider<PdpaBloc>(create: (context) => PdpaBloc(),lazy: false,);
     // final registerBloc = BlocProvider<RegisterBloc>(create: (context) => RegisterBloc(),lazy: false,);
     // final changepasswordBloc = BlocProvider<ChangePasswordBloc>(create: (context) => ChangePasswordBloc());
-    final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
-    final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
+    // final profileBloc = BlocProvider<ProfileBloc>(create: (context) => ProfileBloc());
+    // final actitivtyBloc = BlocProvider<ActivityBloc>(create: (context) => ActivityBloc());
 
     return MultiBlocProvider(
       providers: [
@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
         // pdpaBloc,
         // registerBloc,
         // changepasswordBloc,
-        profileBloc,
-        actitivtyBloc,
+        // profileBloc,
+        // actitivtyBloc,
         // moreboarBloc,
       ],
       child: MaterialApp(
