@@ -40,21 +40,6 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const LoginScreen(),
         }
-      // home: ProfileScreen(),
-///////////////////////
-      //asdsadsadsadsasadsadsadasdsads
-      // final loginBloc = BlocProvider<LoginBloc>(create: (context)=> LoginBloc());
-      // final MainnBloc = BlocProvider<MainBloc>(create: (context)=> MainBloc());
-      // return MultiBlocProvider(
-      //     providers: [loginBloc,MainnBloc],
-      //     child: MaterialApp
-      //       (
-      //       title: 'Flutter Demo',
-      //       theme: ThemeData(
-      //         primarySwatch: Colors.grey,
-      //       ),
-      //       home: ProfileScreen(),
-      //     )
     );
   }
 }
